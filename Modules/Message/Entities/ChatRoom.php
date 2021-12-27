@@ -27,12 +27,12 @@ class ChatRoom extends Model
 
     public function customerUser()
     {
-        $this->belongsTo(User::class, 'customer_user_id');
+        return $this->belongsTo(User::class, 'customer_user_id');
     }
 
     public function vendorUser()
     {
-        $this->belongsTo(User::class, 'vendor_user_id');
+        return $this->belongsTo(User::class, 'vendor_user_id');
     }
 
     public function messages()
