@@ -1,0 +1,21 @@
+{
+    "User": true,
+    "AdminUser": true,
+    "Role": true,
+    "Dashboard": true,
+    "Category": true,
+    "Subcategory": true,
+    "Product": true,
+    "Brand": true,
+    "Offer": true,
+    "ProductAttribute": true,
+    "Order": true,
+    "Advertisement": true,
+    "Admin": true,
+    "Front": true,
+    "Payment": true,
+    "Message": true,
+    "Slider": true,
+    "Subscriber": true,
+    "Review": true
+}

@@ -1,0 +1,148 @@
+<template>
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 my-3">
+          <nav>
+            <a href="javascript:void(0)" @click="vendorHomepage">
+              <img class="logo" src="/images/logo.png" alt="logo" />
+            </a>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 m-auto login-row" style="padding: 30px 26px">
+          <div style="text-align: center; front-size: 20px" v-if="loading">
+            loding....
+          </div>
+          <h4 class="text-center">Login Info</h4>
+          <form @submit.prevent="submitData">
+            <div class="form-group">
+              <label for="">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="name"
+                id=""
+                aria-describedby=""
+                placeholder="Enter Your Full Name"
+              />
+               <div class="text-danger">
+               {{ validation.getMessage('name') }}
+             </div>
+            </div>
+            <div class="form-group">
+              <label for="">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                v-model="email"
+                id=""
+                aria-describedby=""
+                placeholder="email@example.com"
+              />
+              <div class="text-danger">
+               {{ validation.getMessage('email') }}
+             </div>
+            </div>
+            <div class="form-group">
+              <label for="">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                v-model="password"
+                id=""
+                placeholder="Password"
+              />
+              <div class="text-danger">
+               {{ validation.getMessage('password') }}
+             </div>
+            </div>
+            <div class="form-group">
+              <label for="">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control"
+                v-model="confirm_password"
+                id=""
+                placeholder="Confirm Password"
+              />
+              <div class="text-danger">
+               {{ validation.getMessage('confirm_password') }}
+             </div>
+            </div>
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" id="" />
+              <label class="form-check-label" for=""
+                >I accept all the terms and condition.</label
+              >
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-signup">
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- col-md-12 closing -->
+      </div>
+    </div>
+    <!-- /.register-box -->
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import validation from "./../../services/validation";
+import swal from "sweetalert";
+
+export default {
+  props: ["vendorinfo"],
+  name: "registor",
+  data() {
+    return {
+      validation: new validation(),
+      name: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+      loading: false,
+      errors: {},
+    };
+  },
+  methods: {
+    vendorHomepage(){
+        window.location.href = "/vendor-homepage";
+    },
+    async submitData() {
+      this.loading = true;
+      try {
+        const response = await axios.post("api/vendor/register", {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          confirm_password: this.confirm_password,
+          category: this.vendorinfo.categoryinfo.mainSeller,
+          plan: this.vendorinfo.categoryinfo.category,
+          company_name: this.vendorinfo.company_name,
+          shop_name: this.vendorinfo.shop_name,
+        });
+        if (response.status === 200) {
+          this.loading = false;
+          swal("Good Job!", "Your are registered!", "success");
+          window.location.href = "/account-verification";
+        }
+      } catch (error) {
+        if (error.response.status === 422) {
+          this.loading = false;
+          this.errors = error.response.data;
+          this.validation.setMessages(this.errors.data);
+        }
+      }
+    },
+  },
+};
+</script>
+
+<style>
+</style>

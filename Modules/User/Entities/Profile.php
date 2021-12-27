@@ -1,0 +1,17 @@
+<?php
+
+namespace Modules\User\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+
+class Profile extends Model
+{
+
+    protected $guarded = ['id','created_at','updated_at'];
+    public function user()
+  {
+    return $this->belongsTo(User::class, 'user_id');
+  }
+    
+}
