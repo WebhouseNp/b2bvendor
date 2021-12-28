@@ -146,9 +146,6 @@ class ApiUserController extends Controller
       
 
     public function login(Request $request){
-      return response()->json([
-        'message' => 'I am here'
-      ], 500);
         $credentials = $request->only('email', 'password');
         try{
             $user = User::where('email', $request->email)->with('roles')->first();
