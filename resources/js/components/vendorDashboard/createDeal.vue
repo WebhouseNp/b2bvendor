@@ -59,7 +59,7 @@
                 </thead>
                 <tbody>
                   <tr v-for="(invoice_product, k) in invoice_products" :key="k">
-                    <td class="inputField">
+                    <td class="inputProduct">
                       <input
                         class="form-control"
                         type="text"
@@ -67,7 +67,7 @@
                         v-model="invoice_product.clolor_value"
                       />
                     </td>
-                    <td class="inputField">
+                    <td class="inputQuentiry">
                       <input
                         class="form-control"
                         type="text"
@@ -75,7 +75,7 @@
                         v-model="invoice_product.size_value"
                       />
                     </td>
-                    <td class="inputField">
+                    <td class="inputPrice">
                       <input
                         class="form-control"
                         type="text"
@@ -145,9 +145,9 @@ export default {
 </script>
 
 <style>
-.inputField {
-  width: 100%;
-  /* padding: 12px 20px; */
+.inputProduct {
+  width: 46%;
+  padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
 }
