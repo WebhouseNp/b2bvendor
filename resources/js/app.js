@@ -12,6 +12,9 @@ Vue.component('forgetpassword', require('./components/vendorLogin/forgetpassword
 Vue.component('verification',require('./components/vendorLogin/accountVerification.vue').default);
 Vue.component('resetpassword',require('./components/vendorLogin/Reset.vue').default);
 
+// Chat components
+Vue.component ('chatbox', require('./components/chat/chatbox.vue').default);
+
 const app = new Vue({
     el: "#app",
 })

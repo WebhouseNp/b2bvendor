@@ -12,6 +12,7 @@ class ChatController extends Controller
         $chatRooms = ChatRoom::with('customerUser')->where('vendor_user_id', auth()->id())->get();
 
         return view('chat.index', [
+            'user' => auth()->user(),
             'chatRooms' => $chatRooms,
         ]);
     }

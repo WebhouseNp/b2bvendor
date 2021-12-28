@@ -15,11 +15,6 @@
             <div class="p-2">
                 <h4>Recent</h4>
             </div>
-            {{-- <div class="p-2">
-                <form action="">
-                    <input type="text" placeholder="Search">
-                </form>
-            </div> --}}
             <div class="inbox-list">
                 {{-- active_chat --}}
                 @foreach ($chatRooms as $chatRoom)
@@ -36,6 +31,7 @@
             </div>
         </div>
         <div class="conversation-wrapper">
+            <chatbox :user="{{ $user }}" :vendor-user-id="{{ 1 }}" :customer-user-id="{{ 2 }}"></chatbox>
             <div class="conversation-header px-4 py-3 bg-light">
                 <h5 class="h5-responsive">John Doe</h5>
             </div>
@@ -62,5 +58,6 @@
     </div>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
