@@ -4684,7 +4684,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.inputField {\r\n  width: 100%;\r\n  /* padding: 12px 20px; */\r\n  margin: 8px 0;\r\n  box-sizing: border-box;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.inputProduct {\r\n  width: 46%;\r\n  padding: 12px 20px;\r\n  margin: 8px 0;\r\n  box-sizing: border-box;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26443,7 +26443,7 @@ var render = function () {
                   "tbody",
                   _vm._l(_vm.invoice_products, function (invoice_product, k) {
                     return _c("tr", { key: k }, [
-                      _c("td", { staticClass: "inputField" }, [
+                      _c("td", { staticClass: "inputProduct" }, [
                         _c("input", {
                           directives: [
                             {
@@ -26471,7 +26471,7 @@ var render = function () {
                         }),
                       ]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "inputField" }, [
+                      _c("td", { staticClass: "inputQuentiry" }, [
                         _c("input", {
                           directives: [
                             {
@@ -26499,7 +26499,7 @@ var render = function () {
                         }),
                       ]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "inputField" }, [
+                      _c("td", { staticClass: "inputPrice" }, [
                         _c("input", {
                           directives: [
                             {
