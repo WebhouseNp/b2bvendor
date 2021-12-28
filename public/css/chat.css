@@ -1,0 +1,91 @@
+.messaging-page {
+    display: flex;
+    height: 100vh;
+}
+.inbox-wrapper {
+    width: 250px;
+    height: 100%;
+    background-color: #284155;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.inbox-wrapper .inbox-list {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.conversation-wrapper {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-header {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.conversation {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.conversation .message {
+    padding: 10px 15px;
+    border-radius: 1rem;
+    margin-bottom: 10px;
+    max-width: 250px;
+}
+.message.incomming {
+    margin-right: auto;
+    background-color: 2196f3;
+    color: #fefefe;
+}
+.message.outgoing {
+    margin-left: auto;
+    background-color: whitesmoke;
+}
+.message .date-time {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.message.incomming .date-time {
+    color: #fafaff;
+}
+.message.outgoing .date-time {
+    color: darkgray;
+}
+
+.conversation-creator {
+}
+
+
+.chat-user-img {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.message-compose-form {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+.message-compose-form > input {
+    border: 0;
+    background-color: #eff5fb;
+    flex-grow: 1;
+    border-radius: 2.5rem;
+    box-shadow: 0 0 1px rgba(163, 164, 167, 0.2);
+}
+.message-compose-form > input:focus {
+    outline: none;
+}
+
+.message-compose-form > button[type=submit] {
+    background-color: #2196f3;
+    border: 0;
+    outline: none;
+    color: #fff;;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}

@@ -13,9 +13,9 @@
 
 use Illuminate\Support\Facades\Event;
 
-Route::get('chat', function () {
-    return view('message::chat.index');
-});
+// Route::get('chat', function () {
+//     return view('message::chat.index');
+// });
 
 Route::get('trigger-event/{chatRoom}', function(\Modules\Message\Entities\ChatRoom $chatRoom) {
     $message = new \Modules\Message\Entities\Message([

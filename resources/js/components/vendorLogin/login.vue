@@ -103,7 +103,7 @@ import axios from 'axios';
 import error from '../vendorLogin/Error.vue'
 export default {
   name: "login",
-  components: { Input, error},
+  components: { Input, error },
   data() {
     return {
          email: "",
