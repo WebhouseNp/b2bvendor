@@ -52,6 +52,34 @@ $user_access = json_decode($user->access_level);
                 </ul>
             </li>
              @endif 
+
+             
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-user"></i>
+                    <span class="nav-label">Deals</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    @if(in_array('vendor' ,$roles))
+                        <li>
+                            <a href="{{route('deals.index')}}">
+                                <span class="fa fa-edit"></span>
+                                {{Auth::user()->name}} Deals
+                            </a>
+                        </li>
+                    @endif
+
+                    @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles)))
+                        <li>
+                            <a href="{{route('deals.index')}}">
+                                <span class="fa fa-edit"></span>
+                                All Deals
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
             @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('web-setting', $user_access)))
             <li>
                 <a href="#">

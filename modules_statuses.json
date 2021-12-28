@@ -17,5 +17,6 @@
     "Message": true,
     "Slider": true,
     "Subscriber": true,
-    "Review": true
+    "Review": true,
+    "Deal": true
 }
