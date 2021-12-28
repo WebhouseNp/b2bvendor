@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="vendor-sign-in-form">
-                       <!-- <error v-if="error" :error="error"/> -->
+                       <error v-if="error" :error="error"/>
                         <div style="text-align:center; front-size: 20px;" v-if="loading">loding....</div>
                         <form class="vendor-form"  @submit.prevent="onSubmit()">
                             <Input
@@ -100,12 +100,10 @@
 
 import Input from "../vendorLogin/Input.vue";
 import axios from 'axios';
-// import error from '../vendorLogin/Error.vue'
+import error from '../vendorLogin/Error.vue'
 export default {
   name: "login",
-  components: { Input, 
-//   error
-  },
+  components: { Input, error },
   data() {
     return {
          email: "",
