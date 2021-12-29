@@ -92,7 +92,14 @@ class DealController extends Controller
      */
     public function edit($id)
     {
-        return view('deal::edit');
+        try{
+            $deal = Deal::where('id',$id)->with('deal_products')->first();
+            return response()->json(['status' => 'successful', 'message' => 'Deal displayed.', 'data' => $deal]);
+        } catch (\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], 400);
+        }
     }
 
     /**
