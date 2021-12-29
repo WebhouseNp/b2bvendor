@@ -1,9 +1,12 @@
 require('./bootstrap');
 
 import Vue from 'vue'
-import Vuelidate from 'vuelidate'
 
+import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate);
+
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
 
 Vue.component('loginhomepage',require('./components/vendorLogin/vendorHomepage.vue').default);
 Vue.component('login',require('./components/vendorLogin/login.vue').default);

@@ -3,7 +3,10 @@
     <div class="conversation-header px-4 py-3 bg-light">
         <h5 class="h5-responsive">{{ opponentUserName }}</h5>
     </div>
-    <div class="conversation py-5 px-4" ref="chatBody">
+    <div class="conversation py-5 px-4"  v-chat-scroll="{always: false, smooth: true, scrollonremoved:true, smoothonremoved: false}" @v-chat-scroll-top-reached="loadOlderMessages">
+        <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
+          <div class="loader"></div>
+        </div>
         <div v-for="(message, index) in messages" :key="index" class="message" v-bind:class="{ 'outgoing': isOutgoing(message), 'incomming': !isOutgoing(message) }">
             <div>{{ message.message }}</div>
         </div>
@@ -16,7 +19,6 @@
               </div>
           </div>
         </div>
-        <div class="scroll-element"></div>
     </div>
     <div class="conversation-creator px-4 py-3">
         <form @submit.prevent="sendMessage" class="message-compose-form mb-0">
@@ -38,7 +40,8 @@ export default {
       newMessage: "",
       messages: [],
       opponentUserName: null,
-      typing: false
+      typing: false,
+      loadingMessages: false,
     };
   },
   async created() {
@@ -83,11 +86,9 @@ export default {
             console.log("event-listened");
             console.log(event);
             this.messages.push(event.message);
-            this.scrollToLast();
         })
         .listenForWhisper('typing', (e) => {
           this.typing = true;
-          this.scrollToLast();
         })
         .error((error) => {
             console.error(error);
@@ -124,6 +125,7 @@ export default {
 
     // load the last messages during initialization
     async loadLastMessages() {
+      this.loadingMessages = true;
       await axios
         .get("/api/chats/" + this.chatRoom.id + "/messages")
         .then((response) => {
@@ -131,23 +133,22 @@ export default {
           Object.values(response.data.data).forEach((message) => {
             this.messages.push(message);
           });
-          this.scrollToLast();
+          this.loadingMessages = false;
         })
         .catch((error) => {
           console.log(error);
         });
     },
 
+    loadOlderMessages() {
+      this.loadingMessages = true;
+      console.log('loading older messages');
+    },
+
     // check if is outgoing message
     isOutgoing(message) {
       return message.sender_id == this.user.id ? true : false;
     },
-
-  // Fix scroll to bottom
-    scrollToLast() {
-      console.log("scrollToLast");
-      this.$nextTick(() => this.$refs.chatBody.lastElementChild.scrollIntoView({behavior: "smooth"}));
-    },    
   },
 };
 </script>

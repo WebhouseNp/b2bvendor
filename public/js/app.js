@@ -3249,6 +3249,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ChatBox",
@@ -3258,7 +3260,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       newMessage: "",
       messages: [],
       opponentUserName: null,
-      typing: false
+      typing: false,
+      loadingMessages: false
     };
   },
   created: function created() {
@@ -3322,12 +3325,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(event);
 
         _this2.messages.push(event.message);
-
-        _this2.scrollToLast();
       }).listenForWhisper('typing', function (e) {
         _this2.typing = true;
-
-        _this2.scrollToLast();
       }).error(function (error) {
         console.error(error);
       });
@@ -3366,19 +3365,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                _this4.loadingMessages = true;
+                _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/chats/" + _this4.chatRoom.id + "/messages").then(function (response) {
                   console.log(response.data);
                   Object.values(response.data.data).forEach(function (message) {
                     _this4.messages.push(message);
                   });
-
-                  _this4.scrollToLast();
+                  _this4.loadingMessages = false;
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -3386,20 +3385,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    loadOlderMessages: function loadOlderMessages() {
+      this.loadingMessages = true;
+      console.log('loading older messages');
+    },
     // check if is outgoing message
     isOutgoing: function isOutgoing(message) {
       return message.sender_id == this.user.id ? true : false;
-    },
-    // Fix scroll to bottom
-    scrollToLast: function scrollToLast() {
-      var _this5 = this;
-
-      console.log("scrollToLast");
-      this.$nextTick(function () {
-        return _this5.$refs.chatBody.lastElementChild.scrollIntoView({
-          behavior: "smooth"
-        });
-      });
     }
   }
 });
@@ -4749,11 +4741,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-chat-scroll */ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js");
+/* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuelidate__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].use((vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2___default()));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('loginhomepage', (__webpack_require__(/*! ./components/vendorLogin/vendorHomepage.vue */ "./resources/js/components/vendorLogin/vendorHomepage.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('login', (__webpack_require__(/*! ./components/vendorLogin/login.vue */ "./resources/js/components/vendorLogin/login.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('register', (__webpack_require__(/*! ./components/Register/selectCategory.vue */ "./resources/js/components/Register/selectCategory.vue")["default"]));
@@ -29806,6 +29802,99 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js ***!
+  \**************************************************************/
+/***/ (function(module) {
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  0;
+}(this, (function () { 'use strict';
+
+  /**
+  * @name VueJS vChatScroll (vue-chat-scroll)
+  * @description Monitors an element and scrolls to the bottom if a new child is added
+  * @author Theodore Messinezis <theo@theomessin.com>
+  * @file v-chat-scroll  directive definition
+  */
+  var scrollToBottom = function scrollToBottom(el, smooth) {
+    if (typeof el.scroll === "function") {
+      el.scroll({
+        top: el.scrollHeight,
+        behavior: smooth ? 'smooth' : 'instant'
+      });
+    } else {
+      el.scrollTop = el.scrollHeight;
+    }
+  };
+
+  var vChatScroll = {
+    bind: function bind(el, binding) {
+      var scrolled = false;
+      el.addEventListener('scroll', function (e) {
+        scrolled = el.scrollTop + el.clientHeight + 1 < el.scrollHeight;
+
+        if (scrolled && el.scrollTop === 0) {
+          el.dispatchEvent(new Event("v-chat-scroll-top-reached"));
+        }
+      });
+      new MutationObserver(function (e) {
+        var config = binding.value || {};
+        if (config.enabled === false) return;
+        var pause = config.always === false && scrolled;
+        var addedNodes = e[e.length - 1].addedNodes.length;
+        var removedNodes = e[e.length - 1].removedNodes.length;
+
+        if (config.scrollonremoved) {
+          if (pause || addedNodes != 1 && removedNodes != 1) return;
+        } else {
+          if (pause || addedNodes != 1) return;
+        }
+
+        var smooth = config.smooth;
+        var loadingRemoved = !addedNodes && removedNodes === 1;
+
+        if (loadingRemoved && config.scrollonremoved && 'smoothonremoved' in config) {
+          smooth = config.smoothonremoved;
+        }
+
+        scrollToBottom(el, smooth);
+      }).observe(el, {
+        childList: true,
+        subtree: true
+      });
+    },
+    inserted: function inserted(el, binding) {
+      var config = binding.value || {};
+      scrollToBottom(el, config.notSmoothOnInit ? false : config.smooth);
+    }
+  };
+
+  /**
+  * @name VueJS vChatScroll (vue-chat-scroll)
+  * @description Monitors an element and scrolls to the bottom if a new child is added
+  * @author Theodore Messinezis <theo@theomessin.com>
+  * @file vue-chat-scroll plugin definition
+  */
+  var VueChatScroll = {
+    install: function install(Vue, options) {
+      Vue.directive('chat-scroll', vChatScroll);
+    }
+  };
+
+  if (typeof window !== 'undefined' && window.Vue) {
+    window.Vue.use(VueChatScroll);
+  }
+
+  return VueChatScroll;
+
+})));
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Register/SelectPlan.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Register/SelectPlan.vue ***!
@@ -32868,8 +32957,36 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { ref: "chatBody", staticClass: "conversation py-5 px-4" },
+      {
+        directives: [
+          {
+            name: "chat-scroll",
+            rawName: "v-chat-scroll",
+            value: {
+              always: false,
+              smooth: true,
+              scrollonremoved: true,
+              smoothonremoved: false,
+            },
+            expression:
+              "{always: false, smooth: true, scrollonremoved:true, smoothonremoved: false}",
+          },
+        ],
+        staticClass: "conversation py-5 px-4",
+        on: { "v-chat-scroll-top-reached": _vm.loadOlderMessages },
+      },
       [
+        _vm.loadingMessages
+          ? _c(
+              "div",
+              {
+                staticClass: "mb-2 d-flex justify-content-center",
+                attrs: { role: "status" },
+              },
+              [_c("div", { staticClass: "loader" })]
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _vm._l(_vm.messages, function (message, index) {
           return _c(
             "div",
@@ -32902,8 +33019,6 @@ var render = function () {
             [_vm._m(0)]
           ),
         ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "scroll-element" }),
       ],
       2
     ),
