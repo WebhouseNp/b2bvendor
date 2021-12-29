@@ -18,5 +18,6 @@
     "Slider": true,
     "Subscriber": true,
     "Review": true,
-    "Deal": true
+    "Deal": true,
+    "Country": true
 }
