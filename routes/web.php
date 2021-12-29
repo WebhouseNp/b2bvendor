@@ -83,3 +83,4 @@ Route::post('/pusher/auth', function (Request $request) {
 
 // messaging
 Route::get('/chat', 'ChatController@index');
+Route::get('/chat/{charRoom}', 'ChatController@show');

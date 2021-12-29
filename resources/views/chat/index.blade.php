@@ -8,9 +8,12 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/chat.css">
+    <script>
+        localStorage.setItem('token', "{{ auth()->user()->api_token }}");
+    </script>
 </head>
 <body>
-    <div class="messaging-page">
+    <div id="app" class="messaging-page">
         <div class="inbox-wrapper py-2 px-4">
             <div class="p-2">
                 <h4>Recent</h4>
@@ -30,31 +33,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="conversation-wrapper">
-            <chatbox :user="{{ $user }}" :vendor-user-id="{{ 1 }}" :customer-user-id="{{ 2 }}"></chatbox>
-            <div class="conversation-header px-4 py-3 bg-light">
-                <h5 class="h5-responsive">John Doe</h5>
-            </div>
-            <div class="conversation py-5 px-4">
-                <div class="message outgoing">
-                    <div>Test which is a new approach to have all
-                        solutions</div>
-                    {{-- <span class="date-time"> 11:01 AM | June 9</span> --}}
-                </div>
-                <div class="message incomming">
-                    <div>Test which is a new approach to have all
-                        solutions</div>
-                    {{-- <span class="date-time"> 11:01 AM | June 9</span> --}}
-                </div>
-            </div>
-            <div class="conversation-creator px-4 py-3">
-                <form action="" class="message-compose-form mb-0">
-                    {{-- <input type="file"> --}}
-                    <input type="text" class="py-3 px-4" placeholder="Type a message...">
-                    <button type="submit" class="border"><i class="fa fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </div>
+        <chatbox :user="{{ $user }}" :vendor-user-id="{{ auth()->id() }}" :chat-room="{{ $activeChatRoom }}"></chatbox>
     </div>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

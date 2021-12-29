@@ -17,7 +17,7 @@ Broadcast::channel('chat-channel-{id}', function ($user, $id) {
     logger('authorizing channel with id ' . $id, [
         'user' => $user,
     ]);
-    return true;
+    return $user;
 });
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {

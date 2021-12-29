@@ -27,104 +27,18 @@ class MessageController extends Controller
      */
     public function index(Request $request, ChatRoom $chatRoom)
     {
-        $messages = Message::where('chat_room_id', $chatRoom->id)->latest()->paginate(20);
+        $messages = Message::where('chat_room_id', $chatRoom->id)->latest()->limit(50)->get();
 
-        return new MessageCollection($messages->reverse());
+        $messages = $messages->reverse()->values();
 
-        // older code
-        $user = User::find(auth()->user()->id);
-        $is_vendor = $user->vendor()->where('status', '1')->first();
-        if ($is_vendor) {
-            $user = $is_vendor->id;
-        } else {
-            $user = $user->id;
-        }
-        $type = $is_vendor ? 'vendor' : 'user';
-
-        $latestMessage = DB::select(DB::raw("SELECT MAX(s.id) as id FROM messages s WHERE (s.from ='$user' AND s.from_type='$type')
-            OR  (s.to ='$user' AND s.to_type='$type') GROUP BY (IF(s.from='$user', s.to, s.from))"));
-        $ids = [];
-
-        foreach ($latestMessage as $id) {
-            $ids[] = $id->id;
-        }
-        $conversationThread = Message::select('from', 'to', 'from_type', 'to_type', 'message', 'seen', 'created_at', 'updated_at')->whereIn('id', $ids)->orderBy('created_at', 'DESC')->paginate(10);
-        $allMessages = [];
-        foreach ($conversationThread as $message) {
-
-            $opponent = "";
-            if ($type == 'vendor') {
-                $opponentId = $message->from == $is_vendor->id ? $message->to : $message->from;
-                $unseenMessage = Message::where('seen', 0)->where('to', $user)->where('to_type', $type)->where('from', $opponentId)->where('from_type', 'user')->count();
-                $opponent = User::find($opponentId);
-                $opponent =
-                    (object)['id' => $opponent->id, 'name' => $opponent->name, 'type' => 'user'];
-            } else {
-                $opponentId = $message->from == $user ? $message->to : $message->from;
-                $unseenMessage = Message::where('seen', 0)->where('to', $user)->where('to_type', $type)->where('from', $opponentId)->where('from_type', 'vendor')->count();
-                $opponent = Vendor::find($opponentId);
-                $opponent =
-                    (object)['id' => $opponent->id, 'name' => $opponent->shop_name, 'type' => 'vendor'];
-            }
-
-            $allMessages[] = (object)['message' => $message, 'unseen' => $unseenMessage, 'opponent' => $opponent];
-        }
-
-        return view('message::message', compact('allMessages', 'type', 'user'));
+        return new MessageCollection($messages);
     }
 
 
     public function chat($slug)
     {
-        $user = User::find(auth()->user()->id);
-        $is_vendor = $user->vendor()->where('status', '1')->first();
-        $type = $is_vendor ? 'vendor' : 'user';
-        $newUser = "";
-        $channelName = "";
-        if ($type == 'vendor') {
-            $newUser = $is_vendor;
-            $user = $is_vendor->id;
-        } else {
-            $newUser = $user;
-            $user = $user->id;
-        }
-
-        try {
-            $decrypted = Crypt::decryptString($slug);
-            $chatAssociateUser = explode('-', $decrypted);
-            $opponent = "";
-            $opponentType = "";
-
-            if ($type == 'vendor') {
-                $opponentId = $chatAssociateUser[1] == $is_vendor->id ? $chatAssociateUser[3] : $chatAssociateUser[1];
-                $channelName = 'vendor' . $is_vendor->id . 'user' . $chatAssociateUser[3];
-
-                $opponent = User::select('id', 'name')->where('id', $opponentId)->first();
-                $opponentType = 'user';
-            } else {
-                $opponentId = $chatAssociateUser[1] == $user ? $chatAssociateUser[3] : $chatAssociateUser[1];
-                $channelName = 'vendor' . $chatAssociateUser[3] . 'user' . $chatAssociateUser[1];
-                $opponent = Vendor::where('id', $opponentId)->first();
-                $opponentType = 'vendor';
-            }
-            $messages = Message::orWhere(function ($query) use ($chatAssociateUser) {
-                $query->where('from', $chatAssociateUser[1])->where('to', $chatAssociateUser[3]);
-            })->orWhere(function ($query) use ($chatAssociateUser) {
-                $query->where('to', $chatAssociateUser[1])->where('from', $chatAssociateUser[3]);
-            })->get();
-            $formatMessages = [];
-            foreach ($messages as $message) {
-                if ($message->from == $user && $message->from_type == $type) {
-                    $formatMessages[] = (object)['type' => 'self', 'message' => $message->message];
-                } else {
-                    $formatMessages[] = (object)['type' => 'opponent', 'message' => $message->message];
-                }
-            }
-            return view('message::chat', compact('formatMessages', 'user', 'type', 'opponent', 'opponentType', 'channelName'));
-        } catch (\Exception $e) {
-            abort(404);
-        }
     }
+    
     public function conversionApi(Request $request)
     {
         $user_id = $request->user()->id;

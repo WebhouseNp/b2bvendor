@@ -16,9 +16,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo';
+import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
@@ -26,3 +26,38 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+
+window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: process.env.MIX_PUSHER_APP_KEY,
+    // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
+    wsHost: process.env.MIX_PUSHER_WSHOST,
+    wsPort: process.env.MIX_PUSHER_WSPORT,
+    forceTLS: false,
+    disableStats: true,
+    authorizer: (channel) => {
+      return {
+        authorize: (socketId, callback) => {
+          fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            body: JSON.stringify({
+              socket_id: socketId,
+              channel_name: channel.name,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              callback(false, data);
+            })
+            .catch((error) => {
+              callback(true, error);
+            });
+        },
+      };
+    },
+  });
