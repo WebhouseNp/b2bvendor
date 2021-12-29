@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('chat-channel-{id}', function ($user, $id) {
-    logger('authorizing channel with id ' . $id, [
-        'user' => $user,
-    ]);
-    return true;
+    return [
+        'id' => $user->id,
+        'name' => $user->name,
+        'role' => 'TODO::role',
+    ];
 });
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
