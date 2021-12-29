@@ -3214,12 +3214,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3259,7 +3276,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       newMessage: "",
       messages: [],
-      opponentUserName: null,
+      activeUsers: [],
+      opponentUser: null,
       typing: false,
       loadingMessages: false
     };
@@ -3302,7 +3320,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     fetchOpponentUser: function fetchOpponentUser() {
-      this.opponentUserName = this.chatRoom.customer_user.name;
+      this.opponentUser = this.chatRoom.customer_user;
     },
     // async getOrCreateChatRoom() {
     //   await axios
@@ -3320,7 +3338,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     joinChatRoom: function joinChatRoom() {
       var _this2 = this;
 
-      window.channel = window.Echo.join("chat-channel-" + this.chatRoom.id).listen(".new-message", function (event) {
+      window.channel = window.Echo.join("chat-channel-" + this.chatRoom.id).here(function (users) {
+        _this2.activeUsers = users;
+        console.log(users);
+      }).joining(function (user) {
+        _this2.activeUsers.push(user);
+      }).leaving(function (user) {
+        _this2.activeUsers = _this2.activeUsers.filter(function (u) {
+          return u.id !== user.id;
+        });
+      }).listen(".new-message", function (event) {
         console.log("event-listened");
         console.log(event);
 
@@ -3392,6 +3419,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // check if is outgoing message
     isOutgoing: function isOutgoing(message) {
       return message.sender_id == this.user.id ? true : false;
+    }
+  },
+  computed: {
+    isOpponentActive: function isOpponentActive() {
+      for (var _i = 0, _Object$entries = Object.entries(this.activeUsers); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            user = _Object$entries$_i[1];
+
+        if (user.id == this.opponentUser.id) {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -32950,9 +32992,38 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "conversation-wrapper" }, [
     _c("div", { staticClass: "conversation-header px-4 py-3 bg-light" }, [
-      _c("h5", { staticClass: "h5-responsive" }, [
-        _vm._v(_vm._s(_vm.opponentUserName)),
-      ]),
+      _c(
+        "div",
+        {
+          staticClass: "d-flex align-items-center",
+          staticStyle: { gap: "1rem" },
+        },
+        [
+          _c(
+            "div",
+            {
+              class: {
+                "text-success": _vm.isOpponentActive,
+                "text-danger": !_vm.isOpponentActive,
+              },
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-circle",
+                attrs: { "aria-hidden": "true" },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _vm.opponentUser
+            ? _c("h5", { staticClass: "h5-responsive text-capitalize" }, [
+                _vm._v(
+                  "\n          " + _vm._s(_vm.opponentUser.name) + "\n        "
+                ),
+              ])
+            : _vm._e(),
+        ]
+      ),
     ]),
     _vm._v(" "),
     _c(

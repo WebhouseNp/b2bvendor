@@ -1,7 +1,12 @@
 <template>
   <div class="conversation-wrapper">
     <div class="conversation-header px-4 py-3 bg-light">
-        <h5 class="h5-responsive">{{ opponentUserName }}</h5>
+      <div class="d-flex align-items-center" style="gap: 1rem;">
+          <div :class="{ 'text-success': isOpponentActive, 'text-danger': !isOpponentActive }"><i class="fa fa-circle" aria-hidden="true"></i></div>
+          <h5 class="h5-responsive text-capitalize" v-if="opponentUser">
+            {{ opponentUser.name }}
+          </h5>
+      </div>
     </div>
     <div class="conversation py-5 px-4"  v-chat-scroll="{always: false, smooth: true, scrollonremoved:true, smoothonremoved: false}" @v-chat-scroll-top-reached="loadOlderMessages">
         <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
@@ -39,7 +44,8 @@ export default {
     return {
       newMessage: "",
       messages: [],
-      opponentUserName: null,
+      activeUsers: [],
+      opponentUser: null,
       typing: false,
       loadingMessages: false,
     };
@@ -63,7 +69,7 @@ export default {
   },
   methods: {
     fetchOpponentUser() {
-        this.opponentUserName = this.chatRoom.customer_user.name;
+        this.opponentUser = this.chatRoom.customer_user;
     },
 
     // async getOrCreateChatRoom() {
@@ -82,18 +88,27 @@ export default {
 
     joinChatRoom() {
         window.channel = window.Echo.join("chat-channel-" + this.chatRoom.id)
-        .listen(".new-message", (event) => {
-            console.log("event-listened");
-            console.log(event);
-            this.messages.push(event.message);
-        })
-        .listenForWhisper('typing', (e) => {
-          this.typing = true;
-        })
-        .error((error) => {
-            console.error(error);
-        });
-
+         .here((users) => {
+           this.activeUsers = users;
+           console.log(users);
+          })
+          .joining(user => {
+            this.activeUsers.push(user);
+          })
+          .leaving(user => {
+            this.activeUsers = this.activeUsers.filter(u => u.id !== user.id);
+          })
+          .listen(".new-message", (event) => {
+              console.log("event-listened");
+              console.log(event);
+              this.messages.push(event.message);
+          })
+          .listenForWhisper('typing', (e) => {
+            this.typing = true;
+          })
+          .error((error) => {
+              console.error(error);
+          });
     },
 
     sendTypingEvent() {
@@ -150,5 +165,16 @@ export default {
       return message.sender_id == this.user.id ? true : false;
     },
   },
+
+  computed: {
+    isOpponentActive() {
+       for(let [key, user] of Object.entries(this.activeUsers)){
+         if (user.id == this.opponentUser.id) {
+           return true;
+         }
+       }
+       return false;
+    },
+  }
 };
 </script>
