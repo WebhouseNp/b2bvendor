@@ -17,5 +17,5 @@ use Modules\Country\Http\Controllers\ApiCountryController;
 Route::middleware('auth:api')->get('/country', function (Request $request) {
     return $request->user();
 });
-Route::get('all-countries', [ApiCountryController::class,'index'])->name('api.allcountries');
-Route::get('country/{slug}', [ApiCountryController::class,'show'])->name('api.country');
+Route::get('countries', [ApiCountryController::class,'index'])->name('api.countries.index');
+Route::get('countries/{country:slug}', [ApiCountryController::class,'show'])->name('api.countries.show');

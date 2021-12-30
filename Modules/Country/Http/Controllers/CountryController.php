@@ -18,8 +18,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::where('publish',1)->get();
-        return view('country::index',compact('countries'));
+        $countries = Country::get();
+
+        return view('country::index', compact('countries'));
     }
 
     /**
@@ -28,8 +29,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $country_info = null;
-        return view('country::create',compact('country_info'));
+        return $this->showForm(new Country());
     }
 
     /**
@@ -39,34 +39,32 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required|unique::countries',
-        //     'flag' => 'required|mimes:jpg,jpeg,png,gif',
-        // ]);
-        // if($validator->fails()) {
-        //     return redirect()->back();
-        // }
+        $request->validate([
+            'name' => 'required|max:255',
+            'flag' => 'required',
+            'publish' => 'nullable'
+        ]);
+
         $module = Module::find('country');
-        // dd($module->getName());
-         $formInput = $request->except(['flag', 'publish']);
-         $formInput['publish'] = is_null($request->publish) ? 0 : 1;
-         $image_title = $request->name;
-         if($request->hasFile('flag')){
-            $location = public_path('/uploads/'.$module->getName().'');
-            $location1 = 'uploads/'.$module->getName().'';
+        $formInput = $request->except(['flag', 'publish']);
+        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
+        $image_title = $request->name;
+        if ($request->hasFile('flag')) {
+            $location = public_path('/uploads/' . $module->getName() . '');
+            $location1 = 'uploads/' . $module->getName() . '';
             if (!file_exists($location)) {
-                mkdir(public_path('/uploads/'.$module->getName().''), 0777, true);
+                mkdir(public_path('/uploads/' . $module->getName() . ''), 0777, true);
             }
-            $filename = $image_title . '.'.date('Ymdhis').rand(0,1234).".".$request['flag']->getClientOriginalName();
+            $filename = $image_title . '.' . date('Ymdhis') . rand(0, 1234) . "." . $request['flag']->getClientOriginalName();
             $useImage = Image::make($request['flag']->getRealPath());
             $useImage->save($location . '/' . $filename);
-            $abcd = $request['flag']->move($location,$filename);
-            $path =$location1.'/'.$filename;
+            $abcd = $request['flag']->move($location, $filename);
+            $path = $location1 . '/' . $filename;
             $formInput['path'] = $path;
             $formInput['flag'] = $filename;
         }
-         Country::create($formInput);
-         return redirect()->route('country.index')->with('success', 'Country Created Successfuly.');
+        Country::create($formInput);
+        return redirect()->route('country.index')->with('success', 'Country Created Successfuly.');
     }
 
     /**
@@ -84,14 +82,9 @@ class CountryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(Country $country)
     {
-        $country_info = Country::findOrFail($id);
-        if (!$country_info) {
-            $request->session()->flash('error', ' Country  not found.');
-            return redirect()->route('country.index');
-        }
-        return view('country::create',compact('country_info'));
+        return $this->showForm($country);
     }
 
     /**
@@ -100,27 +93,33 @@ class CountryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Country $country)
     {
-        $country_info = Country::findOrFail($id);
+        $request->validate([
+            'name' => 'required|max:255',
+            'flag' => 'nullable',
+            'publish' => 'nullable'
+        ]);
+
+        $country_info = $country;
         $module = Module::find('country');
-        if($request->hasFile('flag')){
-                $this->unlinkImage($country_info->flag);
+        if ($request->hasFile('flag')) {
+            $this->unlinkImage($country_info->flag);
         }
-         $formInput = $request->except(['flag', 'publish']);
-         $formInput['publish'] = is_null($request->publish) ? 0 : 1;
-         $image_title = $request->name;
-         if($request->hasFile('flag')){
-            $location = public_path('/uploads/'.$module->getName().'');
-            $location1 = 'uploads/'.$module->getName().'';
+        $formInput = $request->except(['flag', 'publish']);
+        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
+        $image_title = $request->name;
+        if ($request->hasFile('flag')) {
+            $location = public_path('/uploads/' . $module->getName() . '');
+            $location1 = 'uploads/' . $module->getName() . '';
             if (!file_exists($location)) {
-                mkdir(public_path('/uploads/'.$module->getName().''), 0777, true);
+                mkdir(public_path('/uploads/' . $module->getName() . ''), 0777, true);
             }
-            $filename = $image_title . '.'.date('Ymdhis').rand(0,1234).".".$request['flag']->getClientOriginalName();
+            $filename = $image_title . '.' . date('Ymdhis') . rand(0, 1234) . "." . $request['flag']->getClientOriginalName();
             $useImage = Image::make($request['flag']->getRealPath());
             $useImage->save($location . '/' . $filename);
-            $abcd = $request['flag']->move($location,$filename);
-            $path =$location1.'/'.$filename;
+            $abcd = $request['flag']->move($location, $filename);
+            $path = $location1 . '/' . $filename;
             $formInput['path'] = $path;
             $formInput['flag'] = $filename;
         }
@@ -133,7 +132,7 @@ class CountryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy(Request $request , $id)
+    public function destroy(Request $request, $id)
     {
         $country_info = Country::findOrFail($id);
         if ($country_info->flag) {
@@ -143,13 +142,23 @@ class CountryController extends Controller
         return redirect()->route('country.index')->with('success', 'Country Deleted Successfuly.');
     }
 
+    public function showForm(Country $country)
+    {
+        $updateMode = false;
 
-   public function unlinkImage($flag)
-   {
+        if ($country->exists) {
+            $updateMode = true;
+        }
+
+        return view('country::form', compact(['country', 'updateMode']));
+    }
+
+    public function unlinkImage($flag)
+    {
         $module = Module::find('country');
         $usersImage = public_path("uploads/{$module->getName()}/{$flag}");
         if (File::exists($usersImage)) { // unlink or remove previous image from folder
-                unlink($usersImage);
+            unlink($usersImage);
         }
-   }
+    }
 }

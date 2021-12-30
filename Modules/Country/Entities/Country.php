@@ -9,7 +9,9 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Country extends Model
 {
     use Sluggable;
-    protected $guarded = ['id','created_at','updated_at'];
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     public function sluggable(): array
     {
         return [
@@ -20,14 +22,25 @@ class Country extends Model
         ];
     }
 
+    public function flagUrl()
+    {
+        return asset($this->path);
+    }
+
+    public function scopePublished($query, $status = true)
+    {
+        return $query->where('publish', $status ? 1 : 0);
+    }
+
     public function setFlagAttribute($flag)
     {
         $url = url('/');
-        $this->attributes['flag'] =(''.$url.'/uploads/country/'.$flag.'');
+        $this->attributes['flag'] = ('' . $url . '/uploads/country/' . $flag . '');
         return $this->attributes['flag'];
     }
 
-    public function vendors(){
-        return $this->hasMany(Vendor::class,'country_id');
+    public function vendors()
+    {
+        return $this->hasMany(Vendor::class, 'country_id');
     }
 }

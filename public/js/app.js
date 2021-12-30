@@ -3266,8 +3266,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ChatBox",
@@ -33143,9 +33141,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "typing" }, [
       _c("div", { staticClass: "dot" }),
-      _vm._v(" "),
       _c("div", { staticClass: "dot" }),
-      _vm._v(" "),
       _c("div", { staticClass: "dot" }),
     ])
   },

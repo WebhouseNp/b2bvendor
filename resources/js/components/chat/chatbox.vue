@@ -18,9 +18,7 @@
         <div class="my-2">
           <div v-show="typing" class="chat-bubble">
             <div class="typing">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
               </div>
           </div>
         </div>
