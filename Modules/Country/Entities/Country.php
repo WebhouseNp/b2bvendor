@@ -5,6 +5,7 @@ namespace Modules\Country\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Modules\User\Entities\Vendor;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Facades\Storage;
 
 class Country extends Model
 {
@@ -24,7 +25,12 @@ class Country extends Model
 
     public function flagUrl()
     {
-        return asset($this->path);
+        return Storage::disk('public')->url($this->path);
+    }
+
+    public function deleteFlagImage()
+    {
+        return Storage::delete($this->path);
     }
 
     public function scopePublished($query, $status = true)
