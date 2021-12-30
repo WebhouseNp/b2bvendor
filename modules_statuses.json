@@ -19,5 +19,6 @@
     "Subscriber": true,
     "Review": true,
     "Deal": true,
-    "Country": true
+    "Country": true,
+    "Partner": true
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Partner\Http\Controllers\ApiPartnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/deal', function (Request $request) {
-    return $request->user();
-});
-Route::delete('/deals', [DealController::class,'destroy'])->name('api.deletedeal');
-Route::put('/deals', [DealController::class,'update'])->name('api.updatedeal');
-Route::post('/deals', [DealController::class,'store'])->name('api.storedeal');
-
+// Route::middleware('auth:api')->get('/partner', function (Request $request) {
+//     return $request->user();
+// });
+Route::get('partners', [ApiPartnerController::class,'index'])->name('api.partners');
