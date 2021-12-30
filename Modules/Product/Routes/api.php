@@ -27,7 +27,7 @@ Route::get('/allbrands', 'ProductController@allbrands');
 Route::get('/allproducts', 'ProductController@allproducts');
 Route::post('/getsubcategory', 'ProductController@getsubcategory')->name('getsubcategory');
 
-Route::get('/product-detail/{slug}', 'ProductController@productDetails');
+Route::get('/products/{product:slug}', 'ProductApiController@show');
 
 Route::post('/deleteproduct', 'ProductController@deleteproduct')->name('api.deleteproduct');
 Route::post('/approveproduct', 'ProductController@approveproduct')->name('api.approveproduct');

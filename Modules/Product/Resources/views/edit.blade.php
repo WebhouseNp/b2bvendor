@@ -53,8 +53,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Title</strong></label>
-                                        <input class="form-control" type="text" id="title" name="title"
-                                            placeholder="Product Title Here">
+                                        <input class="form-control" type="text" id="title" name="title" placeholder="Product Title Here">
 
 
                                     </div>
@@ -65,8 +64,7 @@
                                             <select name="category_id" id="category_id" class="form-control">
                                             </select>
                                             <div class="input-group-append">
-                                                <button class="btn btn-success" onClick="addcategory()" type="button"><i
-                                                        class="fa fa-plus"></i></button>
+                                                <button class="btn btn-success" onClick="addcategory()" type="button"><i class="fa fa-plus"></i></button>
 
                                             </div>
                                         </div>
@@ -105,29 +103,25 @@
 
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Price</strong></label>
-                                        <input class="form-control" type="text" id="price" value="" name="price"
-                                            placeholder="Product Price">
+                                        <input class="form-control" type="text" id="price" value="" name="price" placeholder="Product Price">
 
 
                                     </div>
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Discount</strong></label>
-                                        <input class="form-control" type="text" id="discount" name="discount"
-                                            placeholder="discount">
+                                        <input class="form-control" type="text" id="discount" name="discount" placeholder="discount">
 
 
                                     </div>
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Stock Quantity</strong></label>
-                                        <input class="form-control" type="text" id="quantity" name="quantity"
-                                            placeholder="stock">
+                                        <input class="form-control" type="text" id="quantity" name="quantity" placeholder="stock">
 
 
                                     </div>
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> MOQ</strong></label>
-                                        <input class="form-control" type="text" id="moq" name="moq" value=""
-                                            name="price" placeholder="Minimum Order Quantity">
+                                        <input class="form-control" type="text" id="moq" name="moq" value="" name="price" placeholder="Minimum Order Quantity">
 
 
                                     </div>
@@ -160,58 +154,57 @@
 
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Delivery Charge</strong></label>
-                                        <input class="form-control" type="text" id="delivery_charge" name="delivery _charge" value=""
-                                             placeholder="Delivery Charge">
+                                        <input class="form-control" type="text" id="delivery_charge" name="delivery _charge" value="" placeholder="Delivery Charge">
                                     </div>
 
                                 </div>
-                                
-                                <div class="col-lg-12 col-sm-12 form-group">
-                                        <div class="col-md-12 mb-3 ">
-                                                <label for="">
-                                                    <h5 >Product Ranges</h5>
-                                                    
-                                                </label>
-                                                <a href="javascript:void(0);" class="add_button pull-right" title="add field"><img src="{{asset('/images/add-icon.png')}}"/></a>
 
-                                            <div class="field_wrapper">
-                                            
-                                                <div>
-                                                    <div class="row" style="margin-top:10px">
-                                                        <div class="col-md-4">
-                                                            <label for="">
+                                <div class="col-lg-12 col-sm-12 form-group">
+                                    <div class="col-md-12 mb-3 ">
+                                        <label for="">
+                                            <h5>Product Ranges</h5>
+
+                                        </label>
+                                        <a href="javascript:void(0);" class="add_button pull-right" title="add field"><img src="{{asset('/images/add-icon.png')}}" /></a>
+
+                                        <div class="field_wrapper">
+
+                                            <div>
+                                                <div class="row" style="margin-top:10px">
+                                                    <div class="col-md-4">
+                                                        <label for="">
                                                             <strong> Range From</strong>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="">
-                                                                <strong> Range To</strong>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label for="">
-                                                                    <strong> Price</strong>
-                                                            </label>
-                                                        </div>
+                                                        </label>
                                                     </div>
-                                                    @foreach($product->ranges as $range)
-                                                    <div class="row" style="margin-top:10px">
-                                                        <div class="col-md-4">
-                                                            <input  type="text"  name="from[]" value="{{$range->from}}" placeholder="Range From" class="form-control" required>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input  type="text"  name="to[]" value="{{$range->to}}" placeholder="Range To" class="form-control" required>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input  type="text"  name="prices[]" value="{{$range->price}}" placeholder="Price" class="form-control" required>
-                                                        </div>
-                                                        <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{asset('/images/remove-icon.png')}}"/></a>
-                                                        
+                                                    <div class="col-md-4">
+                                                        <label for="">
+                                                            <strong> Range To</strong>
+                                                        </label>
                                                     </div>
-                                                    @endforeach
+                                                    <div class="col-md-3">
+                                                        <label for="">
+                                                            <strong> Price</strong>
+                                                        </label>
+                                                    </div>
                                                 </div>
+                                                @foreach($product->ranges as $range)
+                                                <div class="row" style="margin-top:10px">
+                                                    <div class="col-md-4">
+                                                        <input type="text" name="from[]" value="{{$range->from}}" placeholder="Range From" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="text" name="to[]" value="{{$range->to}}" placeholder="Range To" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" name="prices[]" value="{{$range->price}}" placeholder="Price" class="form-control" required>
+                                                    </div>
+                                                    <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{asset('/images/remove-icon.png')}}" /></a>
+
+                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -223,18 +216,14 @@
 
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Highlights</strong></label>
-                                        <textarea name="highlight" id="highlight" rows="5"
-                                            placeholder="Product Highlights Here" class="form-control"
-                                            style="resize: none;"></textarea>
+                                        <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;"></textarea>
 
                                     </div>
 
 
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Description</strong></label>
-                                        <textarea name="description" id="description" rows="5"
-                                            placeholder="description Here" class="form-control"
-                                            style="resize: none;"></textarea>
+                                        <textarea name="description" id="description" rows="5" placeholder="description Here" class="form-control" style="resize: none;"></textarea>
 
                                     </div>
                                 </div>
@@ -247,28 +236,22 @@
                                     <div class="col-lg-12 col-md-6 col-12">
                                         <div class="form-group">
                                             <label for=""><strong>Meta Title</strong></label>
-                                            <textarea name="meta_title" id="meta_title" rows="3" class="form-control"
-                                                placeholder="Meta Title" style="resize:none;"></textarea>
+                                            <textarea name="meta_title" id="meta_title" rows="3" class="form-control" placeholder="Meta Title" style="resize:none;"></textarea>
 
                                         </div>
                                         <div class="form-group">
                                             <label for=""><strong>Meta Description</strong></label>
-                                            <textarea name="meta_description" id="meta_description" rows="3"
-                                                class="form-control" placeholder="Meta Description here"
-                                                style="resize:none;"></textarea>
+                                            <textarea name="meta_description" id="meta_description" rows="3" class="form-control" placeholder="Meta Description here" style="resize:none;"></textarea>
 
                                         </div>
                                         <div class="form-group">
                                             <label for=""><strong>Keyword</strong></label>
-                                            <textarea name="keyword" id="keyword" rows="3" class="form-control"
-                                                placeholder="Meta Keyword here" style="resize:none;"></textarea>
+                                            <textarea name="keyword" id="keyword" rows="3" class="form-control" placeholder="Meta Keyword here" style="resize:none;"></textarea>
 
                                         </div>
                                         <div class="form-group">
                                             <label for=""><strong>Meta Keyphrase</strong></label>
-                                            <textarea name="meta_keyphrase" id="meta_keyphrase" rows="3"
-                                                class="form-control" placeholder="Meta Keyphrase here"
-                                                style="resize:none;"></textarea>
+                                            <textarea name="meta_keyphrase" id="meta_keyphrase" rows="3" class="form-control" placeholder="Meta Keyphrase here" style="resize:none;"></textarea>
 
                                         </div>
                                     </div>
@@ -299,18 +282,19 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success" type="submit"> <span class="fa fa-send"></span>
-                                        Save</button>
+                                    <button class="btn btn-success" type="submit"> <span class="fa fa-send"></span>Save</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </form>
 
 </div>
+
 <!-- Modal -->
 @include('dashboard::admin.modals.attributemodal')
 @include('dashboard::admin.modals.categorymodal')
@@ -331,7 +315,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 <?php
 $name = ['meta_description','description','highlight'];
@@ -655,84 +638,72 @@ function offers(){
         }
     });
     $('#product-update-form').submit(function(e) {
-        var id = "<?php echo $id; ?>";
-        var api_token = '<?php echo $api_token; ?>';
+    var id = "<?php echo $id; ?>";
+    var api_token = '<?php echo $api_token; ?>';
 
-        e.preventDefault();
-        for (instance in CKEDITOR.instances){
-			CKEDITOR.instances[instance].updateElement();
-		}
-        var highlight = $('#highlight').val();
-        console.log(highlight)
+    e.preventDefault();
+    for (instance in CKEDITOR.instances){
+        CKEDITOR.instances[instance].updateElement();
+    }
+    var highlight = $('#highlight').val();
+    console.log(highlight)
 
-  var formData = new FormData(this);
-  formData.append('id', id);
-  $.ajax({
-        type:'POST',
-        url: "/api/updateproduct",
-        data: formData,
-        enctype: 'multipart/form-data',
-        cache:false,
-        contentType: false,
-        processData: false,
-        headers: {
-            Authorization: "Bearer " + api_token
-        },
-
-        success:function(response){
-            console.log(response.data);
-            if(response.status == 'successful'){
-              window.location.href = "/admin/product";
-              var validation_errors = JSON.stringify(response.message);
-                $('#validation-errors').html('');
-                $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
-                }  else if(response.status == 'unsuccessful') {
-              var validation_errors = JSON.stringify(response.data);
-            var response = JSON.parse(validation_errors);
-            $('#validation-errors').html('');
-            $.each( response, function( key, value) {
-            $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
-            });
-                }
-        }
-
-       });
-   });
+    var formData = new FormData(this);
+    formData.append('id', id);
+    $.ajax({
+    type:'POST',
+    url: "/api/updateproduct",
+    data: formData,
+    enctype: 'multipart/form-data',
+    cache:false,
+    contentType: false,
+    processData: false,
+    headers: {
+    Authorization: "Bearer " + api_token
+    },
+    success:function(response){
+    console.log(response.data);
+    if(response.status == 'successful'){
+    window.location.href = "/admin/product";
+    var validation_errors = JSON.stringify(response.message);
+    $('#validation-errors').html('');
+    $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div'); } else if(response.status=='unsuccessful' ) { var validation_errors=JSON.stringify(response.data); var response=JSON.parse(validation_errors); $('#validation-errors').html(''); $.each( response, function( key, value) { $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div'); }); } } }); });
    });
 
 
 </script>
 <script>
     function Delete(id){
-        var api_token = '<?php echo $api_token; ?>';
+    var api_token = '<?php echo $api_token; ?>';
 
-        var message=confirm('Are you sure you want to delete??');
-        if(message){
-            $.ajax({ 
-                type: "post", 
-                url:"{{route('api.deleteSku')}}", 
-                data:{id:id},
-                headers: 
-                {
-                        Authorization: "Bearer " + api_token
-                    },
-                    success : function(response)
-                    {
-                            DataSuccessInDatabase(response.message);
-                            location.reload();
-                    }   
-            });
-        }
-        return;
+    var message=confirm('Are you sure you want to delete??');
+    if(message){
+    $.ajax({
+    type: "post",
+    url:"{{route('api.deleteSku')}}",
+    data:{id:id},
+    headers:
+    {
+    Authorization: "Bearer " + api_token
+    },
+    success : function(response)
+    {
+    DataSuccessInDatabase(response.message);
+    location.reload();
+    }
+    });
+    }
+    return;
     }
     function addVariantRow(){
-        let variantTable = $('#variantTbl').find("tbody");
-        let firstRowVariantTable = variantTable.find('tr:first');
-        let lastRowVariantTable = variantTable.find('tr:last');
-        let trNew = firstRowVariantTable.clone();
-        trNew.css('display','table-row');
-        lastRowVariantTable.after(trNew);
+    let variantTable = $('#variantTbl').find("tbody");
+    let firstRowVariantTable = variantTable.find('tr:first');
+    let lastRowVariantTable = variantTable.find('tr:last');
+    let trNew = firstRowVariantTable.clone();
+    trNew.css('display','table-row');
+    lastRowVariantTable.after(trNew);
     }
+
 </script>
 
 @endpush
