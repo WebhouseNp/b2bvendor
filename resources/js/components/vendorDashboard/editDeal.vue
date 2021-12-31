@@ -4,7 +4,7 @@
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
-            <h5>Select User</h5>
+            <h5>Select User{{deal.customer_id}}</h5>
             <hr />
           </div>
         </div>
@@ -16,6 +16,7 @@
                 class="form-control"
                 v-model.trim="$v.user_id.$model"
                 :class="{ 'is-invalid': validationStatus($v.user_id) }"
+                v-bind:value="deal.customer_id"
               >
                 <option selected value disabled>Select any one user</option>
                 <option v-for="user in users" :key="user.id" :value="user.id">
@@ -38,6 +39,7 @@
                 format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
+                v-bind:value="deal.customer_id"
               ></date-picker>
               <div
                 v-if="!$v.expire_at.required"
@@ -125,6 +127,7 @@
                             invoice_product.product_qty
                           ),
                         }"
+                        
                       />
                       <div
                         v-if="!invoice_product.product_qty.required"
@@ -182,7 +185,7 @@ import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 export default {
-  props: ["auth", "users", "products"],
+  props: ["deal","users", "products"],
   components: {
     DatePicker,
   },
@@ -218,16 +221,6 @@ export default {
   methods: {
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
-    },
-    onChange: function (select) {
-      //  var sel = this.invoice_products.indexOf(select);
-      //  console.log(sel);
-      //  const i = 0;
-      //  for(i=0; i<sel.lenght ; i++){
-      //     if(select!=''){
-      //       $("#select option[value='"+select+"']").hide();
-      //     }
-      //  }
     },
 
     // Delete populated deal entry table=======================//

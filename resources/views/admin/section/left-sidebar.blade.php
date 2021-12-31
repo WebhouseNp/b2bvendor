@@ -56,7 +56,7 @@ $user_access = json_decode($user->access_level);
              
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-user"></i>
+                    <i class="sidebar-item-icon fa fa-handshake-o"></i>
                     <span class="nav-label">Deals</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -68,16 +68,15 @@ $user_access = json_decode($user->access_level);
                                 {{Auth::user()->name}} Deals
                             </a>
                         </li>
-                    @endif
-
-                    @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles)))
                         <li>
-                            <a href="{{route('deals.index')}}">
-                                <span class="fa fa-edit"></span>
-                                All Deals
+                            <a href="{{route('deals.create')}}">
+                                <span class="fa fa-plus"></span>
+                                 Create Deals
                             </a>
                         </li>
                     @endif
+
+                    
                 </ul>
             </li>
             @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('web-setting', $user_access)))

@@ -6,6 +6,7 @@ $api_token = $user->api_token;
 @section('content')
 @section('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 <div class="page-content fade-in-up">
@@ -13,18 +14,10 @@ $api_token = $user->api_token;
         <div class="col-md-12">
             <div class="ibox">
                 <div class="ibox-head">
-                    <div class="ibox-title">Create Deal</div>
-
-                    <div class="ibox-tools">
-
-                    </div>
-                </div>
-
-                <div class="ibox-body" id="validation-errors">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <div class="ibox-title">Update Deal</div>
                 </div>
                 <div id="app">
-                    <createdeal auth={{Auth::id()}} :users="{{ json_encode($users) }}" :products="{{ json_encode($products) }}"/>
+                    <editdeal :deal="{{ json_encode($deal) }}" :users="{{ json_encode($users) }}" :products="{{ json_encode($products) }}"></editdeal>
                 </div>
             </div>
         </div>

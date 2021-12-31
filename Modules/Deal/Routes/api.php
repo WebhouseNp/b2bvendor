@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Deal\Http\Controllers\DealController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,5 @@ Route::middleware('auth:api')->get('/deal', function (Request $request) {
 });
 Route::delete('/deleteproduct', [DealController::class,'destroy'])->name('api.deletedeal');
 Route::put('/updateproduct', [DealController::class,'update'])->name('api.updatedeal');
-Route::post('/updateproduct', [DealController::class,'store'])->name('api.storedeal');
+Route::post('/deal/storeproduct', [DealController::class,'store'])->name('api.storedeal');
 

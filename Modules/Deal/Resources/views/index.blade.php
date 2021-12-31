@@ -30,7 +30,10 @@
                         <th>Deal Expire At</th>
                         <th>Vendor</th>
                         <th>Customer</th>
-                        <th>Products/Quantity/Unit Price</th>
+                        <th><span style="background-color: #d9e7e7;">Products</span> / 
+                        <span style="background-color: #b4d7d7;">Quantity</span> / 
+                        <span style="background-color: #ed9494;">Unit Price</span></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,8 +48,16 @@
                         <td>{{@$data->user->name}}</td>
                         <td>
                         @foreach($data->deal_products as $key => $deal_product)
-                        {{++$key}}. {{$deal_product->product_info->title}}/{{$deal_product->product_qty}}/{{$deal_product->unit_price}} <br>
+                        {{++$key}}. <span style="background-color: #d9e7e7;">{{$deal_product->product_info->title}} </span> /
+                                    <span style="background-color: #b4d7d7;margin-left: 18px;">{{$deal_product->product_qty}}</span> /
+                                    <span style="background-color: #ed9494;margin-left: 18px;">{{$deal_product->unit_price}}</span><br><br>
                         @endforeach
+                        </td>
+                        <td>
+                            <a title="Edit" class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}">
+                                <i class="fa fa-edit"></i>
+                            </a> 
+                            <button class="btn btn-danger delete" onclick="deleteBrand({{ $data->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                     @endforeach

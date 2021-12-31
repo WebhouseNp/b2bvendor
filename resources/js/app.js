@@ -12,6 +12,7 @@ Vue.component('forgetpassword', require('./components/vendorLogin/forgetpassword
 Vue.component('verification', require('./components/vendorLogin/accountVerification.vue').default);
 Vue.component('resetpassword', require('./components/vendorLogin/Reset.vue').default);
 Vue.component('createdeal', require('./components/vendorDashboard/createDeal.vue').default);
+Vue.component('editdeal',require('./components/vendorDashboard/editDeal.vue').default);
 
 // Chat components
 Vue.component ('chatbox', require('./components/chat/chatbox.vue').default);
