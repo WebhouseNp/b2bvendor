@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Product\Http\Controllers;
+namespace Modules\Front\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -11,22 +11,26 @@ class ProductApiController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
      */
     public function index()
     {
-        return view('product::index');
+        // TODO::Append query string
+        $products = Product::with(['category', 'ranges'])
+            ->where('status', 'active')->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 15);
+
+        // TODO::Use resource collection
+        return response()->json($products, 200);
     }
+
 
     /**
      * Show the specified resource.
-     * @param int $id
-     * @return Renderable
      */
     public function show(Product $product)
     {
         $product->load(['category', 'ranges', 'productimage']);
 
+        // TODO::Use resource
         return response()->json($product, 200);
     }
 }

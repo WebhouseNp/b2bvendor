@@ -42,6 +42,7 @@ class FrontController extends Controller
         return response()->json(['data'=>$product, 'status_code'=>200]);
     }
 
+    // Moved to ProductApiController
     public function getAllProducts(){
         $product = Product::where('status', 'active')->orderBy('created_at', 'DESC')->with(['category','ranges'])->get();
         return response()->json(['data'=>$product, 'status_code'=>200]);

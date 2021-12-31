@@ -17,6 +17,10 @@ Route::middleware('auth:api')->get('/front', function (Request $request) {
     return $request->user();
 });
 
+// Products
+Route::get('/products', 'ProductApiController@index');
+Route::get('/products/{product:slug}', 'ProductApiController@show');
+
 Route::get('/getsastowholesaleproducts', 'FrontController@getSastoWholeSaleProducts');
 Route::get('/gettopproducts', 'FrontController@getTopProducts');
 Route::get('/getnewarrivalproducts', 'FrontController@getNewArrivalProducts');
