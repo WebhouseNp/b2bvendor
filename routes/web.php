@@ -80,7 +80,3 @@ Route::post('/pusher/auth', function (Request $request) {
     // $authString = hash_hmac("sha256", $signature_string, $pusher_app_secret);
     return $auth;
 })->middleware('auth');
-
-// messaging
-Route::get('/chat', 'ChatController@index');
-Route::get('/chat/{charRoom}', 'ChatController@show');

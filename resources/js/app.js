@@ -17,7 +17,9 @@ Vue.component('resetpassword', require('./components/vendorLogin/Reset.vue').def
 Vue.component('createdeal', require('./components/vendorDashboard/createDeal.vue').default);
 
 // Chat components
-Vue.component ('chatbox', require('./components/chat/chatbox.vue').default);
+Vue.component ('chatbox', require('./components/chat/Chatbox.vue').default);
+Vue.component ('inbox-list', require('./components/chat/InboxList.vue').default);
+Vue.component ('loading-inbox-list', require('./components/chat/LoadingInboxList.vue').default);
 
 const app = new Vue({
     el: "#app",
