@@ -8,10 +8,8 @@ use Illuminate\Routing\Controller;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
-use Modules\Role\Entities\Role;
-use Modules\Role\Entities\Role_user;
 use Session;
-use DB;
+use Illuminate\Http\JsonResponse;
 
 class AdminController extends Controller
 {
@@ -37,55 +35,48 @@ class AdminController extends Controller
         ]);
 
         $user = User::where('email', $request->email)->first();
-        // dd($roles);
+
         if (!$user) {
-            // return back()->with('message', 'User not found');
-            return response()->json([
-                "message" => "User not found!!"
-            ], 401);
+            return $this->sendLoginErrorResponse($request);
         }
 
         if (!Hash::check($request->password, $user->password)) {
-            // return back()->with('message', 'Invalid Username\Password');
-            return response()->json([
-                "message" => "Invalid Username\Password!!"
-            ], 401);
+            return $this->sendLoginErrorResponse($request);
         }
 
         // if ($user->role == 'admin' && $user->publish == 0) {
         //     return back()->with('message', "Your account is inactive! Please contact Team.");
         // }
-        
-        // dd($user);
-        $roles = [];
 
+        $roles = [];
         foreach ($user->roles()->get() as $role) {
             array_push($roles, $role->slug);
         }
+
+        // Return if user is not super_admin or admin or vendor
+        if (!in_array('super_admin', $roles, TRUE) && !in_array('admin', $roles, TRUE) && !in_array('vendor', $roles, TRUE)) {
+            return $this->sendLoginErrorResponse($request);
+        }
+
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             $token = auth()->user()->createToken('authToken')->accessToken;
             $profile = Auth::user();
             $profile->api_token = $token;
             $profile->save();
-            if (in_array('super_admin', $roles, TRUE) || in_array('admin', $roles, TRUE)|| in_array('vendor', $roles, TRUE)) {
-                return response()->json([
-                    "message" => "success",
-                    'token' => $token,
-                    'data' => $user,
-                    'status_code' => 200
-                ], 200);
-            } else {
-                // return redirect()->route('admin.logout');
-                return response()->json([
-                    "message" => "Not Authenticated User!!"
-                ], 401);
-            }
+
+            return redirect('/admin/dashboard');
         } else {
-            // return back()->withInput()->withErrors(['email' => 'something is wrong!']);
-            return response()->json([
-                "message" => "Sorry could not login!!"
-            ], 500);
+            return back()->withErrors(['login' => 'Something went wrong while logging you in.']);
         }
+    }
+
+    private function sendLoginErrorResponse(Request $request)
+    {
+        return $request->wantsJson()
+            ? new JsonResponse([
+                'error' => 'These credentials do not match our records.',
+            ], 404)
+            : redirect()->back()->withErrors(['login' => 'These credentials do not match our records.']);
     }
 
     public function admin__logout()

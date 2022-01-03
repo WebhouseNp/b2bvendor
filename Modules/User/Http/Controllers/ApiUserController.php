@@ -146,9 +146,6 @@ class ApiUserController extends Controller
       
 
     public function login(Request $request){
-      return response()->json([
-        'message' => 'I am here'
-      ], 500);
         $credentials = $request->only('email', 'password');
         try{
             $user = User::where('email', $request->email)->with('roles')->first();
@@ -232,9 +229,7 @@ class ApiUserController extends Controller
               'confirm_password' => 'required_with:password|same:password'
    
          ]);
-        //  if($validator->fails()){
-        //     return response(['error' => $validator->errors(), 'Validation Error']);
-        // }
+        
         if($validator->fails()) {
           return response()->json(['status' => 'unsuccessful','status_code' => 422, 'data' => $validator->messages()],422);
           exit;
@@ -257,8 +252,8 @@ class ApiUserController extends Controller
         }
         
         $formData['user_id'] = $user->id;
+        $formData['country_id'] = $request->country_id;
         $role = Role::where('name','vendor')->first();
-        // dd($role->id);
         $role_data = [
           'role_id' => $role->id,
           'user_id' => $formData['user_id']

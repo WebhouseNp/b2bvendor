@@ -1,202 +1,135 @@
 <template>
-  <div>
-    <div class="chat-conversation-box">
-      <div class="chat-head">
-                  <div class="chat-about">
-                    <h6 class="mb-0">{{ opponentUserName }}</h6>
-                  </div>
-      </div>
-      <div class="chat-body px-2">
-                  <div v-for="(message, index) in messages" :key="index" class=" d-flex my-2">
-                    <div class="message" v-bind:class="{ 'outgoing-message': isOutgoing(message), 'incomming-message': !isOutgoing(message) }">{{ message.message }}</div>
-                  </div>
-      </div>
-      <div class="chat-foot">
-        <form @submit.prevent="sendMessage">
-                  <div class="mb-0 input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="fa fa-plus-circle"></i>
-                        <input type="file" class="select-file" />
-                      </span>
-                    </div>
-                    <input v-model="newMessage" type="text" class="form-control" placeholder="Enter text here..." />
-                    <div class="input-group-prepend">
-                      <button class="input-group-text"><i class="fa fa-send"></i></button>
-                    </div>
-                  </div>
-                </form>
+  <div class="conversation-wrapper">
+    <div class="conversation-header px-4 py-3 bg-light">
+      <div class="d-flex align-items-center" style="gap: 1rem;">
+          <div :class="{ 'text-success': isOpponentActive, 'text-danger': !isOpponentActive }"><i class="fa fa-circle" aria-hidden="true"></i></div>
+          <h5 class="h5-responsive text-capitalize" v-if="opponentUser">
+            {{ opponentUser.name }}
+          </h5>
       </div>
     </div>
-
-    <!-- MAIN SECTION -->
-    <div class="container d-none">
-      <div class="clearfix row">
-        <div class="col-lg-12">
-          <div class="card chat-app">
-            <div class="chat">
-              <div class="clearfix chat-header">
-                <div class="row">
-                  <div class="mx-1 mt-1 chat-wrapper">
-                    <span>A</span>
-                  </div>
-                  <div class="chat-about">
-                    <h6 class="mb-0">{{ opponentUserName }}</h6>
-                    <!-- <small>Last seen: 2 hours ago</small> -->
-                  </div>
-                </div>
+    <div class="conversation py-5 px-4"  v-chat-scroll="{always: false, smooth: true, scrollonremoved:true, smoothonremoved: false}" @v-chat-scroll-top-reached="loadOlderMessages">
+        <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
+          <div class="loader"></div>
+        </div>
+        <div v-for="(message, index) in messages" :key="index" class="message" v-bind:class="{ 'outgoing': isOutgoing(message), 'incomming': !isOutgoing(message) }">
+            <div>{{ message.message }}</div>
+        </div>
+        <div class="my-2">
+          <div v-show="typing" class="chat-bubble">
+            <div class="typing">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
               </div>
-              <div class="chat-history" id="messageBody">
-                <ul class="overflow-auto m-b-0">
-                  <li v-for="(message, index) in messages" class="clearfix" :key="index">
-                    <div class="message" v-bind:class="{ 'float-right my-message': isOutgoing(message), 'other-message': !isOutgoing(message) }">{{ message.message }}</div>
-                  </li>
-                  <!-- <li class="clearfix">
-                    <div class="message other-message">Are we meeting today?</div>
-                  </li> -->
-                </ul>
-              </div>
-              <div class="clearfix chat-message">
-                <form @submit.prevent="sendMessage">
-                  <div class="mb-0 input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="fa fa-plus-circle"></i>
-                        <input type="file" class="select-file" />
-                      </span>
-                    </div>
-                    <input v-model="newMessage" type="text" class="form-control" placeholder="Enter text here..." />
-                    <div class="input-group-prepend">
-                      <button class="input-group-text"><i class="fa fa-send"></i></button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
           </div>
         </div>
-      </div>
     </div>
-    <!-- END MAIN SECTION -->
+    <div class="conversation-creator px-4 py-3">
+        <form @submit.prevent="sendMessage" class="message-compose-form mb-0">
+            <input type="text"  v-model="newMessage" class="py-3 px-4" @keyup="sendTypingEvent" placeholder="Type a message...">
+            <button type="submit" class="border"><i class="fa fa-paper-plane"></i></button>
+        </form>
+    </div>
   </div>
 </template>
 
 <script>
-import Echo from "laravel-echo";
 import axios from "axios";
+
 export default {
   name: "ChatBox",
-  props: ["user", "vendorUserId", "customerUserId"],
+  props: ["user", "vendorUserId", "chatRoom"],
   data() {
     return {
-      authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-      chatRoom: null,
       newMessage: "",
       messages: [],
-      opponentUserName: null
+      activeUsers: [],
+      opponentUser: null,
+      typing: false,
+      loadingMessages: false,
     };
   },
   async created() {
-    this.user = this.$store.getters['user/user'];
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    // this.user = this.$store.getters['user/user'];
     // Get or create chat room
-    await this.getOrCreateChatRoom();
+    // await this.getOrCreateChatRoom();
     // Join the chat room
     await this.joinChatRoom();
     // Fetch opponent user
     this.fetchOpponentUser();
     // Load last messages
     this.loadLastMessages();
+
+    // Reset typing status peridiocally
+    setInterval(() => {
+      this.typing = false;
+    }, 2000);
   },
   methods: {
     fetchOpponentUser() {
-        this.opponentUserName = this.chatRoom.customer_name;
+        this.opponentUser = this.chatRoom.customer_user;
     },
 
-    async getOrCreateChatRoom() {
-      await axios
-        .get("/api/chats/start", {
-          params: {
-            vendor_user_id: this.vendorUserId,
-            customer_user_id: this.customerUserId,
-          },
-        })
-        .then((res) => {
-          console.log(res.data.data);
-          this.chatRoom = res.data.data;
-          console.log("chatroom received");
-        });
-    },
+    // async getOrCreateChatRoom() {
+    //   await axios
+    //     .get("/api/chats/start", {
+    //       params: {
+    //         vendor_user_id: this.vendorUserId,
+    //         customer_user_id: this.customerUserId,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       console.log(res.data.data);
+    //       this.chatRoom = res.data.data;
+    //     });
+    // },
 
     joinChatRoom() {
-      window.Echo = new Echo({
-        broadcaster: "pusher",
-        key: process.env.MIX_PUSHER_APP_KEY,
-        // authEndpoint: this.authEndpoint,
-        wsHost: process.env.MIX_PUSHER_WSHOST,
-        wsPort: process.env.MIX_PUSHER_WSPORT,
-        forceTLS: false,
-        disableStats: false,
-        authorizer: (channel) => {
-          return {
-            authorize: (socketId, callback) => {
-              fetch(this.authEndpoint, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + localStorage.getItem("token"),
-                },
-                body: JSON.stringify({
-                  socket_id: socketId,
-                  channel_name: channel.name,
-                }),
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  callback(false, data);
-                })
-                .catch((error) => {
-                  callback(true, error);
-                });
-            },
-          };
-        },
-      });
+        window.channel = window.Echo.join("chat-channel-" + this.chatRoom.id)
+         .here((users) => {
+           this.activeUsers = users;
+           console.log(users);
+          })
+          .joining(user => {
+            this.activeUsers.push(user);
+          })
+          .leaving(user => {
+            this.activeUsers = this.activeUsers.filter(u => u.id !== user.id);
+          })
+          .listen(".new-message", (event) => {
+              console.log("event-listened");
+              console.log(event);
+              this.messages.push(event.message);
+          })
+          .listenForWhisper('typing', (e) => {
+            this.typing = true;
+          })
+          .error((error) => {
+              console.error(error);
+          });
+    },
 
-      window.Echo.private("chat-channel-" + this.chatRoom.id).listen(".new-message", (event) => {
-        console.log("event-listened");
-        console.log(event);
-        this.messages.push(event.data.message);
-      });
+    sendTypingEvent() {
+       window.channel.whisper('typing', {user_id: this.user.id});
     },
 
     sendMessage() {
-      axios
+        this.messages.push({
+                chat_room_id: this.chatRoom.id,
+                sender_id: this.user.id,
+                message: this.newMessage,
+                read_at: null,
+                type: 'text',
+                created_at: new Date(),
+        });
+
+        axios
         .post("/api/messages", {
           chat_room_id: this.chatRoom.id,
           message: this.newMessage,
         })
         .then((response) => {
-          console.log(response.data);
           this.newMessage = "";
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .then(() => {
-          // this.newMessage = "";
-        });
-    },
-
-    loadMessages() {
-      axios
-        .get("/api/messages", {
-          params: {
-            chat_room_id: this.chatRoom.id,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          this.messages = response.data;
         })
         .catch((error) => {
           console.log(error);
@@ -204,69 +137,42 @@ export default {
     },
 
     // load the last messages during initialization
-    loadLastMessages() {
-      axios
+    async loadLastMessages() {
+      this.loadingMessages = true;
+      await axios
         .get("/api/chats/" + this.chatRoom.id + "/messages")
         .then((response) => {
           console.log(response.data);
           Object.values(response.data.data).forEach((message) => {
             this.messages.push(message);
           });
+          this.loadingMessages = false;
         })
         .catch((error) => {
           console.log(error);
         });
     },
 
+    loadOlderMessages() {
+      this.loadingMessages = true;
+      console.log('loading older messages');
+    },
+
     // check if is outgoing message
     isOutgoing(message) {
-      if (!this.user) {
-        console.log("No logged in user's info");
-        return false;
-      }
       return message.sender_id == this.user.id ? true : false;
     },
   },
+
+  computed: {
+    isOpponentActive() {
+       for(let [key, user] of Object.entries(this.activeUsers)){
+         if (user.id == this.opponentUser.id) {
+           return true;
+         }
+       }
+       return false;
+    },
+  }
 };
 </script>
-
-<style scoped>
-.chat-conversation-box {
-  display: flex;
-  flex-direction: column;
-  height: 350px;
-  background-color: #fff;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-   
-.chat-conversation-box  .chat-head {
-  background-color: #1e76bd;
-  color: #fff;
-  padding: 10px 15px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-.chat-conversation-box .chat-body {
-  flex-grow: 1;
-}
-
-.chat-conversation-box .message {
-  padding: 8px 10px;
-  border-radius: 5px;
-  }
-.chat-conversation-box .message.incomming-message {
-  background: #3b82f6;
-  color:white; 
-
-}
-.chat-conversation-box .message.outgoing-message {
-  background: #cbd5e1;
-  color:#1e293b; 
-  margin-left: auto;
-  }
-
-  .chat-conversation-box .chat-foot {
-}
-
-</style>

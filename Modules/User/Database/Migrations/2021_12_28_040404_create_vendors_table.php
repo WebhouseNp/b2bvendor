@@ -15,7 +15,7 @@ class CreateVendorsTable extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             // Category
@@ -33,6 +33,10 @@ class CreateVendorsTable extends Migration
             $table->string('company_address')->nullable();
             $table->string('product_category')->nullable();
             $table->string('image')->nullable();
+
+            //country
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
 
             // Main Contact
             $table->string('name_on_card')->nullable();

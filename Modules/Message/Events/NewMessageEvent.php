@@ -2,6 +2,8 @@
 
 namespace Modules\Message\Events;
 
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
@@ -11,7 +13,7 @@ use Modules\Message\Transformers\MessageResource;
 
 class NewMessageEvent implements ShouldBroadcast
 {
-    use SerializesModels;
+    use SerializesModels, InteractsWithSockets;
 
     public $chatRoom, $message;
 
@@ -34,8 +36,7 @@ class NewMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return ['chat-channel'];
-        return new PrivateChannel('chat-channel-' . $this->chatRoom->id);
+        return new PresenceChannel('chat-channel-' . $this->chatRoom->id);
     }
 
     public function broadcastAs()
@@ -46,9 +47,7 @@ class NewMessageEvent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'data' => [
-                'message' => new MessageResource($this->message),
-            ]
+            'message' => new MessageResource($this->message),
         ];
     }
 }

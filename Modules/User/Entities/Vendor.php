@@ -17,6 +17,11 @@ class Vendor extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
     public function order()
     {
         return $this->belongsTo(Order::class, 'vendor_id');

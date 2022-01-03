@@ -17,6 +17,7 @@
     <link href="{{asset('/assets/admin/css/main.css')}}" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
     <link href="{{asset('/assets/admin/css/pages/auth-light.css')}}" rel="stylesheet" />
+    @stack('styles')
 </head>
 
 <body class="bg-silver-300">
@@ -38,6 +39,12 @@
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
         $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $('#login-form').validate({
                 errorClass: "help-block",
                 rules: {
@@ -57,58 +64,9 @@
                 },
             });
         });
-    </script>
-    <script>
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-	$('#submitUser').on('click', function(){
-        
-     var email = $('#email').val();
-     var password = $('#password').val();
-     var redirect_url = "{{route('dashboard')}}"
-     $.ajax({
-          url: "/postLogin",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            email:email,
-            password:password,
-          },
-          success:function(response){
-              
-            if(response.status_code == 200){
-                
-                window.location.href = redirect_url;
-              
-          //     var modal_title = "Success";
-					// modal_title = modal_title.fontcolor('green');
-          // $('#popup-modal-body').append(response.message);
-          // $('#popup-modal-title').append(modal_title);
-          // $('#popup-modal-btn').addClass('btn-success');
-					// $("#popupModal").modal('show');
-        //   window.location.href = "/admin/brand";
-        //   var validation_errors = JSON.stringify(response.message);
-        //     $('#validation-errors').html('');
-        //     $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
-        //     } else if(response.status == 'unsuccessful') {
-        //       var validation_errors = JSON.stringify(response.data);
-        //     var response = JSON.parse(validation_errors);
-        //     $('#validation-errors').html('');
-        //     $.each( response, function( key, value) {
-        //     $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
-        // });
-            }
-          }
-         
-         });
-        
-	});
 </script>
 
-</body>
+@stack('scripts')
 
+</body>
 </html>

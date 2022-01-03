@@ -64,7 +64,7 @@ $user_access = json_decode($user->access_level);
                     @if(in_array('vendor' ,$roles))
                         <li>
                             <a href="{{route('deals.index')}}">
-                                <span class="fa fa-edit"></span>
+                                <span class="fa fa-eye"></span>
                                 {{Auth::user()->name}} Deals
                             </a>
                         </li>
@@ -72,6 +72,9 @@ $user_access = json_decode($user->access_level);
                             <a href="{{route('deals.create')}}">
                                 <span class="fa fa-plus"></span>
                                  Create Deals
+                            <a href="{{route('deals.index')}}">
+                                <span class="fa fa-eye"></span>
+                                All Deals
                             </a>
                         </li>
                     @endif
@@ -518,6 +521,32 @@ $user_access = json_decode($user->access_level);
                         <a href="{{route('user.index')}}">
                             <span class="fa fa-circle-o"></span>
                             All Lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             @endif
+
+             @if(in_array('super_admin' ,$roles))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-flag"></i>
+                    <span class="nav-label">Country</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+
+                    <li>
+                        <a href="{{route('country.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add New Country
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('country.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Countries Lists
                         </a>
                     </li>
                 </ul>

@@ -21,6 +21,10 @@ class ChatRoomResource extends JsonResource
             'last_message_at' => $this->last_message_at,
             'vendor_name' => 'Vendor',
             'customer_name' => 'John Doe',
+            'opponent' => [
+                'name' => 'Opponent User',
+                'avatar_url' => 'https://ptetutorials.com/images/user-profile.png'
+            ]
         ];
     }
 }
