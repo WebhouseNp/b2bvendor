@@ -11,6 +11,22 @@
         <div>
           <div class="row" style="margin-bottom: 20px">
             <div class="col-lg-6 col-sm-12 form-group">
+              <div class="form-group">
+                <div style="position: relative;">
+                  <label for="">Customer</label>
+                  <input type="text" v-model="customer.name" class="form-control" @keyup="filterCustomers"  placeholder="Name or email" >
+                  <div v-if="customersList.length" class="p-2 bg-white" style="position: absolute; left: 0;right: 0; z-index: 50; border: 1px solid #bdbdbd; max-height: 200px; overflow-y: auto;">
+                    <div>
+                      <div v-for="user in customersList" v-bind:key="user.id">
+                        <div type="button" v-on:click="selectCustomer(user)">
+                          <div>{{ user.name }}</div>
+                          <p>{{ user.email }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <label><strong>Users</strong></label>
               <div style="margin-top: -20px;" >
                 <br>
@@ -18,7 +34,7 @@
                 placeholder="Select user" :popupHeight="height" v-model='user_id'>
                   </ejs-autocomplete>  -->
                  
-                   <ejs-combobox id='icons' :showPopupButton='true' :dataSource='states' :placeholder='iconWaterMark' :fields='iconFields'  :popupHeight='height'></ejs-combobox>
+                   <!-- <ejs-combobox id='icons' :showPopupButton='true' :dataSource='states' :placeholder='iconWaterMark' :fields='iconFields'  :popupHeight='height'></ejs-combobox> -->
                    <input type="text" class="from-control" v-model="state" @input="filterStates" @focus="dropdown = true">
                    <div v-if="filterStates && dropdown">
                      <ul>
@@ -182,6 +198,7 @@ import { required } from "vuelidate/lib/validators";
 import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import axios from 'axios';
 // import * as data from './dataSource.json';
 export default {
   props: ["auth"],
@@ -190,6 +207,7 @@ export default {
   },
   data() {
     return {
+      products: [],
       states:[
         'hari','ram','kalu','luffy'
       ],
@@ -206,7 +224,14 @@ export default {
           unit_price: "",
         },
       ],
+
       expire_at: "",
+      customer: {
+        id: '',
+        name: '',
+        email: '',
+      },
+      customersList: []
     };
   },
 
@@ -249,6 +274,20 @@ export default {
       //  }
     },
 
+    filterCustomers() {
+      if (this.customer.name.length < 3) {
+        return true;
+      }
+      axios.get("/api/deals/customer-search?q=" + this.customer.name).then(res => {
+        this.customersList = res.data.data;
+      });
+    },
+
+    selectCustomer(user) {
+      this.customer = user;
+       this.customersList = [];
+    },
+
     // Delete populated deal entry table=======================//
 
     deleteRow(index, invoice_product) {
@@ -259,7 +298,6 @@ export default {
     },
 
     //Add Deal entry table ===================================//
-
     addNewRow() {
       this.invoice_products.push({
         product_id: "",
@@ -269,7 +307,6 @@ export default {
     },
 
     // Create Deal ========================================================//
-
     async submitData() {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
@@ -278,7 +315,8 @@ export default {
           "http://127.0.0.1:8000/api/deal/storeproduct",
           {
             vendor_id: this.auth,
-            customer_id: this.user_id,
+            // customer_id: this.user_id,
+            customer_id: this.customer.id,
             expire_at: this.expire_at,
             invoice_products: this.invoice_products,
           }

@@ -29908,11 +29908,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
 /* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -30098,6 +30100,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -30110,6 +30129,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      products: [],
       states: ['hari', 'ram', 'kalu', 'luffy'],
       state: "",
       dropdown: false,
@@ -30124,28 +30144,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         product_qty: "",
         unit_price: ""
       }],
-      expire_at: ""
+      expire_at: "",
+      customer: {
+        id: '',
+        name: '',
+        email: ''
+      },
+      customersList: []
     };
   },
   //validation======================================================//
   validations: {
     user_id: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
     },
     expire_at: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
     },
     invoice_products: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required,
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required,
       $each: {
         product_id: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
         },
         product_qty: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
         },
         unit_price: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
         }
       }
     }
@@ -30174,6 +30200,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //     }
       //  }
     },
+    filterCustomers: function filterCustomers() {
+      var _this2 = this;
+
+      if (this.customer.name.length < 3) {
+        return true;
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/deals/customer-search?q=" + this.customer.name).then(function (res) {
+        _this2.customersList = res.data.data;
+      });
+    },
+    selectCustomer: function selectCustomer(user) {
+      this.customer = user;
+      this.customersList = [];
+    },
     // Delete populated deal entry table=======================//
     deleteRow: function deleteRow(index, invoice_product) {
       var idx = this.invoice_products.indexOf(invoice_product);
@@ -30192,7 +30233,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     // Create Deal ========================================================//
     submitData: function submitData() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var response;
@@ -30200,9 +30241,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.$v.$touch();
+                _this3.$v.$touch();
 
-                if (!(_this2.$v.$pendding || _this2.$v.$error)) {
+                if (!(_this3.$v.$pendding || _this3.$v.$error)) {
                   _context.next = 3;
                   break;
                 }
@@ -30212,11 +30253,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 _context.prev = 3;
                 _context.next = 6;
-                return axios.post("http://127.0.0.1:8000/api/deal/storeproduct", {
-                  vendor_id: _this2.auth,
-                  customer_id: _this2.user_id,
-                  expire_at: _this2.expire_at,
-                  invoice_products: _this2.invoice_products
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("http://127.0.0.1:8000/api/deal/storeproduct", {
+                  vendor_id: _this3.auth,
+                  // customer_id: this.user_id,
+                  customer_id: _this3.customer.id,
+                  expire_at: _this3.expire_at,
+                  invoice_products: _this3.invoice_products
                 });
 
               case 6:
@@ -30234,9 +30276,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.t0 = _context["catch"](3);
 
                 if (_context.t0.response.status === 422) {
-                  _this2.errors = _context.t0.response.data;
+                  _this3.errors = _context.t0.response.data;
 
-                  _this2.validation.setMessages(_this2.errors.data);
+                  _this3.validation.setMessages(_this3.errors.data);
                 }
 
               case 13:
@@ -31806,7 +31848,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -31832,16 +31873,16 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "cbe0b7b8904e2ede8292",
+  key: "somekey",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: process.env.MIX_PUSHER_WSHOST,
-  wsPort: process.env.MIX_PUSHER_WSPORT,
+  wsHost: "localhost",
+  wsPort: "6001",
   forceTLS: false,
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
+        fetch("http://localhost:8000/broadcasting/auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61429,81 +61470,138 @@ var render = function () {
               { staticClass: "row", staticStyle: { "margin-bottom": "20px" } },
               [
                 _c("div", { staticClass: "col-lg-6 col-sm-12 form-group" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticStyle: { "margin-top": "-20px" } },
-                    [
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("ejs-combobox", {
-                        attrs: {
-                          id: "icons",
-                          showPopupButton: true,
-                          dataSource: _vm.states,
-                          placeholder: _vm.iconWaterMark,
-                          fields: _vm.iconFields,
-                          popupHeight: _vm.height,
-                        },
-                      }),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticStyle: { position: "relative" } }, [
+                      _c("label", { attrs: { for: "" } }, [_vm._v("Customer")]),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.state,
-                            expression: "state",
+                            value: _vm.customer.name,
+                            expression: "customer.name",
                           },
                         ],
-                        staticClass: "from-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.state },
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Name or email" },
+                        domProps: { value: _vm.customer.name },
                         on: {
-                          input: [
-                            function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.state = $event.target.value
-                            },
-                            _vm.filterStates,
-                          ],
-                          focus: function ($event) {
-                            _vm.dropdown = true
+                          keyup: _vm.filterCustomers,
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.customer, "name", $event.target.value)
                           },
                         },
                       }),
                       _vm._v(" "),
-                      _vm.filterStates && _vm.dropdown
-                        ? _c("div", [
-                            _c(
-                              "ul",
-                              _vm._l(
-                                _vm.filteredState,
-                                function (filteredState, index) {
-                                  return _c(
-                                    "li",
-                                    {
-                                      key: index,
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.setState(filteredState)
+                      _vm.customersList.length
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "p-2 bg-white",
+                              staticStyle: {
+                                position: "absolute",
+                                left: "0",
+                                right: "0",
+                                "z-index": "50",
+                                border: "1px solid #bdbdbd",
+                                "max-height": "200px",
+                                "overflow-y": "auto",
+                              },
+                            },
+                            [
+                              _c(
+                                "div",
+                                _vm._l(_vm.customersList, function (user) {
+                                  return _c("div", { key: user.id }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        attrs: { type: "button" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.selectCustomer(user)
+                                          },
                                         },
                                       },
-                                    },
-                                    [_vm._v(_vm._s(filteredState))]
-                                  )
-                                }
+                                      [
+                                        _c("div", [_vm._v(_vm._s(user.name))]),
+                                        _vm._v(" "),
+                                        _c("p", [_vm._v(_vm._s(user.email))]),
+                                      ]
+                                    ),
+                                  ])
+                                }),
+                                0
                               ),
-                              0
-                            ),
-                          ])
+                            ]
+                          )
                         : _vm._e(),
-                    ],
-                    1
-                  ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticStyle: { "margin-top": "-20px" } }, [
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.state,
+                          expression: "state",
+                        },
+                      ],
+                      staticClass: "from-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.state },
+                      on: {
+                        input: [
+                          function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.state = $event.target.value
+                          },
+                          _vm.filterStates,
+                        ],
+                        focus: function ($event) {
+                          _vm.dropdown = true
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _vm.filterStates && _vm.dropdown
+                      ? _c("div", [
+                          _c(
+                            "ul",
+                            _vm._l(
+                              _vm.filteredState,
+                              function (filteredState, index) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: index,
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.setState(filteredState)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v(_vm._s(filteredState))]
+                                )
+                              }
+                            ),
+                            0
+                          ),
+                        ])
+                      : _vm._e(),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -81982,7 +82080,7 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/","#USER"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"F:\\\\admin-vendor\\\\b2b_back","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
 
 /***/ })
 
