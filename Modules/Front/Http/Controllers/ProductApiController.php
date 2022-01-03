@@ -5,6 +5,8 @@ namespace Modules\Front\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Front\Transformers\ProductCollection;
+use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
 
 class ProductApiController extends Controller
@@ -18,10 +20,15 @@ class ProductApiController extends Controller
         $products = Product::with(['category', 'ranges'])
             ->where('status', 'active')->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 15);
 
-        // TODO::Use resource collection
-        return response()->json($products, 200);
+        return ProductResource::collection($products)->hide([
+            'highlight',
+            'description',
+            'meta_title',
+            'meta_keyword',
+            'meta_description',
+            'meta_keyphrase',
+        ]);
     }
-
 
     /**
      * Show the specified resource.
@@ -30,7 +37,6 @@ class ProductApiController extends Controller
     {
         $product->load(['category', 'ranges', 'productimage']);
 
-        // TODO::Use resource
-        return response()->json($product, 200);
+        return ProductResource::make($product);
     }
 }
