@@ -35,7 +35,7 @@ class ProductResource extends JsonResource
             'essential' => $this->essential,
             'best_seller' => $this->best_seller,
             'image' => $this->image,
-            'image_url' => $this->image_url,
+            'image_url' => $this->imageUrl(),
             'quantity' => $this->quantity,
             'non_approval_note' => $this->non_approval_note,
             'status' => $this->status,

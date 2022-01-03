@@ -37,6 +37,11 @@ class Product extends Model
         ];
     }
 
+    public function imageUrl()
+    {
+        return asset('images/thumbnail/' . $this->image);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
