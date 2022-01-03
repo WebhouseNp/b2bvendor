@@ -15,6 +15,7 @@ class DealApiController extends Controller
     {
         // TODO::must be a vendor
         $users = User::where('name', 'like', request('q') . '%')
+            ->orWhere('email', 'like', request('q') . '%')
             ->select('id', 'name', 'email')->get();
 
         return response()->json(['data' => $users]);
