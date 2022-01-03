@@ -10,7 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.21",
+        "axios": "^0.21.4",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
@@ -18,12 +18,15 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "@syncfusion/ej2-vue-dropdowns": "^19.4.40",
         "laravel-echo": "^1.11.3",
         "pusher-js": "^7.0.3",
         "sass-loader": "^12.4.0",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^11.3.0",
+        "vform": "^2.1.2",
         "vue": "^2.6.14",
+        "vue2-datepicker": "^3.10.4",
         "vue-chat-scroll": "^1.4.0",
         "vuelidate": "^0.7.7"
     }

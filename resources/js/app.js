@@ -3,7 +3,10 @@ require('./bootstrap');
 import Vue from 'vue'
 
 import Vuelidate from 'vuelidate'
+import { ComboBoxPlugin  } from "@syncfusion/ej2-vue-dropdowns";
+
 Vue.use(Vuelidate);
+Vue.use(ComboBoxPlugin );
 
 import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
@@ -15,6 +18,7 @@ Vue.component('forgetpassword', require('./components/vendorLogin/forgetpassword
 Vue.component('verification', require('./components/vendorLogin/accountVerification.vue').default);
 Vue.component('resetpassword', require('./components/vendorLogin/Reset.vue').default);
 Vue.component('createdeal', require('./components/vendorDashboard/createDeal.vue').default);
+Vue.component('editdeal',require('./components/vendorDashboard/editDeal.vue').default);
 
 // Chat components
 Vue.component ('chatbox', require('./components/chat/Chatbox.vue').default);

@@ -68,16 +68,18 @@ $user_access = json_decode($user->access_level);
                                 {{Auth::user()->name}} Deals
                             </a>
                         </li>
-                    @endif
-
-                    @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles)))
                         <li>
+                            <a href="{{route('deals.create')}}">
+                                <span class="fa fa-plus"></span>
+                                 Create Deals
                             <a href="{{route('deals.index')}}">
                                 <span class="fa fa-eye"></span>
                                 All Deals
                             </a>
                         </li>
                     @endif
+
+                    
                 </ul>
             </li>
             @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('web-setting', $user_access)))

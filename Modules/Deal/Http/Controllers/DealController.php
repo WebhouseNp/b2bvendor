@@ -33,39 +33,28 @@ class DealController extends Controller
         return view('deal::index',compact('deals'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
     public function create()
     {
-        $products = Product::where('user_id',Auth::id())->select('id','title')->get();
-        $users = User::where('publish',1)->get();
-        return view('deal::create',compact('products','users'));
+        return view('deal::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
     public function store(Request $request)
     {
         try {
             $deals = $request->all();
-            $deals['vendor_user_id'] = auth()->id();
+            $deals['vendor_user_id'] = $request->vendor_id;
             $data = Deal::create($deals);
-            foreach($deals['product_id'] as $key=>$val){
+            foreach($deals['invoice_products'] as $key=>$val){
                 if(!empty($val)){
                     $deal = new DealProduct();
                     $deal->deal_id = $data->id;
-                    $deal->product_id = $val;
-                    $deal->product_qty = $deals['product_qty'][$key];
-                    $deal->unit_price= $deals['unit_price'][$key];
+                    $deal->product_id = $val['product_id'];
+                    $deal->product_qty = $val['product_qty'];
+                    $deal->unit_price= $val['unit_price'];
                     $deal->save();
                 }
             }
-        return response()->json(['status' => 'successful', 'message' => 'Deal created successfully.', 'data' => $deal]);
+           return response()->json(['status' => 'successful', 'message' => 'Deal created successfully.', 'data' => $deal]);
  
         } catch (\Exception $exception) {
             return response([
@@ -75,39 +64,14 @@ class DealController extends Controller
         
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('deal::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function edit($id)
     {
-        try{
-            $deal = Deal::where('id',$id)->with('deal_products')->first();
-            return response()->json(['status' => 'successful', 'message' => 'Deal displayed.', 'data' => $deal]);
-        } catch (\Exception $exception) {
-            return response([
-                'message' => $exception->getMessage()
-            ], 400);
-        }
+        $products = Product::where('user_id',Auth::id())->select('id','title')->get();
+        $users = User::where('publish',1)->get();
+        $deal = Deal::where('id',$id)->with('deal_products')->first();
+        return view('deal::update')->with(compact('deal','products','users'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
     public function update(Request $request, $id)
     {
         try{
