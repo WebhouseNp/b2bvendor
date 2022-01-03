@@ -1,6 +1,6 @@
 <template>
-  <div class="ibox-body" style="">
-    <form @submit.prevent="submitData">
+  <div class="ibox-body">
+    <form @submit.prevent="submitData" >
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
@@ -12,18 +12,19 @@
           <div class="row" style="margin-bottom: 20px">
             <div class="col-lg-6 col-sm-12 form-group">
               <label><strong>Users</strong></label>
-              <select
-                class="form-control"
-                v-model.trim="$v.user_id.$model"
-                :class="{ 'is-invalid': validationStatus($v.user_id) }"
-              >
-                <option selected value disabled>Select any one user</option>
-                <option v-for="user in users" :key="user.id" :value="user.id">
-                  {{ user.name }}
-                </option>
-              </select>
-              <div v-if="!$v.user_id.required" class="invalid-feedback">
-                Please Select User First.
+              <div style="margin-top: -20px;" >
+                <br>
+                <!-- <ejs-autocomplete :dataSource='dataItem' :fields='dataFields'
+                placeholder="Select user" :popupHeight="height" v-model='user_id'>
+                  </ejs-autocomplete>  -->
+                 
+                   <ejs-combobox id='icons' :showPopupButton='true' :dataSource='states' :placeholder='iconWaterMark' :fields='iconFields'  :popupHeight='height'></ejs-combobox>
+                   <input type="text" class="from-control" v-model="state" @input="filterStates" @focus="dropdown = true">
+                   <div v-if="filterStates && dropdown">
+                     <ul>
+                       <li v-for="(filteredState,index) in filteredState" :key="index" @click="setState(filteredState)">{{filteredState}}</li>
+                     </ul>
+                   </div>
               </div>
             </div>
             <div class="col-lg-6 col-sm-12 form-group">
@@ -181,14 +182,23 @@ import { required } from "vuelidate/lib/validators";
 import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+// import * as data from './dataSource.json';
 export default {
-  props: ["auth", "users", "products"],
+  props: ["auth"],
   components: {
     DatePicker,
   },
   data() {
     return {
-      user_id: "",
+      states:[
+        'hari','ram','kalu','luffy'
+      ],
+      state: "",
+      dropdown:false,
+      filteredState:[],
+      height: '200px',
+      iconFields: { text:'name ' , value: 'id' },
+     
       invoice_products: [
         {
           product_id: "",
@@ -216,6 +226,15 @@ export default {
   },
 
   methods: {
+    filterStates(){
+      this.filteredState = this.users.filter(state=>{
+        return state.toLowerCase().startsWith(this.state.toLowerCase());
+      })
+    },
+    setState(state){
+      this.state = state;
+      this.dropdown = false;
+    },
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },

@@ -2,8 +2,10 @@ require('./bootstrap');
 
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
+import { ComboBoxPlugin  } from "@syncfusion/ej2-vue-dropdowns";
 
 Vue.use(Vuelidate);
+Vue.use(ComboBoxPlugin );
 
 Vue.component('loginhomepage',require('./components/vendorLogin/vendorHomepage.vue').default);
 Vue.component('login',require('./components/vendorLogin/login.vue').default);
