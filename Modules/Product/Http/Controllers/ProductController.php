@@ -514,29 +514,6 @@ class ProductController extends Controller
 
     }
 
-    public function productDetails($slug){
-        try{
-            // $product = Product::where('slug',$slug)->with(['skus.variants'])->first();
-            // $attributes=[];
-            // foreach($product->skus as $sku){
-            //     foreach($sku->variants as $variant){
-            //         $attributes[$variant->attribute_id][] = $variant->attribute_value;
-            //     }
-            // }
-            // $attributes = array_unique($attributes);
-            $product = Product::where('slug',$slug)->with(['ranges','productimage'])->with('category')->first();
-
-            return response()->json([
-            "data" => $product,
-            "status" => "true"
-            ], 200);
-        } catch (\Exception $exception) {
-        return response([
-            'message' => $exception->getMessage()
-        ], 400);
-    }
-    }
-
     public function updateproduct(Request $request)
     {
         // try {

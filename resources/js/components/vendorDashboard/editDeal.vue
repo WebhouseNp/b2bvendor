@@ -1,46 +1,30 @@
 <template>
-  <div class="ibox-body">
-    <form @submit.prevent="submitData" >
+  <div class="ibox-body" style="">
+    <form @submit.prevent="submitData">
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
-            <h5>Select User</h5>
+            <h5>Select User{{deal.customer_id}}</h5>
             <hr />
           </div>
         </div>
         <div>
           <div class="row" style="margin-bottom: 20px">
             <div class="col-lg-6 col-sm-12 form-group">
-              <div class="form-group">
-                <div style="position: relative;">
-                  <label for="">Customer</label>
-                  <input type="text" v-model="customer.name" class="form-control" @keyup="filterCustomers"  placeholder="Name or email" >
-                  <div v-if="customersList.length" class="p-2 bg-white" style="position: absolute; left: 0;right: 0; z-index: 50; border: 1px solid #bdbdbd; max-height: 200px; overflow-y: auto;">
-                    <div>
-                      <div v-for="user in customersList" v-bind:key="user.id">
-                        <div type="button" v-on:click="selectCustomer(user)">
-                          <div>{{ user.name }}</div>
-                          <p>{{ user.email }}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <label><strong>Users</strong></label>
-              <div style="margin-top: -20px;" >
-                <br>
-                <!-- <ejs-autocomplete :dataSource='dataItem' :fields='dataFields'
-                placeholder="Select user" :popupHeight="height" v-model='user_id'>
-                  </ejs-autocomplete>  -->
-                 
-                   <!-- <ejs-combobox id='icons' :showPopupButton='true' :dataSource='states' :placeholder='iconWaterMark' :fields='iconFields'  :popupHeight='height'></ejs-combobox> -->
-                   <input type="text" class="from-control" v-model="state" @input="filterStates" @focus="dropdown = true">
-                   <div v-if="filterStates && dropdown">
-                     <ul>
-                       <li v-for="(filteredState,index) in filteredState" :key="index" @click="setState(filteredState)">{{filteredState}}</li>
-                     </ul>
-                   </div>
+              <select
+                class="form-control"
+                v-model.trim="$v.user_id.$model"
+                :class="{ 'is-invalid': validationStatus($v.user_id) }"
+                v-bind:value="deal.customer_id"
+              >
+                <option selected value disabled>Select any one user</option>
+                <option v-for="user in users" :key="user.id" :value="user.id">
+                  {{ user.name }}
+                </option>
+              </select>
+              <div v-if="!$v.user_id.required" class="invalid-feedback">
+                Please Select User First.
               </div>
             </div>
             <div class="col-lg-6 col-sm-12 form-group">
@@ -55,6 +39,7 @@
                 format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
+                v-bind:value="deal.customer_id"
               ></date-picker>
               <div
                 v-if="!$v.expire_at.required"
@@ -142,6 +127,7 @@
                             invoice_product.product_qty
                           ),
                         }"
+                        
                       />
                       <div
                         v-if="!invoice_product.product_qty.required"
@@ -198,25 +184,14 @@ import { required } from "vuelidate/lib/validators";
 import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
-import axios from 'axios';
-// import * as data from './dataSource.json';
 export default {
-  props: ["auth"],
+  props: ["deal","users", "products"],
   components: {
     DatePicker,
   },
   data() {
     return {
-      products: [],
-      states:[
-        'hari','ram','kalu','luffy'
-      ],
-      state: "",
-      dropdown:false,
-      filteredState:[],
-      height: '200px',
-      iconFields: { text:'name ' , value: 'id' },
-     
+      user_id: "",
       invoice_products: [
         {
           product_id: "",
@@ -224,14 +199,7 @@ export default {
           unit_price: "",
         },
       ],
-
       expire_at: "",
-      customer: {
-        id: '',
-        name: '',
-        email: '',
-      },
-      customersList: []
     };
   },
 
@@ -251,41 +219,8 @@ export default {
   },
 
   methods: {
-    filterStates(){
-      this.filteredState = this.users.filter(state=>{
-        return state.toLowerCase().startsWith(this.state.toLowerCase());
-      })
-    },
-    setState(state){
-      this.state = state;
-      this.dropdown = false;
-    },
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
-    },
-    onChange: function (select) {
-      //  var sel = this.invoice_products.indexOf(select);
-      //  console.log(sel);
-      //  const i = 0;
-      //  for(i=0; i<sel.lenght ; i++){
-      //     if(select!=''){
-      //       $("#select option[value='"+select+"']").hide();
-      //     }
-      //  }
-    },
-
-    filterCustomers() {
-      if (this.customer.name.length < 3) {
-        return true;
-      }
-      axios.get("/api/deals/customer-search?q=" + this.customer.name).then(res => {
-        this.customersList = res.data.data;
-      });
-    },
-
-    selectCustomer(user) {
-      this.customer = user;
-       this.customersList = [];
     },
 
     // Delete populated deal entry table=======================//
@@ -298,6 +233,7 @@ export default {
     },
 
     //Add Deal entry table ===================================//
+
     addNewRow() {
       this.invoice_products.push({
         product_id: "",
@@ -307,6 +243,7 @@ export default {
     },
 
     // Create Deal ========================================================//
+
     async submitData() {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
@@ -315,8 +252,7 @@ export default {
           "http://127.0.0.1:8000/api/deal/storeproduct",
           {
             vendor_id: this.auth,
-            // customer_id: this.user_id,
-            customer_id: this.customer.id,
+            customer_id: this.user_id,
             expire_at: this.expire_at,
             invoice_products: this.invoice_products,
           }

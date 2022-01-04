@@ -21,9 +21,9 @@ use Modules\User\Entities\Vendor;
 class MessageController extends Controller
 {
     use ValidatesRequests;
+
     /**
      * Display a listing of the resource.
-     * @return Renderable
      */
     public function index(Request $request, ChatRoom $chatRoom)
     {
@@ -34,11 +34,6 @@ class MessageController extends Controller
         return new MessageCollection($messages);
     }
 
-
-    public function chat($slug)
-    {
-    }
-    
     public function conversionApi(Request $request)
     {
         $user_id = $request->user()->id;
@@ -107,29 +102,7 @@ class MessageController extends Controller
 
         return response()->json(['status' => 'success'], 200);
         // return new MessageResource($message);
-
-        // older code
-        $this->validate($request, [
-            'from' => 'required|integer',
-            'to' => 'required|integer',
-            'from_type' => 'in:vendor,user',
-            'to_type' => 'in:vendor,user',
-            'message' => 'required|string|max:200',
-        ]);
-        $message = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $request->message);
-        $newMessage = new Message;
-        $newMessage->from = $request->from;
-        $newMessage->type = "text";
-        $newMessage->to = $request->to;
-        $newMessage->from_type = $request->from_type;
-        $newMessage->to_type = $request->to_type;
-        $newMessage->message = $message;
-        $newMessage->save();
-        $channelName = $request->from_type == 'vendor' ? $request->from_type . $request->from . $request->to_type . $request->to : $request->to_type . $request->to . $request->from_type . $request->from;
-        broadcast(new MessageEvent($channelName, $message, $request->to, $request->from));
-        return response()->json(['message' => 'Message saved successfully'], 200);
     }
-
 
 
     public function sendFileMessage(Request $request)
