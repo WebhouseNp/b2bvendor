@@ -551,6 +551,32 @@ $user_access = json_decode($user->access_level);
             </li>
              @endif
 
+             @if(in_array('super_admin' ,$roles))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-address-card"></i>
+                    <span class="nav-label">Partner</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+
+                    <li>
+                        <a href="{{route('partner.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add New Partner
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('partner.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Partners Lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             @endif
+
             @if(in_array('super_admin' ,$roles))
             <li>
                 <a href="{{route('subscriber.index')}}">
