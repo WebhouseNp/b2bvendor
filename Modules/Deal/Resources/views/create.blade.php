@@ -5,8 +5,8 @@ $api_token = $user->api_token;
 @extends('layouts.admin')
 @section('content')
 @section('styles')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" rel='nofollow' href="https://cdn.syncfusion.com/ej2/material.css" /> 
 @endsection
 
 <div class="page-content fade-in-up">
@@ -25,7 +25,7 @@ $api_token = $user->api_token;
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 </div>
                 <div id="app">
-                    <createdeal auth={{Auth::id()}}/>
+                    <createdeal auth={{Auth::id()}} :products="{{ json_encode($products) }}"/>
                 </div>
             </div>
         </div>
@@ -35,6 +35,4 @@ $api_token = $user->api_token;
 @endsection
 @push('push_scripts')
 <script src="{{mix('js/app.js')}}"></script>
-
-</script>
 @endpush
