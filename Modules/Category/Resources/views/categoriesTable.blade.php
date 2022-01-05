@@ -31,13 +31,11 @@
                 <a title="view" class="btn btn-success btn-sm" href="{{ route('category.view',$detail->id) }}">
                     <i class="fa fa-eye"></i>
                 </a>
-                <!-- <button type="button" title="View" class="btn btn-success btn-sm view" onclick="viewrole({{ $detail->id }})" data-id="{{$detail->id}}">
-                        <i class="fa fa-eye"></i>
-                    </button> -->
                 <a title="Edit" class="btn btn-primary btn-sm" href="{{ route('category.edit',$detail->id) }}">
                     <i class="fa fa-edit"></i>
                 </a>
-                <button type="button" class="btn btn-danger delete" onclick="deleteCategory({{ $detail->id }})" class="btn btn-danger" style="display: inline;" title="delete"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-danger delete" onclick="return confirm('Do You want to delete this category??') && deleteCategory(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                <!-- <button type="button" class="btn btn-danger delete" onclick="deleteCategory({{ $detail->id }})" class="btn btn-danger" style="display: inline;" title="delete"><i class="fa fa-trash"></i></button> -->
             </td>
         </tr>
         @empty

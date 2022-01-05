@@ -105,7 +105,7 @@
 
     products()
 
-    function deleteProduct(id) {
+    function deleteProduct(el,id) {
         var api_token = '<?php echo $api_token; ?>';
         var message=confirm('Do You want to delete this product??');
         if(message){
@@ -122,7 +122,8 @@
                     var validation_errors = JSON.stringify(response.message);
                         $('#validation-errors').html('');
                         $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
-                        window.location.href = "/admin/product";
+                        // window.location.href = "/admin/product";
+                        $(el).closest('tr').remove()
                 }
             }); 
         }

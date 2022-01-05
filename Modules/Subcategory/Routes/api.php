@@ -20,7 +20,7 @@ Route::group([ 'middleware' => ['auth:api']], function () {
 Route::post('/createsubcategory', 'SubcategoryController@createsubcategory');
 Route::get('/getcategory', 'SubcategoryController@getcategories');
 Route::get('/getsubcategories', 'SubcategoryController@getsubcategories');
-Route::post('/deletesubcategory', 'SubcategoryController@deletesubcategory')->name('api.deletesubcategory');
+Route::delete('/deletesubcategory/{subcategory}', 'SubcategoryController@deletesubcategory')->name('api.deletesubcategory');
 // Route::post('/getsubcategoryFromID', 'subcategoryController@getsubcategoryFromID');
 Route::get('/view-subcategory', 'SubcategoryController@viewsubcategory')->name('viewsubcategory');
 Route::get('/editsubcategory', 'SubcategoryController@editsubcategory')->name('editsubcategory');

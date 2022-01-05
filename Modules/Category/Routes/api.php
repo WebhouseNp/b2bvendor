@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/category', function (Request $request) {
 Route::group([ 'middleware' => ['auth:api']], function () {
 Route::post('/createcategory', 'CategoryController@createcategory');
 Route::get('/all-categories', 'CategoryController@allCategories');
-Route::post('/deletecategory', 'CategoryController@deletecategory')->name('api.deletecategory');
+Route::delete('/deletecategory/{category}', 'CategoryController@deletecategory')->name('api.deletecategory');
 Route::get('/view-category', 'CategoryController@viewcategory')->name('viewcategory');
 Route::get('/editcategory', 'CategoryController@editcategory')->name('editcategory');
 Route::post('/updatecategory', 'CategoryController@updatecategory');
