@@ -12,12 +12,6 @@
 
 <div class="page-heading">
     <h1 class="page-title"> Sub Categories</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All Sub Categories</li>
-    </ol>
     @include('admin.section.notifications')
 </div>
 <div class="ibox-body" id="validation-errors" >
@@ -47,35 +41,13 @@
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
-        $('#example-table').DataTable({
-            pageLength: 25,
+        $('#example1').DataTable({
+            pageLength: 2,
         });
     })
 </script>
 
 <script >
-  	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-       
-    });
-
-    $(function () {
-        $("#example1").DataTable();
-    });
-
     function subcategories(){
         var api_token = '<?php echo $api_token; ?>';
         $.ajax({
@@ -86,6 +58,7 @@
         },
 		  success:function(response) {
 			$('#appendCategory').html(response.html)
+            $("#example1").DataTable();
 		  },
 		  error: function(error) {
 			$('#notification-bar').text('An error occurred');

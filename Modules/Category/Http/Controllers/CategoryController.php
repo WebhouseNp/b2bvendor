@@ -217,16 +217,20 @@ class CategoryController extends Controller
     public function imageProcessing($type, $image)
     {
         $input['imagename'] = $type . time() . '.' . $image->getClientOriginalExtension();
-        $thumbPath = public_path('images/thumbnail');
-        $mainPath = public_path('images/main');
-        $listingPath = public_path('images/listing');
-
+        $thumbPath = public_path() . "/images/thumbnail";
+        if (!File::exists($thumbPath)) {
+            File::makeDirectory($thumbPath, 0777, true, true);
+        }
+        $listingPath = public_path() . "/images/listing";
+        if (!File::exists($listingPath)) {
+            File::makeDirectory($listingPath, 0777, true, true);
+        }
         $img1 = Image::make($image->getRealPath());
-        $img1->fit(530, 300)->save($thumbPath . '/' . $input['imagename']);
+        $img1->fit(99, 88)->save($thumbPath . '/' . $input['imagename']);
 
 
         $img2 = Image::make($image->getRealPath());
-        $img2->fit(99, 88)->save($listingPath . '/' . $input['imagename']);
+        $img2->save($listingPath . '/' . $input['imagename']);
 
         $destinationPath = public_path('/images');
         return $input['imagename'];
@@ -237,7 +241,6 @@ class CategoryController extends Controller
         $thumbPath = public_path('images/thumbnail/') . $imagename;
         $mainPath = public_path('images/main/') . $imagename;
         $listingPath = public_path('images/listing/') . $imagename;
-        $documentPath = public_path('document/') . $imagename;
         if (file_exists($thumbPath)) {
             unlink($thumbPath);
         }

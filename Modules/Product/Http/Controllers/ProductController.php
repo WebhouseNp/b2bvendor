@@ -526,11 +526,8 @@ class ProductController extends Controller
 
             $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
             $value['essential'] = is_null($request->essential) ? 0 : 1;
-
-
             if ($request->image) {
-                $image = Product::findorFail($request->id);
-                if ($image->image) {
+                if ($product->image) {
                     $thumbPath = public_path('images/thumbnail');
                     $listingPath = public_path('images/listing');
                     if ((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))) {

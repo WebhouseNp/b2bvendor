@@ -166,6 +166,12 @@
                                              placeholder="Delivery Charge">
                                     </div>
 
+                                    <div class="col-lg-4 col-sm-12 form-group">
+                                        <label><strong> Shipping Charge</strong></label>
+                                        <input class="form-control" type="text" id="shipping_charge" name="shipping _charge" value=""
+                                             placeholder="shipping Charge">
+                                    </div>
+
                                 </div>
 
                                 <div class="col-md-12 mb-3 ">
@@ -302,10 +308,6 @@
                                 </div>
                                 <div class="form-group">
                                 <input onclick="submitProductNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success">
-                                <!-- <button type="submit" id="submitProduct" name="submit" class="btn btn-success ">Submit</button> -->
-                                    <!-- <button class="btn btn-success" type="button" name="submit" onClick='submitDetailsForm()'> <span class="fa fa-send"></span>
-                                        Save</button> -->
-                                        <!-- <input type='button' value='Submit form' onClick='submitDetailsForm()' /> -->
                                 </div>
                             </div>
                         </div>
@@ -344,11 +346,6 @@ $name = ['meta_description','description','highlight'];
 @push('push_scripts')
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
-<script type="text/javascript" src="{{asset('/assets/admin/tagsinput/bootstrap-tagsinput.js')}}"></script>
-<script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.js"></script>
-
 @include('dashboard::admin.layouts._partials.imagepreview')
 
 @foreach($name as $data)
@@ -358,103 +355,8 @@ $name = ['meta_description','description','highlight'];
 @endpush
 
 @section('scripts')
-<script>
-    //jQuery time
-var current_fs, next_fs, previous_fs; //fieldsets
-var left, opacity, scale; //fieldset properties which we will animate
-var animating; //flag to prevent quick multi-click glitches
-
-$(".next").click(function(){
-	if(animating) return false;
-	animating = true;
-
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
-
-	//activate next step on progressbar using the index of next_fs
-	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-	//show the next fieldset
-	next_fs.show();
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale current_fs down to 80%
-			scale = 1 - (1 - now) * 0.2;
-			//2. bring next_fs from the right(50%)
-			left = (now * 50)+"%";
-			//3. increase opacity of next_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({
-        'transform': 'scale('+scale+')',
-        'position': 'absolute'
-      });
-			next_fs.css({'left': left, 'opacity': opacity});
-		},
-		duration: 800,
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		},
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
-
-$(".previous").click(function(){
-	if(animating) return false;
-	animating = true;
-
-	current_fs = $(this).parent();
-	previous_fs = $(this).parent().prev();
-
-	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-	//show the previous fieldset
-	previous_fs.show();
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale previous_fs from 80% to 100%
-			scale = 0.8 + (1 - now) * 0.2;
-			//2. take current_fs to the right(50%) - from 0%
-			left = ((1-now) * 50)+"%";
-			//3. increase opacity of previous_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({'left': left});
-			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-		},
-		duration: 800,
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		},
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
-
-$(".submit").click(function(){
-	return false;
-})
-
-</script>
 
 <script>
-    function preventAlph(className){
-    $(className).keypress(function(event) {
-        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-            event.preventDefault();
-        }
-    });
-}
-    var class_name = $('#price_box, #discount_bx');
-    preventAlph(class_name);
-
-
     function showThumbnail(input){
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -493,10 +395,6 @@ function DataSuccessInDatabase(message){
 function addcategory(){
     var api_token = '<?php echo $api_token; ?>';
         $('#categoryModal').modal('show');
-        $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
     });
     $('#create-category-form').submit(function(e) {
         e.preventDefault();
