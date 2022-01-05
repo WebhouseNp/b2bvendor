@@ -806,18 +806,16 @@ $(document).ready(function(){
 <script>
     function submitProductNow()
     {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var productCreateForm = document.getElementById("product-create-form");
-        var formData = new FormData(productCreateForm);
-            for (instance in CKEDITOR.instances)
+        for (instance in CKEDITOR.instances)
             {
                 CKEDITOR.instances[instance].updateElement();
             }
+        
+        var productCreateForm = document.getElementById("product-create-form");
+        var formData = new FormData(productCreateForm);
+            
             var api_token = '<?php echo $api_token; ?>';
+            console.log(formData);
             $.ajax({
                 type:'POST',
                 url: "/api/createproduct",

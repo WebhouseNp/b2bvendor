@@ -162,7 +162,6 @@ class ProductController extends Controller
 
     public function createproduct(Request $request)
     {
-        // dd($request->all());
         try {
             $validator = Validator::make($request->all(), [
                 'title'             => 'required|string',
@@ -177,7 +176,7 @@ class ProductController extends Controller
                 // "variant"    => "required|array",
                 // "variant[price].*"  => "required|numeric",
                 // 'status'            => 'required|in:active,inactive',
-                'image' =>  'required|mimes:jpg,jpeg,png|max:3000',
+                'image' =>  'mimes:jpg,jpeg,png|max:3000',
 
             ]);
             if ($validator->fails()) {
@@ -325,9 +324,7 @@ class ProductController extends Controller
     public function viewProduct(Request $request)
     {
         try {
-            // $product = Product::findorFail($request->id);
             $product = Product::where('id', $request->id)->with(['category', 'brand', 'offer'])->first();
-            // dd($product->variants->variants);
             return response()->json([
                 "message" => "Product view!",
                 'data' => $product
@@ -370,7 +367,6 @@ class ProductController extends Controller
 
     public function updateProductImage($id, Request $request)
     {
-        // dd($request->all());
         $product = Product::find($id);
         if (!$product) {
             $request->session()->flash('error', 'Invalid Product Information.');
@@ -410,15 +406,11 @@ class ProductController extends Controller
             }
         }
         $request->session()->flash('success', 'Product detail updated Successfully.');
-        // } else {
-        //     $request->session()->flash('error', 'Product detail could not be updated at this moment.');
-        // }
         return redirect()->route('product.index');
     }
 
     public function deleteImageById(Request $request)
     {
-        // dd($request);
         $image_data  = productImage::find($request->id);
 
         if (!$image_data) {
@@ -468,28 +460,24 @@ class ProductController extends Controller
     public function editproduct(Request $request)
     {
         try {
-            // dd($request->id);
             $product = Product::where('id',$request->id)->with(['category'])->first();
             $categories = Category::where('publish', 1)->with('subcategory')->get();
-            // dd($categories);
             $subcategory = Subcategory::where('category_id',$product->category->id)->get();
-            // $product = Product::where('id', $request->id)->first();
-        // $categories = $product->category;
-        $skus = $product->skus;
-        $attributes = [];
-        if ($product->category_id) {
-            $cAttributes = CategoryAttribute::where('category_id', $product->category->id)->whereNull('subcategory_id')->get();
-            foreach ($cAttributes as $attr) {
-                $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
-            }
-        }
-        if ($product->subcategory_id) {
+            $skus = $product->skus;
             $attributes = [];
-            $sAttributes = CategoryAttribute::where('subcategory_id', $product->subcategory->id)->whereNull('category_id')->get();
-            foreach ($sAttributes as $attr) {
-                $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
+            if ($product->category_id) {
+                $cAttributes = CategoryAttribute::where('category_id', $product->category->id)->whereNull('subcategory_id')->get();
+                foreach ($cAttributes as $attr) {
+                    $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
+                }
             }
-        }
+            if ($product->subcategory_id) {
+                $attributes = [];
+                $sAttributes = CategoryAttribute::where('subcategory_id', $product->subcategory->id)->whereNull('category_id')->get();
+                foreach ($sAttributes as $attr) {
+                    $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
+                }
+            }
 
             return response()->json([
                 "data" => $product,
@@ -636,16 +624,20 @@ class ProductController extends Controller
     public function imageProcessing($type, $image)
     {
         $input['imagename'] = $type . time() . '.' . $image->getClientOriginalExtension();
-        $thumbPath = public_path('images/thumbnail');
-        $mainPath = public_path('images/main');
-        $listingPath = public_path('images/listing');
-
+        $thumbPath = public_path() . "/images/thumbnail";
+        if (!File::exists($thumbPath)) {
+            File::makeDirectory($thumbPath, 0777, true, true);
+        }
+        $listingPath = public_path() . "/images/listing";
+        if (!File::exists($listingPath)) {
+            File::makeDirectory($listingPath, 0777, true, true);
+        }
         $img1 = Image::make($image->getRealPath());
-        $img1->fit(530, 300)->save($thumbPath . '/' . $input['imagename']);
+        $img1->fit(99, 88)->save($thumbPath . '/' . $input['imagename']);
 
 
         $img2 = Image::make($image->getRealPath());
-        $img2->fit(99, 88)->save($listingPath . '/' . $input['imagename']);
+        $img2->save($listingPath . '/' . $input['imagename']);
 
         $destinationPath = public_path('/images');
         return $input['imagename'];
@@ -655,9 +647,6 @@ class ProductController extends Controller
     {
         $image_ext = $image->getClientOriginalExtension();
         $image_name = $image_title . '.' . $image_ext;
-
-
-        // $original_path = public_path().'/uploads/courses/';
         $original_path = public_path() . "/uploads/product/other-image";
         if (!File::exists($original_path)) {
             File::makeDirectory($original_path, 0777, true, true);

@@ -26,7 +26,7 @@
                     <td>{{$key+1}}</td>
                     <td>
                         @if($detail->image)
-                            <img src="{{asset('images/listing/'.$detail->image)}}">
+                            <img src="{{asset('images/thumbnail/'.$detail->image)}}">
                         @else
                         <p>N/A</p>
                         @endif
