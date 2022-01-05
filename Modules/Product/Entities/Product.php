@@ -37,9 +37,15 @@ class Product extends Model
         ];
     }
 
-    public function imageUrl()
+    public function imageUrl($size = null)
     {
-        return asset('images/thumbnail/' . $this->image);
+        return "https://picsum.photos/400";
+
+        if ($size == 'thumbnail') {
+            return asset('images/thumbnail/' . $this->image);
+        }
+
+        return asset('images/listing/' . $this->image);
     }
 
     public function category()

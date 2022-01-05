@@ -1,6 +1,6 @@
 <template>
   <div class="ibox-body">
-    <form @submit.prevent="submitData" >
+    <form @submit.prevent="submitData">
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
@@ -12,11 +12,43 @@
           <div class="row" style="margin-bottom: 20px">
             <div class="col-lg-6 col-sm-12 form-group">
               <div class="form-group">
-                <div style="position: relative;">
-                  <label for="">Customer</label>
-                  <input type="text" v-model="customer.name" class="form-control" @keyup="filterCustomers"  placeholder="Name or email" >
-                  <div v-if="customersList.length" class="p-2 bg-white" style="position: absolute; left: 0;right: 0; z-index: 50; border: 1px solid #bdbdbd; max-height: 200px; overflow-y: auto;">
+                <div style="position: relative">
+                  <label for=""><strong>Customer</strong></label>
+                  <div style="position: relative">
+                    <input
+                      type="text"
+                      v-model="customer.name"
+                      class="form-control"
+                      @keyup="filterCustomers"
+                      placeholder="Name or email"
+                    />
+                    <span
+                      v-show="loadingCustomerList"
+                      style="position: absolute; top: 6px; right: 10px"
+                      ><i
+                        class="fa fa-circle-o-notch text-muted"
+                        v-bind:class="{ 'animate-spin': loadingCustomerList }"
+                      ></i
+                    ></span>
+                  </div>
+
+                  <div
+                    v-if="customersList.length || errors.length"
+                    class="p-2 bg-white"
+                    style="
+                      position: absolute;
+                      left: 0;
+                      right: 0;
+                      z-index: 50;
+                      border: 1px solid #bdbdbd;
+                      max-height: 200px;
+                      overflow-y: auto;
+                    "
+                  >
                     <div>
+                      <p v-if="errors.length" style="text-align: center">
+                        {{ errors }}
+                      </p>
                       <div v-for="user in customersList" v-bind:key="user.id">
                         <div type="button" v-on:click="selectCustomer(user)">
                           <div>{{ user.name }}</div>
@@ -26,21 +58,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <label><strong>Users</strong></label>
-              <div style="margin-top: -20px;" >
-                <br>
-                <!-- <ejs-autocomplete :dataSource='dataItem' :fields='dataFields'
-                placeholder="Select user" :popupHeight="height" v-model='user_id'>
-                  </ejs-autocomplete>  -->
-                 
-                   <!-- <ejs-combobox id='icons' :showPopupButton='true' :dataSource='states' :placeholder='iconWaterMark' :fields='iconFields'  :popupHeight='height'></ejs-combobox> -->
-                   <input type="text" class="from-control" v-model="state" @input="filterStates" @focus="dropdown = true">
-                   <div v-if="filterStates && dropdown">
-                     <ul>
-                       <li v-for="(filteredState,index) in filteredState" :key="index" @click="setState(filteredState)">{{filteredState}}</li>
-                     </ul>
-                   </div>
               </div>
             </div>
             <div class="col-lg-6 col-sm-12 form-group">
@@ -99,14 +116,13 @@
                 </thead>
                 <tbody>
                   <tr
-                    v-for="(invoice_product, k) in $v.invoice_products.$each
+                    v-for="(invoice_product, index) in $v.invoice_products.$each
                       .$iter"
-                    :key="k"
+                    :key="index"
                   >
                     <td class="inputProduct">
-                      <select
-                        class="form-control"
-                        id="select"
+                      <multiselect
+                        class="form-control form"
                         @change="onChange(invoice_product.product_id.$model)"
                         v-model="invoice_product.product_id.$model"
                         :class="{
@@ -114,19 +130,28 @@
                             invoice_product.product_id
                           ),
                         }"
+                        :options="products"
+                        :option-height="104"
+                        :custom-label="customLabel"
+                        :show-labels="false"
                       >
-                        <option selected value disabled>Select Product</option>
-                        <option
-                          v-for="product in products"
-                          :key="product.id"
-                          :value="product.id"
-                        >
-                          {{ product.title }}
-                        </option>
-                      </select>
+                        <template slot="option" slot-scope="props"
+                          >
+                          <div class="option__desc">
+                           <span><img
+                            class="option__image"
+                            :src="props.option.image_url"
+                          /></span> 
+                            <span class="option__title">{{
+                              props.option.title
+                            }}</span
+                            >
+                          </div>
+                        </template>
+                      </multiselect>
                       <div
                         v-if="!invoice_product.product_id.required"
-                        class="invalid-feedback"
+                        class="invalid-feedback text-danger"
                       >
                         Please Select Product First.
                       </div>
@@ -198,25 +223,19 @@ import { required } from "vuelidate/lib/validators";
 import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
-import axios from 'axios';
-// import * as data from './dataSource.json';
+import axios from "axios";
+import Multiselect from "vue-multiselect";
+
 export default {
-  props: ["auth"],
+  props: ["auth", "products"],
   components: {
     DatePicker,
+    Multiselect,
   },
   data() {
     return {
-      products: [],
-      states:[
-        'hari','ram','kalu','luffy'
-      ],
-      state: "",
-      dropdown:false,
-      filteredState:[],
-      height: '200px',
-      iconFields: { text:'name ' , value: 'id' },
-     
+      //select search product state
+      productArray: [],
       invoice_products: [
         {
           product_id: "",
@@ -227,18 +246,44 @@ export default {
 
       expire_at: "",
       customer: {
-        id: '',
-        name: '',
-        email: '',
+        id: "",
+        name: "",
+        email: "",
       },
-      customersList: []
+
+      //search states
+      customersList: [],
+      loadingCustomerList: false,
+      errors: "",
     };
+  },
+  computed: {
+    //select search filter product ==========================================//
+  //   vendorProducts() {
+  //     const query = this.searchProducts.toLowerCase();
+  //     if (this.searchProducts === "") {
+  //       return this.productArray;
+  //     }
+  //     return this.productArray.filter((product) => {
+  //       return Object.values(product).some((word) =>
+  //         String(word).toLowerCase().includes(query)
+  //       );
+  //     });
+  //   },
+  },
+  mounted() {
+    // featch product from api ==========================================//
+    // fetch("http://localhost:8000/api/deals/customer-search")
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     this.productArray = json.data;
+    //   });
   },
 
   //validation======================================================//
 
   validations: {
-    user_id: { required },
+    customer: { required },
     expire_at: { required },
     invoice_products: {
       required,
@@ -251,41 +296,30 @@ export default {
   },
 
   methods: {
-    filterStates(){
-      this.filteredState = this.users.filter(state=>{
-        return state.toLowerCase().startsWith(this.state.toLowerCase());
-      })
-    },
-    setState(state){
-      this.state = state;
-      this.dropdown = false;
-    },
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
-    },
-    onChange: function (select) {
-      //  var sel = this.invoice_products.indexOf(select);
-      //  console.log(sel);
-      //  const i = 0;
-      //  for(i=0; i<sel.lenght ; i++){
-      //     if(select!=''){
-      //       $("#select option[value='"+select+"']").hide();
-      //     }
-      //  }
     },
 
     filterCustomers() {
       if (this.customer.name.length < 3) {
         return true;
       }
-      axios.get("/api/deals/customer-search?q=" + this.customer.name).then(res => {
-        this.customersList = res.data.data;
-      });
+      this.loadingCustomerList = true;
+      axios
+        .get("/api/deals/customer-search?q=" + this.customer.name)
+        .then((res) => {
+          this.customersList = res.data.data;
+          this.errors = "";
+          if (this.customersList.length == 0) {
+            this.errors = "No Records Found !!";
+          }
+          this.loadingCustomerList = false;
+        });
     },
 
     selectCustomer(user) {
       this.customer = user;
-       this.customersList = [];
+      this.customersList = "";
     },
 
     // Delete populated deal entry table=======================//
@@ -306,6 +340,17 @@ export default {
       });
     },
 
+    // select search product ===============================//
+
+    selectProduct(index, product_id) {
+      this.invoice_products[index].product_id = product_id;
+      this.selectedProduct = product;
+      this.isVisible = false;
+    },
+    customLabel({title}) {
+      return `${title}`;
+    },
+
     // Create Deal ========================================================//
     async submitData() {
       this.$v.$touch();
@@ -315,7 +360,6 @@ export default {
           "http://127.0.0.1:8000/api/deal/storeproduct",
           {
             vendor_id: this.auth,
-            // customer_id: this.user_id,
             customer_id: this.customer.id,
             expire_at: this.expire_at,
             invoice_products: this.invoice_products,
@@ -323,7 +367,6 @@ export default {
         );
         if (response.status === 200) {
           swal("Good Job!", "New deal is created!", "success");
-          // window.location.href = "/account-verification";
         }
       } catch (error) {
         if (error.response.status === 422) {
@@ -337,6 +380,7 @@ export default {
 </script>
 
 <style scoped>
+@import "vue-multiselect/dist/vue-multiselect.min.css";
 .ibox .ibox-body {
   margin-top: -14px;
 }
@@ -345,9 +389,13 @@ select {
 }
 .inputProduct {
   width: 46%;
-  padding: 10px 0px;
-  /* margin: 8px 0; */
   box-sizing: border-box;
+}
+
+.inputProduct .form{
+  border: none;
+  margin-left: -10px;
+  max-width:386px;
 }
 
 .inputProduct select {
@@ -381,4 +429,17 @@ select {
 .invalid-feedback {
   font-size: 14px;
 }
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 </style>

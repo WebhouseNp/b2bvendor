@@ -18,6 +18,9 @@ class ProductApiController extends Controller
     {
         // TODO::Append query string
         $products = Product::with(['category', 'ranges'])
+            ->when(request()->has('q'), function($query) {
+                return $query->where('title', 'like', '%' . request()->q . '%');
+            })
             ->where('status', 'active')->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 15);
 
         return ProductResource::collection($products)->hide([

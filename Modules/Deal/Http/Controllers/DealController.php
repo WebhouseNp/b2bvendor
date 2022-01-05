@@ -35,7 +35,11 @@ class DealController extends Controller
 
     public function create()
     {
-        return view('deal::create');
+        $products = Product::where('user_id',Auth::id())->select('id','title')->get()->map( function($product){
+             $product['image_url']='https://dummyimage.com/50/5b43c4/ffffff';
+             return $product;
+        });
+        return view('deal::create')->with(compact('products'));
     }
 
     public function store(Request $request)
@@ -48,7 +52,7 @@ class DealController extends Controller
                 if(!empty($val)){
                     $deal = new DealProduct();
                     $deal->deal_id = $data->id;
-                    $deal->product_id = $val['product_id'];
+                    $deal->product_id = $val['product_id']['id'];
                     $deal->product_qty = $val['product_qty'];
                     $deal->unit_price= $val['unit_price'];
                     $deal->save();

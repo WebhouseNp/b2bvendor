@@ -3,10 +3,8 @@ require('./bootstrap');
 import Vue from 'vue'
 
 import Vuelidate from 'vuelidate'
-import { ComboBoxPlugin  } from "@syncfusion/ej2-vue-dropdowns";
 
 Vue.use(Vuelidate);
-Vue.use(ComboBoxPlugin );
 
 import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
