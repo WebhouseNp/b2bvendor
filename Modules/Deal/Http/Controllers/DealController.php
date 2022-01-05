@@ -35,7 +35,11 @@ class DealController extends Controller
 
     public function create()
     {
-        return view('deal::create');
+        $products = Product::where('user_id',Auth::id())->select('id','title')->get()->map( function($product){
+             $product['image_url']='https://dummyimage.com/50/5b43c4/ffffff';
+             return $product;
+        });
+        return view('deal::create')->with(compact('products'));
     }
 
     public function store(Request $request)
