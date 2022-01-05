@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import Plan from "./SelectPlan.vue";
+import Plan from "./selectPlan.vue";
 export default {
   name: "SelectCategory",
   components: { Plan },

@@ -52,7 +52,7 @@ class DealController extends Controller
                 if(!empty($val)){
                     $deal = new DealProduct();
                     $deal->deal_id = $data->id;
-                    $deal->product_id = $val['product_id'];
+                    $deal->product_id = $val['product_id']['id'];
                     $deal->product_qty = $val['product_qty'];
                     $deal->unit_price= $val['unit_price'];
                     $deal->save();

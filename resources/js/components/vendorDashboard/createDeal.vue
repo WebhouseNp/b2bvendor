@@ -136,17 +136,16 @@
                         :show-labels="false"
                       >
                         <template slot="option" slot-scope="props"
-                          ><img
+                          >
+                          <div class="option__desc">
+                           <span><img
                             class="option__image"
                             :src="props.option.image_url"
-                          />
-                          <div class="option__desc">
+                          /></span> 
                             <span class="option__title">{{
                               props.option.title
                             }}</span
-                            ><span class="option__small">{{
-                              props.option.id
-                            }}</span>
+                            >
                           </div>
                         </template>
                       </multiselect>
@@ -260,31 +259,31 @@ export default {
   },
   computed: {
     //select search filter product ==========================================//
-    vendorProducts() {
-      const query = this.searchProducts.toLowerCase();
-      if (this.searchProducts === "") {
-        return this.productArray;
-      }
-      return this.productArray.filter((product) => {
-        return Object.values(product).some((word) =>
-          String(word).toLowerCase().includes(query)
-        );
-      });
-    },
+  //   vendorProducts() {
+  //     const query = this.searchProducts.toLowerCase();
+  //     if (this.searchProducts === "") {
+  //       return this.productArray;
+  //     }
+  //     return this.productArray.filter((product) => {
+  //       return Object.values(product).some((word) =>
+  //         String(word).toLowerCase().includes(query)
+  //       );
+  //     });
+  //   },
   },
   mounted() {
     // featch product from api ==========================================//
-    fetch("http://localhost:8000/api/deals/customer-search")
-      .then((res) => res.json())
-      .then((json) => {
-        this.productArray = json.data;
-      });
+    // fetch("http://localhost:8000/api/deals/customer-search")
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     this.productArray = json.data;
+    //   });
   },
 
   //validation======================================================//
 
   validations: {
-    user_id: { required },
+    customer: { required },
     expire_at: { required },
     invoice_products: {
       required,
@@ -348,8 +347,8 @@ export default {
       this.selectedProduct = product;
       this.isVisible = false;
     },
-    customLabel({ id, title, image_url }) {
-      return `${id} – ${title} – ${image_url}`;
+    customLabel({title}) {
+      return `${title}`;
     },
 
     // Create Deal ========================================================//
@@ -361,7 +360,6 @@ export default {
           "http://127.0.0.1:8000/api/deal/storeproduct",
           {
             vendor_id: this.auth,
-            // customer_id: this.user_id,
             customer_id: this.customer.id,
             expire_at: this.expire_at,
             invoice_products: this.invoice_products,
@@ -369,7 +367,6 @@ export default {
         );
         if (response.status === 200) {
           swal("Good Job!", "New deal is created!", "success");
-          // window.location.href = "/account-verification";
         }
       } catch (error) {
         if (error.response.status === 422) {
@@ -444,4 +441,5 @@ select {
     transform: rotate(360deg);
   }
 }
+
 </style>

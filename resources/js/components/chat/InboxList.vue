@@ -20,7 +20,7 @@
 <script>
 import LoadingInboxList from "./LoadingInboxList.vue";
 export default {
-    components: [LoadingInboxList],
+    components: {LoadingInboxList},
     props: ['user'],
     data() {
         return {
