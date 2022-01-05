@@ -282,7 +282,9 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success" type="submit"> <span class="fa fa-send"></span>Save</button>
+                                <input onclick="submitProductNow();" type="button" name="save" value="save" id="product_submit" class="btn btn-success">
+
+                                    <!-- <button class="btn btn-success" type="submit"> <span class="fa fa-send"></span>Save</button> -->
                                 </div>
                             </div>
                         </div>
@@ -323,8 +325,6 @@ $name = ['meta_description','description','highlight'];
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
-<!-- <script type="text/javascript" src="{{asset('/assets/admin/tagsinput/bootstrap-tagsinput.js')}}"></script> -->
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.js"></script> -->
 
 @include('dashboard::admin.layouts._partials.imagepreview')
 
@@ -500,84 +500,83 @@ function offers(){
 </script>
 <script>
     $(document).ready(function(){
-     var id = <?php echo $id; ?>;
-     console.log(id)
-     var api_token = '<?php echo $api_token; ?>';
+            var id = <?php echo $id; ?>;
+            var api_token = '<?php echo $api_token; ?>';
             function editproduct(id){
-
                 $.ajax({
-           type: "get",
-		//   url: url,
+                    type: "get",
 
-           url:"/api/editproduct",
-           data:{id:id},
-           headers: {
-            Authorization: "Bearer " + api_token
-        },
+                    url:"/api/editproduct",
+                    data:{id:id},
+                    headers: {
+                        Authorization: "Bearer " + api_token
+                    },
 
-           success: function(response) {
-               document.getElementById('title').value = response.data.title;
-               document.getElementById('status').value = response.data.status;
-               document.getElementById('type').value = response.data.type;
-               document.getElementById('price').value = response.data.price;
-               document.getElementById('moq').value = response.data.moq;
-               document.getElementById('discount').value = response.data.discount;
-            CKEDITOR.instances['highlight'].setData(response.data.highlight);
-            CKEDITOR.instances.description.setData(response.data.description);
-            CKEDITOR.instances.meta_description.setData(response.data.meta_description);
-               document.getElementById('quantity').value = response.data.quantity;
-               if(response.data.delivery_charge){
-                document.getElementById('delivery_charge').value = response.data.delivery_charge;
-               }
-               document.getElementById('meta_title').value = response.data.meta_title;
-               document.getElementById('meta_description').value = response.data.meta_description;
-            //    document.getElementById('meta_keyword').value = response.data.meta_keyword;
-               document.getElementById('meta_keyphrase').value = response.data.meta_keyphrase;
-               if(response.categories){
-                    var html_options= "<option value='"+response.data.category.id+"'>"+response.data.category.name+"</option>";
-                    $.each(response.categories, function(index,cat_data){
-                        if(cat_data.id != response.data.category.id){
-                            html_options += "<option value='"+cat_data.id+"'>"+cat_data.name+"</option>";
+                    success: function(response) {
+                        document.getElementById('title').value = response.data.title;
+                        document.getElementById('status').value = response.data.status;
+                        document.getElementById('type').value = response.data.type;
+                        document.getElementById('price').value = response.data.price;
+                        document.getElementById('moq').value = response.data.moq;
+                        document.getElementById('discount').value = response.data.discount;
+                        CKEDITOR.instances['highlight'].setData(response.data.highlight);
+                        CKEDITOR.instances.description.setData(response.data.description);
+                        CKEDITOR.instances.meta_description.setData(response.data.meta_description);
+                        document.getElementById('quantity').value = response.data.quantity;
+                        if(response.data.delivery_charge){
+                            document.getElementById('delivery_charge').value = response.data.delivery_charge;
                         }
-                        if(cat_data.does_contain_sub_category == 1){
-                            $('#sub_cat_div').removeClass('d-none');
-                            var subcat_options= "";
+                        document.getElementById('meta_title').value = response.data.meta_title;
+                        document.getElementById('meta_description').value = response.data.meta_description;
+                        //    document.getElementById('meta_keyword').value = response.data.meta_keyword;
+                        document.getElementById('meta_keyphrase').value = response.data.meta_keyphrase;
+                        if(response.categories){
+                                var html_options= "<option value='"+response.data.category.id+"'>"+response.data.category.name+"</option>";
+                                $.each(response.categories, function(index,cat_data){
+                                    if(cat_data.id != response.data.category.id){
+                                        html_options += "<option value='"+cat_data.id+"'>"+cat_data.name+"</option>";
+                                    }
+                                    if(cat_data.does_contain_sub_category == 1){
+                                        $('#sub_cat_div').removeClass('d-none');
+                                        var subcat_options= "";
 
-                    $.each(response.subcategory, function(index,subcat_data){
-                            // var subcat_options= "<option value='"+subcat_data.id+"'>"+subcat_data.name+"</option>";
+                                $.each(response.subcategory, function(index,subcat_data){
+                                        // var subcat_options= "<option value='"+subcat_data.id+"'>"+subcat_data.name+"</option>";
 
 
-                        if(subcat_data.id != 0){
-                            subcat_options += "<option value='"+subcat_data.id+"'>"+subcat_data.name+"</option>";
-                        }
+                                    if(subcat_data.id != 0){
+                                        subcat_options += "<option value='"+subcat_data.id+"'>"+subcat_data.name+"</option>";
+                                    }
 
-                    });
-                    $('#subcategory_id').html(subcat_options);
-                        }
-                    });
-                    $('#category_id').html(html_options);
-                }
-                    if(response.data.essential == '1'){
-						document.getElementById('essential').checked = true;
-					}
-					else if(response.data.essential == '0'){
-                        document.getElementById('essential').checked = false;
-					}
-                    if(response.data.best_seller == '1'){
-                        document.getElementById('best_seller').checked = true;
-					}
-					else if(response.data.best_seller == '0'){
-                        document.getElementById('best_seller').checked = false;
-					}
+                                });
+                                $('#subcategory_id').html(subcat_options);
+                                    }
+                                });
+                                $('#category_id').html(html_options);
+                            }
+                                if(response.data.essential == '1'){
+                                    document.getElementById('essential').checked = true;
+                                }
+                                else if(response.data.essential == '0'){
+                                    document.getElementById('essential').checked = false;
+                                }
+                                if(response.data.best_seller == '1'){
+                                    document.getElementById('best_seller').checked = true;
+                                }
+                                else if(response.data.best_seller == '0'){
+                                    document.getElementById('best_seller').checked = false;
+                                }
 
-                    document.getElementById('image-holder').innerHTML = '<img width="150" height="150" src="<?php echo URL::to('/').'/images/thumbnail/'; ?>'+response.data.image+'">';
+                                document.getElementById('image-holder').innerHTML = '<img width="150" height="150" src="<?php echo URL::to('/').'/images/thumbnail/'; ?>'+response.data.image+'">';
 
-        //    location.reload();
-           }
-       });
+                    //    location.reload();
+                    }
+                });
             }
+            // }
             editproduct(id);
-          });
+        
+    });
 
 
 </script>
@@ -631,46 +630,45 @@ function offers(){
 </script>
 
 <script>
-    $(document).ready(function (e) {
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#product-update-form').submit(function(e) {
-    var id = "<?php echo $id; ?>";
-    var api_token = '<?php echo $api_token; ?>';
-
-    e.preventDefault();
-    for (instance in CKEDITOR.instances){
-        CKEDITOR.instances[instance].updateElement();
-    }
-    var highlight = $('#highlight').val();
-    console.log(highlight)
-
-    var formData = new FormData(this);
-    formData.append('id', id);
-    $.ajax({
-    type:'POST',
-    url: "/api/updateproduct",
-    data: formData,
-    enctype: 'multipart/form-data',
-    cache:false,
-    contentType: false,
-    processData: false,
-    headers: {
-    Authorization: "Bearer " + api_token
-    },
-    success:function(response){
-    console.log(response.data);
-    if(response.status == 'successful'){
-    window.location.href = "/admin/product";
-    var validation_errors = JSON.stringify(response.message);
-    $('#validation-errors').html('');
-    $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div'); } else if(response.status=='unsuccessful' ) { var validation_errors=JSON.stringify(response.data); var response=JSON.parse(validation_errors); $('#validation-errors').html(''); $.each( response, function( key, value) { $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div'); }); } } }); });
-   });
-
-
+function submitProductNow()
+    {
+        for (instance in CKEDITOR.instances)
+            {
+                CKEDITOR.instances[instance].updateElement();
+            }
+            var id = "<?php echo $id; ?>";
+            var api_token = '<?php echo $api_token; ?>';
+            var productCreateForm = document.getElementById("product-update-form");
+            var formData = new FormData(productCreateForm);
+            formData.append('id', id);
+            $.ajax({
+                type:'POST',
+                url: "/api/updateproduct",
+                data: formData,
+                enctype: 'multipart/form-data',
+                cache:false,
+                contentType: false,
+                processData: false,
+                headers: {
+                Authorization: "Bearer " + api_token
+                },
+                success:function(response){
+                    if(response.status == 'successful'){
+                    window.location.href = "/admin/product";
+                    var validation_errors = JSON.stringify(response.message);
+                        $('#validation-errors').html('');
+                        $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
+                        }  else if(response.status == 'unsuccessful') {
+                    var validation_errors = JSON.stringify(response.data);
+                        var response = JSON.parse(validation_errors);
+                        $('#validation-errors').html('');
+                        $.each( response, function( key, value) {
+                        $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
+                        });
+                        }
+                }
+            });
+    } 
 </script>
 <script>
     function Delete(id){
