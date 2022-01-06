@@ -7,6 +7,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Modules\Deal\Entities\Deal;
+use Modules\Deal\Transformers\DealResource;
 use Modules\Product\Entities\Product;
 
 class DealApiController extends Controller
@@ -29,5 +31,14 @@ class DealApiController extends Controller
             ->select('id', 'title')->get();
 
         return response()->json(['data' => $products]);
+    }
+
+    public function show(Deal $deal)
+    {
+        abort_unless(Auth::id() == $deal->vendor_user_id || Auth::id() == $deal->customer_id, 403);
+
+        $deal->load('dealProducts.product:id,title');
+
+        return new DealResource($deal);
     }
 }

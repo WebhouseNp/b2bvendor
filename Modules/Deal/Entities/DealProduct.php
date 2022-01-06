@@ -8,14 +8,26 @@ use Modules\Product\Entities\Product;
 
 class DealProduct extends Model
 {
+  protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $guarded = ['id','created_at','updated_at'];
+  public function totalPrice()
+  {
+    return $this->product_qty *  $this->unit_price;
+  }
 
-    public function deal(){
-		  return $this->belongsTo(Deal::class,'deal_id');
-	  }
-    public function product_info (){
-      return $this->hasOne(Product::class, 'id', 'product_id');
-    }
+  public function deal()
+  {
+    return $this->belongsTo(Deal::class, 'deal_id');
+  }
 
+  // relationship has been duplicated due to improper naming convention
+  public function product_info()
+  {
+    return $this->hasOne(Product::class, 'id', 'product_id');
+  }
+
+  public function product()
+  {
+    return $this->belongsTo(Product::class);
+  }
 }
