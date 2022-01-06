@@ -35,7 +35,9 @@ Route::get('vendorsubcategories/{username}/{slug}', 'FrontController@getVendorSu
 Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVendorCategoryProducts');
 
 Route::get('allvendor', 'FrontController@getVendors');
-Route::get('allcategories', 'FrontController@allcategories');
+Route::get('allcategories', 'FrontController@allcategories'); // Not in use since we were pulling a lot more than we need
+Route::get('megamenu', 'CategoryApiController@megamenu');
+
 Route::post('quotation', 'QuotationController@store')->name('quotation.store');
 Route::post('product-search', 'SearchController@productSearch')->name('product.search');
 
