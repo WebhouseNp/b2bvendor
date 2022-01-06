@@ -66,24 +66,19 @@ class CategoryController extends Controller
         return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
     }
 
-    public function deletecategory(Request $request)
+    public function deletecategory(Request $request,  Category $category)
     {
-        try{
-            $category = Category::findorFail($request->id);
-            if ($category->image) {
-                $this->unlinkImage($category->image);
-            }
+            // $category = Category::findorFail($request->id);
+            // if ($category->image) {
+            //     $this->unlinkImage($category->image);
+            // }
             $category->delete();
 
       return response()->json([
         'status' => 'successful',
         "message" => "Category deleted successfully!"
       ], 200);
-        } catch(\Exception $exception){
-            return response([
-                'message' => $exception->getMessage()
-            ],400);
-        }
+        
 
     }
 

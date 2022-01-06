@@ -100,7 +100,9 @@
             <br>
 
             <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <input onclick="submitCategoryNow();" type="button" name="save" value="save" class="btn btn-success">
+
+            <!-- <button type="submit" class="btn btn-success">Submit</button> -->
             </div>
 
           </form>
@@ -126,50 +128,44 @@
 
 @push('push_scripts')
 <script>
-	$(document).ready(function (e) {
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#category-update-form').submit(function(e) {
-        var id = "<?php echo $id; ?>";
-        var api_token = '<?php echo $api_token; ?>';
-        e.preventDefault();
-  
-  var formData = new FormData(this);
-  formData.append('id', id);
-  $.ajax({
-        type:'POST',
-        url: "/api/updatecategory",
-        data: formData,
-        enctype: 'multipart/form-data',
-        cache:false,
-        contentType: false,
-        processData: false,
-        headers: {
-            Authorization: "Bearer " + api_token
-        },
-        success:function(response){
-            console.log(response.data);
-            if(response.status == 'successful'){
-              window.location.href = "/admin/category";
-              var validation_errors = JSON.stringify(response.message);
+	
+      function submitCategoryNow()
+    {
+            var id = "<?php echo $id; ?>";
+            var api_token = '<?php echo $api_token; ?>';
+      
+          var categoryUpdateForm = document.getElementById("category-update-form");
+        var formData = new FormData(categoryUpdateForm); 
+        $.ajax({
+            type:'POST',
+            url: "/api/updatecategory",
+            data: formData,
+            enctype: 'multipart/form-data',
+            cache:false,
+            contentType: false,
+            processData: false,
+            headers: {
+                Authorization: "Bearer " + api_token
+            },
+            success:function(response){
+                console.log(response.data);
+                if(response.status == 'successful'){
+                  window.location.href = "/admin/category";
+                  var validation_errors = JSON.stringify(response.message);
+                    $('#validation-errors').html('');
+                    $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
+                    }  else if(response.status == 'unsuccessful') {
+                  var validation_errors = JSON.stringify(response.data);
+                var response = JSON.parse(validation_errors);
                 $('#validation-errors').html('');
-                $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
-                }  else if(response.status == 'unsuccessful') {
-              var validation_errors = JSON.stringify(response.data);
-            var response = JSON.parse(validation_errors);
-            $('#validation-errors').html('');
-            $.each( response, function( key, value) {
-            $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
-            });
-                }
-        }
+                $.each( response, function( key, value) {
+                $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
+                });
+                    }
+            }
         
-       });
-   });
-   });
+          });
+    }   
 
 	
 </script>

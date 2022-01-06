@@ -122,26 +122,27 @@
         }
     });
 
-    function deleteCategory(id) {
+    function deleteCategory(el,id) {
         var api_token = '<?php echo $api_token; ?>';
-        if (!confirm("Are you sure you want to delete?")){
-            return false;
-        }
+        let url = "/api/deletecategory/" + id;
+        
         $.ajax({ 
         type: "post", 
-        url:"{{route('api.deletecategory')}}", 
-        data:{id:id},
+        url: url, 
+        data:{
+            _method: 'delete'
+        },
         headers: {
             Authorization: "Bearer " + api_token
         },
         success: function(response) {
-            console.log(response.message)
             var validation_errors = JSON.stringify(response.message);
             $('#validation-errors').html('');
             $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
-            window.location.href = "/admin/category";
+            $(el).closest('tr').remove()
+            // window.location.href = "/admin/category";
         }
         }); 
-        } 
+    } 
   </script>
 @endsection

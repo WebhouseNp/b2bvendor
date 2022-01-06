@@ -84,7 +84,9 @@
             <br>
 
             <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <input onclick="submitSubCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success">
+
+            <!-- <button type="submit" class="btn btn-success">Submit</button> -->
             </div>
 
           </form>
@@ -104,18 +106,12 @@
 
 @push('push_scripts')
 <script>
-$(document).ready(function (e) {
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#subcategory-create-form').submit(function(e) {
+  function submitSubCategoryNow()
+    {
       var api_token = '<?php echo $api_token; ?>';
-        e.preventDefault();
-  
-  var formData = new FormData(this);
-  $.ajax({
+      var SubcategoryCreateForm = document.getElementById("subcategory-create-form");
+        var formData = new FormData(SubcategoryCreateForm);  
+      $.ajax({
         type:'POST',
         url: "/api/createsubcategory",
         data: formData,
@@ -127,9 +123,8 @@ $(document).ready(function (e) {
             Authorization: "Bearer " + api_token
         },
         success:function(response){
-            console.log(response.data);
             if(response.status == 'successful'){
-              window.location.href = "/subcategory";
+              window.location.href = "/admin/subcategory";
               var validation_errors = JSON.stringify(response.message);
                 $('#validation-errors').html('');
                 $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
@@ -144,10 +139,7 @@ $(document).ready(function (e) {
         }
         
        });
-   });
-   });
-
-
+    }
 </script>
 
 <script>

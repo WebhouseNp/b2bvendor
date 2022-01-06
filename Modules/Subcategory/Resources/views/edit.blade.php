@@ -83,7 +83,9 @@
             <br>
 
             <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <input onclick="submitSubCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success">
+
+            <!-- <button type="submit" class="btn btn-success">Submit</button> -->
             </div>
 
           </form>
@@ -103,20 +105,14 @@
 
 @push('push_scripts')
 <script>
-	$(document).ready(function (e) {
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#subcategory-update-form').submit(function(e) {
+	function submitSubCategoryNow()
+    {
         var id = "<?php echo $id; ?>";
         var api_token = '<?php echo $api_token; ?>';
-        e.preventDefault();
-  
-  var formData = new FormData(this);
-  formData.append('id', id);
-  $.ajax({
+        var SubcategoryUpdateForm = document.getElementById("subcategory-update-form");
+        var formData = new FormData(SubcategoryUpdateForm);
+        formData.append('id', id);
+    $.ajax({
         type:'POST',
         url: "/api/updatesubcategory",
         data: formData,
@@ -128,7 +124,6 @@
             Authorization: "Bearer " + api_token
         },
         success:function(response){
-            console.log(response.data);
             if(response.status == 'successful'){
               window.location.href = "/subcategory";
               var validation_errors = JSON.stringify(response.message);
@@ -145,8 +140,7 @@
         }
         
        });
-   });
-   });
+   }
 
 	
 </script>

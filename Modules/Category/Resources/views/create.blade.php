@@ -90,7 +90,9 @@
             <br>
 
             <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <input onclick="submitCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success">
+
+            <!-- <button type="submit" class="btn btn-success">Submit</button> -->
             </div>
 
           </form>
@@ -131,18 +133,12 @@
 
 @push('push_scripts')
 <script>
-$(document).ready(function (e) {
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#category-create-form').submit(function(e) {
-      var api_token = '<?php echo $api_token; ?>';
-        e.preventDefault();
-  
-  var formData = new FormData(this);
-  $.ajax({
+      function submitCategoryNow()
+    {
+        var api_token = '<?php echo $api_token; ?>';
+        var categoryCreateForm = document.getElementById("category-create-form");
+        var formData = new FormData(categoryCreateForm);  
+      $.ajax({
         type:'POST',
         url: "/api/createcategory",
         data: formData,
@@ -170,11 +166,8 @@ $(document).ready(function (e) {
                 }
         }
         
-       });
-   });
-   });
-
-
+      });
+    }
 </script>
 
 @endpush
