@@ -93,6 +93,8 @@ class FrontController extends Controller
         
     }
 
+    // Not in use
+    // Checkout CategoryApiController
     public function allcategories(){
         $allcategories = Category::where('publish',1)->with(['subcategory','products'])->get();
         return response()->json(['data'=>$allcategories, 'status_code'=>200]);
