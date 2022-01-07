@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Front\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,9 @@ Route::get('vendorsubcategories/{username}/{slug}', 'FrontController@getVendorSu
 Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVendorCategoryProducts');
 
 Route::get('allvendor', 'FrontController@getVendors');
-Route::get('allcategories', 'FrontController@allcategories');
+Route::get('allcategories', 'FrontController@allcategories'); // Not in use since we were pulling a lot more than we need
+Route::get('megamenu', 'CategoryApiController@megamenu');
+
 Route::post('quotation', 'QuotationController@store')->name('quotation.store');
 Route::post('product-search', 'SearchController@productSearch')->name('product.search');
 
@@ -44,3 +47,7 @@ Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.ca
 Route::get('/delete/{id}', [CartController::class, 'DeleteCart'])->name('delete-cart');
 // Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 // Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
+
+// Checkout
+Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
+

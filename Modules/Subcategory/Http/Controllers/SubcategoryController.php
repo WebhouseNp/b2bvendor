@@ -118,24 +118,19 @@ class SubcategoryController extends Controller
 
     }
 
-    public function deletesubcategory(Request $request)
+    public function deletesubcategory(Request $request, Subcategory $subcategory)
     {
-        try{
-            $subcategory = Subcategory::findorFail($request->id);
-            if ($subcategory->image) {
-                $this->unlinkImage($subcategory->image);
-            }
+            // $subcategory = Subcategory::findorFail($request->id);
+            // if ($subcategory->image) {
+            //     $this->unlinkImage($subcategory->image);
+            // }
             $subcategory->delete();
 
       return response()->json([
         'status' => 'successful',
         "message" => "subcategory deleted successfully!"
       ], 200);
-        } catch(\Exception $exception){
-            return response([
-                'message' => $exception->getMessage()
-            ],400);
-        }
+        
 
     }
 

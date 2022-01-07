@@ -18,13 +18,40 @@ class ChatRoomResource extends JsonResource
             'id' => $this->id,
             'customer_user_id' => $this->customer_user_id,
             'vendor_user_id' => $this->vendor_user_id,
-            'last_message_at' => $this->last_message_at,
-            'vendor_name' => 'Vendor',
-            'customer_name' => 'John Doe',
-            'opponent' => [
-                'name' => 'Opponent User',
-                'avatar_url' => 'https://ptetutorials.com/images/user-profile.png'
-            ]
+            'last_message_at' => $this->updated_at->diffForHumans(),
+            'updated_at' => $this->updated_at,
+            'opponent' => $this->opponentUser()
         ];
+    }
+
+    protected function opponentUser()
+    {
+        if (auth()->id() == $this->customer_user_id) {
+            $vendor = $this->vendorUser;
+            return [
+                'id' => $vendor->id,
+                'name' => $vendor->name,
+                'avatar_url' => $this->generateAvatarUrl($vendor->name)
+            ];
+        }
+
+        $customer = $this->customerUser;
+        return [
+            'id' => $customer->id,
+            'name' => $customer->name,
+            'avatar_url' => $this->generateAvatarUrl($customer->name)
+        ];
+    }
+
+    protected function generateAvatarUrl($name)
+    {
+        $queryString = [
+            'name' => $name,
+            'background' => '0D8ABC',
+            'color' => 'fff',
+            'rounded' => true
+        ];
+
+        return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
     }
 }

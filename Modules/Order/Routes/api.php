@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/order', function (Request $request) {
     return $request->user();
 });
 // Route::group([ 'middleware' => ['auth:api','Adminrole']], function () {
+
 Route::post('/createorder', 'OrderController@createorder');
 Route::get('/getorders', 'OrderController@getorders');
 Route::post('/changeOrderStatus', 'OrderController@changeOrderStatus')->name('api.changeOrderStatus');

@@ -19,3 +19,4 @@ Route::post('/deals', [DealController::class,'store'])->name('api.storedeal');
 Route::get('deals/customer-search', [DealApiController::class,'customerSearch'])->name('api.productsearch');
 Route::get('deals/product-search', [DealApiController::class,'productSearch'])->name('api.productsearch');
 
+Route::get('deals/{deal}', [DealApiController::class,'show'])->name('api.deals.show')->middleware('auth:api');

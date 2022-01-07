@@ -100,23 +100,28 @@
         }
     });
 
-    function deleteSubcategory(id) {
+    function deleteSubcategory(el,id) {
         var api_token = '<?php echo $api_token; ?>';
-        alert("Are you sure you want to delete??");
-            $.ajax({ 
-           type: "post", 
-           url:"{{route('api.deletesubcategory')}}", 
-           data:{id:id},
-           headers: {
+        let url = "/api/deletesubcategory/" + id;
+        
+        $.ajax({ 
+        type: "post", 
+        url: url, 
+        data:{
+            _method: 'delete'
+        },
+        headers: {
             Authorization: "Bearer " + api_token
         },
-           success: function(response) {
-               var validation_errors = JSON.stringify(response.message);
+        success: function(response) {
+            var validation_errors = JSON.stringify(response.message);
             $('#validation-errors').html('');
             $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
-           }
-       }); 
-          } 
+            $(el).closest('tr').remove()
+            // window.location.href = "/admin/category";
+        }
+        }); 
+    } 
 
   </script>
 

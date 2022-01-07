@@ -12,29 +12,44 @@ use Illuminate\Notifications\Notifiable;
 
 class Deal extends Model
 {
-  Use Uuid, Notifiable;
-   
-    public $incrementing = false;
+  use Uuid, Notifiable;
 
-    protected $keyType = 'uuid';
-    protected $guarded = ['id','created_at','updated_at'];
+  public $incrementing = false;
 
-    protected $dates = ['expire_at'];
+  protected $keyType = 'uuid';
+  protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function deal_products(){
-		  return $this->hasMany(DealProduct::class,'deal_id');
-	  }
+  public function totalPrice()
+  {
+    return $this->dealProducts->sum(function ($product) {
+      return $product->product_qty * $product->unit_price;
+    });
+  }
 
-    public function products(){
-		  return $this->hasMany(Product::class,'product_id');
-	  }
+  // relationship name should always be camel case like dealProduct
+  public function deal_products()
+  {
+    return $this->hasMany(DealProduct::class);
+  }
 
-    public function user(){
-      return $this->belongsTo(User::class,'customer_id');
-    }
-    public function vendor(){
-      return $this->belongsTo(User::class,'vendor_user_id');
-    }
+  public function dealProducts()
+  {
+    return $this->hasMany(DealProduct::class, 'deal_id');
+  }
+
+
+  public function products()
+  {
+    return $this->hasMany(Product::class, 'product_id');
+  }
+
+  public function user()
+  {
+    return $this->belongsTo(User::class, 'customer_id');
+  }
+
+  public function vendor()
+  {
+    return $this->belongsTo(User::class, 'vendor_user_id');
+  }
 }
-
-

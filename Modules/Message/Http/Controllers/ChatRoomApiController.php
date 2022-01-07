@@ -11,7 +11,7 @@ class ChatRoomApiController extends Controller
 {
     public function index()
     {
-        $chatRooms = ChatRoom::myParticipation()->paginate(10);
+        $chatRooms = ChatRoom::myParticipation()->latest()->paginate(10);
 
         return ChatRoomResource::collection($chatRooms);
     }

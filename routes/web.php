@@ -14,7 +14,7 @@ use Modules\Country\Entities\Country;
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/admin/login');
+Route::redirect('/', '/vendor-homepage');
 
 Route::get('optimize-clear', function () {
     Artisan::call('optimize:clear');

@@ -7,5 +7,7 @@
 // });
 
 // messaging
-Route::get('/chat', 'ChatRoomController@index');
-Route::get('/chat/{chatRoom}', 'ChatRoomController@show')->name('chatroom.show');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/chat', 'ChatRoomController@index');
+    Route::get('/chat/{chatRoom}', 'ChatRoomController@show')->name('chatroom.show');
+});
