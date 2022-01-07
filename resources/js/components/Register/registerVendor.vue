@@ -101,7 +101,7 @@ export default {
   name: "registor",
   data() {
     return {
-      validation: new validation(),
+      validations: new validation(),
       name: "",
       email: "",
       password: "",

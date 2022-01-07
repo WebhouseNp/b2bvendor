@@ -99,18 +99,14 @@
                   aria-describedby="example1_info"
                 >
                   <tr>
+                    <!-- <th style="background-color: #d9e7e7">SN</th> -->
                     <th style="background-color: #d9e7e7">Product</th>
                     <th style="background-color: #b4d7d7">Quentiry</th>
-                    <th style="background-color: #ed9494">Price</th>
-                    <th>
-                      <button
-                        type="button"
-                        class="btn btn-info addProduct"
-                        @click="addNewRow"
-                      >
-                        <i class="fas fa-plus-circle"></i>
-                        Add
-                      </button>
+                    <th style="background-color: #ed9494">Unit Price</th>
+                    <th style="background-color: #ed9494">SubTotal Price</th>
+
+                    <th style="background-color: #ff0000ab;">
+                     Delete
                     </th>
                   </tr>
                 </thead>
@@ -134,20 +130,32 @@
                         :option-height="104"
                         :custom-label="customLabel"
                         :show-labels="false"
+                        :hide-selected="true"
                       >
-                        <template slot="option" slot-scope="props"
-                          >
-                          <div class="option__desc">
-                           <span><img
+                        <template slot="singleLabel" slot-scope="props"
+                          ><img
                             class="option__image"
                             :src="props.option.image_url"
-                          /></span> 
+                          /><span class="option__desc"
+                            ><span
+                              class="option__title"
+                              style="margin-left: 10px"
+                              >{{ props.option.title }}</span
+                            ></span
+                          ></template
+                        >
+                        <template slot="option" slot-scope="props">
+                          <div class="option__desc">
+                            <img
+                              class="option__image"
+                              :src="props.option.image_url"
+                            />
                             <span class="option__title">{{
                               props.option.title
-                            }}</span
-                            >
+                            }}</span>
                           </div>
                         </template>
+                        <span slot="noResult">Oops! No data found.</span>
                       </multiselect>
                       <div
                         v-if="!invoice_product.product_id.required"
@@ -159,9 +167,9 @@
                     <td class="inputQuentiry">
                       <input
                         class="form-control"
-                        type="text"
+                        type="number"
                         placeholder="Enter Quentity"
-                        v-model="invoice_product.product_qty.$model"
+                        v-model.number="invoice_product.product_qty.$model"
                         :class="{
                           'is-invalid': validationStatus(
                             invoice_product.product_qty
@@ -178,9 +186,9 @@
                     <td class="inputPrice">
                       <input
                         class="form-control"
-                        type="text"
-                        placeholder="Enter Total Price"
-                        v-model="invoice_product.unit_price.$model"
+                        type="number"
+                        placeholder="Enter unit Price in rupees"
+                        v-model.number="invoice_product.unit_price.$model"
                         :class="{
                           'is-invalid': validationStatus(
                             invoice_product.unit_price
@@ -194,16 +202,42 @@
                         Price field is required.
                       </div>
                     </td>
+                    <td class="totalPrice">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Total price in rupees"
+                        :value="subtotalRow[index]"
+                        disabled
+                      />
+                    </td>
                     <td
                       scope="row"
                       class="trashIconContainer"
                       style="color: red"
+                      @click="deleteRow(index, invoice_product.$model)"
                     >
                       <i
                         class="far fa-trash-alt"
-                        @click="deleteRow(k, invoice_product.$model)"
                       ></i>
                     </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><strong>Total</strong>: Rs {{ total }}</td>
+                  </tr>
+                  <tr>
+                     <td> <button
+                        type="button"
+                        class="btn btn-info addProduct"
+                        @click="addNewRow"
+                      >
+                        <i class="fas fa-plus-circle"></i>
+                        Add
+                      </button></td>
+                   
                   </tr>
                 </tbody>
               </table>
@@ -212,7 +246,15 @@
         </div>
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">
+          Submit
+          <span class="crateDealLoader" v-show="loadingCreateDeal"
+            ><i
+              class="fa fa-circle-o-notch"
+              v-bind:class="{ 'animate-spin': loadingCreateDeal }"
+            ></i
+          ></span>
+        </button>
       </div>
     </form>
   </div>
@@ -225,7 +267,6 @@ import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import axios from "axios";
 import Multiselect from "vue-multiselect";
-
 export default {
   props: ["auth", "products"],
   components: {
@@ -234,13 +275,14 @@ export default {
   },
   data() {
     return {
+      loadingCreateDeal: false,
       //select search product state
       productArray: [],
       invoice_products: [
         {
           product_id: "",
-          product_qty: "",
-          unit_price: "",
+          product_qty: 0,
+          unit_price: 0,
         },
       ],
 
@@ -258,18 +300,34 @@ export default {
     };
   },
   computed: {
+
+    //calculate sub total in each raw ============================//
+
+    subtotalRow() {
+      return this.invoice_products.map((item) => {
+        return Number(item.product_qty * item.unit_price);
+      });
+    },
+
+    //Calculate Total of all raws =====================//
+
+    total() {
+      return this.invoice_products.reduce((total, item) => {
+        return total + item.product_qty * item.unit_price;
+      }, 0);
+    },
     //select search filter product ==========================================//
-  //   vendorProducts() {
-  //     const query = this.searchProducts.toLowerCase();
-  //     if (this.searchProducts === "") {
-  //       return this.productArray;
-  //     }
-  //     return this.productArray.filter((product) => {
-  //       return Object.values(product).some((word) =>
-  //         String(word).toLowerCase().includes(query)
-  //       );
-  //     });
-  //   },
+    //   vendorProducts() {
+    //     const query = this.searchProducts.toLowerCase();
+    //     if (this.searchProducts === "") {
+    //       return this.productArray;
+    //     }
+    //     return this.productArray.filter((product) => {
+    //       return Object.values(product).some((word) =>
+    //         String(word).toLowerCase().includes(query)
+    //       );
+    //     });
+    //   },
   },
   mounted() {
     // featch product from api ==========================================//
@@ -281,7 +339,6 @@ export default {
   },
 
   //validation======================================================//
-
   validations: {
     customer: { required },
     expire_at: { required },
@@ -294,7 +351,6 @@ export default {
       },
     },
   },
-
   methods: {
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
@@ -347,7 +403,7 @@ export default {
       this.selectedProduct = product;
       this.isVisible = false;
     },
-    customLabel({title}) {
+    customLabel({ title }) {
       return `${title}`;
     },
 
@@ -356,6 +412,7 @@ export default {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       try {
+        this.loadingCreateDeal = true;
         const response = await axios.post(
           "http://127.0.0.1:8000/api/deal/storeproduct",
           {
@@ -365,6 +422,7 @@ export default {
             invoice_products: this.invoice_products,
           }
         );
+        this.loadingCreateDeal = false;
         if (response.status === 200) {
           swal("Good Job!", "New deal is created!", "success");
         }
@@ -388,14 +446,14 @@ select {
   padding: 0;
 }
 .inputProduct {
-  width: 46%;
+  width: 40%;
   box-sizing: border-box;
 }
 
-.inputProduct .form{
+.inputProduct .form {
   border: none;
   margin-left: -10px;
-  max-width:386px;
+  max-width: 386px;
 }
 
 .inputProduct select {
@@ -441,5 +499,8 @@ select {
     transform: rotate(360deg);
   }
 }
-
+/*----spiner color ----*/
+.crateDealLoader {
+  padding: 10px;
+}
 </style>
