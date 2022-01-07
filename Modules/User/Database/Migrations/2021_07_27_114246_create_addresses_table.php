@@ -15,20 +15,17 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            //user's Address
+            $table->morphs('addressable');
+            $table->string('type')->nullable(); // shipping and billing for order
             $table->string('full_name')->nullable();
-            $table->string('region')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('vat')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
-            $table->string('address')->nullable();
-            $table->string('area')->nullable();
-            $table->string('shipping_address')->nullable();
-            $table->string('phone_number')->nullable();
-
-            $table->tinyInteger('publish')->default(1)->nullable();
+            $table->string('street_address')->nullable();
+            $table->string('nearest_landmark')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
 
             $table->timestamps();
         });
