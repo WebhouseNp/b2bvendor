@@ -24,10 +24,10 @@ class DealApiController extends Controller
     public function productSearch()
     {
         // TODO::must be a vendor
-        $products = Product::where('title', 'like', '%' . request('q') . '%')
-            ->where('user_id', Auth::id())
-            ->select('id', 'title')->get();
-
+        $products = Product::where('user_id', Auth::id())
+            ->select('id', 'title')->get()->map( function($product){
+                $product['image_url']='https://dummyimage.com/50/5b43c4/ffffff';
+            });
         return response()->json(['data' => $products]);
     }
 }

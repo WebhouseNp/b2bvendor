@@ -12,7 +12,7 @@ Route::middleware('auth:api')->get('/deal', function (Request $request) {
 Route::delete('/deleteproduct', [DealController::class,'destroy'])->name('api.deletedeal');
 Route::put('/updateproduct', [DealController::class,'update'])->name('api.updatedeal');
 Route::post('/deal/storeproduct', [DealController::class,'store'])->name('api.storedeal');
-Route::delete('/deals', [DealController::class,'destroy'])->name('api.deletedeal');
+Route::delete('/deals/{deal}', [DealController::class,'destroy'])->name('api.deletedeal');
 Route::put('/deals', [DealController::class,'update'])->name('api.updatedeal');
 Route::post('/deals', [DealController::class,'store'])->name('api.storedeal');
 

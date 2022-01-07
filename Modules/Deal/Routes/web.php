@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 // use Modules\Deal\Http\Controllers\DealController;
 
 /*
@@ -19,3 +20,4 @@
 Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
     Route::resource('deals', DealController::class);
 });
+
