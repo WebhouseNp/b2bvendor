@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\DefaultController;
 use Illuminate\Support\Facades\Artisan;
 use Pusher\Pusher;
 use Illuminate\Http\Request;
+use Modules\Country\Entities\Country;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -30,7 +31,8 @@ Route::get('/vendor-login', function () {
     return view('vendor_login');
 });
 Route::get('/vendor-registor', function () {
-    return view('register');
+    $countries = Country::select('id', 'name')->get();
+    return view('register')->with(compact('countries'));
 });
 Route::get('/forget-password', function () {
     return view('forgetpassword');

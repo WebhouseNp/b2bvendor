@@ -76,7 +76,7 @@
               <div
                 v-if="!$v.expire_at.required"
                 class="invalid-feedback"
-                style="margin-left: 20px; margin-top: -6px"
+                style="margin-left: 20px;"
               >
                 Expiry Time is required.
               </div>
@@ -180,7 +180,7 @@
                         v-if="!invoice_product.product_qty.required"
                         class="invalid-feedback"
                       >
-                        Product quentity field is required.
+                        Quentity field is required.
                       </div>
                     </td>
                     <td class="inputPrice">
@@ -199,7 +199,7 @@
                         v-if="!invoice_product.unit_price.required"
                         class="invalid-feedback"
                       >
-                        Price field is required.
+                        Unit price field is required.
                       </div>
                     </td>
                     <td class="totalPrice">
@@ -281,8 +281,8 @@ export default {
       invoice_products: [
         {
           product_id: "",
-          product_qty: 0,
-          unit_price: 0,
+          product_qty: '',
+          unit_price: '',
         },
       ],
 
@@ -485,7 +485,7 @@ select {
   font-size: 20px;
 }
 .invalid-feedback {
-  font-size: 14px;
+  font-size: 13px;
 }
 .animate-spin {
   animation: spin 1s linear infinite;
