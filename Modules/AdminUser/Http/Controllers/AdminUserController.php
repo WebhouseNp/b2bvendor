@@ -41,9 +41,7 @@ class AdminUserController extends Controller
 
     public function getUsers()
     {
-        $role = Role::where('slug','admin')->with('users')->first();
-        $role_user = Role_user::where('role_id',$role->id)->pluck('user_id');
-        $details = User::whereIn('id',$role_user)->with(['roles','vendor'])->orderBy('created_at','desc')->get();
+        $details = User::published()->with('roles')->get();
         $view = \View::make("adminuser::usersTable")->with('details', $details)->render();
         return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
     }

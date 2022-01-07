@@ -21,7 +21,7 @@ class DealController extends Controller
      */
     public function index()
     {
-        $role= \Modules\Product\Entities\Product::checkUserRole(Auth::id());
+        $role = checkRole(Auth::id());
         $deals = Deal::with(['deal_products','user'])
         ->when($role == 'super_admin' && $role == 'admin' , function($query) {
             return $query->get();

@@ -34,6 +34,7 @@ Route::get('vendorcategories/{username}', 'FrontController@getVendorCategories')
 Route::get('vendorsubcategories/{username}/{slug}', 'FrontController@getVendorSubcategoryProducts');
 Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVendorCategoryProducts');
 
+Route::get('/suppliers', 'SearchController@index');
 Route::get('allvendor', 'FrontController@getVendors');
 Route::get('allcategories', 'FrontController@allcategories');
 Route::post('quotation', 'QuotationController@store')->name('quotation.store');

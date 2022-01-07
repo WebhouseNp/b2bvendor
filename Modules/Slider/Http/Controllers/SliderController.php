@@ -22,12 +22,12 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = $this->slider->orderBy('id', 'DESC')->get();
+        $sliders = $this->slider->published()->orderBy('id', 'DESC')->get();
         return view('slider::index',compact('sliders'));
     }
 
     public function allSliders(){
-        $sliders = $this->slider->where('status','publish')->orderBy('id', 'DESC')->get();
+        $sliders = $this->slider->published()->orderBy('id', 'DESC')->get();
         if($sliders->isNotEmpty()){
             return response()->json(['status' => 'successful', 'data' => $sliders],200);
         } else {
@@ -187,7 +187,6 @@ class SliderController extends Controller
         $thumbPath = public_path('images/thumbnail/') . $imagename;
         $mainPath = public_path('images/main/') . $imagename;
         $listingPath = public_path('images/listing/') . $imagename;
-        $documentPath = public_path('document/') . $imagename;
         if (file_exists($thumbPath)) {
             unlink($thumbPath);
         }

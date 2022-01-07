@@ -89,4 +89,29 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class, 'user_id');
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('publish', 1);
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('vendor_type', 'approved');
+    }
+
+    public function scopeSuspended($query)
+    {
+        return $query->where('vendor_type', 'suspended');
+    }
+
+    public function scopeNew($query)
+    {
+        return $query->where('vendor_type', 'new');
+    }
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('created_at', 'DESC');
+    }
+    
 }

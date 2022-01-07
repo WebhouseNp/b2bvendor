@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
 use Validator;
 use Image;
-use DB;
+use DB, File;
 
 class CategoryController extends Controller
 {
@@ -44,6 +44,7 @@ class CategoryController extends Controller
         $value = $request->except('image', 'publish');
         $value['publish'] = is_null($request->publish) ? 0 : 1;
         $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
+        $value['hot_category'] = is_null($request->hot_category) ? 0 : 1;
         $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
         $value['does_contain_sub_category'] = is_null($request->does_contain_sub_category) ? 0 : 1;
 
@@ -114,6 +115,7 @@ class CategoryController extends Controller
             $value['publish'] = is_null($request->publish) ? 0 : 1;
             $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
             $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
+            $value['hot_category'] = is_null($request->hot_category) ? 0 : 1;
             $value['does_contain_sub_category'] = is_null($request->does_contain_sub_category) ? 0 : 1;
             if ($request->image) {
             $image = Category::findorFail($request->id);

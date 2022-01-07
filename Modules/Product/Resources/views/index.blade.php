@@ -58,7 +58,6 @@
         },
     
 		  success:function(response) {
-              console.log(response.data)
               if(response.data){
                 $('#appendProduct').html(response.html)
                 $("#example-table").DataTable();
@@ -85,7 +84,6 @@
                     },
                 success: function(response)
                     {
-                    console.log(response.message)
                     var validation_errors = JSON.stringify(response.message);
                         $('#validation-errors').html('');
                         $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');

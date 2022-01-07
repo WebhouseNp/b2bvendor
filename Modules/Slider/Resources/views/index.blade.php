@@ -6,16 +6,6 @@
 @endsection
 @section('content')
  
-<div class="page-heading">
-    <h1 class="page-title"> Slider</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All sliders</li>
-    </ol>
-@include('admin.section.notifications')
-</div>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -31,7 +21,7 @@
                 <thead>
                     <tr>
                         <th>S.N</th>
-                        <td>Image</td>
+                        <th>Image</th>
                         <th>Title</th>
                         <th>Description</th>
                         <th>Status</th>
@@ -94,59 +84,11 @@
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         $('#example-table').DataTable({
             pageLength: 25,
         });
     })
-</script>
-<script>
-    $(document).ready(function(){
-        $('.category_status').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                method:"POST",
-                data:{
-                    slider_id : $(this).data('slider_id'),
-                    status : $(this).data('status'),
-                    _token: "{{csrf_token()}}"
-                },
-                success : function(response){
-                    if (response.status == false ) {
-                        FailedResponseFromDatabase(response.message);
-                    }
-                    if (response.status == true) {
-                        DataSuccessInDatabase(response.message);
-                    }
-                }
-            })
-        })
-    })
-
-function FailedResponseFromDatabase(message){
-    html_error = "";
-    $.each(message, function(index, message){
-        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
-    });
-    Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        html:html_error ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
-function DataSuccessInDatabase(message){
-    Swal.fire({
-        // position: 'top-end',
-        type: 'success',
-        title: 'Done',
-        html: message ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
 </script>
 @endsection

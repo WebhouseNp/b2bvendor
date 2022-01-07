@@ -85,15 +85,6 @@ $user_access = json_decode($user->access_level);
                     
                 </ul>
             </li>
-            @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('web-setting', $user_access)))
-            <li>
-                <a href="#">
-                    <i class="sidebar-item-icon fa fa-internet-explorer"></i>
-                    <span class="nav-label">Site Setting</span>
-                    <i class="fa fa-cogs arrow"></i>
-                </a>
-            </li>
-            @endif
 
             @if(in_array('super_admin' ,$roles))
             <li>
@@ -452,8 +443,8 @@ $user_access = json_decode($user->access_level);
                 </li>
                 @endif
 
-            @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('offer', $user_access)))
-            <li>
+            <!-- @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('offer', $user_access))) -->
+            <!-- <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-gift"></i>
                     <span class="nav-label">Offer</span>
@@ -475,11 +466,11 @@ $user_access = json_decode($user->access_level);
                         </a>
                     </li>
                 </ul>
-            </li>
-            @endif
+            </li> -->
+            <!-- @endif -->
 
-            @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('brand', $user_access)))
-            <li>
+            <!-- @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('brand', $user_access))) -->
+            <!-- <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-dollar"></i>
                     <span class="nav-label">Brand</span>
@@ -501,8 +492,8 @@ $user_access = json_decode($user->access_level);
                         </a>
                     </li>
                 </ul>
-            </li>
-             @endif 
+            </li> -->
+             <!-- @endif  -->
 
              @if(in_array('super_admin' ,$roles))
             <li>
