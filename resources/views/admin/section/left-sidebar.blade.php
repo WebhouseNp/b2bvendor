@@ -66,12 +66,6 @@ $user_access = json_decode($user->access_level);
                 <ul class="nav-2-level collapse">
                     @if(in_array('vendor' ,$roles))
                         <li>
-                            <a href="{{route('deals.index')}}">
-                                <span class="fa fa-eye"></span>
-                                {{Auth::user()->name}} Deals
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{route('deals.create')}}">
                                 <span class="fa fa-plus"></span>
                                  Create Deals

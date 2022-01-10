@@ -395,7 +395,6 @@ function DataSuccessInDatabase(message){
 function addcategory(){
     var api_token = '<?php echo $api_token; ?>';
         $('#categoryModal').modal('show');
-    });
     $('#create-category-form').submit(function(e) {
         e.preventDefault();
         var formData = new FormData(this);

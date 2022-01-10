@@ -36,7 +36,7 @@
                                 data-status="{{$data->vendor_type}}" data-vendor_id="{{$data->id}}"
                                 style="cursor: pointer;"> Change vendor status</span></td>
                         <td>
-                        <a title="View Profile" class="btn btn-primary btn-sm" href="{{route('vendor.view',$data->id)}}">
+                        <a title="View Profile" class="btn btn-success btn-sm" href="{{route('vendor.view',$data->id)}}">
                             View Profile
                         </a>
 
