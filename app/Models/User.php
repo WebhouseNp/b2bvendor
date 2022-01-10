@@ -90,7 +90,6 @@ class User extends Authenticatable
         return $this->hasMany(Review::class, 'user_id');
     }
 
-<<<<<<< HEAD
     public function scopePublished($query)
     {
         return $query->where('publish', 1);
@@ -115,10 +114,10 @@ class User extends Authenticatable
         return $query->orderBy('created_at', 'DESC');
     }
     
-=======
+
     public function address()
     {
         return $this->morphOne(Address::class, 'addressable');
     }
->>>>>>> 3a3c137802df31889f4c833a8ee5ee18e273e8dd
+
 }
