@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
 use Validator;
 use Image;
-use DB;
+use DB, File;
 
 class CategoryController extends Controller
 {
@@ -44,6 +44,7 @@ class CategoryController extends Controller
         $value = $request->except('image', 'publish');
         $value['publish'] = is_null($request->publish) ? 0 : 1;
         $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
+        $value['hot_category'] = is_null($request->hot_category) ? 0 : 1;
         $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
         $value['does_contain_sub_category'] = is_null($request->does_contain_sub_category) ? 0 : 1;
 
@@ -114,6 +115,7 @@ class CategoryController extends Controller
             $value['publish'] = is_null($request->publish) ? 0 : 1;
             $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
             $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
+            $value['hot_category'] = is_null($request->hot_category) ? 0 : 1;
             $value['does_contain_sub_category'] = is_null($request->does_contain_sub_category) ? 0 : 1;
             if ($request->image) {
             $image = Category::findorFail($request->id);
@@ -217,16 +219,20 @@ class CategoryController extends Controller
     public function imageProcessing($type, $image)
     {
         $input['imagename'] = $type . time() . '.' . $image->getClientOriginalExtension();
-        $thumbPath = public_path('images/thumbnail');
-        $mainPath = public_path('images/main');
-        $listingPath = public_path('images/listing');
-
+        $thumbPath = public_path() . "/images/thumbnail";
+        if (!File::exists($thumbPath)) {
+            File::makeDirectory($thumbPath, 0777, true, true);
+        }
+        $listingPath = public_path() . "/images/listing";
+        if (!File::exists($listingPath)) {
+            File::makeDirectory($listingPath, 0777, true, true);
+        }
         $img1 = Image::make($image->getRealPath());
-        $img1->fit(530, 300)->save($thumbPath . '/' . $input['imagename']);
+        $img1->fit(99, 88)->save($thumbPath . '/' . $input['imagename']);
 
 
         $img2 = Image::make($image->getRealPath());
-        $img2->fit(99, 88)->save($listingPath . '/' . $input['imagename']);
+        $img2->save($listingPath . '/' . $input['imagename']);
 
         $destinationPath = public_path('/images');
         return $input['imagename'];
@@ -237,7 +243,6 @@ class CategoryController extends Controller
         $thumbPath = public_path('images/thumbnail/') . $imagename;
         $mainPath = public_path('images/main/') . $imagename;
         $listingPath = public_path('images/listing/') . $imagename;
-        $documentPath = public_path('document/') . $imagename;
         if (file_exists($thumbPath)) {
             unlink($thumbPath);
         }

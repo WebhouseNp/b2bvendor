@@ -1,5 +1,4 @@
 <?php
-
 function orderProccess($type)
 {
     switch ($type) {
@@ -23,6 +22,12 @@ function orderProccess($type)
             break;
     }
     return $button;
+}
+
+function checkRole($id){
+  $role_user = DB::table('role_user')->where('user_id', $id)->first();
+    $role = DB::table('roles')->where('id', $role_user->role_id)->first();
+    return $role->slug;
 }
 
 

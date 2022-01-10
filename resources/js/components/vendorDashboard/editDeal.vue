@@ -1,30 +1,63 @@
 <template>
-  <div class="ibox-body" style="">
+  <div class="ibox-body">
     <form @submit.prevent="submitData">
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
-            <h5>Select User{{deal.customer_id}}</h5>
+            <h5>Select User</h5>
             <hr />
           </div>
         </div>
         <div>
           <div class="row" style="margin-bottom: 20px">
             <div class="col-lg-6 col-sm-12 form-group">
-              <label><strong>Users</strong></label>
-              <select
-                class="form-control"
-                v-model.trim="$v.user_id.$model"
-                :class="{ 'is-invalid': validationStatus($v.user_id) }"
-                v-bind:value="deal.customer_id"
-              >
-                <option selected value disabled>Select any one user</option>
-                <option v-for="user in users" :key="user.id" :value="user.id">
-                  {{ user.name }}
-                </option>
-              </select>
-              <div v-if="!$v.user_id.required" class="invalid-feedback">
-                Please Select User First.
+              <div class="form-group">
+                <div style="position: relative">
+                  <label for=""><strong>Customer</strong></label>
+                  <div style="position: relative">
+                    <input
+                      type="text"
+                      v-model="customer.name"
+                      class="form-control"
+                      @keyup="filterCustomers"
+                      placeholder="Name or email"
+                    />
+                    <span
+                      v-show="loadingCustomerList"
+                      style="position: absolute; top: 6px; right: 10px"
+                      ><i
+                        class="fa fa-circle-o-notch text-muted"
+                        v-bind:class="{ 'animate-spin': loadingCustomerList }"
+                      ></i
+                    ></span>
+                  </div>
+
+                  <div
+                    v-if="customersList.length || errors.length"
+                    class="p-2 bg-white"
+                    style="
+                      position: absolute;
+                      left: 0;
+                      right: 0;
+                      z-index: 50;
+                      border: 1px solid #bdbdbd;
+                      max-height: 200px;
+                      overflow-y: auto;
+                    "
+                  >
+                    <div>
+                      <p v-if="errors.length" style="text-align: center">
+                        {{ errors }}
+                      </p>
+                      <div v-for="user in customersList" v-bind:key="user.id">
+                        <div type="button" v-on:click="selectCustomer(user)">
+                          <div>{{ user.name }}</div>
+                          <p>{{ user.email }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-lg-6 col-sm-12 form-group">
@@ -39,7 +72,6 @@
                 format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
-                v-bind:value="deal.customer_id"
               ></date-picker>
               <div
                 v-if="!$v.expire_at.required"
@@ -67,31 +99,26 @@
                   aria-describedby="example1_info"
                 >
                   <tr>
+                    <!-- <th style="background-color: #d9e7e7">SN</th> -->
                     <th style="background-color: #d9e7e7">Product</th>
                     <th style="background-color: #b4d7d7">Quentiry</th>
-                    <th style="background-color: #ed9494">Price</th>
-                    <th>
-                      <button
-                        type="button"
-                        class="btn btn-info addProduct"
-                        @click="addNewRow"
-                      >
-                        <i class="fas fa-plus-circle"></i>
-                        Add
-                      </button>
+                    <th style="background-color: #ed9494">Unit Price</th>
+                    <th style="background-color: #ed9494">SubTotal Price</th>
+
+                    <th style="background-color: #ff0000ab;">
+                     Delete
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr
-                    v-for="(invoice_product, k) in $v.invoice_products.$each
+                    v-for="(invoice_product, index) in $v.invoice_products.$each
                       .$iter"
-                    :key="k"
+                    :key="index"
                   >
                     <td class="inputProduct">
-                      <select
-                        class="form-control"
-                        id="select"
+                      <multiselect
+                        class="form-control form"
                         @change="onChange(invoice_product.product_id.$model)"
                         v-model="invoice_product.product_id.$model"
                         :class="{
@@ -99,19 +126,40 @@
                             invoice_product.product_id
                           ),
                         }"
+                        :options="products"
+                        :option-height="104"
+                        :custom-label="customLabel"
+                        :show-labels="false"
+                        :hide-selected="true"
                       >
-                        <option selected value disabled>Select Product</option>
-                        <option
-                          v-for="product in products"
-                          :key="product.id"
-                          :value="product.id"
+                        <template slot="singleLabel" slot-scope="props"
+                          ><img
+                            class="option__image"
+                            :src="props.option.image_url"
+                          /><span class="option__desc"
+                            ><span
+                              class="option__title"
+                              style="margin-left: 10px"
+                              >{{ props.option.title }}</span
+                            ></span
+                          ></template
                         >
-                          {{ product.title }}
-                        </option>
-                      </select>
+                        <template slot="option" slot-scope="props">
+                          <div class="option__desc">
+                            <img
+                              class="option__image"
+                              :src="props.option.image_url"
+                            />
+                            <span class="option__title">{{
+                              props.option.title
+                            }}</span>
+                          </div>
+                        </template>
+                        <span slot="noResult">Oops! No data found.</span>
+                      </multiselect>
                       <div
                         v-if="!invoice_product.product_id.required"
-                        class="invalid-feedback"
+                        class="invalid-feedback text-danger"
                       >
                         Please Select Product First.
                       </div>
@@ -119,15 +167,14 @@
                     <td class="inputQuentiry">
                       <input
                         class="form-control"
-                        type="text"
+                        type="number"
                         placeholder="Enter Quentity"
-                        v-model="invoice_product.product_qty.$model"
+                        v-model.number="invoice_product.product_qty.$model"
                         :class="{
                           'is-invalid': validationStatus(
                             invoice_product.product_qty
                           ),
                         }"
-                        
                       />
                       <div
                         v-if="!invoice_product.product_qty.required"
@@ -139,9 +186,9 @@
                     <td class="inputPrice">
                       <input
                         class="form-control"
-                        type="text"
-                        placeholder="Enter Total Price"
-                        v-model="invoice_product.unit_price.$model"
+                        type="number"
+                        placeholder="Enter unit Price in rupees"
+                        v-model.number="invoice_product.unit_price.$model"
                         :class="{
                           'is-invalid': validationStatus(
                             invoice_product.unit_price
@@ -155,16 +202,42 @@
                         Price field is required.
                       </div>
                     </td>
+                    <td class="totalPrice">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Total price in rupees"
+                        :value="subtotalRow[index]"
+                        disabled
+                      />
+                    </td>
                     <td
                       scope="row"
                       class="trashIconContainer"
                       style="color: red"
+                      @click="deleteRow(index, invoice_product.$model)"
                     >
                       <i
                         class="far fa-trash-alt"
-                        @click="deleteRow(k, invoice_product.$model)"
                       ></i>
                     </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><strong>Total</strong>: Rs {{ total }}</td>
+                  </tr>
+                  <tr>
+                     <td> <button
+                        type="button"
+                        class="btn btn-info addProduct"
+                        @click="addNewRow"
+                      >
+                        <i class="fas fa-plus-circle"></i>
+                        Add
+                      </button></td>
+                   
                   </tr>
                 </tbody>
               </table>
@@ -173,7 +246,15 @@
         </div>
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">
+          Submit
+          <span class="crateDealLoader" v-show="loadingCreateDeal"
+            ><i
+              class="fa fa-circle-o-notch"
+              v-bind:class="{ 'animate-spin': loadingCreateDeal }"
+            ></i
+          ></span>
+        </button>
       </div>
     </form>
   </div>
@@ -184,29 +265,82 @@ import { required } from "vuelidate/lib/validators";
 import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import axios from "axios";
+import Multiselect from "vue-multiselect";
 export default {
-  props: ["deal","users", "products"],
+  props: ["auth", "products"],
   components: {
     DatePicker,
+    Multiselect,
   },
   data() {
     return {
-      user_id: "",
+      loadingCreateDeal: false,
+      //select search product state
+      productArray: [],
       invoice_products: [
         {
           product_id: "",
-          product_qty: "",
-          unit_price: "",
+          product_qty: 0,
+          unit_price: 0,
         },
       ],
+
       expire_at: "",
+      customer: {
+        id: "",
+        name: "",
+        email: "",
+      },
+
+      //search states
+      customersList: [],
+      loadingCustomerList: false,
+      errors: "",
     };
+  },
+  computed: {
+
+    //calculate sub total in each raw ============================//
+
+    subtotalRow() {
+      return this.invoice_products.map((item) => {
+        return Number(item.product_qty * item.unit_price);
+      });
+    },
+
+    //Calculate Total of all raws =====================//
+
+    total() {
+      return this.invoice_products.reduce((total, item) => {
+        return total + item.product_qty * item.unit_price;
+      }, 0);
+    },
+    //select search filter product ==========================================//
+    //   vendorProducts() {
+    //     const query = this.searchProducts.toLowerCase();
+    //     if (this.searchProducts === "") {
+    //       return this.productArray;
+    //     }
+    //     return this.productArray.filter((product) => {
+    //       return Object.values(product).some((word) =>
+    //         String(word).toLowerCase().includes(query)
+    //       );
+    //     });
+    //   },
+  },
+  mounted() {
+    // featch product from api ==========================================//
+    // fetch("http://localhost:8000/api/deals/customer-search")
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     this.productArray = json.data;
+    //   });
   },
 
   //validation======================================================//
-
   validations: {
-    user_id: { required },
+    customer: { required },
     expire_at: { required },
     invoice_products: {
       required,
@@ -217,10 +351,31 @@ export default {
       },
     },
   },
-
   methods: {
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
+    },
+
+    filterCustomers() {
+      if (this.customer.name.length < 3) {
+        return true;
+      }
+      this.loadingCustomerList = true;
+      axios
+        .get("/api/deals/customer-search?q=" + this.customer.name)
+        .then((res) => {
+          this.customersList = res.data.data;
+          this.errors = "";
+          if (this.customersList.length == 0) {
+            this.errors = "No Records Found !!";
+          }
+          this.loadingCustomerList = false;
+        });
+    },
+
+    selectCustomer(user) {
+      this.customer = user;
+      this.customersList = "";
     },
 
     // Delete populated deal entry table=======================//
@@ -233,7 +388,6 @@ export default {
     },
 
     //Add Deal entry table ===================================//
-
     addNewRow() {
       this.invoice_products.push({
         product_id: "",
@@ -242,24 +396,35 @@ export default {
       });
     },
 
-    // Create Deal ========================================================//
+    // select search product ===============================//
 
+    selectProduct(index, product_id) {
+      this.invoice_products[index].product_id = product_id;
+      this.selectedProduct = product;
+      this.isVisible = false;
+    },
+    customLabel({ title }) {
+      return `${title}`;
+    },
+
+    // Create Deal ========================================================//
     async submitData() {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       try {
+        this.loadingCreateDeal = true;
         const response = await axios.post(
           "http://127.0.0.1:8000/api/deal/storeproduct",
           {
             vendor_id: this.auth,
-            customer_id: this.user_id,
+            customer_id: this.customer.id,
             expire_at: this.expire_at,
             invoice_products: this.invoice_products,
           }
         );
+        this.loadingCreateDeal = false;
         if (response.status === 200) {
           swal("Good Job!", "New deal is created!", "success");
-          // window.location.href = "/account-verification";
         }
       } catch (error) {
         if (error.response.status === 422) {
@@ -273,6 +438,7 @@ export default {
 </script>
 
 <style scoped>
+@import "vue-multiselect/dist/vue-multiselect.min.css";
 .ibox .ibox-body {
   margin-top: -14px;
 }
@@ -280,10 +446,14 @@ select {
   padding: 0;
 }
 .inputProduct {
-  width: 46%;
-  padding: 10px 0px;
-  /* margin: 8px 0; */
+  width: 40%;
   box-sizing: border-box;
+}
+
+.inputProduct .form {
+  border: none;
+  margin-left: -10px;
+  max-width: 386px;
 }
 
 .inputProduct select {
@@ -316,5 +486,21 @@ select {
 }
 .invalid-feedback {
   font-size: 14px;
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*----spiner color ----*/
+.crateDealLoader {
+  padding: 10px;
 }
 </style>

@@ -5,6 +5,7 @@
             <th>Name</td>
             <th>Image</td>
             <th>Include in main menu</td>
+            <th>Hot Category</td>
             <th>Featured</td>
             <th>Contain Subcategory</td>
             <th>Publish</th>
@@ -24,6 +25,7 @@
                 @endif
             </td>
             <td>{{ $detail->include_in_main_menu == 1 ? 'Yes' : 'No' }}</td>
+            <td>{{ $detail->hot_category == 1 ? 'Yes' : 'No' }}</td>
             <td>{{ $detail->is_featured == 1 ? 'Yes' : 'No' }}</td>
             <td>{{ $detail->does_contain_sub_category == 1 ? 'Yes' : 'No' }}</td>
             <td>{{ $detail->publish == 1 ? 'Published' : 'Not published' }}</td>

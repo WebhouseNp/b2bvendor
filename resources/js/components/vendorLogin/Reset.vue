@@ -25,10 +25,10 @@
               :class="{ 'is-invalid': validationStatus($v.password) }"
               placeholder="Enter new password"
             />
-            <div v-if="!$v.password.required" class="invalid-feedback">
+            <div v-if="!$v.password.required" class="invalid-feedback text-danger">
               The Password field is required.
             </div>
-            <div v-if="!$v.password.minLength">Password must be minimum 6 characters</div>
+            <div v-if="!$v.password.minLength" class="text-danger">Password must be minimum 6 characters</div>
           </div>
 
           <div class="form-group">
@@ -40,10 +40,10 @@
               :class="{ 'is-invalid': validationStatus($v.confirm_password) }"
               placeholder="Enter confirm password"
             />
-            <div v-if="!$v.confirm_password.required" class="invalid-feedback">
+            <div v-if="!$v.confirm_password.required" class="invalid-feedback text-danger">
               The Confirm Password field is required.
             </div>
-            <div v-if="$v.password && !$v.confirm_password.sameAsPassword">
+            <div v-if="$v.password && !$v.confirm_password.sameAsPassword" class="text-danger">
               Password and Confirm Password should match
             </div>
           </div>

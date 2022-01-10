@@ -3,11 +3,11 @@
                 <thead>
                     <tr>
                         <th>S.N</th>
-                        <td>Name</td>
-                        <td>Image</td>
-                        <td>Include in main menu</td>
-                        <td>Featured</td>
-                        <td>Category</td>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Include in main menu</th>
+                        <th>Featured</th>
+                        <th>Category</th>
                         <th>Publish</th>
                         <th>Action</th>
                     </tr>

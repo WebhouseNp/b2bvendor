@@ -24,51 +24,11 @@ use Illuminate\Support\Facades\Hash;
 
 class ApiUserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
     public function index()
     {
         $vendors = Vendor::all();
         return response([ 'vendors' => $vendors, 'message' => 'Retrieved successfully'], 200);
     }
-
-    public function getVendorFromID($id) {
-        if (Vendor::where('id', $id)->exists()) {
-          $vendor = Vendor::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-          return response($vendor, 200);
-        } else {
-          return response()->json([
-            "message" => "Vendor not found"
-          ], 400);
-        }
-      }
-
-      public function getApprovedVendors(){
-        $role = Role::where('name','vendor')->with('users')->first();
-        $role_user = Role_user::where('role_id',$role->id)->get();
-        $r = [];
-        foreach($role_user as $role){
-        $allvendors = User::where('id',$role->user_id)->where('publish',1)->where('vendor_type','approved')->with(['roles','vendor'])->orderBy('created_at','desc')->get();
-        array_push($r,$allvendors);
-      }
-      // dd($allvendors);
-      return view('user::approvedvendors',compact('r'));
-        
-      }
-
-      public function getSuspendedVendors(){
-        $role = Role::where('name','vendor')->with('users')->first();
-        $role_user = Role_user::where('role_id',$role->id)->get();
-        $r = [];
-        foreach($role_user as $role){
-        $allvendors = User::where('id',$role->user_id)->where('publish',1)->where('vendor_type','suspended')->with(['roles','vendor','products'])->orderBy('created_at','desc')->get();
-      // dd($allvendors);
-      array_push($r,$allvendors);
-      }
-      return view('user::suspendedvendors',compact('r'));
-      }
 
       public function changeVendorStatus(Request $request)
       {
@@ -93,30 +53,6 @@ class ApiUserController extends Controller
         
     }
 
-      public function getNewVendors(){
-        $role = Role::where('name','vendor')->with('users')->first();
-        $role_user = Role_user::where('role_id',$role->id)->get();
-        $r = [];
-        foreach($role_user as $role){
-        $allvendors = User::where('id',$role->user_id)->where('publish',1)->where('vendor_type','new')->with('roles')->orderBy('created_at','desc')->get();
-      // dd($allvendors);
-      
-        array_push($r,$allvendors);
-      }
-      // dd($allvendors);
-      return view('user::newvendors',compact('r'));
-      }
-
-      public function getVendorProfile(Request $request, $username){
-        $vendor = User::where('username',$username)->with('vendor')->first();
-        return view('user::profile',compact('vendor'));
-      }
-
-      public function getVendorProducts(Request $request, $username){
-        $user = User::where('username',$username)->with('vendor','products')->first();
-        return view('user::vendorproducts',compact('user'));
-      }
-
       public function updateVendor(Request $request, $id) {
         if (Vendor::where('id', $id)->exists()) {
           $vendor = Vendor::find($id);
@@ -132,10 +68,6 @@ class ApiUserController extends Controller
                 "message" => "Sorry Could not update vendor!!"
               ], 500);
         }
-        
-  
-  
-          
         } else {
           return response()->json([
             "message" => "Vendor not found"
@@ -291,13 +223,6 @@ class ApiUserController extends Controller
 
     public function VerifyNewAccount($token, Request $request)
     {
-        // if ($token) {
-        //     $length = strlen($token);
-        //     if ($length < 63) {
-        //         $request->session()->flash('error', 'Invalid Activation link found.');
-        //         return redirect()->route('user-register');
-        //     }
-            // dd($token);
             try{
               $user = User::where(['activation_link' => $token])->first();
               if ($user->activation_link == $token) {
@@ -310,7 +235,6 @@ class ApiUserController extends Controller
           ];
 
           $user->fill($data);
-          // dd($data);
           $success = $user->save();
           if ($success) {
             $mail_data = [
@@ -464,7 +388,6 @@ class ApiUserController extends Controller
     }
 
     public function createdue(Request $request){
-      // dd($request->all());
       $validator = Validator::make($request->all(), [
         'remarks' => 'required',
         'image' => 'mimes:jpg,jpeg,png',
@@ -485,11 +408,6 @@ class ApiUserController extends Controller
     $data = VendorPayment::create($value);
     DB::commit();
     return response()->json(['status' => 'successful', 'message' => 'Payment done successfully.', 'data' => $data]);
-    }
-
-    public function getReport(Request $request,$id){
-      $paid = VendorPayment::where('user_id',$id)->get();
-      return view('user::payment',compact('paid'));
     }
 
     public function imageProcessing($type, $image)

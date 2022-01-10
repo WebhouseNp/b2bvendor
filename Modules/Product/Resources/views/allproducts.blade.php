@@ -156,11 +156,7 @@ function DataSuccessInDatabase(message){
 }
 </script>
 <script >
-  	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+  	
     $(document).ready(function(){
        $('.message').fadeOut(3000);
        $('.delete').submit(function(e){
@@ -176,12 +172,6 @@ function DataSuccessInDatabase(message){
 
     $(function () {
         $("#example1").DataTable();
-    });
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
     });
     function deleteProduct(id) {
         var api_token = '<?php echo $api_token; ?>';

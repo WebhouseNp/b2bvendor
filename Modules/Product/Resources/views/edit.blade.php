@@ -154,7 +154,12 @@
 
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Delivery Charge</strong></label>
-                                        <input class="form-control" type="text" id="delivery_charge" name="delivery _charge" value="" placeholder="Delivery Charge">
+                                        <input class="form-control" type="text" id="delivery_charge" name="delivery_charge" value="" placeholder="Delivery Charge">
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 form-group">
+                                        <label><strong> Shipping Charge</strong></label>
+                                        <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value=""
+                                             placeholder="shipping Charge">
                                     </div>
 
                                 </div>
@@ -525,6 +530,9 @@ function offers(){
                         document.getElementById('quantity').value = response.data.quantity;
                         if(response.data.delivery_charge){
                             document.getElementById('delivery_charge').value = response.data.delivery_charge;
+                        }
+                        if(response.data.shipping_charge){
+                            document.getElementById('shipping_charge').value = response.data.shipping_charge;
                         }
                         document.getElementById('meta_title').value = response.data.meta_title;
                         document.getElementById('meta_description').value = response.data.meta_description;
