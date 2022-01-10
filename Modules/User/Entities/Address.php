@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $guarded = ['id','created_at','updated_at'];
-    
-    
+    protected $guarded = ['id'];
+
+    public function addressable()
+    {
+        return $this->morphTo();
+    }
 }
