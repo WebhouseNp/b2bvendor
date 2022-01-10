@@ -35,6 +35,7 @@ Route::get('vendorcategories/{username}', 'FrontController@getVendorCategories')
 Route::get('vendorsubcategories/{username}/{slug}', 'FrontController@getVendorSubcategoryProducts');
 Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVendorCategoryProducts');
 
+Route::get('/suppliers', 'SearchController@index');
 Route::get('allvendor', 'FrontController@getVendors');
 Route::get('allcategories', 'FrontController@allcategories'); // Not in use since we were pulling a lot more than we need
 Route::get('megamenu', 'CategoryApiController@megamenu');

@@ -5,7 +5,7 @@
                         <th>S.N</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <!-- <th>Role</th> -->
+                        <th>Role</th>
                         <th>Phone</th>
                         <th>Publish</th>
                         <th>Action</th>
@@ -18,19 +18,16 @@
                 <td>{{$key+1}}</td>
                 <td>{{ucfirst($detail->name)}}</td>
                 <td>{{$detail->email}}</td>
-                <!-- @foreach($detail->roles as $role)
+                @foreach($detail->roles as $role)
                 <td>{{ucfirst($role->name)}}</td>
-                @endforeach -->
+                @endforeach
                 <td>{{$detail->phone_num}}</td>
                 <td>{{$detail->publish==1? 'Published':'Not published'}}</td>
                 <td>
-                <!-- <a title="view" class="btn btn-success btn-sm" href="{{route('user.view',$detail->id)}}">
-                    <i class="fa fa-eye"></i>
-                </a>  -->
                 <a title="Edit" class="btn btn-primary btn-sm" href="{{route('user.edit',$detail->id)}}">
                     <i class="fa fa-edit"></i>
                 </a> 
-                <button class="btn btn-danger delete" onclick="deleteUser({{ $detail->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-danger delete" onclick="deleteUser(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                 </td>
                 </tr>
                 @empty

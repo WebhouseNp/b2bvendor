@@ -12,12 +12,6 @@
 
 <div class="page-heading">
     <h1 class="page-title"> Categories</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All Categories</li>
-    </ol>
     @include('admin.section.notifications')
 </div>
 <div class="ibox-body" id="validation-errors" >
@@ -47,11 +41,6 @@
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/jquery-ui.js')}}"></script>
 <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     $(function() {
         $('#example-table').DataTable({
             pageLength: 2,
@@ -76,25 +65,6 @@
 </script>
 
 <script >
-  	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-       
-    });
-
     // Fetch categories
     function categories(){
         var api_token = '<?php echo $api_token; ?>';
@@ -140,7 +110,6 @@
             $('#validation-errors').html('');
             $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
             $(el).closest('tr').remove()
-            // window.location.href = "/admin/category";
         }
         }); 
     } 

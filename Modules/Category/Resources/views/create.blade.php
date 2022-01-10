@@ -71,6 +71,19 @@
                       menu if this doesnot have sub category.</span></label>
           </div>
 
+          <div class="row form-group">
+              <label for="" class="col-sm-3">Is Hot Category:</label>
+              <div class="col-sm-1">
+                  <label class="ui-checkbox ui-checkbox-warning">
+                      <input type="checkbox" name="hot_category"  id="hot_category"
+                          >
+                      <span class="input-span"></span>Yes
+                  </label>
+              </div>
+              <label class="col-lg-8"><span class="alert-warning">*Remember:Don't tick on this
+                      menu if this is not a Hot Category.</span></label>
+          </div>
+
             
           <div class="row form-group col-md-6">
             <label>Upload Category Image </label>

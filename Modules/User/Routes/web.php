@@ -22,15 +22,14 @@ Route::post('/vendor/update-password', 'ApiUserController@updatePassword')->name
 Route::post('/vendor/login','ApiUserController@login')->name('vendor.login');
 Route::get('account-activate/{activation_token}', [ApiUserController::class, 'verifyNewAccount'])->name('verifyNewAccount');
 Route::get('reset-password/{token}', 'PasswordResetController@passwordResetForm')->name('passwordResetForm');
-// Route::get('vendorprofile/{username}', 'ApiUserController@getVendorProfile')->name('getVendorProfile');
 
 Route::prefix('admin')->name('vendor.')->middleware(['auth','Superadmin'])->group(function(){
-Route::get('approvedvendors', 'ApiUserController@getApprovedVendors')->name('getApprovedVendors');
-Route::get('suspendedvendors', 'ApiUserController@getSuspendedVendors')->name('getSuspendedVendors');
-Route::get('newvendors', 'ApiUserController@getNewVendors')->name('getNewVendors');
-Route::get('vendorprofile/{username}', 'ApiUserController@getVendorProfile')->name('getVendorProfile');
-Route::get('vendorproducts/{username}', 'ApiUserController@getVendorProducts')->name('getVendorProducts');
-Route::get('report/{id}', 'ApiUserController@getReport')->name('getReport');
+Route::get('approved-vendors', 'VendorManagementController@getApprovedVendors')->name('getApprovedVendors');
+Route::get('suspended-vendors', 'VendorManagementController@getSuspendedVendors')->name('getSuspendedVendors');
+Route::get('new-vendors', 'VendorManagementController@getNewVendors')->name('getNewVendors');
+Route::get('vendorprofile/{username}', 'VendorManagementController@getVendorProfile')->name('getVendorProfile');
+Route::get('vendorproducts/{username}', 'VendorManagementController@getVendorProducts')->name('getVendorProducts');
+Route::get('report/{id}', 'VendorManagementController@getReport')->name('getReport');
 
 });
 Route::prefix('vendor')->middleware(['auth','Vendor'])->group(function(){

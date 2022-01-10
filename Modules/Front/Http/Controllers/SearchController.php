@@ -63,7 +63,15 @@ class SearchController extends Controller
 
     public function index()
     {
-        return view('front::index');
+        $users = Vendor::whereHas('user', function($q){
+            $q->where('shop_name', 'like', '%' . request()->q  . "%")
+                ->orWhere('company_name', 'like', '%' . request()->q  . "%");
+        })->where('status', 1)->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 15);
+            return response()->json([
+                'status' => 'successful',
+                "message" => "vendor search successfull!",
+                "data" => $users
+            ], 200);
     }
 
     /**
