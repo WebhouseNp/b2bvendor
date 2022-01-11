@@ -103,7 +103,7 @@
       <!-- Task 2 Completed-->
     </div>
     <div class="category" v-show="!visible">
-      <Plan :mainSeller="mainSeller" :visibility1="visibility1" />
+      <Plan :mainSeller="mainSeller" :visibility1="visibility1" :countries="countries"/>
     </div>
   </div>
 </template>
@@ -113,6 +113,7 @@ import Plan from "./selectPlan.vue";
 export default {
   name: "SelectCategory",
   components: { Plan },
+  props:["countries"],
   data() {
     return {
       visible: true,

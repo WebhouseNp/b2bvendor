@@ -130,18 +130,45 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
                     <label for="">Product Category</label
                     ><img
                       class="img-asterik"
                       src="/images/asterik-20.png"
                       alt="asterik-image"
                     />
-                    <select class="form-control" id="">
-                      <option>Local</option>
-                      <option>International</option>
+                    <select class="form-control" id="" v-model.trim="$v.product_category.$model"
+                     :class="{ 'is-invalid': validationStatus($v.product_category) }">
+                     <option value="" disabled>Select product category</option>
+                      <option value="local">Local</option>
+                      <option value="international">International</option>
                     </select>
-                    <!-- <input type="text" class="form-control" id="" placeholder=""> -->
+                    <div
+                      v-if="!$v.product_category.required"
+                      class="invalid-feedback"
+                    >
+                      Product Category field is required.
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="">Country</label
+                    ><img
+                      class="img-asterik"
+                      src="/images/asterik-20.png"
+                      alt="asterik-image"
+                    />
+                    <select class="form-control" v-model.trim="$v.country.$model"
+                     :class="{ 'is-invalid': validationStatus($v.country) }">
+                     <option value="" disabled>Select Country</option>
+                      <option v-for="(country,index) in countries" 
+                      :key="index" :value="country.name">{{country.name}}</option>
+                    </select>
+                    <div
+                      v-if="!$v.country.required"
+                      class="invalid-feedback"
+                    >
+                      Country field is required.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -469,7 +496,7 @@ import VendorSave from "./registerVendor.vue";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
 export default {
-  props: ["categoryinfo", "visibility2"],
+  props: ["categoryinfo", "visibility2","countries"],
   name: "VendorInfo",
   components: { VendorSave },
   data() {
@@ -480,6 +507,8 @@ export default {
       company_name: "",
       representative_name:'',
       company_address:'',
+      product_category:'',
+      country:'',
       name_on_card:'',
       id_card_number:'',
       email_address:'',
@@ -499,6 +528,8 @@ export default {
     company_name: { required },
     representative_name:{ required },
     company_address: {required},
+    product_category:{required},
+    country:{required},
     name_on_card:{required},
     id_card_number:{required},
     email_address: {required},

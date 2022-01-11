@@ -10,8 +10,4 @@
     <!-- END PAGE CONTENT-->
     @include('admin.section.copy-right')
 </div>
-
-
 @include('admin.section.footer')
-@yield('scripts')
-@stack('push_scripts')

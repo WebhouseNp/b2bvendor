@@ -22,15 +22,31 @@
 <!-- PAGE LEVEL SCRIPTS-->
 
 <script>
-    $('form').submit(function(e) {
-            $('form button').attr('disabled', true);
-        });
-
-        // $(document).ready(function() {
-        //     $(".alertMessage").delay(2000).slideUp(500);
+   
+    $(document).ready(function() {
+        // $.ajaxSetup({
+        //     beforeSend: function(xhr) {
+        //         xhr.setRequestHeader('Authorization', 'Bearer {{ auth()->user()->api_token }}');
+        //     }
         // });
 
+        $.ajaxSetup({
+            headers: {
+                // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'Authorization': 'Bearer {{ auth()->user()->api_token }}'
+            }
+        });
+
+        $('form').submit(function(e) {
+            $('form button').attr('disabled', true);
+        });
+    });
+
 </script>
+@stack('push_scripts')
+
+
+@yield('scripts')
 
 </body>
 

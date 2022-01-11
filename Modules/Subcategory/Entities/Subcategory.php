@@ -10,9 +10,10 @@ use Modules\ProductAttribute\Entities\CategoryAttribute;
 
 class Subcategory extends Model
 {
-
     use Sluggable;
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
     public function sluggable(): array
     {
         return [
@@ -22,15 +23,28 @@ class Subcategory extends Model
             ]
         ];
     }
-    public function category(){
+
+    public function imageUrl($size = null)
+    {
+        if ($size == 'thumbnail') {
+            return asset('images/thumbnail/' . $this->image);
+        }
+
+        return asset('images/listing/' . $this->image);
+    }
+
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function attributes(){
+    public function attributes()
+    {
         return $this->hasMany(CategoryAttribute::class);
     }
 
-    public function products(){
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 }

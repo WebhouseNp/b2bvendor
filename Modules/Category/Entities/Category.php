@@ -24,15 +24,27 @@ class Category extends Model
         ];
     }
 
-    public function subcategory(){
+    public function imageUrl($size = null)
+    {
+        if ($size == 'thumbnail') {
+            return asset('images/thumbnail/' . $this->image);
+        }
+
+        return asset('images/listing/' . $this->image);
+    }
+
+    public function subcategory()
+    {
         return $this->hasMany(Subcategory::class);
     }
 
-    public function products(){
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 
-    public function attributes(){
+    public function attributes()
+    {
         return $this->hasMany(CategoryAttribute::class);
     }
 }

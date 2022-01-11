@@ -135,14 +135,14 @@
         </div>
       </div>
       </div>
-       <div v-show="!visible"><VendorInfo :categoryinfo = "categoryinfo" :visibility2 = "visibility2"/></div>
+       <div v-show="!visible"><VendorInfo :categoryinfo = "categoryinfo" :visibility2 = "visibility2" :countries="countries"/></div>
   </div>
 </template>
 
 <script>
 import VendorInfo from './vendorInfo.vue'
 export default {
-  props: ['mainSeller', 'visibility1'],
+  props: ['mainSeller', 'visibility1', "countries"],
   name:'SelectPlan',
   components: {VendorInfo},
   data(){

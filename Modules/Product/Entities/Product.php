@@ -39,13 +39,23 @@ class Product extends Model
 
     public function imageUrl($size = null)
     {
-        return "https://picsum.photos/400";
+        // return "https://picsum.photos/400";
 
         if ($size == 'thumbnail') {
             return asset('images/thumbnail/' . $this->image);
         }
 
         return asset('images/listing/' . $this->image);
+    }
+
+    public function priceRange()
+    {
+        $minPrice = $this->ranges->min('price');
+        $maxPrice = $this->ranges->max('price');
+        if ($minPrice == $maxPrice) {
+            return 'Rs. ' . $minPrice;
+        }
+        return 'Rs. ' . $minPrice . ' - Rs. ' . $maxPrice;
     }
 
     public function category()
