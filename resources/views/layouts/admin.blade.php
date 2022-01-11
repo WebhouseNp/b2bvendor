@@ -14,4 +14,14 @@
 
 @include('admin.section.footer')
 @yield('scripts')
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer {{ auth()->user()->api_token }}');
+            }
+        });
+    });
+
+</script>
 @stack('push_scripts')
