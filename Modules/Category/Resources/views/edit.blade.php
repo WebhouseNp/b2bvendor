@@ -1,7 +1,3 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('content')
 
@@ -145,21 +141,17 @@
       function submitCategoryNow()
     {
             var id = "<?php echo $id; ?>";
-            var api_token = '<?php echo $api_token; ?>';
-      
           var categoryUpdateForm = document.getElementById("category-update-form");
         var formData = new FormData(categoryUpdateForm); 
+        let url = "/api/updatecategory/" + id;
         $.ajax({
             type:'POST',
-            url: "/api/updatecategory",
+            url: url,
             data: formData,
             enctype: 'multipart/form-data',
             cache:false,
             contentType: false,
             processData: false,
-            headers: {
-                Authorization: "Bearer " + api_token
-            },
             success:function(response){
                 console.log(response.data);
                 if(response.status == 'successful'){
@@ -185,20 +177,13 @@
 <script> 
  $(document).ready(function(){
      var id = <?php echo $id; ?>;
-     var api_token = '<?php echo $api_token; ?>';
             function editcategory(id){
                 $.ajax({ 
            type: "get", 
-		//   url: url,
-
            url:"/api/editcategory", 
            data:{id:id},
-           headers: {
-            Authorization: "Bearer " + api_token
-        },
            success: function(response) {
           $('#name').append(response.data.name).val();
-               console.log(response.data.publish)
                document.getElementById('name').value = response.data.name;
                if (response.data.publish == '1') {
 						document.getElementById('publish').checked = true;

@@ -15,7 +15,7 @@
                 @forelse ($details as $key=>$detail)
 
                 <tr>
-                <td>{{$key+1}}</td>
+                <td>{{ $details->firstItem() + $loop->index }}</td>
                 <td>{{ucfirst($detail->name)}}</td>
                 <td>{{$detail->email}}</td>
                 @foreach($detail->roles as $role)
@@ -41,7 +41,7 @@
                 </tbody>
 
             </table>
- 
+            {{ $details->links() }}
  
 
             

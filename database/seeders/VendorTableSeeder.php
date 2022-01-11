@@ -18,7 +18,7 @@ class VendorTableSeeder extends Seeder
         $faker = Faker::create();
         // $str = Str::new()
         for ($i = 0; $i < 50; $i++) {
-            Vandor::create([
+            Vendor::create([
                 'user_id' => $faker->numberBetween(1, 6),
                 'employer_name' => $faker->name,
                 'mobile_number' => $faker->numberBetween(999999999, 100000000),

@@ -33,7 +33,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product::index');
+        $details = Product::when(request()->filled('search'), function($query) {
+            return $query->where('title', 'like', '%'. request('search') . "%");
+            // ->orWhere('highlight', 'like', '%'. request('search'));
+            })
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+        return view('product::index',compact('details'));
     }
 
     /**
@@ -88,13 +95,6 @@ class ProductController extends Controller
         return response()->json(['data' => $brands, 'status_code' => 200]);
     }
 
-    public function allproducts()
-    {
-        $details = Product::where('status', 1)->where('isApproved','approved')->with(['category', 'brand', 'offer','user'])->get();
-        $view = \View::make("product::productsTable")->with('details', $details)->render();
-        return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
-    }
-
     public function approveproduct(Request $request){
         try {
             $product = Product::findorFail($request->id);
@@ -122,7 +122,6 @@ class ProductController extends Controller
     }
 
     public function nonapprovalnote(Request $request){
-        // dd($request->all());
         try {
             $product = Product::findorFail($request->id);
             $product['isApproved'] = 'rejected';
@@ -180,7 +179,7 @@ class ProductController extends Controller
 
             ]);
             if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
                 exit;
             }
 
@@ -265,19 +264,34 @@ class ProductController extends Controller
     }
 
     public function productRequest(){
-        $products =  Product::where('isApproved','not_Approved')->get();
-        return view('product::productrequest',compact('products'));
+        $details =  Product::when(request()->filled('search'), function($query) {
+            return $query->where('title', 'like', '%'. request('search') . "%");
+            })
+            ->notapproved()->latest()->paginate(10)
+            ->withQueryString();
+        return view('product::productrequest',compact('details'));
     }
 
-    public function VendorProductRequest(){
-        $products =  Product::where('user_id',Auth::id())->where('isApproved','not_Approved')->get();
-        return view('product::allproducts',compact('products'));
-    }
+    // public function VendorProductRequest(){
+    //     $details =  Product::when(request()->filled('search'), function($query) {
+    //         return $query->where('title', 'like', '%'. request('search') . "%");
+    //         })
+    //         ->where('user_id',Auth::id())->notapproved()->latest()->paginate(10)
+    //                 ->withQueryString();
+    //     return view('product::allproducts',compact('details'));
+    // }
     
     public function allVendorProducts(){
-        // $user = User::where('username',$username)->first();
-        $products =  Product::where('user_id',Auth::id())->where('status', 1)->where('isApproved','approved')->with(['category', 'brand', 'offer','user'])->get();;
-        return view('product::allproducts',compact('products'));
+        $details =  Product::when(request()->filled('search'), function($query) {
+            return $query->where('title', 'like', '%'. request('search') . "%");
+            })
+            ->where('user_id',Auth::id())
+            ->active()->approved()
+            ->with(['category', 'brand', 'offer','user'])
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+        return view('product::allproducts',compact('details'));
     }
     /**
      * Store a newly created resource in storage.
@@ -530,9 +544,9 @@ class ProductController extends Controller
                 if ($product->image) {
                     $thumbPath = public_path('images/thumbnail');
                     $listingPath = public_path('images/listing');
-                    if ((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))) {
-                        unlink($thumbPath . '/' . $image->image);
-                        unlink($listingPath . '/' . $image->image);
+                    if ((file_exists($thumbPath . '/' . $product->image)) && (file_exists($listingPath . '/' . $product->image))) {
+                        unlink($thumbPath . '/' . $product->image);
+                        unlink($listingPath . '/' . $product->image);
                     }
                 }
                 $image = $this->imageProcessing('img-', $request->file('image'));

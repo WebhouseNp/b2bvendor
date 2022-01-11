@@ -327,30 +327,24 @@ class UserController extends Controller
 
   public function changePassword(Request $request)
   {
-    try {
-      $validator = Validator::make($request->all(), [
+      $request->validate([
         'old_password' => 'required',
         'new_password' => 'required|min:6',
         'new_confirm_password' => 'required|min:6|same:new_password',
       ]);
 
-      if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-        exit;
+      $auth_user = auth()->user();
+      
+      if (!Hash::check($request->old_password, auth()->user()->password)) {
+        return response([
+          'message' => 'Password does not match'
+        ], 403);
       }
-      $auth_user = User::find(auth()->user()->id);
-      if (Hash::check($request->old_password, auth()->user()->password)) {
-
         $user = $auth_user->update(['password' => Hash::make($request->new_password)]);
         return response()->json([
           "message" => "Password has been changed",
         ], 200);
-      }
-    } catch (\Exception $exception) {
-      return response([
-        'message' => $exception->getMessage()
-      ], 400);
-    }
+    
   }
 
 

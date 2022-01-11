@@ -20,7 +20,8 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        return view('subcategory::index');
+        $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
+        return view('subcategory::index',compact('details'));
     }
 
     /**
@@ -67,12 +68,11 @@ class SubcategoryController extends Controller
         return response()->json(['data'=>$categories, 'status_code'=>200]);
     }
 
-    public function getsubcategories(){
-        $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
-        $view = \View::make("subcategory::subcategoriesTable")->with('details', $details)->render();
-        // dd($view);
-        return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
-    }
+    // public function getsubcategories(){
+    //     $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
+    //     $view = \View::make("subcategory::subcategoriesTable")->with('details', $details)->render();
+    //     return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
+    // }
 
     /**
      * Store a newly created resource in storage.

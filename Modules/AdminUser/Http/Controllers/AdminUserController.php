@@ -31,7 +31,17 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        return view('adminuser::index');
+        $details = User::when(request()->filled('search'), function($query) {
+            return $query->where('name', 'like', '%'. request('search') . "%")
+            ->orWhere('email', 'like', '%'. request('search'));
+            })
+        ->published()
+        ->with('roles')
+        ->latest()
+        ->paginate(5)
+        ->withQueryString();
+        
+        return view('adminuser::index', compact('details'));
     }
 
     public function getallroles(){
@@ -39,11 +49,17 @@ class AdminUserController extends Controller
         return response()->json(['data'=>$role, 'status_code'=>200]);
     }
 
+    //
     public function getUsers()
     {
-        $details = User::published()->with('roles')->get();
+        $details = User::published()->with('roles')->paginate(5);
         $view = \View::make("adminuser::usersTable")->with('details', $details)->render();
-        return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
+
+        return response()->json(['html' => $view, 'status' => 'successful',
+         'data' => $details,
+         'pagination' => (string) $details->links()
+        ]);
+
     }
 
     /**

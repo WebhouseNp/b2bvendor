@@ -81,7 +81,7 @@
 
 
 
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Offer</strong></label>
                                         <select name="offer_id" id="offer_id" class="form-control">
 
@@ -89,8 +89,8 @@
 
 
 
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    </div> -->
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Brand</strong></label>
                                         <select name="brand_id" id="brand_id" class="form-control">
 
@@ -98,7 +98,7 @@
                                         </select>
 
 
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="col-lg-4 col-sm-12 form-group">
