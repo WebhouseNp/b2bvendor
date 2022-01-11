@@ -195,12 +195,12 @@ $user_access = json_decode($user->access_level);
                 </a>
                 <ul class="nav-2-level collapse">
 
-                    <li>
+                    <!-- <li>
                         <a href="{{route('role.create')}}">
                             <span class="fa fa-plus"></span>
                             Add Role
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="{{route('role.index')}}">
@@ -309,7 +309,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('product.request')}}">
                             <span class="fa fa-circle-o"></span>
-                            Product Request
+                            Unapproved Products
                         </a>
                     </li>
                     <li>
@@ -323,7 +323,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('allvendorproducts')}}">
                             <span class="fa fa-circle-o"></span>
-                            Approved {{Auth::user()->name}} Products
+                            Approved Products
                         </a>
                     </li>
                     @endif
@@ -331,7 +331,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('vendorproduct.request')}}">
                             <span class="fa fa-circle-o"></span>
-                            {{Auth::user()->name}} Product Requests
+                            Unapproved Products
                         </a>
                     </li>
                     @endif

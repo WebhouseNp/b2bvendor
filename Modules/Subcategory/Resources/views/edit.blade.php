@@ -1,7 +1,3 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('content')
 
@@ -108,7 +104,6 @@
 	function submitSubCategoryNow()
     {
         var id = "<?php echo $id; ?>";
-        var api_token = '<?php echo $api_token; ?>';
         var SubcategoryUpdateForm = document.getElementById("subcategory-update-form");
         var formData = new FormData(SubcategoryUpdateForm);
         formData.append('id', id);
@@ -120,12 +115,9 @@
         cache:false,
         contentType: false,
         processData: false,
-        headers: {
-            Authorization: "Bearer " + api_token
-        },
         success:function(response){
             if(response.status == 'successful'){
-              window.location.href = "/subcategory";
+              window.location.href = "/admin/subcategory";
               var validation_errors = JSON.stringify(response.message);
                 $('#validation-errors').html('');
                 $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
@@ -147,15 +139,11 @@
 <script> 
  $(document).ready(function(){
      var id = <?php echo $id; ?>;
-     var api_token = '<?php echo $api_token; ?>';
             function editsubcategory(id){
                 $.ajax({ 
            type: "get", 
            url:"/api/editsubcategory", 
            data:{id:id},
-           headers: {
-            Authorization: "Bearer " + api_token
-        },
            success: function(response) {
                document.getElementById('name').value = response.data.name;
                if(response.categories){

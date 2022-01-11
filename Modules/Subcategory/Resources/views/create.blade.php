@@ -1,7 +1,3 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('content')
 
@@ -108,7 +104,6 @@
 <script>
   function submitSubCategoryNow()
     {
-      var api_token = '<?php echo $api_token; ?>';
       var SubcategoryCreateForm = document.getElementById("subcategory-create-form");
         var formData = new FormData(SubcategoryCreateForm);  
       $.ajax({
@@ -119,9 +114,6 @@
         cache:false,
         contentType: false,
         processData: false,
-        headers: {
-            Authorization: "Bearer " + api_token
-        },
         success:function(response){
             if(response.status == 'successful'){
               window.location.href = "/admin/subcategory";
@@ -144,15 +136,11 @@
 
 <script>
 $(document).ready(function (e) {
-  var api_token = '<?php echo $api_token; ?>';
   function categories(){
         
         $.ajax({
 		  type:'GET',
 		  url:'/api/getcategory',
-		  headers: {
-            Authorization: "Bearer " + api_token
-        },
 		  success:function(response) {
               console.log(response.data)
               if(response.data){
@@ -161,7 +149,6 @@ $(document).ready(function (e) {
                         html_options += "<option value='"+cat_data.id+"'>"+cat_data.name+"</option>";
                     });
                     $('#category_id').html(html_options);
-                    console.log(response);
                 }
 		  },
 		  error: function(error) {

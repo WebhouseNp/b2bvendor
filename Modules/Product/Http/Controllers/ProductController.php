@@ -272,14 +272,14 @@ class ProductController extends Controller
         return view('product::productrequest',compact('details'));
     }
 
-    public function VendorProductRequest(){
-        $details =  Product::when(request()->filled('search'), function($query) {
-            return $query->where('title', 'like', '%'. request('search') . "%");
-            })
-            ->where('user_id',Auth::id())->notapproved()->latest()->paginate(10)
-                    ->withQueryString();
-        return view('product::allproducts',compact('details'));
-    }
+    // public function VendorProductRequest(){
+    //     $details =  Product::when(request()->filled('search'), function($query) {
+    //         return $query->where('title', 'like', '%'. request('search') . "%");
+    //         })
+    //         ->where('user_id',Auth::id())->notapproved()->latest()->paginate(10)
+    //                 ->withQueryString();
+    //     return view('product::allproducts',compact('details'));
+    // }
     
     public function allVendorProducts(){
         $details =  Product::when(request()->filled('search'), function($query) {
@@ -544,9 +544,9 @@ class ProductController extends Controller
                 if ($product->image) {
                     $thumbPath = public_path('images/thumbnail');
                     $listingPath = public_path('images/listing');
-                    if ((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))) {
-                        unlink($thumbPath . '/' . $image->image);
-                        unlink($listingPath . '/' . $image->image);
+                    if ((file_exists($thumbPath . '/' . $product->image)) && (file_exists($listingPath . '/' . $product->image))) {
+                        unlink($thumbPath . '/' . $product->image);
+                        unlink($listingPath . '/' . $product->image);
                     }
                 }
                 $image = $this->imageProcessing('img-', $request->file('image'));
