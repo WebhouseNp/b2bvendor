@@ -123,6 +123,26 @@ class Product extends Model
         return $this->hasMany(Review::class, 'product_id');
     }
 
+    public function scopeApproved($query)
+    {
+        return $query->where('isApproved', 'approved');
+    }
+
+    public function scopeNotapproved($query)
+    {
+        return $query->where('isApproved', 'not_approved');
+    }
+
+    public function scopeRejected($query)
+    {
+        return $query->where('isApproved', 'rejected');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
+
     public static function checkUserRole($user_id)
     {
         $role_user = DB::table('role_user')->where('user_id', $user_id)->first();

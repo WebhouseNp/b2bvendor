@@ -290,32 +290,6 @@ $user_access = json_decode($user->access_level);
             </li>
              @endif 
 
-             <!-- @if(in_array('super_admin' ,$roles) || in_array('admin' ,$roles)) -->
-            <!-- <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-product-hunt"></i>
-                    <span class="nav-label">Product Attributes</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('productattribute.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add Product Attribute
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('productattribute.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Product Attributes
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
-             <!-- @endif  -->
-
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-product-hunt"></i>
@@ -334,7 +308,7 @@ $user_access = json_decode($user->access_level);
                     @if(in_array('super_admin' ,$roles))
                     <li>
                         <a href="{{route('product.request')}}">
-                            <span class="fa fa-plus"></span>
+                            <span class="fa fa-circle-o"></span>
                             Product Request
                         </a>
                     </li>
@@ -345,19 +319,19 @@ $user_access = json_decode($user->access_level);
                         </a>
                     </li>
                     @endif
-                    @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || in_array('admin' ,$roles))
+                    @if( in_array('vendor' ,$roles))
                     <li>
                         <a href="{{route('allvendorproducts')}}">
                             <span class="fa fa-circle-o"></span>
-                            All Approved {{Auth::user()->name}} Products
+                            Approved {{Auth::user()->name}} Products
                         </a>
                     </li>
                     @endif
                     @if( in_array('vendor' ,$roles) || in_array('admin' ,$roles))
                     <li>
                         <a href="{{route('vendorproduct.request')}}">
-                            <span class="fa fa-plus"></span>
-                            All {{Auth::user()->name}} Product Requests
+                            <span class="fa fa-circle-o"></span>
+                            {{Auth::user()->name}} Product Requests
                         </a>
                     </li>
                     @endif
@@ -493,22 +467,22 @@ $user_access = json_decode($user->access_level);
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-user"></i>
-                    <span class="nav-label">Admin User</span>
+                    <span class="nav-label">All Users</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
 
-                    <li>
+                    <!-- <li>
                         <a href="{{route('user.create')}}">
                             <span class="fa fa-plus"></span>
                             Add New
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="{{route('user.index')}}">
                             <span class="fa fa-circle-o"></span>
-                            All Lists
+                            All User Lists
                         </a>
                     </li>
                 </ul>
