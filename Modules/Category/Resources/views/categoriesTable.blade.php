@@ -19,7 +19,7 @@
             <td>{{ $detail->name }}</td>
             <td>
                 @if($detail->image)
-                <img src="{{ asset('images/listing/'.$detail->image )}}">
+                <img class="img-fluid rounded" src="{{ $detail->imageUrl('thumbnail') }}" style="width: 3rem;">
                 @else
                 <p>N/A</p>
                 @endif
@@ -29,14 +29,14 @@
             <td>{{ $detail->is_featured == 1 ? 'Yes' : 'No' }}</td>
             <td>{{ $detail->does_contain_sub_category == 1 ? 'Yes' : 'No' }}</td>
             <td>{{ $detail->publish == 1 ? 'Published' : 'Not published' }}</td>
-            <td>
+            <td class="text-nowrap">
                 <a title="view" class="btn btn-success btn-sm" href="{{ route('category.view',$detail->id) }}">
                     <i class="fa fa-eye"></i>
                 </a>
                 <a title="Edit" class="btn btn-primary btn-sm" href="{{ route('category.edit',$detail->id) }}">
                     <i class="fa fa-edit"></i>
                 </a>
-                <button class="btn btn-danger delete" onclick="return confirm('Do You want to delete this category??') && deleteCategory(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-danger btn-sm delete" onclick="return confirm('Do You want to delete this category??') && deleteCategory(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                 <!-- <button type="button" class="btn btn-danger delete" onclick="deleteCategory({{ $detail->id }})" class="btn btn-danger" style="display: inline;" title="delete"><i class="fa fa-trash"></i></button> -->
             </td>
         </tr>
