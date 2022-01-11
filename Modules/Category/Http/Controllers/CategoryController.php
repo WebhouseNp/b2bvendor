@@ -18,7 +18,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category::index');
+        $details = Category::orderBy('created_at', 'desc')->get();
+
+        return view('category::index', [
+             'details' => $details
+        ]);
     }
 
     /**
@@ -36,13 +40,13 @@ class CategoryController extends Controller
             'image' => 'mimes:jpg,jpeg,png',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-            exit;
         }
         
         $value = $request->except('image', 'publish');
-        $value['publish'] = is_null($request->publish) ? 0 : 1;
+        // TO::only save publis if role is admin
+        $value['publish'] = $request->has('publish') ? 1 : 0;
         $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
         $value['hot_category'] = is_null($request->hot_category) ? 0 : 1;
         $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
@@ -53,9 +57,8 @@ class CategoryController extends Controller
             $value['image'] = $image;
         }
 
-        DB::beginTransaction();
         $data = Category::create($value);
-        DB::commit();
+        
         return response()->json(['status' => 'successful', 'message' => 'Category created successfully.', 'data' => $data]);
     }
 

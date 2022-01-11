@@ -21,6 +21,15 @@ class ProductApiController extends Controller
             ->when(request()->has('q'), function($query) {
                 return $query->where('title', 'like', '%' . request()->q . '%');
             })
+            ->when(request()->filled('cat'), function($query) {
+                return $query->where('category_id', request()->cat);
+            })
+            ->when(request()->filled('subcat'), function($query) {
+                return $query->where('subcategory_id', request()->subcat);
+            })
+            ->when(request()->has('from_vendor'), function($query) {
+                return $query->where('user_id', request()->from_vendor);
+            })
             ->where('status', 'active')->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 15);
 
         return ProductResource::collection($products)->hide([
