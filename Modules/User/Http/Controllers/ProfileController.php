@@ -27,8 +27,8 @@ class ProfileController extends Controller
         $old = Profile::where('user_id', $id)->first();
         try{
           $validator = Validator::make($request->all(), [
-              'full_name' => 'nullable|min:6',
-              // 'email' => 'nullable|unique',
+              'full_name' => 'nullable',
+              'email' => 'nullable',
               'birthday' => 'nullable|',
               'gender' => 'sometimes',
               'mobile_num' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
@@ -36,7 +36,7 @@ class ProfileController extends Controller
            ]);
           
           if($validator->fails()) {
-            return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+            return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
             exit;
         }
         $value = $request->except('publish');

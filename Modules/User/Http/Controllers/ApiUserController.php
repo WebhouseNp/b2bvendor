@@ -304,7 +304,7 @@ class ApiUserController extends Controller
          ]);
         
         if($validator->fails()) {
-          return response()->json(['status' => 'unsuccessful','status_code' => 422, 'data' => $validator->messages()],422);
+          return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
           exit;
       }
           $details = User::where('email', $request->email)->first();
