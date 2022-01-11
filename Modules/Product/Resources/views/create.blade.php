@@ -90,7 +90,7 @@
 
 
 
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Offer</strong></label>
                                         <select name="offer_id" id="offer_id" class="form-control">
 
@@ -98,8 +98,8 @@
 
 
 
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    </div> -->
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Brand</strong></label>
                                         <select name="brand_id" id="brand_id" class="form-control">
 
@@ -107,16 +107,16 @@
                                         </select>
 
 
-                                    </div>
+                                    </div> -->
 
 
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Price</strong></label>
                                         <input class="form-control" type="text" id="price_box" value="" name="price"
                                             placeholder="Product Price">
 
 
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Discount</strong></label>
                                         <input class="form-control" type="text" id="discount_bx" name="discount"
@@ -124,12 +124,12 @@
 
 
                                     </div>
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Stock Quantity</strong></label>
                                         <input class="form-control" type="text" name="quantity" placeholder="stock">
 
 
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-12 form-group">
@@ -154,7 +154,7 @@
                                         <select name="type" id="" class="form-control">
                                             <option value="top">Top Product</option>
                                             <option value="new">New Arrivals</option>
-                                            <option value="hot">Hot Categories</option>
+                                            <option value="hot">Hot Products</option>
                                             <option value="whole_sale">Sasto Wholesale</option>
                                             <option value="none">None</option>
                                         </select>

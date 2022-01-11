@@ -46,14 +46,14 @@
       <th scope="row">Category</th>
       <td><div id="category"></div></td>
     </tr>
-    <tr>
+    <!-- <tr>
       <th scope="row">Brand</th>
       <td><div id="brand"></div></td>
     </tr>
     <tr>
       <th scope="row">Offer</th>
       <td><div id="offer"></div></td>
-    </tr>
+    </tr> -->
     <tr>
       <th scope="row">Product Type</th>
       <td><div id="type"></div></td>

@@ -16,4 +16,13 @@ class CategoryApiController extends Controller
 
         return response()->json($categories, 200);
     }
+
+    public function hotcategories()
+    {
+        $categories = Category::with('subcategory:id,name,slug,category_id')
+            ->where('hot_category', 1)
+            ->get();
+
+        return response()->json($categories, 200);
+    }
 }

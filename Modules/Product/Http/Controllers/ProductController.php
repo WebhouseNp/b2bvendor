@@ -179,7 +179,7 @@ class ProductController extends Controller
 
             ]);
             if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
                 exit;
             }
 
