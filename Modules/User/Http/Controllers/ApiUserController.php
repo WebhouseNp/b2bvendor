@@ -109,6 +109,9 @@ class ApiUserController extends Controller
               ])) {
                   $user = User::where('email', $request->email)->first();
                     $token = auth()->user()->createToken('authToken')->accessToken;
+                    $user->api_token = $token;
+                    $user->save();
+
                   if ($user->verified == 0 ) {
                     session()->flush();
                     return response()->json([
