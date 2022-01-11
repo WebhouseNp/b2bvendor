@@ -18,7 +18,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category::index');
+        $details = Category::orderBy('created_at', 'desc')->get();
+
+        return view('category::index', [
+             'details' => $details
+        ]);
     }
 
     /**
