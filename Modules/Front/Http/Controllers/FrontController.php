@@ -86,16 +86,7 @@ class FrontController extends Controller
         return response()->json(['data'=>$allcategories, 'status_code'=>200]);
     }
 
-    public function getVendors(){
-        $role = Role::where('name','vendor')->with('users')->first();
-        $role_user = Role_user::where('role_id',$role->id)->pluck('user_id');
-        $allvendors = User::whereIn('id',$role_user)->where('publish',1)->where('vendor_type','approved')->with(['vendor','products'])->orderBy('created_at','desc')->get();
-        return response()->json(['data'=>$allvendors, 'status_code'=>200]);
-    }
-
-
-
-    
+  
 
     public function index()
     {
