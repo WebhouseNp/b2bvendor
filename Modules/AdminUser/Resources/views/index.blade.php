@@ -1,7 +1,3 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('page_title') All Admin Users @endsection
 @section('content')
@@ -46,14 +42,10 @@
 
 <script >
     function users(){
-        var api_token = '<?php echo $api_token; ?>';
 
         $.ajax({
 		  type:'GET',
 		  url:'/api/getusers',
-		  headers: {
-            Authorization: "Bearer " + api_token
-        },
 		  success:function(response) {
 			$('#appendUser').html(response.html),
             $('#pagination').html(response['pagination']);
@@ -67,7 +59,6 @@
     // users();
 
     function deleteUser(el,id) {
-        var api_token = '<?php echo $api_token; ?>';
         if (!confirm("Are you sure you want to delete?")){
             return false;
         }
@@ -76,9 +67,6 @@
 
            url:"{{route('api.deleteuser')}}", 
            data:{id:id},
-           headers: {
-            Authorization: "Bearer " + api_token
-        },
            success: function(response) {
                var validation_errors = JSON.stringify(response.message);
             $('#validation-errors').html('');

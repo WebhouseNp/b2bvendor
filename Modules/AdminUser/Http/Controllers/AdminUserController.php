@@ -38,7 +38,7 @@ class AdminUserController extends Controller
         ->published()
         ->with('roles')
         ->latest()
-        ->paginate(5)
+        ->paginate(15)
         ->withQueryString();
         
         return view('adminuser::index', compact('details'));

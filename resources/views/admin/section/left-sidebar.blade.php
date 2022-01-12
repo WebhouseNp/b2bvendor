@@ -31,7 +31,7 @@ $user_access = json_decode($user->access_level);
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-user"></i>
-                    <span class="nav-label">{{Auth::user()->name}} Profile</span>
+                    <span class="nav-label"> Profile</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
@@ -75,8 +75,6 @@ $user_access = json_decode($user->access_level);
                             </a>
                         </li>
                     @endif
-
-                    
                 </ul>
             </li>
 
@@ -145,7 +143,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('getVendorOrders')}}">
                             <span class="fa fa-circle-o"></span>
-                            {{Auth::user()->name}} Orders
+                             Orders
                         </a>
                     </li>
                 </ul>
@@ -170,7 +168,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('getVendorOrderReport')}}">
                             <span class="fa fa-circle-o"></span>
-                            {{Auth::user()->name}} Sales Report
+                            Sales Report
                         </a>
                     </li>
                     @endif
@@ -179,7 +177,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('getVendorPaymentReport')}}">
                             <span class="fa fa-circle-o"></span>
-                            {{Auth::user()->name}} Payment Report
+                            Payment Report
                         </a>
                     </li>
                     @endif

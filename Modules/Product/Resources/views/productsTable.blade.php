@@ -9,7 +9,7 @@
                         <!-- <th>Categories</th> -->
                         <!-- <th>Sub Categories</th> -->
                         <th>Images</th>
-                        <th>Price</th>
+                        <!-- <th>Price</th> -->
                         <th> Discount</th>
                         
                         <th>Status</th>
@@ -43,7 +43,7 @@
                                 class="fa fa-edit"></i></a>
                     </td>
                     
-                    <td>NPR. {{ number_format($detail->price)}}</td>
+                    <!-- <td>NPR. {{ number_format($detail->price)}}</td> -->
                     <td>
                         @if($detail->discount)
                         {{  $detail->discount}}

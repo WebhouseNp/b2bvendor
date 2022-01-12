@@ -1,7 +1,3 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('page_title') All Products @endsection
 @section('styles')
@@ -47,14 +43,9 @@
 </script>
 <script >
     function products(){
-        var api_token = '<?php echo $api_token; ?>';
         $.ajax({
 		  type:'GET',
 		  url:'/api/allproducts',
-		  headers: {
-            Authorization: "Bearer " + api_token
-        },
-    
 		  success:function(response) {
               if(response.data){
                 $('#appendProduct').html(response.html)
@@ -70,16 +61,12 @@
     // products()
 
     function deleteProduct(el,id) {
-        var api_token = '<?php echo $api_token; ?>';
         var message=confirm('Do You want to delete this product??');
         if(message){
             $.ajax({ 
                 type: "post", 
                 url:"{{route('api.deleteproduct')}}", 
                 data:{id:id},
-                headers: {
-                    Authorization: "Bearer " + api_token
-                    },
                 success: function(response)
                     {
                     var validation_errors = JSON.stringify(response.message);
