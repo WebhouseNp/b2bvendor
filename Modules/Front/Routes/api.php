@@ -28,6 +28,7 @@ Route::get('/products/{product_id}/images', 'ProductImageApiController@index');
 
 Route::get('/vendors', 'VendorApiController@index');
 Route::get('/vendors/{vendor}', 'VendorApiController@show');
+Route::get('/v/latest-suppliers', 'VendorApiController@getLatestVendors');
 
 Route::get('/getsastowholesaleproducts', 'FrontController@getSastoWholeSaleProducts');
 
@@ -41,7 +42,6 @@ Route::get('vendorsubcategories/{username}/{slug}', 'FrontController@getVendorSu
 Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVendorCategoryProducts');
 
 Route::get('/suppliers', 'SearchController@index');
-Route::get('allvendor', 'FrontController@getVendors');
 Route::get('allcategories', 'FrontController@allcategories'); // Not in use since we were pulling a lot more than we need
 Route::get('megamenu', 'CategoryApiController@megamenu');
 Route::get('hot-categories', 'CategoryApiController@hotCategories');

@@ -100,6 +100,12 @@ class User extends Authenticatable
         return $query->where('vendor_type', 'approved');
     }
 
+    public function scopeVerified($query)
+    {
+        return $query->where('verified', 1);
+    }
+
+
     public function scopeSuspended($query)
     {
         return $query->where('vendor_type', 'suspended');

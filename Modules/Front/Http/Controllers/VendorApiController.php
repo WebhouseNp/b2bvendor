@@ -11,11 +11,10 @@ class VendorApiController extends Controller
 {
     public function index()
     {
-        $vendors = Vendor::
-        when(request()->filled('q'), function($query) {
+        $vendors = Vendor::when(request()->filled('q'), function ($query) {
             return $query->where('shop_name', 'like', '%' . request()->q . '%');
         })
-        ->paginate(20);
+            ->paginate(20);
 
         return $vendors;
     }
@@ -25,5 +24,16 @@ class VendorApiController extends Controller
         $vendor->load('user');
         return $vendor;
     }
-  
+
+    public function getLatestVendors()
+    {
+        $vendors = Vendor::whereHas('user', function ($query) {
+            $query->published()->approved()->verified();
+        })
+            ->latest()
+            ->limit(10)
+            ->get();
+
+        return response()->json($vendors->shuffle()->all(), 200);
+    }
 }
