@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/front', function (Request $request) {
 // Products
 Route::get('/products', 'ProductApiController@index');
 Route::get('/products/{product:slug}', 'ProductApiController@show');
+Route::get('/p/new-arrivals', 'ProductApiController@getNewArrivals');
+Route::get('/p/top-products', 'ProductApiController@getTopProducts');
 
 Route::get('/products/{product_id}/images', 'ProductImageApiController@index');
 
@@ -28,8 +30,7 @@ Route::get('/vendors', 'VendorApiController@index');
 Route::get('/vendors/{vendor}', 'VendorApiController@show');
 
 Route::get('/getsastowholesaleproducts', 'FrontController@getSastoWholeSaleProducts');
-Route::get('/gettopproducts', 'FrontController@getTopProducts');
-Route::get('/getnewarrivalproducts', 'FrontController@getNewArrivalProducts');
+
 Route::get('/gethotcategoriesproducts', 'FrontController@getHotCategoriesProducts');
 Route::get('/getallproducts', 'FrontController@getAllProducts');
 Route::get('/getcategoryproducts/{categoryslug}', 'FrontController@getCategoryProducts');
