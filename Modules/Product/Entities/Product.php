@@ -53,9 +53,9 @@ class Product extends Model
         $minPrice = $this->ranges->min('price');
         $maxPrice = $this->ranges->max('price');
         if ($minPrice == $maxPrice) {
-            return 'Rs. ' . $minPrice;
+            return 'Rs. ' . number_format(floatval($minPrice));
         }
-        return 'Rs. ' . $minPrice . ' - Rs. ' . $maxPrice;
+        return 'Rs. ' . number_format(floatval($minPrice)) . ' - ' . number_format(floatVal($maxPrice));
     }
 
     public function category()
