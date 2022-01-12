@@ -1,7 +1,3 @@
-<?php
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('page_title') Product @endsection
 
@@ -63,10 +59,6 @@
                                         <div class="input-group">
                                             <select name="category_id" id="category_id" class="form-control">
                                             </select>
-                                            <div class="input-group-append">
-                                                <button class="btn btn-success" onClick="addcategory()" type="button"><i class="fa fa-plus"></i></button>
-
-                                            </div>
                                         </div>
                                     </div>
 
@@ -81,7 +73,7 @@
 
 
 
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Offer</strong></label>
                                         <select name="offer_id" id="offer_id" class="form-control">
 
@@ -89,8 +81,8 @@
 
 
 
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    </div> -->
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Brand</strong></label>
                                         <select name="brand_id" id="brand_id" class="form-control">
 
@@ -98,49 +90,15 @@
                                         </select>
 
 
-                                    </div>
+                                    </div> -->
 
 
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Price</strong></label>
                                         <input class="form-control" type="text" id="price" value="" name="price" placeholder="Product Price">
 
 
-                                    </div>
-                                    <div class="col-lg-4 col-sm-12 form-group">
-                                        <label><strong> Discount</strong></label>
-                                        <input class="form-control" type="text" id="discount" name="discount" placeholder="discount">
-
-
-                                    </div>
-                                    <div class="col-lg-4 col-sm-12 form-group">
-                                        <label><strong> Stock Quantity</strong></label>
-                                        <input class="form-control" type="text" id="quantity" name="quantity" placeholder="stock">
-
-
-                                    </div>
-                                    <div class="col-lg-4 col-sm-12 form-group">
-                                        <label><strong> MOQ</strong></label>
-                                        <input class="form-control" type="text" id="moq" name="moq" value="" name="price" placeholder="Minimum Order Quantity">
-
-
-                                    </div>
-
-                                    <div class="col-lg-4 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="essential" name="essential" value="1">
-                                            <span class="input-span"></span><strong>Essential</strong>
-                                        </label>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="best_seller" name="best_seller" value="1">
-                                            <span class="input-span"></span><strong>Best Seller</strong>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="row">
-
+                                    </div> -->
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label for="">Type</label>
                                         <select name="type" id="type" class="form-control">
@@ -151,18 +109,65 @@
                                             <option value="none">None</option>
                                         </select>
                                     </div>
-
                                     <div class="col-lg-4 col-sm-12 form-group">
-                                        <label><strong> Delivery Charge</strong></label>
-                                        <input class="form-control" type="text" id="delivery_charge" name="delivery_charge" value="" placeholder="Delivery Charge">
+                                        <label><strong> Discount</strong></label>
+                                        <input class="form-control" type="text" id="discount" name="discount" placeholder="discount">
                                     </div>
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Shipping Charge</strong></label>
                                         <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value=""
                                              placeholder="shipping Charge">
                                     </div>
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
+                                        <label><strong> Stock Quantity</strong></label>
+                                        <input class="form-control" type="text" id="quantity" name="quantity" placeholder="stock">
 
+
+                                    </div> -->
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
+                                        <label><strong> MOQ</strong></label>
+                                        <input class="form-control" type="text" id="moq" name="moq" value="" name="price" placeholder="Minimum Order Quantity">
+
+
+                                    </div> -->
+
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
+                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
+                                            <input type="checkbox" id="essential" name="essential" value="1">
+                                            <span class="input-span"></span><strong>Essential</strong>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 form-group">
+                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
+                                            <input type="checkbox" id="best_seller" name="best_seller" value="1">
+                                            <span class="input-span"></span><strong>Best Seller</strong>
+                                        </label>
+                                    </div> -->
                                 </div>
+                                <!-- <div class="row"> -->
+
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
+                                        <label for="">Type</label>
+                                        <select name="type" id="type" class="form-control">
+                                            <option value="top">Top Product</option>
+                                            <option value="new">New Arrivals</option>
+                                            <option value="hot">Hot Categories</option>
+                                            <option value="whole_sale">Sasto Wholesale</option>
+                                            <option value="none">None</option>
+                                        </select>
+                                    </div> -->
+
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
+                                        <label><strong> Delivery Charge</strong></label>
+                                        <input class="form-control" type="text" id="delivery_charge" name="delivery_charge" value="" placeholder="Delivery Charge">
+                                    </div> -->
+                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
+                                        <label><strong> Shipping Charge</strong></label>
+                                        <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value=""
+                                             placeholder="shipping Charge">
+                                    </div> -->
+
+                                <!-- </div> -->
 
                                 <div class="col-lg-12 col-sm-12 form-group">
                                     <div class="col-md-12 mb-3 ">
@@ -364,7 +369,6 @@ function DataSuccessInDatabase(message){
     });
 }
 function addcategory(){
-    var api_token = '<?php echo $api_token; ?>';
         $('#categoryModal').modal('show');
         $.ajaxSetup({
         headers: {
@@ -376,9 +380,6 @@ function addcategory(){
         var formData = new FormData(this);
             $.ajax({
                 url: "/api/createcategory",
-                headers: {
-                    Authorization: "Bearer " + api_token
-                },
                 type:"POST",
                 data:formData,
                 enctype: 'multipart/form-data',
@@ -450,14 +451,9 @@ $(document).ready(function(){
     $(document).ready(function (e) {
 
 function offers(){
-    var api_token = '<?php echo $api_token; ?>';
         $.ajax({
 		  type:'GET',
 		  url:'/api/getoffers',
-		  headers: {
-            Authorization: "Bearer " + api_token
-        },
-
 		  success:function(response) {
               if(response.data){
                     var html_options= "";
@@ -476,14 +472,9 @@ function offers(){
     offers()
 
     function brands(){
-        var api_token = '<?php echo $api_token; ?>';
         $.ajax({
 		  type:'GET',
 		  url:'/api/allbrands',
-		  headers: {
-            Authorization: "Bearer " + api_token
-        },
-
 		  success:function(response) {
               if(response.data){
                     var html_options= "";
@@ -506,31 +497,26 @@ function offers(){
 <script>
     $(document).ready(function(){
             var id = <?php echo $id; ?>;
-            var api_token = '<?php echo $api_token; ?>';
             function editproduct(id){
                 $.ajax({
                     type: "get",
 
                     url:"/api/editproduct",
                     data:{id:id},
-                    headers: {
-                        Authorization: "Bearer " + api_token
-                    },
-
                     success: function(response) {
                         document.getElementById('title').value = response.data.title;
                         document.getElementById('status').value = response.data.status;
                         document.getElementById('type').value = response.data.type;
-                        document.getElementById('price').value = response.data.price;
-                        document.getElementById('moq').value = response.data.moq;
+                        // document.getElementById('price').value = response.data.price;
+                        // document.getElementById('moq').value = response.data.moq;
                         document.getElementById('discount').value = response.data.discount;
                         CKEDITOR.instances['highlight'].setData(response.data.highlight);
                         CKEDITOR.instances.description.setData(response.data.description);
                         CKEDITOR.instances.meta_description.setData(response.data.meta_description);
-                        document.getElementById('quantity').value = response.data.quantity;
-                        if(response.data.delivery_charge){
-                            document.getElementById('delivery_charge').value = response.data.delivery_charge;
-                        }
+                        // document.getElementById('quantity').value = response.data.quantity;
+                        // if(response.data.delivery_charge){
+                        //     document.getElementById('delivery_charge').value = response.data.delivery_charge;
+                        // }
                         if(response.data.shipping_charge){
                             document.getElementById('shipping_charge').value = response.data.shipping_charge;
                         }
@@ -562,19 +548,6 @@ function offers(){
                                 });
                                 $('#category_id').html(html_options);
                             }
-                                if(response.data.essential == '1'){
-                                    document.getElementById('essential').checked = true;
-                                }
-                                else if(response.data.essential == '0'){
-                                    document.getElementById('essential').checked = false;
-                                }
-                                if(response.data.best_seller == '1'){
-                                    document.getElementById('best_seller').checked = true;
-                                }
-                                else if(response.data.best_seller == '0'){
-                                    document.getElementById('best_seller').checked = false;
-                                }
-
                                 document.getElementById('image-holder').innerHTML = '<img width="150" height="150" src="<?php echo URL::to('/').'/images/thumbnail/'; ?>'+response.data.image+'">';
 
                     //    location.reload();
@@ -591,7 +564,6 @@ function offers(){
 <script>
     function getSubCategory() {
     var category_id = $('#category_id').val();
-    var api_token = '<?php echo $api_token; ?>';
     if(category_id){
     $.ajax({
         url:"/api/getsubcategory",
@@ -599,10 +571,6 @@ function offers(){
             data:{
                 category_id:category_id
             },
-            headers: {
-            Authorization: "Bearer " + api_token
-        },
-
       success:function(response){
       if(response.data){
         $('#sub_cat_div').removeClass('d-none');
@@ -645,7 +613,6 @@ function submitProductNow()
                 CKEDITOR.instances[instance].updateElement();
             }
             var id = "<?php echo $id; ?>";
-            var api_token = '<?php echo $api_token; ?>';
             var productCreateForm = document.getElementById("product-update-form");
             var formData = new FormData(productCreateForm);
             formData.append('id', id);
@@ -657,9 +624,6 @@ function submitProductNow()
                 cache:false,
                 contentType: false,
                 processData: false,
-                headers: {
-                Authorization: "Bearer " + api_token
-                },
                 success:function(response){
                     if(response.status == 'successful'){
                     window.location.href = "/admin/product";
@@ -680,18 +644,12 @@ function submitProductNow()
 </script>
 <script>
     function Delete(id){
-    var api_token = '<?php echo $api_token; ?>';
-
     var message=confirm('Are you sure you want to delete??');
     if(message){
     $.ajax({
     type: "post",
     url:"{{route('api.deleteSku')}}",
     data:{id:id},
-    headers:
-    {
-    Authorization: "Bearer " + api_token
-    },
     success : function(response)
     {
     DataSuccessInDatabase(response.message);

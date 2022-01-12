@@ -1,7 +1,3 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('page_title') Category Details @endsection
 @section('styles')
@@ -78,15 +74,11 @@
     <script> 
     $(document).ready(function(){
 		var id = <?php echo $id; ?>;
-    var api_token = '<?php echo $api_token; ?>';
             function viewrole(id){
                 $.ajax({ 
            type: "get", 
            url:"/api/view-category", 
            data:{id:id},
-           headers: {
-            Authorization: "Bearer " + api_token
-        },
            success: function(response) {
                document.getElementById('name').innerHTML = response.data.name;
                document.getElementById('slug').innerHTML = response.data.slug;
@@ -120,13 +112,6 @@
             }
 			viewrole(id);
           });
-
-
-	$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});
             </script>
 
     @endsection

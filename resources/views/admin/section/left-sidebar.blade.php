@@ -31,7 +31,7 @@ $user_access = json_decode($user->access_level);
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-user"></i>
-                    <span class="nav-label">{{Auth::user()->name}} Profile</span>
+                    <span class="nav-label"> Profile</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
@@ -75,8 +75,6 @@ $user_access = json_decode($user->access_level);
                             </a>
                         </li>
                     @endif
-
-                    
                 </ul>
             </li>
 
@@ -145,7 +143,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('getVendorOrders')}}">
                             <span class="fa fa-circle-o"></span>
-                            {{Auth::user()->name}} Orders
+                             Orders
                         </a>
                     </li>
                 </ul>
@@ -170,7 +168,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('getVendorOrderReport')}}">
                             <span class="fa fa-circle-o"></span>
-                            {{Auth::user()->name}} Sales Report
+                            Sales Report
                         </a>
                     </li>
                     @endif
@@ -179,7 +177,7 @@ $user_access = json_decode($user->access_level);
                     <li>
                         <a href="{{route('getVendorPaymentReport')}}">
                             <span class="fa fa-circle-o"></span>
-                            {{Auth::user()->name}} Payment Report
+                            Payment Report
                         </a>
                     </li>
                     @endif
@@ -195,12 +193,12 @@ $user_access = json_decode($user->access_level);
                 </a>
                 <ul class="nav-2-level collapse">
 
-                    <li>
+                    <!-- <li>
                         <a href="{{route('role.create')}}">
                             <span class="fa fa-plus"></span>
                             Add Role
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="{{route('role.index')}}">
@@ -290,32 +288,6 @@ $user_access = json_decode($user->access_level);
             </li>
              @endif 
 
-             <!-- @if(in_array('super_admin' ,$roles) || in_array('admin' ,$roles)) -->
-            <!-- <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-product-hunt"></i>
-                    <span class="nav-label">Product Attributes</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('productattribute.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add Product Attribute
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('productattribute.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Product Attributes
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
-             <!-- @endif  -->
-
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-product-hunt"></i>
@@ -334,8 +306,8 @@ $user_access = json_decode($user->access_level);
                     @if(in_array('super_admin' ,$roles))
                     <li>
                         <a href="{{route('product.request')}}">
-                            <span class="fa fa-plus"></span>
-                            Product Request
+                            <span class="fa fa-circle-o"></span>
+                            Unapproved Products
                         </a>
                     </li>
                     <li>
@@ -345,19 +317,19 @@ $user_access = json_decode($user->access_level);
                         </a>
                     </li>
                     @endif
-                    @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || in_array('admin' ,$roles))
+                    @if( in_array('vendor' ,$roles))
                     <li>
                         <a href="{{route('allvendorproducts')}}">
                             <span class="fa fa-circle-o"></span>
-                            All Approved {{Auth::user()->name}} Products
+                            Approved Products
                         </a>
                     </li>
                     @endif
                     @if( in_array('vendor' ,$roles) || in_array('admin' ,$roles))
                     <li>
                         <a href="{{route('vendorproduct.request')}}">
-                            <span class="fa fa-plus"></span>
-                            All {{Auth::user()->name}} Product Requests
+                            <span class="fa fa-circle-o"></span>
+                            Unapproved Products
                         </a>
                     </li>
                     @endif
@@ -493,22 +465,22 @@ $user_access = json_decode($user->access_level);
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-user"></i>
-                    <span class="nav-label">Admin User</span>
+                    <span class="nav-label">All Users</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
 
-                    <li>
+                    <!-- <li>
                         <a href="{{route('user.create')}}">
                             <span class="fa fa-plus"></span>
                             Add New
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <a href="{{route('user.index')}}">
                             <span class="fa fa-circle-o"></span>
-                            All Lists
+                            All User Lists
                         </a>
                     </li>
                 </ul>

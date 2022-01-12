@@ -1,7 +1,3 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('page_title') All Admin Users @endsection
 @section('content')
@@ -12,13 +8,20 @@
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Users</div>
-            <div>
+            <!-- <div>
                 <a class="btn btn-info btn-md" href="{{route('user.create')}}">New Users</a>
-            </div>
+            </div> -->
         </div>
         <div class="ibox-body" id="validation-errors" >
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
+            <div class="px-4">
+                <form action="" class="form-inline" method="GET">
+                    <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
         <div class="ibox-body" id="appendUser">
+        @include('adminuser::usersTable')
         </div>
     </div>
 
@@ -30,25 +33,22 @@
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-    $(function() {
-        $('#example-table').DataTable({
-            pageLength: 25,
-        });
-    })
+    // $(function() {
+    //     $('#example-table').DataTable({
+    //         pageLength: 25,
+    //     });
+    // })
 </script>
 
 <script >
     function users(){
-        var api_token = '<?php echo $api_token; ?>';
 
         $.ajax({
 		  type:'GET',
 		  url:'/api/getusers',
-		  headers: {
-            Authorization: "Bearer " + api_token
-        },
 		  success:function(response) {
-			$('#appendUser').html(response.html)
+			$('#appendUser').html(response.html),
+            $('#pagination').html(response['pagination']);
 		  },
 		  error: function(error) {
 			$('#notification-bar').text('An error occurred');
@@ -56,9 +56,9 @@
 	   });
     }
 
-    users()
+    // users();
+
     function deleteUser(el,id) {
-        var api_token = '<?php echo $api_token; ?>';
         if (!confirm("Are you sure you want to delete?")){
             return false;
         }
@@ -67,9 +67,6 @@
 
            url:"{{route('api.deleteuser')}}", 
            data:{id:id},
-           headers: {
-            Authorization: "Bearer " + api_token
-        },
            success: function(response) {
                var validation_errors = JSON.stringify(response.message);
             $('#validation-errors').html('');

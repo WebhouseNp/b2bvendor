@@ -33,6 +33,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','Superadmin']], funct
     Route::get('/product/request', [ProductController::class, 'productRequest'])->name('product.request');
 });    
 Route::group(['prefix' => 'vendor', 'middleware' => ['auth']], function () {
-Route::get('/product/request', [ProductController::class, 'VendorProductRequest'])->name('vendorproduct.request');
-Route::get('/product/allvendorproducts', [ProductController::class, 'allVendorProducts'])->name('allvendorproducts');
+Route::get('/product-request', [ProductController::class, 'VendorProductRequest'])->name('vendorproduct.request');
+Route::get('/approved-products', [ProductController::class, 'allVendorProducts'])->name('allvendorproducts');
 });

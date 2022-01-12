@@ -40,6 +40,8 @@
         $('form').submit(function(e) {
             $('form button').attr('disabled', true);
         });
+        
+        $('[data-toggle="tooltip"]').tooltip()
     });
 
 </script>

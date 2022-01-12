@@ -8,29 +8,18 @@
 
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
 @endsection
-<style>
-    .outofstock {
-  background-color: #f3083b;
-}
-    </style>
 @section('content')
-
-<div class="page-heading">
-    <h1 class="page-title"> Products</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href=""><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All Products</li>
-    </ol>
-    @include('admin.section.notifications')
-</div>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Products</div>
         </div>
-
+        <div class="px-4">
+                <form action="" class="form-inline" method="GET">
+                    <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
 
         <div class="ibox-body">
         <table class="table table-bordered table-hover" id="example-table" cellspacing="0"
@@ -41,13 +30,9 @@
                         <th>Image</th>
                         <th>Title</th>
                         <th>User</th>
-                        <!-- <th>Categories</th>
-                        <th>Sub Categories</th> -->
-                        <th>Stock Quantity</th>
-                        <th>Product Images</th>
+                        <th>Images</th>
                         <th>Price</th>
                         <th> Discount</th>
-                        
                         <th>Status</th>
                         <th>Approve</th>
                         <!-- <th>Action</th> -->
@@ -55,7 +40,7 @@
                 </thead>
                 
                 <tbody id="sortable">
-                @forelse ($products as $key=>$detail)
+                @forelse ($details as $key=>$detail)
 
                 <tr>
                     <td>{{$key+1}}</td>
@@ -68,18 +53,9 @@
                     </td>
                     <td>{{$detail->title}}</td>
                     <td>{{$detail->user->name}}</td>
-                    <!-- <td>{{$detail->category->name}}</td>
-                    <td>
-                    @foreach($detail->category->subcategory as $subcategory)
-                        {{$subcategory->name}}
-                    @endforeach
-                    </td> -->
-                    
-                    <td>{{$detail->quantity}}</td>
-                    <td>
-                                <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary"><i
-                                        class="fa fa-edit"></i></a>
-                            </td>
+                    <td style="text-align: center">
+                        <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                    </td>
                     
                     <td>NPR. {{ number_format($detail->price)}}</td>
                     <td>
@@ -91,22 +67,12 @@
 
                     <td>{{$detail->status=='active'? 'Active':'Inactive'}}</td>
                     <td>
-                    <button class="btn btn-primary delete" onclick="approveProduct({{ $detail->id }})"  class="btn btn-primary" style="display:inline"><i class="fa fa-check"></i></button>
-                    <button class="btn btn-danger delete" onclick="cancelProduct({{ $detail->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-remove"></i></button>
+                    <button class="btn btn-primary btn-sm delete" onclick="approveProduct({{ $detail->id }})"  style="border-radius:10%"><i class="fa fa-check"></i></button>
+                    <button class="btn btn-danger btn-sm delete" onclick="cancelProduct({{ $detail->id }})"  style="border-radius:10%"><i class="fa fa-remove"></i></button>
                     <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$detail->id)}}" target="_blank">
                             <i class="fa fa-eye"></i>
                         </a>
                     </td>
-                    <!-- <td> -->
-                        <!-- <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$detail->id)}}">
-                            <i class="fa fa-eye"></i>
-                        </a> 
-
-                        <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$detail->id)}}">
-                            <i class="fa fa-edit"></i>
-                        </a>  -->
-                        <!-- <button class="btn btn-danger delete" onclick="deleteProduct({{ $detail->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button> -->
-                    <!-- </td> -->
                 </tr>
                 @empty
                     <tr>
@@ -119,6 +85,7 @@
                 </tbody>
 
             </table>
+            {{ $details->links() }}
         </div>
     </div>
 
@@ -157,33 +124,6 @@ function DataSuccessInDatabase(message){
 }
 </script>
 <script >
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-       
-    });
-
-    $(function () {
-        $("#example1").DataTable();
-    });
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     function deleteProduct(id) {
         var api_token = '<?php echo $api_token; ?>';
         var message=confirm('Do You want to delete this product??');
@@ -226,7 +166,7 @@ function DataSuccessInDatabase(message){
                         $('#validation-errors').html('');
                         $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
                         DataSuccessInDatabase(response.message);
-                        window.location.href = "/admin/product";
+                        location.reload();
                 }
             }); 
         }

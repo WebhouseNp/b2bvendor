@@ -20,6 +20,12 @@
 
     <!-- PAGE LEVEL STYLES-->
     @yield('styles')
+
+    <style>
+        button {
+            cursor: pointer;
+        }
+    </style>
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 
 </head>
