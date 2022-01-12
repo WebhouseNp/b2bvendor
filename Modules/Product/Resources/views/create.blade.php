@@ -1,7 +1,3 @@
-<?php
-    $user = Auth::user();
-    $api_token = $user->api_token;
-?>
 @extends('layouts.admin')
 @section('page_title') Product @endsection
 
@@ -71,11 +67,6 @@
                                         <div class="input-group">
                                             <select name="category_id" id="category_id" class="form-control">
                                             </select>
-                                            <div class="input-group-append">
-                                                <button class="btn btn-success" onClick="addcategory()" type="button"><i
-                                                        class="fa fa-plus"></i></button>
-
-                                            </div>
                                         </div>
                                     </div>
 
@@ -118,11 +109,26 @@
 
                                     </div> -->
                                     <div class="col-lg-4 col-sm-12 form-group">
+                                        <label for="">Type</label>
+                                        <select name="type" id="type" class="form-control">
+                                            <option value="top">Top Product</option>
+                                            <option value="new">New Arrivals</option>
+                                            <option value="hot">Hot Categories</option>
+                                            <option value="whole_sale">Sasto Wholesale</option>
+                                            <option value="none">None</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Discount</strong></label>
                                         <input class="form-control" type="text" id="discount_bx" name="discount"
                                             placeholder="discount">
 
 
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 form-group">
+                                        <label><strong> Shipping Charge</strong></label>
+                                        <input class="form-control" type="text" id="shipping_charge" name="shipping _charge" value=""
+                                             placeholder="shipping Charge">
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Stock Quantity</strong></label>
@@ -131,7 +137,7 @@
 
                                     </div> -->
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> MOQ</strong></label>
                                         <input class="form-control" type="text" id="moq" name="moq" value=""
@@ -172,7 +178,7 @@
                                              placeholder="shipping Charge">
                                     </div>
 
-                                </div>
+                                </div> -->
 
                                 <div class="col-md-12 mb-3 ">
                                         <label for="">
@@ -391,45 +397,6 @@ function DataSuccessInDatabase(message){
         timer: 10000
     });
 }
-
-function addcategory(){
-    var api_token = '<?php echo $api_token; ?>';
-        $('#categoryModal').modal('show');
-    $('#create-category-form').submit(function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-            $.ajax({
-                url: "/api/createcategory",
-                headers: {
-                    Authorization: "Bearer " + api_token
-                },
-                type:"POST",
-                data:formData,
-                enctype: 'multipart/form-data',
-                cache:false,
-                contentType: false,
-                processData: false,
-                success:function(response){
-                    if(response.status == 'successful'){
-                        html_options = '';
-                        html_options += "<option value='"+response.data.id+"'>"+response.data.name+"</option>";
-                    $('#category_id').append(html_options);
-                        $('#categoryModal').modal('hide');
-                            var modal_title = "Success";
-					modal_title = modal_title.fontcolor('green');
-                    $('#popup-modal-body').append(response.message);
-                    $('#popup-modal-title').append(modal_title);
-                    $('#popup-modal-btn').addClass('btn-success');
-					$("#popupModal").modal('show');
-                    }
-                    
-                }
-            });
-            
-        });
-
-    }
-
 </script>
 
 
@@ -710,9 +677,6 @@ $(document).ready(function(){
         
         var productCreateForm = document.getElementById("product-create-form");
         var formData = new FormData(productCreateForm);
-            
-            var api_token = '<?php echo $api_token; ?>';
-            console.log(formData);
             $.ajax({
                 type:'POST',
                 url: "/api/createproduct",
@@ -721,15 +685,13 @@ $(document).ready(function(){
                 cache:false,
                 contentType: false,
                 processData: false,
-                headers: {
-                    Authorization: "Bearer " + api_token
-                },
                 success:function(response){
                     if(response.status == 'successful'){
                         
                         var validation_errors = JSON.stringify(response.message);
                         DataSuccessInDatabase(validation_errors);
-                        window.location.href = "/vendor/product/request";
+                        location.reload();
+                        // window.location.href = "/vendor/product/request";
                         // $('#validation-errors').html('');
                         // $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
                         }  else if(response.status == 'unsuccessful') {
