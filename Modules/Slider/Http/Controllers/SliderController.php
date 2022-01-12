@@ -168,15 +168,14 @@ class SliderController extends Controller
     {
         $input['imagename'] = $type . time() . '.' . $image->getClientOriginalExtension();
         $thumbPath = public_path('images/thumbnail');
-        $mainPath = public_path('images/main');
         $listingPath = public_path('images/listing');
 
         $img1 = Image::make($image->getRealPath());
-        $img1->fit(530, 300)->save($thumbPath . '/' . $input['imagename']);
+        $img1->fit(99,88)->save($thumbPath . '/' . $input['imagename']);
 
 
         $img2 = Image::make($image->getRealPath());
-        $img2->fit(99, 88)->save($listingPath . '/' . $input['imagename']);
+        $img2->save($listingPath . '/' . $input['imagename']);
 
         $destinationPath = public_path('/images');
         return $input['imagename'];
@@ -185,22 +184,13 @@ class SliderController extends Controller
     public function unlinkImage($imagename)
     {
         $thumbPath = public_path('images/thumbnail/') . $imagename;
-        $mainPath = public_path('images/main/') . $imagename;
         $listingPath = public_path('images/listing/') . $imagename;
         if (file_exists($thumbPath)) {
             unlink($thumbPath);
         }
 
-        if (file_exists($mainPath)) {
-            unlink($mainPath);
-        }
-
         if (file_exists($listingPath)) {
             unlink($listingPath);
-        }
-
-        if (file_exists($documentPath)) {
-            unlink($documentPath);
         }
         return;
     }

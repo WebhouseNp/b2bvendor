@@ -27,10 +27,6 @@ class FrontController extends Controller
         return response()->json(['data'=>$product, 'status_code'=>200]);
     }
 
-    public function getHotCategoriesProducts(){
-        $product = Product::where('type','hot')->where('status', 'active')->orderBy('created_at', 'DESC')->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
 
     // Moved to ProductApiController
     // public function getAllProducts(){

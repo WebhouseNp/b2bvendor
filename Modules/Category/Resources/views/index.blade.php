@@ -3,6 +3,7 @@
 @section('styles')
 
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endsection
 @section('content')
 <div class="page-heading">
@@ -53,7 +54,11 @@
                     <td>{{ $detail->hot_category == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->is_featured == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->does_contain_sub_category == 1 ? 'Yes' : 'No' }}</td>
-                    <td>{{ $detail->publish == 1 ? 'Published' : 'Not published' }}</td>
+                    <td>
+                        <input type="checkbox" class="CategoryStatus btn btn-success btn-sm" rel="{{$detail->id}}"
+                            data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini"
+                            @if($detail->publish == 1) checked @endif>
+                    </td>
                     <td class="text-nowrap">
                         <a title="view" class="btn btn-success btn-sm" href="{{ route('category.view',$detail->id) }}">
                             <i class="fa fa-eye"></i>
@@ -62,7 +67,6 @@
                             <i class="fa fa-edit"></i>
                         </a>
                         <button class="btn btn-danger btn-sm delete-category" onclick="return confirm('Do You want to delete this category??') && deleteCategory(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
-                        <!-- <button type="button" class="btn btn-danger delete" onclick="deleteCategory({{ $detail->id }})" class="btn btn-danger" style="display: inline;" title="delete"><i class="fa fa-trash"></i></button> -->
                     </td>
                 </tr>
                 @empty
@@ -78,8 +82,41 @@
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/jquery-ui.js')}}"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#example-table').DataTable({
+            pageLength: 15,
+        });
+    })
+</script>
+<script>
+    function FailedResponseFromDatabase(message){
+    html_error = "";
+    $.each(message, function(index, message){
+        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
+    });
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        html:html_error ,
+        confirmButtonText: 'Close',
+        timer: 10000
+    });
+}
+function DataSuccessInDatabase(message){
+    Swal.fire({
+        // position: 'top-end',
+        type: 'success',
+        title: 'Done',
+        html: message ,
+        confirmButtonText: 'Close',
+        timer: 10000
+    });
+}
+</script>
 <script type="text/javascript">
     $(function() {
     $("#sortable").sortable({
@@ -115,7 +152,7 @@
     }
 
     // load the categories
-    categories();
+    // categories();
 });
 
 function deleteCategory(el,id) {
@@ -135,5 +172,42 @@ function deleteCategory(el,id) {
      }); 
  } 
 
-  </script>
+ //category publish/unpublish
+$(".CategoryStatus").change(function(){
+    var category_id = $(this).attr('rel');
+        if($(this).prop("checked")==true){
+            $.ajax({
+                method:"POST",
+                url : '/api/category/'+ category_id +'/publish',
+                data : {
+                _method: "put"
+                },
+                success : function(response){
+                    if (response.status == 'false' ) {
+                        FailedResponseFromDatabase(response.message);
+                    }
+                    if (response.status == 'true') {
+                        DataSuccessInDatabase(response.message);
+                    }
+                }
+            });
+        }else{
+                $.ajax({
+                    method:"POST",
+                    url : '/api/category/'+ category_id +'/unpublish',
+                    data : {
+                        _method: "delete"
+                    },
+                    success : function(response){
+                        if (response.status == 'false' ) {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
+                    }
+                });
+            }
+});
+</script>
 @endsection
