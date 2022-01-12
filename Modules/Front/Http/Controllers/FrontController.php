@@ -27,26 +27,16 @@ class FrontController extends Controller
         return response()->json(['data'=>$product, 'status_code'=>200]);
     }
 
-    public function getTopProducts(){
-        $product = Product::where('type','top')->where('status', 'active')->orderBy('created_at', 'DESC')->take(4)->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
-
-    public function getNewArrivalProducts(){
-        $product = Product::where('type','new')->where('status', 'active')->orderBy('created_at', 'DESC')->take(4)->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
-
     public function getHotCategoriesProducts(){
         $product = Product::where('type','hot')->where('status', 'active')->orderBy('created_at', 'DESC')->get();
         return response()->json(['data'=>$product, 'status_code'=>200]);
     }
 
     // Moved to ProductApiController
-    public function getAllProducts(){
-        $product = Product::where('status', 'active')->orderBy('created_at', 'DESC')->with(['category','ranges'])->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
+    // public function getAllProducts(){
+    //     $product = Product::where('status', 'active')->orderBy('created_at', 'DESC')->with(['category','ranges'])->get();
+    //     return response()->json(['data'=>$product, 'status_code'=>200]);
+    // }
 
     public function getVendorProducts(Request $request, $username){
         $user = User::where('username',$username)->with('vendor','products')->first();
