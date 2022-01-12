@@ -26,30 +26,12 @@ class SliderController extends Controller
         return view('slider::index',compact('sliders'));
     }
 
-    public function allSliders(){
-        $sliders = $this->slider->published()->orderBy('id', 'DESC')->get();
-        if($sliders->isNotEmpty()){
-            return response()->json(['status' => 'successful', 'data' => $sliders],200);
-        } else {
-            return response()->json(['status' => 'unsuccessful', "message" => "Sliders not found"],404);
-        }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
     public function create()
     {
         $slider_info = null;
         return view('slider::create',compact('slider_info'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
