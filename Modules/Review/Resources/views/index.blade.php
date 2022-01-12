@@ -1,26 +1,14 @@
 @extends('layouts.admin')
-@push('styles')
+@section('styles')
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
-
-<style media="screen">
-    .adjust-delete-button {
-        margin-top: -28px;
-        margin-left: 37px;
-    }
-</style>
-@endpush
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+@endsection
 @section('content')
-
-<div class="page-heading">
-    @include('admin.section.notifications')
-</div>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Reviews</div>
         </div>
-
-
         <div class="ibox-body">
             <table id="example-table" class="table table-striped table-bordered table-hover" cellspacing="0"
                 width="100%">
@@ -31,7 +19,6 @@
                         <th>Rate</th>
                         <th>Review</th>
                         <th>Product</th>
-                        <th>Status</th>
                         <th>Change Status</th>
                     </tr>
                 </thead>
@@ -46,11 +33,10 @@
                         <td>{{$data->rate}}</td>
                         <td>{{$data->reviews}}</td>
                         <td>{{$data->product->title}}</td>
-                        <td>{{$data->status == 'publish' ? 'Published' : 'Not Published' }}</td>
                         <td>
-                            <span class="btn btn-rounded btn-sm {{orderProccess($data->status) }} changeStatus"
-                                data-status="{{$data->status}}" data-review_id="{{$data->id}}"
-                                style="cursor: pointer;">{{$data->status == 'publish' ? 'Published' : 'Not Published' }}</span>
+                            <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ReviewStatus btn btn-success btn-sm"  rel="{{$data->id}}"
+                             data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini"
+                            @if($data->status == 'publish') checked @endif>
                         </td>
                         
                     </tr>
@@ -73,6 +59,7 @@
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
@@ -106,83 +93,85 @@ function DataSuccessInDatabase(message){
     });
 }
 </script>
-
-
-<script >
-  	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-
-       
-        $('body').on('click', '.changeStatus' ,function(e){
-            var review_id = $(this).data('review_id');
-            var status = $(this).data('status');
-            if(status == 'unpublish'){
-                 $.ajax({
-                url:'/api/reviews/'+ review_id +'/publish',
+<script>
+  $(function() {
+    $('#toggle-event').change(function() {
+        var review_id = $(this).attr('rel');
+        if($(this).prop("checked")==true){
+            $.ajax({
                 method:"POST",
-                data:{
-                    status : status,
-                    _token: "{{csrf_token()}}",
-                    _method: "put"
+                url : '/api/reviews/'+ review_id +'/publish',
+                data : {
+                _method: "put"
                 },
                 success : function(response){
                     if (response.status == 'false' ) {
                         FailedResponseFromDatabase(response.message);
                     }
                     if (response.status == 'true') {
-                        var replace_html = '<span class="btn btn-rounded btn-sm {{orderProccess('+publish+') }} changeStatus" data-status = "'+status+'" data-review_id = "'+review_id+'">published</span>'
-                        $('.changeStatus').html(replace_html);
                         DataSuccessInDatabase(response.message);
-                        location.reload();
                     }
                 }
-                })
-            } else {
+            });
+        }else{
                 $.ajax({
-                url:'/api/reviews/'+ review_id +'/unpublish',
-                method:"POST",
-                data:{
-                    status : status,
-                    _token: "{{csrf_token()}}",
-                    _method: "delete"
-                },
-                success : function(response){
-                    if (response.status == 'false' ) {
-                        FailedResponseFromDatabase(response.message);
+                    method:"POST",
+                    url : '/api/reviews/'+ review_id +'/unpublish',
+                    data : {
+                        _method: "delete"
+                    },
+                    success : function(response){
+                        if (response.status == 'false' ) {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
                     }
-                    if (response.status == 'true') {
-                        var replace_html = '<span class="btn btn-rounded btn-sm {{orderProccess('+unpublish+') }} changeStatus" data-review_id = "'+review_id+'">Unpublished</span>'
-                        $('.changeStatus').html(replace_html);
-                        DataSuccessInDatabase(response.message);
-                        location.reload();
-                    }
-                }
-                })
+                });
             }
-            
-        // })
+    })
+  })
+</script>
 
-        return;
-        })
-        
-    
-       
-       
-    });
-
-  </script>
+<script>
+//       //Review publish/unpublish
+// $(".ReviewStatus").change(function(){
+//     var review_id = $(this).attr('rel');
+//         if($(this).prop("checked")==true){
+//             $.ajax({
+//                 method:"POST",
+//                 url : '/api/reviews/'+ review_id +'/publish',
+//                 data : {
+//                 _method: "put"
+//                 },
+//                 success : function(response){
+//                     if (response.status == 'false' ) {
+//                         FailedResponseFromDatabase(response.message);
+//                     }
+//                     if (response.status == 'true') {
+//                         DataSuccessInDatabase(response.message);
+//                     }
+//                 }
+//             });
+//         }else{
+//                 $.ajax({
+//                     method:"POST",
+//                     url : '/api/reviews/'+ review_id +'/unpublish',
+//                     data : {
+//                         _method: "delete"
+//                     },
+//                     success : function(response){
+//                         if (response.status == 'false' ) {
+//                             FailedResponseFromDatabase(response.message);
+//                         }
+//                         if (response.status == 'true') {
+//                             DataSuccessInDatabase(response.message);
+//                         }
+//                     }
+//                 });
+//             }
+// });
+</script>
 
 @endsection
