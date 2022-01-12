@@ -6,8 +6,6 @@
                         <th>Image</th>
                         <th>Title</th>
                         <th>User</th>
-                        <!-- <th>Categories</th> -->
-                        <!-- <th>Sub Categories</th> -->
                         <th>Images</th>
                         <!-- <th>Price</th> -->
                         <th> Discount</th>
@@ -32,12 +30,6 @@
 			        </td>
                     <td>{{$detail->title}}</td>
                     <td>{{$detail->user->name}}</td>
-                    <!-- <td>{{$detail->category->name}}</td> -->
-                    <!-- <td>
-                    @foreach($detail->category->subcategory as $subcategory)
-                        {{$subcategory->name}}
-                    @endforeach
-                    </td> -->
                     <td style="text-align: center">
                         <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i
                                 class="fa fa-edit"></i></a>
