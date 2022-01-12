@@ -47,4 +47,9 @@ class Category extends Model
     {
         return $this->hasMany(CategoryAttribute::class);
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('publish', 1);
+    }
 }
