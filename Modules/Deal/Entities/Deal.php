@@ -19,6 +19,8 @@ class Deal extends Model
   protected $keyType = 'uuid';
   protected $guarded = ['id', 'created_at', 'updated_at'];
 
+  protected $dates = ['expire_at'];
+
   public function totalPrice()
   {
     return $this->dealProducts->sum(function ($product) {
