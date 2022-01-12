@@ -12,7 +12,16 @@ class CategoryApiController extends Controller
     {
         $categories = Category::with('subcategory:id,name,slug,category_id')
             ->published()
-            ->get();
+            ->get()->map(function($category) {
+                return [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'slug' => $category->slug,
+                    'image_url' => $category->imageUrl(),
+                    'is_featured' => $category->is_featured,
+                    'subcategory' => $category->subcategory
+                ];
+            });
 
         return response()->json($categories, 200);
     }

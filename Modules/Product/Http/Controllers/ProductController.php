@@ -152,7 +152,10 @@ class ProductController extends Controller
 
             $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
             $value['essential'] = is_null($request->essential) ? 0 : 1;
-            if(checkRole(auth()->user()->id) == 'vendor'){
+            $value['user_id'] = $request->user_id;
+            $user = User::where('id',$value['user_id'])->first();
+            $role = checkRole($user->id);
+            if($role == 'vendor'){
                 $value['isApproved'] = 'not_approved';
             } else {
                 $value['isApproved'] = 'approved';
