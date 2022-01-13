@@ -54,6 +54,17 @@ class VendorController extends Controller
 
       }
 
+      public function updateVendorDesc(Request $request, $id){
+         $request->validate([
+           'description' => 'nullable',
+        ]);
+        $oldRecord = Vendor::findorfail($id);
+        $formInput = $request->except(['_token']);
+        $oldRecord->update($formInput);
+        return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
+
+     }
+
       public function imageProcessing($image)
       {
         $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
