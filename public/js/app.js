@@ -3030,79 +3030,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3119,7 +3046,6 @@ __webpack_require__.r(__webpack_exports__);
       company_name: "",
       representative_name: '',
       company_address: '',
-      product_category: '',
       country: '',
       name_on_card: '',
       id_card_number: '',
@@ -3137,9 +3063,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   validations: {
     shop_name: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
-      minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(6),
-      maxLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.maxLength)(18)
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     company_name: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
@@ -3148,9 +3072,6 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     company_address: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    product_category: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     country: {
@@ -3169,9 +3090,6 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     mobile_number: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    percentage: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     bank_name: {
@@ -3211,7 +3129,6 @@ __webpack_require__.r(__webpack_exports__);
         email_address: this.email_address,
         phone_number: this.phone_number,
         mobile_number: this.mobile_number,
-        percentage: this.percentage,
         bank_name: this.bank_name,
         account_number: this.account_number,
         account_holber_name: this.account_holber_name,
@@ -4020,7 +3937,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 3;
                 _this2.loadingCreateDeal = true;
                 _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("http://127.0.0.1:8000/api/deal/storeproduct", {
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deal/storeproduct", {
                   vendor_id: _this2.auth,
                   customer_id: _this2.customer.id,
                   expire_at: _this2.expire_at,
@@ -34053,30 +33970,6 @@ var render = function () {
                               ),
                             ])
                           : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.$v.shop_name.minLength
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    You must have at least\n                    " +
-                                  _vm._s(
-                                    _vm.$v.shop_name.$params.minLength.min
-                                  ) +
-                                  " letters.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.$v.shop_name.maxLength
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    You must not have greater then\n                    " +
-                                  _vm._s(
-                                    _vm.$v.shop_name.$params.maxLength.min
-                                  ) +
-                                  " letters.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group col-md-6" }, [
@@ -34263,85 +34156,6 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Product Category"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model.trim",
-                                value: _vm.$v.product_category.$model,
-                                expression: "$v.product_category.$model",
-                                modifiers: { trim: true },
-                              },
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.validationStatus(
-                                _vm.$v.product_category
-                              ),
-                            },
-                            attrs: { id: "" },
-                            on: {
-                              change: function ($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function (o) {
-                                    return o.selected
-                                  })
-                                  .map(function (o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.$v.product_category,
-                                  "$model",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
-                            },
-                          },
-                          [
-                            _c(
-                              "option",
-                              { attrs: { value: "", disabled: "" } },
-                              [_vm._v("Select product category")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "local" } }, [
-                              _vm._v("Local"),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "option",
-                              { attrs: { value: "international" } },
-                              [_vm._v("International")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        !_vm.$v.product_category.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    Product Category field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
                       _c("div", { staticClass: "form-group col-md-6" }, [
                         _c("label", { attrs: { for: "" } }, [
                           _vm._v("Country"),
@@ -34733,75 +34547,6 @@ var render = function () {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-12 mb-4" }, [
                     _c("h4", { staticClass: "text-center general-subtitle" }, [
-                      _vm._v("Comission Rate"),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Percentage"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.percentage.$model,
-                              expression: "$v.percentage.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.percentage
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your percentage",
-                          },
-                          domProps: { value: _vm.$v.percentage.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.percentage,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.percentage.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Percentage field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 mb-4" }, [
-                    _c("h4", { staticClass: "text-center general-subtitle" }, [
                       _vm._v(
                         "\n                Payment Information\n              "
                       ),
@@ -35180,7 +34925,7 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _vm._m(0),
                 ]
               ),
             ]),
@@ -35211,24 +34956,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-md-6" }, [
-      _c("label", { attrs: { for: "" } }, [_vm._v("Category Comission")]),
-      _c("img", {
-        staticClass: "img-asterik",
-        attrs: { src: "/images/asterik-20.png", alt: "asterik-image" },
-      }),
-      _vm._v(" "),
-      _c("select", { staticClass: "form-control", attrs: { id: "" } }, [
-        _c("option", [_vm._v("Product (2%)")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Service (10%)")]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

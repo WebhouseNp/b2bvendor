@@ -16,8 +16,6 @@ class ProductImage extends Model
 
     public function imageUrl()
     {
-        return "https://picsum.photos/400";
-
-        return asset('uploads/product/other-image/' . $this->image);
+        return asset('uploads/product/other-image/' . $this->images);
     }
 }

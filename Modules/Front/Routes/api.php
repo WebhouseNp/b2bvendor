@@ -21,14 +21,17 @@ Route::middleware('auth:api')->get('/front', function (Request $request) {
 // Products
 Route::get('/products', 'ProductApiController@index');
 Route::get('/products/{product:slug}', 'ProductApiController@show');
+Route::get('/p/new-arrivals', 'ProductApiController@getNewArrivals');
+Route::get('/p/top-products', 'ProductApiController@getTopProducts');
+
+Route::get('/products/{product_id}/images', 'ProductImageApiController@index');
 
 Route::get('/vendors', 'VendorApiController@index');
 Route::get('/vendors/{vendor}', 'VendorApiController@show');
+Route::get('/v/latest-suppliers', 'VendorApiController@getLatestVendors');
 
 Route::get('/getsastowholesaleproducts', 'FrontController@getSastoWholeSaleProducts');
-Route::get('/gettopproducts', 'FrontController@getTopProducts');
-Route::get('/getnewarrivalproducts', 'FrontController@getNewArrivalProducts');
-Route::get('/gethotcategoriesproducts', 'FrontController@getHotCategoriesProducts');
+
 Route::get('/getallproducts', 'FrontController@getAllProducts');
 Route::get('/getcategoryproducts/{categoryslug}', 'FrontController@getCategoryProducts');
 Route::get('/getsubcategoryproducts/{slug}', 'FrontController@getSubcategoryProducts');
@@ -39,9 +42,9 @@ Route::get('vendorsubcategories/{username}/{slug}', 'FrontController@getVendorSu
 Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVendorCategoryProducts');
 
 Route::get('/suppliers', 'SearchController@index');
-Route::get('allvendor', 'FrontController@getVendors');
 Route::get('allcategories', 'FrontController@allcategories'); // Not in use since we were pulling a lot more than we need
 Route::get('megamenu', 'CategoryApiController@megamenu');
+Route::get('hot-categories', 'CategoryApiController@hotCategories');
 
 Route::post('quotation', 'QuotationController@store')->name('quotation.store');
 Route::post('product-search', 'SearchController@productSearch')->name('product.search');

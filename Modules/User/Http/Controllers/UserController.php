@@ -30,10 +30,7 @@ class UserController extends Controller
     return view('user::index');
   }
 
-  /**
-   * Show the form for creating a new resource.
-   * @return Renderable
-   */
+  
   public function create()
   {
     return view('user::create');
@@ -259,11 +256,11 @@ class UserController extends Controller
   {
     try {
       $validator = Validator::make($request->all(), [
-        'email' => 'required',
+        'email' => 'required|email|exists:users',
       ]);
 
       if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
         exit;
       }
       $details = User::where('email', $request->email)->first();
@@ -278,7 +275,7 @@ class UserController extends Controller
         Password::insert($savedata);
         //sending email link
         $data = ['email' => $request->email, 'token' => $token];
-        Mail::send('email.password-reset', $data, function ($message) use ($data) {
+        Mail::send('email.user-password-reset', $data, function ($message) use ($data) {
           $message->to($data['email'])->from(env('MAIL_FROM_ADDRESS'));
           $message->subject('password reset link');
         });
@@ -304,7 +301,7 @@ class UserController extends Controller
       ]);
 
       if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
         exit;
       }
       $details = Password::where('token', $request->token)->first();
@@ -327,86 +324,21 @@ class UserController extends Controller
 
   public function changePassword(Request $request)
   {
-    try {
-      $validator = Validator::make($request->all(), [
+      $request->validate([
         'old_password' => 'required',
         'new_password' => 'required|min:6',
         'new_confirm_password' => 'required|min:6|same:new_password',
       ]);
-
-      if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-        exit;
+      $auth_user = auth()->user();
+      if (!Hash::check($request->old_password, auth()->user()->password)) {
+        return response([
+          'message' => 'Password does not match'
+        ], 403);
       }
-      $auth_user = User::find(auth()->user()->id);
-      if (Hash::check($request->old_password, auth()->user()->password)) {
-
         $user = $auth_user->update(['password' => Hash::make($request->new_password)]);
         return response()->json([
           "message" => "Password has been changed",
         ], 200);
-      }
-    } catch (\Exception $exception) {
-      return response([
-        'message' => $exception->getMessage()
-      ], 400);
-    }
   }
-
-
-  /**
-   * Store a newly created resource in storage.
-   * @param Request $request
-   * @return Renderable
-   */
-  public function store(Request $request)
-  {
-    //
-  }
-
-  /**
-   * Show the specified resource.
-   * @param int $id
-   * @return Renderable
-   */
-  public function show($id)
-  {
-    return view('user::show');
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   * @param int $id
-   * @return Renderable
-   */
-  public function edit($id)
-  {
-    return view('user::edit');
-  }
-
-  public function vendors()
-  {
-    return 'hi';
-  }
-
-  /**
-   * Update the specified resource in storage.
-   * @param Request $request
-   * @param int $id
-   * @return Renderable
-   */
-  public function update(Request $request, $id)
-  {
-    //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   * @param int $id
-   * @return Renderable
-   */
-  public function destroy($id)
-  {
-    //
-  }
+  
 }

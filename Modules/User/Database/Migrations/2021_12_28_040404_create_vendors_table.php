@@ -33,6 +33,7 @@ class CreateVendorsTable extends Migration
             $table->string('company_address')->nullable();
             $table->string('product_category')->nullable();
             $table->string('image')->nullable();
+            $table->text('description')->nullable();
 
             //country
             $table->unsignedBigInteger('country_id')->nullable();

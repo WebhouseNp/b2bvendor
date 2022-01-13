@@ -53,9 +53,9 @@ class Product extends Model
         $minPrice = $this->ranges->min('price');
         $maxPrice = $this->ranges->max('price');
         if ($minPrice == $maxPrice) {
-            return 'Rs. ' . $minPrice;
+            return 'Rs. ' . number_format(floatval($minPrice));
         }
-        return 'Rs. ' . $minPrice . ' - Rs. ' . $maxPrice;
+        return 'Rs. ' . number_format(floatval($minPrice)) . ' - ' . number_format(floatVal($maxPrice));
     }
 
     public function category()
@@ -131,6 +131,26 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class, 'product_id');
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('isApproved', 'approved');
+    }
+
+    public function scopeNotapproved($query)
+    {
+        return $query->where('isApproved', 'not_approved');
+    }
+
+    public function scopeRejected($query)
+    {
+        return $query->where('isApproved', 'rejected');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
     }
 
     public static function checkUserRole($user_id)

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Slider\Http\Controllers\SliderApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,4 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/slider', function (Request $request) {
     return $request->user();
 });
-Route::get('allsliders', 'SliderController@allSliders')->name('all.slider');
+Route::get('sliders', [SliderApiController::class,'index'])->name('api.sliders');

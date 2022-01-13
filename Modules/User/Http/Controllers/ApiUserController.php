@@ -109,6 +109,9 @@ class ApiUserController extends Controller
               ])) {
                   $user = User::where('email', $request->email)->first();
                     $token = auth()->user()->createToken('authToken')->accessToken;
+                    $user->api_token = $token;
+                    $user->save();
+
                   if ($user->verified == 0 ) {
                     session()->flush();
                     return response()->json([
@@ -304,7 +307,7 @@ class ApiUserController extends Controller
          ]);
         
         if($validator->fails()) {
-          return response()->json(['status' => 'unsuccessful','status_code' => 422, 'data' => $validator->messages()],422);
+          return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
           exit;
       }
           $details = User::where('email', $request->email)->first();

@@ -36,8 +36,10 @@ Route::prefix('vendor')->middleware(['auth','Vendor'])->group(function(){
 Route::get('profile', 'VendorController@profile')->name('vendor.profile');
 Route::get('editprofile/{id}', 'VendorController@editVendorProfile')->name('editVendorProfile');
 Route::post('updateprofile/{id}', 'VendorController@updateVendorProfile')->name('updateVendorProfile');
+
 Route::get('report', 'VendorController@getVendorPaymentReport')->name('getVendorPaymentReport');
 });
+Route::post('updatevendordesc/{id}', 'VendorController@updateVendorDesc')->name('updateVendorDesc');
 
 
 Route::group([

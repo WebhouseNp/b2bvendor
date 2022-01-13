@@ -8,122 +8,30 @@
 
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
 @endsection
-<style>
-    .outofstock {
-  background-color: #f3083b;
-}
-    </style>
 @section('content')
 
-<div class="page-heading">
-    <h1 class="page-title"> Products</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href=""><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All Products</li>
-    </ol>
-    @include('admin.section.notifications')
-</div>
 <div class="page-content fade-in-up">
-    <div class="ibox">
+<div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">All Products</div>
+            <div class="ibox-title">All Approved Products</div>
+            <div>
+                <a class="btn btn-info btn-md" href="{{route('product.create')}}">New Product</a>
+            </div>
         </div>
-
-
-        <div class="ibox-body">
-        <table class="table table-bordered table-hover" id="example-table" cellspacing="0"
-                width="100%">
-                <thead>
-                    <tr class="border-0">
-                        <th>SN</th>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>User</th>
-                        <!-- <th>Categories</th>
-                        <th>Sub Categories</th> -->
-                        <th>Stock Quantity</th>
-                        <th>Product Images</th>
-                        <th>Price</th>
-                        <th> Discount</th>
-                        
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                
-                <tbody id="sortable">
-                @forelse ($products as $key=>$detail)
-
-                <tr>
-                    <td>{{$key+1}}</td>
-                    <td>
-                        @if($detail->image)
-                            <img src="{{asset('images/listing/'.$detail->image)}}">
-                        @else
-                        <p>N/A</p>
-                        @endif
-			        </td>
-                    <td>{{$detail->title}}</td>
-                    <td>{{$detail->user->name}}</td>
-                    <!-- <td>{{$detail->category->name}}</td>
-                    <td>
-                    @foreach($detail->category->subcategory as $subcategory)
-                        {{$subcategory->name}}
-                    @endforeach
-                    </td> -->
-                    
-                    <td>{{$detail->quantity}}</td>
-                    <td>
-                                <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary"><i
-                                        class="fa fa-edit"></i></a>
-                            </td>
-                    
-                    <td>NPR. {{ number_format($detail->price)}}</td>
-                    <td>
-                        @if($detail->discount)
-                        {{  $detail->discount}}
-                        @endif
-    
-                    </td>
-
-                    <td>{{$detail->status=='active'? 'Active':'Inactive'}}</td>
-                    <!-- <td>
-                    <button class="btn btn-primary delete" onclick="approveProduct({{ $detail->id }})"  class="btn btn-primary" style="display:inline"><i class="fa fa-check"></i></button>
-                    <button class="btn btn-danger delete" onclick="cancelProduct({{ $detail->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-remove"></i></button>
-                    <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$detail->id)}}" target="_blank">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                    </td> -->
-                    <td>
-                        <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$detail->id)}}">
-                            <i class="fa fa-eye"></i>
-                        </a> 
-
-                        <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$detail->id)}}">
-                            <i class="fa fa-edit"></i>
-                        </a> 
-                        <button class="btn btn-danger delete" onclick="deleteProduct(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                @empty
-                    <tr>
-                        <td colspan="8">No Products Yet </td>
-                    </tr>
-                @endforelse
-
-
-
-                </tbody>
-
-            </table>
+        <div class="ibox-body" id="validation-errors" >
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
+            <div class="px-4">
+                <form action="" class="form-inline" method="GET">
+                    <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        <div class="ibox-body" id="appendUser">
+        @include('product::productsTable')
         </div>
     </div>
-
 </div>
-<!-- Modal -->
-@include('dashboard::admin.modals.approvalnotemodal')
+</div>
 @endsection
 
 @section('scripts')
@@ -156,23 +64,6 @@ function DataSuccessInDatabase(message){
 }
 </script>
 <script >
-  	
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-       
-    });
-
-    $(function () {
-        $("#example1").DataTable();
-    });
     function deleteProduct(id) {
         var api_token = '<?php echo $api_token; ?>';
         var message=confirm('Do You want to delete this product??');

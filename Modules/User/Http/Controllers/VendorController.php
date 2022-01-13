@@ -26,9 +26,9 @@ class VendorController extends Controller
      public function profile(){
          $id = Auth::user()->id;
          $vendor = User::where('id',Auth::user()->id)->with('vendor','products','vendor_payments')->first();
-         $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
-         $paid = $vendor->vendor_payments->sum('amount');
-        return view('user::vendor-profile', compact('id','vendor','order_list','paid'));
+         // $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
+         // $paid = $vendor->vendor_payments->sum('amount');
+        return view('user::vendor-profile', compact('id','vendor'));
      }
 
      public function editVendorProfile(Request $request, $id){
@@ -53,6 +53,17 @@ class VendorController extends Controller
          return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
 
       }
+
+      public function updateVendorDesc(Request $request, $id){
+         $request->validate([
+           'description' => 'nullable',
+        ]);
+        $oldRecord = Vendor::findorfail($id);
+        $formInput = $request->except(['_token']);
+        $oldRecord->update($formInput);
+        return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
+
+     }
 
       public function imageProcessing($image)
       {

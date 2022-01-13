@@ -27,26 +27,12 @@ class FrontController extends Controller
         return response()->json(['data'=>$product, 'status_code'=>200]);
     }
 
-    public function getTopProducts(){
-        $product = Product::where('type','top')->where('status', 'active')->orderBy('created_at', 'DESC')->take(4)->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
-
-    public function getNewArrivalProducts(){
-        $product = Product::where('type','new')->where('status', 'active')->orderBy('created_at', 'DESC')->take(4)->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
-
-    public function getHotCategoriesProducts(){
-        $product = Product::where('type','hot')->where('status', 'active')->orderBy('created_at', 'DESC')->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
 
     // Moved to ProductApiController
-    public function getAllProducts(){
-        $product = Product::where('status', 'active')->orderBy('created_at', 'DESC')->with(['category','ranges'])->get();
-        return response()->json(['data'=>$product, 'status_code'=>200]);
-    }
+    // public function getAllProducts(){
+    //     $product = Product::where('status', 'active')->orderBy('created_at', 'DESC')->with(['category','ranges'])->get();
+    //     return response()->json(['data'=>$product, 'status_code'=>200]);
+    // }
 
     public function getVendorProducts(Request $request, $username){
         $user = User::where('username',$username)->with('vendor','products')->first();
@@ -100,16 +86,7 @@ class FrontController extends Controller
         return response()->json(['data'=>$allcategories, 'status_code'=>200]);
     }
 
-    public function getVendors(){
-        $role = Role::where('name','vendor')->with('users')->first();
-        $role_user = Role_user::where('role_id',$role->id)->pluck('user_id');
-        $allvendors = User::whereIn('id',$role_user)->where('publish',1)->where('vendor_type','approved')->with(['vendor','products'])->orderBy('created_at','desc')->get();
-        return response()->json(['data'=>$allvendors, 'status_code'=>200]);
-    }
-
-
-
-    
+  
 
     public function index()
     {

@@ -23,19 +23,21 @@
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Deals</div>
+            <div>
+                <a href="{{ route('deals.create') }}" class="btn btn-success">Create New</a>
+            </div>
         </div>
 
-
         <div class="ibox-body">
-            <table id="example-table" class="table table-striped table-bordered table-hover" cellspacing="0"
+            <table class="table table-striped table-bordered table-hover" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>
                         <th>SN</th>
-                        <th>Deal Expire At</th>
-                        <th>Vendor</th>
                         <th>Customer</th>
-                        <th>Generate Link</th>
+                        <th>Vendor</th>
+                        <th>Deal Expire At</th>
+                        <th>Link</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -43,19 +45,22 @@
 
                     @if($deals->count())
                     @foreach($deals as $data)
-
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->expire_at->toDateTimeString() }}</td>
-                        <td>{{@$data->vendor->name}}</td>
                         <td>{{@$data->user->name}}</td>
+                        <td>{{@$data->vendor->name}}</td>
+                        <td>{{ $data->expire_at->toDateTimeString() }}</td>
                         <td>
+                            <button type="button" class="btn btn-link ml-0 pl-0" onclick="copyLink(this)" data-link="{{ config('constants.customer_app_url') . '/deals/' . $data->id }}" title="Click to copy">
+                                <i class="fa fa-clone"></i>
+                                <span>Click to copy</span>
+                            </button>
                         </td>
                         <td>
                             <a title="Edit" class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}">
                                 <i class="fa fa-edit"></i>
                             </a> 
-                            <button class="btn btn-danger delete" onclick="return confirm('Do You want to delete this product??') && deleteDeal(this,'{{ $data->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger btn-sm delete" onclick="return confirm('Do You want to delete this product??') && deleteDeal(this,'{{ $data->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                     @endforeach
@@ -105,25 +110,26 @@ function DataSuccessInDatabase(message){
 }
 </script>
 <script>
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-       
-    });
-
-
-    $(function() {
-        $('#example-table').DataTable({
-            pageLength: 25,
+    function copyLink(el)
+    {
+        navigator.clipboard.writeText(el.dataset.link).then(function () {
+            Swal.fire({
+                type: 'success',
+                title: 'Linked copied',
+                toast: true,
+                position: 'top-end',
+                timer: 3000
+            })
+        }, function () {
+            console.log('Failure to copy. Check permissions for clipboard');
+            Swal.fire({
+                type: 'error',
+                title: 'Sorry link could not be copied',
+                toast: true,
+                position: 'top-end'
+            })
         });
-    })
+    }
 
     
     function deleteDeal(el,id) {

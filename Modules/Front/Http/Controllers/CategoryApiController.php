@@ -11,7 +11,25 @@ class CategoryApiController extends Controller
     public function megamenu()
     {
         $categories = Category::with('subcategory:id,name,slug,category_id')
-            ->where('publish', 1)
+            ->published()
+            ->get()->map(function($category) {
+                return [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'slug' => $category->slug,
+                    'image_url' => $category->imageUrl(),
+                    'is_featured' => $category->is_featured,
+                    'subcategory' => $category->subcategory
+                ];
+            });
+
+        return response()->json($categories, 200);
+    }
+
+    public function hotCategories()
+    {
+        $categories = Category::with('subcategory:id,name,slug,category_id')
+            ->where('hot_category', 1)->published()
             ->get();
 
         return response()->json($categories, 200);

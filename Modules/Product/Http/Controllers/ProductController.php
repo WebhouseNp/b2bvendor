@@ -27,19 +27,17 @@ use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
     public function index()
     {
-        return view('product::index');
+        $details = Product::when(request()->filled('search'), function($query) {
+            return $query->where('title', 'like', '%'. request('search') . "%");
+            })
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+        return view('product::index',compact('details'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
     public function create()
     {
         $attributes = Productattribute::where('publish', 1)->get();
@@ -52,30 +50,6 @@ class ProductController extends Controller
         return response()->json(['data' => $categories, 'status_code' => 200]);
     }
 
-    public function getproductattributes(Request $request)
-    {
-
-        if ($request->cat_id) {
-            $attributes = [];
-            // $attributes = Productattribute::where('category_id',$request->cat_id)->whereNull('subcategory_id')->where('publish',1)->get();
-            $category  = Category::where('id', $request->cat_id)->where('publish', 1)->first();
-            $catAttributes = CategoryAttribute::where('category_id', $category->id)->get();
-            foreach ($catAttributes as $att) {
-                $attributes[] = ProductAttribute::where('id', $att->attribute_id)->where('publish', 1)->first();
-            }
-        }
-        if ($request->sub_cat_id) {
-            $attributes = [];
-            $subcategory  = Subcategory::where('id', $request->sub_cat_id)->where('publish', 1)->first();
-            $catAttributes = CategoryAttribute::where('subcategory_id', $subcategory->id)->get();
-            foreach ($catAttributes as $att) {
-                $attributes[] = Productattribute::where('id', $att->attribute_id)->where('publish', 1)->first();
-            }
-        }
-        $html = View('product::product-attribute', compact('attributes'))->render();
-        return response()->json(['data' => $attributes, 'html' => $html, 'status_code' => 200]);
-    }
-
     public function getoffers()
     {
         $offers = Offer::where('publish', 1)->get();
@@ -86,13 +60,6 @@ class ProductController extends Controller
     {
         $brands = Brand::where('publish', 1)->get();
         return response()->json(['data' => $brands, 'status_code' => 200]);
-    }
-
-    public function allproducts()
-    {
-        $details = Product::where('status', 1)->where('isApproved','approved')->with(['category', 'brand', 'offer','user'])->get();
-        $view = \View::make("product::productsTable")->with('details', $details)->render();
-        return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
     }
 
     public function approveproduct(Request $request){
@@ -122,7 +89,6 @@ class ProductController extends Controller
     }
 
     public function nonapprovalnote(Request $request){
-        // dd($request->all());
         try {
             $product = Product::findorFail($request->id);
             $product['isApproved'] = 'rejected';
@@ -173,25 +139,22 @@ class ProductController extends Controller
                 'meta_description'  => 'nullable|string',
                 'keyword'           => 'nullable|string|max:200',
                 'meta_keyphrase'    => 'nullable|string|max:200',
-                // "variant"    => "required|array",
-                // "variant[price].*"  => "required|numeric",
                 // 'status'            => 'required|in:active,inactive',
                 'image' =>  'mimes:jpg,jpeg,png|max:3000',
 
             ]);
             if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
                 exit;
             }
+            DB::beginTransaction();
 
             $value = $request->except('image', 'best_seller', 'essential');
 
             $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
             $value['essential'] = is_null($request->essential) ? 0 : 1;
-            $value['user_id'] = $request->user_id;
-            $user = User::where('id',$value['user_id'])->first();
-            $role = checkRole($user->id);
-            if($role == 'vendor'){
+            if(checkRole(auth()->user()->id) == 'vendor')
+            {
                 $value['isApproved'] = 'not_approved';
             } else {
                 $value['isApproved'] = 'approved';
@@ -215,46 +178,17 @@ class ProductController extends Controller
                 }
             }
             $user_info = [
-                'name'  => $user->name,
+                'name'  => auth()->user()->name,
             ];
-            if($role == 'vendor'){
-                Mail::send('email.productapproval',$user_info,  function ($message) use ($user_info, $user){
-                    $message->to($user->email,  $user->name)
+            if(checkRole(auth()->user()->id) == 'vendor'){
+                Mail::send('email.productapproval',$user_info,  function ($message) use ($user_info){
+                    $message->to(auth()->user()->email,  auth()->user()->name)
     
-                        ->subject('Product submitted for admin approval ' . $user->name);
+                        ->subject('Product submitted for admin approval ' . auth()->user()->name);
                     $message->from('info@sastowholesale.com', 'Admin');
                 });
             }
-            
-
-            // $req = $request->except('_token','title','category_id','subcategory_id','offer_id','brand_id','price','discount','quantity','best_seller','type','product_type','highlight','description','meta_title','meta_description','keyword','meta_keyphrase','status','image');
-            // if ($request->has('product_type')) {
-            //     if ($request->has('variant')) {
-            //         $variant_sku = $request->variant['sku'];
-            //         $variant_price = $request->variant['price'];
-            //         $variant_discount_price = $request->variant['discount_price'];
-            //         $variant_stock = $request->variant['stock'];
-            //         for ($i = 1; $i < count($variant_sku); $i++) {
-            //             $sku = new Sku;
-            //             $sku->product_id = $data->id;
-            //             $sku->price = $variant_price[$i];
-            //             $sku->discount_price = $variant_discount_price[$i];
-            //             $sku->stock = $variant_stock[$i];
-            //             $sku->sku = $data->slug . '' . Str::slug($variant_sku[$i], '_');
-            //             $sku->save();
-            //             $variantsForEachSku = array_keys($request->variant);
-            //             foreach ($variantsForEachSku as $idOfAttribute) {
-            //                 if (is_int($idOfAttribute)) {
-            //                     $variant = new Variant;
-            //                     $variant->sku_id = $sku->id;
-            //                     $variant->attribute_id = $idOfAttribute;
-            //                     $variant->attribute_value = $request->variant[$idOfAttribute][$i];
-            //                     $variant->save();
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
+            DB::commit();
             return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $data]);
         } catch (\Exception $exception) {
             DB::rollback();
@@ -265,35 +199,41 @@ class ProductController extends Controller
     }
 
     public function productRequest(){
-        $products =  Product::where('isApproved','not_Approved')->get();
-        return view('product::productrequest',compact('products'));
+        $details =  Product::when(request()->filled('search'), function($query) {
+            return $query->where('title', 'like', '%'. request('search') . "%");
+            })
+            ->notapproved()->latest()->paginate(10)
+            ->withQueryString();
+        return view('product::productrequest',compact('details'));
     }
 
     public function VendorProductRequest(){
-        $products =  Product::where('user_id',Auth::id())->where('isApproved','not_Approved')->get();
-        return view('product::allproducts',compact('products'));
+        $details =  Product::when(request()->filled('search'), function($query) {
+            return $query->where('title', 'like', '%'. request('search') . "%");
+            })
+            ->where('user_id',Auth::id())->notapproved()->latest()->paginate(10)
+                    ->withQueryString();
+        return view('product::allproducts',compact('details'));
     }
     
     public function allVendorProducts(){
-        // $user = User::where('username',$username)->first();
-        $products =  Product::where('user_id',Auth::id())->where('status', 1)->where('isApproved','approved')->with(['category', 'brand', 'offer','user'])->get();;
-        return view('product::allproducts',compact('products'));
+        $details =  Product::when(request()->filled('search'), function($query) {
+            return $query->where('title', 'like', '%'. request('search') . "%");
+            })
+            ->where('user_id',Auth::id())
+            ->active()->approved()
+            ->with(['category', 'brand', 'offer','user'])
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+        return view('product::allproducts',compact('details'));
     }
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
+    
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function show($id)
     {
         return view('product::show');
@@ -302,22 +242,6 @@ class ProductController extends Controller
     public function view($id)
     {
         $product = Product::where('id', $id)->with('ranges','productimage')->first();
-        // $skus = $product->skus;
-        // $attributes = [];
-        // if ($product->category_id) {
-        //     $cAttributes = CategoryAttribute::where('category_id', $product->category->id)->whereNull('subcategory_id')->get();
-        //     foreach ($cAttributes as $attr) {
-        //         $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
-        //     }
-        // }
-        // if ($product->subcategory_id) {
-        //     $attributes = [];
-        //     $sAttributes = CategoryAttribute::where('subcategory_id', $product->subcategory->id)->whereNull('category_id')->get();
-        //     foreach ($sAttributes as $attr) {
-        //         $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
-        //     }
-        // }
-        // return view('product::view', compact('id' ,'product', 'skus', 'attributes'));
         return view('product::view', compact('id' ,'product'));
     }
 
@@ -387,11 +311,6 @@ class ProductController extends Controller
             return redirect()->back()->with('image_warning', $errorimage);
         }
         if ($request->image) {
-            // $img_count = count($request->image);
-            // if (($img_count + $db_image) > 8) {
-            //     $request->session()->flash('error', 'Sorry, You have already uploaded ' . $db_image . ' images. You can upload images upto 6 Nos for a product.');
-            //     return redirect()->route('edit-product', $id);
-            // }
             $temp = [];
             foreach ($request->image as $key => $other_image) {
                 $image_title = $product->slug . "-image-" . $key . rand(0, 10);
@@ -429,31 +348,10 @@ class ProductController extends Controller
             return response()->json(['status' => false, 'message' => ["Sorry! Product Image could not be deleted at this time please reload the page page and try again."]]);
         }
     }
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+
     public function edit($id)
     {
         $product = Product::where('id', $id)->with('ranges')->first();
-        // $ranges = Range::where('product_id',$id)->get();
-        // $skus = $product->skus;
-        // $attributes = [];
-        // if ($product->category_id) {
-        //     $cAttributes = CategoryAttribute::where('category_id', $product->category->id)->whereNull('subcategory_id')->get();
-        //     foreach ($cAttributes as $attr) {
-        //         $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
-        //     }
-        // }
-        // if ($product->subcategory_id) {
-        //     $attributes = [];
-        //     $sAttributes = CategoryAttribute::where('subcategory_id', $product->subcategory->id)->whereNull('category_id')->get();
-        //     foreach ($sAttributes as $attr) {
-        //         $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
-        //     }
-        // }
-        // return view('product::edit', compact('id', 'product', 'skus', 'attributes'));
         return view('product::edit', compact('id', 'product'));
     }
 
@@ -493,21 +391,12 @@ class ProductController extends Controller
         }
     }
 
-    public function deleteSku(Request $request){
-        $sku = Sku::where('id',$request->id)->delete();
-        return response()->json([
-            "status" => "true",
-            "message" => "Product Variant Deleted Succesfully!",
-        ], 200);
-
-    }
-
     public function updateproduct(Request $request)
     {
         // try {
             $validator = Validator::make($request->all(), [
                 'title'             => 'required|string',
-                'price'             => 'required|numeric',
+                // 'price'             => 'required|numeric',
                 'discount'          => 'nullable|numeric',
                 'type'              => 'required',
                 'category_id'       => 'required|numeric|exists:categories,id',
@@ -530,9 +419,9 @@ class ProductController extends Controller
                 if ($product->image) {
                     $thumbPath = public_path('images/thumbnail');
                     $listingPath = public_path('images/listing');
-                    if ((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))) {
-                        unlink($thumbPath . '/' . $image->image);
-                        unlink($listingPath . '/' . $image->image);
+                    if ((file_exists($thumbPath . '/' . $product->image)) && (file_exists($listingPath . '/' . $product->image))) {
+                        unlink($thumbPath . '/' . $product->image);
+                        unlink($listingPath . '/' . $product->image);
                     }
                 }
                 $image = $this->imageProcessing('img-', $request->file('image'));
@@ -554,37 +443,6 @@ class ProductController extends Controller
                         $range->save();
                     }
                 }
-            // if(count($product->skus)){
-            //     $product->skus()->delete();
-
-            // }
-            // if ($request->has('variant')) {
-            //     $variant_sku = $request->variant['sku'];
-            //     $variant_price = $request->variant['price'];
-            //     $variant_discount_price = $request->variant['discount_price'];
-            //     $variant_stock = $request->variant['stock'];
-            //     for ($i = 1; $i < count($variant_sku); $i++) {
-            //         $sku = new Sku;
-            //         $sku->product_id = $product->id;
-            //         $sku->price = $variant_price[$i];
-            //         $sku->discount_price = $variant_discount_price[$i];
-            //         $sku->stock = $variant_stock[$i];
-            //         $sku->sku = $product->slug . '' . Str::slug($variant_sku[$i], '_');
-            //         $sku->save();
-            //         $variantsForEachSku = array_keys($request->variant);
-            //         foreach ($variantsForEachSku as $key=>$idOfAttribute) {
-            //                 if (is_int($idOfAttribute)) {
-            //                     $variant = new Variant;
-            //                     $variant->sku_id = $sku->id;
-            //                     $variant->attribute_id = $idOfAttribute;
-            //                     $variant->attribute_value = $request->variant[$idOfAttribute][$i];
-            //                     $variant->save();
-                            
-            //                 }
-                        
-            //         }
-            //     }
-            // }
             return response()->json([
                 'status' => 'successful',
                 "data" => $value,
@@ -595,27 +453,6 @@ class ProductController extends Controller
         //         'message' => $exception->getMessage()
         //     ], 400);
         // }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function imageProcessing($type, $image)
@@ -657,23 +494,12 @@ class ProductController extends Controller
     public function unlinkImage($imagename)
     {
         $thumbPath = public_path('images/thumbnail/') . $imagename;
-        $mainPath = public_path('images/main/') . $imagename;
         $listingPath = public_path('images/listing/') . $imagename;
-        $documentPath = public_path('document/') . $imagename;
         if (file_exists($thumbPath)) {
             unlink($thumbPath);
         }
-
-        if (file_exists($mainPath)) {
-            unlink($mainPath);
-        }
-
         if (file_exists($listingPath)) {
             unlink($listingPath);
-        }
-
-        if (file_exists($documentPath)) {
-            unlink($documentPath);
         }
         return;
     }

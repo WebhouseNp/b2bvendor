@@ -6,11 +6,8 @@
                         <th>Image</th>
                         <th>Title</th>
                         <th>User</th>
-                        <!-- <th>Categories</th> -->
-                        <!-- <th>Sub Categories</th> -->
-                        <th>Stock Quantity</th>
-                        <th>Product Images</th>
-                        <th>Price</th>
+                        <th>Images</th>
+                        <!-- <th>Price</th> -->
                         <th> Discount</th>
                         
                         <th>Status</th>
@@ -23,7 +20,7 @@
                 @forelse ($details as $key=>$detail)
 
                 <tr>
-                    <td>{{$key+1}}</td>
+                    <td>{{ $details->firstItem() + $loop->index }}</td>
                     <td>
                         @if($detail->image)
                             <img src="{{asset('images/thumbnail/'.$detail->image)}}">
@@ -33,25 +30,16 @@
 			        </td>
                     <td>{{$detail->title}}</td>
                     <td>{{$detail->user->name}}</td>
-                    <!-- <td>{{$detail->category->name}}</td> -->
-                    <!-- <td>
-                    @foreach($detail->category->subcategory as $subcategory)
-                        {{$subcategory->name}}
-                    @endforeach
-                    </td> -->
+                    <td style="text-align: center">
+                        <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i
+                                class="fa fa-edit"></i></a>
+                    </td>
                     
-                    <td>{{$detail->quantity}}</td>
-                    <td>
-                                <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary"><i
-                                        class="fa fa-edit"></i></a>
-                            </td>
-                    
-                    <td>NPR. {{ number_format($detail->price)}}</td>
+                    <!-- <td>NPR. {{ number_format($detail->price)}}</td> -->
                     <td>
                         @if($detail->discount)
                         {{  $detail->discount}}
                         @endif
-    
                     </td>
 
                     <td>{{$detail->status=='active'? 'Active':'Inactive'}}</td>
@@ -63,7 +51,7 @@
                         <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$detail->id)}}">
                             <i class="fa fa-edit"></i>
                         </a> 
-                        <button class="btn btn-danger delete" onclick="deleteProduct(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-danger btn-sm delete" onclick="deleteProduct(this,'{{ $detail->id }}')"  style="display:inline"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 @empty
@@ -77,3 +65,4 @@
                 </tbody>
 
             </table>
+            {{ $details->links() }}
