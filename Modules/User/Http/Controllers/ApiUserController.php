@@ -430,12 +430,4 @@ class ApiUserController extends Controller
         $destinationPath = public_path('/images');
         return $input['imagename'];
     }
-
-    public function view($id)
-    {
-      $vendor = User::where('id',$id)->with('vendor','products','vendor_payments')->first();
-      $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
-      $paid = $vendor->vendor_payments->sum('amount');
-        return view('user::view', compact('id','vendor','order_list','paid'));
-    }
 }

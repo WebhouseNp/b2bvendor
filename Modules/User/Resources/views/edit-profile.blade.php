@@ -126,56 +126,56 @@
                                     name="id_card_number"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>category commission</label>
+                                <label>Category Commission</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->category_commission}}"
                                     name="category_commission"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>percentage</label>
+                                <label>Percentage</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->percentage}}"
                                     name="percentage"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>bank_name</label>
+                                <label>Bank Name</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->bank_name}}"
                                     name="bank_name"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>account_number</label>
+                                <label>Account Number</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->account_number}}"
                                     name="account_number"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>name_on_bank_acc</label>
+                                <label>Name On Bank Account</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->name_on_bank_acc}}"
                                     name="name_on_bank_acc"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>paypal_id</label>
+                                <label>Paypal Id</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->paypal_id}}"
                                     name="paypal_id"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>store_location</label>
+                                <label>Store Location</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->store_location}}"
                                     name="store_location"  >
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>store_contact_number</label>
+                                <label>Store Contact Number</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->store_contact_number}}"
                                     name="store_contact_number"  >
                             </div>
                             
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Vendor status</label>
+                                <label>Vendor Status</label>
                                 <select name="vendor_type" id="vendor_status" class="form-control " disabled>
                                     <option value="new" @if ($user->vendor_type=="new"){{"selected"}} @endif>New</option>
                                     <option value="approved" @if ($user->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
@@ -183,7 +183,7 @@
                                 </select>
                             </div>
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <button type="submit"  class="btn btn-success "><span class="fa fa-send"> Update</button>
+                                <button type="submit"  class="btn btn-success "><span class="fa fa-send"> Update Profile</button>
                             </div>
                         </div>
                     </div>
