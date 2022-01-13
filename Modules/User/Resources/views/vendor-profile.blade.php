@@ -144,7 +144,7 @@
                             </a>
                         </p>
                         <span class="card-category-count">
-                            Rs. {{$order_list}}
+                            
                         </span>
                         
                     </div>

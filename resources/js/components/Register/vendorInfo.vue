@@ -43,20 +43,6 @@
                     <div v-if="!$v.shop_name.required" class="invalid-feedback">
                       The Shop Name field is required.
                     </div>
-                    <div
-                      v-if="!$v.shop_name.minLength"
-                      class="invalid-feedback"
-                    >
-                      You must have at least
-                      {{ $v.shop_name.$params.minLength.min }} letters.
-                    </div>
-                    <div
-                      v-if="!$v.shop_name.maxLength"
-                      class="invalid-feedback"
-                    >
-                      You must not have greater then
-                      {{ $v.shop_name.$params.maxLength.min }} letters.
-                    </div>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputCompany">Company Name</label
@@ -130,26 +116,6 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col-md-6">
-                    <label for="">Product Category</label
-                    ><img
-                      class="img-asterik"
-                      src="/images/asterik-20.png"
-                      alt="asterik-image"
-                    />
-                    <select class="form-control" id="" v-model.trim="$v.product_category.$model"
-                     :class="{ 'is-invalid': validationStatus($v.product_category) }">
-                     <option value="" disabled>Select product category</option>
-                      <option value="local">Local</option>
-                      <option value="international">International</option>
-                    </select>
-                    <div
-                      v-if="!$v.product_category.required"
-                      class="invalid-feedback"
-                    >
-                      Product Category field is required.
-                    </div>
-                  </div>
                   <div class="form-group col-md-6">
                     <label for="">Country</label
                     ><img
@@ -291,45 +257,6 @@
               </div>
               <!-- col-md-12 closing -->
 
-              <div class="col-md-12 mb-4">
-                <h4 class="text-center general-subtitle">Comission Rate</h4>
-                <div class="row">
-                  <div class="form-group col-md-6">
-                    <label for="">Category Comission</label
-                    ><img
-                      class="img-asterik"
-                      src="/images/asterik-20.png"
-                      alt="asterik-image"
-                    />
-                    <select class="form-control" id="">
-                      <option>Product (2%)</option>
-                      <option>Service (10%)</option>
-                    </select>
-                    <!-- <input type="text" class="form-control" id="" placeholder=""> -->
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="">Percentage</label
-                    ><img
-                      class="img-asterik"
-                      src="/images/asterik-20.png"
-                      alt="asterik-image"
-                    />
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model.trim="$v.percentage.$model"
-                      :class="{ 'is-invalid': validationStatus($v.percentage) }"
-                      placeholder="Enter your percentage"
-                    />
-                     <div
-                      v-if="!$v.percentage.required"
-                      class="invalid-feedback"
-                    >
-                      The Percentage field is required.
-                    </div>
-                  </div>
-                </div>
-              </div>
               <!-- col-md-12 closing -->
 
               <div class="col-md-12 mb-4">
@@ -493,7 +420,7 @@
 
 <script>
 import VendorSave from "./registerVendor.vue";
-import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import { required} from "vuelidate/lib/validators";
 
 export default {
   props: ["categoryinfo", "visibility2","countries"],
@@ -507,7 +434,6 @@ export default {
       company_name: "",
       representative_name:'',
       company_address:'',
-      product_category:'',
       country:'',
       name_on_card:'',
       id_card_number:'',
@@ -524,18 +450,16 @@ export default {
     };
   },
   validations: {
-    shop_name: { required, minLength: minLength(6), maxLength: maxLength(18) },
+    shop_name: { required},
     company_name: { required },
     representative_name:{ required },
     company_address: {required},
-    product_category:{required},
     country:{required},
     name_on_card:{required},
     id_card_number:{required},
     email_address: {required},
     phone_number:{required},
      mobile_number:{required},
-      percentage:{required},
       bank_name:{required},
       account_number:{required},
       account_holber_name:{required},
@@ -562,7 +486,6 @@ export default {
         email_address: this.email_address,
         phone_number: this.phone_number,
         mobile_number: this.mobile_number,
-        percentage: this.percentage,
         bank_name: this.bank_name,
         account_number: this.account_number,
         account_holber_name: this.account_holber_name,
