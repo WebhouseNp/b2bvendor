@@ -414,7 +414,7 @@ export default {
       try {
         this.loadingCreateDeal = true;
         const response = await axios.post(
-          "http://127.0.0.1:8000/api/deal/storeproduct",
+          "/api/deal/storeproduct",
           {
             vendor_id: this.auth,
             customer_id: this.customer.id,

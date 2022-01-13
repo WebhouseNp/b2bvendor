@@ -3937,7 +3937,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 3;
                 _this2.loadingCreateDeal = true;
                 _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("http://127.0.0.1:8000/api/deal/storeproduct", {
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deal/storeproduct", {
                   vendor_id: _this2.auth,
                   customer_id: _this2.customer.id,
                   expire_at: _this2.expire_at,
