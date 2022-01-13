@@ -81,9 +81,15 @@ class AdminController extends Controller
 
     public function admin__logout()
     {
-        Auth::logout();
-        Session::flush();
-        return redirect()->route('login');
+        if(checkrole(auth()->user()->id) == 'admin' || checkrole(auth()->user()->id) == 'super_admin' ){
+            Auth::logout();
+            Session::flush();
+            return redirect()->route('login');
+        } else {
+            Auth::logout();
+            Session::flush();
+            return redirect()->to('/vendor-login');;
+        }
     }
     /**
      * Show the form for creating a new resource.
