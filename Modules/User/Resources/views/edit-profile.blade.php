@@ -1,29 +1,44 @@
 @extends('layouts.admin')
 @section('page_title')Edit Vendor Info @endsection
-
 @section('content')
-
-<div class="page-heading">
-    <h1 class="page-title"> Vendor</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href=""><i class="la la-home font-20"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item"> Vendor</li>
-    </ol>
-
-</div>
-@include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Vendor Profile</a></li>
-                <li><a data-toggle="tab" href="#menu1">Description About Vendor</a></li>
+                <li class="nav-item active"><a data-toggle="tab"  href="#home">Vendor Profile</a></li>
+                <li><a data-toggle="tab" href="#menu1">Description</a></li>
             </ul>
+            <!-- Tabs navs -->
+            <!-- <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a
+                    class="nav-link active"
+                    id="ex2-tab-1"
+                    data-mdb-toggle="tab"
+                    href="#ex2-tabs-1"
+                    role="tab"
+                    aria-controls="ex2-tabs-1"
+                    aria-selected="true"
+                    >Vendor Basic Info</a
+                    >
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a
+                    class="nav-link"
+                    id="ex2-tab-2"
+                    data-mdb-toggle="tab"
+                    href="#ex2-tabs-2"
+                    role="tab"
+                    aria-controls="ex2-tabs-2"
+                    aria-selected="false"
+                    >Description</a
+                    >
+                </li>
+            </ul> -->
         </div>
-        <div class="tab-content">
-            <div id="home" class="tab-pane fade active">
+        <div class="tab-content" id="ex2-content">
+            <div id="home" class="tab-pane fade show active">
+            <!-- <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1" > -->
                 <form method="post" action="{{route('updateVendorProfile',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
@@ -176,14 +191,17 @@
                 </form>
             </div>
             <div id="menu1" class="tab-pane fade">
-                <form method="post" action="{{route('updateVendorProfile',$user->vendor->id)}}" enctype="multipart/form-data">
+            <!-- <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2" > -->
+                <form method="post" action="{{route('updateVendorDesc',$user->vendor->id)}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('post')
                     <div class="ibox-body">
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 form-group">
                                 <label><strong>Description</strong></label>
                                     <textarea name="description" id="description" rows="5"
                                             placeholder="description Here" class="form-control"
-                                            style="resize: none;"></textarea>
+                                            style="resize: none;">{{@$user->vendor->description}} </textarea>
                             </div> 
                             
                             <div class="col-lg-12 col-sm-12 form-group">
@@ -195,8 +213,6 @@
             </div>
         </div>
     </div>
-    
-    
 </div>
 
 @endsection
@@ -204,100 +220,4 @@
 @section('scripts')
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description'])
-<script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function() {
-        $('#example-table').DataTable({
-            pageLength: 25,
-        });
-    })
-</script>
-<script>
-    function FailedResponseFromDatabase(message){
-    html_error = "";
-    $.each(message, function(index, message){
-        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
-    });
-    Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        html:html_error ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
-function DataSuccessInDatabase(message){
-    Swal.fire({
-        // position: 'top-end',
-        type: 'success',
-        title: 'Done',
-        html: message ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
-</script>
-<script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function() {
-        $('#example-table').DataTable({
-            pageLength: 25,
-        });
-    })
-</script>
-
-<script >
-  	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-            
-    
-       
-       
-    });
-
-    $(function () {
-        $("#example1").DataTable();
-    });
-
-    function orders(){
-        
-        $.ajax({
-		  type:'GET',
-		  url:'/api/getorders',
-		  
-		  success:function(response) {
-			$('#appendOrder').html(response.html)
-		  },
-		  error: function(error) {
-			$('#notification-bar').text('An error occurred');
-		}
-	   });
-    }
-
-    orders()
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    
-
-</script>
-
 @endsection
