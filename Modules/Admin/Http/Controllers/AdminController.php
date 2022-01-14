@@ -6,10 +6,11 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\User;
-use Auth;
+use Auth,Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class AdminController extends Controller
 {
@@ -98,11 +99,20 @@ class AdminController extends Controller
     }
 
     public function updatePassword(Request $request){
-        $request->validate([
+        // $request->validate([
+        //     'old_password' => 'required',
+        //     'new_password' => 'required|min:6',
+        //     'password_confirmation' => 'required|min:6|same:new_password',
+        // ]);
+        $validator = Validator::make($request->all(), [
             'old_password' => 'required',
             'new_password' => 'required|min:6',
             'password_confirmation' => 'required|min:6|same:new_password',
-        ]);
+      
+          ]);
+          if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+          }
         if (Hash::check($request->old_password, auth()->user()->password)) {
             $user = User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
             return redirect()->back()->with(['message' => 'Password Updated Successfully']);

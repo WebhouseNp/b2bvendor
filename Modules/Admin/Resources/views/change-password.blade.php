@@ -16,15 +16,34 @@
                </div>
             </div>
             <div class="col-6 col-md-9">
+               @if(count($errors) > 0 )
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                     <ul class="p-0 m-0" style="list-style: none;">
+                        @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                     </ul>
+                  </div>
+               @endif
                @if(session('message'))
-                  <div class="alert alert-success">{{session('message')}}</div>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                  <div class="alert alert-success">{{session('message')}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  
                @endif
 
                @if(session('error'))
-                  <div class="alert alert-danger">{{session('error')}}</div>
+                  <div class="alert alert-danger">{{session('error')}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  
                @endif
             </div>
             <div class="ibox-body" style="">
