@@ -3030,79 +3030,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3119,7 +3046,6 @@ __webpack_require__.r(__webpack_exports__);
       company_name: "",
       representative_name: '',
       company_address: '',
-      product_category: '',
       country: '',
       name_on_card: '',
       id_card_number: '',
@@ -3137,9 +3063,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   validations: {
     shop_name: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
-      minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(6),
-      maxLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.maxLength)(18)
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     company_name: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
@@ -3148,9 +3072,6 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     company_address: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    product_category: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     country: {
@@ -3169,9 +3090,6 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     mobile_number: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    percentage: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     bank_name: {
@@ -3211,7 +3129,6 @@ __webpack_require__.r(__webpack_exports__);
         email_address: this.email_address,
         phone_number: this.phone_number,
         mobile_number: this.mobile_number,
-        percentage: this.percentage,
         bank_name: this.bank_name,
         account_number: this.account_number,
         account_holber_name: this.account_holber_name,
@@ -3854,11 +3771,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
+
+
+var mustBePositive = function mustBePositive(value) {
+  return !vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.helpers.req(value) || value >= 0;
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["auth", "products"],
@@ -3874,7 +3827,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       invoice_products: [{
         product_id: "",
         product_qty: '',
-        unit_price: ''
+        unit_price: '',
+        shipping_charge: ''
       }],
       expire_at: "",
       customer: {
@@ -3892,34 +3846,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     //calculate sub total in each raw ============================//
     subtotalRow: function subtotalRow() {
       return this.invoice_products.map(function (item) {
-        return Number(item.product_qty * item.unit_price);
+        return Math.round(item.product_qty * item.unit_price + item.shipping_charge);
       });
     },
     //Calculate Total of all raws =====================//
     total: function total() {
       return this.invoice_products.reduce(function (total, item) {
-        return total + item.product_qty * item.unit_price;
+        return total + Math.round(item.product_qty * item.unit_price + item.shipping_charge);
       }, 0);
-    } //select search filter product ==========================================//
-    //   vendorProducts() {
-    //     const query = this.searchProducts.toLowerCase();
-    //     if (this.searchProducts === "") {
-    //       return this.productArray;
-    //     }
-    //     return this.productArray.filter((product) => {
-    //       return Object.values(product).some((word) =>
-    //         String(word).toLowerCase().includes(query)
-    //       );
-    //     });
-    //   },
-
-  },
-  mounted: function mounted() {// featch product from api ==========================================//
-    // fetch("http://localhost:8000/api/deals/customer-search")
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     this.productArray = json.data;
-    //   });
+    }
   },
   //validation======================================================//
   validations: {
@@ -3936,10 +3871,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required
         },
         product_qty: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required,
+          alphaNum: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.alphaNum
         },
         unit_price: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required,
+          mustBePositive: mustBePositive
+        },
+        shipping_charge: {
+          mustBePositive: mustBePositive
         }
       }
     }
@@ -3947,6 +3887,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     validationStatus: function validationStatus(validation) {
       return typeof validation != "undefined" ? validation.$error : false;
+    },
+    disableDate: function disableDate(date) {
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return date < today;
     },
     filterCustomers: function filterCustomers() {
       var _this = this;
@@ -3984,7 +3929,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.invoice_products.push({
         product_id: "",
         product_qty: "",
-        unit_price: ""
+        unit_price: "",
+        shipping_charge: ""
       });
     },
     // select search product ===============================//
@@ -4020,7 +3966,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 3;
                 _this2.loadingCreateDeal = true;
                 _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("http://127.0.0.1:8000/api/deal/storeproduct", {
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deal/storeproduct", {
                   vendor_id: _this2.auth,
                   customer_id: _this2.customer.id,
                   expire_at: _this2.expire_at,
@@ -4032,7 +3978,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.loadingCreateDeal = false;
 
                 if (response.status === 200) {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Good Job!", "New deal is created!", "success");
+                  sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Congratulations!", "New deal is created!", "success");
+                  window.location.href = "/user/deals";
                 }
 
                 _context.next = 15;
@@ -4351,11 +4298,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
+
+
+var mustBePositive = function mustBePositive(value) {
+  return !vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.helpers.req(value) || value >= 0;
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["auth", "products"],
@@ -4370,8 +4352,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       productArray: [],
       invoice_products: [{
         product_id: "",
-        product_qty: 0,
-        unit_price: 0
+        product_qty: '',
+        unit_price: '',
+        shipping_charge: ''
       }],
       expire_at: "",
       customer: {
@@ -4389,34 +4372,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     //calculate sub total in each raw ============================//
     subtotalRow: function subtotalRow() {
       return this.invoice_products.map(function (item) {
-        return Number(item.product_qty * item.unit_price);
+        return Math.round(item.product_qty * item.unit_price + item.shipping_charge);
       });
     },
     //Calculate Total of all raws =====================//
     total: function total() {
       return this.invoice_products.reduce(function (total, item) {
-        return total + item.product_qty * item.unit_price;
+        return total + Math.round(item.product_qty * item.unit_price + item.shipping_charge);
       }, 0);
-    } //select search filter product ==========================================//
-    //   vendorProducts() {
-    //     const query = this.searchProducts.toLowerCase();
-    //     if (this.searchProducts === "") {
-    //       return this.productArray;
-    //     }
-    //     return this.productArray.filter((product) => {
-    //       return Object.values(product).some((word) =>
-    //         String(word).toLowerCase().includes(query)
-    //       );
-    //     });
-    //   },
-
-  },
-  mounted: function mounted() {// featch product from api ==========================================//
-    // fetch("http://localhost:8000/api/deals/customer-search")
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     this.productArray = json.data;
-    //   });
+    }
   },
   //validation======================================================//
   validations: {
@@ -4433,10 +4397,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required
         },
         product_qty: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required,
+          alphaNum: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.alphaNum
         },
         unit_price: {
-          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required
+          required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_6__.required,
+          mustBePositive: mustBePositive
+        },
+        shipping_charge: {
+          mustBePositive: mustBePositive
         }
       }
     }
@@ -4481,7 +4450,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.invoice_products.push({
         product_id: "",
         product_qty: "",
-        unit_price: ""
+        unit_price: "",
+        shipping_charge: ""
       });
     },
     // select search product ===============================//
@@ -4517,7 +4487,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 3;
                 _this2.loadingCreateDeal = true;
                 _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("http://127.0.0.1:8000/api/deal/storeproduct", {
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deal/storeproduct", {
                   vendor_id: _this2.auth,
                   customer_id: _this2.customer.id,
                   expire_at: _this2.expire_at,
@@ -5779,6 +5749,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -5804,16 +5775,16 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "somekey",
+  key: "cbe0b7b8904e2ede8292",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: "localhost",
-  wsPort: "6001",
+  wsHost: process.env.MIX_PUSHER_WSHOST,
+  wsPort: process.env.MIX_PUSHER_WSPORT,
   forceTLS: false,
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("http://localhost:8000/broadcasting/auth", {
+        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -5981,7 +5952,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.ibox .ibox-body[data-v-686a4f54] {\r\n  margin-top: -14px;\n}\nselect[data-v-686a4f54] {\r\n  padding: 0;\n}\n.inputProduct[data-v-686a4f54] {\r\n  width: 40%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-686a4f54] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 386px;\n}\n.inputProduct select[data-v-686a4f54] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-686a4f54] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-686a4f54] {\r\n  background-color: #ed9494;\r\n  color: #070606;\n}\n.trashIconContainer[data-v-686a4f54],\r\n.addProduct[data-v-686a4f54] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-686a4f54],\r\n.table th[data-v-686a4f54] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-686a4f54],\r\n.far[data-v-686a4f54] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-686a4f54] {\r\n  font-size: 13px;\n}\n.animate-spin[data-v-686a4f54] {\r\n  -webkit-animation: spin-data-v-686a4f54 1s linear infinite;\r\n          animation: spin-data-v-686a4f54 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-686a4f54] {\r\n  padding: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.ibox .ibox-body[data-v-686a4f54] {\r\n  margin-top: -14px;\n}\nselect[data-v-686a4f54] {\r\n  padding: 0;\n}\n.inputProduct[data-v-686a4f54] {\r\n  width: 35%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-686a4f54] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 340px;\n}\n.inputProduct select[data-v-686a4f54] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-686a4f54] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-686a4f54] {\r\n  color: #070606;\n}\n.trashIconContainer[data-v-686a4f54],\r\n.addProduct[data-v-686a4f54] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-686a4f54],\r\n.table th[data-v-686a4f54] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-686a4f54],\r\n.far[data-v-686a4f54] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-686a4f54] {\r\n  font-size: 13px;\n}\n.animate-spin[data-v-686a4f54] {\r\n  -webkit-animation: spin-data-v-686a4f54 1s linear infinite;\r\n          animation: spin-data-v-686a4f54 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-686a4f54] {\r\n  padding: 10px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6008,7 +5979,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.ibox .ibox-body[data-v-1e09cce4] {\r\n  margin-top: -14px;\n}\nselect[data-v-1e09cce4] {\r\n  padding: 0;\n}\n.inputProduct[data-v-1e09cce4] {\r\n  width: 40%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-1e09cce4] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 386px;\n}\n.inputProduct select[data-v-1e09cce4] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-1e09cce4] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-1e09cce4] {\r\n  background-color: #ed9494;\r\n  color: #070606;\n}\n.trashIconContainer[data-v-1e09cce4],\r\n.addProduct[data-v-1e09cce4] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-1e09cce4],\r\n.table th[data-v-1e09cce4] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-1e09cce4],\r\n.far[data-v-1e09cce4] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-1e09cce4] {\r\n  font-size: 14px;\n}\n.animate-spin[data-v-1e09cce4] {\r\n  -webkit-animation: spin-data-v-1e09cce4 1s linear infinite;\r\n          animation: spin-data-v-1e09cce4 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-1e09cce4] {\r\n  padding: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.ibox .ibox-body[data-v-1e09cce4] {\r\n  margin-top: -14px;\n}\nselect[data-v-1e09cce4] {\r\n  padding: 0;\n}\n.inputProduct[data-v-1e09cce4] {\r\n  width: 35%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-1e09cce4] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 340px;\n}\n.inputProduct select[data-v-1e09cce4] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-1e09cce4] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-1e09cce4] {\r\n  background-color: #ed9494;\r\n  color: #070606;\n}\n.trashIconContainer[data-v-1e09cce4],\r\n.addProduct[data-v-1e09cce4] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-1e09cce4],\r\n.table th[data-v-1e09cce4] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-1e09cce4],\r\n.far[data-v-1e09cce4] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-1e09cce4] {\r\n  font-size: 13px;\n}\n.animate-spin[data-v-1e09cce4] {\r\n  -webkit-animation: spin-data-v-1e09cce4 1s linear infinite;\r\n          animation: spin-data-v-1e09cce4 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-1e09cce4] {\r\n  padding: 10px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34052,30 +34023,6 @@ var render = function () {
                               ),
                             ])
                           : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.$v.shop_name.minLength
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    You must have at least\n                    " +
-                                  _vm._s(
-                                    _vm.$v.shop_name.$params.minLength.min
-                                  ) +
-                                  " letters.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        !_vm.$v.shop_name.maxLength
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    You must not have greater then\n                    " +
-                                  _vm._s(
-                                    _vm.$v.shop_name.$params.maxLength.min
-                                  ) +
-                                  " letters.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group col-md-6" }, [
@@ -34262,85 +34209,6 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Product Category"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model.trim",
-                                value: _vm.$v.product_category.$model,
-                                expression: "$v.product_category.$model",
-                                modifiers: { trim: true },
-                              },
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.validationStatus(
-                                _vm.$v.product_category
-                              ),
-                            },
-                            attrs: { id: "" },
-                            on: {
-                              change: function ($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function (o) {
-                                    return o.selected
-                                  })
-                                  .map(function (o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.$v.product_category,
-                                  "$model",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
-                            },
-                          },
-                          [
-                            _c(
-                              "option",
-                              { attrs: { value: "", disabled: "" } },
-                              [_vm._v("Select product category")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "local" } }, [
-                              _vm._v("Local"),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "option",
-                              { attrs: { value: "international" } },
-                              [_vm._v("International")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        !_vm.$v.product_category.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    Product Category field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
                       _c("div", { staticClass: "form-group col-md-6" }, [
                         _c("label", { attrs: { for: "" } }, [
                           _vm._v("Country"),
@@ -34732,75 +34600,6 @@ var render = function () {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-12 mb-4" }, [
                     _c("h4", { staticClass: "text-center general-subtitle" }, [
-                      _vm._v("Comission Rate"),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Percentage"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.percentage.$model,
-                              expression: "$v.percentage.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.percentage
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your percentage",
-                          },
-                          domProps: { value: _vm.$v.percentage.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.percentage,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.percentage.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Percentage field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 mb-4" }, [
-                    _c("h4", { staticClass: "text-center general-subtitle" }, [
                       _vm._v(
                         "\n                Payment Information\n              "
                       ),
@@ -35179,7 +34978,7 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _vm._m(0),
                 ]
               ),
             ]),
@@ -35210,24 +35009,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-md-6" }, [
-      _c("label", { attrs: { for: "" } }, [_vm._v("Category Comission")]),
-      _c("img", {
-        staticClass: "img-asterik",
-        attrs: { src: "/images/asterik-20.png", alt: "asterik-image" },
-      }),
-      _vm._v(" "),
-      _c("select", { staticClass: "form-control", attrs: { id: "" } }, [
-        _c("option", [_vm._v("Product (2%)")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Service (10%)")]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -35723,6 +35504,7 @@ var render = function () {
                       attrs: {
                         lang: "en",
                         type: "datetime",
+                        "disabled-date": _vm.disableDate,
                         format: " YYYY-MM-DD [at] HH:mm a",
                         placeholder: "select date time",
                       },
@@ -35943,7 +35725,7 @@ var render = function () {
                                 },
                                 attrs: {
                                   type: "number",
-                                  placeholder: "Enter Quentity",
+                                  placeholder: "Quentity",
                                 },
                                 domProps: {
                                   value: invoice_product.product_qty.$model,
@@ -35976,6 +35758,18 @@ var render = function () {
                                     ]
                                   )
                                 : _vm._e(),
+                              _vm._v(" "),
+                              !invoice_product.product_qty.alphaNum
+                                ? _c(
+                                    "div",
+                                    { staticClass: "invalid-feedback" },
+                                    [
+                                      _vm._v(
+                                        "\n                      Quentity must not have nagitive and decimal value.\n                    "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "inputPrice" }, [
@@ -35997,8 +35791,8 @@ var render = function () {
                                   ),
                                 },
                                 attrs: {
-                                  type: "number",
-                                  placeholder: "Enter unit Price in rupees",
+                                  type: "text",
+                                  placeholder: "Unit Price",
                                 },
                                 domProps: {
                                   value: invoice_product.unit_price.$model,
@@ -36027,6 +35821,74 @@ var render = function () {
                                     [
                                       _vm._v(
                                         "\n                      Unit price field is required.\n                    "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !invoice_product.unit_price.mustBePositive
+                                ? _c(
+                                    "div",
+                                    { staticClass: "invalid-feedback" },
+                                    [
+                                      _vm._v(
+                                        "\n                      Unit price field must have positive value.\n                    "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "shippingCharge" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model.number",
+                                    value:
+                                      invoice_product.shipping_charge.$model,
+                                    expression:
+                                      "invoice_product.shipping_charge.$model",
+                                    modifiers: { number: true },
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.validationStatus(
+                                    invoice_product.shipping_charge
+                                  ),
+                                },
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Shipping charge",
+                                },
+                                domProps: {
+                                  value: invoice_product.shipping_charge.$model,
+                                },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      invoice_product.shipping_charge,
+                                      "$model",
+                                      _vm._n($event.target.value)
+                                    )
+                                  },
+                                  blur: function ($event) {
+                                    return _vm.$forceUpdate()
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              !invoice_product.shipping_charge.mustBePositive
+                                ? _c(
+                                    "div",
+                                    { staticClass: "invalid-feedback" },
+                                    [
+                                      _vm._v(
+                                        "\n                      Shipping charge field must have positive integer value.\n                    "
                                       ),
                                     ]
                                   )
@@ -36067,6 +35929,8 @@ var render = function () {
                       ),
                       _vm._v(" "),
                       _c("tr", [
+                        _c("td"),
+                        _vm._v(" "),
                         _c("td"),
                         _vm._v(" "),
                         _c("td"),
@@ -36194,7 +36058,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#b4d7d7" } }, [
-            _vm._v("Quentiry"),
+            _vm._v("Quentity"),
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
@@ -36202,11 +36066,15 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
+            _vm._v("Shipping Charge"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
             _vm._v("SubTotal Price"),
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ff0000ab" } }, [
-            _vm._v("\n                   Delete\n                  "),
+            _vm._v("Delete"),
           ]),
         ]),
       ]
@@ -36425,10 +36293,7 @@ var render = function () {
                           "div",
                           {
                             staticClass: "invalid-feedback",
-                            staticStyle: {
-                              "margin-left": "20px",
-                              "margin-top": "-6px",
-                            },
+                            staticStyle: { "margin-left": "20px" },
                           },
                           [
                             _vm._v(
@@ -36627,7 +36492,7 @@ var render = function () {
                                 },
                                 attrs: {
                                   type: "number",
-                                  placeholder: "Enter Quentity",
+                                  placeholder: "Quentity",
                                 },
                                 domProps: {
                                   value: invoice_product.product_qty.$model,
@@ -36655,7 +36520,19 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Product quentity field is required.\n                    "
+                                        "\n                      Quentity field is required.\n                    "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !invoice_product.product_qty.alphaNum
+                                ? _c(
+                                    "div",
+                                    { staticClass: "invalid-feedback" },
+                                    [
+                                      _vm._v(
+                                        "\n                      Quentity must not have nagitive and decimal value.\n                    "
                                       ),
                                     ]
                                   )
@@ -36682,7 +36559,7 @@ var render = function () {
                                 },
                                 attrs: {
                                   type: "number",
-                                  placeholder: "Enter unit Price in rupees",
+                                  placeholder: "Unit Price",
                                 },
                                 domProps: {
                                   value: invoice_product.unit_price.$model,
@@ -36710,7 +36587,75 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Price field is required.\n                    "
+                                        "\n                      Unit price field is required.\n                    "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !invoice_product.unit_price.mustBePositive
+                                ? _c(
+                                    "div",
+                                    { staticClass: "invalid-feedback" },
+                                    [
+                                      _vm._v(
+                                        "\n                      Unit price field must have positive value.\n                    "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "shippingCharge" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model.number",
+                                    value:
+                                      invoice_product.shipping_charge.$model,
+                                    expression:
+                                      "invoice_product.shipping_charge.$model",
+                                    modifiers: { number: true },
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.validationStatus(
+                                    invoice_product.shipping_charge
+                                  ),
+                                },
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "Shipping charge",
+                                },
+                                domProps: {
+                                  value: invoice_product.shipping_charge.$model,
+                                },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      invoice_product.shipping_charge,
+                                      "$model",
+                                      _vm._n($event.target.value)
+                                    )
+                                  },
+                                  blur: function ($event) {
+                                    return _vm.$forceUpdate()
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              !invoice_product.shipping_charge.mustBePositive
+                                ? _c(
+                                    "div",
+                                    { staticClass: "invalid-feedback" },
+                                    [
+                                      _vm._v(
+                                        "\n                      Shipping charge field must have positive value.\n                    "
                                       ),
                                     ]
                                   )
@@ -36751,6 +36696,8 @@ var render = function () {
                       ),
                       _vm._v(" "),
                       _c("tr", [
+                        _c("td"),
+                        _vm._v(" "),
                         _c("td"),
                         _vm._v(" "),
                         _c("td"),
@@ -36886,11 +36833,15 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
+            _vm._v("Shipping Charge"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
             _vm._v("SubTotal Price"),
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ff0000ab" } }, [
-            _vm._v("\n                   Delete\n                  "),
+            _vm._v("Delete"),
           ]),
         ]),
       ]
@@ -56485,7 +56436,7 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/","#USER"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"F:\\\\admin-vendor\\\\b2b_back","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

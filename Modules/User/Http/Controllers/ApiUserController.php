@@ -307,7 +307,7 @@ class ApiUserController extends Controller
          ]);
         
         if($validator->fails()) {
-          return response()->json(['status' => 'unsuccessful','status_code' => 422, 'data' => $validator->messages()],422);
+          return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
           exit;
       }
           $details = User::where('email', $request->email)->first();
@@ -429,13 +429,5 @@ class ApiUserController extends Controller
 
         $destinationPath = public_path('/images');
         return $input['imagename'];
-    }
-
-    public function view($id)
-    {
-      $vendor = User::where('id',$id)->with('vendor','products','vendor_payments')->first();
-      $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
-      $paid = $vendor->vendor_payments->sum('amount');
-        return view('user::view', compact('id','vendor','order_list','paid'));
     }
 }

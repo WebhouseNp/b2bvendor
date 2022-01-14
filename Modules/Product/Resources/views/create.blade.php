@@ -3,31 +3,9 @@
 
 @section('styles')
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.css"
-    rel="stylesheet" />
-<link href="{{asset('/assets/admin/tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet" />
-
 @endsection
-<style>
-    .bootstrap-tagsinput {
-        width: 90%;
-    }
-</style>
-
-
 @section('content')
 
-<div class="page-heading">
-    <h1 class="page-title"> Product</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item"> Product</li>
-    </ol>
-
-</div>
 @include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">

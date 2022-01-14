@@ -69,6 +69,7 @@
                 :class="{ 'is-invalid': validationStatus($v.expire_at) }"
                 lang="en"
                 type="datetime"
+                :disabled-date="disableDate"
                 format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
@@ -76,7 +77,7 @@
               <div
                 v-if="!$v.expire_at.required"
                 class="invalid-feedback"
-                style="margin-left: 20px; margin-top: -6px"
+                style="margin-left: 20px"
               >
                 Expiry Time is required.
               </div>
@@ -101,13 +102,12 @@
                   <tr>
                     <!-- <th style="background-color: #d9e7e7">SN</th> -->
                     <th style="background-color: #d9e7e7">Product</th>
-                    <th style="background-color: #b4d7d7">Quentiry</th>
+                    <th style="background-color: #b4d7d7">Quentity</th>
                     <th style="background-color: #ed9494">Unit Price</th>
+                    <th style="background-color: #ed9494">Shipping Charge</th>
                     <th style="background-color: #ed9494">SubTotal Price</th>
 
-                    <th style="background-color: #ff0000ab;">
-                     Delete
-                    </th>
+                    <th style="background-color: #ff0000ab">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -168,7 +168,7 @@
                       <input
                         class="form-control"
                         type="number"
-                        placeholder="Enter Quentity"
+                        placeholder="Quentity"
                         v-model.number="invoice_product.product_qty.$model"
                         :class="{
                           'is-invalid': validationStatus(
@@ -180,14 +180,20 @@
                         v-if="!invoice_product.product_qty.required"
                         class="invalid-feedback"
                       >
-                        Product quentity field is required.
+                        Quentity field is required.
+                      </div>
+                      <div
+                        v-if="!invoice_product.product_qty.alphaNum"
+                        class="invalid-feedback"
+                      >
+                        Quentity must not have nagitive and decimal value.
                       </div>
                     </td>
                     <td class="inputPrice">
                       <input
                         class="form-control"
-                        type="number"
-                        placeholder="Enter unit Price in rupees"
+                        type="text"
+                        placeholder="Unit Price"
                         v-model.number="invoice_product.unit_price.$model"
                         :class="{
                           'is-invalid': validationStatus(
@@ -195,11 +201,36 @@
                           ),
                         }"
                       />
-                      <div
+                       <div
                         v-if="!invoice_product.unit_price.required"
                         class="invalid-feedback"
                       >
-                        Price field is required.
+                        Unit price field is required.
+                      </div>
+                      <div
+                        v-if="!invoice_product.unit_price.mustBePositive"
+                        class="invalid-feedback"
+                      >
+                        Unit price field must have positive value.
+                      </div>
+                    </td>
+                    <td class="shippingCharge">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Shipping charge"
+                        v-model.number="invoice_product.shipping_charge.$model"
+                        :class="{
+                          'is-invalid': validationStatus(
+                            invoice_product.shipping_charge
+                          ),
+                        }"
+                      />
+                      <div
+                        v-if="!invoice_product.shipping_charge.mustBePositive"
+                        class="invalid-feedback"
+                      >
+                        Shipping charge field must have positive integer value.
                       </div>
                     </td>
                     <td class="totalPrice">
@@ -217,27 +248,27 @@
                       style="color: red"
                       @click="deleteRow(index, invoice_product.$model)"
                     >
-                      <i
-                        class="far fa-trash-alt"
-                      ></i>
+                      <i class="far fa-trash-alt"></i>
                     </td>
                   </tr>
                   <tr>
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                     <td><strong>Total</strong>: Rs {{ total }}</td>
                   </tr>
                   <tr>
-                     <td> <button
+                    <td>
+                      <button
                         type="button"
                         class="btn btn-info addProduct"
                         @click="addNewRow"
                       >
                         <i class="fas fa-plus-circle"></i>
                         Add
-                      </button></td>
-                   
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -261,12 +292,13 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required , alphaNum , helpers} from "vuelidate/lib/validators";
 import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import axios from "axios";
 import Multiselect from "vue-multiselect";
+const mustBePositive = (value) => !helpers.req(value) || value >= 0;
 export default {
   props: ["auth", "products"],
   components: {
@@ -281,8 +313,9 @@ export default {
       invoice_products: [
         {
           product_id: "",
-          product_qty: 0,
-          unit_price: 0,
+          product_qty: '',
+          unit_price: '',
+          shipping_charge: '',
         },
       ],
 
@@ -305,38 +338,20 @@ export default {
 
     subtotalRow() {
       return this.invoice_products.map((item) => {
-        return Number(item.product_qty * item.unit_price);
+        return Math.round((item.product_qty * item.unit_price) + item.shipping_charge);
       });
     },
 
     //Calculate Total of all raws =====================//
-
-    total() {
-      return this.invoice_products.reduce((total, item) => {
-        return total + item.product_qty * item.unit_price;
-      }, 0);
-    },
-    //select search filter product ==========================================//
-    //   vendorProducts() {
-    //     const query = this.searchProducts.toLowerCase();
-    //     if (this.searchProducts === "") {
-    //       return this.productArray;
-    //     }
-    //     return this.productArray.filter((product) => {
-    //       return Object.values(product).some((word) =>
-    //         String(word).toLowerCase().includes(query)
-    //       );
-    //     });
-    //   },
+    
+     total: function(){
+       return this.invoice_products.reduce(function(total, item){
+        return total + Math.round((item.product_qty * item.unit_price) + item.shipping_charge); 
+      },0);
+   
   },
-  mounted() {
-    // featch product from api ==========================================//
-    // fetch("http://localhost:8000/api/deals/customer-search")
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     this.productArray = json.data;
-    //   });
   },
+ 
 
   //validation======================================================//
   validations: {
@@ -346,16 +361,29 @@ export default {
       required,
       $each: {
         product_id: { required },
-        product_qty: { required },
-        unit_price: { required },
+        product_qty: { required ,alphaNum},
+        unit_price: {required, mustBePositive },
+        shipping_charge:{mustBePositive}
       },
     },
   },
   methods: {
+    //validation =====================//
+
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
 
+    //Disable previous date =========================//
+    disableDate(date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      return date < today;
+    },
+
+    // Filter customer ===============================//
+    
     filterCustomers() {
       if (this.customer.name.length < 3) {
         return true;
@@ -393,6 +421,7 @@ export default {
         product_id: "",
         product_qty: "",
         unit_price: "",
+        shipping_charge:"",
       });
     },
 
@@ -414,7 +443,7 @@ export default {
       try {
         this.loadingCreateDeal = true;
         const response = await axios.post(
-          "http://127.0.0.1:8000/api/deal/storeproduct",
+          "/api/deal/storeproduct",
           {
             vendor_id: this.auth,
             customer_id: this.customer.id,
@@ -424,7 +453,8 @@ export default {
         );
         this.loadingCreateDeal = false;
         if (response.status === 200) {
-          swal("Good Job!", "New deal is created!", "success");
+          swal("Congratulations!", "New deal is created!", "success");
+          window.location.href = "/user/deals"
         }
       } catch (error) {
         if (error.response.status === 422) {
@@ -446,14 +476,14 @@ select {
   padding: 0;
 }
 .inputProduct {
-  width: 40%;
+  width: 35%;
   box-sizing: border-box;
 }
 
 .inputProduct .form {
   border: none;
   margin-left: -10px;
-  max-width: 386px;
+  max-width: 340px;
 }
 
 .inputProduct select {
@@ -465,7 +495,6 @@ select {
   color: #070606;
 }
 .inputPrice input[type="text"] {
-  background-color: #ed9494;
   color: #070606;
 }
 .trashIconContainer,
@@ -485,7 +514,7 @@ select {
   font-size: 20px;
 }
 .invalid-feedback {
-  font-size: 14px;
+  font-size: 13px;
 }
 .animate-spin {
   animation: spin 1s linear infinite;

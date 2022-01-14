@@ -26,9 +26,9 @@ class VendorController extends Controller
      public function profile(){
          $id = Auth::user()->id;
          $vendor = User::where('id',Auth::user()->id)->with('vendor','products','vendor_payments')->first();
-         $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
-         $paid = $vendor->vendor_payments->sum('amount');
-        return view('user::vendor-profile', compact('id','vendor','order_list','paid'));
+         // $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
+         // $paid = $vendor->vendor_payments->sum('amount');
+        return view('user::vendor-profile', compact('id','vendor'));
      }
 
      public function editVendorProfile(Request $request, $id){
@@ -54,15 +54,23 @@ class VendorController extends Controller
 
       }
 
+      public function updateVendorDesc(Request $request, $id){
+         $request->validate([
+           'description' => 'nullable',
+        ]);
+        $oldRecord = Vendor::findorfail($id);
+        $formInput = $request->except(['_token']);
+        $oldRecord->update($formInput);
+        return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
+
+     }
+
       public function imageProcessing($image)
       {
         $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
         $thumbPath = public_path('images/thumbnail');
-        $mainPath = public_path('images/main');
         $listingPath = public_path('images/listing');
     
-        $img1 = Image::make($image->getRealPath());
-        $img1->save($mainPath . '/' . $input['imagename']);
         $img2 = Image::make($image->getRealPath());
         $img2->save($listingPath . '/' . $input['imagename']);
         $img1 = Image::make($image->getRealPath());
@@ -75,80 +83,20 @@ class VendorController extends Controller
    public function unlinkImage($imagename)
    {
       $thumbPath = public_path('images/thumbnail/') . $imagename;
-      $mainPath = public_path('images/main/') . $imagename;
       $listingPath = public_path('images/listing/') . $imagename;
       if (file_exists($thumbPath))
          unlink($thumbPath);
-      if (file_exists($mainPath))
-         unlink($mainPath);
       if (file_exists($listingPath))
          unlink($listingPath);
       return;
    }
 
-
-    public function index()
+   public function view($id)
     {
-        return view('user::index');
+      $vendor = User::where('id',$id)->with('vendor','products','vendor_payments')->first();
+      // $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
+      // $paid = $vendor->vendor_payments->sum('amount');
+        return view('user::view', compact('id','vendor'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('user::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('user::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('user::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

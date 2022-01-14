@@ -36,8 +36,10 @@ Route::prefix('vendor')->middleware(['auth','Vendor'])->group(function(){
 Route::get('profile', 'VendorController@profile')->name('vendor.profile');
 Route::get('editprofile/{id}', 'VendorController@editVendorProfile')->name('editVendorProfile');
 Route::post('updateprofile/{id}', 'VendorController@updateVendorProfile')->name('updateVendorProfile');
+
 Route::get('report', 'VendorController@getVendorPaymentReport')->name('getVendorPaymentReport');
 });
+Route::post('updatevendordesc/{id}', 'VendorController@updateVendorDesc')->name('updateVendorDesc');
 
 
 Route::group([
@@ -48,5 +50,5 @@ Route::get('user-account-activate/{activation_token}', [UserController::class, '
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','Superadmin']], function () {
-    Route::get('/vendor/view/{id}', 'ApiUserController@view')->name('vendor.view');
+    Route::get('/vendor/view/{id}', 'VendorController@view')->name('vendor.view');
 });

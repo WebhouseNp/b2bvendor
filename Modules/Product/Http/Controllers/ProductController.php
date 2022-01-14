@@ -147,12 +147,14 @@ class ProductController extends Controller
                 return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
                 exit;
             }
+            DB::beginTransaction();
 
             $value = $request->except('image', 'best_seller', 'essential');
 
             $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
             $value['essential'] = is_null($request->essential) ? 0 : 1;
-            if(checkRole(auth()->user()->id) == 'vendor'){
+            if(checkRole(auth()->user()->id) == 'vendor')
+            {
                 $value['isApproved'] = 'not_approved';
             } else {
                 $value['isApproved'] = 'approved';
@@ -176,16 +178,17 @@ class ProductController extends Controller
                 }
             }
             $user_info = [
-                'name'  => $user->name,
+                'name'  => auth()->user()->name,
             ];
-            if($role == 'vendor'){
-                Mail::send('email.productapproval',$user_info,  function ($message) use ($user_info, $user){
-                    $message->to($user->email,  $user->name)
+            if(checkRole(auth()->user()->id) == 'vendor'){
+                Mail::send('email.productapproval',$user_info,  function ($message) use ($user_info){
+                    $message->to(auth()->user()->email,  auth()->user()->name)
     
-                        ->subject('Product submitted for admin approval ' . $user->name);
+                        ->subject('Product submitted for admin approval ' . auth()->user()->name);
                     $message->from('info@sastowholesale.com', 'Admin');
                 });
             }
+            DB::commit();
             return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $data]);
         } catch (\Exception $exception) {
             DB::rollback();

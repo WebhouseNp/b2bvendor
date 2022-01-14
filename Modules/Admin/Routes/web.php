@@ -23,4 +23,6 @@ Route::post('/admin/login',[AdminController::class,'postLogin'])->name('postLogi
 Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],function(){
     // Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
     Route::get('logout',[AdminController::class,'admin__logout'])->name('admin.logout');
+    Route::get('change-password',[AdminController::class,'changePassword'])->name('change.password');
+    Route::post('change-password',[AdminController::class,'updatePassword'])->name('update.password');
 });
