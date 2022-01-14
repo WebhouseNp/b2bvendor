@@ -126,11 +126,25 @@ export default {
           plan: this.vendorinfo.categoryinfo.category,
           company_name: this.vendorinfo.company_name,
           shop_name: this.vendorinfo.shop_name,
+          representative_name: this.vendorinfo.representative_name,
+          company_address: this.vendorinfo.company_address,
+          country: this.vendorinfo.country,
+          name_on_card: this.vendorinfo.name_on_card,
+          id_card_number: this.vendorinfo.id_card_number,
+          email_address: this.vendorinfo.email_address,
+          phone_number: this.vendorinfo.phone_number,
+          monile_number: this.vendorinfo.monile_number,
+          bank_name: this.vendorinfo.bank_name,
+          account_holder_name: this.vendorinfo.account_holder_name,
+          account_number: this.vendorinfo.account_number,
+          paypal_id: this.vendorinfo.paypal_id,
+          store_location: this.vendorinfo.store_location,
+          store_contact_number: this.vendorinfo.store_contact_number
         });
         if (response.status === 200) {
           this.loading = false;
           swal("Good Job!", "Your are registered!", "success");
-          window.location.href = "/account-verification";
+          // window.location.href = "/account-verification";
         }
       } catch (error) {
         if (error.response.status === 422) {

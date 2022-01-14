@@ -440,7 +440,6 @@ export default {
       email_address:'',
       phone_number:'',
       mobile_number:'',
-      percentage:'',
       bank_name:'',
       account_number:'',
       account_holber_name:'',
