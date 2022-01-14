@@ -23,9 +23,9 @@ class CheckoutRequest extends FormRequest
     {
         $rules = array_merge(
             [
-                'deal_id' => ['required', 'exists:deals,id'],
                 'address' => ['required', 'array'],
                 'checkout_mode' => ['nullable'],
+                'payment_type' => ['required'],
 
                 'ship_to_different_address' => ['nullable', 'boolean'],
 
@@ -38,6 +38,13 @@ class CheckoutRequest extends FormRequest
                 'address.billing.nearest_landmark' => ['nullable'],
                 'address.billing.phone' => ['nullable'],
                 'address.billing.email' => ['nullable'],
+            ],
+
+            ($this->checkout_mode == 'deal') ? [
+                'deal_id' => ['required', 'exists:deals,id'],
+            ] : [
+                'cart.*.product_id' => ['required'],
+                'cart.*.product_qty' => ['required']
             ],
 
             ($this->ship_to_different_address) ? [

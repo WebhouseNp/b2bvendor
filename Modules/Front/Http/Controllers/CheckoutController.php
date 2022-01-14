@@ -10,6 +10,7 @@ use Modules\Deal\Entities\Deal;
 use Modules\Front\Http\Requests\CheckoutRequest;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
+use Modules\Product\Entities\Product;
 
 class CheckoutController extends Controller
 {
@@ -25,13 +26,17 @@ class CheckoutController extends Controller
 
             $order = Order::create([
                 'user_id' => Auth::id(),
-                'amount' => $deal->totalPrice(),
-                'deal_id' => $request->deal_id,
+                'amount' => $request->checkout_mode == 'deal' ? $deal->totalPrice() : 20000,
+                'deal_id' => $request->checkout_mode == 'deal' ? $request->deal_id : null,
                 'status' => 'New',
                 'payment_status' => 'pending',
-                'payment_type' => 'cash_on_delivery',
+                'payment_type' => $request->payment_type,
             ]);
 
+            $orderSubtotalPrice = 0;
+            $orderShippingCharge = 0;
+
+            // Handle deal checkout
             if ($request->isDealCheckout()) {
                 foreach ($deal->dealProducts as $dealProduct) {
                     OrderList::create([
@@ -42,8 +47,37 @@ class CheckoutController extends Controller
                         'unit_price' => $dealProduct->unit_price,
                         'subtotal_price' => $dealProduct->totalPrice(),
                     ]);
+                    $orderSubtotalPrice += $dealProduct->totalPrice();
+                }
+            } 
+            // Handle cart checkout
+            else {
+                foreach ($request->cart as $cartItem) {
+                    $product = Product::with('ranges')->findOrFail($cartItem['product_id']);
+                    $unitPrice = $this->getUnitPriceFromQuantity($product, $cartItem['product_qty']); // get price fron range
+                    $subtotalPrice = $unitPrice * $cartItem['product_qty'];
+                    OrderList::create([
+                        'order_id' => $order->id,
+                        'vendor_user_id' => $product->user_id,
+                        'product_id' => $product->id,
+                        'product_name' => $product->title,
+                        'quantity' => $cartItem['product_qty'],
+                        'unit_price' => $unitPrice,
+                        'subtotal_price' => $subtotalPrice,
+                        'shipping_charge' => $product->shipping_charge ?? 0,
+                        'total_price' => $subtotalPrice + ($product->shipping_charge ?? 0),
+                    ]);
+                    $orderSubtotalPrice += $subtotalPrice;
+                    $orderShippingCharge += $product->shipping_charge ?? 0;
                 }
             }
+
+            // Set the total amount of the order
+            $order->update([
+                'subtotal_price' => $orderSubtotalPrice,
+                'shipping_charge' => $orderShippingCharge,
+                'total_price' => $orderSubtotalPrice + $orderShippingCharge,
+            ]);
 
             // save the billing and shipping address
             $order->billingAddress()->create($request->billingAddress());
@@ -66,5 +100,18 @@ class CheckoutController extends Controller
             'message' => 'Order placed successfully',
             'order' => $order,
         ], 200);
+    }
+
+    private function getUnitPriceFromQuantity($product, $quantity)
+    {
+        // First we sort the product's ranges by min quantity
+        $ranges = $product->ranges->sortBy('from')->values()->all();
+
+        // Check if the quantity is between range
+        foreach ($ranges as $range) {
+            if ($range->from <= $quantity && $range->to >= $quantity) {
+                return $range->price;
+            }
+        }
     }
 }

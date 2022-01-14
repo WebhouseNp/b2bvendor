@@ -64,26 +64,21 @@ function DataSuccessInDatabase(message){
 }
 </script>
 <script >
-    function deleteProduct(id) {
-        var api_token = '<?php echo $api_token; ?>';
+    function deleteProduct(el,id) {
         var message=confirm('Do You want to delete this product??');
         if(message){
             $.ajax({ 
                 type: "post", 
                 url:"{{route('api.deleteproduct')}}", 
                 data:{id:id},
-                headers: {
-                    Authorization: "Bearer " + api_token
-                    },
                 success: function(response)
                     {
-                    console.log(response.message)
-                    var validation_errors = JSON.stringify(response.message);
+                        var validation_errors = JSON.stringify(response.message);
                         $('#validation-errors').html('');
                         $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
                         DataSuccessInDatabase(response.message);
-                        location.reload();
-                }
+                        $(el).closest('tr').remove()
+                    }
             }); 
         }
         return;

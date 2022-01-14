@@ -58,7 +58,7 @@
 	   });
     }
 
-    // products()
+    products()
 
     function deleteProduct(el,id) {
         var message=confirm('Do You want to delete this product??');
