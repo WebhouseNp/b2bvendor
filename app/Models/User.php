@@ -57,6 +57,36 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = [ 'roles'];
+
+    public function hasRole($role)
+    {
+        $roles =  auth()->user()->roles->pluck('name')->all();
+
+        return in_array($role, $roles);
+    }
+
+    public function hasAnyRole($roles)
+    {
+        if (!is_array($roles)) {
+            $roles = explode('|', $roles);
+        }
+
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function roles()
     {
         return $this->belongsToMany('Modules\Role\Entities\Role', 'role_user', 'user_id', 'role_id');
@@ -119,7 +149,7 @@ class User extends Authenticatable
     {
         return $query->orderBy('created_at', 'DESC');
     }
-    
+
     public function address()
     {
         return $this->morphOne(Address::class, 'addressable');
