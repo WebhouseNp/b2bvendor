@@ -60,17 +60,15 @@
                             <span></span>{{ @Auth::user()->name }}<i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            {{--
-                    <a class="dropdown-item" href="profile.html">
-                        <i class="fa fa-user"></i>Profile
-                    </a>
-                    <a class="dropdown-item" href="profile.html">
-                        <i class="fa fa-cog"></i>Settings
-                    </a>
-                    <a class="dropdown-item" href="https://webhousenepal.com/">
-                        <i class="fa fa-support"></i>Support
-                    </a>
-                    --}}
+                            <a class="dropdown-item" href="{{route('change.password')}}">
+                                <i class="fa fa-cog"></i>Change Password
+                            </a>
+                            <!-- <a class="dropdown-item" href="profile.html">
+                                <i class="fa fa-cog"></i>Settings
+                            </a>
+                            <a class="dropdown-item" href="https://webhousenepal.com/">
+                                <i class="fa fa-support"></i>Support
+                            </a> -->
                             <li class="dropdown-divider"></li>
                             <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
