@@ -32,7 +32,13 @@ class VendorApiController extends Controller
         })
             ->latest()
             ->limit(10)
-            ->get();
+            ->get()->map(function ($vendor) {
+                return [
+                    'id' => $vendor->id,
+                    'shop_name' => $vendor->shop_name,
+                    'image_url' => $vendor->imageUrl(),
+                ];
+            });
 
         return response()->json($vendors->shuffle()->all(), 200);
     }
