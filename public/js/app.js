@@ -2223,7 +2223,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   category: _this.vendorinfo.categoryinfo.mainSeller,
                   plan: _this.vendorinfo.categoryinfo.category,
                   company_name: _this.vendorinfo.company_name,
-                  shop_name: _this.vendorinfo.shop_name
+                  shop_name: _this.vendorinfo.shop_name,
+                  representative_name: _this.vendorinfo.representative_name,
+                  company_address: _this.vendorinfo.company_address,
+                  country: _this.vendorinfo.country,
+                  name_on_card: _this.vendorinfo.name_on_card,
+                  id_card_number: _this.vendorinfo.id_card_number,
+                  email_address: _this.vendorinfo.email_address,
+                  phone_number: _this.vendorinfo.phone_number,
+                  monile_number: _this.vendorinfo.monile_number,
+                  bank_name: _this.vendorinfo.bank_name,
+                  account_holder_name: _this.vendorinfo.account_holder_name,
+                  account_number: _this.vendorinfo.account_number,
+                  paypal_id: _this.vendorinfo.paypal_id,
+                  store_location: _this.vendorinfo.store_location,
+                  store_contact_number: _this.vendorinfo.store_contact_number
                 });
 
               case 4:
@@ -2231,8 +2245,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (response.status === 200) {
                   _this.loading = false;
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Good Job!", "Your are registered!", "success");
-                  window.location.href = "/account-verification";
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Good Job!", "Your are registered!", "success"); // window.location.href = "/account-verification";
                 }
 
                 _context.next = 11;
@@ -3052,7 +3065,6 @@ __webpack_require__.r(__webpack_exports__);
       email_address: '',
       phone_number: '',
       mobile_number: '',
-      percentage: '',
       bank_name: '',
       account_number: '',
       account_holber_name: '',
@@ -3885,14 +3897,17 @@ var mustBePositive = function mustBePositive(value) {
     }
   },
   methods: {
+    //validation =====================//
     validationStatus: function validationStatus(validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
+    //Disable previous date =========================//
     disableDate: function disableDate(date) {
       var today = new Date();
       today.setHours(0, 0, 0, 0);
       return date < today;
     },
+    // Filter customer ===============================//
     filterCustomers: function filterCustomers() {
       var _this = this;
 
@@ -4328,6 +4343,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -4411,9 +4427,17 @@ var mustBePositive = function mustBePositive(value) {
     }
   },
   methods: {
+    //validation =====================//
     validationStatus: function validationStatus(validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
+    //Disable previous date =========================//
+    disableDate: function disableDate(date) {
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return date < today;
+    },
+    // Filter customer ===============================//
     filterCustomers: function filterCustomers() {
       var _this = this;
 
@@ -4499,7 +4523,8 @@ var mustBePositive = function mustBePositive(value) {
                 _this2.loadingCreateDeal = false;
 
                 if (response.status === 200) {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Good Job!", "New deal is created!", "success");
+                  sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Congratulations!", "New deal is created!", "success");
+                  window.location.href = "/user/deals";
                 }
 
                 _context.next = 15;
@@ -5979,7 +6004,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.ibox .ibox-body[data-v-1e09cce4] {\r\n  margin-top: -14px;\n}\nselect[data-v-1e09cce4] {\r\n  padding: 0;\n}\n.inputProduct[data-v-1e09cce4] {\r\n  width: 35%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-1e09cce4] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 340px;\n}\n.inputProduct select[data-v-1e09cce4] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-1e09cce4] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-1e09cce4] {\r\n  background-color: #ed9494;\r\n  color: #070606;\n}\n.trashIconContainer[data-v-1e09cce4],\r\n.addProduct[data-v-1e09cce4] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-1e09cce4],\r\n.table th[data-v-1e09cce4] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-1e09cce4],\r\n.far[data-v-1e09cce4] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-1e09cce4] {\r\n  font-size: 13px;\n}\n.animate-spin[data-v-1e09cce4] {\r\n  -webkit-animation: spin-data-v-1e09cce4 1s linear infinite;\r\n          animation: spin-data-v-1e09cce4 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-1e09cce4] {\r\n  padding: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.ibox .ibox-body[data-v-1e09cce4] {\r\n  margin-top: -14px;\n}\nselect[data-v-1e09cce4] {\r\n  padding: 0;\n}\n.inputProduct[data-v-1e09cce4] {\r\n  width: 35%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-1e09cce4] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 340px;\n}\n.inputProduct select[data-v-1e09cce4] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-1e09cce4] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-1e09cce4] {\r\n  color: #070606;\n}\n.trashIconContainer[data-v-1e09cce4],\r\n.addProduct[data-v-1e09cce4] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-1e09cce4],\r\n.table th[data-v-1e09cce4] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-1e09cce4],\r\n.far[data-v-1e09cce4] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-1e09cce4] {\r\n  font-size: 13px;\n}\n.animate-spin[data-v-1e09cce4] {\r\n  -webkit-animation: spin-data-v-1e09cce4 1s linear infinite;\r\n          animation: spin-data-v-1e09cce4 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-1e09cce4 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-1e09cce4] {\r\n  padding: 10px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36272,6 +36297,7 @@ var render = function () {
                       attrs: {
                         lang: "en",
                         type: "datetime",
+                        "disabled-date": _vm.disableDate,
                         format: " YYYY-MM-DD [at] HH:mm a",
                         placeholder: "select date time",
                       },
@@ -36558,7 +36584,7 @@ var render = function () {
                                   ),
                                 },
                                 attrs: {
-                                  type: "number",
+                                  type: "text",
                                   placeholder: "Unit Price",
                                 },
                                 domProps: {
@@ -36626,7 +36652,7 @@ var render = function () {
                                   ),
                                 },
                                 attrs: {
-                                  type: "number",
+                                  type: "text",
                                   placeholder: "Shipping charge",
                                 },
                                 domProps: {
@@ -36655,7 +36681,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Shipping charge field must have positive value.\n                    "
+                                        "\n                      Shipping charge field must have positive integer value.\n                    "
                                       ),
                                     ]
                                   )
@@ -36825,7 +36851,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#b4d7d7" } }, [
-            _vm._v("Quentiry"),
+            _vm._v("Quentity"),
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
