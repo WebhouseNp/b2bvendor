@@ -6,10 +6,11 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\User;
-use Auth;
+use Auth,Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class AdminController extends Controller
 {
@@ -81,67 +82,42 @@ class AdminController extends Controller
 
     public function admin__logout()
     {
-        Auth::logout();
-        Session::flush();
-        return redirect()->route('login');
+        if(checkrole(auth()->user()->id) == 'admin' || checkrole(auth()->user()->id) == 'super_admin' ){
+            Auth::logout();
+            Session::flush();
+            return redirect()->route('login');
+        } else {
+            Auth::logout();
+            Session::flush();
+            return redirect()->to('/vendor-login');;
+        }
     }
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('admin::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
+    
+    public function changePassword(){
+        $detail = auth()->user();
+        return view('admin::change-password',compact('detail'));
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('admin::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('admin::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+    public function updatePassword(Request $request){
+        // $request->validate([
+        //     'old_password' => 'required',
+        //     'new_password' => 'required|min:6',
+        //     'password_confirmation' => 'required|min:6|same:new_password',
+        // ]);
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|min:6',
+            'password_confirmation' => 'required|min:6|same:new_password',
+      
+          ]);
+          if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+          }
+        if (Hash::check($request->old_password, auth()->user()->password)) {
+            $user = User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+            return redirect()->back()->with(['message' => 'Password Updated Successfully']);
+        } else {
+            return redirect()->back()->with(['error' => 'Password donot match with old one.']);
+        }
     }
 }

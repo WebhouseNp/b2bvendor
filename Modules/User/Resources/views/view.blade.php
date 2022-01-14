@@ -17,8 +17,8 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <a href="{{asset('/images/listing/img-1626175748.PNG')}}" target="_adimage">
-                    <img src="{{asset('/images/listing/img-1626175748.PNG')}}" alt="No Image" class="rounded" width="300" height="300">
+                <a href="{{asset('images/listing/'.$vendor->vendor->image)}}" target="_adimage">
+                    <img src="{{asset('images/listing/'.$vendor->vendor->image)}}" alt="No Image" class="rounded">
                 </a> 
             </div>
             
@@ -305,7 +305,6 @@
                             </a>
                         </p>
                         <span class="card-category-count">
-                            Rs. {{$order_list}}
                         </span>
                         
                     </div>
@@ -326,7 +325,7 @@
         <!--    <div class="ibox">-->
         <!--        <div class="ibox-head">-->
         <!--            <div class="ibox-title"> -->
-        <!--                 Total Sales:: Rs. {{$order_list}}-->
+        <!--                 Total Sales:: -->
         <!--            </div>-->
         <!--        </div>-->
         <!--    </div>-->
@@ -348,7 +347,6 @@
                             </a>
                         </p>
                         <span class="card-category-count">
-                           Rs. {{$paid}}
                         </span>
                         
                     </div>
@@ -368,7 +366,7 @@
         <!--    <div class="ibox">-->
         <!--        <div class="ibox-head">-->
         <!--            <div class="ibox-title"> -->
-        <!--                 Paid Amount:: Rs. {{$paid}}-->
+        <!--                 Paid Amount:: Rs. -->
         <!--            </div>-->
         <!--        </div>-->
         <!--    </div>-->
@@ -390,7 +388,6 @@
                             </a>
                         </p>
                         <span class="card-category-count">
-                           Rs. {{$order_list - $paid}}
                         </span>
                         
                     </div>
@@ -410,7 +407,7 @@
         <!--    <div class="ibox">-->
         <!--        <div class="ibox-head">-->
         <!--            <div class="ibox-title"> -->
-        <!--                 Due Amount:: Rs. {{$order_list - $paid}}-->
+        <!--                 Due Amount:: -->
         <!--            </div>-->
         <!--        </div>-->
         <!--    </div>-->

@@ -46,7 +46,7 @@
                     <td>{{$key+1}}</td>
                     <td>
                         @if($detail->image)
-                            <img src="{{asset('images/listing/'.$detail->image)}}">
+                        <img class="img-fluid rounded" src="{{ $detail->imageUrl('thumbnail') }}" style="width: 5rem;">
                         @else
                         <p>N/A</p>
                         @endif

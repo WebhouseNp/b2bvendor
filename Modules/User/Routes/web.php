@@ -50,5 +50,5 @@ Route::get('user-account-activate/{activation_token}', [UserController::class, '
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','Superadmin']], function () {
-    Route::get('/vendor/view/{id}', 'ApiUserController@view')->name('vendor.view');
+    Route::get('/vendor/view/{id}', 'VendorController@view')->name('vendor.view');
 });

@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/role', function (Request $request) {
     return $request->user();
 });
-Route::group([ 'middleware' => ['auth:api','Admin']], function () {
+// Route::group([ 'middleware' => ['auth:api','Admin']], function () {
 Route::post('/createrole', 'RoleController@createrole');
 Route::get('/getroles', 'RoleController@getroles');
 Route::post('/deleterole', 'RoleController@deleterole')->name('api.deleteRole');
@@ -24,7 +24,7 @@ Route::post('/deleterole', 'RoleController@deleterole')->name('api.deleteRole');
 Route::get('/view-role', 'RoleController@viewRole')->name('viewRole');
 Route::get('/editrole', 'RoleController@editRole')->name('editRole');
 Route::post('/updaterole', 'RoleController@updateRole');
-});
+// });
 
 
 Route::group([ 'middleware' => ['auth:api']], function () {

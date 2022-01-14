@@ -5,7 +5,9 @@
                         <th>SN</th>
                         <th>Image</th>
                         <th>Title</th>
+                        @if(checkRole(auth()->user()->id) == 'admin' || checkRole(auth()->user()->id) == 'super_admin')
                         <th>User</th>
+                        @endif
                         <th>Images</th>
                         <!-- <th>Price</th> -->
                         <th> Discount</th>
@@ -29,7 +31,9 @@
                         @endif
 			        </td>
                     <td>{{$detail->title}}</td>
+                    @if(checkRole(auth()->user()->id) == 'admin' || checkRole(auth()->user()->id) == 'super_admin')
                     <td>{{$detail->user->name}}</td>
+                    @endif
                     <td style="text-align: center">
                         <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i
                                 class="fa fa-edit"></i></a>
