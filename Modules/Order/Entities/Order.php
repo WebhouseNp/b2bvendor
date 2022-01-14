@@ -7,28 +7,30 @@ use  Modules\Product\Entities\Product;
 use  Modules\User\Entities\Vendor;
 use Modules\Order\Entities\OrderList;
 use  App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Modules\User\Entities\Address;
 
 class Order extends Model
 {
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 
-	public function products()
+	protected static function booted()
+    {
+		static::addGlobalScope(function (Builder $builder) {
+            $builder->when(auth()->user()->hasRole('vendor'), function ($query) {
+				return $query->whereHas('orderList', function ($query) {
+					return $query->where('vendor_user_id', auth()->user()->id);
+				});
+			});
+        });
+    }
+
+	public function customer()
 	{
-		return $this->hasMany(Product::class, 'id', 'product_id');
+		return $this->belongsTo(User::class, 'user_id', 'id');
 	}
 
-	public function user()
-	{
-		return $this->hasOne(User::class, 'id', 'user_id');
-	}
-
-	public function vendors()
-	{
-		return $this->hasMany(Vendor::class, 'id', 'vendor_id');
-	}
-
-	public function order_list()
+	public function orderList()
 	{
 		return $this->hasMany(OrderList::class, 'order_id');
 	}

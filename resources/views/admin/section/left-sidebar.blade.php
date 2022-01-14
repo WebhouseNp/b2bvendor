@@ -127,27 +127,14 @@ $user_access = json_decode($user->access_level);
                     <span class="nav-label">Order Management</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
-                @if(in_array('super_admin' ,$roles))
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href="{{route('order.index')}}">
+                        <a href="{{ route('orders.index') }}">
                             <span class="fa fa-eye"></span>
                             All Orders
                         </a>
                     </li>
                 </ul>
-                @endif
-                @if(in_array('super_admin' ,$roles) || in_array('admin' ,$roles)  || in_array('vendor' ,$roles))
-                  
-                <ul class="nav-2-level collapse">
-                    <li>
-                        <a href="{{route('getVendorOrders')}}">
-                            <span class="fa fa-circle-o"></span>
-                             Orders
-                        </a>
-                    </li>
-                </ul>
-                @endif
             </li>
             <li>
                 <a href="javascript:;">

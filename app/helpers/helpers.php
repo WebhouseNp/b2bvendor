@@ -24,10 +24,26 @@ function orderProccess($type)
     return $button;
 }
 
-function checkRole($id){
-  $role_user = DB::table('role_user')->where('user_id', $id)->first();
-    $role = DB::table('roles')->where('id', $role_user->role_id)->first();
-    return $role->slug;
+if (!function_exists('checkRole')) {
+    function checkRole($id)
+    {
+        $role_user = DB::table('role_user')->where('user_id', $id)->first();
+        $role = DB::table('roles')->where('id', $role_user->role_id)->first();
+        return $role->slug;
+    }
 }
 
+if (!function_exists('price_unit')) {
+    function price_unit()
+    {
+        return 'Rs. ';
+    }
+}
+
+if (!function_exists('formatted_price')) {
+    function formatted_price($amount)
+    {
+        return price_unit() . number_format($amount);
+    }
+}
 

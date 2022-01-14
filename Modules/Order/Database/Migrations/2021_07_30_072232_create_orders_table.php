@@ -17,11 +17,13 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
-            // $table->integer('quantity')->nullable();
-            $table->double('amount', 15,8)->nullable();
+            $table->double('subtotal_price', 15, 2)->nullable();
+            $table->double('shipping_charge', 8, 2)->nullable();
+            $table->double('total_price', 15, 2)->nullable();
             $table->text('order_note')->nullable();
             $table->text('track_no')->nullable();
-            $table->enum('payment_type', ['esewa', 'paypal', 'cash_on_delivery', 'tt'] );
+            // $table->enum('payment_type', ['esewa', 'paypal', 'cash_on_delivery', 'tt'] );
+            $table->string('payment_type')->nullable();
             $table->enum('status', ['New', 'Verified', 'Cancel', 'Process', 'Delivered'] )->default('New');
 
             $table->string('payment_status')->nullable();
