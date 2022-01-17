@@ -60,6 +60,8 @@ class CreateVendorsTable extends Migration
             $table->string('store_location')->nullable();
             $table->string('store_contact_number')->nullable();
 
+            $table->tinyInteger('remember_me')->default(1)->nullable();
+
             $table->enum('status',[1,0])->default(1);
 
             $table->timestamps();
