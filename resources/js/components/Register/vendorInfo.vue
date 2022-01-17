@@ -320,7 +320,7 @@
                       class="form-control"
                        v-model.trim="$v.account_holber_name.$model"
                       :class="{ 'is-invalid': validationStatus($v.account_holber_name) }"
-                      placeholder="Enter account holber name"
+                      placeholder="Enter account holder name"
                     />
                     <div
                       v-if="!$v.account_holber_name.required"
@@ -420,7 +420,7 @@
 
 <script>
 import VendorSave from "./registerVendor.vue";
-import { required} from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   props: ["categoryinfo", "visibility2","countries"],

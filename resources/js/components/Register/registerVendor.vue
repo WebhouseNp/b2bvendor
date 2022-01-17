@@ -28,7 +28,7 @@
                 placeholder="Enter Your Full Name"
               />
                <div class="text-danger">
-               {{ validation.getMessage('name') }}
+               {{ validation_rule.getMessage('name') }}
              </div>
             </div>
             <div class="form-group">
@@ -42,7 +42,7 @@
                 placeholder="email@example.com"
               />
               <div class="text-danger">
-               {{ validation.getMessage('email') }}
+               {{ validation_rule.getMessage('email') }}
              </div>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
                 placeholder="Password"
               />
               <div class="text-danger">
-               {{ validation.getMessage('password') }}
+               {{ validation_rule.getMessage('password') }}
              </div>
             </div>
             <div class="form-group">
@@ -68,11 +68,14 @@
                 placeholder="Confirm Password"
               />
               <div class="text-danger">
-               {{ validation.getMessage('confirm_password') }}
+               {{ validation_rule.getMessage('confirm_password') }}
              </div>
             </div>
             <div class="form-check mb-3">
-              <input type="checkbox" class="form-check-input" id="" />
+              <input type="checkbox" class="form-check-input"
+               v-model.trim="$v.terms.$model"
+               :class="{ 'is-invalid': validationStatus($v.terms) }"
+               style="margin-left:0;" />
               <label class="form-check-label" for=""
                 >I accept all the terms and condition.</label
               >
@@ -95,26 +98,39 @@
 import axios from "axios";
 import validation from "./../../services/validation";
 import swal from "sweetalert";
+import { sameAs} from "vuelidate/lib/validators";
+
 
 export default {
   props: ["vendorinfo"],
   name: "registor",
   data() {
     return {
-      validation: new validation(),
+      validation_rule: new validation(),
       name: "",
       email: "",
       password: "",
       confirm_password: "",
+      terms: false,
       loading: false,
       errors: {},
     };
   },
+  validations:{
+    terms: {
+        sameAs: sameAs( () => true )
+      }
+  },
   methods: {
+     validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
     vendorHomepage(){
         window.location.href = "/vendor-homepage";
     },
     async submitData() {
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
       this.loading = true;
       try {
         const response = await axios.post("api/vendor/register", {
@@ -144,13 +160,13 @@ export default {
         if (response.status === 200) {
           this.loading = false;
           swal("Good Job!", "Your are registered!", "success");
-          // window.location.href = "/account-verification";
+          window.location.href = "/account-verification";
         }
       } catch (error) {
         if (error.response.status === 422) {
           this.loading = false;
           this.errors = error.response.data;
-          this.validation.setMessages(this.errors.data);
+          this.validation_rule.setMessages(this.errors.data);
         }
       }
     },

@@ -59,10 +59,10 @@
                 <div class="col-md-4">
                     <div class="vendor-sign-in-form">
                        <error v-if="error" :error="error"/>
-                        <div style="text-align:center; front-size: 20px;" v-if="loading">loding....</div>
+                        <div style="text-align:center; front-size: 20px;" v-if="loading">loading....</div>
                         <form class="vendor-form"  @submit.prevent="onSubmit()">
                             <Input
-                              label="userName"
+                              label="User Name"
                               type="email"
                               placeholder="exampl@gamil.com"
                               v-model="email"
