@@ -153,7 +153,7 @@ class ProductController extends Controller
 
             $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
             $value['essential'] = is_null($request->essential) ? 0 : 1;
-            if(checkRole(auth()->user()->id) == 'vendor')
+            if( auth()->user()->hasRole('vendor'))
             {
                 $value['isApproved'] = 'not_approved';
             } else {
@@ -180,7 +180,7 @@ class ProductController extends Controller
             $user_info = [
                 'name'  => auth()->user()->name,
             ];
-            if(checkRole(auth()->user()->id) == 'vendor'){
+            if( auth()->user()->hasRole('vendor')){
                 Mail::send('email.productapproval',$user_info,  function ($message) use ($user_info){
                     $message->to(auth()->user()->email,  auth()->user()->name)
     

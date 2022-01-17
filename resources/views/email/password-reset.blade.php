@@ -1,4 +1,1 @@
-<?php
-$domain='http://localhost:8000';
-?>
-<a href="{{$domain}}/passwod-resetform/{{$token}}">Password Reset</a>
+<a href="https://b2bback.webhouse.com.np//passwod-resetform/{{$token}}">Password Reset</a>

@@ -26,3 +26,6 @@ Route::get('/view-subcategory', 'SubcategoryController@viewsubcategory')->name('
 Route::get('/editsubcategory', 'SubcategoryController@editsubcategory')->name('editsubcategory');
 Route::post('/updatesubcategory', 'SubcategoryController@updatesubcategory');
 });
+
+Route::put('subcategory/{subcategory}/publish', 'SubcategoryPublicationController@store')->name('api.subcategory.publish');
+Route::delete('subcategory/{subcategory}/unpublish', 'SubcategoryPublicationController@destroy')->name('api.subcategory.unpublish');
