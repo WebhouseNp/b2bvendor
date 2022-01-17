@@ -18,7 +18,7 @@ class ProductApiController extends Controller
     {
         // TODO::Append query string
         $products = Product::with(['category', 'ranges'])
-            ->when(request()->has('q'), function ($query) {
+            ->when(request()->filled('q'), function ($query) {
                 return $query->where('title', 'like', '%' . request()->q . '%');
             })
             ->when(request()->filled('cat'), function ($query) {
@@ -27,10 +27,10 @@ class ProductApiController extends Controller
             ->when(request()->filled('subcat'), function ($query) {
                 return $query->where('subcategory_id', request()->subcat);
             })
-            ->when(request()->has('from_vendor'), function ($query) {
+            ->when(request()->filled('from_vendor'), function ($query) {
                 return $query->where('user_id', request()->from_vendor);
             })
-            ->where('status', 'active')->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 15);
+            ->where('status', 'active')->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 2);
 
         return ProductResource::collection($products)->hide([
             'highlight',
