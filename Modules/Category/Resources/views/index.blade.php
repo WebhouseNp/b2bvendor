@@ -34,8 +34,10 @@
                     <th>Hot Category</td>
                     <th>Featured</td>
                     <th>Contain Subcategory</td>
+                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
                     <th>Publish</th>
                     <th>Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody id="sortable">
@@ -54,11 +56,14 @@
                     <td>{{ $detail->hot_category == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->is_featured == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->does_contain_sub_category == 1 ? 'Yes' : 'No' }}</td>
+                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
                     <td>
                         <input type="checkbox" class="CategoryStatus btn btn-success btn-sm" rel="{{$detail->id}}"
                             data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini"
                             @if($detail->publish == 1) checked @endif>
                     </td>
+                    @endif
+                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
                     <td class="text-nowrap">
                         <a title="view" class="btn btn-success btn-sm" href="{{ route('category.view',$detail->id) }}">
                             <i class="fa fa-eye"></i>
@@ -68,6 +73,7 @@
                         </a>
                         <button class="btn btn-danger btn-sm delete-category" onclick="return confirm('Do You want to delete this category??') && deleteCategory(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                     </td>
+                    @endif
                 </tr>
                 @empty
                 <tr>

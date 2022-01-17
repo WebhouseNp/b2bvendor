@@ -46,10 +46,14 @@ class SubcategoryController extends Controller
         }
         
         $value = $request->except('image', 'publish');
-        $value['publish'] = is_null($request->publish) ? 0 : 1;
-        $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
-        $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
-        $value['does_contain_sub_category'] = is_null($request->does_contain_sub_category) ? 0 : 1;
+        if( auth()->user()->hasRole('vendor')){
+            $value['publish'] = 0;
+        } else {
+            $value['publish'] = $request->has('publish') ? 1 : 0;
+        }
+        $value['is_featured'] = $request->has('is_featured') ? 1 : 0;
+        $value['include_in_main_menu'] = $request->has('include_in_main_menu') ? 1 : 0;
+        $value['does_contain_sub_category'] = $request->has('does_contain_sub_category') ? 1 : 0;
 
         if($request->image){
             $image = $this->imageProcessing('img-', $request->file('image'));

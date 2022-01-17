@@ -45,7 +45,7 @@ class CategoryController extends Controller
         }
         
         $value = $request->except('image', 'publish');
-        if(checkRole(auth()->user()->id) == 'vendor'){
+        if( auth()->user()->hasRole('vendor')){
             $value['publish'] = 0;
         } else {
             $value['publish'] = $request->has('publish') ? 1 : 0;
