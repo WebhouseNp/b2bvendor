@@ -22,6 +22,10 @@ class CheckoutController extends Controller
             // store the order along with order list, shipping address and billing address
             if ($request->isDealCheckout()) {
                 $deal = Deal::with('dealProducts')->findOrFail($request->deal_id);
+                // Validate the deal
+                if (!$deal->isAvailable() || (auth::id() != $deal->customer_id)) {
+                    return response()->json(['message' => 'Deal is not available'], 404);
+                }
             }
 
             $order = Order::create([
@@ -49,7 +53,7 @@ class CheckoutController extends Controller
                     ]);
                     $orderSubtotalPrice += $dealProduct->totalPrice();
                 }
-            } 
+            }
             // Handle cart checkout
             else {
                 foreach ($request->cart as $cartItem) {
