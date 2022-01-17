@@ -61,13 +61,13 @@
                                 </select>
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Image [max file size: 4MB] </label>
+                                <label>Image </label>
                                 <input id="fileUpload" class="form-control" value="" name="image" type="file">
                                 <br>
                                 <div id="wrapper" class="mt-2">
                                     <div id="image-holder">
                                         @if($user->vendor->image)
-                                        <img src="{{asset('images/main/'.$user->vendor->image)}}" alt="" height="120px" width:"120px">
+                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="" height="120px" width:"120px">
                                         @endif
                                     </div>
                                 </div>

@@ -1,14 +1,13 @@
 @extends('layouts.admin')
 @section('page_title') All Sub Categories @endsection
 @section('styles')
-
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endsection
 @section('content')
 
 <div class="page-heading">
     <h1 class="page-title"> Sub Categories</h1>
-    @include('admin.section.notifications')
 </div>
 <div class="ibox-body" id="validation-errors" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
@@ -36,8 +35,13 @@
                         <th>Include in main menu</th>
                         <th>Featured</th>
                         <th>Category</th>
+                        @if( auth()->user()->hasRole('vendor'))
                         <th>Publish</th>
+                        @endif
+                        @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                        <th>Change Status</th>
                         <th>Action</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +60,15 @@
                 <td>{{$detail->include_in_main_menu==1? 'Yes':'No'}}</td>
                 <td>{{$detail->is_featured==1? 'Yes':'No'}}</td>
                 <td>{{$detail->category->name}}</td>
-                <td>{{$detail->publish==1? 'Published':'Not published'}}</td>
+                @if( auth()->user()->hasRole('vendor'))
+                <td>{{$detail->publish==1 ? 'Published':'Not Published'}}</td>
+                @endif
+                @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                <td>
+                    <input type="checkbox" class="SubcategoryStatus btn btn-success btn-sm" rel="{{$detail->id}}"
+                        data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini"
+                        @if($detail->publish == 1) checked @endif>
+                </td>
                 <td>
                 <a title="view" class="btn btn-success btn-sm" href="{{route('subcategory.view',$detail->id)}}">
                     <i class="fa fa-eye"></i>
@@ -65,8 +77,8 @@
                     <i class="fa fa-edit"></i>
                 </a> 
                 <button class="btn btn-danger delete" onclick="return confirm('Do You want to delete this sub-category??') && deleteSubcategory(this,'{{ $detail->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
-
                 </td>
+                @endif
                 </tr>
                 @empty
         <tr>
@@ -87,13 +99,40 @@
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         $('#example1').DataTable({
-            pageLength: 2,
+            pageLength: 25,
         });
     })
+</script>
+
+<script>
+    function FailedResponseFromDatabase(message){
+    html_error = "";
+    $.each(message, function(index, message){
+        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
+    });
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        html:html_error ,
+        confirmButtonText: 'Close',
+        timer: 10000
+    });
+}
+function DataSuccessInDatabase(message){
+    Swal.fire({
+        // position: 'top-end',
+        type: 'success',
+        title: 'Done',
+        html: message ,
+        confirmButtonText: 'Close',
+        timer: 10000
+    });
+}
 </script>
 
 <script >
@@ -111,7 +150,7 @@
 	   });
     }
 
-    subcategories()
+    // subcategories()
 
     function deleteSubcategory(el,id) {
         let url = "/api/deletesubcategory/" + id;
@@ -133,5 +172,46 @@
     } 
 
   </script>
+
+<script>
+  $(function() {
+    $('.SubcategoryStatus').change(function() {
+        var subcat_id = $(this).attr('rel');
+        if($(this).prop("checked")==true){
+            $.ajax({
+                method:"POST",
+                url : '/api/subcategory/'+ subcat_id +'/publish',
+                data : {
+                _method: "put"
+                },
+                success : function(response){
+                    if (response.status == 'false' ) {
+                        FailedResponseFromDatabase(response.message);
+                    }
+                    if (response.status == 'true') {
+                        DataSuccessInDatabase(response.message);
+                    }
+                }
+            });
+        }else{
+                $.ajax({
+                    method:"POST",
+                    url : '/api/subcategory/'+ subcat_id +'/unpublish',
+                    data : {
+                        _method: "delete"
+                    },
+                    success : function(response){
+                        if (response.status == 'false' ) {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
+                    }
+                });
+            }
+    })
+  })
+</script>
 
 @endsection

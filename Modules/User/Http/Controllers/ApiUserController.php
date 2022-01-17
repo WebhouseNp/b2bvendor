@@ -194,6 +194,7 @@ class ApiUserController extends Controller
           'user_id' => $formData['user_id']
         ];
         $formData = $request->except('activation_link', 'terms_condition',  '_token');
+        // dd($formData);
         $formData['user_id'] = $user->id;
         $role_user = Role_user::create($role_data);
         $vendor = Vendor::create($formData);

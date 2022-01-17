@@ -27,8 +27,8 @@ class DealApiController extends Controller
     {
         // TODO::must be a vendor
         $products = Product::where('user_id', Auth::id())
-            ->select('id', 'title')->get()->map( function($product){
-                $product['image_url']='https://dummyimage.com/50/5b43c4/ffffff';
+            ->select('id', 'title')->get()->map(function ($product) {
+                $product['image_url'] = 'https://dummyimage.com/50/5b43c4/ffffff';
             });
         return response()->json(['data' => $products]);
     }
@@ -36,6 +36,10 @@ class DealApiController extends Controller
     public function show(Deal $deal)
     {
         abort_unless(Auth::id() == $deal->vendor_user_id || Auth::id() == $deal->customer_id, 403);
+
+        if (!$deal->isAvailable()) {
+            return response()->json(['message' => 'Deal is not available'], 404);
+        }
 
         $deal->load('dealProducts.product:id,title');
 

@@ -9,8 +9,18 @@ use App\Models\User;
 
 class Vendor extends Model
 {
-
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function imageUrl($size = null)
+    {
+        // return "https://picsum.photos/400";
+
+        if ($size == 'thumbnail') {
+            return asset('images/thumbnail/' . $this->image);
+        }
+
+        return asset('images/listing/' . $this->image);
+    }
 
     public function user()
     {
