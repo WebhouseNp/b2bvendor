@@ -2083,6 +2083,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../services/validation */ "./resources/js/services/validation.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2182,6 +2183,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -2190,16 +2195,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "registor",
   data: function data() {
     return {
-      validation: new _services_validation__WEBPACK_IMPORTED_MODULE_2__["default"](),
+      validation_rule: new _services_validation__WEBPACK_IMPORTED_MODULE_2__["default"](),
       name: "",
       email: "",
       password: "",
       confirm_password: "",
+      terms: false,
       loading: false,
       errors: {}
     };
   },
+  validations: {
+    terms: {
+      sameAs: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.sameAs)(function () {
+        return true;
+      })
+    }
+  },
   methods: {
+    validationStatus: function validationStatus(validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
     vendorHomepage: function vendorHomepage() {
       window.location.href = "/vendor-homepage";
     },
@@ -2212,9 +2228,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this.$v.$touch();
+
+                if (!(_this.$v.$pendding || _this.$v.$error)) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 3:
                 _this.loading = true;
-                _context.prev = 1;
-                _context.next = 4;
+                _context.prev = 4;
+                _context.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post("api/vendor/register", {
                   name: _this.name,
                   email: _this.email,
@@ -2240,34 +2266,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   store_contact_number: _this.vendorinfo.store_contact_number
                 });
 
-              case 4:
+              case 7:
                 response = _context.sent;
 
                 if (response.status === 200) {
                   _this.loading = false;
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Good Job!", "Your are registered!", "success"); // window.location.href = "/account-verification";
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Good Job!", "Your are registered!", "success");
+                  window.location.href = "/account-verification";
                 }
 
-                _context.next = 11;
+                _context.next = 14;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context["catch"](4);
 
                 if (_context.t0.response.status === 422) {
                   _this.loading = false;
                   _this.errors = _context.t0.response.data;
 
-                  _this.validation.setMessages(_this.errors.data);
+                  _this.validation_rule.setMessages(_this.errors.data);
                 }
 
-              case 11:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[4, 11]]);
       }))();
     }
   }
@@ -33161,7 +33188,7 @@ var render = function () {
                   _c("div", { staticClass: "text-danger" }, [
                     _vm._v(
                       "\n             " +
-                        _vm._s(_vm.validation.getMessage("name")) +
+                        _vm._s(_vm.validation_rule.getMessage("name")) +
                         "\n           "
                     ),
                   ]),
@@ -33202,7 +33229,7 @@ var render = function () {
                   _c("div", { staticClass: "text-danger" }, [
                     _vm._v(
                       "\n             " +
-                        _vm._s(_vm.validation.getMessage("email")) +
+                        _vm._s(_vm.validation_rule.getMessage("email")) +
                         "\n           "
                     ),
                   ]),
@@ -33240,7 +33267,7 @@ var render = function () {
                   _c("div", { staticClass: "text-danger" }, [
                     _vm._v(
                       "\n             " +
-                        _vm._s(_vm.validation.getMessage("password")) +
+                        _vm._s(_vm.validation_rule.getMessage("password")) +
                         "\n           "
                     ),
                   ]),
@@ -33280,15 +33307,72 @@ var render = function () {
                   _c("div", { staticClass: "text-danger" }, [
                     _vm._v(
                       "\n             " +
-                        _vm._s(_vm.validation.getMessage("confirm_password")) +
+                        _vm._s(
+                          _vm.validation_rule.getMessage("confirm_password")
+                        ) +
                         "\n           "
                     ),
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(0),
+                _c("div", { staticClass: "form-check mb-3" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.trim",
+                        value: _vm.$v.terms.$model,
+                        expression: "$v.terms.$model",
+                        modifiers: { trim: true },
+                      },
+                    ],
+                    staticClass: "form-check-input",
+                    class: { "is-invalid": _vm.validationStatus(_vm.$v.terms) },
+                    staticStyle: { "margin-left": "0" },
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      checked: Array.isArray(_vm.$v.terms.$model)
+                        ? _vm._i(_vm.$v.terms.$model, null) > -1
+                        : _vm.$v.terms.$model,
+                    },
+                    on: {
+                      change: function ($event) {
+                        var $$a = _vm.$v.terms.$model,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.$v.terms,
+                                "$model",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.$v.terms,
+                                "$model",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.$v.terms, "$model", $$c)
+                        }
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "form-check-label", attrs: { for: "" } },
+                    [_vm._v("I accept all the terms and condition.")]
+                  ),
+                ]),
                 _vm._v(" "),
-                _vm._m(1),
+                _vm._m(0),
               ]
             ),
           ]
@@ -33298,21 +33382,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-check mb-3" }, [
-      _c("input", {
-        staticClass: "form-check-input",
-        attrs: { type: "checkbox", id: "" },
-      }),
-      _vm._v(" "),
-      _c("label", { staticClass: "form-check-label", attrs: { for: "" } }, [
-        _vm._v("I accept all the terms and condition."),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -34781,7 +34850,7 @@ var render = function () {
                           },
                           attrs: {
                             type: "text",
-                            placeholder: "Enter account holber name",
+                            placeholder: "Enter account holder name",
                           },
                           domProps: {
                             value: _vm.$v.account_holber_name.$model,
@@ -37521,7 +37590,7 @@ var render = function () {
                         "front-size": "20px",
                       },
                     },
-                    [_vm._v("loding....")]
+                    [_vm._v("loading....")]
                   )
                 : _vm._e(),
               _vm._v(" "),
@@ -37539,7 +37608,7 @@ var render = function () {
                 [
                   _c("Input", {
                     attrs: {
-                      label: "userName",
+                      label: "User Name",
                       type: "email",
                       placeholder: "exampl@gamil.com",
                     },
