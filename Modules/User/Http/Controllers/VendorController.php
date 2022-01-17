@@ -10,6 +10,7 @@ use Modules\Order\Entities\OrderList;
 use Auth;
 use Image;
 use Modules\User\Entities\Vendor;
+use Modules\Country\Entities\Country;
 
 class VendorController extends Controller
 {
@@ -33,7 +34,8 @@ class VendorController extends Controller
 
      public function editVendorProfile(Request $request, $id){
         $user = User::where('id',Auth::user()->id)->with('vendor')->first();
-        return view('user::edit-profile',compact('user'));
+        $countries = Country::where('publish',1)->get();
+        return view('user::edit-profile',compact('user','countries'));
       }
 
       public function updateVendorProfile(Request $request, $id){

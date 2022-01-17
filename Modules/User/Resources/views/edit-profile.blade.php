@@ -4,13 +4,18 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <ul class="nav nav-tabs">
-                <li class="nav-item active"><a data-toggle="tab"  href="#home">Vendor Profile</a></li>
-                <li><a data-toggle="tab" href="#menu1">Description</a></li>
+            <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true"><strong>Basic Profile Details</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false"><strong>About Company </strong></a>
+                </li>
             </ul>
         </div>
-        <div class="tab-content" id="ex2-content">
-            <div id="home" class="tab-pane fade show active">
+        <div class="tab-content" id="component-1-content">
+            <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+    
                 <form method="post" action="{{route('updateVendorProfile',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
@@ -19,7 +24,7 @@
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <!-- <a href="{{asset('/images/listing/'.$user->vendor->image)}}" target="_adimage">
                                             <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded" >
                                         </a>  -->
@@ -35,7 +40,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <div class="card profile-card border-0 bg-transparent">
                                             <div class="card-body">
                                                 <h3 class="profile-card-title">{{ucfirst($user->vendor->shop_name)}}</h3>
@@ -43,6 +48,7 @@
                                                 <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$user->email}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$vendor->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->phone_number}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -51,7 +57,7 @@
                         </div>
                         <div class="row">
                         
-                            <div class="col-lg-12 col-sm-12 form-group">
+                            <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Category</label>
                                 <select name="category" id="vendor_status" class="form-control " >
                                     <option value="local_seller" @if ($user->vendor->category=="local_seller"){{"selected"}} @endif>Local Seller</option>
@@ -66,31 +72,23 @@
                                     <option value="standard_plan" @if ($user->vendor->plan=="standard_plan"){{"selected"}} @endif>Standard Plan</option>
                                 </select>
                             </div>
-                            <!-- <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Image </label>
-                                <input id="fileUpload" class="form-control" value="" name="image" type="file">
-                                <br>
-                                <div id="wrapper" class="mt-2">
-                                    <div id="image-holder">
-                                        @if($user->vendor->image)
-                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="" height="120px" width:"120px">
-                                        @endif
-                                    </div>
-                                </div>
-                            </div> -->
+                            <div class="col-lg-6 col-sm-12 form-group">
+                                <label>Country</label>
+                               <select name="country_id" class="form-control">
+                                    @foreach ($countries as $slug => $country)
+                                    <option value="{{ $country->id }}" {{ $user->vendor->country_id == $country->id ? 'selected' : '' }}>
+                                        {{ $country->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Shop Name</label>
                                 <input class="form-control" type="text"
                                 value="{{$user->vendor->shop_name}}" name="shop_name" placeholder="Name"
                                 >
                             </div>
-                            <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Email</label>
-                                <input class="form-control" type="text"
-                                    value="{{$user->email}}" name="email" placeholder="Email" disabled
-                                    >
-
-                            </div>
+                            
                             <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Phone No</label>
                                 <input class="form-control" type="text"
@@ -110,13 +108,13 @@
                                     name="company_address" placeholder="Company Address Here" >
                                 
                             </div>
-                            <div class="col-lg-6 col-sm-12 form-group">
+                            <!-- <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Product Category</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->product_category}}"
                                     name="product_category" placeholder="Product Category Here" >
                                 
-                            </div>
+                            </div> -->
                             
 
                             <div class="col-lg-6 col-sm-12 form-group">
@@ -131,18 +129,18 @@
                                     value="{{$user->vendor->id_card_number}}"
                                     name="id_card_number"  >
                             </div>
-                            <div class="col-lg-6 col-sm-12 form-group">
+                            <!-- <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Category Commission</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->category_commission}}"
                                     name="category_commission"  >
-                            </div>
-                            <div class="col-lg-6 col-sm-12 form-group">
+                            </div> -->
+                            <!-- <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Percentage</label>
                                 <input class="form-control" type="text"
                                     value="{{$user->vendor->percentage}}"
                                     name="percentage"  >
-                            </div>
+                            </div> -->
                             <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Bank Name</label>
                                 <input class="form-control" type="text"
@@ -180,14 +178,6 @@
                                     name="store_contact_number"  >
                             </div>
                             
-                            <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Vendor Status</label>
-                                <select name="vendor_type" id="vendor_status" class="form-control " disabled>
-                                    <option value="new" @if ($user->vendor_type=="new"){{"selected"}} @endif>New</option>
-                                    <option value="approved" @if ($user->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
-                                    <option value="suspended" @if ($user->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
-                                </select>
-                            </div>
                             <div class="col-lg-12 col-sm-12 form-group">
                                 <button type="submit"  class="btn btn-success "><span class="fa fa-send"> Update Profile</button>
                             </div>
@@ -196,7 +186,7 @@
                                    
                 </form>
             </div>
-            <div id="menu1" class="tab-pane fade">
+            <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
                 <form method="post" action="{{route('updateVendorDesc',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
