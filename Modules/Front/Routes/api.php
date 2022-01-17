@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Modules\Front\Http\Controllers\CheckoutController;
+use Modules\Front\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +58,5 @@ Route::get('/delete/{id}', [CartController::class, 'DeleteCart'])->name('delete-
 
 // Checkout
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
+Route::get('customer/orders', [OrderController::class, 'index'])->middleware('auth:api');
 
