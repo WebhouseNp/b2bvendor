@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/front', function (Request $request) {
 
 // Products
 Route::get('/products', 'ProductApiController@index');
-Route::get('/products/{product:slug}', 'ProductApiController@show');
+Route::get('/products/{slug}', 'ProductApiController@show');
 Route::get('/p/new-arrivals', 'ProductApiController@getNewArrivals');
 Route::get('/p/top-products', 'ProductApiController@getTopProducts');
 
