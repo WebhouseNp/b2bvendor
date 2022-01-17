@@ -37,6 +37,11 @@ class Deal extends Model
     return $this->expire_at->isFuture();
   }
 
+  public function markCompleted()
+  {
+    return $this->update(['completed_at' => now()]);
+  }
+
   // relationship name should always be camel case like dealProduct
   public function deal_products()
   {
