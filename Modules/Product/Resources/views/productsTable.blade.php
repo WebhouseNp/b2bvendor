@@ -5,7 +5,7 @@
                         <th>SN</th>
                         <th>Image</th>
                         <th>Title</th>
-                        @if(checkRole(auth()->user()->id) == 'admin' || checkRole(auth()->user()->id) == 'super_admin')
+                        @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
                         <th>User</th>
                         @endif
                         <th>Images</th>
@@ -31,7 +31,7 @@
                         @endif
 			        </td>
                     <td>{{$detail->title}}</td>
-                    @if(checkRole(auth()->user()->id) == 'admin' || checkRole(auth()->user()->id) == 'super_admin')
+                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
                     <td>{{$detail->user->name}}</td>
                     @endif
                     <td style="text-align: center">
