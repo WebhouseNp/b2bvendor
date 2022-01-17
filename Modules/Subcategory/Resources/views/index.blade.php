@@ -8,7 +8,6 @@
 
 <div class="page-heading">
     <h1 class="page-title"> Sub Categories</h1>
-    @include('admin.section.notifications')
 </div>
 <div class="ibox-body" id="validation-errors" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
@@ -91,7 +90,7 @@
 <script type="text/javascript">
     $(function() {
         $('#example1').DataTable({
-            pageLength: 2,
+            pageLength: 25,
         });
     })
 </script>

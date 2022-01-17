@@ -20,7 +20,7 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
+        $details = Subcategory::orderBy('created_at', 'desc')->with('category')->paginate(15);
         return view('subcategory::index',compact('details'));
     }
 

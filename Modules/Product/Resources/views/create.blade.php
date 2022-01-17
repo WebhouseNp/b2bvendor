@@ -19,6 +19,11 @@
 
     <div class="ibox-body" id="validation-errors">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
+        <!-- Image loader -->
+<div id='loader' style='display: none;'>
+  <img src="{{asset('/images/reload.gif')}}" width='32px' height='32px'>
+</div>
+<!-- Image loader -->
     <form id="product-create-form">
 
         <div class="row">
@@ -648,6 +653,8 @@ $(document).ready(function(){
 <script>
     function submitProductNow()
     {
+     
+       
         for (instance in CKEDITOR.instances)
             {
                 CKEDITOR.instances[instance].updateElement();
@@ -655,6 +662,7 @@ $(document).ready(function(){
         
         var productCreateForm = document.getElementById("product-create-form");
         var formData = new FormData(productCreateForm);
+        
             $.ajax({
                 type:'POST',
                 url: "/api/createproduct",
@@ -663,6 +671,10 @@ $(document).ready(function(){
                 cache:false,
                 contentType: false,
                 processData: false,
+                beforeSend: function(){
+                    // Show image container
+                    $("#loader").show();
+                },
                 success:function(response){
                     if(response.status == 'successful'){
                         
@@ -682,6 +694,10 @@ $(document).ready(function(){
                         $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
                         });
                     }
+                },
+                complete:function(data){
+                    // Hide image container
+                    $("#loader").hide();
                 }
 
             });

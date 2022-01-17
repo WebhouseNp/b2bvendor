@@ -548,7 +548,7 @@ function offers(){
                                 });
                                 $('#category_id').html(html_options);
                             }
-                                document.getElementById('image-holder').innerHTML = '<img width="150" height="150" src="<?php echo URL::to('/').'/images/thumbnail/'; ?>'+response.data.image+'">';
+                                document.getElementById('image-holder').innerHTML = '<img width="150" height="150" src="<?php echo URL::to('/').'/images/listing/'; ?>'+response.data.image+'">';
 
                     //    location.reload();
                     }

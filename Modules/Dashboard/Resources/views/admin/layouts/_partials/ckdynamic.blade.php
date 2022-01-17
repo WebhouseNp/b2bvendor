@@ -1,5 +1,3 @@
-<!-- used for destintion creatinon -->
-
 <script>
 
    var options = {
