@@ -16,9 +16,17 @@ class DealApiController extends Controller
     public function customerSearch()
     {
         // TODO::must be a vendor
-        $users = User::where('name', 'like', request('q') . '%')
-            ->orWhere('email', 'like', request('q') . '%')
-            ->select('id', 'name', 'email')->get();
+        $users = User::
+            where('name', 'like', request('q') . '%')
+            // ->orWhere('email', 'like', request('q') . '%')
+            ->
+            select('id', 'name', 'email')
+            ->whereHas(
+                'roles', function($q){
+                    $q->where('slug', 'customer');
+                }
+            )
+            ->get();
 
         return response()->json(['data' => $users]);
     }

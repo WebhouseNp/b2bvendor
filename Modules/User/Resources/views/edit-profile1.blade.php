@@ -8,49 +8,43 @@
                 <li class="nav-item active"><a data-toggle="tab"  href="#home">Vendor Profile</a></li>
                 <li><a data-toggle="tab" href="#menu1">Description</a></li>
             </ul>
+            <!-- Tabs navs -->
+            <!-- <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a
+                    class="nav-link active"
+                    id="ex2-tab-1"
+                    data-mdb-toggle="tab"
+                    href="#ex2-tabs-1"
+                    role="tab"
+                    aria-controls="ex2-tabs-1"
+                    aria-selected="true"
+                    >Vendor Basic Info</a
+                    >
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a
+                    class="nav-link"
+                    id="ex2-tab-2"
+                    data-mdb-toggle="tab"
+                    href="#ex2-tabs-2"
+                    role="tab"
+                    aria-controls="ex2-tabs-2"
+                    aria-selected="false"
+                    >Description</a
+                    >
+                </li>
+            </ul> -->
         </div>
         <div class="tab-content" id="ex2-content">
             <div id="home" class="tab-pane fade show active">
+            <!-- <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1" > -->
                 <form method="post" action="{{route('updateVendorProfile',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     
                     <div class="ibox-body">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <!-- <a href="{{asset('/images/listing/'.$user->vendor->image)}}" target="_adimage">
-                                            <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded" >
-                                        </a>  -->
-                                        <label>Update Profile Image </label>
-                                        <input id="fileUpload" class="form-control" value="" name="image" type="file">
-                                        <br>
-                                        <div id="wrapper" class="mt-2">
-                                            <div id="image-holder">
-                                                @if($user->vendor->image)
-                                                <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded" >
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-8">
-                                        <div class="card profile-card border-0 bg-transparent">
-                                            <div class="card-body">
-                                                <h3 class="profile-card-title">{{ucfirst($user->vendor->shop_name)}}</h3>
-                                                <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $user->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$user->email}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$vendor->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->phone_number}}</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
-                        
                             <div class="col-lg-12 col-sm-12 form-group">
                                 <label>Category</label>
                                 <select name="category" id="vendor_status" class="form-control " >
@@ -66,7 +60,7 @@
                                     <option value="standard_plan" @if ($user->vendor->plan=="standard_plan"){{"selected"}} @endif>Standard Plan</option>
                                 </select>
                             </div>
-                            <!-- <div class="col-lg-6 col-sm-12 form-group">
+                            <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Image </label>
                                 <input id="fileUpload" class="form-control" value="" name="image" type="file">
                                 <br>
@@ -77,7 +71,7 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="col-lg-6 col-sm-12 form-group">
                                 <label>Shop Name</label>
                                 <input class="form-control" type="text"
@@ -197,6 +191,7 @@
                 </form>
             </div>
             <div id="menu1" class="tab-pane fade">
+            <!-- <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2" > -->
                 <form method="post" action="{{route('updateVendorDesc',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
