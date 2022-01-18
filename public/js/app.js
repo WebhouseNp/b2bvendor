@@ -2252,7 +2252,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   shop_name: _this.vendorinfo.shop_name,
                   representative_name: _this.vendorinfo.representative_name,
                   company_address: _this.vendorinfo.company_address,
-                  country: _this.vendorinfo.country,
+                  country_id: _this.vendorinfo.country_id,
                   name_on_card: _this.vendorinfo.name_on_card,
                   id_card_number: _this.vendorinfo.id_card_number,
                   email_address: _this.vendorinfo.email_address,
@@ -3086,7 +3086,7 @@ __webpack_require__.r(__webpack_exports__);
       company_name: "",
       representative_name: '',
       company_address: '',
-      country: '',
+      country_id: '',
       name_on_card: '',
       id_card_number: '',
       email_address: '',
@@ -3113,7 +3113,7 @@ __webpack_require__.r(__webpack_exports__);
     company_address: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
-    country: {
+    country_id: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
     },
     name_on_card: {
@@ -5165,7 +5165,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -34322,15 +34321,15 @@ var render = function () {
                               {
                                 name: "model",
                                 rawName: "v-model.trim",
-                                value: _vm.$v.country.$model,
-                                expression: "$v.country.$model",
+                                value: _vm.$v.country_id.$model,
+                                expression: "$v.country_id.$model",
                                 modifiers: { trim: true },
                               },
                             ],
                             staticClass: "form-control",
                             class: {
                               "is-invalid": _vm.validationStatus(
-                                _vm.$v.country
+                                _vm.$v.country_id
                               ),
                             },
                             on: {
@@ -34344,7 +34343,7 @@ var render = function () {
                                     return val
                                   })
                                 _vm.$set(
-                                  _vm.$v.country,
+                                  _vm.$v.country_id,
                                   "$model",
                                   $event.target.multiple
                                     ? $$selectedVal
@@ -34363,10 +34362,7 @@ var render = function () {
                             _vm._l(_vm.countries, function (country, index) {
                               return _c(
                                 "option",
-                                {
-                                  key: index,
-                                  domProps: { value: country.name },
-                                },
+                                { key: index, domProps: { value: country.id } },
                                 [_vm._v(_vm._s(country.name))]
                               )
                             }),
@@ -34374,7 +34370,7 @@ var render = function () {
                           2
                         ),
                         _vm._v(" "),
-                        !_vm.$v.country.required
+                        !_vm.$v.country_id.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
                                 "\n                    Country field is required.\n                  "
@@ -37767,6 +37763,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "form-check" }, [
       _c("input", {
         staticClass: "form-check-input",
+        staticStyle: { "margin-left": "0", "margin-top": "6px" },
         attrs: { type: "checkbox", id: "rememberMe" },
       }),
       _vm._v(" "),
