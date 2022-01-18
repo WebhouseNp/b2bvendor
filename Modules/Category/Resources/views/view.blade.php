@@ -43,6 +43,10 @@
       <td><div id="include_in_main_menu"></div></td>
     </tr>
     <tr>
+      <th scope="row">Hot Category</th>
+      <td><div id="hot_category"></div></td>
+    </tr>
+    <tr>
       <th scope="row">Featured</th>
       <td><div id="is_featured"></div></td>
     </tr>
@@ -88,6 +92,12 @@
 					else if(response.data.publish == '0'){
 						document.getElementById('publish').innerHTML = '<span class="label label-danger">Unpublished</span>';
 					}  
+          if(response.data.hot_category == '1'){
+						document.getElementById('hot_category').innerHTML = '<span class="label label-success">Hot Category</span>';
+					}
+					else if(response.data.hot_category == '0'){
+						document.getElementById('hot_category').innerHTML = '<span class="label label-danger">Not Hot Catgeory</span>';
+					} 
                     if(response.data.is_featured == '1'){
 						document.getElementById('is_featured').innerHTML = '<span class="label label-success">Yes</span>';
 					}

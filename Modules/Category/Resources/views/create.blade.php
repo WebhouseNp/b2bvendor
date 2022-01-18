@@ -80,12 +80,13 @@
                     </div>
                 </div>
             </div>
-
+            @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
             <div class="check-list">
                 <label class="ui-checkbox ui-checkbox-primary">
                     <input name="publish" id="publish" type="checkbox">
                     <span class="input-span"></span>Publish</label>
             </div>
+            @endif
             <br>
             <div class="form-group">
                 <input onclick="submitCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success">
