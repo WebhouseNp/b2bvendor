@@ -59,7 +59,8 @@ class CategoryApiController extends Controller
     public function hotCategories()
     {
         $categories = Category::with('subcategory:id,name,slug,category_id')
-            ->published()->where('hot_category', 1)
+            ->where('hot_category', 1)
+            ->published()
             ->get()->map(function ($category) {
                 return [
                     'id' => $category->id,
