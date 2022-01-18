@@ -44,6 +44,7 @@ Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVe
 
 Route::get('/suppliers', 'SearchController@index');
 Route::get('allcategories', 'FrontController@allcategories'); // Not in use since we were pulling a lot more than we need
+Route::get('categories', 'CategoryApiController@index');
 Route::get('megamenu', 'CategoryApiController@megamenu');
 Route::get('hot-categories', 'CategoryApiController@hotCategories');
 

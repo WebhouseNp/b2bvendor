@@ -8,11 +8,36 @@ use Modules\Category\Entities\Category;
 
 class CategoryApiController extends Controller
 {
+    public function index()
+    {
+        $categories = Category::with('subcategory:id,name,slug,category_id')
+            ->published()
+            ->get()->map(function ($category) {
+                return [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'slug' => $category->slug,
+                    'image_url' => $category->imageUrl(),
+                    'is_featured' => $category->is_featured,
+                    'subcategory' => $category->subcategory->map(function ($category) {
+                        return [
+                            'id' => $category->id,
+                            'name' => $category->name,
+                            'slug' => $category->slug,
+                            'image_url' => $category->imageUrl(),
+                        ];
+                    })
+                ];
+            });
+
+        return response()->json($categories, 200);
+    }
+
     public function megamenu()
     {
         $categories = Category::with('subcategory:id,name,slug,category_id')
             ->published()
-            ->get()->map(function($category) {
+            ->get()->map(function ($category) {
                 return [
                     'id' => $category->id,
                     'name' => $category->name,
@@ -29,8 +54,8 @@ class CategoryApiController extends Controller
     public function hotCategories()
     {
         $categories = Category::with('subcategory:id,name,slug,category_id')
-            ->published()->where('hot_category',1)
-            ->get()->map(function($category) {
+            ->published()->where('hot_category', 1)
+            ->get()->map(function ($category) {
                 return [
                     'id' => $category->id,
                     'name' => $category->name,
