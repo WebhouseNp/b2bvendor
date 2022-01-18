@@ -76,13 +76,12 @@
                             
                             ></Input>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <input type="checkbox" class="form-check-input"
+                                 id="rememberMe"
+                                 style="margin-left:0; margin-top: 6px;">
                                 <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
                             <button type="submit" class="btn btn-primary">Sign in</button>
-                            <!-- <hr>
-                            <p>New around here? Sign Up</p>
-                            <p>Forger Password</p> -->
                         </form>
                         <div class="vendor-form-bt">
                             <a href="javascript:void(0)" @click="onClickSingup"> New around here? Sign Up</a><br>

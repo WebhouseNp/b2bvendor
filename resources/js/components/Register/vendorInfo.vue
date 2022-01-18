@@ -123,14 +123,14 @@
                       src="/images/asterik-20.png"
                       alt="asterik-image"
                     />
-                    <select class="form-control" v-model.trim="$v.country.$model"
-                     :class="{ 'is-invalid': validationStatus($v.country) }">
+                    <select class="form-control" v-model.trim="$v.country_id.$model"
+                     :class="{ 'is-invalid': validationStatus($v.country_id) }">
                      <option value="" disabled>Select Country</option>
                       <option v-for="(country,index) in countries" 
-                      :key="index" :value="country.name">{{country.name}}</option>
+                      :key="index" :value="country.id">{{country.name}}</option>
                     </select>
                     <div
-                      v-if="!$v.country.required"
+                      v-if="!$v.country_id.required"
                       class="invalid-feedback"
                     >
                       Country field is required.
@@ -434,7 +434,7 @@ export default {
       company_name: "",
       representative_name:'',
       company_address:'',
-      country:'',
+      country_id:'',
       name_on_card:'',
       id_card_number:'',
       email_address:'',
@@ -453,7 +453,7 @@ export default {
     company_name: { required },
     representative_name:{ required },
     company_address: {required},
-    country:{required},
+    country_id:{ required },
     name_on_card:{required},
     id_card_number:{required},
     email_address: {required},
