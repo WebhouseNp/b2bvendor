@@ -10,7 +10,9 @@ class CategoryApiController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('subcategory:id,name,slug,category_id')
+        $categories = Category::with(['subcategory' => function ($query) {
+            $query->select(['id', 'name', 'slug', 'category_id', 'image'])->published();
+        }])
             ->published()
             ->get()->map(function ($category) {
                 return [
@@ -35,9 +37,12 @@ class CategoryApiController extends Controller
 
     public function megamenu()
     {
-        $categories = Category::with('subcategory:id,name,slug,category_id')
+        $categories = Category::with(['subcategory' => function ($query) {
+            $query->select(['id', 'name', 'slug', 'category_id', 'image'])->published();
+        }])
             ->published()
-            ->get()->map(function ($category) {
+            ->get()
+            ->map(function ($category) {
                 return [
                     'id' => $category->id,
                     'name' => $category->name,
