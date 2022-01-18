@@ -144,7 +144,7 @@ export default {
           shop_name: this.vendorinfo.shop_name,
           representative_name: this.vendorinfo.representative_name,
           company_address: this.vendorinfo.company_address,
-          country: this.vendorinfo.country,
+          country_id: this.vendorinfo.country_id,
           name_on_card: this.vendorinfo.name_on_card,
           id_card_number: this.vendorinfo.id_card_number,
           email_address: this.vendorinfo.email_address,
