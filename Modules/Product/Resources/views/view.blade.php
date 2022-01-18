@@ -59,8 +59,12 @@
       <td><div id="type"></div></td>
     </tr>
     <tr>
-      <th scope="row">Delivery Charge</th>
-      <td><div id="delivery_charge"></div></td>
+      <th scope="row">Shipping Charge</th>
+      <td><div id="shipping_charge"></div></td>
+    </tr>
+    <tr>
+      <th scope="row">Units</th>
+      <td><div id="unit"></div></td>
     </tr>
     <tr>
       <th scope="row">Essential</th>
@@ -183,8 +187,11 @@
                document.getElementById('discount').innerHTML = response.data.discount;
                document.getElementById('moq').innerHTML = response.data.moq;
                document.getElementById('category').innerHTML = response.data.category.name;
-               if(response.data.delivery_charge){
-                document.getElementById('delivery_charge').innerHTML = response.data.delivery_charge;
+               if(response.data.shipping_charge){
+                document.getElementById('shipping_charge').innerHTML = response.data.shipping_charge;
+               }
+               if(response.data.unit){
+                document.getElementById('unit').innerHTML = response.data.unit;
                }
                  //  document.getElementById('offer').innerHTML = response.data.offer.title;
               //  document.getElementById('brand').innerHTML = response.data.brand.title;

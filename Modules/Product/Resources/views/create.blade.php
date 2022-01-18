@@ -92,7 +92,7 @@
 
                                     </div> -->
                                     <div class="col-lg-4 col-sm-12 form-group">
-                                        <label for="">Type</label>
+                                        <label for=""><strong>Type</strong></label>
                                         <select name="type" id="type" class="form-control">
                                             <option value="top">Top Product</option>
                                             <option value="new">New Arrivals</option>
@@ -110,8 +110,18 @@
                                     </div>
                                     <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Shipping Charge</strong></label>
-                                        <input class="form-control" type="text" id="shipping_charge" name="shipping _charge" value=""
+                                        <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value=""
                                              placeholder="shipping Charge">
+                                    </div>
+
+                                    <div class="col-lg-4 col-sm-12 form-group">
+                                        <label for="browser"><strong>Choose unit :</strong></label>
+                                        <input list="units" class="form-control" name="unit" id="unit">
+                                        <datalist id="units">
+                                        <option value="pcs">
+                                        <option value="kg">
+                                        <option value="m">
+                                        </datalist>
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Stock Quantity</strong></label>

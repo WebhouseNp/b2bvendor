@@ -100,11 +100,11 @@
 
                                     </div> -->
                                     <div class="col-lg-4 col-sm-12 form-group">
-                                        <label for="">Type</label>
+                                        <label for=""><strong>Type</strong></label>
                                         <select name="type" id="type" class="form-control">
                                             <option value="top">Top Product</option>
                                             <option value="new">New Arrivals</option>
-                                            <option value="hot">Hot Categories</option>
+                                            <option value="hot">Hot Products</option>
                                             <option value="whole_sale">Sasto Wholesale</option>
                                             <option value="none">None</option>
                                         </select>
@@ -117,6 +117,16 @@
                                         <label><strong> Shipping Charge</strong></label>
                                         <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value=""
                                              placeholder="shipping Charge">
+                                    </div>
+
+                                    <div class="col-lg-4 col-sm-12 form-group">
+                                        <label for="browser"><strong>Choose unit :</strong></label>
+                                        <input list="units" class="form-control" name="unit" id="unit">
+                                        <datalist id="units">
+                                        <option value="pcs">
+                                        <option value="kg">
+                                        <option value="m">
+                                        </datalist>
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Stock Quantity</strong></label>
@@ -519,6 +529,9 @@ function offers(){
                         // }
                         if(response.data.shipping_charge){
                             document.getElementById('shipping_charge').value = response.data.shipping_charge;
+                        }
+                        if(response.data.unit){
+                            document.getElementById('unit').value = response.data.unit;
                         }
                         document.getElementById('meta_title').value = response.data.meta_title;
                         document.getElementById('meta_description').value = response.data.meta_description;
