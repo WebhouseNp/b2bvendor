@@ -16,13 +16,14 @@ class SearchController extends Controller
      * @return Renderable
      */
 
-    public function productSearch(Request $request){
+    public function productSearch(Request $request)
+    {
         $title = $request->keyword;
-        if($request->select == 0){
+        if ($request->select == 0) {
             $productSearch = Product::where('title', 'LIKE', "%" . $title . "%")
-            ->orWhere('highlight', 'LIKE', "%" . $title . "%")
-            ->orWhere('description', 'LIKE', "%" . $title . "%")
-            ->get();
+                ->orWhere('highlight', 'LIKE', "%" . $title . "%")
+                ->orWhere('description', 'LIKE', "%" . $title . "%")
+                ->get();
             return response()->json([
                 'status' => 'successful',
                 "message" => "Product search successfull!",
@@ -37,41 +38,38 @@ class SearchController extends Controller
             //        ;
             //     })
             // ->get();
-            $vendorSearch = User::where('name','LIKE', "%" . $title ."%")
-            ->orWhereHas('vendor', function ($query) use ($title) {
-                   $query->where('shop_name', 'like', '%' . $title . "%")
-                   ->orWhere('company_name', 'like', '%' . $title . "%")
-                   ->orWhere('company_address', 'like', '%' . $title . "%")
-                   ;
+            $vendorSearch = User::where('name', 'LIKE', "%" . $title . "%")
+                ->orWhereHas('vendor', function ($query) use ($title) {
+                    $query->where('shop_name', 'like', '%' . $title . "%")
+                        ->orWhere('company_name', 'like', '%' . $title . "%")
+                        ->orWhere('company_address', 'like', '%' . $title . "%");
                 })
                 ->orWhereHas('products', function ($query) use ($title) {
                     $query->where('title', 'like', '%' . $title . '%')
-                    ->orWhere('highlight', 'LIKE', "%" . $title . "%")
-                    ->orWhere('description', 'LIKE', "%" . $title . "%")
-                    ;
-                 })->get();
+                        ->orWhere('highlight', 'LIKE', "%" . $title . "%")
+                        ->orWhere('description', 'LIKE', "%" . $title . "%");
+                })->get();
             return response()->json([
                 'status' => 'successful',
                 "message" => "vendor search successfull!",
                 "data" => $vendorSearch
             ], 200);
         }
-
     }
 
-    
+
 
     public function index()
     {
-        $users = Vendor::whereHas('user', function($q){
+        $users = Vendor::whereHas('user', function ($q) {
             $q->where('shop_name', 'like', '%' . request()->q  . "%")
                 ->orWhere('company_name', 'like', '%' . request()->q  . "%");
         })->where('status', 1)->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 15);
-            return response()->json([
-                'status' => 'successful',
-                "message" => "vendor search successfull!",
-                "data" => $users
-            ], 200);
+        return response()->json([
+            'status' => 'successful',
+            "message" => "vendor search successfull!",
+            "data" => $users
+        ], 200);
     }
 
     /**

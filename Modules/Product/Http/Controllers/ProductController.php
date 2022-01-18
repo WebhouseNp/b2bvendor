@@ -29,13 +29,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $details = Product::when(request()->filled('search'), function($query) {
-            return $query->where('title', 'like', '%'. request('search') . "%");
-            })
+        $details = Product::when(request()->filled('search'), function ($query) {
+            return $query->where('title', 'like', '%' . request('search') . "%");
+        })
             ->latest()
             ->paginate(5)
             ->withQueryString();
-        return view('product::index',compact('details'));
+        return view('product::index', compact('details'));
     }
 
     public function create()
@@ -62,7 +62,8 @@ class ProductController extends Controller
         return response()->json(['data' => $brands, 'status_code' => 200]);
     }
 
-    public function approveproduct(Request $request){
+    public function approveproduct(Request $request)
+    {
         try {
             $product = Product::findorFail($request->id);
             $product['isApproved'] = 'approved';
@@ -76,7 +77,7 @@ class ProductController extends Controller
 
                     ->subject('Product Approved!! ');
                 $message->from('info@sastowholesale.com', 'Admin');
-             });
+            });
             return response()->json([
                 'status' => 'successful',
                 "message" => "Product approved successfully!"
@@ -88,7 +89,8 @@ class ProductController extends Controller
         }
     }
 
-    public function nonapprovalnote(Request $request){
+    public function nonapprovalnote(Request $request)
+    {
         try {
             $product = Product::findorFail($request->id);
             $product['isApproved'] = 'rejected';
@@ -98,7 +100,7 @@ class ProductController extends Controller
                 'name' => $product->user->name,
                 'note' => $request->non_approval_note
             ];
-            Mail::send('email.productrejected',$user_info,  function ($message) use ($user_info, $product){
+            Mail::send('email.productrejected', $user_info,  function ($message) use ($user_info, $product) {
                 $message->to($product->user->email, $product->user->name)
 
                     ->subject('Product Rejected ' . $product->user->name);
@@ -144,7 +146,7 @@ class ProductController extends Controller
 
             ]);
             if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
+                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
                 exit;
             }
             DB::beginTransaction();
@@ -153,22 +155,19 @@ class ProductController extends Controller
 
             $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
             $value['essential'] = is_null($request->essential) ? 0 : 1;
-            if( auth()->user()->hasRole('vendor'))
-            {
+            if (auth()->user()->hasRole('vendor')) {
                 $value['isApproved'] = 'not_approved';
             } else {
                 $value['isApproved'] = 'approved';
-
             }
             if ($request->image) {
                 $image = $this->imageProcessing('img-', $request->file('image'));
                 $value['image'] = $image;
             }
-
             $data = Product::create($value);
             $product = $request->all();
-            foreach($product['from'] as $key=>$val){
-                if(!empty($val)){
+            foreach ($product['from'] as $key => $val) {
+                if (!empty($val)) {
                     $range = new Range();
                     $range->product_id = $data->id;
                     $range->from = $val;
@@ -180,10 +179,10 @@ class ProductController extends Controller
             $user_info = [
                 'name'  => auth()->user()->name,
             ];
-            if( auth()->user()->hasRole('vendor')){
-                Mail::send('email.productapproval',$user_info,  function ($message) use ($user_info){
+            if (auth()->user()->hasRole('vendor')) {
+                Mail::send('email.productapproval', $user_info,  function ($message) use ($user_info) {
                     $message->to(auth()->user()->email,  auth()->user()->name)
-    
+
                         ->subject('Product submitted for admin approval ' . auth()->user()->name);
                     $message->from('info@sastowholesale.com', 'Admin');
                 });
@@ -198,37 +197,40 @@ class ProductController extends Controller
         }
     }
 
-    public function productRequest(){
-        $details =  Product::when(request()->filled('search'), function($query) {
-            return $query->where('title', 'like', '%'. request('search') . "%");
-            })
+    public function productRequest()
+    {
+        $details =  Product::when(request()->filled('search'), function ($query) {
+            return $query->where('title', 'like', '%' . request('search') . "%");
+        })
             ->notapproved()->latest()->paginate(10)
             ->withQueryString();
-        return view('product::productrequest',compact('details'));
+        return view('product::productrequest', compact('details'));
     }
 
-    public function VendorProductRequest(){
-        $details =  Product::when(request()->filled('search'), function($query) {
-            return $query->where('title', 'like', '%'. request('search') . "%");
-            })
-            ->where('user_id',Auth::id())->notapproved()->latest()->paginate(10)
-                    ->withQueryString();
-        return view('product::allproducts',compact('details'));
+    public function VendorProductRequest()
+    {
+        $details =  Product::when(request()->filled('search'), function ($query) {
+            return $query->where('title', 'like', '%' . request('search') . "%");
+        })
+            ->where('user_id', Auth::id())->notapproved()->latest()->paginate(10)
+            ->withQueryString();
+        return view('product::allproducts', compact('details'));
     }
-    
-    public function allVendorProducts(){
-        $details =  Product::when(request()->filled('search'), function($query) {
-            return $query->where('title', 'like', '%'. request('search') . "%");
-            })
-            ->where('user_id',Auth::id())
+
+    public function allVendorProducts()
+    {
+        $details =  Product::when(request()->filled('search'), function ($query) {
+            return $query->where('title', 'like', '%' . request('search') . "%");
+        })
+            ->where('user_id', Auth::id())
             ->active()->approved()
-            ->with(['category', 'brand', 'offer','user'])
+            ->with(['category', 'brand', 'offer', 'user'])
             ->latest()
             ->paginate(5)
             ->withQueryString();
-        return view('product::allproducts',compact('details'));
+        return view('product::allproducts', compact('details'));
     }
-    
+
     public function store(Request $request)
     {
         //
@@ -241,8 +243,8 @@ class ProductController extends Controller
 
     public function view($id)
     {
-        $product = Product::where('id', $id)->with('ranges','productimage')->first();
-        return view('product::view', compact('id' ,'product'));
+        $product = Product::where('id', $id)->with('ranges', 'productimage')->first();
+        return view('product::view', compact('id', 'product'));
     }
 
     public function viewProduct(Request $request)
@@ -358,9 +360,9 @@ class ProductController extends Controller
     public function editproduct(Request $request)
     {
         try {
-            $product = Product::where('id',$request->id)->with(['category'])->first();
+            $product = Product::where('id', $request->id)->with(['category'])->first();
             $categories = Category::where('publish', 1)->with('subcategory')->get();
-            $subcategory = Subcategory::where('category_id',$product->category->id)->get();
+            $subcategory = Subcategory::where('category_id', $product->category->id)->get();
             $skus = $product->skus;
             $attributes = [];
             if ($product->category_id) {
@@ -394,60 +396,59 @@ class ProductController extends Controller
     public function updateproduct(Request $request)
     {
         // try {
-            $validator = Validator::make($request->all(), [
-                'title'             => 'required|string',
-                // 'price'             => 'required|numeric',
-                'discount'          => 'nullable|numeric',
-                'type'              => 'required',
-                'category_id'       => 'required|numeric|exists:categories,id',
-                'meta_title'        => 'nullable|string|max:200',
-                'meta_description'  => 'nullable|string',
-                'keyword'           => 'nullable|string|max:200',
-                'meta_keyphrase'    => 'nullable|string|max:200',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'title'             => 'required|string',
+            // 'price'             => 'required|numeric',
+            'discount'          => 'nullable|numeric',
+            'type'              => 'required',
+            'category_id'       => 'required|numeric|exists:categories,id',
+            'meta_title'        => 'nullable|string|max:200',
+            'meta_description'  => 'nullable|string',
+            'keyword'           => 'nullable|string|max:200',
+            'meta_keyphrase'    => 'nullable|string|max:200',
+        ]);
 
-            if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-                exit;
-            }
-            $product = Product::findorFail($request->id);
-            $value = $request->except('image', 'best_seller', 'essential');
+        if ($validator->fails()) {
+            return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+            exit;
+        }
+        $product = Product::findorFail($request->id);
+        $value = $request->except('image', 'best_seller', 'essential');
 
-            $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
-            $value['essential'] = is_null($request->essential) ? 0 : 1;
-            if ($request->image) {
-                if ($product->image) {
-                    $thumbPath = public_path('images/thumbnail');
-                    $listingPath = public_path('images/listing');
-                    if ((file_exists($thumbPath . '/' . $product->image)) && (file_exists($listingPath . '/' . $product->image))) {
-                        unlink($thumbPath . '/' . $product->image);
-                        unlink($listingPath . '/' . $product->image);
-                    }
+        $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
+        $value['essential'] = is_null($request->essential) ? 0 : 1;
+        if ($request->image) {
+            if ($product->image) {
+                $thumbPath = public_path('images/thumbnail');
+                $listingPath = public_path('images/listing');
+                if ((file_exists($thumbPath . '/' . $product->image)) && (file_exists($listingPath . '/' . $product->image))) {
+                    unlink($thumbPath . '/' . $product->image);
+                    unlink($listingPath . '/' . $product->image);
                 }
-                $image = $this->imageProcessing('img-', $request->file('image'));
-                $value['image'] = $image;
             }
-            $success = $product->update($value);
-            if(count($product->ranges)){
-                    $product->ranges()->delete();
-    
-                }
-                $product = $request->all();
-                foreach($product['from'] as $key=>$val){
-                    if(!empty($val)){
-                        $range = new Range();
-                        $range->product_id = $request->id;
-                        $range->from = $val;
-                        $range->to = $product['to'][$key];
-                        $range->price = $product['prices'][$key];
-                        $range->save();
-                    }
-                }
-            return response()->json([
-                'status' => 'successful',
-                "data" => $value,
-                "message" => "product updated successfully"
-            ], 200);
+            $image = $this->imageProcessing('img-', $request->file('image'));
+            $value['image'] = $image;
+        }
+        $success = $product->update($value);
+        if (count($product->ranges)) {
+            $product->ranges()->delete();
+        }
+        $product = $request->all();
+        foreach ($product['from'] as $key => $val) {
+            if (!empty($val)) {
+                $range = new Range();
+                $range->product_id = $request->id;
+                $range->from = $val;
+                $range->to = $product['to'][$key];
+                $range->price = $product['prices'][$key];
+                $range->save();
+            }
+        }
+        return response()->json([
+            'status' => 'successful',
+            "data" => $value,
+            "message" => "product updated successfully"
+        ], 200);
         // } catch (\Exception $exception) {
         //     return response([
         //         'message' => $exception->getMessage()
