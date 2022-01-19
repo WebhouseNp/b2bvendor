@@ -25,7 +25,7 @@
         <!-- <div class="ibox-body" id="appendCategory">
             
         </div> -->
-        <table class="table table-striped table-bordered table-hover" id="example1" cellspacing="0"
+        <table class="table table-striped table-responsive table-bordered table-hover" id="example1" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>

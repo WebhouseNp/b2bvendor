@@ -20,3 +20,4 @@ Route::get('deals/customer-search', [DealApiController::class,'customerSearch'])
 Route::get('deals/product-search', [DealApiController::class,'productSearch'])->name('api.productsearch');
 
 Route::get('deals/{deal}', [DealApiController::class,'show'])->name('api.deals.show')->middleware('auth:api');
+Route::get('editdeals/{deal}', [DealController::class,'editDeal'])->name('api.deals.editDeal');

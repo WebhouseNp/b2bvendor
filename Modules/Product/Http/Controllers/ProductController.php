@@ -133,8 +133,7 @@ class ProductController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'title'             => 'required|string',
-                // 'price'             => 'required|numeric',
-                'discount'          => 'nullable|numeric',
+                'shipping_charge'          => 'nullable|numeric',
                 'type'              => 'required',
                 'category_id'       => 'required|numeric|exists:categories,id',
                 'meta_title'        => 'nullable|string|max:200',
@@ -146,7 +145,7 @@ class ProductController extends Controller
 
             ]);
             if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
+                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
                 exit;
             }
             DB::beginTransaction();
@@ -398,8 +397,7 @@ class ProductController extends Controller
         // try {
         $validator = Validator::make($request->all(), [
             'title'             => 'required|string',
-            // 'price'             => 'required|numeric',
-            'discount'          => 'nullable|numeric',
+            'shipping_charge'   => 'nullable|numeric',
             'type'              => 'required',
             'category_id'       => 'required|numeric|exists:categories,id',
             'meta_title'        => 'nullable|string|max:200',
