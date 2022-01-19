@@ -7,18 +7,6 @@
 
 @section('content')
 
-<div class="page-heading">
-    <h1 class="page-title"> Advertisement</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href=""><i class="la la-home font-20"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item"> Add Advertisement</li>
-    </ol>
-
-</div>
-@include('admin.section.notifications')
-
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -31,7 +19,7 @@
     <div class="ibox-body" id="validation-errors" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
 
-    <form id="advertise_create_form">
+    <form id="ad-create-form">
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
@@ -98,8 +86,8 @@
                                 </div>
                                 <div
                                     class="form-group">
-                                    <button class="btn btn-success" type="submit"> <span class="fa fa-send"></span>
-                                        Save</button>
+                                    <input onclick="submitAdNow(event);" type="button" name="Submit" value="Submit"
+                                            id="blog_submit" class="btn btn-success">
                                 </div>
                             </div>
                         </div>
@@ -151,16 +139,13 @@ $("#fileUpload").on('change', function () {
 
 @push('push_scripts')
 <script>
-$(document).ready(function (e) {
-	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#advertise_create_form').submit(function(e) {
+// $(document).ready(function (e) {
+    function submitAdNow(event) {
         var api_token = '<?php echo $api_token; ?>';
-        e.preventDefault();
-  var formData = new FormData(this);
+        event.preventDefault();
+        $('#blog_submit').attr('value', 'Submitting...');
+        var adCreateForm = document.getElementById("ad-create-form");
+            var formData = new FormData(adCreateForm);
   $.ajax({
         type:'POST',
         url: "/api/createadvertisement",
@@ -173,7 +158,6 @@ $(document).ready(function (e) {
             Authorization: "Bearer " + api_token
         },
         success:function(response){
-            console.log(response.data);
             if(response.status == 'successful'){
               window.location.href = "/admin/advertisement";
               var validation_errors = JSON.stringify(response.message);
@@ -190,8 +174,8 @@ $(document).ready(function (e) {
         }
         
        });
-   });
-   });
+    }
+//    });
 
 
 </script>
