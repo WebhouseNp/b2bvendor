@@ -9,7 +9,7 @@
 
 <div class="page-content fade-in-up">
     <div class="ibox">
-        <table class="table table-striped table-bordered table-hover">
+        <table class="table table-striped table-responsive table-bordered table-hover">
             <thead>
                 <tr>
                     <th>S.N</th>

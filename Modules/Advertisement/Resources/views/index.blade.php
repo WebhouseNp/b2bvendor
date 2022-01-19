@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="ibox-body" id="validation-errors" >
+        <div class="ibox-body table-responsive" id="validation-errors" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
         <div class="ibox-body" id="appendAdvertisement">
             
