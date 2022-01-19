@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="ibox-body">
-            <table id="partners-table" class="table table-striped table-bordered table-hover">
+            <table id="partners-table" class="table table-striped table-responsive table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>SN</th>

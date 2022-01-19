@@ -22,7 +22,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderList')
+        $orders = Order::with(['orderList'])
             ->latest()
             ->paginate();
 
@@ -103,8 +103,14 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load([
-            'orderList.vendor:id,shop_name',
+        $order->load(['orderList' => function($query) {
+            // we only load the order list which belongs to logged in vendor
+               $query->when(auth()->user()->hasRole('vendor'), function($query) {
+                    return $query->where('vendor_user_id', auth()->id());
+                });
+            },
+            // since orderlist is already loaded and constrained
+            // it won't load order list again
             'orderList.product:id,title,slug',
             'customer:id,name,email',
             'billingAddress',

@@ -4,16 +4,9 @@
     $api_token = $user->api_token;
 ?>
 @extends('layouts.admin')
-@push('styles')
+@section('styles')
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
-
-<style media="screen">
-    .adjust-delete-button {
-        margin-top: -28px;
-        margin-left: 37px;
-    }
-</style>
-@endpush
+@endsection
 @section('content')
 
 <div class="page-heading">
@@ -29,7 +22,7 @@
         </div>
 
         <div class="ibox-body">
-            <table class="table table-striped table-bordered table-hover" cellspacing="0"
+            <table class="table table-striped table-responsive table-bordered table-hover" id="example-table" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>
@@ -84,6 +77,14 @@
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/jquery-ui.js')}}"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#example-table').DataTable({
+            pageLength: 15,
+            "responsive": true,
+        });
+    })
+</script>
 <script>
     function FailedResponseFromDatabase(message){
     html_error = "";

@@ -23,7 +23,7 @@
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </div>
-        <div class="ibox-body" id="appendUser">
+        <div class="ibox-body table-responsive" id="appendUser">
         @include('product::productsTable')
         </div>
     </div>

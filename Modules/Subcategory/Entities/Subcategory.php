@@ -33,6 +33,11 @@ class Subcategory extends Model
         return asset('images/listing/' . $this->image);
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('publish', 1);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

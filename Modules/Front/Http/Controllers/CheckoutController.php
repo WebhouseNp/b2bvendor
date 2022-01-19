@@ -53,7 +53,7 @@ class CheckoutController extends Controller
                     ]);
                     $orderSubtotalPrice += $dealProduct->totalPrice();
                 }
-                
+                // mark the deal as completed
                 $deal->markCompleted();
             }
             // Handle cart checkout
