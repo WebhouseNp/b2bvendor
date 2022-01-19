@@ -4,9 +4,9 @@
                     <tr class="border-0">
                         <th>SN</th>
                         <th>Image</th>
-                        <th>Title</th>
+                        <th style="width: 30%">Title</th>
                         @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
-                        <th>User</th>
+                        <th style="width: 20%">User</th>
                         @endif
                         <th>Images</th>
                         <!-- <th>Price</th> -->

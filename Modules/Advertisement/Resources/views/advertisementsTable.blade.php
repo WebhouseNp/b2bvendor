@@ -1,11 +1,10 @@
-<table class="table table-striped table-bordered table-hover" id="example-table"  cellspacing="0"
-                width="100%">
+<table class="table table-striped table-bordered table-hover" id="example-table"  >
                 <thead>
                     <tr class="border-0">
                         <th>S.N</th>
                         <th>Title</th>
                         <th>Image</th>
-                        <th>Link</th>
+                        <th style="width: 25%">Link</th>
                         <th>Publish</th>
                         <th>Action</th>
                     </tr>
@@ -27,16 +26,10 @@
             
                 <td>{{$detail->status=='Publish'? 'Published':'Not published'}}</td>
                 <td>
-                <!-- <a title="view" class="btn btn-success btn-sm" href="{{route('category.view',$detail->id)}}">
-                    <i class="fa fa-eye"></i>
-                </a>  -->
-                <!-- <button type="button" title="View" class="btn btn-success btn-sm view" onclick="viewrole({{ $detail->id }})" data-id="{{$detail->id}}">
-                    <i class="fa fa-eye"></i>
-                </button> -->
                 <a title="Edit" class="btn btn-primary btn-sm" href="{{route('advertisement.edit',$detail->id)}}">
                     <i class="fa fa-edit"></i>
                 </a> 
-                <button class="btn btn-danger delete" onclick="deleteAdvertisement({{ $detail->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-danger btn-sm delete" onclick="deleteAdvertisement({{ $detail->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                 </td>
                 </tr>
                 @empty
@@ -44,11 +37,7 @@
             <td colspan="3">No Records </td>
         </tr>
         @endforelse
-        
-
-                    
                 </tbody>
-
             </table>
  
                      

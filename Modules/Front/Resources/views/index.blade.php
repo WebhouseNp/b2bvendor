@@ -5,17 +5,6 @@
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
-
-<div class="page-heading">
-    <h1 class="page-title"> All Quotations list</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{{route('dashboard')}}"><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All Quotations list</li>
-    </ol>
-    @include('admin.section.notifications')
-</div>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -24,7 +13,7 @@
 
 
         <div class="ibox-body">
-            <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
+            <table class="table table-striped table-responsive table-bordered table-hover" id="example-table" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>
