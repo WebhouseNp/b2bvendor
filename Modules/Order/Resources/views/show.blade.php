@@ -31,13 +31,16 @@
                                         <tr>
                                             <td id="product_title">
                                                 <div>{{ $orderList->product_name }}</div>
-                                                <div class="badge badge-primary">{{ $orderList->order_status }}</div>
+                                                <div class="d-flex">
+                                                    <div class="badge badge-primary">{{ $orderList->order_status }}</div>
+                                                </div>
                                             </td>
                                             <td class="text-nowrap">{{ formatted_price($orderList->unit_price) }} x {{ $orderList->quantity }} = {{ formatted_price($orderList->subtotal_price) }}</td>
                                             <td>{{ formatted_price($orderList->shipping_charge) }}</td>
                                             <td class="text-nowrap">{{ formatted_price($orderList->total_price) }}</td>
                                         </tr>
                                         @endforeach
+                                        @if (auth()->user()->hasAnyRole('super-admin|admin'))
                                         <tr>
                                             <td colspan="2"></td>
                                             <td class="">Subtotal</td>
@@ -53,6 +56,23 @@
                                             <td class="">Order Total</td>
                                             <td class="text-nowrap">{{ formatted_price($order->total_price) }}</td>
                                         </tr>
+                                        @else
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td class="">Subtotal</td>
+                                            <td>{{ formatted_price($order->orderList->sum->subtotal_price) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td class="">Shipping</td>
+                                            <td>{{ formatted_price($order->orderList->sum->shipping_charge) }}</td>
+                                        </tr>
+                                        <tr class="text-primary font-weight-bold">
+                                            <td colspan="2"></td>
+                                            <td class="">Order Total</td>
+                                            <td class="text-nowrap">{{ formatted_price($order->orderList->sum->total_price) }}</td>
+                                        </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -76,9 +96,7 @@
         </div>
     </form>
 
-    <div class="my-4"></div>
-
-
+    <div class="my-5"></div>
 
     <button class="btn btn-sm print__button btn-primary">Print</button>
 </div>
