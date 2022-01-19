@@ -33,7 +33,7 @@ class ProductController extends Controller
             return $query->where('title', 'like', '%' . request('search') . "%");
         })
             ->latest()
-            ->paginate(5)
+            ->paginate(10)
             ->withQueryString();
         return view('product::index', compact('details'));
     }
