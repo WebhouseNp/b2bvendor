@@ -78,7 +78,7 @@ $api_token = $user->api_token;
                                         <div id="unit"></div>
                                     </td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th scope="row">Essential</th>
                                     <td>
                                         <div id="essential"></div>
@@ -101,13 +101,13 @@ $api_token = $user->api_token;
                                     <td>
                                         <div id="discount"></div>
                                     </td>
-                                </tr>
-                                <tr>
+                                </tr> --}}
+                                {{-- <tr>
                                     <th scope="row">Moq</th>
                                     <td>
                                         <div id="moq"></div>
                                     </td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                     <th scope="row">Highlights</th>
                                     <td>
@@ -214,9 +214,9 @@ $api_token = $user->api_token;
                         console.log(response.data)
                         document.getElementById('title').innerHTML = response.data.title;
                         document.getElementById('slug').innerHTML = response.data.slug;
-                        document.getElementById('price').innerHTML = response.data.price;
-                        document.getElementById('discount').innerHTML = response.data.discount;
-                        document.getElementById('moq').innerHTML = response.data.moq;
+                        // document.getElementById('price').innerHTML = response.data.price;
+                        // document.getElementById('discount').innerHTML = response.data.discount;
+                        // document.getElementById('moq').innerHTML = response.data.moq;
                         document.getElementById('category').innerHTML = response.data.category.name;
                         if (response.data.shipping_charge) {
                             document.getElementById('shipping_charge').innerHTML = response.data
@@ -237,20 +237,6 @@ $api_token = $user->api_token;
                         } else if (response.data.status == 'inactive') {
                             document.getElementById('status').innerHTML =
                                 '<span class="label label-danger">Inactive</span>';
-                        }
-                        if (response.data.essential == '1') {
-                            document.getElementById('essential').innerHTML =
-                                '<span class="label label-success">Yes</span>';
-                        } else if (response.data.essential == '0') {
-                            document.getElementById('essential').innerHTML =
-                                '<span class="label label-danger">No</span>';
-                        }
-                        if (response.data.best_seller == '1') {
-                            document.getElementById('best_seller').innerHTML =
-                                '<span class="label label-success">Yes</span>';
-                        } else if (response.data.best_seller == '0') {
-                            document.getElementById('best_seller').innerHTML =
-                                '<span class="label label-danger">No</span>';
                         }
                         document.getElementById('image').innerHTML =
                             '<img width="150" height="150" src="<?php echo URL::to('/') . '/images/thumbnail/'; ?>' + response.data

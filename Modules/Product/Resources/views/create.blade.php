@@ -102,13 +102,13 @@
                                                 <option value="none">None</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-4 col-sm-12 form-group">
+                                        {{-- <div class="col-lg-4 col-sm-12 form-group">
                                             <label><strong> Discount</strong></label>
                                             <input class="form-control" type="text" id="discount_bx" name="discount"
                                                 placeholder="discount">
 
 
-                                        </div>
+                                        </div> --}}
                                         <div class="col-lg-4 col-sm-12 form-group">
                                             <label><strong> Shipping Charge</strong></label>
                                             <input class="form-control" type="text" id="shipping_charge"
@@ -116,7 +116,7 @@
                                         </div>
 
                                         <div class="col-lg-4 col-sm-12 form-group">
-                                            <label for="browser"><strong>Choose unit :</strong></label>
+                                            <label for="browser"><strong>Product Unit :</strong></label>
                                             <input list="units" class="form-control" name="unit" id="unit">
                                             <datalist id="units">
                                                 <option value="pcs">
@@ -295,7 +295,7 @@
                             <div class="ibox">
                                 <div class="ibox-body">
                                     <div class="form-group">
-                                        <label> Upload Main Banner [image size: width: 720px, height: 1080px] </label>
+                                        <label> Upload Main Banner [image size: width: 800px, height: 800px] </label>
 
                                         <input class="form-control" name="image" type="file" id="fileUpload">
                                         <div id="wrapper" class="mt-2">
@@ -312,7 +312,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <input onclick="submitProductNow();" type="button" name="save" value="save"
+                                        <input onclick="submitProductNow(event);" type="button" name="Submit" value="Submit"
                                             id="blog_submit" class="btn btn-success">
                                     </div>
                                 </div>
@@ -672,8 +672,9 @@ $name = ['meta_description', 'description', 'highlight'];
     </script>
 
     <script>
-        function submitProductNow() {
-
+        function submitProductNow(event) {
+            event.preventDefault();
+            $('#blog_submit').attr('value', 'Submitting...');
 
             for (instance in CKEDITOR.instances) {
                 CKEDITOR.instances[instance].updateElement();
@@ -690,36 +691,23 @@ $name = ['meta_description', 'description', 'highlight'];
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function() {
-                    // Show image container
-                    $("#loader").show();
-                },
                 success: function(response) {
                     if (response.status == 'successful') {
-
                         var validation_errors = JSON.stringify(response.message);
                         DataSuccessInDatabase(validation_errors);
                         location.reload();
-                        // window.location.href = "/vendor/product/request";
-                        // $('#validation-errors').html('');
-                        // $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
-                    } else if (response.status == 'unsuccessful') {
-                        var validation_errors = JSON.stringify(response.data);
-                        var response = JSON.parse(validation_errors);
-
-                        $('#validation-errors').html('');
-                        $.each(response, function(key, value) {
-                            // FailedResponseFromDatabase(value);
-                            $('#validation-errors').append('<div class="alert alert-danger">' + value +
-                                '</div');
-                        });
+                    }else(response.status=='unsuccessful' ) 
+                    { 
+                    $('#blog_submit').attr('value', 'Submit');
+                    var validation_errors=JSON.stringify(response.data); 
+                    var response=JSON.parse(validation_errors);
+                    FailedResponseFromDatabase(response);
+                    // $('#validation-errors').html(''); 
+                    // $.each( response, function( key, value) {
+                    //     $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
+                    //     }); 
                     }
                 },
-                complete: function(data) {
-                    // Hide image container
-                    $("#loader").hide();
-                }
-
             });
         }
     </script>
