@@ -5,6 +5,7 @@ namespace Modules\Deal\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Deal\Entities\Deal;
 use Modules\Product\Entities\Product;
+use App\Models\User;
 
 class DealProduct extends Model
 {
@@ -29,5 +30,10 @@ class DealProduct extends Model
   public function product()
   {
     return $this->belongsTo(Product::class);
+  }
+
+  public function customer()
+  {
+    return $this->belongsTo(User::class);
   }
 }

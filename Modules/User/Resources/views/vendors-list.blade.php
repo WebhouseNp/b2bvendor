@@ -9,7 +9,7 @@
             <div class="ibox-title">All vendors</div>
         </div>
         <div class="ibox-body">
-            <table id="example-table" class="table table-striped table-bordered table-hover" cellspacing="0"
+            <table id="example-table" class="table table-striped table-responsive table-bordered table-hover" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>

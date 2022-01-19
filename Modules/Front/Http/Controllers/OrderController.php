@@ -12,9 +12,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('orderList')
-        ->when(request()->filled('status'), function($query) {
-            return $query->where('status', request('status'));
-        })
+            ->when(request()->filled('status'), function ($query) {
+                return $query->where('status', request('status'));
+            })
             ->latest()
             ->paginate();
 

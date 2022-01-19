@@ -10,7 +10,7 @@
                         @endif
                         <th>Images</th>
                         <!-- <th>Price</th> -->
-                        <th> Discount</th>
+                        {{-- <th> Discount</th> --}}
                         
                         <th>Status</th>
 
@@ -40,11 +40,11 @@
                     </td>
                     
                     <!-- <td>NPR. {{ number_format($detail->price)}}</td> -->
-                    <td>
+                    {{-- <td>
                         @if($detail->discount)
                         {{  $detail->discount}}
                         @endif
-                    </td>
+                    </td> --}}
 
                     <td>{{$detail->status=='active'? 'Active':'Inactive'}}</td>
                     <td>

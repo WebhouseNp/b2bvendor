@@ -23,8 +23,8 @@ class DealController extends Controller
     {
         $role = \Modules\Product\Entities\Product::checkUserRole(Auth::id());
 
-        $deals = Deal::with(['deal_products.product_info', 'user', 'vendor' ])
-        
+        $deals = Deal::with(['deal_products.product_info', 'user', 'vendor'])
+
             ->when($role == 'vendor', function ($query) {
                 return $query->where('vendor_user_id', auth()->id());
             })
@@ -70,9 +70,26 @@ class DealController extends Controller
     public function edit($id)
     {
         $products = Product::where('user_id', Auth::id())->select('id', 'title')->get();
-        $users = User::where('publish', 1)->get();
+        $users = User::where('name', 'like', request('q') . '%')
+            ->select('id', 'name', 'email')
+            ->whereHas(
+                'roles',
+                function ($q) {
+                    $q->where('slug', 'customer');
+                }
+            )
+            ->get();
         $deal = Deal::where('id', $id)->with('deal_products')->first();
-        return view('deal::update')->with(compact('deal', 'products', 'users'));
+        return view('deal::update', compact('deal', 'users', 'products'));
+    }
+
+    public function editDeal(Deal $deal)
+    {
+        $deals = $deal->with('deal_products')->first();
+        return response()->json([
+            'status' => true,
+            'data' => $deals,
+        ], 200);
     }
 
     public function update(Request $request, $id)

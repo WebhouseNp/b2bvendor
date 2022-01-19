@@ -40,7 +40,7 @@ class CreateProductsTable extends Migration
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->enum('isApproved', ['approved', 'not_approved', 'rejected'])->default('not_approved');
             $table->enum('product_type', ['standard_product', 'variant_product'])->default('standard_product');
-            $table->enum('type', ['hot', 'new','whole_sale','top', 'none'])->default('none');
+            $table->enum('type', ['hot', 'new', 'whole_sale', 'top', 'none'])->default('none');
 
             //SEO
             $table->text('meta_title')->nullable();
@@ -53,7 +53,7 @@ class CreateProductsTable extends Migration
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('CASCADE');
             $table->foreign('offer_id')->references('id')->on('offers')->onDelete('CASCADE');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('CASCADE');
-            
+
 
             $table->timestamps();
         });

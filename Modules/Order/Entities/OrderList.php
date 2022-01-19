@@ -2,6 +2,7 @@
 
 namespace Modules\Order\Entities;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Order\Entities\Order;
 use Modules\Product\Entities\Product;
@@ -21,8 +22,8 @@ class OrderList extends Model
 		return $this->belongsTo(Product::class, 'product_id');
 	}
 
-	public function vendor()
+	public function vendorUser()
 	{
-		return $this->belongsTo(Vendor::class, 'vendor_user_id');
+		return $this->belongsTo(User::class, 'vendor_user_id');
 	}
 }

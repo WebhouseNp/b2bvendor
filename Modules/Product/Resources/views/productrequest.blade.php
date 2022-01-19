@@ -21,7 +21,7 @@
                 </form>
             </div>
 
-        <div class="ibox-body">
+        <div class="ibox-body table-responsive">
         <table class="table table-bordered table-hover" id="example-table" cellspacing="0"
                 width="100%">
                 <thead>
@@ -31,8 +31,8 @@
                         <th>Title</th>
                         <th>User</th>
                         <th>Images</th>
-                        <th>Price</th>
-                        <th> Discount</th>
+                        {{-- <th>Price</th>
+                        <th> Discount</th> --}}
                         <th>Status</th>
                         <th>Approve</th>
                         <!-- <th>Action</th> -->
@@ -57,13 +57,13 @@
                         <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                     </td>
                     
-                    <td>NPR. {{ number_format($detail->price)}}</td>
+                    {{-- <td>NPR. {{ number_format($detail->price)}}</td>
                     <td>
                         @if($detail->discount)
                         {{  $detail->discount}}
                         @endif
     
-                    </td>
+                    </td> --}}
 
                     <td>{{$detail->status=='active'? 'Active':'Inactive'}}</td>
                     <td>
