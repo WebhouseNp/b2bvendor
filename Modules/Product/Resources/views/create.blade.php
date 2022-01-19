@@ -295,7 +295,7 @@
                             <div class="ibox">
                                 <div class="ibox-body">
                                     <div class="form-group">
-                                        <label> Upload Main Banner [image size: width: 800px, height: 800px] </label>
+                                        <label> Upload Main Banner [image size: width: 800px, height: 800px] [image type: jpg, jpeg, png] </label>
 
                                         <input class="form-control" name="image" type="file" id="fileUpload">
                                         <div id="wrapper" class="mt-2">

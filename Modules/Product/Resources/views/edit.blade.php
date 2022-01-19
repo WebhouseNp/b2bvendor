@@ -304,7 +304,7 @@
                             <div class="ibox">
                                 <div class="ibox-body">
                                     <div class="form-group">
-                                        <label> Upload Main Banner [image size: width: 800px, height: 800px] </label>
+                                        <label> Upload Main Banner [image size: width: 800px, height: 800px] [image type: jpg, jpeg, png] </label>
                                         <!-- <input class="form-control" type="file" name="image" id="image" accept="image/*"
                                         onchange="showThumbnail(this);"> -->
                                         <input class="form-control" name="image" type="file" id="fileUpload">
