@@ -3862,7 +3862,6 @@ var mustBePositive = function mustBePositive(value) {
     return {
       loadingCreateDeal: false,
       //select search product state
-      productArray: [],
       invoice_products: [{
         product_id: "",
         product_qty: '',
@@ -4383,7 +4382,7 @@ var mustBePositive = function mustBePositive(value) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["auth", "products"],
+  props: ["auth", "products", "deal"],
   components: {
     DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_2__["default"],
     Multiselect: (vue_multiselect__WEBPACK_IMPORTED_MODULE_5___default())
@@ -4392,7 +4391,6 @@ var mustBePositive = function mustBePositive(value) {
     return {
       loadingCreateDeal: false,
       //select search product state
-      productArray: [],
       invoice_products: [{
         product_id: "",
         product_qty: '',
@@ -33461,7 +33459,7 @@ var render = function () {
                             "button",
                             {
                               staticClass: "btn btn-primary btn-select",
-                              attrs: { value: "international_seller" },
+                              attrs: { value: "local_seller" },
                               on: { click: _vm.onclick },
                             },
                             [
@@ -33497,7 +33495,7 @@ var render = function () {
                             "button",
                             {
                               staticClass: "btn btn-primary btn-select",
-                              attrs: { value: "national_seller" },
+                              attrs: { value: "international_seller" },
                               on: { click: _vm.onclick },
                             },
                             [

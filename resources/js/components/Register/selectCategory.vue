@@ -45,7 +45,7 @@
                     <div class="card-footers">
                       <button
                         class="btn btn-primary btn-select"
-                        value="international_seller"
+                        value="local_seller"
                         @click="onclick"
                       >
                         Select
@@ -87,7 +87,7 @@
                     <div class="card-footers">
                       <button
                         class="btn btn-primary btn-select"
-                        value="national_seller"
+                        value="international_seller"
                         @click="onclick"
                       >
                         Select

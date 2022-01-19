@@ -309,7 +309,6 @@ export default {
     return {
       loadingCreateDeal: false,
       //select search product state
-      productArray: [],
       invoice_products: [
         {
           product_id: "",
