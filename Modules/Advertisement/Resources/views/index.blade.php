@@ -5,21 +5,9 @@
 @extends('layouts.admin')
 @section('page_title') All Advertisements @endsection
 @section('styles')
-
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
-
-<div class="page-heading">
-    <h1 class="page-title"> Advertisements</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All Advertisements</li>
-    </ol>
-    @include('admin.section.notifications')
-</div>
 <div class="ibox-body" id="validation-errors" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
 <div class="page-content fade-in-up">
@@ -31,7 +19,7 @@
             </div>
         </div>
 
-        <div class="ibox-body table-responsive" id="validation-errors" >
+        <div class="ibox-body " id="validation-errors" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
         <div class="ibox-body" id="appendAdvertisement">
             
@@ -40,21 +28,15 @@
 
 </div>
 
-
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/jquery-ui.js')}}"></script>
 <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     $(function() {
         $('#example-table').DataTable({
-            pageLength: 2,
+            pageLength: 15,
         });
     })
     $("#sortable").sortable({
@@ -76,28 +58,6 @@
 </script>
 
 <script >
-  	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-       
-    });
-
-    $(function () {
-        $("#example1").DataTable();
-    });
-
     function advertisements(){
         var api_token = '<?php echo $api_token; ?>';
 
@@ -109,6 +69,7 @@
         },
 		  success:function(response) {
 			$('#appendAdvertisement').html(response.html)
+      $('#example-table').DataTable();
 		  },
 		  error: function(error) {
 			$('#notification-bar').text('An error occurred');
@@ -117,12 +78,6 @@
     }
 
     advertisements()
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     function deleteAdvertisement(id) {
         var api_token = '<?php echo $api_token; ?>';
 
@@ -135,7 +90,6 @@
             Authorization: "Bearer " + api_token
         },
            success: function(response) {
-               console.log(response.message)
                var validation_errors = JSON.stringify(response.message);
             $('#validation-errors').html('');
             $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');

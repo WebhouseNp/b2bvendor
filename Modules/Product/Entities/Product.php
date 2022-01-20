@@ -98,6 +98,7 @@ class Product extends Model
         return $this->hasOne(Variant::class, 'product_id');
     }
 
+    // This relationship does not exist in the database.
     public function vendor()
     {
         return $this->belongsTo(Vendor::class, 'vendor_id');
@@ -153,10 +154,4 @@ class Product extends Model
         return $query->where('status', 'active');
     }
 
-    public static function checkUserRole($user_id)
-    {
-        $role_user = DB::table('role_user')->where('user_id', $user_id)->first();
-        $role = DB::table('roles')->where('id', $role_user->role_id)->first();
-        return $role->slug;
-    }
 }

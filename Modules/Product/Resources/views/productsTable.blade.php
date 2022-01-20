@@ -4,9 +4,9 @@
                     <tr class="border-0">
                         <th>SN</th>
                         <th>Image</th>
-                        <th>Title</th>
-                        @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
-                        <th>User</th>
+                        <th style="width: 30%">Title</th>
+                        @if( auth()->user()->hasAnyRole('super_admin|admin'))
+                        <th>Vendor</th>
                         @endif
                         <th>Images</th>
                         <!-- <th>Price</th> -->
@@ -25,20 +25,19 @@
                     <td>{{ $details->firstItem() + $loop->index }}</td>
                     <td>
                         @if($detail->image)
-                            <img src="{{asset('images/thumbnail/'.$detail->image)}}">
+                            <img class="rounded" src="{{ $detail->imageUrl('thumbnail') }}" style="width: 4rem;">
                         @else
                         <p>N/A</p>
                         @endif
 			        </td>
-                    <td>{{$detail->title}}</td>
-                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
-                    <td>{{$detail->user->name}}</td>
+                    <td>{{ $detail->title }}</td>
+                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
+                    <td>{{ $detail->user->vendor->shop_name }}</td>
                     @endif
                     <td style="text-align: center">
                         <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i
                                 class="fa fa-edit"></i></a>
                     </td>
-                    
                     <!-- <td>NPR. {{ number_format($detail->price)}}</td> -->
                     {{-- <td>
                         @if($detail->discount)
@@ -46,7 +45,7 @@
                         @endif
                     </td> --}}
 
-                    <td>{{$detail->status=='active'? 'Active':'Inactive'}}</td>
+                    <td>{{ $detail->status=='active'? 'Active':'Inactive' }}</td>
                     <td>
                         <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$detail->id)}}">
                             <i class="fa fa-eye"></i>
