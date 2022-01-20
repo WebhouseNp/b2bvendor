@@ -29,7 +29,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $details = Product::when(request()->filled('search'), function ($query) {
+        $details = Product::with('user.vendor')
+        // ->without('user.roles')
+        ->when(request()->filled('search'), function ($query) {
             return $query->where('title', 'like', '%' . request('search') . "%");
         })
             ->latest()

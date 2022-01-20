@@ -98,6 +98,7 @@ class Product extends Model
         return $this->hasOne(Variant::class, 'product_id');
     }
 
+    // This relationship does not exist in the database.
     public function vendor()
     {
         return $this->belongsTo(Vendor::class, 'vendor_id');
