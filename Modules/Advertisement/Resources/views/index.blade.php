@@ -21,13 +21,12 @@
 
         <div class="ibox-body " id="validation-errors" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
-        <div class="ibox-body table-responsive" id="appendAdvertisement">
+        <div class="ibox-body" id="appendAdvertisement">
             
         </div>
     </div>
 
 </div>
-
 
 @endsection
 @section('scripts')
@@ -70,6 +69,7 @@
         },
 		  success:function(response) {
 			$('#appendAdvertisement').html(response.html)
+      $('#example-table').DataTable();
 		  },
 		  error: function(error) {
 			$('#notification-bar').text('An error occurred');

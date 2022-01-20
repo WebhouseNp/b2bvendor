@@ -200,7 +200,8 @@ class ProductController extends Controller
 
     public function productRequest()
     {
-        $details =  Product::when(request()->filled('search'), function ($query) {
+        $details =  Product::with('user.vendor')
+        ->when(request()->filled('search'), function ($query) {
             return $query->where('title', 'like', '%' . request('search') . "%");
         })
             ->notapproved()->latest()->paginate(10)
@@ -210,7 +211,8 @@ class ProductController extends Controller
 
     public function VendorProductRequest()
     {
-        $details =  Product::when(request()->filled('search'), function ($query) {
+        $details =  Product::with('user.vendor')
+        ->when(request()->filled('search'), function ($query) {
             return $query->where('title', 'like', '%' . request('search') . "%");
         })
             ->where('user_id', Auth::id())->notapproved()->latest()->paginate(10)
@@ -220,7 +222,8 @@ class ProductController extends Controller
 
     public function allVendorProducts()
     {
-        $details =  Product::when(request()->filled('search'), function ($query) {
+        $details =  Product::with('user.vendor')
+        ->when(request()->filled('search'), function ($query) {
             return $query->where('title', 'like', '%' . request('search') . "%");
         })
             ->where('user_id', Auth::id())
@@ -230,11 +233,6 @@ class ProductController extends Controller
             ->paginate(5)
             ->withQueryString();
         return view('product::allproducts', compact('details'));
-    }
-
-    public function store(Request $request)
-    {
-        //
     }
 
     public function show($id)

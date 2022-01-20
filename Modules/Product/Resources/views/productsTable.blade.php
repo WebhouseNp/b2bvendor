@@ -5,7 +5,7 @@
                         <th>SN</th>
                         <th>Image</th>
                         <th style="width: 30%">Title</th>
-                        @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                        @if( auth()->user()->hasAnyRole('super_admin|admin'))
                         <th>Vendor</th>
                         @endif
                         <th>Images</th>
