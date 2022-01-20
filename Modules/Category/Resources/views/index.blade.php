@@ -24,7 +24,7 @@
         <div class="ibox-body table-responsive" id="validation-errors">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
         {{-- <div class="ibox-body" id="appendCategory"></div> --}}
-        <table class="table table-striped table-hover dt-responsive display nowrap" id="example-table" cellspacing="0">
+        <table class="table table-striped table-responsive table-hover dt-responsive display nowrap" id="example-table" cellspacing="0">
             <thead>
                 <tr class="border-0">
                     <th>S.N</th>

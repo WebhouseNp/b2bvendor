@@ -300,7 +300,7 @@ import axios from "axios";
 import Multiselect from "vue-multiselect";
 const mustBePositive = (value) => !helpers.req(value) || value >= 0;
 export default {
-  props: ["auth", "products"],
+  props: ["auth", "products","deal"],
   components: {
     DatePicker,
     Multiselect,
@@ -309,7 +309,6 @@ export default {
     return {
       loadingCreateDeal: false,
       //select search product state
-      productArray: [],
       invoice_products: [
         {
           product_id: "",
