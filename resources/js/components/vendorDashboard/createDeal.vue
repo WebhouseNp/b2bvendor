@@ -186,7 +186,7 @@
                         v-if="!invoice_product.product_qty.alphaNum"
                         class="invalid-feedback"
                       >
-                        Quentity must not have nagitive and decimal integer value.
+                        Quantity must have positive integer value.
                       </div>
                     </td>
                     <td class="inputPrice">

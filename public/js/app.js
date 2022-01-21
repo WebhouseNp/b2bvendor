@@ -35853,7 +35853,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Quentity must not have nagitive and decimal integer value.\n                    "
+                                        "\n                      Quantity must have positive integer value.\n                    "
                                       ),
                                     ]
                                   )
