@@ -6,10 +6,6 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endsection
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title"> Categories</h1>
-    @include('admin.section.notifications')
-</div>
 <div class="ibox-body" id="validation-errors">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 </div>
