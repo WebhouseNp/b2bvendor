@@ -11,6 +11,7 @@ use Modules\Front\Http\Requests\CheckoutRequest;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
 use Modules\Product\Entities\Product;
+use YubarajShrestha\NCHL\Facades\Nchl;
 
 class CheckoutController extends Controller
 {
@@ -91,6 +92,17 @@ class CheckoutController extends Controller
 
             // after response store update or create the customer's address
             // send email to vendors, admin and customer
+
+            // process payment
+            $nchl = Nchl::__init([
+                "txn_id" => $order->id,
+                "txn_date" => date('d-m-Y'),
+                "txn_amount" => $order->total_price * 100,
+                "reference_id" => 'ORD-'. $order->id,
+                "remarks" => 'Order #'. $order->id,
+                "particulars" => 'Order #'. $order->id,
+            ]);
+
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -105,6 +117,20 @@ class CheckoutController extends Controller
         return response()->json([
             'message' => 'Order placed successfully',
             'order' => $order,
+            'connectips' => [
+                'gateway_url' => $nchl->core->gatewayUrl(),
+                'merchant_id' => $nchl->core->getMerchantId(),
+                'app_id' => $nchl->core->getAppId(),
+                'app_name' => $nchl->core->getAppName(),
+                'txn_id' => $nchl->core->getTxnId(),
+                'txn_date' => $nchl->core->getTxnDate(),
+                'txn_crncy' => $nchl->core->getCurrency(),
+                'txn_amt' => $nchl->core->getTxnAmount(),
+                'reference_id' => $nchl->core->getReferenceId(),
+                'remarks' => $nchl->core->getRemarks(),
+                'particulars' => $nchl->core->getParticulars(),
+                'token' => $nchl->core->token()
+            ] 
         ], 200);
     }
 

@@ -136,4 +136,11 @@
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
     ),
   ),
+  'yubarajshrestha/nchl' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'YubarajShrestha\\NCHL\\NchlServiceProvider',
+    ),
+  ),
 );

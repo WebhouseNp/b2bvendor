@@ -20,7 +20,8 @@
         "laravelcollective/html": "^6.2",
         "nwidart/laravel-modules": "^8.2",
         "pusher/pusher-php-server": "^5.0",
-        "spatie/laravel-permission": "^4.0"
+        "spatie/laravel-permission": "^4.0",
+        "yubarajshrestha/nchl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
@@ -70,5 +71,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./packages/yubarajshrestha/nchl"
+        }
+    ]
 }
