@@ -8,24 +8,15 @@ use Illuminate\Routing\Controller;
 use Modules\Product\Entities\Product;
 use Modules\Deal\Entities\Deal;
 use Modules\Deal\Entities\DealProduct;
-use Modules\Role\Entities\Role;
-use Modules\User\Entities\Vendor;
 use Auth;
 use App\Models\User;
 
 class DealController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
     public function index()
     {
-        $role = \Modules\Product\Entities\Product::checkUserRole(Auth::id());
-
         $deals = Deal::with(['deal_products.product_info', 'user', 'vendor'])
-
-            ->when($role == 'vendor', function ($query) {
+            ->when(auth()->user()->hasRole('vendor'), function ($query) {
                 return $query->where('vendor_user_id', auth()->id());
             })
             ->latest()
