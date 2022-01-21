@@ -37604,7 +37604,7 @@ var render = function () {
                     attrs: {
                       label: "Username",
                       type: "email",
-                      placeholder: "example@gamil.com",
+                      placeholder: "example@gmail.com",
                     },
                     model: {
                       value: _vm.email,
@@ -37661,7 +37661,7 @@ var render = function () {
                     attrs: { href: "javascript:void(0)" },
                     on: { click: _vm.onClickForget },
                   },
-                  [_vm._v("Forgot Password")]
+                  [_vm._v("Forgot Password?")]
                 ),
               ]),
             ],

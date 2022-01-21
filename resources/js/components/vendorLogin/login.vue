@@ -64,7 +64,7 @@
                             <Input
                               label="Username"
                               type="email"
-                              placeholder="example@gamil.com"
+                              placeholder="example@gmail.com"
                               v-model="email"
                               
                             ></Input>
@@ -85,7 +85,7 @@
                         </form>
                         <div class="vendor-form-bt">
                             <a href="javascript:void(0)" @click="onClickSingup"> New around here? Sign Up</a><br>
-                            <a href="javascript:void(0)" @click="onClickForget">Forgot Password</a>
+                            <a href="javascript:void(0)" @click="onClickForget">Forgot Password?</a>
                         </div>
                     </div>
                 </div>
