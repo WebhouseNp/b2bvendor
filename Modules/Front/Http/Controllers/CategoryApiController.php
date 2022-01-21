@@ -40,6 +40,7 @@ class CategoryApiController extends Controller
         $categories = Category::with(['subcategory' => function ($query) {
             $query->select(['id', 'name', 'slug', 'category_id', 'image'])->published();
         }])
+            ->where('include_in_main_menu', 1)
             ->published()
             ->get()
             ->map(function ($category) {
