@@ -102,7 +102,7 @@
                   <tr>
                     <!-- <th style="background-color: #d9e7e7">SN</th> -->
                     <th style="background-color: #d9e7e7">Product</th>
-                    <th style="background-color: #b4d7d7">Quentity</th>
+                    <th style="background-color: #b4d7d7">Quantity</th>
                     <th style="background-color: #ed9494">Unit Price</th>
                     <th style="background-color: #ed9494">Shipping Charge</th>
                     <th style="background-color: #ed9494">SubTotal Price</th>
@@ -168,7 +168,7 @@
                       <input
                         class="form-control"
                         type="number"
-                        placeholder="Quentity"
+                        placeholder="Quantity"
                         v-model.number="invoice_product.product_qty.$model"
                         :class="{
                           'is-invalid': validationStatus(
@@ -180,7 +180,7 @@
                         v-if="!invoice_product.product_qty.required"
                         class="invalid-feedback"
                       >
-                        Quentity field is required.
+                        Quantity field is required.
                       </div>
                       <div
                         v-if="!invoice_product.product_qty.alphaNum"

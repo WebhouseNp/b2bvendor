@@ -12,9 +12,9 @@
     <div class="row">
       <div class="col-md-6 m-auto login-row" style="padding: 30px 26px">
         <div style="text-align: center; front-size: 20px" v-if="loading">
-          loding....
+          loading....
         </div>
-        <h4 class="text-center">Rest new password</h4>
+        <h4 class="text-center">Reset new password</h4>
         <form @submit.prevent="submitData">
           <div class="form-group">
             <label for="">New Password</label>
@@ -49,7 +49,7 @@
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary btn-signup">
-              Sign Up
+              Submit
             </button>
           </div>
         </form>
