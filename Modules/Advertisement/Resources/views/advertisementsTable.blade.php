@@ -1,10 +1,10 @@
-<table class="table table-striped table-bordered table-hover" id="example-table"  >
+<table class="table table-striped table-responsive table-bordered table-hover" id="example-table"  >
                 <thead>
                     <tr class="border-0">
                         <th>S.N</th>
                         <th>Title</th>
                         <th>Image</th>
-                        <th style="width: 25%">Link</th>
+                        <th style="width: 30%">Link</th>
                         <th>Publish</th>
                         <th>Action</th>
                     </tr>

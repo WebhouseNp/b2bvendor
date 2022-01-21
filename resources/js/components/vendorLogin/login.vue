@@ -62,9 +62,9 @@
                         <div style="text-align:center; front-size: 20px;" v-if="loading">loading....</div>
                         <form class="vendor-form"  @submit.prevent="onSubmit()">
                             <Input
-                              label="User Name"
+                              label="Username"
                               type="email"
-                              placeholder="exampl@gamil.com"
+                              placeholder="example@gamil.com"
                               v-model="email"
                               
                             ></Input>
@@ -85,7 +85,7 @@
                         </form>
                         <div class="vendor-form-bt">
                             <a href="javascript:void(0)" @click="onClickSingup"> New around here? Sign Up</a><br>
-                            <a href="javascript:void(0)" @click="onClickForget">I forgot my password</a>
+                            <a href="javascript:void(0)" @click="onClickForget">Forgot Password</a>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@ export default {
        }catch (e){
         //    console.log('scscsdcs',e);
          this.loading = false;
-         this.error = "Invalied username/password!";
+         this.error = "Invalid username/password!";
        }
     },
     onClickSingup(){

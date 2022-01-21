@@ -5315,7 +5315,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.t0 = _context["catch"](1);
                 //    console.log('scscsdcs',e);
                 _this.loading = false;
-                _this.error = "Invalied username/password!";
+                _this.error = "Invalid username/password!";
 
               case 12:
               case "end":
@@ -33135,7 +33135,7 @@ var render = function () {
                       "front-size": "20px",
                     },
                   },
-                  [_vm._v("\n          loding....\n        ")]
+                  [_vm._v("\n          loading....\n        ")]
                 )
               : _vm._e(),
             _vm._v(" "),
@@ -35853,7 +35853,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Quentity must not have nagitive and decimal value.\n                    "
+                                        "\n                      Quentity must not have nagitive and decimal integer value.\n                    "
                                       ),
                                     ]
                                   )
@@ -35920,7 +35920,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Unit price field must have positive value.\n                    "
+                                        "\n                      Unit price field must have positive integer value.\n                    "
                                       ),
                                     ]
                                   )
@@ -37602,9 +37602,9 @@ var render = function () {
                 [
                   _c("Input", {
                     attrs: {
-                      label: "User Name",
+                      label: "Username",
                       type: "email",
-                      placeholder: "exampl@gamil.com",
+                      placeholder: "example@gamil.com",
                     },
                     model: {
                       value: _vm.email,
@@ -37661,7 +37661,7 @@ var render = function () {
                     attrs: { href: "javascript:void(0)" },
                     on: { click: _vm.onClickForget },
                   },
-                  [_vm._v("I forgot my password")]
+                  [_vm._v("Forgot Password")]
                 ),
               ]),
             ],
