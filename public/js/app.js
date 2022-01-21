@@ -35813,7 +35813,7 @@ var render = function () {
                                 },
                                 attrs: {
                                   type: "number",
-                                  placeholder: "Quentity",
+                                  placeholder: "Quantity",
                                 },
                                 domProps: {
                                   value: invoice_product.product_qty.$model,
@@ -35841,7 +35841,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Quentity field is required.\n                    "
+                                        "\n                      Quantity field is required.\n                    "
                                       ),
                                     ]
                                   )
@@ -35853,7 +35853,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Quentity must not have nagitive and decimal integer value.\n                    "
+                                        "\n                      Quantity must have positive integer value.\n                    "
                                       ),
                                     ]
                                   )
@@ -36146,7 +36146,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#b4d7d7" } }, [
-            _vm._v("Quentity"),
+            _vm._v("Quantity"),
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
