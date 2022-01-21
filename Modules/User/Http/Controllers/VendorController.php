@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use App\Models\User;
 use Modules\Order\Entities\OrderList;
 use Auth;
-use Image;
+use Image, File;
 use Modules\User\Entities\Vendor;
 use Modules\Country\Entities\Country;
 
@@ -49,14 +49,18 @@ class VendorController extends Controller
             if ($oldRecord->image) {
                $this->unlinkImage($oldRecord->image);
             }
-            $formInput['image'] = $this->imageProcessing($request->image, 1287, 550, 'no');
+            if ($request->image) {
+               $image = $this->imageProcessing('img-', $request->file('image'));
+               $formInput['image'] = $image;
+           }
          }
          $oldRecord->update($formInput);
          return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
 
       }
 
-      public function updateVendorDesc(Request $request, $id){
+      public function updateVendorDesc(Request $request, $id)
+      {
          $request->validate([
            'description' => 'nullable',
         ]);
@@ -67,19 +71,26 @@ class VendorController extends Controller
 
      }
 
-      public function imageProcessing($image)
+      public function imageProcessing($type,$image)
       {
-        $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
-        $thumbPath = public_path('images/thumbnail');
-        $listingPath = public_path('images/listing');
-    
-        $img2 = Image::make($image->getRealPath());
-        $img2->save($listingPath . '/' . $input['imagename']);
-        $img1 = Image::make($image->getRealPath());
-        $img1->fit(90, 100)->save($thumbPath . '/' . $input['imagename']);
-    
-        $destinationPath = public_path('/images');
-        return $input['imagename'];
+         $input['imagename'] = $type . time() . '.' . $image->getClientOriginalExtension();
+         $thumbPath = public_path() . "/images/thumbnail";
+         if (!File::exists($thumbPath)) {
+             File::makeDirectory($thumbPath, 0777, true, true);
+         }
+         $listingPath = public_path() . "/images/listing";
+         if (!File::exists($listingPath)) {
+             File::makeDirectory($listingPath, 0777, true, true);
+         }
+         $img1 = Image::make($image->getRealPath());
+         $img1->fit(99, 88)->save($thumbPath . '/' . $input['imagename']);
+ 
+ 
+         $img2 = Image::make($image->getRealPath());
+         $img2->save($listingPath . '/' . $input['imagename']);
+ 
+         $destinationPath = public_path('/images');
+         return $input['imagename'];
       }
 
    public function unlinkImage($imagename)

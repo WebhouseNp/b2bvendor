@@ -101,4 +101,25 @@ class ProductApiController extends Controller
             'meta_keyphrase',
         ]);
     }
+
+     // Sasto wholesale mall Products
+     public function sastoWholesaleMallProducts()
+     {
+         $products = Product::with('ranges')
+             ->where('type', 'whole_sale')
+             ->where('status', 'active')
+             ->active()
+             ->approved()
+             ->orderBy('created_at', 'DESC')
+             ->take(18)->get();
+ 
+         return ProductResource::collection($products->shuffle()->all())->hide([
+             'highlight',
+             'description',
+             'meta_title',
+             'meta_keyword',
+             'meta_description',
+             'meta_keyphrase',
+         ]);
+     }
 }
