@@ -37070,12 +37070,12 @@ var render = function () {
                 {
                   staticStyle: { "text-align": "center", "front-size": "20px" },
                 },
-                [_vm._v("\n        loding....\n      ")]
+                [_vm._v("\n        loading....\n      ")]
               )
             : _vm._e(),
           _vm._v(" "),
           _c("h4", { staticClass: "text-center" }, [
-            _vm._v("Rest new password"),
+            _vm._v("Reset new password"),
           ]),
           _vm._v(" "),
           _c(
@@ -37221,7 +37221,7 @@ var staticRenderFns = [
           staticClass: "btn btn-primary btn-signup",
           attrs: { type: "submit" },
         },
-        [_vm._v("\n            Sign Up\n          ")]
+        [_vm._v("\n            Submit\n          ")]
       ),
     ])
   },
@@ -37422,15 +37422,17 @@ var render = function () {
                       "front-size": "20px",
                     },
                   },
-                  [_vm._v("\n            loding....\n          ")]
+                  [_vm._v("\n            Sending....\n          ")]
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c("h3", { staticClass: "text-center" }, [_vm._v("Password Rest")]),
+            _c("h3", { staticClass: "text-center" }, [
+              _vm._v("Password Reset"),
+            ]),
             _vm._v(" "),
             _c("p", { staticClass: "otp-verification-status" }, [
               _vm._v(
-                "\n            We'll sent you password rest link in this email\n          "
+                "\n            We'll sent you password reset link in this email\n          "
               ),
             ]),
             _vm._v(" "),
@@ -37446,7 +37448,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Full Name")]),
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Email")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
