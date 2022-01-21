@@ -17,10 +17,16 @@ class Order extends Model
 	protected static function booted()
     {
 		static::addGlobalScope(function (Builder $builder) {
+			// filter order for vendor
             $builder->when(auth()->user()->hasRole('vendor'), function ($query) {
 				return $query->whereHas('orderList', function ($query) {
 					return $query->where('vendor_user_id', auth()->user()->id);
 				});
+			});
+
+			// filter order for customer
+			$builder->when(auth()->user()->hasRole('customer'), function ($query) {
+				return $query->where('user_id', auth()->user()->id);
 			});
         });
     }
