@@ -24,7 +24,7 @@
         <div class="ibox-body table-responsive" id="validation-errors">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
         {{-- <div class="ibox-body" id="appendCategory"></div> --}}
-        <table class="table table-striped table-responsive table-hover dt-responsive display nowrap" id="example-table" cellspacing="0">
+        <table class="table table-striped table-responsive table-hover dt-responsive display" id="example-table" cellspacing="0" style="width:100%">
             <thead>
                 <tr class="border-0">
                     <th>S.N</th>
@@ -34,7 +34,7 @@
                     <th>Hot Category</td>
                     <th>Featured</td>
                     <th>Contain Subcategory</td>
-                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <th>Publish</th>
                     <th>Action</th>
                     @endif
@@ -56,14 +56,14 @@
                     <td>{{ $detail->hot_category == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->is_featured == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->does_contain_sub_category == 1 ? 'Yes' : 'No' }}</td>
-                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <td>
                         <input type="checkbox" class="CategoryStatus btn btn-success btn-sm" rel="{{$detail->id}}"
                             data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini"
                             @if($detail->publish == 1) checked @endif>
                     </td>
                     @endif
-                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <td class="text-nowrap">
                         <a title="view" class="btn btn-success btn-sm" href="{{ route('category.view',$detail->id) }}">
                             <i class="fa fa-eye"></i>
