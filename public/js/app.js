@@ -35813,7 +35813,7 @@ var render = function () {
                                 },
                                 attrs: {
                                   type: "number",
-                                  placeholder: "Quentity",
+                                  placeholder: "Quantity",
                                 },
                                 domProps: {
                                   value: invoice_product.product_qty.$model,
@@ -35841,7 +35841,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Quentity field is required.\n                    "
+                                        "\n                      Quantity field is required.\n                    "
                                       ),
                                     ]
                                   )
@@ -35853,7 +35853,7 @@ var render = function () {
                                     { staticClass: "invalid-feedback" },
                                     [
                                       _vm._v(
-                                        "\n                      Quentity must not have nagitive and decimal integer value.\n                    "
+                                        "\n                      Quantity must have positive integer value.\n                    "
                                       ),
                                     ]
                                   )
@@ -36146,7 +36146,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#b4d7d7" } }, [
-            _vm._v("Quentity"),
+            _vm._v("Quantity"),
           ]),
           _vm._v(" "),
           _c("th", { staticStyle: { "background-color": "#ed9494" } }, [
@@ -37070,12 +37070,12 @@ var render = function () {
                 {
                   staticStyle: { "text-align": "center", "front-size": "20px" },
                 },
-                [_vm._v("\n        loding....\n      ")]
+                [_vm._v("\n        loading....\n      ")]
               )
             : _vm._e(),
           _vm._v(" "),
           _c("h4", { staticClass: "text-center" }, [
-            _vm._v("Rest new password"),
+            _vm._v("Reset new password"),
           ]),
           _vm._v(" "),
           _c(
@@ -37221,7 +37221,7 @@ var staticRenderFns = [
           staticClass: "btn btn-primary btn-signup",
           attrs: { type: "submit" },
         },
-        [_vm._v("\n            Sign Up\n          ")]
+        [_vm._v("\n            Submit\n          ")]
       ),
     ])
   },
@@ -37422,15 +37422,17 @@ var render = function () {
                       "front-size": "20px",
                     },
                   },
-                  [_vm._v("\n            loding....\n          ")]
+                  [_vm._v("\n            Sending....\n          ")]
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c("h3", { staticClass: "text-center" }, [_vm._v("Password Rest")]),
+            _c("h3", { staticClass: "text-center" }, [
+              _vm._v("Password Reset"),
+            ]),
             _vm._v(" "),
             _c("p", { staticClass: "otp-verification-status" }, [
               _vm._v(
-                "\n            We'll sent you password rest link in this email\n          "
+                "\n            We'll sent you password reset link in this email\n          "
               ),
             ]),
             _vm._v(" "),
@@ -37446,7 +37448,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Full Name")]),
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Email")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -37604,7 +37606,7 @@ var render = function () {
                     attrs: {
                       label: "Username",
                       type: "email",
-                      placeholder: "example@gamil.com",
+                      placeholder: "example@gmail.com",
                     },
                     model: {
                       value: _vm.email,
@@ -37661,7 +37663,7 @@ var render = function () {
                     attrs: { href: "javascript:void(0)" },
                     on: { click: _vm.onClickForget },
                   },
-                  [_vm._v("Forgot Password")]
+                  [_vm._v("Forgot Password?")]
                 ),
               ]),
             ],

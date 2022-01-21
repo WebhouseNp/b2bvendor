@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce1968c18a61308f061a882a3fdc59fe",
+    "content-hash": "536ef74659d51b7eb156fa072facb08b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7669,6 +7669,62 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
             "time": "2021-03-09T10:59:23+00:00"
+        },
+        {
+            "name": "yubarajshrestha/nchl",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./packages/yubarajshrestha/nchl",
+                "reference": "eb9d535ccff252beffeaaefc4b47be898baff72d"
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.8|^4.0|^5.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "YubarajShrestha\\NCHL\\NchlServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "YubarajShrestha\\NCHL\\": "src"
+                },
+                "files": [
+                    "src/Helpers/helpers.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "YubarajShrestha\\NCHL\\Test\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yubaraj Shretha",
+                    "email": "companion.krish@outlook.com"
+                }
+            ],
+            "description": "Connect IPS payment gateway for laravel.",
+            "homepage": "https://yubarajshrestha.github.io/nchl/",
+            "transport-options": {
+                "relative": true
+            }
         }
     ],
     "packages-dev": [

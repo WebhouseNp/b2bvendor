@@ -14,15 +14,15 @@
         <div class="col-md-6 m-auto">
           <div class="otp-form-wrapper">
             <div style="text-align: center; front-size: 20px" v-if="loading">
-              loding....
+              Sending....
             </div>
-            <h3 class="text-center">Password Rest</h3>
+            <h3 class="text-center">Password Reset</h3>
             <p class="otp-verification-status">
-              We'll sent you password rest link in this email
+              We'll sent you password reset link in this email
             </p>
             <form @submit.prevent="onSubmit">
               <div class="form-group">
-                <label for="">Full Name</label>
+                <label for="">Email</label>
                 <input
                   type="text"
                   class="form-control"

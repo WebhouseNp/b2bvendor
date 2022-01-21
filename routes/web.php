@@ -57,17 +57,7 @@ Route::group([], function () {
 });
 
 
-// Route::group(['middleware' => 'auth', 'prefix' => 'admin',], function () {
-//     Route::get('logout', [LoginController::class, 'admin__logout'])->name('admin.logout');
-// });
-// Route::group(['middleware' => ['admin', 'auth'], 'prefix' => 'admin',], function () {
-//     // Route::get('/test', function () {
-//     //     return auth()->roles()->get();
-//     // });
-// });
-
-
-Route::get('/test', [App\Http\Controllers\TestController::class, 'broadcast']);
+Route::get('/payment-test', [App\Http\Controllers\TestController::class, 'payment']);
 
 Route::post('/pusher/auth', function (Request $request) {
     $pusher_id = "1283512";
