@@ -26,6 +26,7 @@ class ProductResource extends JsonResource
             'offer_id' => $this->offer_id,
             'brand_id' => $this->brand_id,
             'price' => $this->price,
+            'unit' => $this->unit,
             'shipping_charge' => $this->shipping_charge,
             'discount' => $this->discount,
             'moq' => $this->moq,
@@ -61,7 +62,7 @@ class ProductResource extends JsonResource
             // 'ranges' => new RangeCollection($this->whenLoaded($this->ranges))
             'ranges' => $this->whenLoaded('ranges'),
             'price_range' => $this->priceRange(),
-            'min_order' => $this->ranges->min('from') . ' Pieces (Min. Order)'
+            'min_order' => $this->ranges->min('from') . $this->unit .' (Min. Order)'
         ]);
     }
 
