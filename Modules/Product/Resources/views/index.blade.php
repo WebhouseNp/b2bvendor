@@ -102,7 +102,7 @@
 </script>
 <script>
     $(function() {
-        $('#toggle-event').change(function() {
+        $('.ProductStatus').change(function() {
             var product_id = $(this).attr('rel');
             if ($(this).prop("checked") == true) {
                 $.ajax({

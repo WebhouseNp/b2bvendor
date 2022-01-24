@@ -34,7 +34,7 @@
             </td>
             <td>{{ $detail->title }}</td>
             @if( auth()->user()->hasAnyRole('super_admin|admin'))
-            <td>{{ $detail->user->vendor->shop_name }}</td>
+            <td>{{ @$detail->user->vendor->shop_name }}</td>
             @endif
             <td style="text-align: center">
                 <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

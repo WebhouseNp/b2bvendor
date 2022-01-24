@@ -5,8 +5,7 @@ $api_token = $user->api_token;
 @extends('layouts.admin')
 @section('page_title') All Products @endsection
 @section('styles')
-
-<link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endsection
 @section('content')
 <div class="page-content fade-in-up">
@@ -64,7 +63,9 @@ $api_token = $user->api_token;
 
                         </td> --}}
 
-                        <td>{{$detail->status=='active'? 'Active':'Inactive'}}</td>
+                        <td>
+                            <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ProductStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->status == 'active') checked @endif>
+                        </td>
                         <td>
                             <button class="btn btn-primary btn-sm delete" onclick="approveProduct({{ $detail->id }})" style="border-radius:10%"><i class="fa fa-check"></i></button>
                             <button class="btn btn-danger btn-sm delete" onclick="cancelProduct({{ $detail->id }})" style="border-radius:10%"><i class="fa fa-remove"></i></button>
@@ -94,8 +95,8 @@ $api_token = $user->api_token;
 @endsection
 
 @section('scripts')
-<script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('/assets/admin/js/jquery-ui.js')}}"></script>
 <script>
     function FailedResponseFromDatabase(message) {
@@ -138,7 +139,6 @@ $api_token = $user->api_token;
                     Authorization: "Bearer " + api_token
                 },
                 success: function(response) {
-                    console.log(response.message)
                     var validation_errors = JSON.stringify(response.message);
                     $('#validation-errors').html('');
                     $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
@@ -164,7 +164,6 @@ $api_token = $user->api_token;
                     Authorization: "Bearer " + api_token
                 },
                 success: function(response) {
-                    console.log(response.message)
                     var validation_errors = JSON.stringify(response.message);
                     $('#validation-errors').html('');
                     $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
@@ -205,6 +204,46 @@ $api_token = $user->api_token;
         }
         return;
     }
+</script>
+<script>
+    $(function() {
+        $('.ProductStatus').change(function() {
+            var product_id = $(this).attr('rel');
+            if ($(this).prop("checked") == true) {
+                $.ajax({
+                    method: "POST",
+                    url: '/api/products/' + product_id + '/publish',
+                    data: {
+                        _method: "put"
+                    },
+                    success: function(response) {
+                        if (response.status == 'false') {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
+                    }
+                });
+            } else {
+                $.ajax({
+                    method: "POST",
+                    url: '/api/products/' + product_id + '/unpublish',
+                    data: {
+                        _method: "delete"
+                    },
+                    success: function(response) {
+                        if (response.status == 'false') {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
+                    }
+                });
+            }
+        })
+    })
 </script>
 
 @endsection
