@@ -20,6 +20,7 @@ class CustomerResource extends JsonResource
             'image' => $this->image,
             'image_url' => $this->imageUrl(),
             'image_url_thumbnail' => $this->imageUrl('thumbnail'),
+            'address' => $this->address,
             'user' => $this->whenLoaded('user'),
         ];
     }
