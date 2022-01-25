@@ -53,30 +53,29 @@ class ProfileController extends Controller
     }
   }
 
-  public function editAddress(Request $request, $id)
+  public function editAddress(Request $request, Profile $profile)
   {
-    $id = auth()->user()->id;
-    $old = Address::where('id',$id)->first();
     try {
       $validator = Validator::make($request->all(), [
-        'area' => 'nullable|',
-        'country' => 'sometimes',
+        'full_name' => 'sometimes',
+        'phone' => 'sometimes',
         'city' => 'sometimes',
-        'address' => 'sometimes',
-
+        'street_address' => 'sometimes',
       ]);
 
       if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
         exit;
       }
-
-      $value = $request->all();
-      $profile = Profile::findOrFail($id);
        // save the address
-       $profile->Address()->create($request->Address());
+       $address = [
+          'full_name' => $request->area,
+          'city' => $request->city,
+          'phone' => $request->phone,
+          'street_address' => $request->street_address,
+       ];
+       $profile->Address()->create($address);
 
-      // $old->update($value);
       return response()->json([
         "message" => "Address Updated Successfully!!",
       ], 200);

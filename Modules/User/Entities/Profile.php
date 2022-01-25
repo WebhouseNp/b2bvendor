@@ -4,6 +4,7 @@ namespace Modules\User\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Modules\User\Entities\Address;
 
 class Profile extends Model
 {
@@ -32,5 +33,10 @@ class Profile extends Model
   {
     return $this->belongsTo(User::class, 'user_id');
   }
+
+  public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
     
 }

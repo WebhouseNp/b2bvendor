@@ -149,8 +149,5 @@ class User extends Authenticatable
         return $query->orderBy('created_at', 'DESC');
     }
 
-    public function address()
-    {
-        return $this->morphOne(Address::class, 'addressable');
-    }
+    
 }
