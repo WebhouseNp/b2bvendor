@@ -5,6 +5,7 @@ namespace Modules\Front\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Front\Transformers\VendorResource;
 use Modules\User\Entities\Vendor;
 
 class VendorApiController extends Controller
@@ -14,18 +15,21 @@ class VendorApiController extends Controller
         $vendors = Vendor::whereHas('user', function ($query) {
             $query->published()->approved()->verified();
         })
-        ->when(request()->filled('q'), function ($query) {
-            return $query->where('shop_name', 'like', '%' . request()->q . '%');
-        })
+            ->when(request()->filled('q'), function ($query) {
+                return $query->where('shop_name', 'like', '%' . request()->q . '%');
+            })
             ->paginate(20);
 
-        return $vendors;
+        return VendorResource::collection($vendors)->hide([
+            'description',
+        ]);
     }
 
     public function show(Vendor $vendor)
     {
         $vendor->load('user');
-        return $vendor;
+
+        return VendorResource::make($vendor);
     }
 
     public function getLatestVendors()

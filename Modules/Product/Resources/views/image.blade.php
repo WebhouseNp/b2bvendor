@@ -13,13 +13,12 @@
     </ol>
 
 </div>
-@include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">{{ ($product_info) ? "Update" : "Add"}} Product</div>
             <div>
-                <a class="btn btn-info btn-md" href="{{route('product.index')}}">All Products</a>
+                <a class="btn btn-info btn-md" href="{{route('product.index',['type'=>'all'])}}">All Products</a>
             </div>
         </div>
 

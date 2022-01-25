@@ -27,16 +27,40 @@ use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index($type = null)
     {
         $details = Product::with('user.vendor')
-        // ->without('user.roles')
-        ->when(request()->filled('search'), function ($query) {
-            return $query->where('title', 'like', '%' . request('search') . "%");
-        })
+            // ->without('user.roles')
+            ->when(request()->filled('search'), function ($query) {
+                return $query->where('title', 'like', '%' . request('search') . "%");
+            })
             ->latest()
             ->paginate(10)
             ->withQueryString();
+        if (auth()->user()->hasRole('vendor')) {
+            if ($type == 'approved-products') {
+
+                $details =  Product::when(request()->filled('search'), function ($query) {
+                    return $query->where('title', 'like', '%' . request('search') . "%");
+                })
+                    ->where('user_id', Auth::id())
+                    ->approved()
+                    // ->with(['category', 'brand', 'offer'])
+                    ->latest()
+                    ->paginate(10)
+                    ->withQueryString();
+            } else if ($type == 'unapproved-products') {
+                $details =  Product::when(request()->filled('search'), function ($query) {
+                    return $query->where('title', 'like', '%' . request('search') . "%");
+                })
+                    ->where('user_id', Auth::id())
+                    ->notapproved()
+                    // ->with(['category', 'brand', 'offer'])
+                    ->latest()
+                    ->paginate(10)
+                    ->withQueryString();
+            }
+        }
         return view('product::index', compact('details'));
     }
 
@@ -201,38 +225,12 @@ class ProductController extends Controller
     public function productRequest()
     {
         $details =  Product::with('user.vendor')
-        ->when(request()->filled('search'), function ($query) {
-            return $query->where('title', 'like', '%' . request('search') . "%");
-        })
+            ->when(request()->filled('search'), function ($query) {
+                return $query->where('title', 'like', '%' . request('search') . "%");
+            })
             ->notapproved()->latest()->paginate(10)
             ->withQueryString();
         return view('product::productrequest', compact('details'));
-    }
-
-    public function VendorProductRequest()
-    {
-        $details =  Product::with('user.vendor')
-        ->when(request()->filled('search'), function ($query) {
-            return $query->where('title', 'like', '%' . request('search') . "%");
-        })
-            ->where('user_id', Auth::id())->notapproved()->latest()->paginate(10)
-            ->withQueryString();
-        return view('product::allproducts', compact('details'));
-    }
-
-    public function allVendorProducts()
-    {
-        $details =  Product::with('user.vendor')
-        ->when(request()->filled('search'), function ($query) {
-            return $query->where('title', 'like', '%' . request('search') . "%");
-        })
-            ->where('user_id', Auth::id())
-            ->active()->approved()
-            ->with(['category', 'brand', 'offer', 'user'])
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
-        return view('product::allproducts', compact('details'));
     }
 
     public function show($id)
@@ -295,7 +293,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         if (!$product) {
             $request->session()->flash('error', 'Invalid Product Information.');
-            return redirect()->route('product.index');
+            return redirect()->route('product.index',['type'=>'all']);
         }
         $valid = Validator::make($request->all(), [
             'image.*' =>  'nullable|mimes:jpg,jpeg,png|max:2000|dimensions:width<=765,height<=1020',
@@ -326,7 +324,7 @@ class ProductController extends Controller
             }
         }
         $request->session()->flash('success', 'Product detail updated Successfully.');
-        return redirect()->route('product.index');
+        return redirect()->route('product.index',['type'=>'all']);
     }
 
     public function deleteImageById(Request $request)

@@ -1,4 +1,5 @@
 <?php
+
 use Modules\Product\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
@@ -11,28 +12,21 @@ use Modules\Product\Http\Controllers\ProductController;
 |
 */
 
-Route::prefix('product')->group(function() {
+Route::prefix('product')->group(function () {
     // Route::get('/', 'ProductController@index');
 });
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','Adminrole']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'Adminrole']], function () {
     Route::get('/productimage/{id}', [ProductController::class, 'productImage'])->name('product.images');
     Route::post('/edit-product-images-details/{id}', 'ProductController@updateProductImage')->name('product-update');
-
-    
-    // Route::get('/allproducts/{id}', [ProductController::class, 'allVendorProducts'])->name('allvendorproducts');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-    
-    // Route::get('/product/request/{id}', [ProductController::class, 'VendorProductRequest'])->name('vendorproduct.request');
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::get('/product/view/{id}', [ProductController::class, 'view'])->name('product.view');
-    Route::post('/delete-product-image', [ProductController::class,'deleteImageById'])->name('deleteImageById');
+    Route::post('/delete-product-image', [ProductController::class, 'deleteImageById'])->name('deleteImageById');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','Superadmin']], function () {
-    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'Superadmin']], function () {
     Route::get('/product/request', [ProductController::class, 'productRequest'])->name('product.request');
-});    
-Route::group(['prefix' => 'vendor', 'middleware' => ['auth']], function () {
-Route::get('/product-request', [ProductController::class, 'VendorProductRequest'])->name('vendorproduct.request');
-Route::get('/approved-products', [ProductController::class, 'allVendorProducts'])->name('allvendorproducts');
+});
+Route::group(['prefix' => 'product', 'middleware' => ['auth']], function () {
+    Route::get('/{type}', [ProductController::class, 'index'])->name('product.index');
 });

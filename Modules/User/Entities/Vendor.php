@@ -13,6 +13,16 @@ class Vendor extends Model
 
     public function imageUrl($size = null)
     {
+        if(!$this->image) {
+            $queryString = [
+                'name' => $this->shop_name,
+                'background' => 'b8daff',
+                'color' => '0D8ABC',
+            ];
+    
+            return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
+        }
+
         if ($size == 'thumbnail') {
             return asset('images/thumbnail/' . $this->image);
         }
