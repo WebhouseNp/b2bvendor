@@ -2,6 +2,7 @@
 
 namespace Modules\Front\Http\Controllers;
 
+use App\Service\EsewaService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,13 @@ use YubarajShrestha\NCHL\Facades\Nchl;
 
 class CheckoutController extends Controller
 {
+    protected $esewaService;
+
+    public function __construct(EsewaService $esewaService)
+    {
+        $this->esewaService = $esewaService;
+    }
+
     public function store(CheckoutRequest $request)
     {
         try {
@@ -94,14 +102,24 @@ class CheckoutController extends Controller
             // send email to vendors, admin and customer
 
             // process payment
-            $nchl = Nchl::__init([
-                "txn_id" => $order->id,
-                "txn_date" => date('d-m-Y'),
-                "txn_amount" => $order->total_price * 100,
-                "reference_id" => 'ORD-'. $order->id,
-                "remarks" => 'Order #'. $order->id,
-                "particulars" => 'Order #'. $order->id,
-            ]);
+            switch ($order->payment_type) {
+                case 'esewa':
+                    return response()->json([
+                        'message' => 'Order placed successfully',
+                        'order' => $order,
+                        'payment_type' => $order->payment_type,
+                        'esewa' => $this->esewaService->generatePaymentDetails($order),
+                    ], 200);
+                    break;
+
+                case 'connectips':
+                    return $this->processConnectipsPayment($order);
+                    break;
+
+                default:
+                    return response()->json(['message' => 'Payment type not supported'], 404);
+                    break;
+            }
 
             DB::commit();
         } catch (\Throwable $e) {
@@ -113,25 +131,6 @@ class CheckoutController extends Controller
                 'message' => 'Something went wrong while processing your order.',
             ], 500);
         }
-
-        return response()->json([
-            'message' => 'Order placed successfully',
-            'order' => $order,
-            'connectips' => [
-                'gateway_url' => $nchl->core->gatewayUrl(),
-                'merchant_id' => $nchl->core->getMerchantId(),
-                'app_id' => $nchl->core->getAppId(),
-                'app_name' => $nchl->core->getAppName(),
-                'txn_id' => $nchl->core->getTxnId(),
-                'txn_date' => $nchl->core->getTxnDate(),
-                'txn_crncy' => $nchl->core->getCurrency(),
-                'txn_amt' => $nchl->core->getTxnAmount(),
-                'reference_id' => $nchl->core->getReferenceId(),
-                'remarks' => $nchl->core->getRemarks(),
-                'particulars' => $nchl->core->getParticulars(),
-                'token' => $nchl->core->token()
-            ] 
-        ], 200);
     }
 
     private function getUnitPriceFromQuantity($product, $quantity)
@@ -145,5 +144,37 @@ class CheckoutController extends Controller
                 return $range->price;
             }
         }
+    }
+
+    private function processConnectipsPayment($order)
+    {
+        $nchl = Nchl::__init([
+            "txn_id" => $order->id,
+            "txn_date" => date('d-m-Y'),
+            "txn_amount" => $order->total_price * 100,
+            "reference_id" => 'ORD-' . $order->id,
+            "remarks" => 'Order #' . $order->id,
+            "particulars" => 'Order #' . $order->id,
+        ]);
+
+        return response()->json([
+            'message' => 'Order placed successfully',
+            'order' => $order,
+            'payment_type' => $order->payment_type,
+            'connectips' => [
+                'gateway_url' => $nchl->core->gatewayUrl(),
+                'merchant_id' => $nchl->core->getMerchantId(),
+                'app_id' => $nchl->core->getAppId(),
+                'app_name' => $nchl->core->getAppName(),
+                'txn_id' => $nchl->core->getTxnId(),
+                'txn_date' => $nchl->core->getTxnDate(),
+                'txn_crncy' => $nchl->core->getCurrency(),
+                'txn_amt' => $nchl->core->getTxnAmount(),
+                'reference_id' => $nchl->core->getReferenceId(),
+                'remarks' => $nchl->core->getRemarks(),
+                'particulars' => $nchl->core->getParticulars(),
+                'token' => $nchl->core->token()
+            ]
+        ], 200);
     }
 }
