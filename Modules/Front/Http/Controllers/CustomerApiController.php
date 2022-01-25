@@ -19,7 +19,6 @@ class CustomerApiController extends Controller
     public function show(Profile $profile)
     {
         // $profile->load('user');
-
         return CustomerResource::make($profile);
     }
 

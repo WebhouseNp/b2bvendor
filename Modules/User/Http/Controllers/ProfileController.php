@@ -56,7 +56,7 @@ class ProfileController extends Controller
   public function editAddress(Request $request, $id)
   {
     $id = auth()->user()->id;
-    $old = Address::where('user_id', $id)->first();
+    $old = Address::where('id',$id)->first();
     try {
       $validator = Validator::make($request->all(), [
         'area' => 'nullable|',
@@ -72,7 +72,11 @@ class ProfileController extends Controller
       }
 
       $value = $request->all();
-      $old->update($value);
+      $profile = Profile::findOrFail($id);
+       // save the address
+       $profile->Address()->create($request->Address());
+
+      // $old->update($value);
       return response()->json([
         "message" => "Address Updated Successfully!!",
       ], 200);
@@ -107,6 +111,9 @@ class ProfileController extends Controller
         exit;
       }
       $oldRecord = Profile::findOrFail($id);
+
+     
+
       $formInput = $request->except('publish', 'image');
       $formInput['publish'] = is_null($request->publish) ? 0 : 1;
       if ($request->hasFile('image')) {
