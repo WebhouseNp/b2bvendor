@@ -293,7 +293,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         if (!$product) {
             $request->session()->flash('error', 'Invalid Product Information.');
-            return redirect()->route('product.index');
+            return redirect()->route('product.index',['type'=>'all']);
         }
         $valid = Validator::make($request->all(), [
             'image.*' =>  'nullable|mimes:jpg,jpeg,png|max:2000|dimensions:width<=765,height<=1020',
@@ -324,7 +324,7 @@ class ProductController extends Controller
             }
         }
         $request->session()->flash('success', 'Product detail updated Successfully.');
-        return redirect()->route('product.index');
+        return redirect()->route('product.index',['type'=>'all']);
     }
 
     public function deleteImageById(Request $request)
