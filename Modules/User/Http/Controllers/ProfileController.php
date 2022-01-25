@@ -69,12 +69,14 @@ class ProfileController extends Controller
       }
        // save the address
        $address = [
-          'full_name' => $request->area,
+          'full_name' => $request->full_name,
           'city' => $request->city,
           'phone' => $request->phone,
           'street_address' => $request->street_address,
        ];
-       $profile->Address()->create($address);
+       $profile->address()->updateOrCreate([
+        'type' => null
+        ], $address);
 
       return response()->json([
         "message" => "Address Updated Successfully!!",
@@ -92,9 +94,8 @@ class ProfileController extends Controller
     return CustomerResource::make($profile);
   }
 
-  public function update(Request $request, $id)
+  public function update(Request $request, Profile $profile)
   {
-    $id = auth()->user()->id;
     try {
       $validator = Validator::make($request->all(), [
         'full_name' => 'nullable',
@@ -109,22 +110,18 @@ class ProfileController extends Controller
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
-      $oldRecord = Profile::findOrFail($id);
-
-     
-
       $formInput = $request->except('publish', 'image');
-      $formInput['publish'] = is_null($request->publish) ? 0 : 1;
+      $formInput['publish'] = 1;
       if ($request->hasFile('image')) {
-        if ($oldRecord->image) {
-          $this->unlinkImage($oldRecord->image);
+        if ($profile->image) {
+          $this->unlinkImage($profile->image);
         }
         if ($request->image) {
           $image = $this->imageProcessing('img-', $request->file('image'));
           $formInput['image'] = $image;
         }
       }
-      $oldRecord->update($formInput);
+      $profile->update($formInput);
 
       return response()->json([
         "message" => "User Profile updated Successfully!!",
