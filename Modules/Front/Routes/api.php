@@ -32,6 +32,9 @@ Route::get('/vendors', 'VendorApiController@index');
 Route::get('/vendors/{vendor}', 'VendorApiController@show');
 Route::get('/v/latest-suppliers', 'VendorApiController@getLatestVendors');
 
+//customer
+Route::get('/profile/{profile}', 'CustomerApiController@show');
+
 Route::get('/getsastowholesaleproducts', 'FrontController@getSastoWholeSaleProducts');
 
 Route::get('/getallproducts', 'FrontController@getAllProducts');
