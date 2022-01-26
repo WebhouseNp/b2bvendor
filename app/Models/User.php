@@ -13,6 +13,8 @@ use  Modules\User\Entities\Vendor;
 use  Modules\User\Entities\Profile;
 use  Modules\User\Entities\VendorPayment;
 use  Modules\Product\Entities\Product;
+use Modules\User\Entities\Address;
+
 
 class User extends Authenticatable
 {
@@ -35,7 +37,9 @@ class User extends Authenticatable
         'phone_num',
         'access_level',
         'vendor_type',
-        'api_token'
+        'api_token',
+        'birthday',
+        'gender'
     ];
 
     /**
@@ -149,5 +153,27 @@ class User extends Authenticatable
         return $query->orderBy('created_at', 'DESC');
     }
 
-    
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
+
+    public function imageUrl($size = null)
+  {
+    if(!$this->image) {
+        $queryString = [
+            'name' => $this->full_name,
+            'background' => 'b8daff',
+            'color' => '0D8ABC',
+        ];
+
+        return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
+    }
+
+    if ($size == 'thumbnail') {
+        return asset('images/thumbnail/' . $this->image);
+    }
+
+    return asset('images/listing/' . $this->image);
+  }
 }

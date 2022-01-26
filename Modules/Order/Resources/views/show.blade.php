@@ -32,7 +32,13 @@
                                             <td id="product_title">
                                                 <div>{{ $orderList->product_name }}</div>
                                                 <div class="d-flex">
+                                                @if (auth()->user()->hasRole('vendor'))
+                                                    <div class="badge badge-primary changeStatus" data-status="{{$orderList->status}}" data-order_id="{{$orderList->id}}">
+                                                        {{ $orderList->order_status }}
+                                                    </div>
+                                                    @else(auth()->user()->hasAnyRole('super-admin|admin'))
                                                     <div class="badge badge-primary">{{ $orderList->order_status }}</div>
+                                                @endif
                                                 </div>
                                             </td>
                                             <td class="text-nowrap">{{ formatted_price($orderList->unit_price) }} x {{ $orderList->quantity }} = {{ formatted_price($orderList->subtotal_price) }}</td>
@@ -101,7 +107,7 @@
     <button class="btn btn-sm print__button btn-primary">Print</button>
 </div>
 <!-- Modal -->
-{{-- @include('dashboard::admin.modals.orderstatusmodal')
+@include('dashboard::admin.modals.orderstatusmodal')
     <div class="modal" id="popupModal">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -117,11 +123,12 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div> 
 @endsection
 @section('scripts')
 
 <script src="/assets/admin/js/printThis.js"></script>
+<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $('.print__button').click(function() {
         $("#get__print").printThis({
@@ -129,23 +136,36 @@
             , footer: null
         , });
     });
-
-    // function showThumbnail(input) {
-    //     if (input.files && input.files[0]) {
-    //         var reader = new FileReader();
-    //     }
-    //     reader.onload = function(e) {
-    //         $('#thumbnail').attr('src', e.target.result);
-    //     }
-    //     reader.readAsDataURL(input.files[0]);
-    // }
-
+</script>
+<script>
+    function FailedResponseFromDatabase(message){
+    html_error = "";
+    $.each(message, function(index, message){
+        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
+    });
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        html:html_error ,
+        confirmButtonText: 'Close',
+        timer: 10000
+    });
+}
+function DataSuccessInDatabase(message){
+    Swal.fire({
+        // position: 'top-end',
+        type: 'success',
+        title: 'Done',
+        html: message ,
+        confirmButtonText: 'Close',
+        timer: 10000
+    });
+}
 </script>
 <script>
     $(document).ready(function() {
         $('body').on('click', '.changeStatus', function(e) {
             var order_id = $(this).data('order_id');
-            console.log(order_id)
             $('#orderStatusModal').modal('show');
 
             $('#submitOrderStatus').on('click', function() {
@@ -161,12 +181,7 @@
                     , success: function(response) {
                         if (response.status == 'successful') {
                             $('#orderStatusModal').modal('hide');
-                            var modal_title = "Success";
-                            modal_title = modal_title.fontcolor('green');
-                            $('#popup-modal-body').append(response.message);
-                            $('#popup-modal-title').append(modal_title);
-                            $('#popup-modal-btn').addClass('btn-success');
-                            $("#popupModal").modal('show');
+                            DataSuccessInDatabase(response.message);
                             location.reload();
                         }
                     }
