@@ -31,12 +31,12 @@ class OrderController extends Controller
 
     public function updateOrderStatus(Request $request)
     {
-        $order = OrderList::where('id', $request->order_id)->with(['product_info'])->first();
+        $order = OrderList::where('id', $request->order_id)->first();
         if ($order) {
             $order['order_status'] = $request->status;
         }
-        $product = $order->product_info;
-        $user = User::where('id', $order->customer_id)->first();
+        $product = $order->product;
+        $user = User::where('id', auth()->user()->id)->first();
         $order_data = [
             'product_name' => $product->title,
             'status' => $request->status,
