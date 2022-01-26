@@ -3,6 +3,7 @@
 namespace Modules\Front\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CheckoutRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class CheckoutRequest extends FormRequest
             [
                 'address' => ['required', 'array'],
                 'checkout_mode' => ['nullable'],
-                'payment_type' => ['required'],
+                'payment_type' => ['required', Rule::in(['esewa', 'connectips'])],
 
                 'ship_to_different_address' => ['nullable', 'boolean'],
 
