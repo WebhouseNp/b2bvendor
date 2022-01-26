@@ -156,7 +156,6 @@ class CheckoutController extends Controller
             // after response store update or create the customer's address
             // send email to vendors, admin and customer
             DB::commit();
-            dd();
 
             // process payment
             switch ($order->payment_type) {

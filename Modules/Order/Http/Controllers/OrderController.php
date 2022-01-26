@@ -103,7 +103,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load(['orderList' => function($query) {
+        $order->load(['packages.orderLists' => function($query) {
             // we only load the order list which belongs to logged in vendor
                $query->when(auth()->user()->hasRole('vendor'), function($query) {
                     return $query->where('vendor_user_id', auth()->id());

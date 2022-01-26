@@ -27,7 +27,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($order->orderList as $orderList)
+                                        @foreach($order->packages as $package)
+                                        <tr>
+                                            <td colspan="42" class="bg-light">
+                                                <div class="d-flex">
+                                                <div>Pakage {{ $loop->iteration }} - Sold by STORE NAME HERE</div>
+                                                <div class="ml-auto">
+                                                    <div class="badge badge-primary">
+                                                        {{ $package->status }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        @foreach($package->orderLists as $orderList)
                                         <tr>
                                             <td id="product_title">
                                                 <div>{{ $orderList->product_name }}</div>
@@ -45,6 +58,7 @@
                                             <td>{{ formatted_price($orderList->shipping_charge) }}</td>
                                             <td class="text-nowrap">{{ formatted_price($orderList->total_price) }}</td>
                                         </tr>
+                                        @endforeach
                                         @endforeach
                                         @if (auth()->user()->hasAnyRole('super-admin|admin'))
                                         <tr>

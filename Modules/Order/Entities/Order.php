@@ -18,8 +18,14 @@ class Order extends Model
     {
 		static::addGlobalScope(function (Builder $builder) {
 			// filter order for vendor
-            $builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
-				return $query->whereHas('orderList', function ($query) {
+            // $builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
+			// 	return $query->whereHas('orderList', function ($query) {
+			// 		return $query->where('vendor_user_id', auth()->user()->id);
+			// 	});
+			// });
+
+			$builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
+				return $query->whereHas('packages', function ($query) {
 					return $query->where('vendor_user_id', auth()->user()->id);
 				});
 			});

@@ -23,6 +23,11 @@ class Package extends Model
         ]);
     }
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
     public function orderLists()
     {
         return $this->hasMany(OrderList::class);
