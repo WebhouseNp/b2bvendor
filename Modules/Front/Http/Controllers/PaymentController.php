@@ -24,7 +24,7 @@ class PaymentController extends Controller
             $order->update([
                 'payment_status' => 'paid',
                 'payment_type' => 'esewa',
-                'payment_ref_id' => $request->refId
+                'esewa_ref_id' => $request->refId
             ]);
             return redirect(config('constants.customer_app_url') . '/my-orders');
         }

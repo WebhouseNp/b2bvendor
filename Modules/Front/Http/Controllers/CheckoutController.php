@@ -11,7 +11,9 @@ use Modules\Deal\Entities\Deal;
 use Modules\Front\Http\Requests\CheckoutRequest;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
+use Modules\Order\Entities\Package;
 use Modules\Product\Entities\Product;
+use PHPUnit\TextUI\XmlConfiguration\Logging\Logging;
 use YubarajShrestha\NCHL\Facades\Nchl;
 
 class CheckoutController extends Controller
@@ -39,7 +41,7 @@ class CheckoutController extends Controller
 
             $order = Order::create([
                 'user_id' => Auth::id(),
-                'amount' => $request->checkout_mode == 'deal' ? $deal->totalPrice() : 20000,
+                'amount' => $request->checkout_mode == 'deal' ? $deal->totalPrice() : null,
                 'deal_id' => $request->checkout_mode == 'deal' ? $request->deal_id : null,
                 'status' => 'New',
                 'payment_status' => 'pending',
@@ -51,6 +53,14 @@ class CheckoutController extends Controller
 
             // Handle deal checkout
             if ($request->isDealCheckout()) {
+                $package = Package::create([
+                    'order_id' => $order->id,
+                    'vendor_user_id' => $deal->vendor_user_id,
+                    'total_price' => 0,
+                    'status' => 'New',
+                    'package_no' => 1
+                ]);
+
                 foreach ($deal->dealProducts as $dealProduct) {
                     OrderList::create([
                         'order_id' => $order->id,
@@ -62,29 +72,74 @@ class CheckoutController extends Controller
                     ]);
                     $orderSubtotalPrice += $dealProduct->totalPrice();
                 }
+                $package->syncTotalPrice();
                 // mark the deal as completed
                 $deal->markCompleted();
             }
             // Handle cart checkout
             else {
-                foreach ($request->cart as $cartItem) {
-                    $product = Product::with('ranges')->findOrFail($cartItem['product_id']);
-                    $unitPrice = $this->getUnitPriceFromQuantity($product, $cartItem['product_qty']); // get price fron range
-                    $subtotalPrice = $unitPrice * $cartItem['product_qty'];
-                    OrderList::create([
+                $cartItems = collect($request->cart)->map(function ($cartItem) {
+                    $cartItem['product'] = Product::select('id', 'user_id', 'title', 'unit', 'shipping_charge')
+                        ->with('ranges:id,from,to,price,product_id')->findOrFail($cartItem['product_id']);
+                    $cartItem['vendor_user_id'] = $cartItem['product']->user_id;
+                    return $cartItem;
+                });
+
+                $groupedCartItems = $cartItems->groupBy('vendor_user_id');
+
+                foreach ($groupedCartItems as $vendorUserId => $groupedCartItem) {
+                    // create package
+                    $package = Package::create([
                         'order_id' => $order->id,
-                        'vendor_user_id' => $product->user_id,
-                        'product_id' => $product->id,
-                        'product_name' => $product->title,
-                        'quantity' => $cartItem['product_qty'],
-                        'unit_price' => $unitPrice,
-                        'subtotal_price' => $subtotalPrice,
-                        'shipping_charge' => $product->shipping_charge ?? 0,
-                        'total_price' => $subtotalPrice + ($product->shipping_charge ?? 0),
+                        'vendor_user_id' => $vendorUserId,
+                        'total_price' => 0,
+                        'status' => 'New',
                     ]);
-                    $orderSubtotalPrice += $subtotalPrice;
-                    $orderShippingCharge += $product->shipping_charge ?? 0;
+
+                    // create order list
+                    foreach ($groupedCartItem as $cartItem) {
+                        // $product = Product::with('ranges')->findOrFail($cartItem['product_id']);
+                        $product = $cartItem['product'];
+                        $unitPrice = $this->getUnitPriceFromQuantity($product, $cartItem['product_qty']); // get price fron range
+                        $subtotalPrice = $unitPrice * $cartItem['product_qty'];
+                        OrderList::create([
+                            'order_id' => $order->id,
+                            'package_id' => $package->id,
+                            'vendor_user_id' => $product->user_id,
+                            'product_id' => $product->id,
+                            'product_name' => $product->title,
+                            'quantity' => $cartItem['product_qty'],
+                            'unit_price' => $unitPrice,
+                            'subtotal_price' => $subtotalPrice,
+                            'shipping_charge' => $product->shipping_charge ?? 0,
+                            'total_price' => $subtotalPrice + ($product->shipping_charge ?? 0),
+                        ]);
+                        $orderSubtotalPrice += $subtotalPrice;
+                        $orderShippingCharge += $product->shipping_charge ?? 0;
+                    }
+                    // update package total price
+                    $package->syncTotalPrice();
                 }
+
+                // older logic
+                // foreach ($request->cart as $cartItem) {
+                //     $product = Product::with('ranges')->findOrFail($cartItem['product_id']);
+                //     $unitPrice = $this->getUnitPriceFromQuantity($product, $cartItem['product_qty']); // get price fron range
+                //     $subtotalPrice = $unitPrice * $cartItem['product_qty'];
+                //     OrderList::create([
+                //         'order_id' => $order->id,
+                //         'vendor_user_id' => $product->user_id,
+                //         'product_id' => $product->id,
+                //         'product_name' => $product->title,
+                //         'quantity' => $cartItem['product_qty'],
+                //         'unit_price' => $unitPrice,
+                //         'subtotal_price' => $subtotalPrice,
+                //         'shipping_charge' => $product->shipping_charge ?? 0,
+                //         'total_price' => $subtotalPrice + ($product->shipping_charge ?? 0),
+                //     ]);
+                //     $orderSubtotalPrice += $subtotalPrice;
+                //     $orderShippingCharge += $product->shipping_charge ?? 0;
+                // }
             }
 
             // Set the total amount of the order
@@ -100,6 +155,8 @@ class CheckoutController extends Controller
 
             // after response store update or create the customer's address
             // send email to vendors, admin and customer
+            DB::commit();
+            dd();
 
             // process payment
             switch ($order->payment_type) {
@@ -120,8 +177,6 @@ class CheckoutController extends Controller
                     return response()->json(['message' => 'Payment type not supported'], 404);
                     break;
             }
-
-            DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
             logger("An error occured while checkout.");

@@ -13,6 +13,7 @@ class CreateVendorOrdersTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('vendor_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
@@ -23,6 +24,7 @@ class CreateVendorOrdersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->timestamps();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**
