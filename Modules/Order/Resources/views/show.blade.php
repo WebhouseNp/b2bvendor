@@ -4,117 +4,126 @@
 
 @section('content')
 <div class="page-heading">
-    <h2 class="page-title"> Order</h2>
+    <h2 class="page-title"> Order - #{{ $order->id }} ({{ $order->status }})</h2>
 </div>
 
 @include('admin.section.notifications')
 <div class="ibox-body" id="validation-errors">
-    <form class="form form-responsive form-horizontal" id="order-update-form">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-md-8" id="get__print">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="h6-responsive">Order Details</h6>
-                                <table class="table table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>Product Title</th>
-                                            <th></th>
-                                            <th>Shipping</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($order->packages as $package)
-                                        <tr>
-                                            <td colspan="42" class="bg-light">
-                                                <div class="d-flex">
-                                                <div>Pakage {{ $loop->iteration }} - Sold by STORE NAME HERE</div>
-                                                <div class="ml-auto">
-                                                    <div class="badge badge-primary">
-                                                        {{ $package->status }}
-                                                    </div>
-                                                </div>
+    <div class="row">
+        <div class="col-md-8" id="get__print">
+            <div class="card">
+                <div class="card-body">
+                    {{-- <h6 class="h6-responsive">Order Details</h6> --}}
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Product Title</th>
+                                <th></th>
+                                <th>Shipping</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($order->packages as $package)
+                            <tr>
+                                <td colspan="42" class="bg-light">
+                                    <div class="d-flex">
+                                        <div>Pakage {{ $loop->iteration }} - Sold by STORE NAME HERE</div>
+                                        <div class="ml-auto">
+                                            <div class="badge badge-primary">
+                                                {{ $package->status }}
                                             </div>
-                                        </td>
-                                        </tr>
-                                        @foreach($package->orderLists as $orderList)
-                                        <tr>
-                                            <td id="product_title">
-                                                <div>{{ $orderList->product_name }}</div>
-                                                <div class="d-flex">
-                                                @if (auth()->user()->hasRole('vendor'))
-                                                    <div class="badge badge-primary changeStatus" data-status="{{$orderList->status}}" data-order_id="{{$orderList->id}}">
-                                                        {{ $orderList->order_status }}
-                                                    </div>
-                                                    @else(auth()->user()->hasAnyRole('super-admin|admin'))
-                                                    <div class="badge badge-primary">{{ $orderList->order_status }}</div>
-                                                @endif
-                                                </div>
-                                            </td>
-                                            <td class="text-nowrap">{{ formatted_price($orderList->unit_price) }} x {{ $orderList->quantity }} = {{ formatted_price($orderList->subtotal_price) }}</td>
-                                            <td>{{ formatted_price($orderList->shipping_charge) }}</td>
-                                            <td class="text-nowrap">{{ formatted_price($orderList->total_price) }}</td>
-                                        </tr>
-                                        @endforeach
-                                        @endforeach
-                                        @if (auth()->user()->hasAnyRole('super-admin|admin'))
-                                        <tr>
-                                            <td colspan="2"></td>
-                                            <td class="">Subtotal</td>
-                                            <td>{{ formatted_price($order->subtotal_price) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"></td>
-                                            <td class="">Shipping</td>
-                                            <td>{{ formatted_price($order->shipping_charge) }}</td>
-                                        </tr>
-                                        <tr class="text-primary font-weight-bold">
-                                            <td colspan="2"></td>
-                                            <td class="">Order Total</td>
-                                            <td class="text-nowrap">{{ formatted_price($order->total_price) }}</td>
-                                        </tr>
-                                        @else
-                                        <tr>
-                                            <td colspan="2"></td>
-                                            <td class="">Subtotal</td>
-                                            <td>{{ formatted_price($order->orderList->sum->subtotal_price) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"></td>
-                                            <td class="">Shipping</td>
-                                            <td>{{ formatted_price($order->orderList->sum->shipping_charge) }}</td>
-                                        </tr>
-                                        <tr class="text-primary font-weight-bold">
-                                            <td colspan="2"></td>
-                                            <td class="">Order Total</td>
-                                            <td class="text-nowrap">{{ formatted_price($order->orderList->sum->total_price) }}</td>
-                                        </tr>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @foreach($package->orderLists as $orderList)
+                            <tr>
+                                <td id="product_title">
+                                    <div>{{ $orderList->product_name }}</div>
+                                    <div class="d-flex">
+                                        @if (auth()->user()->hasRole('vendor'))
+                                        <div class="badge badge-primary changeStatus" data-status="{{$orderList->status}}" data-order_id="{{$orderList->id}}">
+                                            {{ $orderList->order_status }}
+                                        </div>
+                                        @else(auth()->user()->hasAnyRole('super-admin|admin'))
+                                        <div class="badge badge-primary">{{ $orderList->order_status }}</div>
                                         @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        {{-- Customer address --}}
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                @include('order::address-box', ['title' => 'Billing Address', 'address' => $order->billingAddress])
-                            </div>
-                            <div class="col-md-6">
-                                @include('order::address-box', ['title' => 'Shipping Address', 'address' => $order->shippingAddress])
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-4">
-                    </div>
+                                    </div>
+                                </td>
+                                <td class="text-nowrap">{{ formatted_price($orderList->unit_price) }} x {{ $orderList->quantity }} = {{ formatted_price($orderList->subtotal_price) }}</td>
+                                <td>{{ formatted_price($orderList->shipping_charge) }}</td>
+                                <td class="text-nowrap">{{ formatted_price($orderList->total_price) }}</td>
+                            </tr>
+                            @endforeach
+                            @endforeach
+                            <tr>
+                                <td colspan="2"></td>
+                                <td class="">Subtotal</td>
+                                <td>{{ formatted_price($subTotalPrice) }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td class="">Shipping</td>
+                                <td>{{ formatted_price($totalShippingPrice) }}</td>
+                            </tr>
+                            <tr class="font-weight-bold">
+                                <td colspan="2"></td>
+                                <td class="text-primary">Order Total</td>
+                                <td class="text-primary text-nowrap">
+                                    <div>{{ formatted_price($totalPrice) }}</div>
+                                    <div class="{{ $order->status == 'paid' ? 'bg-success' : 'bg-danger' }} text-white font-weight-normal p-2 rounded text-center">{{ $order->status == 'paid' ? 'Paid' : 'Unpaid' }}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
+            {{-- Customer address --}}
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    @include('order::address-box', ['title' => 'Billing Address', 'address' => $order->billingAddress])
+                </div>
+                <div class="col-md-6">
+                    @include('order::address-box', ['title' => 'Shipping Address', 'address' => $order->shippingAddress])
+                </div>
+            </div>
+
         </div>
-    </form>
+        <div class="col-md-4">
+            @if (auth()->user()->hasRole('vendor'))
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ route('orders.package.update', $package) }}" class="form" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label>Order Status</label>
+                            <select name="status" class="custom-select form-control @error('status') is-invalid @enderror">
+                                @foreach (config('constants.package_statuses') as $status)
+                                <option value="{{ $status }}" @if (old('status', $package->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
+                                @endforeach
+                            </select>
+                            @error('status')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="update_silently" class="form-check=-input" value="1">
+                                <span>Do not notify customer</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">Update Order</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @endif
+        </div>
+    </div>
 
     <div class="my-5"></div>
 
@@ -122,22 +131,22 @@
 </div>
 <!-- Modal -->
 @include('dashboard::admin.modals.orderstatusmodal')
-    <div class="modal" id="popupModal">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 id="popup-modal-title" class="modal-title">
-                        </h5>
-                </div>
-                <div class="modal-body">
-                    <div style="text-align: center;" id="popup-modal-body"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+<div class="modal" id="popupModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="popup-modal-title" class="modal-title">
+                    </h5>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center;" id="popup-modal-body"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-    </div> 
+    </div>
+</div>
 @endsection
 @section('scripts')
 
@@ -150,31 +159,34 @@
             , footer: null
         , });
     });
+
 </script>
 <script>
-    function FailedResponseFromDatabase(message){
-    html_error = "";
-    $.each(message, function(index, message){
-        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
-    });
-    Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        html:html_error ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
-function DataSuccessInDatabase(message){
-    Swal.fire({
-        // position: 'top-end',
-        type: 'success',
-        title: 'Done',
-        html: message ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
+    function FailedResponseFromDatabase(message) {
+        html_error = "";
+        $.each(message, function(index, message) {
+            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+        });
+        Swal.fire({
+            type: 'error'
+            , title: 'Oops...'
+            , html: html_error
+            , confirmButtonText: 'Close'
+            , timer: 10000
+        });
+    }
+
+    function DataSuccessInDatabase(message) {
+        Swal.fire({
+            // position: 'top-end',
+            type: 'success'
+            , title: 'Done'
+            , html: message
+            , confirmButtonText: 'Close'
+            , timer: 10000
+        });
+    }
+
 </script>
 <script>
     $(document).ready(function() {
