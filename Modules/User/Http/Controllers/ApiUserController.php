@@ -299,12 +299,7 @@ class ApiUserController extends Controller
             $password = Password::where('email',$request->email)->where('token',$token)->first();
             //sending email link
             $data = ['email' => $request->email, 'token' => $token];
-          // Mail::to($data['email'])->send(new PasswordReset($password));
-
-            Mail::send('email.password-reset', $data, function ($message) use ($data) {
-              $message->to($data['email'])->from(env('MAIL_FROM_ADDRESS'));
-              $message->subject('password reset link');
-           });
+          Mail::to($data['email'])->send(new PasswordReset($password));
            return response()->json([
             "message" => "Email has been sent to your email",
           ],200);
@@ -318,8 +313,8 @@ class ApiUserController extends Controller
     }
     
     //password reset
-    public function resetPassword(Request $request,$token){
-      dd('hi');
+    public function resetPassword(Request $request){
+      $token = $request->token;
       if(!$passwordRests = DB::table('password_resets')->where('token', $token)->first()){
         return response([
           'message' => 'Invalid Token!'
@@ -334,7 +329,6 @@ class ApiUserController extends Controller
 
       $user->password = bcrypt($request->password);
       $user->save();
-
       return response([
         'message' => "Password reset!"
       ], 200);

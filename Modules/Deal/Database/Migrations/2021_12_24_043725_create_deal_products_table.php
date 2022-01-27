@@ -21,6 +21,7 @@ class CreateDealProductsTable extends Migration
             $table->foreign('deal_id')->references('id')->on('deals')->onDelete('SET NULL');
             $table->string('product_qty')->nullable();
             $table->string('unit_price')->nullable();
+            $table->string('shipping_charge')->nullable();
 
             $table->timestamps();
         });

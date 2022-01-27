@@ -87,7 +87,7 @@ export default {
       this.loading = true;
       try {
         const response = await axios.post(
-          "https://b2badmin.webhouse.com.np/api/vendor/reset-password",
+          "/api/vendor/reset-password",
           {
             password: this.password,
             confirm_password: this.confirm_password,
@@ -96,7 +96,7 @@ export default {
         );
         if (response.status === 200) {
           this.loading = false;
-          swal("Good Job!", "Your password is Reset successfuly!", "success");
+          swal("Done!", "Your password is Reset successfuly!", "success");
           window.location.href = "/vendor-login";
         }
       } catch (e) {

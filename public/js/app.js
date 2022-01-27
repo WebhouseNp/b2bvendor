@@ -3841,6 +3841,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -4023,20 +4024,16 @@ var mustBePositive = function mustBePositive(value) {
                   window.location.href = "/user/deals";
                 }
 
-                _context.next = 15;
+                _context.next = 16;
                 break;
 
               case 12:
                 _context.prev = 12;
                 _context.t0 = _context["catch"](3);
+                _this2.loadingCreateDeal = false;
+                alert('Somthing went wrong please try again.');
 
-                if (_context.t0.response.status === 422) {
-                  _this2.errors = _context.t0.response.data;
-
-                  _this2.validation.setMessages(_this2.errors.data);
-                }
-
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -4382,7 +4379,7 @@ var mustBePositive = function mustBePositive(value) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["auth", "products", "deal"],
+  props: ["auth", "products", "deal", "customers"],
   components: {
     DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_2__["default"],
     Multiselect: (vue_multiselect__WEBPACK_IMPORTED_MODULE_5___default())
@@ -4409,17 +4406,44 @@ var mustBePositive = function mustBePositive(value) {
       errors: ""
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    console.log(this.customers.find(function (customer) {
+      return customer.id = _this.deal.customer_id;
+    }).id);
+    console.log(this.customers.find(function (customer) {
+      return customer.id = _this.deal.customer_id;
+    }).name);
+    console.log(this.customers.find(function (customer) {
+      return customer.id = _this.deal.customer_id;
+    }).email); // this.customer = {
+    //   id: this.users.find(user=>user.id = this.deal.customer_id).id,
+    //   name : this.users.find(user=>user.id = this.deal.customer_id).name,
+    //   email: this.users.find(user=>user.id = this.deal.customer_id).email,
+    // }
+
+    this.expire_at = this.deal.expire_at;
+    this.invoice_products = this.deal.deal_products.map(function (element) {
+      return {
+        product_id: element.product_id,
+        product_qty: Number(element.product_qty),
+        unit_price: Number(element.unit_price) // shipping_charge: element.shipping_charge,
+
+      };
+    });
+  },
   computed: {
     //calculate sub total in each raw ============================//
     subtotalRow: function subtotalRow() {
       return this.invoice_products.map(function (item) {
-        return Math.round(item.product_qty * item.unit_price + item.shipping_charge);
+        return Math.round(item.product_qty * item.unit_price + (item.shipping_charge || 0));
       });
     },
     //Calculate Total of all raws =====================//
     total: function total() {
       return this.invoice_products.reduce(function (total, item) {
-        return total + Math.round(item.product_qty * item.unit_price + item.shipping_charge);
+        return total + Math.round(item.product_qty * item.unit_price + (item.shipping_charge || 0));
       }, 0);
     }
   },
@@ -4464,7 +4488,7 @@ var mustBePositive = function mustBePositive(value) {
     },
     // Filter customer ===============================//
     filterCustomers: function filterCustomers() {
-      var _this = this;
+      var _this2 = this;
 
       if (this.customer.name.length < 3) {
         return true;
@@ -4472,14 +4496,14 @@ var mustBePositive = function mustBePositive(value) {
 
       this.loadingCustomerList = true;
       axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/deals/customer-search?q=" + this.customer.name).then(function (res) {
-        _this.customersList = res.data.data;
-        _this.errors = "";
+        _this2.customersList = res.data.data;
+        _this2.errors = "";
 
-        if (_this.customersList.length == 0) {
-          _this.errors = "No Records Found !!";
+        if (_this2.customersList.length == 0) {
+          _this2.errors = "No Records Found !!";
         }
 
-        _this.loadingCustomerList = false;
+        _this2.loadingCustomerList = false;
       });
     },
     selectCustomer: function selectCustomer(user) {
@@ -4515,7 +4539,7 @@ var mustBePositive = function mustBePositive(value) {
     },
     // Create Deal ========================================================//
     submitData: function submitData() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var response;
@@ -4523,9 +4547,9 @@ var mustBePositive = function mustBePositive(value) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.$v.$touch();
+                _this3.$v.$touch();
 
-                if (!(_this2.$v.$pendding || _this2.$v.$error)) {
+                if (!(_this3.$v.$pendding || _this3.$v.$error)) {
                   _context.next = 3;
                   break;
                 }
@@ -4534,18 +4558,18 @@ var mustBePositive = function mustBePositive(value) {
 
               case 3:
                 _context.prev = 3;
-                _this2.loadingCreateDeal = true;
+                _this3.loadingCreateDeal = true;
                 _context.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deal/storeproduct", {
-                  vendor_id: _this2.auth,
-                  customer_id: _this2.customer.id,
-                  expire_at: _this2.expire_at,
-                  invoice_products: _this2.invoice_products
+                  vendor_id: _this3.auth,
+                  customer_id: _this3.customer.id,
+                  expire_at: _this3.expire_at,
+                  invoice_products: _this3.invoice_products
                 });
 
               case 7:
                 response = _context.sent;
-                _this2.loadingCreateDeal = false;
+                _this3.loadingCreateDeal = false;
 
                 if (response.status === 200) {
                   sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Congratulations!", "New deal is created!", "success");
@@ -4560,9 +4584,9 @@ var mustBePositive = function mustBePositive(value) {
                 _context.t0 = _context["catch"](3);
 
                 if (_context.t0.response.status === 422) {
-                  _this2.errors = _context.t0.response.data;
+                  _this3.errors = _context.t0.response.data;
 
-                  _this2.validation.setMessages(_this2.errors.data);
+                  _this3.validation.setMessages(_this3.errors.data);
                 }
 
               case 15:
@@ -4775,7 +4799,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.loading = true;
                 _context.prev = 4;
                 _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("https://b2badmin.webhouse.com.np/api/vendor/reset-password", {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/vendor/reset-password", {
                   password: _this.password,
                   confirm_password: _this.confirm_password,
                   token: _this.token
@@ -4786,7 +4810,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (response.status === 200) {
                   _this.loading = false;
-                  sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Good Job!", "Your password is Reset successfuly!", "success");
+                  sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Done!", "Your password is Reset successfuly!", "success");
                   window.location.href = "/vendor-login";
                 }
 
@@ -5109,7 +5133,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (response.status === 200) {
                   _this.loading = false;
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Good Job!", "Password reset link is send to you mail!", "success");
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Done!", "Password reset link is send to you mail!", "success");
                   window.location.href = "/vendor-homepage";
                 }
 
@@ -35427,6 +35451,7 @@ var render = function () {
     _c(
       "form",
       {
+        attrs: { autocomplete: "off" },
         on: {
           submit: function ($event) {
             $event.preventDefault()
@@ -36037,7 +36062,7 @@ var render = function () {
                             "button",
                             {
                               staticClass: "btn btn-info addProduct",
-                              attrs: { type: "button" },
+                              attrs: { type: "button", enabled: "" },
                               on: { click: _vm.addNewRow },
                             },
                             [

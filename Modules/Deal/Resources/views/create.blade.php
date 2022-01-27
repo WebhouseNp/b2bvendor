@@ -18,7 +18,7 @@ $api_token = $user->api_token;
                         <a href="{{ route('deals.index') }}" class="btn btn-success">Back to listing</a>
                     </div>
                 </div>
-
+ 
                 <div class="ibox-body" id="validation-errors">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 </div>
