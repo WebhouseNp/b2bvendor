@@ -69,7 +69,7 @@ export default {
         });
         if (response.status === 200) {
           this.loading = false;
-          swal("Good Job!", "Password reset link is send to you mail!", "success");
+          swal("Done!", "Password reset link is send to you mail!", "success");
           window.location.href = "/vendor-homepage";
         }
       } catch (error) {

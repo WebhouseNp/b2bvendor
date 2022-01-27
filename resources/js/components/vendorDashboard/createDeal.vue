@@ -1,6 +1,6 @@
 <template>
   <div class="ibox-body">
-    <form @submit.prevent="submitData">
+    <form @submit.prevent="submitData" autocomplete="off">
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
@@ -264,6 +264,7 @@
                         type="button"
                         class="btn btn-info addProduct"
                         @click="addNewRow"
+                        enabled
                       >
                         <i class="fas fa-plus-circle"></i>
                         Add
@@ -456,10 +457,8 @@ export default {
           window.location.href = "/user/deals"
         }
       } catch (error) {
-        if (error.response.status === 422) {
-          this.errors = error.response.data;
-          this.validation.setMessages(this.errors.data);
-        }
+        this.loadingCreateDeal = false;
+        alert('Somthing went wrong please try again.')
       }
     },
   },

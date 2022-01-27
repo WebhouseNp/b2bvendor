@@ -300,7 +300,7 @@ import axios from "axios";
 import Multiselect from "vue-multiselect";
 const mustBePositive = (value) => !helpers.req(value) || value >= 0;
 export default {
-  props: ["auth", "products","deal"],
+  props: ["auth", "products","deal","customers"],
   components: {
     DatePicker,
     Multiselect,
@@ -331,13 +331,35 @@ export default {
       errors: "",
     };
   },
+  mounted(){
+    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).id);
+    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).name);
+    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).email);
+
+
+    // this.customer = {
+    //   id: this.users.find(user=>user.id = this.deal.customer_id).id,
+    //   name : this.users.find(user=>user.id = this.deal.customer_id).name,
+    //   email: this.users.find(user=>user.id = this.deal.customer_id).email,
+    // }
+    this.expire_at = this.deal.expire_at;
+    this.invoice_products = this.deal.deal_products.map(element => {
+      return {
+          product_id: element.product_id,
+          product_qty: Number(element.product_qty),
+          unit_price: Number(element.unit_price),
+          // shipping_charge: element.shipping_charge,
+      }
+    });
+
+  },
   computed: {
 
     //calculate sub total in each raw ============================//
 
     subtotalRow() {
       return this.invoice_products.map((item) => {
-        return Math.round((item.product_qty * item.unit_price) + item.shipping_charge);
+        return Math.round((item.product_qty * item.unit_price) + (item.shipping_charge || 0));
       });
     },
 
@@ -345,7 +367,7 @@ export default {
     
      total: function(){
        return this.invoice_products.reduce(function(total, item){
-        return total + Math.round((item.product_qty * item.unit_price) + item.shipping_charge); 
+        return total + Math.round((item.product_qty * item.unit_price) + (item.shipping_charge || 0)); 
       },0);
    
   },
