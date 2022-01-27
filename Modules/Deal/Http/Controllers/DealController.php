@@ -27,8 +27,8 @@ class DealController extends Controller
 
     public function create()
     {
-        $products = Product::where('user_id', Auth::id())->select('id', 'title')->get()->map(function ($product) {
-            $product['image_url'] = 'https://dummyimage.com/50/5b43c4/ffffff';
+        $products = Product::where('user_id', Auth::id())->select('id', 'title','image')->get()->map(function ($product) {
+            $product['image_url'] = $product->imageUrl();
             return $product;
         });
         return view('deal::create')->with(compact('products'));
@@ -61,7 +61,10 @@ class DealController extends Controller
 
     public function edit($id)
     {
-        $products = Product::where('user_id', Auth::id())->select('id', 'title')->get();
+        $products = Product::where('user_id', Auth::id())->select('id', 'title','image')->get()->map(function ($product) {
+            $product['image_url'] = $product->imageUrl();
+            return $product;
+        });;
         $customers = User::select('id', 'name', 'email')
             ->whereHas(
                 'roles',

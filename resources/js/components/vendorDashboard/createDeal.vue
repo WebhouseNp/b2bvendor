@@ -70,9 +70,11 @@
                 lang="en"
                 type="datetime"
                 :disabled-date="disableDate"
+                default-value="2020-01-01"
                 format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
+                :value="expire_at"
               ></date-picker>
               <div
                 v-if="!$v.expire_at.required"
@@ -119,7 +121,6 @@
                     <td class="inputProduct">
                       <multiselect
                         class="form-control form"
-                        @change="onChange(invoice_product.product_id.$model)"
                         v-model="invoice_product.product_id.$model"
                         :class="{
                           'is-invalid': validationStatus(
@@ -312,14 +313,14 @@ export default {
       //select search product state
       invoice_products: [
         {
-          product_id: "",
+          product_id:'',
           product_qty: '',
           unit_price: '',
           shipping_charge: '',
         },
       ],
 
-      expire_at: "",
+      expire_at: '05:06',
       customer: {
         id: "",
         name: "",

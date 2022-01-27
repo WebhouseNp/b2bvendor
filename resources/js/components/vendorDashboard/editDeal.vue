@@ -311,7 +311,7 @@ export default {
       //select search product state
       invoice_products: [
         {
-          product_id: "",
+          product_id: 12,
           product_qty: '',
           unit_price: '',
           shipping_charge: '',
@@ -332,23 +332,19 @@ export default {
     };
   },
   mounted(){
-    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).id);
-    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).name);
-    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).email);
-
-
-    // this.customer = {
-    //   id: this.users.find(user=>user.id = this.deal.customer_id).id,
-    //   name : this.users.find(user=>user.id = this.deal.customer_id).name,
-    //   email: this.users.find(user=>user.id = this.deal.customer_id).email,
-    // }
+    const customer = this.customers.find((customer) => customer.id == this.deal.customer_id);
+    this.customer = {
+      id: customer.id,
+      name : customer.name,
+      email: customer.email 
+    }
     this.expire_at = this.deal.expire_at;
     this.invoice_products = this.deal.deal_products.map(element => {
       return {
           product_id: element.product_id,
           product_qty: Number(element.product_qty),
           unit_price: Number(element.unit_price),
-          // shipping_charge: element.shipping_charge,
+          shipping_charge: element.shipping_charge,
       }
     });
 
@@ -453,8 +449,8 @@ export default {
       this.selectedProduct = product;
       this.isVisible = false;
     },
-    customLabel({ title }) {
-      return `${title}`;
+    customLabel({ title , id}) {
+      return `${title} ${id}`;
     },
 
     // Create Deal ========================================================//
