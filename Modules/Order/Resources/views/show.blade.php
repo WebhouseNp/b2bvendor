@@ -72,7 +72,7 @@
                                 <td class="text-primary">Order Total</td>
                                 <td class="text-primary text-nowrap">
                                     <div>{{ formatted_price($totalPrice) }}</div>
-                                    <div class="{{ $order->status == 'paid' ? 'bg-success' : 'bg-danger' }} text-white font-weight-normal p-2 rounded text-center">{{ $order->status == 'paid' ? 'Paid' : 'Unpaid' }}</div>
+                                    <div class="{{ $order->payment_status == 'paid' ? 'bg-success' : 'bg-danger' }} text-white font-weight-normal p-2 rounded text-center">{{ $order->payment_status == 'paid' ? 'Paid' : 'Unpaid' }}</div>
                                 </td>
                             </tr>
                         </tbody>
