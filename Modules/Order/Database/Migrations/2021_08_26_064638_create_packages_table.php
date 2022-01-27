@@ -19,7 +19,7 @@ class CreatePackagesTable extends Migration
             $table->unsignedBigInteger('vendor_user_id')->nullable();
             $table->integer('package_no')->nullable();
             $table->integer('total_price');
-            $table->string('status')->nullable();
+            $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'] )->default('pending');
 
             $table->timestamps();
         });
