@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->text('track_no')->nullable();
             $table->string('payment_type')->nullable();
             // $table->enum('status', ['New', 'Verified', 'Cancel', 'Process', 'Delivered'] )->default('New');
-            $table->string('status')->nullable();
+            $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'] )->default('pending');
             $table->string('payment_status')->nullable();
             $table->string('esewa_ref_id')->nullable();
 

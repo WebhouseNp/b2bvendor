@@ -43,7 +43,7 @@ class CheckoutController extends Controller
                 'user_id' => Auth::id(),
                 'amount' => $request->checkout_mode == 'deal' ? $deal->totalPrice() : null,
                 'deal_id' => $request->checkout_mode == 'deal' ? $request->deal_id : null,
-                'status' => 'New',
+                'status' => 'pending',
                 'payment_status' => 'pending',
                 'payment_type' => $request->payment_type,
             ]);
@@ -57,7 +57,7 @@ class CheckoutController extends Controller
                     'order_id' => $order->id,
                     'vendor_user_id' => $deal->vendor_user_id,
                     'total_price' => 0,
-                    'status' => 'New',
+                    'status' => 'pending',
                     'package_no' => 1
                 ]);
 
@@ -93,7 +93,7 @@ class CheckoutController extends Controller
                         'order_id' => $order->id,
                         'vendor_user_id' => $vendorUserId,
                         'total_price' => 0,
-                        'status' => 'New',
+                        'status' => 'pending',
                     ]);
 
                     // create order list
