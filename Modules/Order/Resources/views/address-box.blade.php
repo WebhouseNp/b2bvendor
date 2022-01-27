@@ -5,13 +5,13 @@
              <tbody>
                  <tr>
                      <th>Full Name</th>
-                     <td>{{ $address->full_name }}</td>
+                     <td>{{ @$address->full_name }}</td>
                  </tr>
                  <tr>
                      <th>Company</th>
                      <td>
-                         <div>{{ $address->company_name }}</div>
-                         <div>{{ $address->vat }}</div>
+                         <div>{{ @$address->company_name }}</div>
+                         <div>{{ @$address->vat }}</div>
                      </td>
                  </tr>
                  <tr>
@@ -19,15 +19,15 @@
                      <td>
                          <address>
                              <div>
-                                 {{ $address->street_address }}
+                                 {{ @$address->street_address }}
                              </div>
                              <div>
-                                 Near {{ $address->nearest_landmark }}
+                                 Near {{ @$address->nearest_landmark }}
                              </div>
                              <div>
-                                 {{ $address->city }}
+                                 {{ @$address->city }}
                                  <span>,</span>
-                                 {{ $address->country }}
+                                 {{ @$address->country }}
                              </div>
                          </address>
                      </td>
@@ -35,8 +35,8 @@
                  <tr>
                      <th>Contact</th>
                      <td>
-                         <div>Mobile: {{ $address->phone }}</div>
-                         <div>Email: {{ $address->email }}</div>
+                         <div>Mobile: {{ @$address->phone }}</div>
+                         <div>Email: {{ @$address->email }}</div>
                      </td>
                  </tr>
              </tbody>

@@ -52,55 +52,6 @@ class OrderController extends Controller
         }
     }
 
-    public function changeOrderStatus(Request $request)
-    {
-        $data = $request->all();
-        $validation = Validator::make($data, [
-            'order_id'      => 'required|numeric|exists:orders,id',
-            'status'          => 'required',
-        ]);
-
-
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $message) {
-                $errors[] = $message;
-            }
-            return response()->json(['status' => false, 'message' => $errors]);
-        }
-        $order = Order::find($request->order_id);
-        $orders = Order::orderBy('created_at', 'desc')->get();
-        if (!$order) {
-            return response()->json(['status' => false, 'message' => ['Invalid Order id or order not found.']]);
-        }
-
-        if ($request->status == 'New') {
-            $data['status'] = 'process';
-        }
-        if ($request->status == 'Process') {
-            $data['status'] = 'verified';
-        }
-        if ($request->status == 'Verified') {
-            $data['status'] = 'delivered';
-        }
-        if ($request->status == 'Delivered') {
-            $data['status'] = 'cancel';
-        }
-        if ($request->status == 'Cancel') {
-            $data['status'] = 'new';
-        }
-
-        $order->update($data);
-        $success = $order->save();
-        if ($success) {
-            $order_data = $order->where(['id' => $request->order_id])->get();
-            $orders = Order::orderBy('created_at', 'desc')->get();
-            $view = \View::make("order::ordersTable")->with('orders', $orders)->render();
-            return response()->json(['status' => true, 'message' => "Order updated Successfully.", 'data' => $order_data, 'html' => $view]);
-        } else {
-            return response()->json(['status' => false, 'message' => ["Sorry There was problem while updating Order status. Please Try again later."]]);
-        }
-    }
-
     public function show(Order $order)
     {
         $order->load(['packages.orderLists' => function($query) {

@@ -26,7 +26,8 @@ class CreateOrderListsTable extends Migration
             $table->double('subtotal_price', 15, 2);
             $table->double('shipping_charge', 8, 2);
             $table->double('total_price', 15, 2);
-            $table->enum('order_status', ['New', 'Verified', 'Cancel', 'Process', 'Delivered'])->default('New');
+            // $table->enum('order_status', ['New', 'Verified', 'Cancel', 'Process', 'Delivered'])->default('New');
+            $table->string('order_status')->nullable();
             $table->text('track_no')->nullable();
             
             // $table->foreign('vendor_user_id')->references('id')->on('users')->onDelete('SET NULL');
