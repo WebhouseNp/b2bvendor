@@ -11,7 +11,6 @@ use App\Password;
 use Modules\User\Entities\Vendor;
 use Modules\Role\Entities\Role_user;
 use Modules\Role\Entities\Role;
-use Modules\User\Entities\Profile;
 use Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use DB;
@@ -72,14 +71,6 @@ class UserController extends Controller
       if ($userExist) {
         $user = User::where('email', $request->email)->first();
       }
-      
-      $profile_data = [
-        'user_id' => $user->id,
-        'full_name' => $formData['full_name'],
-        'mobile_num' => $formData['phone_num'],
-        'email' => $formData['email'],
-      ];
-      $profile = Profile::create($profile_data);
       $role_data = [
         'role_id' => 4,
         'user_id' => $user->id
@@ -128,7 +119,6 @@ class UserController extends Controller
       ];
 
       $user->fill($data);
-      //   dd($data);
       $success = $user->save();
       if ($success) {
         $mail_data = [

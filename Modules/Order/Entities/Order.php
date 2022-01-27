@@ -18,14 +18,20 @@ class Order extends Model
     {
 		static::addGlobalScope(function (Builder $builder) {
 			// filter order for vendor
-            $builder->when(auth()->user()->hasRole('vendor'), function ($query) {
-				return $query->whereHas('orderList', function ($query) {
+            // $builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
+			// 	return $query->whereHas('orderList', function ($query) {
+			// 		return $query->where('vendor_user_id', auth()->user()->id);
+			// 	});
+			// });
+
+			$builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
+				return $query->whereHas('packages', function ($query) {
 					return $query->where('vendor_user_id', auth()->user()->id);
 				});
 			});
 
 			// filter order for customer
-			$builder->when(auth()->user()->hasRole('customer'), function ($query) {
+			$builder->when(auth()->check() && auth()->user()->hasRole('customer'), function ($query) {
 				return $query->where('user_id', auth()->user()->id);
 			});
         });
@@ -34,6 +40,11 @@ class Order extends Model
 	public function customer()
 	{
 		return $this->belongsTo(User::class, 'user_id', 'id');
+	}
+
+	public function packages()
+	{
+		return $this->hasMany(Package::class);
 	}
 
 	public function orderList()

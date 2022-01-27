@@ -31,12 +31,12 @@ class OrderController extends Controller
 
     public function updateOrderStatus(Request $request)
     {
-        $order = OrderList::where('id', $request->order_id)->with(['product_info'])->first();
+        $order = OrderList::where('id', $request->order_id)->first();
         if ($order) {
             $order['order_status'] = $request->status;
         }
-        $product = $order->product_info;
-        $user = User::where('id', $order->customer_id)->first();
+        $product = $order->product;
+        $user = User::where('id', auth()->user()->id)->first();
         $order_data = [
             'product_name' => $product->title,
             'status' => $request->status,
@@ -103,7 +103,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load(['orderList' => function($query) {
+        $order->load(['packages.orderLists' => function($query) {
             // we only load the order list which belongs to logged in vendor
                $query->when(auth()->user()->hasRole('vendor'), function($query) {
                     return $query->where('vendor_user_id', auth()->id());

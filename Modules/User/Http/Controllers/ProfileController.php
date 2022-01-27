@@ -11,6 +11,7 @@ use Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Modules\Front\Transformers\CustomerResource;
 use DB;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -53,7 +54,7 @@ class ProfileController extends Controller
     }
   }
 
-  public function editAddress(Request $request, Profile $profile)
+  public function editAddress(Request $request, User $user)
   {
     try {
       $validator = Validator::make($request->all(), [
@@ -64,19 +65,19 @@ class ProfileController extends Controller
       ]);
 
       if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
+        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
-       // save the address
-       $address = [
-          'full_name' => $request->full_name,
-          'city' => $request->city,
-          'phone' => $request->phone,
-          'street_address' => $request->street_address,
-       ];
-       $profile->address()->updateOrCreate([
+      // save the address
+      $address = [
+        'full_name' => $request->full_name,
+        'city' => $request->city,
+        'phone' => $request->phone,
+        'street_address' => $request->street_address,
+      ];
+      $user->address()->updateOrCreate([
         'type' => null
-        ], $address);
+      ], $address);
 
       return response()->json([
         "message" => "Address Updated Successfully!!",
@@ -88,14 +89,12 @@ class ProfileController extends Controller
     }
   }
 
-  public function edit($id)
+  public function edit(User $user)
   {
-    $id = auth()->user()->id;
-    $profile = Profile::where('user_id',$id)->first();
-    return CustomerResource::make($profile);
+    return CustomerResource::make($user);
   }
 
-  public function update(Request $request, $id)
+  public function update(Request $request, User $user)
   {
     try {
       $validator = Validator::make($request->all(), [
@@ -116,18 +115,19 @@ class ProfileController extends Controller
       $formInput = $request->except('publish', 'image');
       $formInput['publish'] = 1;
       if ($request->hasFile('image')) {
-        if ($profile->image) {
-          $this->unlinkImage($profile->image);
+        if ($user->image) {
+          $this->unlinkImage($user->image);
         }
         if ($request->image) {
           $image = $this->imageProcessing('img-', $request->file('image'));
           $formInput['image'] = $image;
         }
       }
-      $profile->update($formInput);
+      $user->update($formInput);
 
       return response()->json([
         "message" => "User Profile updated Successfully!!",
+        "data" => $user
       ], 200);
     } catch (\Exception $exception) {
       return response([

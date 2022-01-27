@@ -13,51 +13,24 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->id()->from(20000);
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
+            // $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->double('subtotal_price', 15, 2)->nullable();
             $table->double('shipping_charge', 8, 2)->nullable();
             $table->double('total_price', 15, 2)->nullable();
             $table->text('order_note')->nullable();
             $table->text('track_no')->nullable();
-            // $table->enum('payment_type', ['esewa', 'paypal', 'cash_on_delivery', 'tt'] );
             $table->string('payment_type')->nullable();
             $table->enum('status', ['New', 'Verified', 'Cancel', 'Process', 'Delivered'] )->default('New');
-
             $table->string('payment_status')->nullable();
-
-            // //BILLING DETAIL
-            // $table->string('first_name')->nullable();
-            // $table->string('last_name')->nullable();
-            // $table->string('company_name')->nullable();
-            // $table->string('vat')->nullable();
-            // $table->string('phone')->nullable();
-            // $table->string('email')->nullable();
-
-            // //ADDRESS
-            // $table->string('country')->nullable();
-            // $table->string('street_address')->nullable();
-            // $table->string('nearest_landmark')->nullable();
-            // $table->string('town')->nullable();
-
-            // //SHIP TO DIFFERENT ADDRESS
-            // $table->string('ship_first_name')->nullable();
-            // $table->string('ship_last_name')->nullable();
-            // $table->string('ship_company_name')->nullable();
-            // $table->string('ship_vat')->nullable();
-            // $table->string('ship_phone')->nullable();
-            // $table->string('ship_email')->nullable();
-
-            //SHIPPING ADDRESS
-            // $table->string('ship_country')->nullable();
-            // $table->string('ship_street_address')->nullable();
-            // $table->string('ship_nearest_landmark')->nullable();
-            // $table->string('ship_town')->nullable();
+            $table->string('esewa_ref_id')->nullable();
 
             $table->timestamps();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**
