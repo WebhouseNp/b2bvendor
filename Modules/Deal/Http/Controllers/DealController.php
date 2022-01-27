@@ -47,6 +47,7 @@ class DealController extends Controller
                     $deal->product_id = $val['product_id']['id'];
                     $deal->product_qty = $val['product_qty'];
                     $deal->unit_price = $val['unit_price'];
+                    $deal->shipping_charge = $val['shipping_charge'];
                     $deal->save();
                 }
             }
@@ -61,8 +62,7 @@ class DealController extends Controller
     public function edit($id)
     {
         $products = Product::where('user_id', Auth::id())->select('id', 'title')->get();
-        $users = User::where('name', 'like', request('q') . '%')
-            ->select('id', 'name', 'email')
+        $customers = User::select('id', 'name', 'email')
             ->whereHas(
                 'roles',
                 function ($q) {
@@ -71,7 +71,7 @@ class DealController extends Controller
             )
             ->get();
         $deal = Deal::where('id', $id)->with('deal_products')->first();
-        return view('deal::update', compact('deal', 'users', 'products'));
+        return view('deal::update', compact('deal', 'customers', 'products'));
     }
 
     public function editDeal(Deal $deal)

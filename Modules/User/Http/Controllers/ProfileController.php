@@ -90,11 +90,12 @@ class ProfileController extends Controller
 
   public function edit($id)
   {
-    $profile = Profile::findOrFail($id);
+    $id = auth()->user()->id;
+    $profile = Profile::where('user_id',$id)->first();
     return CustomerResource::make($profile);
   }
 
-  public function update(Request $request, Profile $profile)
+  public function update(Request $request, $id)
   {
     try {
       $validator = Validator::make($request->all(), [
@@ -110,6 +111,8 @@ class ProfileController extends Controller
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
+      $id = auth()->user()->id;
+      $profile = Profile::where('user_id',$id)->first();
       $formInput = $request->except('publish', 'image');
       $formInput['publish'] = 1;
       if ($request->hasFile('image')) {
