@@ -17,12 +17,12 @@
         
         <div>
             <p>
-                Dear {{ $name }} , <br>
+                Dear {{ $name }}  , <br>
                 Congratulations!! You have successfully registered in B2B. So as to login, account activation is
                 required.
                 </p>
 
-               <strong> Please <a href="{{ $link }}" target="_blank" style="overflow-wrap: break-word;">Click here</a> to
+               <strong> <a href="{{url('account-activate/'.$link)}}" target="_blank" style="overflow-wrap: break-word;">Click here</a> to
                 activate your account.</strong>
                 
                 <br>

@@ -2,6 +2,9 @@
 
 namespace Modules\User\Http\Controllers;
 
+use App\Mail\AccountActivated;
+use App\Mail\PasswordReset;
+use App\Mail\VendorCreated;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -198,17 +201,7 @@ class ApiUserController extends Controller
         $role_user = Role_user::create($role_data);
         $vendor = Vendor::create($formData);
         DB::commit();
-        $mail_data = [
-          'name' => $formData['company_name'],
-          'password' => $request->password,
-          'email' => $request->email,
-          'link' => route('verifyNewAccount', $data['activation_link']),
-          'otp' => $data['otp'] ,
-       ];
-       Mail::send('email.account-activation-mail', $mail_data, function ($message) use ($mail_data, $request) {
-          $message->to($request->email)->from(env('MAIL_FROM_ADDRESS'));
-          $message->subject('Account activation link');
-       });
+       Mail::to($request->email)->send(new VendorCreated($vendor));
         return response()->json([
           "status_code" => 200,
           "message" => "success",
@@ -224,32 +217,23 @@ class ApiUserController extends Controller
        
     } 
 
-    public function VerifyNewAccount($token, Request $request)
+    public function VerifyNewAccount($link, Request $request)
     {
             try{
-              $user = User::where(['activation_link' => $token])->first();
-              if ($user->activation_link == $token) {
+              $user = User::where(['activation_link' => $link])->first();
+              if ($user->activation_link == $link) {
                 $data['activation_link'] = null;
                 $data['verified']     = 1;
-            }
-            $user_info = [
-              'email' => $user->email,
-              'name' => $user->name,
-          ];
-
+              }
+              if($user->verified == 1){
+                return response()->json([
+                  "message" => "Thank You ! Your Account Has already been Activated. You can login your account",
+                ],200);
+              }
           $user->fill($data);
           $success = $user->save();
           if ($success) {
-            $mail_data = [
-              'name' => $user->name,
-              'email' => $user->email,
-           ];
-
-            Mail::send('email.account-activation-mail-reply', $mail_data, function ($message) use ($mail_data, $request, $user) {
-              $message->to($user->email)->from(env('MAIL_FROM_ADDRESS'));
-              $message->subject('Account Activated Email');
-           });
-
+           Mail::to($request->email)->send(new AccountActivated($user));
            return response()->json([
             "message" => "Thank You ! Your Account Has been Activated. You can login your account now",
           ],200);
@@ -270,23 +254,15 @@ class ApiUserController extends Controller
           $data['otp'] = null;
           $data['verified']     = 1;
       }
-      $user_info = [
-        'email' => $user->email,
-        'name' => $user->name,
-    ];
-
+      if($user->verified == 1){
+        return response()->json([
+          "message" => "Thank You ! Your Account Has already been Activated. You can login your account!!",
+        ],200);
+      }
     $user->fill($data);
     $success = $user->save();
     if ($success) {
-      $mail_data = [
-        'name' => $user->name,
-        'email' => $user->email,
-     ];
-
-      Mail::send('email.account-activation-mail-reply', $mail_data, function ($message) use ($mail_data, $request, $user) {
-        $message->to($user->email)->from(env('MAIL_FROM_ADDRESS'));
-        $message->subject('Account Activated Email');
-     });
+      Mail::to($user->email)->send(new AccountActivated($user));
      return response()->json([
       "message" => "Thank You ! Your Account Has been Activated. You can login your account now",
     ],200);
@@ -319,13 +295,11 @@ class ApiUserController extends Controller
             $token = str_replace('/', '', $token_withSlash);
             // saving token and user name
             $savedata = ['email' => $request->email, 'token' => $token, 'created_at' => \Carbon\Carbon::now()->toDateTimeString()];
-            Password::insert($savedata);
+             Password::insert($savedata);
+            $password = Password::where('email',$request->email)->where('token',$token)->first();
             //sending email link
             $data = ['email' => $request->email, 'token' => $token];
-            Mail::send('email.password-reset', $data, function ($message) use ($data) {
-              $message->to($data['email'])->from(env('MAIL_FROM_ADDRESS'));
-              $message->subject('password reset link');
-           });
+          Mail::to($data['email'])->send(new PasswordReset($password));
            return response()->json([
             "message" => "Email has been sent to your email",
           ],200);
@@ -355,7 +329,6 @@ class ApiUserController extends Controller
 
       $user->password = bcrypt($request->password);
       $user->save();
-
       return response([
         'message' => "Password reset!"
       ], 200);

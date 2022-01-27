@@ -368,6 +368,9 @@ export default {
       },
     },
   },
+   mounted() {
+      this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
+    },
   methods: {
     //validation =====================//
 

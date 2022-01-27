@@ -28,8 +28,6 @@ Route::prefix('vendor')->name('api.')->group(function(){
     
     Route::put('updateVendor/{id}', 'ApiUserController@updateVendor')->middleware('auth:api')->name('updateVendor');
     Route::delete('deleteVendor', 'ApiUserController@deleteVendor')->name('deleteVendor');
-    // Route::post('/account-activate', [ApiUserController::class, 'verifyNewAccount'])->name('VerifyAccount');
-
     Route::post('verification-code/{code}','ApiUserController@verifificationCode')->name('verifificationCode');
     Route::post('send-email-link', 'ApiUserController@sendEmailLink')->name('sendEmailLink');
 
@@ -49,7 +47,6 @@ Route::prefix('vendor')->name('api.')->group(function(){
         Route::post('change-password', 'UserController@changePassword')->middleware('auth:api')->name('changePassword');
         Route::get('edit-user-profile/{user}', 'ProfileController@edit')->middleware('auth:api')->name('editUserProfile');
         Route::put('edit-user-profile/{user}', 'ProfileController@update')->middleware('auth:api')->name('updateUserProfile');
-        // Route::post('add-address/{id}', 'ProfileController@addAddress')->middleware('auth:api')->name('addAddress');
         Route::put('edit-address/{user}', 'ProfileController@editAddress')->middleware('auth:api')->name('editAddress');
         });
 

@@ -5,18 +5,11 @@ namespace Modules\Order\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Validator, DB;
-use Auth, Mail;
-use Illuminate\Support\Str;
+use Validator;
+use Mail;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
-use Modules\Order\Entities\VendorOrder;
-use Modules\Product\Entities\Product;
-use Modules\Product\Entities\Range;
-use Modules\Role\Entities\Role_user;
-use Modules\Role\Entities\Role;
 use App\Models\User;
-use Modules\User\Entities\Vendor;
 
 class OrderController extends Controller
 {
@@ -52,71 +45,42 @@ class OrderController extends Controller
         }
     }
 
-    public function changeOrderStatus(Request $request)
-    {
-        $data = $request->all();
-        $validation = Validator::make($data, [
-            'order_id'      => 'required|numeric|exists:orders,id',
-            'status'          => 'required',
-        ]);
-
-
-        if ($validation->fails()) {
-            foreach ($validation->messages()->getMessages() as $message) {
-                $errors[] = $message;
-            }
-            return response()->json(['status' => false, 'message' => $errors]);
-        }
-        $order = Order::find($request->order_id);
-        $orders = Order::orderBy('created_at', 'desc')->get();
-        if (!$order) {
-            return response()->json(['status' => false, 'message' => ['Invalid Order id or order not found.']]);
-        }
-
-        if ($request->status == 'New') {
-            $data['status'] = 'process';
-        }
-        if ($request->status == 'Process') {
-            $data['status'] = 'verified';
-        }
-        if ($request->status == 'Verified') {
-            $data['status'] = 'delivered';
-        }
-        if ($request->status == 'Delivered') {
-            $data['status'] = 'cancel';
-        }
-        if ($request->status == 'Cancel') {
-            $data['status'] = 'new';
-        }
-
-        $order->update($data);
-        $success = $order->save();
-        if ($success) {
-            $order_data = $order->where(['id' => $request->order_id])->get();
-            $orders = Order::orderBy('created_at', 'desc')->get();
-            $view = \View::make("order::ordersTable")->with('orders', $orders)->render();
-            return response()->json(['status' => true, 'message' => "Order updated Successfully.", 'data' => $order_data, 'html' => $view]);
-        } else {
-            return response()->json(['status' => false, 'message' => ["Sorry There was problem while updating Order status. Please Try again later."]]);
-        }
-    }
-
     public function show(Order $order)
     {
-        $order->load(['packages.orderLists' => function($query) {
-            // we only load the order list which belongs to logged in vendor
-               $query->when(auth()->user()->hasRole('vendor'), function($query) {
+        $order->load([
+            'packages' => function ($query) {
+                // we only load the order list which belongs to logged in vendor
+                $query->when(auth()->user()->hasRole('vendor'), function ($query) {
                     return $query->where('vendor_user_id', auth()->id());
                 });
             },
             // since orderlist is already loaded and constrained
             // it won't load order list again
-            'orderList.product:id,title,slug',
+            'packages.orderLists.product:id,title,slug',
             'customer:id,name,email',
             'billingAddress',
             'shippingAddress'
         ]);
 
-        return view('order::show', compact('order'));
+        // return $order;
+
+        
+        if(auth()->user()->hasRole('vendor')) {
+            $package = $order->packages->first();
+            $subTotalPrice = $package->orderLists->sum->subtotal_price;
+            $totalShippingPrice = $package->orderLists->sum->shipping_charge;
+            $totalPrice = $package->orderLists->sum->total_price;
+        } else {
+            $subTotalPrice = $order->subtotal_price;
+            $totalShippingPrice = $order->shipping_charge;
+            $totalPrice = $order->total_price;
+        }
+
+        return view('order::show', compact([
+            'order',
+            'subTotalPrice',
+            'totalShippingPrice',
+            'totalPrice'
+        ]));
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Modules\User\Http\Controllers;
 
+use App\Mail\AccountActivated;
+use App\Mail\UserCreated;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -18,23 +20,10 @@ use Str;
 use Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail as FacadesMail;
 
 class UserController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   * @return Renderable
-   */
-  public function index()
-  {
-    return view('user::index');
-  }
-
-  
-  public function create()
-  {
-    return view('user::create');
-  }
 
   public function register(Request $request)
   {
@@ -76,19 +65,8 @@ class UserController extends Controller
         'user_id' => $user->id
       ];
       $role_user = Role_user::create($role_data);
-      $mail_data = [
-        'name' => $formData['full_name'],
-        'password' => $request->password,
-        'email' => $request->email,
-        'link' => route('user.verifyNewAccount', $data['activation_link']),
-        'otp' => $data['otp'],
-      ];
       DB::commit();
-      Mail::send('email.account-activation-mail', $mail_data, function ($message) use ($mail_data, $request) {
-        $message->to($request->email)->from(env('MAIL_FROM_ADDRESS'));
-        $message->subject('Account activation link');
-      });
-      
+      Mail::to($request->email)->send(new UserCreated($user));
       return response()->json([
         "message" => "success",
         'user' => $userExist
@@ -113,24 +91,15 @@ class UserController extends Controller
         $data['activation_link'] = null;
         $data['verified']     = 1;
       }
-      $user_info = [
-        'email' => $user->email,
-        'name' => $user->name,
-      ];
-
+      if($user->verified == 1){
+        return response()->json([
+          "message" => "Thank You ! Your Account Has already been Activated. You can login your account!!",
+        ],200);
+      }
       $user->fill($data);
       $success = $user->save();
       if ($success) {
-        $mail_data = [
-          'name' => $user->name,
-          'email' => $user->email,
-        ];
-
-        Mail::send('email.account-activation-mail-reply', $mail_data, function ($message) use ($mail_data, $request, $user) {
-          $message->to($user->email)->from(env('MAIL_FROM_ADDRESS'));
-          $message->subject('Account Activated Email');
-        });
-
+        Mail::to($user->email)->send(new AccountActivated($user));
         return response()->json([
           "message" => "Thank You ! Your Account Has been Activated. You can login your account now",
         ], 200);
@@ -152,23 +121,15 @@ class UserController extends Controller
         $data['otp'] = null;
         $data['verified']  = 1;
       }
-      $user_info = [
-        'email' => $user->email,
-        'name' => $user->name,
-      ];
-
+      if($user->verified == 1){
+        return response()->json([
+          "message" => "Thank You ! Your Account Has already been Activated. You can login your account!!",
+        ],200);
+      }
       $user->fill($data);
       $success = $user->save();
       if ($success) {
-        $mail_data = [
-          'name' => $user->name,
-          'email' => $user->email,
-        ];
-
-        Mail::send('email.account-activation-mail-reply', $mail_data, function ($message) use ($mail_data, $request, $user) {
-          $message->to($user->email)->from(env('MAIL_FROM_ADDRESS'));
-          $message->subject('Account Activated Email');
-        });
+        Mail::to($user->email)->send(new AccountActivated($user));
         return response()->json([
           "message" => "Thank You ! Your Account Has been Activated. You can login your account now",
         ], 200);
