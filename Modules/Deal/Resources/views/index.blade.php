@@ -29,6 +29,7 @@
                         <th>SN</th>
                         <th>Customer</th>
                         <th>Vendor</th>
+                        <th>Completed</th>
                         <th>Deal Expire At</th>
                         <th>Link</th>
                         <th>Action</th>
@@ -42,7 +43,15 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{@$data->user->name}}</td>
                         <td>{{@$data->vendor->name}}</td>
-                        <td>{{ $data->expire_at->toDateTimeString() }}</td>
+                        <td>{{ $data->completed_at ? 'Yes' : 'No' }}</td>
+                        <td>{{ $data->expire_at->toDateTimeString() }} 
+                            <span>
+                                @if ($data->isAvailable())
+                                <i class="fa fa-check text-success"></i> 
+                                @else
+                                <i class="fa fa-times text-danger"></i></span>
+                                @endif
+                        </td>
                         <td>
                             <button type="button" class="btn btn-link ml-0 pl-0" onclick="copyLink(this)" data-link="{{ config('constants.customer_app_url') . '/deals/' . $data->id }}" title="Click to copy">
                                 <i class="fa fa-clone"></i>
