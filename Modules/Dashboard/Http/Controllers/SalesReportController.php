@@ -11,6 +11,7 @@ use Modules\User\Entities\Vendor;
 use Modules\Order\Entities\VendorOrder;
 use Carbon;
 use Auth;
+use Modules\Order\Entities\Package;
 
 class SalesReportController extends Controller
 {
@@ -32,71 +33,77 @@ class SalesReportController extends Controller
         // $sales = [];
         foreach ($months_day['date'] as $date) {
             $daily = $this->order->whereDate('created_at', $date)->sum('amount');
-            
+
             array_push($dailySales, $daily);
         }
         $sales = array_sum($dailySales);
-        $vendors = Vendor::where('status',1)->get();
+        $vendors = Vendor::where('status', 1)->get();
         // dd($dailySales,$sales);
         return view('dashboard::salesreport.daily', compact(
             'dailySales',
-            'months_day', 'vendors','sales'
+            'months_day',
+            'vendors',
+            'sales'
         ));
     }
 
-    public function salesSearchByDates(Request $request){
+    public function salesSearchByDates(Request $request)
+    {
         $months_day = [];
         $amount = [];
-        if($request->vendor == '')
-            $details = $this->order->whereBetween('created_at',[$request->start_date,$request->end_date])->get();
+        if ($request->vendor == '')
+            $details = $this->order->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
         else
-            $details = VendorOrder::where('user_id',$request->vendor)->orWhereBetween('created_at',[$request->start_date,$request->end_date])->get();
-        
+            $details = VendorOrder::where('user_id', $request->vendor)->orWhereBetween('created_at', [$request->start_date, $request->end_date])->get();
 
-        foreach($details as $detail){
+
+        foreach ($details as $detail) {
             $months_day[] = $detail->created_at->format('Y-m-d');
-            if($request->vendor != '')
-                $orderlist = OrderList::where('order_id',$detail->order_id)->where('user_id',$detail->user_id)->sum('amount');
+            if ($request->vendor != '')
+                $orderlist = OrderList::where('order_id', $detail->order_id)->where('user_id', $detail->user_id)->sum('amount');
             else
                 $orderlist  = $detail->amount;
-            $amount[] = [$detail->created_at->format('Y-m-d')=>$orderlist];
+            $amount[] = [$detail->created_at->format('Y-m-d') => $orderlist];
         }
         $finalamount = array();
 
-        array_walk_recursive($amount, function($item, $key) use (&$finalamount){
+        array_walk_recursive($amount, function ($item, $key) use (&$finalamount) {
             $finalamount[$key] = isset($finalamount[$key]) ?  $item + $finalamount[$key] : $item;
         });
         $amt = [];
-        foreach($finalamount as $value){
+        foreach ($finalamount as $value) {
             $amt[] = $value;
         }
         $total_sales = array_sum($amt);
         $months_day = array_values(array_unique($months_day));
         // dd($months_day);
-        return response()->json(['status' => 'successful',
-         'details' => $details ,
-         'months_day' => $months_day ,'sales'=>$amt, 'total_sales'=>$total_sales]);
+        return response()->json([
+            'status' => 'successful',
+            'details' => $details,
+            'months_day' => $months_day, 'sales' => $amt, 'total_sales' => $total_sales
+        ]);
     }
 
-    public function getVendorReport(Request $request, $id){
+    public function getVendorReport(Request $request, $id)
+    {
         $months_day = [];
         $amount = [];
-            $details = VendorOrder::where('user_id',$id)->get();
-        foreach($details as $detail){
+        $details = VendorOrder::where('user_id', $id)->get();
+        foreach ($details as $detail) {
             $months_day[] = $detail->created_at->format('Y-m-d');
-            
-                $orderlist = OrderList::where('order_id',$detail->order_id)->where('user_id',$detail->user_id)->sum('amount');
+
+            $orderlist = OrderList::where('order_id', $detail->order_id)->where('user_id', $detail->user_id)->sum('amount');
             // else
             //     $orderlist  = $detail->amount;
-            $amount[] = [$detail->created_at->format('Y-m-d')=>$orderlist];
+            $amount[] = [$detail->created_at->format('Y-m-d') => $orderlist];
         }
         $finalamount = array();
 
-        array_walk_recursive($amount, function($item, $key) use (&$finalamount){
+        array_walk_recursive($amount, function ($item, $key) use (&$finalamount) {
             $finalamount[$key] = isset($finalamount[$key]) ?  $item + $finalamount[$key] : $item;
         });
         $amt = [];
-        foreach($finalamount as $value){
+        foreach ($finalamount as $value) {
             $amt[] = $value;
         }
         $total_sales = array_sum($amt);
@@ -107,37 +114,50 @@ class SalesReportController extends Controller
         //  'months_day' => $months_day ,'sales'=>$amt, 'total_sales'=>$total_sales]);
         return view('user::vendorsalesreport', compact(
             'details',
-            'months_day', 'amt','total_sales'
+            'months_day',
+            'amt',
+            'total_sales'
         ));
-        
     }
 
-    public function getVendorOrderReport(Request $request){
+    public function getOrderInfo()
+    {
+        if (auth()->user()->hasRole('vendor')) {
+            $details = Package::where('vendor_user_id', auth()->user()->id)->with(['order', 'orderLists'])->get();
+        } else if(auth()->user()->hasAnyRole('super_admin|admin')){
+            $details = Package::with(['order', 'orderLists'])->get();
+        }
+        return view('dashboard::salesreport.sales-info', compact('details'));
+    }
+
+    public function getVendorOrderReport(Request $request)
+    {
         $months_day = [];
         $amount = [];
         $id = Auth::user()->id;
-            $details = OrderList::where('user_id',$id)->get();
-            $orderlist = OrderList::where('user_id',$id)->sum('amount');
-        foreach($details as $detail){
+        $details = OrderList::where('vendor_user_id', $id)->get();
+        $orderlist = OrderList::where('vendor_user_id', $id)->sum('total_price');
+        foreach ($details as $detail) {
             $months_day[] = $detail->created_at->format('Y-m-d');
-            $amount[] = [$detail->created_at->format('Y-m-d')=>$detail->amount];
+            $amount[] = [$detail->created_at->format('Y-m-d') => $detail->amount];
         }
         $finalamount = array();
 
-        array_walk_recursive($amount, function($item, $key) use (&$finalamount){
+        array_walk_recursive($amount, function ($item, $key) use (&$finalamount) {
             $finalamount[$key] = isset($finalamount[$key]) ?  $item + $finalamount[$key] : $item;
         });
         $amt = [];
-        foreach($finalamount as $value){
+        foreach ($finalamount as $value) {
             $amt[] = $value;
         }
         $total_sales = $orderlist;
         $months_day = array_values(array_unique($months_day));
         return view('user::vendorsalesreport', compact(
             'details',
-            'months_day', 'amt','total_sales'
+            'months_day',
+            'amt',
+            'total_sales'
         ));
-        
     }
 
     public function weekly_report()

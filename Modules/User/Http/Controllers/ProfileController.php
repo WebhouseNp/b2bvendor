@@ -110,7 +110,6 @@ class ProfileController extends Controller
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
-      $id = auth()->user()->id;
       $formInput = $request->except('publish', 'image');
       $formInput['publish'] = 1;
       if ($request->hasFile('image')) {

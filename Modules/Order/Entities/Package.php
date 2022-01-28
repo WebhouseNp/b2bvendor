@@ -4,6 +4,7 @@ namespace Modules\Order\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 
 class Package extends Model
 {
@@ -32,4 +33,9 @@ class Package extends Model
     {
         return $this->hasMany(OrderList::class);
     }
+
+    public function vendorUser()
+	{
+		return $this->belongsTo(User::class, 'vendor_user_id');
+	}
 }

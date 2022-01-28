@@ -5,11 +5,18 @@ namespace Modules\Order\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Validator;
-use Mail;
+use Validator, DB;
+use Auth, Mail;
+use Illuminate\Support\Str;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
+use Modules\Order\Entities\VendorOrder;
+use Modules\Product\Entities\Product;
+use Modules\Product\Entities\Range;
+use Modules\Role\Entities\Role_user;
+use Modules\Role\Entities\Role;
 use App\Models\User;
+use Modules\User\Entities\Vendor;
 
 class OrderController extends Controller
 {
@@ -47,40 +54,20 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load([
-            'packages' => function ($query) {
-                // we only load the order list which belongs to logged in vendor
-                $query->when(auth()->user()->hasRole('vendor'), function ($query) {
+        $order->load(['packages.orderLists' => function($query) {
+            // we only load the order list which belongs to logged in vendor
+               $query->when(auth()->user()->hasRole('vendor'), function($query) {
                     return $query->where('vendor_user_id', auth()->id());
                 });
             },
             // since orderlist is already loaded and constrained
             // it won't load order list again
-            'packages.orderLists.product:id,title,slug',
+            'orderList.product:id,title,slug',
             'customer:id,name,email',
             'billingAddress',
             'shippingAddress'
         ]);
 
-        // return $order;
-
-        
-        if(auth()->user()->hasRole('vendor')) {
-            $package = $order->packages->first();
-            $subTotalPrice = $package->orderLists->sum->subtotal_price;
-            $totalShippingPrice = $package->orderLists->sum->shipping_charge;
-            $totalPrice = $package->orderLists->sum->total_price;
-        } else {
-            $subTotalPrice = $order->subtotal_price;
-            $totalShippingPrice = $order->shipping_charge;
-            $totalPrice = $order->total_price;
-        }
-
-        return view('order::show', compact([
-            'order',
-            'subTotalPrice',
-            'totalShippingPrice',
-            'totalPrice'
-        ]));
+        return view('order::show', compact('order'));
     }
 }
