@@ -17,7 +17,7 @@ $api_token = $user->api_token;
                     <div class="ibox-title">Update Deal</div>
                 </div>
                 <div id="app">
-                    <editdeal :deal="{{ json_encode($deal) }}" :customers="{{ json_encode($customers) }}" :products="{{ json_encode($products) }}"></editdeal>
+                    <editdeal auth={{Auth::id()}} :deal="{{ json_encode($deal) }}" :customers="{{ json_encode($customers) }}" :products="{{ json_encode($products) }}"></editdeal>
                 </div>
             </div>
         </div>

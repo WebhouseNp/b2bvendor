@@ -69,11 +69,19 @@
                 :class="{ 'is-invalid': validationStatus($v.expire_at) }"
                 lang="en"
                 type="datetime"
+                valueType="format"
                 :disabled-date="disableDate"
-                format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
-              ></date-picker>
+                :show-time-panel="showTimePanel"
+                @close="handleOpenChange"
+              >
+              <template v-slot:footer>
+                 <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
+                  {{ showTimePanel ? 'select date' : 'select time' }}
+                </button>
+              </template>
+             </date-picker>
               <div
                 v-if="!$v.expire_at.required"
                 class="invalid-feedback"
@@ -157,6 +165,7 @@
                         </template>
                         <span slot="noResult">Oops! No data found.</span>
                       </multiselect>
+                      
                       <div
                         v-if="!invoice_product.product_id.required"
                         class="invalid-feedback text-danger"
@@ -308,10 +317,11 @@ export default {
   data() {
     return {
       loadingCreateDeal: false,
+      showTimePanel: false,
       //select search product state
       invoice_products: [
         {
-          product_id: "",
+          product_id: '',
           product_qty: '',
           unit_price: '',
           shipping_charge: '',
@@ -332,23 +342,19 @@ export default {
     };
   },
   mounted(){
-    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).id);
-    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).name);
-    console.log(this.customers.find(customer=>customer.id = this.deal.customer_id).email);
-
-
-    // this.customer = {
-    //   id: this.users.find(user=>user.id = this.deal.customer_id).id,
-    //   name : this.users.find(user=>user.id = this.deal.customer_id).name,
-    //   email: this.users.find(user=>user.id = this.deal.customer_id).email,
-    // }
+    const customer = this.customers.find((customer) => customer.id == this.deal.customer_id);
+    this.customer = {
+      id: customer.id,
+      name : customer.name,
+      email: customer.email 
+    }
     this.expire_at = this.deal.expire_at;
     this.invoice_products = this.deal.deal_products.map(element => {
       return {
           product_id: element.product_id,
           product_qty: Number(element.product_qty),
           unit_price: Number(element.unit_price),
-          // shipping_charge: element.shipping_charge,
+          shipping_charge: element.shipping_charge,
       }
     });
 
@@ -389,6 +395,13 @@ export default {
     },
   },
   methods: {
+
+    toggleTimePanel() {
+      this.showTimePanel = !this.showTimePanel;
+    },
+    handleOpenChange() {
+      this.showTimePanel = false;
+    },
     //validation =====================//
 
     validationStatus: function (validation) {
@@ -453,8 +466,8 @@ export default {
       this.selectedProduct = product;
       this.isVisible = false;
     },
-    customLabel({ title }) {
-      return `${title}`;
+    customLabel({ title , id}) {
+      return `${title} ${id}`;
     },
 
     // Create Deal ========================================================//
@@ -463,8 +476,8 @@ export default {
       if (this.$v.$pendding || this.$v.$error) return;
       try {
         this.loadingCreateDeal = true;
-        const response = await axios.post(
-          "/api/deal/storeproduct",
+        const response = await axios.put(
+          `/api/deals/${this.deal.id}`,
           {
             vendor_id: this.auth,
             customer_id: this.customer.id,
@@ -474,7 +487,7 @@ export default {
         );
         this.loadingCreateDeal = false;
         if (response.status === 200) {
-          swal("Congratulations!", "New deal is created!", "success");
+          swal("Done!", "Your deal is updated!", "success");
           window.location.href = "/user/deals"
         }
       } catch (error) {

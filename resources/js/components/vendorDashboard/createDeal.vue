@@ -70,10 +70,17 @@
                 lang="en"
                 type="datetime"
                 :disabled-date="disableDate"
-                format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
-              ></date-picker>
+                :show-time-panel="showTimePanel"
+                @close="handleOpenChange"
+              >
+              <template v-slot:footer>
+                 <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
+                  {{ showTimePanel ? 'select date' : 'select time' }}
+                </button>
+              </template>
+              </date-picker>
               <div
                 v-if="!$v.expire_at.required"
                 class="invalid-feedback"
@@ -119,7 +126,6 @@
                     <td class="inputProduct">
                       <multiselect
                         class="form-control form"
-                        @change="onChange(invoice_product.product_id.$model)"
                         v-model="invoice_product.product_id.$model"
                         :class="{
                           'is-invalid': validationStatus(
@@ -309,17 +315,18 @@ export default {
   data() {
     return {
       loadingCreateDeal: false,
+      showTimePanel:false,
       //select search product state
       invoice_products: [
         {
-          product_id: "",
+          product_id:'',
           product_qty: '',
           unit_price: '',
           shipping_charge: '',
         },
       ],
 
-      expire_at: "",
+      expire_at: '05:06',
       customer: {
         id: "",
         name: "",
@@ -367,7 +374,16 @@ export default {
       },
     },
   },
+   mounted() {
+      this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
+    },
   methods: {
+    toggleTimePanel() {
+      this.showTimePanel = !this.showTimePanel;
+    },
+    handleOpenChange() {
+      this.showTimePanel = false;
+    },
     //validation =====================//
 
     validationStatus: function (validation) {
@@ -443,7 +459,7 @@ export default {
       try {
         this.loadingCreateDeal = true;
         const response = await axios.post(
-          "/api/deal/storeproduct",
+          "/api/deals",
           {
             vendor_id: this.auth,
             customer_id: this.customer.id,

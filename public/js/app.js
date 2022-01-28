@@ -3842,6 +3842,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3862,14 +3868,15 @@ var mustBePositive = function mustBePositive(value) {
   data: function data() {
     return {
       loadingCreateDeal: false,
+      showTimePanel: false,
       //select search product state
       invoice_products: [{
-        product_id: "",
+        product_id: '',
         product_qty: '',
         unit_price: '',
         shipping_charge: ''
       }],
-      expire_at: "",
+      expire_at: '05:06',
       customer: {
         id: "",
         name: "",
@@ -3923,7 +3930,16 @@ var mustBePositive = function mustBePositive(value) {
       }
     }
   },
+  mounted: function mounted() {
+    this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
+  },
   methods: {
+    toggleTimePanel: function toggleTimePanel() {
+      this.showTimePanel = !this.showTimePanel;
+    },
+    handleOpenChange: function handleOpenChange() {
+      this.showTimePanel = false;
+    },
     //validation =====================//
     validationStatus: function validationStatus(validation) {
       return typeof validation != "undefined" ? validation.$error : false;
@@ -4008,7 +4024,7 @@ var mustBePositive = function mustBePositive(value) {
                 _context.prev = 3;
                 _this2.loadingCreateDeal = true;
                 _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deal/storeproduct", {
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deals", {
                   vendor_id: _this2.auth,
                   customer_id: _this2.customer.id,
                   expire_at: _this2.expire_at,
@@ -4367,6 +4383,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4387,9 +4412,10 @@ var mustBePositive = function mustBePositive(value) {
   data: function data() {
     return {
       loadingCreateDeal: false,
+      showTimePanel: false,
       //select search product state
       invoice_products: [{
-        product_id: "",
+        product_id: '',
         product_qty: '',
         unit_price: '',
         shipping_charge: ''
@@ -4409,27 +4435,21 @@ var mustBePositive = function mustBePositive(value) {
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this.customers.find(function (customer) {
-      return customer.id = _this.deal.customer_id;
-    }).id);
-    console.log(this.customers.find(function (customer) {
-      return customer.id = _this.deal.customer_id;
-    }).name);
-    console.log(this.customers.find(function (customer) {
-      return customer.id = _this.deal.customer_id;
-    }).email); // this.customer = {
-    //   id: this.users.find(user=>user.id = this.deal.customer_id).id,
-    //   name : this.users.find(user=>user.id = this.deal.customer_id).name,
-    //   email: this.users.find(user=>user.id = this.deal.customer_id).email,
-    // }
-
+    var customer = this.customers.find(function (customer) {
+      return customer.id == _this.deal.customer_id;
+    });
+    this.customer = {
+      id: customer.id,
+      name: customer.name,
+      email: customer.email
+    };
     this.expire_at = this.deal.expire_at;
     this.invoice_products = this.deal.deal_products.map(function (element) {
       return {
         product_id: element.product_id,
         product_qty: Number(element.product_qty),
-        unit_price: Number(element.unit_price) // shipping_charge: element.shipping_charge,
-
+        unit_price: Number(element.unit_price),
+        shipping_charge: element.shipping_charge
       };
     });
   },
@@ -4476,6 +4496,12 @@ var mustBePositive = function mustBePositive(value) {
     }
   },
   methods: {
+    toggleTimePanel: function toggleTimePanel() {
+      this.showTimePanel = !this.showTimePanel;
+    },
+    handleOpenChange: function handleOpenChange() {
+      this.showTimePanel = false;
+    },
     //validation =====================//
     validationStatus: function validationStatus(validation) {
       return typeof validation != "undefined" ? validation.$error : false;
@@ -4534,8 +4560,9 @@ var mustBePositive = function mustBePositive(value) {
       this.isVisible = false;
     },
     customLabel: function customLabel(_ref) {
-      var title = _ref.title;
-      return "".concat(title);
+      var title = _ref.title,
+          id = _ref.id;
+      return "".concat(title, " ").concat(id);
     },
     // Create Deal ========================================================//
     submitData: function submitData() {
@@ -4560,7 +4587,7 @@ var mustBePositive = function mustBePositive(value) {
                 _context.prev = 3;
                 _this3.loadingCreateDeal = true;
                 _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deal/storeproduct", {
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/deals/".concat(_this3.deal.id), {
                   vendor_id: _this3.auth,
                   customer_id: _this3.customer.id,
                   expire_at: _this3.expire_at,
@@ -4572,7 +4599,7 @@ var mustBePositive = function mustBePositive(value) {
                 _this3.loadingCreateDeal = false;
 
                 if (response.status === 200) {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Congratulations!", "New deal is created!", "success");
+                  sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Done!", "Your deal is updated!", "success");
                   window.location.href = "/user/deals";
                 }
 
@@ -35618,9 +35645,38 @@ var render = function () {
                         lang: "en",
                         type: "datetime",
                         "disabled-date": _vm.disableDate,
-                        format: " YYYY-MM-DD [at] HH:mm a",
                         placeholder: "select date time",
+                        "show-time-panel": _vm.showTimePanel,
                       },
+                      on: { close: _vm.handleOpenChange },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "footer",
+                          fn: function () {
+                            return [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "mx-btn mx-btn-text",
+                                  on: { click: _vm.toggleTimePanel },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.showTimePanel
+                                          ? "select date"
+                                          : "select time"
+                                      ) +
+                                      "\n              "
+                                  ),
+                                ]
+                              ),
+                            ]
+                          },
+                          proxy: true,
+                        },
+                      ]),
                       model: {
                         value: _vm.$v.expire_at.$model,
                         callback: function ($$v) {
@@ -35687,13 +35743,6 @@ var render = function () {
                                       "custom-label": _vm.customLabel,
                                       "show-labels": false,
                                       "hide-selected": true,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        return _vm.onChange(
-                                          invoice_product.product_id.$model
-                                        )
-                                      },
                                     },
                                     scopedSlots: _vm._u(
                                       [
@@ -36385,10 +36434,40 @@ var render = function () {
                       attrs: {
                         lang: "en",
                         type: "datetime",
+                        valueType: "format",
                         "disabled-date": _vm.disableDate,
-                        format: " YYYY-MM-DD [at] HH:mm a",
                         placeholder: "select date time",
+                        "show-time-panel": _vm.showTimePanel,
                       },
+                      on: { close: _vm.handleOpenChange },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "footer",
+                          fn: function () {
+                            return [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "mx-btn mx-btn-text",
+                                  on: { click: _vm.toggleTimePanel },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.showTimePanel
+                                          ? "select date"
+                                          : "select time"
+                                      ) +
+                                      "\n              "
+                                  ),
+                                ]
+                              ),
+                            ]
+                          },
+                          proxy: true,
+                        },
+                      ]),
                       model: {
                         value: _vm.$v.expire_at.$model,
                         callback: function ($$v) {

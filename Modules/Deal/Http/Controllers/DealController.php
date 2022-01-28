@@ -27,8 +27,8 @@ class DealController extends Controller
 
     public function create()
     {
-        $products = Product::where('user_id', Auth::id())->select('id', 'title')->active()->get()->map(function ($product) {
-            $product['image_url'] = 'https://dummyimage.com/50/5b43c4/ffffff';
+        $products = Product::where('user_id', Auth::id())->select('id', 'title','image')->get()->map(function ($product) {
+            $product['image_url'] = $product->imageUrl();
             return $product;
         });
         return view('deal::create')->with(compact('products'));
@@ -61,7 +61,10 @@ class DealController extends Controller
 
     public function edit($id)
     {
-        $products = Product::where('user_id', Auth::id())->select('id', 'title')->get();
+        $products = Product::where('user_id', Auth::id())->select('id', 'title','image')->get()->map(function ($product) {
+            $product['image_url'] = $product->imageUrl();
+            return $product;
+        });;
         $customers = User::select('id', 'name', 'email')
             ->whereHas(
                 'roles',
@@ -92,13 +95,14 @@ class DealController extends Controller
             if (count($deal->deal_products)) {
                 $deal->deal_products()->delete();
             }
-            foreach ($deals['product_id'] as $key => $val) {
+            foreach ($deals['invoice_products'] as $key => $val) {
                 if (!empty($val)) {
                     $deal = new DealProduct();
                     $deal->deal_id = $request->id;
-                    $deal->product_id = $val;
-                    $deal->product_qty = $deals['product_qty'][$key];
-                    $deal->unit_price = $deals['unit_price'][$key];
+                    $deal->product_id = $val['product_id']['id'];
+                    $deal->product_qty = $val['product_qty'];
+                    $deal->unit_price = $val['unit_price'];
+                    $deal->shipping_charge = $val['shipping_charge'];
                     $deal->save();
                 }
             }
