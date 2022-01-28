@@ -144,10 +144,12 @@
                           ><img
                             class="option__image"
                             :src="props.option.image_url"
+                             style="widht:35px; height:35px;"
                           /><span class="option__desc"
-                            ><span
+                            >
+                            <span
                               class="option__title"
-                              style="margin-left: 10px"
+                              style="margin-left: 10px; font-size: 13px;"
                               >{{ props.option.title }}</span
                             ></span
                           ></template
@@ -156,9 +158,11 @@
                           <div class="option__desc">
                             <img
                               class="option__image"
+                              style="widht:35px; height:35px;"
                               :src="props.option.image_url"
                             />
-                            <span class="option__title">{{
+                            <span class="option__title"
+                             style="margin-left: 10px; font-size: 13px;">{{
                               props.option.title
                             }}</span>
                           </div>
@@ -359,7 +363,7 @@ export default {
           },
           product_qty: Number(element.product_qty),
           unit_price: Number(element.unit_price),
-          shipping_charge: element.shipping_charge,
+          shipping_charge: Number(element.shipping_charge),
       }
     });
 

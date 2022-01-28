@@ -4,7 +4,11 @@
 
 @section('content')
 <div class="page-heading">
-    <h2 class="page-title"> Order - #{{ $order->id }} ({{ $order->status }})</h2>
+    <h2 class="page-title"> Order - #{{ $order->id }} ({{ $order->status }}) 
+        @if (!$order->isDealCheckout())
+        <span class="badge badge-primary">Deal Checkout</span>
+        @endif
+    </h2>
 </div>
 
 @include('admin.section.notifications')

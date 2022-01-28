@@ -42,6 +42,11 @@ class Order extends Model
 		return $this->status == 'paid';
 	}
 
+	public function isDealCheckout()
+	{
+		return $this->deal_id;
+	}
+
 	public function customer()
 	{
 		return $this->belongsTo(User::class, 'user_id', 'id');

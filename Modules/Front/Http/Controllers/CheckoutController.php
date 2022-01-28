@@ -64,7 +64,7 @@ class CheckoutController extends Controller
                 foreach ($deal->dealProducts as $dealProduct) {
                     OrderList::create([
                         'order_id' => $order->id,
-                        'pacakge_id' => $package->id,
+                        'package_id' => $package->id,
                         'vendor_user_id' => $deal->vendor_user_id,
                         'product_id' => $dealProduct->product_id,
                         'product_name' => $dealProduct->product->title,
