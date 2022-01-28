@@ -177,7 +177,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
-                            <a href="{{route('getVendorReport',$vendor->id)}}" target="_blank">
+                            <a href="#" target="_blank">
                                 Sales Report 
                             </a> 
                         </p> 
@@ -187,7 +187,7 @@
             <div class="card-footer border-0">
                 <hr>
                 <div class="stats">
-                    <a href="{{route('getVendorReport',$vendor->id)}}" target="_blank">
+                    <a href="#" target="_blank">
                         <i class="fa fa-refresh"></i> 
                         View Report
                     </a> 
@@ -198,7 +198,7 @@
         <!--    <div class="ibox">-->
         <!--        <div class="ibox-head">-->
         <!--            <div class="ibox-title">-->
-        <!--                <a href="{{route('getVendorReport',$vendor->id)}}" target="_blank"> Sales Report -->
+        <!--                <a href="" target="_blank"> Sales Report -->
         <!--                </a> -->
         <!--            </div>-->
         <!--        </div>-->

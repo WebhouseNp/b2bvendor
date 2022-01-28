@@ -91,8 +91,6 @@ class ProfileController extends Controller
 
   public function edit(User $user)
   {
-    // $user->load('address');
-    // dd($user->address());
     return CustomerResource::make($user);
   }
 
