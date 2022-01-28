@@ -4445,8 +4445,16 @@ var mustBePositive = function mustBePositive(value) {
     };
     this.expire_at = this.deal.expire_at;
     this.invoice_products = this.deal.deal_products.map(function (element) {
+      var product = _this.products.find(function (product) {
+        return product.id == element.product_id;
+      });
+
       return {
-        product_id: element.product_id,
+        product_id: {
+          id: product.id,
+          image_url: product.image_url,
+          title: product.title
+        },
         product_qty: Number(element.product_qty),
         unit_price: Number(element.unit_price),
         shipping_charge: element.shipping_charge
