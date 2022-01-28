@@ -31,7 +31,7 @@ class Deal extends Model
   public function totalShippingCharge()
   {
     return $this->dealProducts->sum(function ($product) {
-      return $product->shipping_charge;
+      return $product->shipping_charge ?? 0;
     });
   }
 
