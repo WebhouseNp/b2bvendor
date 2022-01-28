@@ -13,7 +13,6 @@ use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
 use Modules\Order\Entities\Package;
 use Modules\Product\Entities\Product;
-use PHPUnit\TextUI\XmlConfiguration\Logging\Logging;
 use YubarajShrestha\NCHL\Facades\Nchl;
 
 class CheckoutController extends Controller
@@ -41,43 +40,50 @@ class CheckoutController extends Controller
 
             $order = Order::create([
                 'user_id' => Auth::id(),
-                'amount' => $request->checkout_mode == 'deal' ? $deal->totalPrice() : null,
+                // For cart checkout we will set the totals at the end
+                'subtotal_price' => $request->checkout_mode == 'deal' ? $deal->subTotalPrice() : 0,
+                'shipping_charge' => $request->checkout_mode == 'deal' ? $deal->totalShippingCharge() : 0,
+                'total_price' => $request->checkout_mode == 'deal' ? $deal->totalPrice() : 0,
                 'deal_id' => $request->checkout_mode == 'deal' ? $request->deal_id : null,
                 'status' => 'pending',
                 'payment_status' => 'pending',
                 'payment_type' => $request->payment_type,
-            ]);
 
-            $orderSubtotalPrice = 0;
-            $orderShippingCharge = 0;
+            ]);
 
             // Handle deal checkout
             if ($request->isDealCheckout()) {
                 $package = Package::create([
                     'order_id' => $order->id,
                     'vendor_user_id' => $deal->vendor_user_id,
-                    'total_price' => 0,
+                    'package_no' => 1,
+                    'total_price' => $deal->totalPrice(),
                     'status' => 'pending',
-                    'package_no' => 1
                 ]);
 
                 foreach ($deal->dealProducts as $dealProduct) {
                     OrderList::create([
                         'order_id' => $order->id,
+                        'pacakge_id' => $package->id,
                         'vendor_user_id' => $deal->vendor_user_id,
                         'product_id' => $dealProduct->product_id,
+                        'product_name' => $dealProduct->product->title,
                         'quantity' => $dealProduct->product_qty,
+                        'unit' => $dealProduct->product->unit,
                         'unit_price' => $dealProduct->unit_price,
-                        'subtotal_price' => $dealProduct->totalPrice(),
+                        'subtotal_price' => $dealProduct->subTotalPrice(),
+                        'shipping_charge' => $dealProduct->shipping_charge ?? 0,
+                        'total_price' => $dealProduct->totalPrice(),
                     ]);
-                    $orderSubtotalPrice += $dealProduct->totalPrice();
                 }
-                $package->syncTotalPrice();
                 // mark the deal as completed
                 $deal->markCompleted();
             }
             // Handle cart checkout
             else {
+                $orderSubtotalPrice = 0;
+                $orderShippingCharge = 0;
+
                 $cartItems = collect($request->cart)->map(function ($cartItem) {
                     $cartItem['product'] = Product::select('id', 'user_id', 'title', 'unit', 'shipping_charge')
                         ->with('ranges:id,from,to,price,product_id')->findOrFail($cartItem['product_id']);
@@ -121,6 +127,13 @@ class CheckoutController extends Controller
                     $package->syncTotalPrice();
                 }
 
+                // Set the total amount of the order
+                $order->update([
+                    'subtotal_price' => $orderSubtotalPrice,
+                    'shipping_charge' => $orderShippingCharge,
+                    'total_price' => $orderSubtotalPrice + $orderShippingCharge,
+                ]);
+
                 // older logic
                 // foreach ($request->cart as $cartItem) {
                 //     $product = Product::with('ranges')->findOrFail($cartItem['product_id']);
@@ -142,16 +155,12 @@ class CheckoutController extends Controller
                 // }
             }
 
-            // Set the total amount of the order
-            $order->update([
-                'subtotal_price' => $orderSubtotalPrice,
-                'shipping_charge' => $orderShippingCharge,
-                'total_price' => $orderSubtotalPrice + $orderShippingCharge,
-            ]);
-
             // save the billing and shipping address
             $order->billingAddress()->create($request->billingAddress());
             $order->shippingAddress()->create($request->shippingAddress());
+
+            // sync the user's address
+            \App\Jobs\SyncUserAddressFromOrder::dispatch(auth()->user(), $order);
 
             // after response store update or create the customer's address
             // send email to vendors, admin and customer

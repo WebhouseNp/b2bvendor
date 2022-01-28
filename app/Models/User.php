@@ -61,7 +61,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = [ 'roles'];
+    protected $with = ['roles'];
 
     public function hasRole($role)
     {
@@ -155,25 +155,25 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->morphOne(Address::class, 'addressable');
+        return $this->morphOne(Address::class, 'addressable')->where('type', 'null');
     }
 
     public function imageUrl($size = null)
-  {
-    if(!$this->image) {
-        $queryString = [
-            'name' => $this->full_name,
-            'background' => 'b8daff',
-            'color' => '0D8ABC',
-        ];
+    {
+        if (!$this->image) {
+            $queryString = [
+                'name' => $this->full_name,
+                'background' => 'b8daff',
+                'color' => '0D8ABC',
+            ];
 
-        return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
+            return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
+        }
+
+        if ($size == 'thumbnail') {
+            return asset('images/thumbnail/' . $this->image);
+        }
+
+        return asset('images/listing/' . $this->image);
     }
-
-    if ($size == 'thumbnail') {
-        return asset('images/thumbnail/' . $this->image);
-    }
-
-    return asset('images/listing/' . $this->image);
-  }
 }

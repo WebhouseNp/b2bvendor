@@ -37,6 +37,11 @@ class Order extends Model
 		});
 	}
 
+	public function isPaid()
+	{
+		return $this->status == 'paid';
+	}
+
 	public function customer()
 	{
 		return $this->belongsTo(User::class, 'user_id', 'id');
@@ -65,7 +70,7 @@ class Order extends Model
 	public function syncStatusFromPackages()
 	{
 		if ($this->status === 'pending') {
-			if ($this->packages()->whereIn('status', ['processing', 'shipped', 'completed'] )->count()) {
+			if ($this->packages()->whereIn('status', ['processing', 'shipped', 'completed'])->count()) {
 				$this->update(['status' => 'processing']);
 			}
 		}

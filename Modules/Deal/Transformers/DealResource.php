@@ -21,6 +21,8 @@ class DealResource extends JsonResource
             'vendor_user_id' => $this->vendor_user_id,
             'expire_at' => $this->expire_at,
             'completed_at' => $this->completed_at,
+            'subtotal_price' =>  $this->subTotalPrice(),
+            'shipping_charge' =>  $this->totalShippingCharge(),
             'total_price' => $this->totalPrice(),
             'is_available' => $this->isAvailable(),
             'deal_products' => $this->formattedDealProducts(),
@@ -35,6 +37,8 @@ class DealResource extends JsonResource
                 'product_id' => $dealProduct->product_id,
                 'product_qty' => (int) $dealProduct->product_qty,
                 'unit_price' => (int) $dealProduct->unit_price,
+                'subtotal_price' =>  $dealProduct->subTotalPrice(),
+                'shipping_charge' =>  $dealProduct->shipping_charge ?? 0,
                 'total_price' =>  $dealProduct->totalPrice(),
                 'title' => $dealProduct->product ? $dealProduct->product->title : 'N/A',
             ];

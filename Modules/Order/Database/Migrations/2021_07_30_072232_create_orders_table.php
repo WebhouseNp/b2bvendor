@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->double('subtotal_price', 15, 2)->nullable();
             $table->double('shipping_charge', 8, 2)->nullable();
             $table->double('total_price', 15, 2)->nullable();
+            $table->uuid('deal_id')->nullable();
             $table->text('order_note')->nullable();
             $table->text('track_no')->nullable();
             $table->string('payment_type')->nullable();
