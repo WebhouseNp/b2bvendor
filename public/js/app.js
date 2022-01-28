@@ -3848,6 +3848,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4392,6 +4395,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -4457,7 +4464,7 @@ var mustBePositive = function mustBePositive(value) {
         },
         product_qty: Number(element.product_qty),
         unit_price: Number(element.unit_price),
-        shipping_charge: element.shipping_charge
+        shipping_charge: Number(element.shipping_charge)
       };
     });
   },
@@ -35760,6 +35767,10 @@ var render = function () {
                                             return [
                                               _c("img", {
                                                 staticClass: "option__image",
+                                                staticStyle: {
+                                                  widht: "35px",
+                                                  height: "35px",
+                                                },
                                                 attrs: {
                                                   src: props.option.image_url,
                                                 },
@@ -35775,6 +35786,7 @@ var render = function () {
                                                         "option__title",
                                                       staticStyle: {
                                                         "margin-left": "10px",
+                                                        "font-size": "13px",
                                                       },
                                                     },
                                                     [
@@ -35801,6 +35813,10 @@ var render = function () {
                                                   _c("img", {
                                                     staticClass:
                                                       "option__image",
+                                                    staticStyle: {
+                                                      widht: "35px",
+                                                      height: "35px",
+                                                    },
                                                     attrs: {
                                                       src: props.option
                                                         .image_url,
@@ -35812,6 +35828,10 @@ var render = function () {
                                                     {
                                                       staticClass:
                                                         "option__title",
+                                                      staticStyle: {
+                                                        "margin-left": "10px",
+                                                        "font-size": "13px",
+                                                      },
                                                     },
                                                     [
                                                       _vm._v(
@@ -36558,6 +36578,10 @@ var render = function () {
                                             return [
                                               _c("img", {
                                                 staticClass: "option__image",
+                                                staticStyle: {
+                                                  widht: "35px",
+                                                  height: "35px",
+                                                },
                                                 attrs: {
                                                   src: props.option.image_url,
                                                 },
@@ -36573,6 +36597,7 @@ var render = function () {
                                                         "option__title",
                                                       staticStyle: {
                                                         "margin-left": "10px",
+                                                        "font-size": "13px",
                                                       },
                                                     },
                                                     [
@@ -36599,6 +36624,10 @@ var render = function () {
                                                   _c("img", {
                                                     staticClass:
                                                       "option__image",
+                                                    staticStyle: {
+                                                      widht: "35px",
+                                                      height: "35px",
+                                                    },
                                                     attrs: {
                                                       src: props.option
                                                         .image_url,
@@ -36610,6 +36639,10 @@ var render = function () {
                                                     {
                                                       staticClass:
                                                         "option__title",
+                                                      staticStyle: {
+                                                        "margin-left": "10px",
+                                                        "font-size": "13px",
+                                                      },
                                                     },
                                                     [
                                                       _vm._v(

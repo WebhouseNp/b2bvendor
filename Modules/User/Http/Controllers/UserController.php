@@ -65,8 +65,8 @@ class UserController extends Controller
         'user_id' => $user->id
       ];
       $role_user = Role_user::create($role_data);
-      DB::commit();
       Mail::to($request->email)->send(new UserCreated($user));
+      DB::commit();
       return response()->json([
         "message" => "success",
         'user' => $userExist

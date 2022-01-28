@@ -33,8 +33,8 @@ class UserCreated extends Mailable
         return $this->view('email.account-activation-mail')
         ->with([
             'name' => $this->user->name,
-            'link' => $this->vendor->user->link,
-            'otp' => $this->vendor->user->otp,
+            'link' => $this->user->activation_link,
+            'otp' => $this->user->otp,
         ]);
     }
 }
