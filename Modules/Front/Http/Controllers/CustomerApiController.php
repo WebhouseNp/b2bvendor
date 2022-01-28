@@ -35,7 +35,7 @@ class CustomerApiController extends Controller
     public function getAddress()
     {
         return response()->json([
-            'data' => auth()->user()->addresses
+            'data' => auth()->user()->address
         ], 200);
     }
 }

@@ -21,6 +21,7 @@ class CreateDealsTable extends Migration
             $table->foreign('vendor_user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->string('expire_at')->nullable();
             $table->string('completed_at')->nullable();
+            $table->integer('shipping_charge')->nullable();
             $table->timestamps();
         });
     }

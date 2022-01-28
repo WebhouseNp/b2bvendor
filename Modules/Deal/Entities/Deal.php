@@ -21,11 +21,23 @@ class Deal extends Model
 
   protected $dates = ['expire_at'];
 
-  public function totalPrice()
+  public function subTotalPrice()
   {
     return $this->dealProducts->sum(function ($product) {
       return $product->product_qty * $product->unit_price;
     });
+  }
+
+  public function totalShippingCharge()
+  {
+    return $this->dealProducts->sum(function ($product) {
+      return $product->shipping_charge;
+    });
+  }
+
+  public function totalPrice()
+  {
+    return $this->subTotalPrice() + $this->totalShippingCharge();
   }
 
   public function isAvailable()

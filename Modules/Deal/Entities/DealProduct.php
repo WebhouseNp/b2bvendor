@@ -11,9 +11,14 @@ class DealProduct extends Model
 {
   protected $guarded = ['id', 'created_at', 'updated_at'];
 
-  public function totalPrice()
+  public function subTotalPrice()
   {
     return $this->product_qty *  $this->unit_price;
+  }
+
+  public function totalPrice()
+  {
+    return $this->subTotalPrice() + $this->shipping_charge;
   }
 
   public function deal()

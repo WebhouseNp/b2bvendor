@@ -22,7 +22,6 @@ class CreateDealProductsTable extends Migration
             $table->string('product_qty')->nullable();
             $table->string('unit_price')->nullable();
             $table->string('shipping_charge')->nullable();
-
             $table->timestamps();
         });
     }
