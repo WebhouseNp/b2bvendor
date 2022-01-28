@@ -122,11 +122,12 @@ class SalesReportController extends Controller
 
     public function getOrderInfo()
     {
-        if (auth()->user()->hasRole('vendor')) {
-            $details = Package::where('vendor_user_id', auth()->user()->id)->with(['order', 'orderLists'])->get();
-        } else if(auth()->user()->hasAnyRole('super_admin|admin')){
-            $details = Package::with(['order', 'orderLists'])->get();
-        }
+        $details = Package::with(['order', 'orderLists'])
+            ->when(auth()->user()->hasRole('vendor'), function ($query) {
+                return $query->where('vendor_user_id', auth()->id());
+            })
+            ->paginate();
+
         return view('dashboard::salesreport.sales-info', compact('details'));
     }
 

@@ -15,35 +15,40 @@
             <div class="ibox-title">Sales Report</div>
         </div>
 
-        <table class="table table-striped table-responsive table-hover dt-responsive display" id="example-table" cellspacing="0" style="width:100%">
+        <table class="table table-responsive table-hover dt-responsive">
             <thead>
                 <tr class="border-0">
                     <th>S.N</th>
-                    <th>Order</th>
+                    <th>Source</th>
                     @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <th>Vendor</th>
                     @endif
                     <th>Amount</th>
                     <th>Payment Status</th>
                     <th>Date</th>
-                    
                 </tr>
             </thead>
-            <tbody id="sortable">
-            @forelse ($details as $detail)
+            <tbody>
+                @forelse ($details as $detail)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{$detail->order->id}}</td>
-                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
-                    <td>{{ $detail->vendorUser->name }}</td>
-                    @endif
-                    <td>{{$detail->total_price}}</td>
-                    <td>{{$detail->order->payment_status}}</td>
                     <td>
-                        <div>{{ $detail->order->created_at->format('d M, Y')}}</div>
+                        <a href="{{ route('orders.show', $detail->order) }}">
+                            #{{$detail->order->id}}
+                        </a>
+                    </td>
+                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
+                    <td class="text-capitalize">{{ $detail->vendorUser->name }}</td>
+                    @endif
+                    <td>{{ formatted_price($detail->total_price) }}</td>
+                    <td>
+                        <div class="badge {{ $detail->order->isPaid() ? 'bg-success' : 'badge-danger' }}">{{ ucfirst($detail->order->payment_status) }}</div>
+                    </td>
+                    <td>
+                        <div>{{ $detail->order->created_at->format('d M, Y') }}</div>
                         <div>{{ date('g:i A', strtotime($detail->order->created_at)) }}</div>
                     </td>
-                    
+
                 </tr>
                 @empty
                 <tr>
