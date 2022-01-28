@@ -18,7 +18,7 @@ class CustomerResource extends JsonResource
             'gender' => $this->gender,
             'image_url' => $this->imageUrl(),
             'image_url_thumbnail' => $this->imageUrl('thumbnail'),
-            'address' => $this->address,
+            'address' => $this->address(),
         ];
     }
 }
