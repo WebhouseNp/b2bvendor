@@ -76,7 +76,6 @@ class CheckoutController extends Controller
                         'total_price' => $dealProduct->totalPrice(),
                     ]);
                 }
-                $package->syncTotalPrice();
                 // mark the deal as completed
                 $deal->markCompleted();
             }
