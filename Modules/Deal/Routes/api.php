@@ -9,11 +9,11 @@ use Modules\Deal\Http\Controllers\DealController;
 Route::middleware('auth:api')->get('/deal', function (Request $request) {
     return $request->user();
 });
-Route::delete('/deleteproduct', [DealController::class,'destroy'])->name('api.deletedeal');
-Route::put('/updateproduct', [DealController::class,'update'])->name('api.updatedeal');
-Route::post('/deal/storeproduct', [DealController::class,'store'])->name('api.storedeal');
-Route::delete('/deals/{deal}', [DealController::class,'destroy'])->name('api.deletedeal');
-Route::put('/deals', [DealController::class,'update'])->name('api.updatedeal');
+// Route::delete('/deleteproduct', [DealController::class,'destroy'])->name('api.deletedeal');
+// Route::put('/updateproduct', [DealController::class,'update'])->name('api.updatedeal');
+// Route::post('/deal/storeproduct', [DealController::class,'store'])->name('api.storedeal');
+// Route::delete('/deals/{deal}', [DealController::class,'destroy'])->name('api.deletedeal');
+Route::put('/deals/{id}', [DealController::class,'update'])->name('api.updatedeal');
 Route::post('/deals', [DealController::class,'store'])->name('api.storedeal');
 
 Route::get('deals/customer-search', [DealApiController::class,'customerSearch'])->name('api.productsearch');

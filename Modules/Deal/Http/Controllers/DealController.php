@@ -95,13 +95,14 @@ class DealController extends Controller
             if (count($deal->deal_products)) {
                 $deal->deal_products()->delete();
             }
-            foreach ($deals['product_id'] as $key => $val) {
+            foreach ($deals['invoice_products'] as $key => $val) {
                 if (!empty($val)) {
                     $deal = new DealProduct();
                     $deal->deal_id = $request->id;
-                    $deal->product_id = $val;
-                    $deal->product_qty = $deals['product_qty'][$key];
-                    $deal->unit_price = $deals['unit_price'][$key];
+                    $deal->product_id = $val['product_id']['id'];
+                    $deal->product_qty = $val['product_qty'];
+                    $deal->unit_price = $val['unit_price'];
+                    $deal->shipping_charge = $val['shipping_charge'];
                     $deal->save();
                 }
             }

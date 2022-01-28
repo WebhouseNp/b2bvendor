@@ -111,7 +111,6 @@ class ProfileController extends Controller
         exit;
       }
       $id = auth()->user()->id;
-      $profile = Profile::where('user_id',$id)->first();
       $formInput = $request->except('publish', 'image');
       $formInput['publish'] = 1;
       if ($request->hasFile('image')) {

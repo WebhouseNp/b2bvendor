@@ -70,12 +70,17 @@
                 lang="en"
                 type="datetime"
                 :disabled-date="disableDate"
-                default-value="2020-01-01"
-                format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
-                :value="expire_at"
-              ></date-picker>
+                :show-time-panel="showTimePanel"
+                @close="handleOpenChange"
+              >
+              <template v-slot:footer>
+                 <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
+                  {{ showTimePanel ? 'select date' : 'select time' }}
+                </button>
+              </template>
+              </date-picker>
               <div
                 v-if="!$v.expire_at.required"
                 class="invalid-feedback"
@@ -310,6 +315,7 @@ export default {
   data() {
     return {
       loadingCreateDeal: false,
+      showTimePanel:false,
       //select search product state
       invoice_products: [
         {
@@ -372,6 +378,12 @@ export default {
       this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
     },
   methods: {
+    toggleTimePanel() {
+      this.showTimePanel = !this.showTimePanel;
+    },
+    handleOpenChange() {
+      this.showTimePanel = false;
+    },
     //validation =====================//
 
     validationStatus: function (validation) {
@@ -447,7 +459,7 @@ export default {
       try {
         this.loadingCreateDeal = true;
         const response = await axios.post(
-          "/api/deal/storeproduct",
+          "/api/deals",
           {
             vendor_id: this.auth,
             customer_id: this.customer.id,

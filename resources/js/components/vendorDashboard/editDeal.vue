@@ -69,11 +69,19 @@
                 :class="{ 'is-invalid': validationStatus($v.expire_at) }"
                 lang="en"
                 type="datetime"
+                valueType="format"
                 :disabled-date="disableDate"
-                format=" YYYY-MM-DD [at] HH:mm a"
                 style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
-              ></date-picker>
+                :show-time-panel="showTimePanel"
+                @close="handleOpenChange"
+              >
+              <template v-slot:footer>
+                 <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
+                  {{ showTimePanel ? 'select date' : 'select time' }}
+                </button>
+              </template>
+             </date-picker>
               <div
                 v-if="!$v.expire_at.required"
                 class="invalid-feedback"
@@ -157,6 +165,7 @@
                         </template>
                         <span slot="noResult">Oops! No data found.</span>
                       </multiselect>
+                      
                       <div
                         v-if="!invoice_product.product_id.required"
                         class="invalid-feedback text-danger"
@@ -308,10 +317,11 @@ export default {
   data() {
     return {
       loadingCreateDeal: false,
+      showTimePanel: false,
       //select search product state
       invoice_products: [
         {
-          product_id: 12,
+          product_id: '',
           product_qty: '',
           unit_price: '',
           shipping_charge: '',
@@ -385,6 +395,13 @@ export default {
     },
   },
   methods: {
+
+    toggleTimePanel() {
+      this.showTimePanel = !this.showTimePanel;
+    },
+    handleOpenChange() {
+      this.showTimePanel = false;
+    },
     //validation =====================//
 
     validationStatus: function (validation) {
@@ -459,8 +476,8 @@ export default {
       if (this.$v.$pendding || this.$v.$error) return;
       try {
         this.loadingCreateDeal = true;
-        const response = await axios.post(
-          "/api/deal/storeproduct",
+        const response = await axios.put(
+          `/api/deals/${this.deal.id}`,
           {
             vendor_id: this.auth,
             customer_id: this.customer.id,
@@ -470,7 +487,7 @@ export default {
         );
         this.loadingCreateDeal = false;
         if (response.status === 200) {
-          swal("Congratulations!", "New deal is created!", "success");
+          swal("Done!", "Your deal is updated!", "success");
           window.location.href = "/user/deals"
         }
       } catch (error) {
