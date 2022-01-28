@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Modules\Front\Http\Controllers\CheckoutController;
+use Modules\Front\Http\Controllers\CustomerApiController;
 use Modules\Front\Http\Controllers\OrderController;
 
 /*
@@ -60,6 +61,9 @@ Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.ca
 Route::get('/delete/{id}', [CartController::class, 'DeleteCart'])->name('delete-cart');
 // Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 // Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
+
+// customer address
+Route::get('my-address', [CustomerApiController::class, 'getAddress'])->middleware('auth:api');
 
 // Checkout
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');

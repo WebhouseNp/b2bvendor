@@ -10,7 +10,7 @@ use Modules\Front\Transformers\CustomerResource;
 
 class CustomerApiController extends Controller
 {
-    
+
     public function index()
     {
         return view('front::index');
@@ -22,14 +22,6 @@ class CustomerApiController extends Controller
         return CustomerResource::make($profile);
     }
 
-    
-    public function store(Request $request)
-    {
-        //
-    }
-
-    
-
     /**
      * Show the form for editing the specified resource.
      * @param int $id
@@ -40,24 +32,10 @@ class CustomerApiController extends Controller
         return view('front::edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
+    public function getAddress()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json([
+            'data' => auth()->user()->addresses
+        ], 200);
     }
 }

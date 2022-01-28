@@ -13,7 +13,6 @@ use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
 use Modules\Order\Entities\Package;
 use Modules\Product\Entities\Product;
-use PHPUnit\TextUI\XmlConfiguration\Logging\Logging;
 use YubarajShrestha\NCHL\Facades\Nchl;
 
 class CheckoutController extends Controller
@@ -64,11 +63,16 @@ class CheckoutController extends Controller
                 foreach ($deal->dealProducts as $dealProduct) {
                     OrderList::create([
                         'order_id' => $order->id,
+                        'pacakge_id' => $package->id,
                         'vendor_user_id' => $deal->vendor_user_id,
                         'product_id' => $dealProduct->product_id,
+                        'product_name' => $dealProduct->product->title,
                         'quantity' => $dealProduct->product_qty,
+                        'unit' => $dealProduct->product->unit,
                         'unit_price' => $dealProduct->unit_price,
                         'subtotal_price' => $dealProduct->totalPrice(),
+                        'shipping_charge' => $dealProduct->shipping_charge ?? 0,
+                        'total_price' => $dealProduct->unit_price * $dealProduct->product_qty,
                     ]);
                     $orderSubtotalPrice += $dealProduct->totalPrice();
                 }
@@ -152,6 +156,9 @@ class CheckoutController extends Controller
             // save the billing and shipping address
             $order->billingAddress()->create($request->billingAddress());
             $order->shippingAddress()->create($request->shippingAddress());
+
+            // sync the user's address
+            \App\Jobs\SyncUserAddressFromOrder::dispatch(auth()->user(), $order);
 
             // after response store update or create the customer's address
             // send email to vendors, admin and customer
