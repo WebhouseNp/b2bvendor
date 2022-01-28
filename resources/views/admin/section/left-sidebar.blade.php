@@ -148,31 +148,22 @@ $user_access = json_decode($user->access_level);
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
-                    @if(in_array('super_admin' ,$roles))
+                @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) || (in_array('vendor' , $roles))))
                     <li>
-                        <a href="{{route('sales_report')}}">
+                        <a href="{{route('salesReport')}}">
                             <span class="fa fa-circle-o"></span>
                             All Sales Reports
                         </a>
                     </li>
                     @endif
-                    @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || in_array('admin' ,$roles))
-                    <li>
-                        <a href="{{route('getVendorOrderReport')}}">
-                            <span class="fa fa-circle-o"></span>
-                            Sales Report
-                        </a>
-                    </li>
-                    @endif
-
-                    @if( in_array('vendor' ,$roles))
-                    <li>
+                    <!-- @if( in_array('vendor' ,$roles)) -->
+                    <!-- <li>
                         <a href="{{route('getVendorPaymentReport')}}">
                             <span class="fa fa-circle-o"></span>
                             Payment Report
                         </a>
-                    </li>
-                    @endif
+                    </li> -->
+                    <!-- @endif -->
                 </ul>
             </li>
 
