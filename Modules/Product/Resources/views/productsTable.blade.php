@@ -1,6 +1,3 @@
-@section('styles')
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-@endsection
 <table class="table table-responsive table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
     <thead>
         <tr class="border-0">
