@@ -16,9 +16,11 @@
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Deals</div>
+            @if (auth()->user()->hasRole('vendor'))
             <div>
                 <a href="{{ route('deals.create') }}" class="btn btn-success">Create New</a>
             </div>
+            @endif
         </div>
 
         <div class="ibox-body">
