@@ -127,10 +127,10 @@
                     <select class="form-control" v-model.trim="$v.business_type.$model"
                      :class="{ 'is-invalid': validationStatus($v.business_type) }">
                      <option value="" disabled>Select Business Type</option>
-                      <option :value="Manufactures">Manufactures</option>
-                      <option :value="Wholeseller">Wholeseller</option>
-                      <option :value="Distributors">Distributors</option>
-                      <option :value="Traders">Traders</option>
+                      <option value="manufactures">Manufactures</option>
+                      <option value="wholeseller">Wholeseller</option>
+                      <option value="distributors">Distributors</option>
+                      <option value="traders">Traders</option>
                     </select>
                     <div
                       v-if="!$v.business_type.required"
@@ -169,13 +169,11 @@
                       src="/images/asterik-20.png"
                       alt="asterik-image"
                     />
-                    <multiselect v-model.trim="$v.value.$model" :options="options" :multiple="true" placeholder="Type to search" track-by="name" label="name"><span slot="noResult">Oops! No category found. Consider changing the search query.</span></multiselect>
-                     <div
-                        v-if="!$v.value.required"
-                        class="invalid-feedback text-danger"
-                      >
-                        Please select product category first.
-                      </div>
+                    <multiselect v-model="value" :options="options" 
+                    :multiple="true" placeholder="Type to search"
+                    track-by="name" label="name">
+                    <span slot="noResult">Oops! No category found. Consider changing the search query.</span>
+                    </multiselect>
                   </div>
                 </div>
               </div>
@@ -227,7 +225,6 @@ export default {
     company_phone:{required},
     business_type:{required},
     country_id:{required},
-    value:{required},
   },
 
   mounted(){

@@ -2848,8 +2848,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2895,9 +2893,6 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
     },
     country_id: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
-    },
-    value: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
     }
   },
@@ -34179,25 +34174,19 @@ var render = function () {
                               [_vm._v("Select Business Type")]
                             ),
                             _vm._v(" "),
-                            _c(
-                              "option",
-                              { domProps: { value: _vm.Manufactures } },
-                              [_vm._v("Manufactures")]
-                            ),
+                            _c("option", { attrs: { value: "manufactures" } }, [
+                              _vm._v("Manufactures"),
+                            ]),
                             _vm._v(" "),
-                            _c(
-                              "option",
-                              { domProps: { value: _vm.Wholeseller } },
-                              [_vm._v("Wholeseller")]
-                            ),
+                            _c("option", { attrs: { value: "wholeseller" } }, [
+                              _vm._v("Wholeseller"),
+                            ]),
                             _vm._v(" "),
-                            _c(
-                              "option",
-                              { domProps: { value: _vm.Distributors } },
-                              [_vm._v("Distributors")]
-                            ),
+                            _c("option", { attrs: { value: "distributors" } }, [
+                              _vm._v("Distributors"),
+                            ]),
                             _vm._v(" "),
-                            _c("option", { domProps: { value: _vm.Traders } }, [
+                            _c("option", { attrs: { value: "traders" } }, [
                               _vm._v("Traders"),
                             ]),
                           ]
@@ -34317,15 +34306,11 @@ var render = function () {
                                 label: "name",
                               },
                               model: {
-                                value: _vm.$v.value.$model,
+                                value: _vm.value,
                                 callback: function ($$v) {
-                                  _vm.$set(
-                                    _vm.$v.value,
-                                    "$model",
-                                    typeof $$v === "string" ? $$v.trim() : $$v
-                                  )
+                                  _vm.value = $$v
                                 },
-                                expression: "$v.value.$model",
+                                expression: "value",
                               },
                             },
                             [
@@ -34343,18 +34328,6 @@ var render = function () {
                               ),
                             ]
                           ),
-                          _vm._v(" "),
-                          !_vm.$v.value.required
-                            ? _c(
-                                "div",
-                                { staticClass: "invalid-feedback text-danger" },
-                                [
-                                  _vm._v(
-                                    "\n                      Please select product category first.\n                    "
-                                  ),
-                                ]
-                              )
-                            : _vm._e(),
                         ],
                         1
                       ),
