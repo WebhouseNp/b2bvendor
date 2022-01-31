@@ -28,37 +28,24 @@ class CreateVendorsTable extends Migration
 
             // General Information
             $table->string('shop_name')->nullable();
-            $table->string('company_name')->nullable();
-            $table->string('representative_name')->nullable();
             $table->string('company_address')->nullable();
-            $table->string('product_category')->nullable();
+            $table->string('company_email')->nullable();
+            $table->string('company_phone')->nullable();
             $table->string('image')->nullable();
+            $table->string('business_type')->nullable();
+            $table->string('product_category')->nullable();
             $table->text('description')->nullable();
+
 
             //country
             $table->unsignedBigInteger('country_id')->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
 
-            // Main Contact
-            $table->string('name_on_card')->nullable();
-            $table->string('id_card_number')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('mobile_number')->nullable();
-
-            // Commission rate
-            $table->string('category_commission')->nullable();
-            $table->string('percentage')->nullable();
-
             // Payment Information
             $table->string('bank_name')->nullable();
             $table->string('account_number')->nullable();
             $table->string('name_on_bank_acc')->nullable();
-            $table->string('paypal_id')->nullable();
-
-            // Operation Information
-            $table->string('store_location')->nullable();
-            $table->string('store_contact_number')->nullable();
+            $table->string('bank_info_image')->nullable();
 
             $table->tinyInteger('remember_me')->default(1)->nullable();
 

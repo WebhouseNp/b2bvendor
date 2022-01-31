@@ -62,8 +62,6 @@ Route::get('/delete/{id}', [CartController::class, 'DeleteCart'])->name('delete-
 // Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 // Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 
-// customer address
-Route::get('my-address', [CustomerApiController::class, 'getAddress'])->middleware('auth:api');
 
 // Checkout
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');

@@ -20,40 +20,6 @@ class ProfileController extends Controller
     return view('user::index');
   }
 
-  public function addAddress(Request $request, $id)
-  {
-
-    $id = auth()->user()->id;
-
-    try {
-      $validator = Validator::make($request->all(), [
-        'area' => 'nullable|',
-        'country' => 'sometimes',
-        'city' => 'sometimes',
-        'address' => 'sometimes',
-
-      ]);
-
-      if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-        exit;
-      }
-
-      $value = $request->except('publish');
-
-      $value['publish'] = is_null($request->publish) ? 0 : 1;
-      $value['user_id'] = auth()->user()->id;
-      $address = Address::create($value);
-      return response()->json([
-        "message" => "Address Created Successfully!!",
-      ], 200);
-    } catch (\Exception $exception) {
-      return response([
-        'message' => $exception->getMessage()
-      ], 400);
-    }
-  }
-
   public function editAddress(Request $request, User $user)
   {
     try {
@@ -75,9 +41,12 @@ class ProfileController extends Controller
         'phone' => $request->phone,
         'street_address' => $request->street_address,
       ];
+      // $user->address()->updateOrCreate([
+      //   'type' => null
+      // ], $address);
       $user->address()->updateOrCreate([
-        'type' => null
-      ], $address);
+          'type' => null
+        ], $address);
 
       return response()->json([
         "message" => "Address Updated Successfully!!",
@@ -102,7 +71,7 @@ class ProfileController extends Controller
         'email' => 'nullable',
         'birthday' => 'nullable|',
         'gender' => 'sometimes',
-        'mobile_num' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
+        'phone_num' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
 
       ]);
 

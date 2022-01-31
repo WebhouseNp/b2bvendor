@@ -30,6 +30,9 @@
                         <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->email}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $vendor->vendor->plan=="basic_plan" ? 'Basic Plan' :$vendor->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
                         <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Type of Product Sale:</strong> {{ucfirst($vendor->vendor->product_category)}}</h4>
                     </div>
                 </div>
             </div>

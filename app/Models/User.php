@@ -39,7 +39,8 @@ class User extends Authenticatable
         'vendor_type',
         'api_token',
         'birthday',
-        'gender'
+        'gender',
+        'designation'
     ];
 
     /**
