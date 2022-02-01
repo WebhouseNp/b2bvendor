@@ -155,7 +155,7 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->morphOne(Address::class, 'addressable')->where('type', 'null');
+        return $this->morphOne(Address::class, 'addressable');
     }
 
     public function imageUrl($size = null)
