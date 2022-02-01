@@ -53,7 +53,9 @@
                                                 <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$user->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->company_phone}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Type of Product Sale:</strong> {{ucfirst($user->product_category)}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Type of Product Sale:</strong> {{ucfirst($user->vendor->product_category)}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Country:</strong> {{ucfirst($user->vendor->country->name)}}</h4>
                                             </div>
                                         </div>
                                     </div>

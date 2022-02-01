@@ -35,8 +35,8 @@ class VendorManagementController extends Controller
     }
 
     public function getVendorProfile(Request $request, $username){
-        $vendor = User::where('username',$username)->with('vendor')->first();
-        return view('user::profile',compact('vendor'));
+        $user = User::where('username',$username)->with('vendor')->first();
+        return view('user::profile',compact('user'));
     }
 
     public function getVendorProducts(Request $request, $username){

@@ -103,7 +103,7 @@ class VendorController extends Controller
          'phone_num' => 'required',
          'designation' => 'required',
       ]);
-      $formInput = $request->except(['_token']);
+      $formInput = $request->except(['_token','email']);
       $vendor->user->update($formInput);
       return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
    }

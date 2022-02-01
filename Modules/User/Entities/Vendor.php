@@ -5,6 +5,7 @@ namespace Modules\User\Entities;
 use Illuminate\Database\Eloquent\Model;
 use  Modules\Order\Entities\Order;
 use  Modules\Product\Entities\Product;
+use Modules\Country\Entities\Country;
 use App\Models\User;
 
 class Vendor extends Model
