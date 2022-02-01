@@ -2649,7 +2649,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _registerVendor_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registerVendor.vue */ "./resources/js/components/Register/registerVendor.vue");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2844,311 +2848,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["categoryinfo", "visibility2", "countries"],
   name: "VendorInfo",
   components: {
-    VendorSave: _registerVendor_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    VendorSave: _registerVendor_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Multiselect: (vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default())
   },
   data: function data() {
     return {
       visible: true,
       vendorinfo: {},
       shop_name: "",
-      company_name: "",
-      representative_name: '',
       company_address: '',
+      company_phone: '',
+      company_email: '',
+      business_type: '',
       country_id: '',
-      name_on_card: '',
-      id_card_number: '',
-      email_address: '',
-      phone_number: '',
-      mobile_number: '',
-      bank_name: '',
-      account_number: '',
-      account_holber_name: '',
-      paypal_id: '',
-      store_location: '',
-      store_contact_number: ''
+      product_category: '',
+      //product cat
+      options: [],
+      value: []
     };
   },
   validations: {
     shop_name: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    company_name: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    representative_name: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
     },
     company_address: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
+    },
+    company_email: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required,
+      email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.email
+    },
+    company_phone: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
+    },
+    business_type: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
     },
     country_id: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    name_on_card: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    id_card_number: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    email_address: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    phone_number: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    mobile_number: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    bank_name: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    account_number: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    account_holber_name: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    paypal_id: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    store_location: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
-    },
-    store_contact_number: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/megamenu').then(function (response) {
+      return _this.options = response.data;
+    });
   },
   methods: {
     validationStatus: function validationStatus(validation) {
@@ -3160,20 +2913,12 @@ __webpack_require__.r(__webpack_exports__);
       this.vendorinfo = {
         categoryinfo: this.categoryinfo,
         shop_name: this.shop_name,
-        company_name: this.company_name,
-        representative_name: this.representative_name,
-        company_address: this.company_name,
-        name_on_card: this.name_on_card,
-        id_card_number: this.id_card_number,
-        email_address: this.email_address,
-        phone_number: this.phone_number,
-        mobile_number: this.mobile_number,
-        bank_name: this.bank_name,
-        account_number: this.account_number,
-        account_holber_name: this.account_holber_name,
-        paypal_id: this.paypal_id,
-        store_location: this.store_location,
-        store_contact_number: this.store_contact_number
+        company_address: this.company_address,
+        company_email: this.company_email,
+        company_phone: this.company_phone,
+        business_type: this.business_type,
+        country_id: this.country_id,
+        product_category: this.value
       };
       this.visible = false;
     },
@@ -3995,11 +3740,11 @@ var mustBePositive = function mustBePositive(value) {
       });
     },
     // select search product ===============================//
-    selectProduct: function selectProduct(index, product_id) {
-      this.invoice_products[index].product_id = product_id;
-      this.selectedProduct = product;
-      this.isVisible = false;
-    },
+    // selectProduct(index, product_id) {
+    //   this.invoice_products[index].product_id = product_id;
+    //   this.selectedProduct = product;
+    //   this.isVisible = false;
+    // },
     customLabel: function customLabel(_ref) {
       var title = _ref.title;
       return "".concat(title);
@@ -34124,7 +33869,7 @@ var render = function () {
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "form-group col-md-6" }, [
                         _c("label", { attrs: { for: "inputShop" } }, [
-                          _vm._v("Shop Name"),
+                          _vm._v("Shop/Company Name"),
                         ]),
                         _c("img", {
                           staticClass: "img-asterik",
@@ -34183,130 +33928,7 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "inputCompany" } }, [
-                          _vm._v("Company Name"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.company_name.$model,
-                              expression: "$v.company_name.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.company_name
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            id: "inputCompany",
-                            placeholder: "",
-                          },
-                          domProps: { value: _vm.$v.company_name.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.company_name,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.company_name.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Email field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Representative Name"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.representative_name.$model,
-                              expression: "$v.representative_name.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.representative_name
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter representative name",
-                          },
-                          domProps: {
-                            value: _vm.$v.representative_name.$model,
-                          },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.representative_name,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.representative_name.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Representative field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
+                        _c("label", { attrs: { for: "inputShop" } }, [
                           _vm._v("Company Address"),
                         ]),
                         _c("img", {
@@ -34335,7 +33957,8 @@ var render = function () {
                           },
                           attrs: {
                             type: "text",
-                            placeholder: "Enter your company address",
+                            id: "inputShop",
+                            placeholder: "",
                           },
                           domProps: { value: _vm.$v.company_address.$model },
                           on: {
@@ -34358,7 +33981,7 @@ var render = function () {
                         !_vm.$v.company_address.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    The Company Address field is required.\n                  "
+                                "\n                    The Shop Name field is required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34366,6 +33989,218 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col-md-6" }, [
+                        _c("label", { attrs: { for: "" } }, [
+                          _vm._v("Company Phone"),
+                        ]),
+                        _c("img", {
+                          staticClass: "img-asterik",
+                          attrs: {
+                            src: "/images/asterik-20.png",
+                            alt: "asterik-image",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.trim",
+                              value: _vm.$v.company_phone.$model,
+                              expression: "$v.company_phone.$model",
+                              modifiers: { trim: true },
+                            },
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.validationStatus(
+                              _vm.$v.company_phone
+                            ),
+                          },
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter company contact number",
+                          },
+                          domProps: { value: _vm.$v.company_phone.$model },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.$v.company_phone,
+                                "$model",
+                                $event.target.value.trim()
+                              )
+                            },
+                            blur: function ($event) {
+                              return _vm.$forceUpdate()
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        !_vm.$v.company_phone.required
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                    The company contact number is required.\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-md-6" }, [
+                        _c("label", { attrs: { for: "" } }, [
+                          _vm._v("Company Email"),
+                        ]),
+                        _c("img", {
+                          staticClass: "img-asterik",
+                          attrs: {
+                            src: "/images/asterik-20.png",
+                            alt: "asterik-image",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.trim",
+                              value: _vm.$v.company_email.$model,
+                              expression: "$v.company_email.$model",
+                              modifiers: { trim: true },
+                            },
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.validationStatus(
+                              _vm.$v.company_email
+                            ),
+                          },
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter your Company Email",
+                          },
+                          domProps: { value: _vm.$v.company_email.$model },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.$v.company_email,
+                                "$model",
+                                $event.target.value.trim()
+                              )
+                            },
+                            blur: function ($event) {
+                              return _vm.$forceUpdate()
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        !_vm.$v.company_email.required
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                    The Company Email field is required.\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.$v.company_email.email
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                    Email must be valied email.\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col-md-6" }, [
+                        _c("label", { attrs: { for: "" } }, [
+                          _vm._v("Business Type"),
+                        ]),
+                        _c("img", {
+                          staticClass: "img-asterik",
+                          attrs: {
+                            src: "/images/asterik-20.png",
+                            alt: "asterik-image",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.trim",
+                                value: _vm.$v.business_type.$model,
+                                expression: "$v.business_type.$model",
+                                modifiers: { trim: true },
+                              },
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.validationStatus(
+                                _vm.$v.business_type
+                              ),
+                            },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.$v.business_type,
+                                  "$model",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                            },
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { value: "", disabled: "" } },
+                              [_vm._v("Select Business Type")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "manufactures" } }, [
+                              _vm._v("Manufactures"),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "wholeseller" } }, [
+                              _vm._v("Wholeseller"),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "distributors" } }, [
+                              _vm._v("Distributors"),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "traders" } }, [
+                              _vm._v("Traders"),
+                            ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        !_vm.$v.business_type.required
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                    We must know your business type.\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
                       _c("div", { staticClass: "form-group col-md-6" }, [
                         _c("label", { attrs: { for: "" } }, [
                           _vm._v("Country"),
@@ -34443,692 +34278,59 @@ var render = function () {
                           : _vm._e(),
                       ]),
                     ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 mb-4" }, [
-                    _c("h4", { staticClass: "text-center general-subtitle" }, [
-                      _vm._v("Main Contact"),
-                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Name on Card"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
+                      _c(
+                        "div",
+                        { staticClass: "form-group col-md-12" },
+                        [
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("What kind of product do yo sell ?"),
+                          ]),
+                          _c("img", {
+                            staticClass: "img-asterik",
+                            attrs: {
+                              src: "/images/asterik-20.png",
+                              alt: "asterik-image",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "multiselect",
                             {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.name_on_card.$model,
-                              expression: "$v.name_on_card.$model",
-                              modifiers: { trim: true },
+                              attrs: {
+                                options: _vm.options,
+                                multiple: true,
+                                placeholder: "Type to search",
+                                "track-by": "name",
+                                label: "name",
+                              },
+                              model: {
+                                value: _vm.value,
+                                callback: function ($$v) {
+                                  _vm.value = $$v
+                                },
+                                expression: "value",
+                              },
                             },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.name_on_card
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your name on id card",
-                          },
-                          domProps: { value: _vm.$v.name_on_card.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.name_on_card,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.name_on_card.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Name on Card field is required.\n                  "
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: { slot: "noResult" },
+                                  slot: "noResult",
+                                },
+                                [
+                                  _vm._v(
+                                    "Oops! No category found. Consider changing the search query."
+                                  ),
+                                ]
                               ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("ID Card Number"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.id_card_number.$model,
-                              expression: "$v.id_card_number.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.id_card_number
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your id card number",
-                          },
-                          domProps: { value: _vm.$v.id_card_number.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.id_card_number,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.id_card_number.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Id Card Number field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Email Address"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.email_address.$model,
-                              expression: "$v.email_address.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.email_address
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your email address",
-                          },
-                          domProps: { value: _vm.$v.email_address.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.email_address,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.email_address.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Email Address field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Phone Number (With Area Code)"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.phone_number.$model,
-                              expression: "$v.phone_number.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.phone_number
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "+299-1212324234324",
-                          },
-                          domProps: { value: _vm.$v.phone_number.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.phone_number,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.phone_number.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Phone Number field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-12" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Mobile Number"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.mobile_number.$model,
-                              expression: "$v.mobile_number.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.mobile_number
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "+299-79797983473",
-                          },
-                          domProps: { value: _vm.$v.mobile_number.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.mobile_number,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.mobile_number.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Mobile number field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 mb-4" }, [
-                    _c("h4", { staticClass: "text-center general-subtitle" }, [
-                      _vm._v(
-                        "\n                Payment Information\n              "
+                            ]
+                          ),
+                        ],
+                        1
                       ),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Bank Name"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.bank_name.$model,
-                              expression: "$v.bank_name.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.bank_name
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your bank name",
-                          },
-                          domProps: { value: _vm.$v.bank_name.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.bank_name,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.bank_name.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Bank Name field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Account Number"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.account_number.$model,
-                              expression: "$v.account_number.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.account_number
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your account number",
-                          },
-                          domProps: { value: _vm.$v.account_number.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.account_number,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.account_number.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Account Number field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Name On Bank Account"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.account_holber_name.$model,
-                              expression: "$v.account_holber_name.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.account_holber_name
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter account holder name",
-                          },
-                          domProps: {
-                            value: _vm.$v.account_holber_name.$model,
-                          },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.account_holber_name,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.account_holber_name.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Account holber name field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Paypal ID"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.paypal_id.$model,
-                              expression: "$v.paypal_id.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.paypal_id
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your paypal id",
-                          },
-                          domProps: { value: _vm.$v.paypal_id.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.paypal_id,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.paypal_id.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The Paypal Id field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 mb-4" }, [
-                    _c("h4", { staticClass: "text-center general-subtitle" }, [
-                      _vm._v(
-                        "\n                Operation Information\n              "
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Store Location"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.store_location.$model,
-                              expression: "$v.store_location.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.store_location
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your store location",
-                          },
-                          domProps: { value: _vm.$v.store_location.$model },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.store_location,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.store_location.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The store location field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v("Store Contact Number"),
-                        ]),
-                        _c("img", {
-                          staticClass: "img-asterik",
-                          attrs: {
-                            src: "/images/asterik-20.png",
-                            alt: "asterik-image",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.trim",
-                              value: _vm.$v.store_contact_number.$model,
-                              expression: "$v.store_contact_number.$model",
-                              modifiers: { trim: true },
-                            },
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.validationStatus(
-                              _vm.$v.store_contact_number
-                            ),
-                          },
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter your store contact number",
-                          },
-                          domProps: {
-                            value: _vm.$v.store_contact_number.$model,
-                          },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.$v.store_contact_number,
-                                "$model",
-                                $event.target.value.trim()
-                              )
-                            },
-                            blur: function ($event) {
-                              return _vm.$forceUpdate()
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        !_vm.$v.store_contact_number.required
-                          ? _c("div", { staticClass: "invalid-feedback" }, [
-                              _vm._v(
-                                "\n                    The store contact number field is required.\n                  "
-                              ),
-                            ])
-                          : _vm._e(),
-                      ]),
                     ]),
                   ]),
                   _vm._v(" "),

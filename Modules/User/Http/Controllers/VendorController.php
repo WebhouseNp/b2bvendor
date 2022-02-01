@@ -91,7 +91,7 @@ class VendorController extends Controller
             $value['bank_info_image'] = $image;
          }
       }
-   
+      
       $vendor->update($value);
       return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
    }

@@ -44,6 +44,7 @@ class CreateVendorsTable extends Migration
             // Payment Information
             $table->string('bank_name')->nullable();
             $table->string('account_number')->nullable();
+            $table->string('branch_name')->nullable();
             $table->string('name_on_bank_acc')->nullable();
             $table->string('bank_info_image')->nullable();
 

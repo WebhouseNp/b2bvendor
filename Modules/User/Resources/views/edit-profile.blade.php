@@ -53,9 +53,8 @@
                                                 <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$user->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->company_phone}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Type of Product Sale:</strong> {{ucfirst($user->vendor->product_category)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Country:</strong> {{ucfirst($user->vendor->country->name)}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Product Category:</strong> {{ucfirst($user->product_category)}}</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -134,23 +133,27 @@
                     <div class="ibox-body">
                         <div class="row">
                             <div class="col-lg-8 col-sm-12 form-group">
-                                <label><strong> Name </strong></label>
+                                <label><strong>Bank Name </strong></label>
                                 <input class="form-control" type="text" value="{{$user->vendor->bank_name}}" name="bank_name" placeholder="Enter Bank Name Here">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong>Branch Name </strong></label>
+                                <input class="form-control" type="text" value="{{$user->vendor->branch_name}}" name="branch_name" placeholder="Enter Branch Name Here">
                             </div>
                             <div class="col-lg-8 col-sm-12 form-group">
                                 <label><strong>Account Number </strong> </label>
                                 <input class="form-control" type="text" value="{{$user->vendor->account_number}}" name="account_number" placeholder="Enter your Account Number">
                             </div>
                             <div class="col-lg-8 col-sm-12 form-group">
-                                <label><strong> Name On Bank Account </strong></label>
+                                <label><strong> Account Holder's Name</strong></label>
                                 <input class="form-control" type="text" value="{{$user->vendor->name_on_bank_acc}}" name="name_on_bank_acc" placeholder="Enter your Name on Bank Account">
                             </div>
                             <div class="col-md-5">
-                                <label><strong> Upload Image </strong> </label>
-                                <input id="fileUpload" class="form-control" value="" name="bank_info_image" type="file">
+                                <label><strong> Upload Image(Upload Cheque Image with All Bank Detail Shown Clearly ) </strong> </label>
+                                <input class="form-control" name="bank_info_image" type="file" id="imageUpload">
                                 <br>
                                 <div id="wrapper" class="mt-2">
-                                    <div id="image-holder">
+                                    <div id="bank-info-image-holder">
                                         @if($user->vendor->bank_info_image)
                                         <img src="{{asset('images/listing/'.$user->vendor->bank_info_image)}}" alt="No Image" class="rounded">
                                         @endif
@@ -174,7 +177,42 @@
 
 @endsection
 
-@section('scripts')
+@push('push_scripts')
+@include('dashboard::admin.layouts._partials.imagepreview')
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description'])
-@endsection
+<script>
+
+$(document).ready(function() {
+
+  $("#imageUpload").on('change', function () {
+
+    if (typeof (FileReader) != "undefined") {
+
+     var image_holder = $("#bank-info-image-holder");
+
+     // $("#bank-info-image-holder").siblings().remove();
+
+     $("#bank-info-image-holder").children().remove();
+
+     var reader = new FileReader();
+     reader.onload = function (e) {
+
+         $("<img />", {
+             "src": e.target.result,
+             "class": "thumb-image",
+             "width" : '50%'
+         }).appendTo(image_holder);
+
+     }
+     image_holder.show();
+     reader.readAsDataURL($(this)[0].files[0]);
+ } else {
+     alert("This browser does not support FileReader.");
+ }
+});
+
+});
+
+</script>
+@endpush
