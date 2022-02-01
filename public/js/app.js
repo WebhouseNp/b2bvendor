@@ -2297,7 +2297,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (response.status === 200) {
                   _this.loading = false;
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Done!", "Your are registered!", "success"); // window.location.href = "/account-verification";
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Done!", "Your are registered!", "success");
+                  window.location.href = "/account-verification";
                 }
 
                 _context.next = 14;

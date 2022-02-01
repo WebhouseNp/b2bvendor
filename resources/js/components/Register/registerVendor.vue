@@ -186,7 +186,7 @@ export default {
         if (response.status === 200) {
           this.loading = false;
           swal("Done!", "Your are registered!", "success");
-          // window.location.href = "/account-verification";
+          window.location.href = "/account-verification";
         }
       } catch (error) {
         if (error.response.status === 422) {
