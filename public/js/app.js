@@ -2297,7 +2297,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (response.status === 200) {
                   _this.loading = false;
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Done!", "Your are registered!", "success"); // window.location.href = "/account-verification";
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Done!", "Your are registered!", "success");
+                  window.location.href = "/account-verification";
                 }
 
                 _context.next = 14;
@@ -4994,6 +4995,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _vendorLogin_Error_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../vendorLogin/Error.vue */ "./resources/js/components/vendorLogin/Error.vue");
+/* harmony import */ var _services_validation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../services/validation */ "./resources/js/services/validation.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5100,6 +5102,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "login",
   components: {
@@ -5108,6 +5111,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      validation: new _services_validation__WEBPACK_IMPORTED_MODULE_4__["default"](),
       email: "",
       password: "",
       loading: false,
@@ -5144,17 +5148,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   window.location.href = '/vendor/dashboard';
                 }
 
-                _context.next = 12;
+                _context.next = 11;
                 break;
 
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](1);
-                //    console.log('scscsdcs',e);
-                _this.loading = false;
-                _this.error = "Invalid username/password!";
 
-              case 12:
+                if (_context.t0.response.status === 400) {
+                  _this.loading = false;
+                  _this.error = _context.t0.response.data.message;
+
+                  _this.validation.setMessages(_this.error);
+                } else {
+                  _this.loading = false;
+                  _this.error = "Invalid username/password!";
+                }
+
+              case 11:
               case "end":
                 return _context.stop();
             }

@@ -59,28 +59,32 @@ class VendorController extends Controller
          }
       }
       $oldRecord->update($formInput);
-      return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
+      return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
    public function updateVendorDesc(Request $request, $id)
    {
       $request->validate([
-         'description' => 'nullable',
+         'description' => 'required',
       ]);
       $oldRecord = Vendor::findorfail($id);
       $formInput = $request->except(['_token']);
       $oldRecord->update($formInput);
-      return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
+      return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
    public function updateVendorBankDetails(Request $request, Vendor $vendor)
    {
       $request->validate([
-         'bank_name' => 'required',
-         'account_number' => 'required',
-         'name_on_bank_acc' => 'required',
+         'bank_name' => 'nullable',
+         'branch_name' => 'nullable',
+         'account_number' => 'nullable',
+         'name_on_bank_acc' => 'nullable',
          'bank_info_image' => 'mimes:jpg,png,jpeg,gif|max:3048',
       ]);
+      if($vendor->bank_name && $vendor->account_number && $vendor->branch_name && $vendor->name_on_bank_acc){
+         return redirect()->back()->with('error', 'Please Contact Admin for updating Your Bank Details.');
+      }
       $value = $request->except(['bank_info_image','token']);
       if ($request->hasFile('bank_info_image')) {
          if ($vendor->bank_info_image) {
@@ -93,7 +97,7 @@ class VendorController extends Controller
       }
       
       $vendor->update($value);
-      return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
+      return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
    public function updateUserDetails(Request $request, Vendor $vendor)
@@ -103,9 +107,9 @@ class VendorController extends Controller
          'phone_num' => 'required',
          'designation' => 'required',
       ]);
-      $formInput = $request->except(['_token']);
+      $formInput = $request->except(['_token','email']);
       $vendor->user->update($formInput);
-      return redirect()->route('vendor.profile')->with('success', 'Vendor Profile Updated Successfuly.');
+      return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
 

@@ -35,6 +35,12 @@ class CategoryApiController extends Controller
         return response()->json($categories, 200);
     }
 
+    public function vendorCategory(){
+        $categories = Category::published()->select('id','name')
+            ->get();
+            return response()->json($categories, 200);
+    }
+
     public function megamenu()
     {
         $categories = Category::with(['subcategory' => function ($query) {

@@ -1,293 +1,181 @@
 @extends('layouts.admin')
-@section('page_title')View Vendor Info @endsection
-
+@section('page_title')Edit Vendor Info @endsection
 @section('content')
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-
-            <div class="ibox-title"> Vendor</div>
-
+            <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true"><strong>Business Information</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false"><strong>About Company </strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#component-1-3" role="tab" aria-controls="component-1-3" aria-selected="false"><strong>User Information </strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#component-1-4" role="tab" aria-controls="component-1-4" aria-selected="false"><strong>Bank Details </strong></a>
+                </li>
+            </ul>
         </div>
-    </div>
+        <div class="tab-content" id="component-1-content">
+            <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
-    
-        <form class="form form-responsive form-horizontal" action=""
-            enctype="multipart/form-data" method="post">
+                <form method="post" action="{{route('updateVendorProfile',$user->vendor->id)}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('post')
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-lg-9 col-md-9 col-12" id="get__print">
-                            <div class="ibox">
-                                <div class="ibox-head">
-                                    <div class="ibox-title">Vendor Information</div>
-                                    <div class="ibox-tools">
+                    <div class="ibox-body">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label><strong>Update Profile Image</strong> </label>
+                                        <input id="fileUpload" class="form-control" value="" name="image" type="file">
+                                        <br>
+                                        <div id="wrapper" class="mt-2">
+                                            <div id="image-holder">
+                                                @if($user->vendor->image)
+                                                <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded">
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="ibox-body">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Category</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->category}}" name="name" placeholder="Name"
-                                            disabled>
-                                    </div> 
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Shop Name</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->shop_name}}" name="name" placeholder="Name"
-                                            disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->email}}" name="name" placeholder="Email"
-                                            disabled>
 
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Phone No</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->phone_num}}"
-                                            name="phone" placeholder="Product phone Here" disabled>
-                                        
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Representative Name</label>
-                                        <input class="form-control" type="text" value="{{$vendor->vendor->representative_name}}"
-                                            name="order_id" placeholder="Product order_id Here" disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Company Address</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->company_address}}"
-                                            name="city" placeholder="Product city Here" disabled>
-                                        
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Product Category</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->product_category}}"
-                                            name="city" placeholder="Product city Here" disabled>
-                                        
-                                    </div>
-                                    
-
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Name On Card</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->name_on_card}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>ID Card Number</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->id_card_number}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>category commission</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->category_commission}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>percentage</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->percentage}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>bank_name</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->bank_name}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>account_number</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->account_number}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>name_on_bank_acc</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->name_on_bank_acc}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>paypal_id</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->paypal_id}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>store_location</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->store_location}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>store_contact_number</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->store_contact_number}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>status</label>
-                                        <input class="form-control" type="text"
-                                            value="{{$vendor->vendor->status==1?'Active':'Inactive'}}"
-                                            name="city"  disabled>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label>Vendor status</label>
-                                        <select name="vendor_type" id="vendor_status" class="form-control ">
-                                            <!-- <option value="new" >New</option> -->
-                                            <option value="new" @if ($vendor->vendor_type=="new"){{"selected"}} @endif>New</option>
-                                            <option value="approved" @if ($vendor->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
-                                            <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
-                                            <!-- <option value="approved" >Approve</option>
-                                            <option value="suspended" >Suspend</option> -->
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 form-group">
-                                        <button type="button" id="submitVendorStatus" class="btn btn-success "><span class="fa fa-send"> Save</button>
+                                    <div class="col-md-7">
+                                        <div class="card profile-card border-0 bg-transparent">
+                                            <div class="card-body">
+                                                <h3 class="profile-card-title">{{ucfirst($user->vendor->shop_name)}}</h3>
+                                                <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $user->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$user->vendor->company_email}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$user->vendor->company_address}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$user->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->company_phone}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong> Product Category:</strong>
+                                                    @foreach($user->vendor->product_category as $cat)
+                                                    {{$cat->name}},
+                                                    @endforeach
+                                                </h4>
+                                                <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Country:</strong> {{ucfirst(@$user->vendor->country->name)}}</h4>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
 
+                            <!-- <div class="col-lg-6 col-sm-12 form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="text" value="{{$user->vendor->shop_name}}" name="shop_name" placeholder="Name">
+                            </div> -->
+
+
+                            <div class="col-lg-12 col-sm-12 form-group">
+                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update Profile</button>
+                            </div>
+                        </div>
                     </div>
-                    
-                </div>
-            </div>
-</div>
-</form>
-<!-- <button class="btn btn-sm print__button btn-primary">Print</button> -->
 
+                </form>
+            </div>
+            <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
+                <form method="post" action="{{route('updateVendorDesc',$user->vendor->id)}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('post')
+                    <div class="ibox-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 form-group">
+                                <label><strong>Description</strong></label>
+                                <textarea name="description" id="description" rows="5" placeholder="description Here" class="form-control" style="resize: none;">{{@$user->vendor->description}} </textarea>
+                            </div>
+
+                            <div class="col-lg-12 col-sm-12 form-group">
+                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="component-1-3" role="tabpanel" aria-labelledby="component-1-3">
+                <form method="post" action="{{route('updateUserDesc',$user->vendor->id)}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('post')
+                    <div class="ibox-body">
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong>Name</strong> </label>
+                                <input class="form-control" type="text" value="{{$user->name}}" name="name" placeholder="Enter Name Here">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong>Email</strong> </label>
+                                <input class="form-control" type="text" value="{{$user->email}}" name="email" placeholder="Enter your Email Address">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong>Designation</strong></label>
+                                <input class="form-control" type="text" value="{{$user->designation}}" name="designation" placeholder="Enter your Designation Here">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong>Contact Number</strong></label>
+                                <input class="form-control" type="text" value="{{$user->phone_num}}" name="phone_num" placeholder="Enter your Phone Number">
+                            </div>
+
+
+                            <div class="col-lg-12 col-sm-12 form-group">
+                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="component-1-4" role="tabpanel" aria-labelledby="component-1-4">
+                <form method="post" action="{{route('updateVendorBankDetails',$user->vendor->id)}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('post')
+                    <div class="ibox-body">
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong> Name </strong></label>
+                                <input class="form-control" type="text" value="{{$user->vendor->bank_name}}" name="bank_name" placeholder="Enter Bank Name Here">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong>Account Number </strong> </label>
+                                <input class="form-control" type="text" value="{{$user->vendor->account_number}}" name="account_number" placeholder="Enter your Account Number">
+                            </div>
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong> Name On Bank Account </strong></label>
+                                <input class="form-control" type="text" value="{{$user->vendor->name_on_bank_acc}}" name="name_on_bank_acc" placeholder="Enter your Name on Bank Account">
+                            </div>
+                            <div class="col-md-5">
+                                <label><strong> Upload Image </strong> </label>
+                                <input id="fileUpload" class="form-control" value="" name="bank_info_image" type="file">
+                                <br>
+                                <div id="wrapper" class="mt-2">
+                                    <div id="image-holder">
+                                        @if($user->vendor->bank_info_image)
+                                        <img src="{{asset('images/listing/'.$user->vendor->bank_info_image)}}" alt="No Image" class="rounded">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-sm-12 form-group">
+                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
+
 @section('scripts')
-<script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function() {
-        $('#example-table').DataTable({
-            pageLength: 25,
-        });
-    })
-</script>
-<script>
-    function FailedResponseFromDatabase(message){
-    html_error = "";
-    $.each(message, function(index, message){
-        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
-    });
-    Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        html:html_error ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
-function DataSuccessInDatabase(message){
-    Swal.fire({
-        // position: 'top-end',
-        type: 'success',
-        title: 'Done',
-        html: message ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
-</script>
-<script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function() {
-        $('#example-table').DataTable({
-            pageLength: 25,
-        });
-    })
-</script>
-
-<script >
-  	$.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ready(function(){
-       $('.message').fadeOut(3000);
-       $('.delete').submit(function(e){
-        e.preventDefault();
-        var message=confirm('Are you sure to delete');
-        if(message){
-          this.submit();
-        }
-        return;
-       });
-            $('#submitVendorStatus').on('click', function(){
-            var status = $('#vendor_status').val();
-            var vendor_id = <?php echo $vendor->id ?>;
-            $.ajax({
-                url:'/api/changeVendorStatus',
-                method:"POST",
-                data:{
-                    vendor_id : vendor_id,
-                    vendor_type : status,
-                    _token: "{{csrf_token()}}"
-                },
-                success : function(response){
-                    if (response.status == false ) {
-                        FailedResponseFromDatabase(response.message);
-                    }
-                    if (response.status == true) {
-                        $('#appendOrder').empty();
-                        $('#appendOrder').html(response.html);
-
-                        DataSuccessInDatabase(response.message);
-                        location.reload();
-                    }
-                }
-            })
-        })
-    
-       
-       
-    });
-
-    $(function () {
-        $("#example1").DataTable();
-    });
-
-    function orders(){
-        
-        $.ajax({
-		  type:'GET',
-		  url:'/api/getorders',
-		  
-		  success:function(response) {
-			$('#appendOrder').html(response.html)
-		  },
-		  error: function(error) {
-			$('#notification-bar').text('An error occurred');
-		}
-	   });
-    }
-
-    orders()
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    
-
-</script>
-
+<script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+@include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description'])
 @endsection

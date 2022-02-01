@@ -100,11 +100,14 @@
 import Input from "../vendorLogin/Input.vue";
 import axios from 'axios';
 import error from '../vendorLogin/Error.vue'
+import validation from "./../../services/validation";
+
 export default {
   name: "login",
   components: { Input, error },
   data() {
     return {
+         validation: new validation(),
          email: "",
           password: "",
           loading: false,
@@ -128,9 +131,15 @@ export default {
             window.location.href = '/vendor/dashboard'
         }
        }catch (e){
-        //    console.log('scscsdcs',e);
-         this.loading = false;
-         this.error = "Invalid username/password!";
+        if(e.response.status === 400){
+             this.loading = false;
+            this.error = e.response.data.message;
+            this.validation.setMessages(this.error);
+        }
+        else{
+            this.loading = false;
+            this.error = "Invalid username/password!";
+        }
        }
     },
     onClickSingup(){

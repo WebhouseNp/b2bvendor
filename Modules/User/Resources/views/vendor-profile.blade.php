@@ -18,10 +18,10 @@
         <div class="row">
             <div class="col-md-4">
                 <a href="{{asset('/images/listing/'.$vendor->vendor->image)}}" target="_adimage">
-                    <img src="{{asset('images/listing/'.$vendor->vendor->image)}}" alt="No Image" class="rounded" >
-                </a> 
+                    <img src="{{asset('images/listing/'.$vendor->vendor->image)}}" alt="No Image" class="rounded">
+                </a>
             </div>
-            
+
             <div class="col-md-8">
                 <div class="card profile-card border-0 bg-transparent">
                     <div class="card-body">
@@ -31,8 +31,13 @@
                         <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $vendor->vendor->plan=="basic_plan" ? 'Basic Plan' :$vendor->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
                         <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong> {{ucfirst($vendor->vendor->product_category)}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
+                            @foreach($vendor->vendor->product_category as $cat)
+                            {{$cat->name}},
+                            @endforeach
+                        </h4>
                         <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($vendor->vendor->business_type)}}</h4>
                     </div>
                 </div>
@@ -47,15 +52,15 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-user icon-warning"></i>   
+                            <i class="fa fa-user icon-warning"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
                             <a href="{{route('editVendorProfile',$vendor->id)}}" target="_blank">
-                               Edit Profile 
-                            </a> 
-                        </p> 
+                                Edit Profile
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -63,9 +68,9 @@
                 <hr>
                 <div class="stats">
                     <a href="{{route('editVendorProfile',$vendor->id)}}" target="_blank">
-                        <i class="fa fa-refresh"></i> 
+                        <i class="fa fa-refresh"></i>
                         Edit Profile
-                    </a> 
+                    </a>
                 </div>
             </div>
         </div>
@@ -76,15 +81,15 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-bar-chart icon-success"></i>   
+                            <i class="fa fa-bar-chart icon-success"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
                             <a href="#" target="_blank">
-                                Sales Report 
-                            </a> 
-                        </p> 
+                                Sales Report
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -92,9 +97,9 @@
                 <hr>
                 <div class="stats">
                     <a href="#" target="_blank">
-                        <i class="fa fa-refresh"></i> 
+                        <i class="fa fa-refresh"></i>
                         View Report
-                    </a> 
+                    </a>
                 </div>
             </div>
         </div>
@@ -105,19 +110,19 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-product-hunt icon-danger"></i>   
+                            <i class="fa fa-product-hunt icon-danger"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
                             <a href="{{route('product.index',['type'=>'approved-products'])}}" target="_blank">
-                                Products 
+                                Products
                             </a>
                             <span class="card-category-count">
                                 : {{count($vendor->products)}}
                             </span>
-                        </p> 
-                        
+                        </p>
+
                     </div>
                 </div>
             </div>
@@ -125,9 +130,9 @@
                 <hr>
                 <div class="stats">
                     <a href="{{route('product.index',['type'=>'approved-products'])}}" target="_blank">
-                        <i class="fa fa-refresh"></i> 
+                        <i class="fa fa-refresh"></i>
                         View Products
-                    </a> 
+                    </a>
                 </div>
             </div>
         </div>
@@ -138,7 +143,7 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-money icon-info"></i>   
+                            <i class="fa fa-money icon-info"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -148,9 +153,9 @@
                             </a>
                         </p>
                         <span class="card-category-count">
-                            
+
                         </span>
-                        
+
                     </div>
                 </div>
             </div>
@@ -158,9 +163,9 @@
                 <hr>
                 <div class="stats">
                     <a>
-                        <i class="fa fa-refresh"></i> 
+                        <i class="fa fa-refresh"></i>
                         Updated
-                    </a> 
+                    </a>
                 </div>
             </div>
         </div>
