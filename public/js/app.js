@@ -2312,6 +2312,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.errors = _context.t0.response.data;
 
                   _this.validation_rule.setMessages(_this.errors.data);
+                } else {
+                  _this.loading = false;
+                  alert('Something went wrong please try again.');
                 }
 
               case 14:
@@ -2894,7 +2897,6 @@ __webpack_require__.r(__webpack_exports__);
       company_email: '',
       business_type: '',
       country_id: '',
-      product_category: [],
       options: [],
       value: []
     };
@@ -2923,7 +2925,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/megamenu').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/vendor-category').then(function (response) {
       return _this.options = response.data;
     });
   },
@@ -32974,7 +32976,7 @@ var render = function () {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-center" }, [_vm._v("Login Info")]),
+            _c("h4", { staticClass: "text-center" }, [_vm._v("User Info")]),
             _vm._v(" "),
             _c(
               "form",

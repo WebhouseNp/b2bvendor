@@ -53,5 +53,10 @@ class Vendor extends Model
     public function products(){
         return $this->hasMany(Product::class,'vendor_id');
     }
+
+    public function setProductCategoryAttribute($value)
+    {
+        $this->attributes['product_category'] = json_encode($value);
+    }
     
 }
