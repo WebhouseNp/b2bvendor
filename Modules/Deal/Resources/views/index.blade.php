@@ -68,7 +68,7 @@
                             <a class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a> 
-                            <button class="btn btn-danger btn-sm delete" onclick="return confirm('Do You want to delete this product??') && deleteDeal(this,'{{ $data->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger btn-sm delete" onclick="return confirm('Are you sure to delete this deal?') && deleteDeal(this,'{{ $data->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                             @endif
                         </td>
                     </tr>
