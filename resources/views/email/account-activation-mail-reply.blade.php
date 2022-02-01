@@ -15,7 +15,10 @@
 
         <div>
             <div> Dear {{$name}}, </div>
-            <div> Your account has been activated!! You need to approve your account by admin first. Thank you!! </div>
+            <div> Your email address has been verified successfully and you will be able to login once your account is approved by the admin.
+            </div>
+            <div>Thanks, <br>
+                Sasto WholeSale</div>
         </div>
 
     </div>

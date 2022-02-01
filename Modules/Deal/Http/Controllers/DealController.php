@@ -59,6 +59,14 @@ class DealController extends Controller
         }
     }
 
+    public function show(Deal $deal)
+    {
+        abort_unless(auth()->user()->hasAnyRole('super-admin|admin') || auth()->id() == $deal->vendor_user_id, 403);
+
+        $deal->load(['dealProducts.product', 'user', 'vendor']);
+        return view('deal::show', compact('deal'));
+    }
+
     public function edit($id)
     {
         $products = Product::where('user_id', Auth::id())->select('id', 'title','image')->get()->map(function ($product) {

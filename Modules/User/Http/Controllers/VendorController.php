@@ -76,10 +76,10 @@ class VendorController extends Controller
    public function updateVendorBankDetails(Request $request, Vendor $vendor)
    {
       $request->validate([
-         'bank_name' => 'required',
-         'branch_name' => 'required',
-         'account_number' => 'required',
-         'name_on_bank_acc' => 'required',
+         'bank_name' => 'nullable',
+         'branch_name' => 'nullable',
+         'account_number' => 'nullable',
+         'name_on_bank_acc' => 'nullable',
          'bank_info_image' => 'mimes:jpg,png,jpeg,gif|max:3048',
       ]);
       if($vendor->bank_name && $vendor->account_number && $vendor->branch_name && $vendor->name_on_bank_acc){
