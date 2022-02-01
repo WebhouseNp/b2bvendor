@@ -8,7 +8,7 @@
  };
 
 CKEDITOR.replace('{{$name}}', options);
-   CKEDITOR.config.height = 200;
+   CKEDITOR.config.height = 500;
    CKEDITOR.config.colorButton_colors = 'CF5D4E,454545,FFF,CCC,DDD,CCEAEE,66AB16';
    CKEDITOR.config.colorButton_enableMore = true;
    CKEDITOR.config.floatpanel = true;

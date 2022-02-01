@@ -32,7 +32,7 @@
                         <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong> {{ucfirst($vendor->vendor->product_category)}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong> </h4>
                         <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($vendor->vendor->business_type)}}</h4>
                     </div>
                 </div>
