@@ -29,9 +29,12 @@
                         <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $vendor->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
                         <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->email}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->company_address}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->phone_num}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Type of Product Sale:</strong> {{ucfirst($vendor->vendor->product_category)}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong> @foreach($vendor->vendor->product_category as $cat)
+                            {{$cat->name}},
+                            @endforeach</h4>
 
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 form-group">
