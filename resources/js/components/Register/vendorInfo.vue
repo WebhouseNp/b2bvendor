@@ -212,7 +212,6 @@ export default {
       company_email:'',
       business_type:'',
       country_id:'',
-      product_category:[],
       options: [],
       value: [],
     };
@@ -228,7 +227,7 @@ export default {
 
   mounted(){
      axios
-      .get('/api/megamenu')
+      .get('/api/vendor-category')
       .then(response => (this.options = response.data))
   },
 

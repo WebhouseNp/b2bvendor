@@ -15,7 +15,7 @@
           <div style="text-align: center; front-size: 20px" v-if="loading">
             loading....
           </div>
-          <h4 class="text-center">Login Info</h4>
+          <h4 class="text-center">User Info</h4>
           <form @submit.prevent="submitData">
             <div class="form-group">
               <label for="">Full Name</label>
@@ -193,6 +193,10 @@ export default {
           this.loading = false;
           this.errors = error.response.data;
           this.validation_rule.setMessages(this.errors.data);
+        }
+        else{
+          this.loading = false;
+          alert('Something went wrong please try again.');
         }
       }
     },
