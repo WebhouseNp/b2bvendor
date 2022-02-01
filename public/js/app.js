@@ -2186,6 +2186,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2198,6 +2229,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       validation_rule: new _services_validation__WEBPACK_IMPORTED_MODULE_2__["default"](),
       name: "",
       email: "",
+      designation: '',
+      mobile_number: '',
       password: "",
       confirm_password: "",
       terms: false,
@@ -2244,26 +2277,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post("api/vendor/register", {
                   name: _this.name,
                   email: _this.email,
+                  designation: _this.designation,
+                  mobile_number: _this.mobile_number,
                   password: _this.password,
                   confirm_password: _this.confirm_password,
                   category: _this.vendorinfo.categoryinfo.mainSeller,
                   plan: _this.vendorinfo.categoryinfo.category,
-                  company_name: _this.vendorinfo.company_name,
                   shop_name: _this.vendorinfo.shop_name,
-                  representative_name: _this.vendorinfo.representative_name,
                   company_address: _this.vendorinfo.company_address,
                   country_id: _this.vendorinfo.country_id,
-                  name_on_card: _this.vendorinfo.name_on_card,
-                  id_card_number: _this.vendorinfo.id_card_number,
-                  email_address: _this.vendorinfo.email_address,
-                  phone_number: _this.vendorinfo.phone_number,
-                  monile_number: _this.vendorinfo.monile_number,
-                  bank_name: _this.vendorinfo.bank_name,
-                  account_holder_name: _this.vendorinfo.account_holder_name,
-                  account_number: _this.vendorinfo.account_number,
-                  paypal_id: _this.vendorinfo.paypal_id,
-                  store_location: _this.vendorinfo.store_location,
-                  store_contact_number: _this.vendorinfo.store_contact_number
+                  company_email: _this.vendorinfo.company_email,
+                  company_phone: _this.vendorinfo.company_phone,
+                  business_type: _this.vendorinfo.business_type,
+                  product_category: _this.vendorinfo.product_category
                 });
 
               case 7:
@@ -2271,8 +2297,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (response.status === 200) {
                   _this.loading = false;
-                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Good Job!", "Your are registered!", "success");
-                  window.location.href = "/account-verification";
+                  sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Done!", "Your are registered!", "success"); // window.location.href = "/account-verification";
                 }
 
                 _context.next = 14;
@@ -2287,6 +2312,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.errors = _context.t0.response.data;
 
                   _this.validation_rule.setMessages(_this.errors.data);
+                } else {
+                  _this.loading = false;
+                  alert('Something went wrong please try again.');
                 }
 
               case 14:
@@ -2869,8 +2897,6 @@ __webpack_require__.r(__webpack_exports__);
       company_email: '',
       business_type: '',
       country_id: '',
-      product_category: '',
-      //product cat
       options: [],
       value: []
     };
@@ -2899,7 +2925,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/megamenu').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/vendor-category').then(function (response) {
       return _this.options = response.data;
     });
   },
@@ -32950,7 +32976,7 @@ var render = function () {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-center" }, [_vm._v("Login Info")]),
+            _c("h4", { staticClass: "text-center" }, [_vm._v("User Info")]),
             _vm._v(" "),
             _c(
               "form",
@@ -32997,6 +33023,88 @@ var render = function () {
                     _vm._v(
                       "\n             " +
                         _vm._s(_vm.validation_rule.getMessage("name")) +
+                        "\n           "
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Designation")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.designation,
+                        expression: "designation",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "",
+                      "aria-describedby": "",
+                      placeholder: "Enter Your Designation",
+                    },
+                    domProps: { value: _vm.designation },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.designation = $event.target.value
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-danger" }, [
+                    _vm._v(
+                      "\n             " +
+                        _vm._s(_vm.validation_rule.getMessage("designation")) +
+                        "\n           "
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Mobile Number"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.mobile_number,
+                        expression: "mobile_number",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "",
+                      "aria-describedby": "",
+                      placeholder: "Enter Your Mobile Number",
+                    },
+                    domProps: { value: _vm.mobile_number },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.mobile_number = $event.target.value
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-danger" }, [
+                    _vm._v(
+                      "\n             " +
+                        _vm._s(
+                          _vm.validation_rule.getMessage("mobile_number")
+                        ) +
                         "\n           "
                     ),
                   ]),
@@ -33181,6 +33289,8 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
               ]
             ),
           ]
@@ -33190,6 +33300,18 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-check mb-3" }, [
+      _c("p", [
+        _vm._v(
+          "Note: For verification please provide business related document to us through mail."
+        ),
+      ]),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -34303,6 +34425,7 @@ var render = function () {
                                 multiple: true,
                                 placeholder: "Type to search",
                                 "track-by": "name",
+                                "hide-selected": true,
                                 label: "name",
                               },
                               model: {

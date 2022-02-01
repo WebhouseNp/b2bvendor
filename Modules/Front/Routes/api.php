@@ -68,3 +68,6 @@ Route::get('/delete/{id}', [CartController::class, 'DeleteCart'])->name('delete-
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
 Route::get('customer/orders', [OrderController::class, 'index'])->middleware('auth:api');
 
+//category for vendor
+Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
+

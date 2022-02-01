@@ -171,7 +171,7 @@
                     />
                     <multiselect v-model="value" :options="options" 
                     :multiple="true" placeholder="Type to search"
-                    track-by="name" label="name">
+                    track-by="name" :hide-selected="true" label="name">
                     <span slot="noResult">Oops! No category found. Consider changing the search query.</span>
                     </multiselect>
                   </div>
@@ -212,8 +212,6 @@ export default {
       company_email:'',
       business_type:'',
       country_id:'',
-      product_category:'',
-      //product cat
       options: [],
       value: [],
     };
@@ -229,7 +227,7 @@ export default {
 
   mounted(){
      axios
-      .get('/api/megamenu')
+      .get('/api/vendor-category')
       .then(response => (this.options = response.data))
   },
 

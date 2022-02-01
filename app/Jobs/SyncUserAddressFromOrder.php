@@ -53,6 +53,7 @@ class SyncUserAddressFromOrder implements ShouldQueue
                 ]);
             }
         } catch (\Throwable $th) {
+            logger($th);
         }
     }
 }
