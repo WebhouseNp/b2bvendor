@@ -54,9 +54,10 @@
                                                 <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->company_phone}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Product Category:</strong> @foreach($user->vendor->product_category as $product_cat) 
-                                                {{json_decode($product_cat)}}
-                                                 @endforeach</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Product Category:</strong> @foreach($user->vendor->product_category as $cat)
+                                                    {{$cat->name}},
+                                                    @endforeach
+                                                </h4>
                                             </div>
                                         </div>
                                     </div>

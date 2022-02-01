@@ -22,7 +22,8 @@
                 <div> Dear {{$name}}, </div>
                 
                 
-                <div> Your account has been activated!! Thank you!! </div>
+                <div> Your your email has been verified , and your account activation is in pending !! 
+                    we will infrom you as soon as possiable !! Thank you!! </div>
 
                
                 

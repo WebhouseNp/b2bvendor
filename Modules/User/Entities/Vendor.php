@@ -58,5 +58,10 @@ class Vendor extends Model
     {
         $this->attributes['product_category'] = json_encode($value);
     }
+
+    public function getProductCategoryAttribute($value)
+    {
+        return $this->attributes['product_category'] = json_decode($value);
+    }
     
 }
