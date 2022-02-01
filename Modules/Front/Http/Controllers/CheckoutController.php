@@ -162,8 +162,8 @@ class CheckoutController extends Controller
             // sync the user's address
             \App\Jobs\SyncUserAddressFromOrder::dispatch(auth()->user(), $order);
 
-            // after response store update or create the customer's address
-            // send email to vendors, admin and customer
+            // send email to customer and related vendors
+            \App\Jobs\SendNewOrderEmail::dispatch($order);
             DB::commit();
 
             // process payment
