@@ -20,6 +20,13 @@ class ProfileController extends Controller
     return view('user::index');
   }
 
+  public function getAddress()
+    {
+        return response()->json([
+            'data' => auth()->user()->address
+        ], 200);
+    }
+
   public function editAddress(Request $request, User $user)
   {
     try {
@@ -134,10 +141,5 @@ class ProfileController extends Controller
     if (file_exists($listingPath))
       unlink($listingPath);
     return;
-  }
-
-  public function destroy($id)
-  {
-    //
   }
 }
