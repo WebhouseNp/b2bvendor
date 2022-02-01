@@ -25,6 +25,10 @@
         button {
             cursor: pointer;
         }
+        .table.table-borderless th,
+        .table.table-borderless td {
+            border: none;
+        }
     </style>
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 
