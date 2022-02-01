@@ -24,7 +24,7 @@
         </div>
 
         <div class="ibox-body">
-            <table class="table table-striped table-responsive table-bordered table-hover" id="example-table" cellspacing="0"
+            <table class="table table-responsive table-bordered" id="example-table" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>
@@ -61,10 +61,15 @@
                             </button>
                         </td>
                         <td>
-                            <a title="Edit" class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}">
+                            <a class="btn btn-primary btn-sm" href="{{route('deals.show',$data->id)}}" title="view">
+                                <i class="fa fa-eye"></i>
+                            </a> 
+                            @if (auth()->user()->hasRole('vendor'))
+                            <a class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}" title="Edit">
                                 <i class="fa fa-edit"></i>
                             </a> 
                             <button class="btn btn-danger btn-sm delete" onclick="return confirm('Do You want to delete this product??') && deleteDeal(this,'{{ $data->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
