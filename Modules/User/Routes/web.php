@@ -40,6 +40,8 @@ Route::post('updateprofile/{id}', 'VendorController@updateVendorProfile')->name(
 Route::get('report', 'VendorController@getVendorPaymentReport')->name('getVendorPaymentReport');
 });
 Route::post('updatevendordesc/{id}', 'VendorController@updateVendorDesc')->name('updateVendorDesc');
+Route::post('update-vendor-bank-details/{vendor}', 'VendorController@updateVendorBankDetails')->name('updateVendorBankDetails');
+Route::post('update-user-details/{vendor}', 'VendorController@updateUserDetails')->name('updateUserDesc');
 
 
 Route::group([

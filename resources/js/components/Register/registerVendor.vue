@@ -32,6 +32,34 @@
              </div>
             </div>
             <div class="form-group">
+              <label for="">Designation</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="designation"
+                id=""
+                aria-describedby=""
+                placeholder="Enter Your Designation"
+              />
+               <div class="text-danger">
+               {{ validation_rule.getMessage('designation') }}
+             </div>
+            </div>
+            <div class="form-group">
+              <label for="">Mobile Number</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="mobile_number"
+                id=""
+                aria-describedby=""
+                placeholder="Enter Your Mobile Number"
+              />
+               <div class="text-danger">
+               {{ validation_rule.getMessage('mobile_number') }}
+             </div>
+            </div>
+            <div class="form-group">
               <label for="">Email address</label>
               <input
                 type="email"
@@ -80,6 +108,9 @@
                 >I accept all the terms and condition.</label
               >
             </div>
+            <div class="form-check mb-3">
+              <p>Note: For verification please provide business related document to us through mail.</p>
+            </div>
             <div class="text-center">
               <button type="submit" class="btn btn-primary btn-signup">
                 Sign Up
@@ -109,6 +140,8 @@ export default {
       validation_rule: new validation(),
       name: "",
       email: "",
+      designation:'',
+      mobile_number:'',
       password: "",
       confirm_password: "",
       terms: false,
@@ -136,31 +169,24 @@ export default {
         const response = await axios.post("api/vendor/register", {
           name: this.name,
           email: this.email,
+          designation: this.designation,
+          mobile_number: this.mobile_number,
           password: this.password,
           confirm_password: this.confirm_password,
           category: this.vendorinfo.categoryinfo.mainSeller,
           plan: this.vendorinfo.categoryinfo.category,
-          company_name: this.vendorinfo.company_name,
           shop_name: this.vendorinfo.shop_name,
-          representative_name: this.vendorinfo.representative_name,
           company_address: this.vendorinfo.company_address,
           country_id: this.vendorinfo.country_id,
-          name_on_card: this.vendorinfo.name_on_card,
-          id_card_number: this.vendorinfo.id_card_number,
-          email_address: this.vendorinfo.email_address,
-          phone_number: this.vendorinfo.phone_number,
-          monile_number: this.vendorinfo.monile_number,
-          bank_name: this.vendorinfo.bank_name,
-          account_holder_name: this.vendorinfo.account_holder_name,
-          account_number: this.vendorinfo.account_number,
-          paypal_id: this.vendorinfo.paypal_id,
-          store_location: this.vendorinfo.store_location,
-          store_contact_number: this.vendorinfo.store_contact_number
+          company_email: this.vendorinfo.company_email,
+          company_phone: this.vendorinfo.company_phone,
+          business_type: this.vendorinfo.business_type,
+          product_category: this.vendorinfo.product_category,
         });
         if (response.status === 200) {
           this.loading = false;
-          swal("Good Job!", "Your are registered!", "success");
-          window.location.href = "/account-verification";
+          swal("Done!", "Your are registered!", "success");
+          // window.location.href = "/account-verification";
         }
       } catch (error) {
         if (error.response.status === 422) {

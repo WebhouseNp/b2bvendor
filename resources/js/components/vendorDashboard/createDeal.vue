@@ -446,11 +446,11 @@ export default {
 
     // select search product ===============================//
 
-    selectProduct(index, product_id) {
-      this.invoice_products[index].product_id = product_id;
-      this.selectedProduct = product;
-      this.isVisible = false;
-    },
+    // selectProduct(index, product_id) {
+    //   this.invoice_products[index].product_id = product_id;
+    //   this.selectedProduct = product;
+    //   this.isVisible = false;
+    // },
     customLabel({ title }) {
       return `${title}`;
     },

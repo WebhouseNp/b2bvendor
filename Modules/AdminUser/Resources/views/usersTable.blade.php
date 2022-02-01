@@ -13,7 +13,6 @@
                 </thead>
                 <tbody>
                 @forelse ($details as $key=>$detail)
-
                 <tr>
                 <td>{{ $details->firstItem() + $loop->index }}</td>
                 <td>{{ucfirst($detail->name)}}</td>
@@ -35,13 +34,9 @@
             <td colspan="3">No Records </td>
         </tr>
         @endforelse
-        
-
-                    
-                </tbody>
-
-            </table>
-            {{ $details->links() }}
+        </tbody>
+    </table>
+{{ $details->links() }}
  
 
             

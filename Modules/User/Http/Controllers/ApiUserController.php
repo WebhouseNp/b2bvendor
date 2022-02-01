@@ -180,7 +180,7 @@ class ApiUserController extends Controller
         $data['activation_link'] = Str::random(63);
         $data['otp'] =  random_int(100000, 999999);
 
-        $data['name'] = $request->company_name;
+        $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['password'] = bcrypt($request->password);
         $userExist = User::create($data);
