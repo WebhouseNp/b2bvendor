@@ -27,10 +27,10 @@
                     <div class="card-body">
                         <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
                         <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $vendor->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->email}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->company_address}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->vendor->company_email}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->phone_num}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Product Category:</strong> @foreach($vendor->vendor->product_category as $cat)
                             {{$cat}}
@@ -42,12 +42,9 @@
                                     <strong>Vendor status</strong>
                                 </label>
                                 <select name="vendor_type" id="vendor_status" class="form-control ">
-                                    <!-- <option value="new" >New</option> -->
                                     <option value="new" @if ($vendor->vendor_type=="new"){{"selected"}} @endif>New</option>
                                     <option value="approved" @if ($vendor->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
                                     <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
-                                    <!-- <option value="approved" >Approve</option>
-                                    <option value="suspended" >Suspend</option> -->
                                 </select>
                             </div>
                             <div class="col-lg-6 col-sm-12 form-group">
