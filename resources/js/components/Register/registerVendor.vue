@@ -50,13 +50,13 @@
               <input
                 type="text"
                 class="form-control"
-                v-model="mobile_number"
+                v-model="phone_num"
                 id=""
                 aria-describedby=""
                 placeholder="Enter Your Mobile Number"
               />
                <div class="text-danger">
-               {{ validation_rule.getMessage('mobile_number') }}
+               {{ validation_rule.getMessage('phone_num') }}
              </div>
             </div>
             <div class="form-group">
@@ -141,7 +141,7 @@ export default {
       name: "",
       email: "",
       designation:'',
-      mobile_number:'',
+      phone_num:'',
       password: "",
       confirm_password: "",
       terms: false,
@@ -170,7 +170,7 @@ export default {
           name: this.name,
           email: this.email,
           designation: this.designation,
-          mobile_number: this.mobile_number,
+          phone_num: this.phone_num,
           password: this.password,
           confirm_password: this.confirm_password,
           category: this.vendorinfo.categoryinfo.mainSeller,

@@ -2230,7 +2230,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       name: "",
       email: "",
       designation: '',
-      mobile_number: '',
+      phone_num: '',
       password: "",
       confirm_password: "",
       terms: false,
@@ -2278,7 +2278,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name: _this.name,
                   email: _this.email,
                   designation: _this.designation,
-                  mobile_number: _this.mobile_number,
+                  phone_num: _this.phone_num,
                   password: _this.password,
                   confirm_password: _this.confirm_password,
                   category: _this.vendorinfo.categoryinfo.mainSeller,
@@ -33088,8 +33088,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.mobile_number,
-                        expression: "mobile_number",
+                        value: _vm.phone_num,
+                        expression: "phone_num",
                       },
                     ],
                     staticClass: "form-control",
@@ -33099,13 +33099,13 @@ var render = function () {
                       "aria-describedby": "",
                       placeholder: "Enter Your Mobile Number",
                     },
-                    domProps: { value: _vm.mobile_number },
+                    domProps: { value: _vm.phone_num },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.mobile_number = $event.target.value
+                        _vm.phone_num = $event.target.value
                       },
                     },
                   }),
@@ -33113,9 +33113,7 @@ var render = function () {
                   _c("div", { staticClass: "text-danger" }, [
                     _vm._v(
                       "\n             " +
-                        _vm._s(
-                          _vm.validation_rule.getMessage("mobile_number")
-                        ) +
+                        _vm._s(_vm.validation_rule.getMessage("phone_num")) +
                         "\n           "
                     ),
                   ]),
@@ -34114,7 +34112,7 @@ var render = function () {
                         !_vm.$v.company_address.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    The Shop Name field is required.\n                  "
+                                "\n                    The company address field is required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34307,20 +34305,20 @@ var render = function () {
                               [_vm._v("Select Business Type")]
                             ),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "manufactures" } }, [
-                              _vm._v("Manufactures"),
+                            _c("option", { attrs: { value: "Manufacturer" } }, [
+                              _vm._v("Manufacturer"),
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "wholeseller" } }, [
+                            _c("option", { attrs: { value: "Wholeseller" } }, [
                               _vm._v("Wholeseller"),
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "distributors" } }, [
-                              _vm._v("Distributors"),
+                            _c("option", { attrs: { value: "Distributor " } }, [
+                              _vm._v("Distributor "),
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "traders" } }, [
-                              _vm._v("Traders"),
+                            _c("option", { attrs: { value: "Trader" } }, [
+                              _vm._v("Trader"),
                             ]),
                           ]
                         ),

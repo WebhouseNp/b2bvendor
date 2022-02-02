@@ -60,7 +60,7 @@
                       placeholder=""
                     />
                     <div v-if="!$v.company_address.required" class="invalid-feedback">
-                      The Shop Name field is required.
+                      The company address field is required.
                     </div>
                   </div>
                 </div>
@@ -127,10 +127,10 @@
                     <select class="form-control" v-model.trim="$v.business_type.$model"
                      :class="{ 'is-invalid': validationStatus($v.business_type) }">
                      <option value="" disabled>Select Business Type</option>
-                      <option value="manufactures">Manufactures</option>
-                      <option value="wholeseller">Wholeseller</option>
-                      <option value="distributors">Distributors</option>
-                      <option value="traders">Traders</option>
+                      <option value="Manufacturer">Manufacturer</option>
+                      <option value="Wholeseller">Wholeseller</option>
+                      <option value="Distributor ">Distributor </option>
+                      <option value="Trader">Trader</option>
                     </select>
                     <div
                       v-if="!$v.business_type.required"
