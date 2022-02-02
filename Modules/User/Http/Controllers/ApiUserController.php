@@ -178,11 +178,11 @@ class ApiUserController extends Controller
       $data['username'] = $username;
       $data['activation_link'] = Str::random(63);
       $data['otp'] =  random_int(100000, 999999);
-
       $data['name'] = $request->name;
       $data['designation'] = $request->designation;
       $data['gender'] = $request->gender;
       $data['email'] = $request->email;
+      $data['phone_num'] = $request->phone_num;
       $data['password'] = bcrypt($request->password);
       $userExist = User::create($data);
 
@@ -203,6 +203,7 @@ class ApiUserController extends Controller
       // dd($request->product_category);
       // $formData['product_category'] = json_encode($request->product_category);
       // dd($formData);
+      $formData['phone_number'] = $request->company_phone;
       $vendor = Vendor::create($formData);
       DB::commit();
       Mail::to($request->email)->send(new VendorCreated($vendor));

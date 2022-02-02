@@ -70,7 +70,7 @@
                                                 <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Product Category:</strong> 
                                                     @foreach($user->vendor->product_category as $cat)
-                                                    {{$cat}},
+                                                    {{$cat}}
                                                     @endforeach
                                                 </h4>
                                             </div>

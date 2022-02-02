@@ -33,7 +33,7 @@
                         <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->phone_num}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Product Category:</strong> @foreach($vendor->vendor->product_category as $cat)
-                            {{$cat}},
+                            {{$cat}}
                             @endforeach</h4>
 
                         <div class="row">
@@ -152,7 +152,7 @@
                 <div class="stats">
                     <a href="{{route('vendor.getVendorProfile',$vendor->username)}}" target="_blank">
                         <i class="fa fa-refresh"></i>
-                        View Profile
+                        Edit Profile
                     </a>
                 </div>
             </div>
