@@ -41,6 +41,7 @@
                     <td class="text-muted">Product</td>
                     <td class="text-muted">Unit Price</td>
                     <td class="text-muted">Quantity</td>
+                    <td class="text-muted">Shipping</td>
                     <td class="text-muted text-right">Total</td>
                   </tr>
                 </thead>
@@ -58,11 +59,12 @@
                     </td>
                     <td>{{ formatted_price($dealProduct->unit_price) }}</td>
                     <td>{{ $dealProduct->product_qty }}</td>
-                    <td class="text-right">{{ formatted_price($dealProduct->total_price) }}</td>
+                    <td>{{ formatted_price($dealProduct->shipping_charge ?? 0) }}</td>
+                    <td class="text-right">{{ formatted_price($dealProduct->totalPrice()) }}</td>
                   </tr>
                   @endforeach
                   <tr>
-                    <td colspan="3"></td>
+                    <td colspan="4"></td>
                     <td>
                       <div class="text-muted">Subtotal</div>
                       <div class="text-muted">Shipping Charge</div>

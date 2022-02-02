@@ -50,7 +50,7 @@
                                         <div class="badge badge-primary changeStatus" data-status="{{$orderList->status}}" data-order_id="{{$orderList->id}}">
                                             {{ $orderList->order_status }}
                                         </div>
-                                        @else(auth()->user()->hasAnyRole('super-admin|admin'))
+                                        @else
                                         <div class="badge badge-primary">{{ $orderList->order_status }}</div>
                                         @endif
                                     </div>

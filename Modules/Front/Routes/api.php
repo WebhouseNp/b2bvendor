@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Modules\Front\Http\Controllers\CheckoutController;
 use Modules\Front\Http\Controllers\CustomerApiController;
 use Modules\Front\Http\Controllers\OrderController;
+use Modules\User\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::get('getVendorCategoryProducts/{username}/{slug}', 'FrontController@getVe
 Route::get('/suppliers', 'SearchController@index');
 Route::get('allcategories', 'FrontController@allcategories'); // Not in use since we were pulling a lot more than we need
 Route::get('categories', 'CategoryApiController@index');
+Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 Route::get('megamenu', 'CategoryApiController@megamenu');
 Route::get('hot-categories', 'CategoryApiController@hotCategories');
 
@@ -62,6 +64,8 @@ Route::get('/delete/{id}', [CartController::class, 'DeleteCart'])->name('delete-
 // Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 // Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 
+// customer address
+Route::get('my-address', [ProfileController::class, 'getAddress'])->middleware('auth:api');
 
 // Checkout
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
