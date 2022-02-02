@@ -2899,7 +2899,8 @@ __webpack_require__.r(__webpack_exports__);
       business_type: '',
       country_id: '',
       options: [],
-      value: []
+      value: [],
+      product_category: {}
     };
   },
   validations: {
@@ -2945,7 +2946,9 @@ __webpack_require__.r(__webpack_exports__);
         company_phone: this.company_phone,
         business_type: this.business_type,
         country_id: this.country_id,
-        product_category: this.value
+        product_category: this.value.map(function (element) {
+          return element.name;
+        })
       };
       this.visible = false;
     },

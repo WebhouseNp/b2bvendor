@@ -214,6 +214,7 @@ export default {
       country_id:'',
       options: [],
       value: [],
+      product_category:{},
     };
   },
   validations: {
@@ -228,7 +229,7 @@ export default {
   mounted(){
      axios
       .get('/api/vendor-category')
-      .then(response => (this.options = response.data))
+      .then(response => (this.options = response.data));
   },
 
   methods: {
@@ -247,7 +248,9 @@ export default {
         company_phone: this.company_phone,
         business_type: this.business_type,
         country_id: this.country_id,
-        product_category:this.value,
+        product_category: this.value.map(element =>{
+          return element.name
+        })
       };
       this.visible = false;
     },
