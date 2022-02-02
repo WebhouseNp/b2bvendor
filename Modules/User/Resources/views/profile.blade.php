@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('page_title')Edit Vendor Info @endsection
+@section('styles')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
 <div class="page-content fade-in-up">
     <div class="ibox">
@@ -22,7 +25,7 @@
         <div class="tab-content" id="component-1-content">
             <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
-                <form method="post" action="{{route('updateVendorProfile',$user->vendor->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('vendor.updateVendorDetails',$user->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
 
@@ -30,7 +33,7 @@
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <label><strong>Update Profile Image</strong> </label>
                                         <input id="fileUpload" class="form-control" value="" name="image" type="file">
                                         <br>
@@ -42,38 +45,79 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong>Shop Name</strong> </label>
+                                        <input class="form-control" type="text" value="{{$user->vendor->shop_name}}" name="shop_name" placeholder="Enter Shop Name Here">
+                                    </div>
 
-                                    <div class="col-md-7">
-                                        <div class="card profile-card border-0 bg-transparent">
-                                            <div class="card-body">
-                                                <h3 class="profile-card-title">{{ucfirst($user->vendor->shop_name)}}</h3>
-                                                <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $user->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$user->vendor->company_email}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$user->vendor->company_address}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$user->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->company_phone}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong> Product Category:</strong>
-                                                    @foreach($user->vendor->product_category as $cat)
-                                                    {{$cat->name}},
-                                                    @endforeach
-                                                </h4>
-                                                <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Country:</strong> {{ucfirst(@$user->vendor->country->name)}}</h4>
-                                            </div>
-                                        </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong>Company Email</strong> </label>
+                                        <input class="form-control" type="text" value="{{$user->vendor->company_email}}" name="company_email" placeholder="Enter Company Email Here">
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong>Company Address</strong> </label>
+                                        <input class="form-control" type="text" value="{{$user->vendor->company_address}}" name="company_address" placeholder="Enter Company Address Here">
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong>Phone Number</strong> </label>
+                                        <input class="form-control" type="text" value="{{$user->vendor->phone_number}}" name="phone_number" placeholder="Enter Phone Number Here">
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label for="country_id">Country: </label>
+                                        <select class="form-control select_group" id="country_id" name="country_id" style="width: 100%">
+                                            @foreach($countries as $item)
+                                            <option value="{{$item->id}}">
+                                                {{$item->name}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label for="business_type">Business Type: </label>
+                                        <select class="form-control select_group" id="business_type" name="business_type" style="width: 100%">
+                                            @foreach(config('constants.business_type') as $item)
+                                            <option value="{{$item}}">
+                                                {{ucfirst($item)}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label for="plan">Plan: </label>
+                                        <select class="form-control select_group" id="plan" name="plan" style="width: 100%">
+                                            <option value="standard_plan" @if ($user->vendor->plan=="standard_plan"){{"selected"}} @endif>Standard Plan </option>
+                                            <option value="premium_plan" @if ($user->vendor->plan=="premium_plan"){{"selected"}} @endif>Premium Plan </option>
+                                            <option value="basic_plan" @if ($user->vendor->plan=="basic_plan"){{"selected"}} @endif>Basic Plan </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label for="category">Select Category: </label>
+                                        <select class="form-control select_group" id="category" name="category" style="width: 100%">
+                                            <option value="local_seller" @if ($user->vendor->category=="local_seller"){{"selected"}} @endif>Local Seller </option>
+                                            <option value="international_seller" @if ($user->vendor->category=="international_seller"){{"selected"}} @endif>International Seller </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-12 col-sm-12 form-group">
+                                        <label for="category_id">Category: </label><span> multiple select</span>
+                                        <select class="form-control select_group" id="category_id" name="product_category[]" multiple style="width: 100%">
+                                            @foreach($categories as $item)
+                                            <option value="{{$item->name}}">
+                                                {{$item->name}}
+                                            </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-
-                            <!-- <div class="col-lg-6 col-sm-12 form-group">
-                                <label>Email</label>
-                                <input class="form-control" type="text" value="{{$user->vendor->shop_name}}" name="shop_name" placeholder="Name">
-                            </div> -->
-
-
                             <div class="col-lg-12 col-sm-12 form-group">
                                 <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update Profile</button>
                             </div>
@@ -83,7 +127,7 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
-                <form method="post" action="{{route('updateVendorDesc',$user->vendor->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('vendor.updateVendorDescription',$user->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <div class="ibox-body">
@@ -101,7 +145,7 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="component-1-3" role="tabpanel" aria-labelledby="component-1-3">
-                <form method="post" action="{{route('updateUserDesc',$user->vendor->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('vendor.updateUserDesc',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <div class="ibox-body">
@@ -132,7 +176,7 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="component-1-4" role="tabpanel" aria-labelledby="component-1-4">
-                <form method="post" action="{{route('updateVendorBankDetails',$user->vendor->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('vendor.updateVendorBankDetails',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <div class="ibox-body">
@@ -175,7 +219,48 @@
 
 @endsection
 
-@section('scripts')
+@push('push_scripts')
+@include('dashboard::admin.layouts._partials.imagepreview')
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description'])
-@endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#category_id').select2();
+
+        $('#category_id option[selected]').remove();
+    });
+</script>
+<script>
+    $(document).ready(function() {
+
+        $("#imageUpload").on('change', function() {
+
+            if (typeof(FileReader) != "undefined") {
+
+                var image_holder = $("#bank-info-image-holder");
+
+                $("#bank-info-image-holder").children().remove();
+
+                var reader = new FileReader();
+                reader.onload = function(e) {
+
+                    $("<img />", {
+                        "src": e.target.result,
+                        "class": "thumb-image",
+                        "width": '100%',
+                        "height": '50%'
+                    }).appendTo(image_holder);
+
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[0]);
+            } else {
+                alert("This browser does not support FileReader.");
+            }
+        });
+
+    });
+</script>
+@endpush
