@@ -3,6 +3,7 @@
 namespace Modules\Deal\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Front\Transformers\ProductResource;
 
 class DealResource extends JsonResource
 {
@@ -41,6 +42,7 @@ class DealResource extends JsonResource
                 'shipping_charge' =>  $dealProduct->shipping_charge ?? 0,
                 'total_price' =>  $dealProduct->totalPrice(),
                 'title' => $dealProduct->product ? $dealProduct->product->title : 'N/A',
+                'product' => $dealProduct->product ? ProductResource::make($dealProduct->product) : [],
             ];
         });
     }

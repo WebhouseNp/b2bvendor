@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Deal\Entities\Deal;
+use Modules\Deal\Transformers\DealCollection;
 use Modules\Deal\Transformers\DealResource;
 use Modules\Product\Entities\Product;
 
@@ -40,6 +41,13 @@ class DealApiController extends Controller
             });
         return response()->json(['data' => $products]);
     }
+
+    public function index()
+    {
+        $deals = Deal::where('customer_id', Auth::id())->latest()->paginate();
+
+        return new DealCollection($deals);
+    }  
 
     public function show(Deal $deal)
     {
