@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AccountActivated extends Mailable
+class VendorStatusChanged extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,7 +17,6 @@ class AccountActivated extends Mailable
      *
      * @return void
      */
-    public $user;
     public function __construct(User $user)
     {
         $this->user = $user;
@@ -30,9 +29,10 @@ class AccountActivated extends Mailable
      */
     public function build()
     {
-        return $this->subject('Email Verified')->view('email.account-activation-mail-reply')
+        return $this->markdown('email.vendors.vendor-status')
         ->with([
-            'name' => $this->user->name,
+            'status' => $this->user->vendor_type,
+            'name' => $this->user->vendor->shop_name,
         ]);
     }
 }

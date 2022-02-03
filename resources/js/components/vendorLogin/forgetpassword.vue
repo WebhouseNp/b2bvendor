@@ -13,9 +13,6 @@
       <div class="row">
         <div class="col-md-6 m-auto">
           <div class="otp-form-wrapper">
-            <div style="text-align: center; front-size: 20px" v-if="loading">
-              Sending....
-            </div>
             <h3 class="text-center">Password Reset</h3>
             <p class="otp-verification-status">
               We'll sent you password reset link in this email
@@ -35,9 +32,8 @@
                   {{ validation.getMessage("email") }}
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary btn-block">
-                Send
-              </button>
+               <loading-button type="submit" class="btn btn-primary btn-block" 
+                 :loading="loading">{{ loading ? 'Please wait' : 'Send' }}</loading-button>
             </form>
           </div>
         </div>
@@ -50,8 +46,10 @@
 import axios from "axios";
 import validation from "./../../services/validation";
 import swal from 'sweetalert';
+import LoadingButton from "../LoadingButton.vue";
 export default {
   name: "Forgot",
+  components:{LoadingButton},
   data() {
     return {
       validation: new validation(),

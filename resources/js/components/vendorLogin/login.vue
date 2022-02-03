@@ -59,7 +59,6 @@
                 <div class="col-md-4">
                     <div class="vendor-sign-in-form">
                        <error v-if="error" :error="error"/>
-                        <div style="text-align:center; front-size: 20px;" v-if="loading">loading....</div>
                         <form class="vendor-form"  @submit.prevent="onSubmit()">
                             <Input
                               label="Username"
@@ -81,7 +80,8 @@
                                  style="margin-left:0; margin-top: 6px;">
                                 <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
+                             <loading-button type="submit" class="btn btn-primary mt-4" 
+                              :loading="loading">{{ loading ? 'Please wait' : 'Sign In' }}</loading-button>
                         </form>
                         <div class="vendor-form-bt">
                             <a href="javascript:void(0)" @click="onClickSingup"> New around here? Sign Up</a><br>
@@ -101,10 +101,11 @@ import Input from "../vendorLogin/Input.vue";
 import axios from 'axios';
 import error from '../vendorLogin/Error.vue'
 import validation from "./../../services/validation";
+import LoadingButton from "../LoadingButton.vue";
 
 export default {
   name: "login",
-  components: { Input, error },
+  components: { Input, error, LoadingButton },
   data() {
     return {
          validation: new validation(),

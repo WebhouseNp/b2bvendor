@@ -7,7 +7,7 @@
     <div class="ibox">
         <div class="ibox-head">
 
-            <div class="ibox-title"> {{ucfirst($vendor->vendor->shop_name)}} Profile Details</div>
+            <div class="ibox-title"> Profile Details</div>
 
         </div>
     </div>
@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
                         <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $vendor->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->email}}</h4>
+                        <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->vendor->company_email}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $vendor->vendor->plan=="basic_plan" ? 'Basic Plan' :$vendor->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
                         <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
@@ -35,7 +35,7 @@
                         <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
                             @foreach($vendor->vendor->product_category as $cat)
-                            {{$cat->name}},
+                            {{$cat}}
                             @endforeach
                         </h4>
                         <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($vendor->vendor->business_type)}}</h4>
