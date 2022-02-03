@@ -290,15 +290,8 @@
         </div>
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
-        <button type="submit" class="btn btn-primary">
-          Submit
-          <span class="crateDealLoader" v-show="loadingCreateDeal"
-            ><i
-              class="fa fa-circle-o-notch"
-              v-bind:class="{ 'animate-spin': loadingCreateDeal }"
-            ></i
-          ></span>
-        </button>
+       <loading-button type="submit" class="btn btn-primary btn-signup" 
+             :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
       </div>
     </form>
   </div>
@@ -310,6 +303,7 @@ import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import axios from "axios";
+import LoadingButton from "../LoadingButton.vue";
 import Multiselect from "vue-multiselect";
 const mustBePositive = (value) => !helpers.req(value) || value >= 0;
 export default {
@@ -317,10 +311,11 @@ export default {
   components: {
     DatePicker,
     Multiselect,
+    LoadingButton,
   },
   data() {
     return {
-      loadingCreateDeal: false,
+      loading: false,
       showTimePanel: false,
       //select search product state
       invoice_products: [
@@ -484,7 +479,7 @@ export default {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       try {
-        this.loadingCreateDeal = true;
+        this.loading = true;
         const response = await axios.put(
           `/api/deals/${this.deal.id}`,
           {
@@ -494,7 +489,7 @@ export default {
             invoice_products: this.invoice_products,
           }
         );
-        this.loadingCreateDeal = false;
+        this.loading = false;
         if (response.status === 200) {
           swal("Done!", "Your deal is updated!", "success");
           window.location.href = "/user/deals"

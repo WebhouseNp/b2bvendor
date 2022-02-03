@@ -5,6 +5,7 @@ namespace Modules\User\Http\Controllers;
 use App\Mail\AccountActivated;
 use App\Mail\PasswordReset;
 use App\Mail\VendorCreated;
+use App\Mail\VendorStatusChanged;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -48,10 +49,11 @@ class ApiUserController extends Controller
     }
     $user = User::find($request->vendor_id);
     if (!$user) {
-      return response()->json(['status' => false, 'message' => ['Invalid Order id or order not found.']]);
+      return response()->json(['status' => false, 'message' => ['Invalid vendor id or vendor not found.']]);
     }
     $user->update($data);
     $success = $user->save();
+    Mail::to($user->email)->send(new VendorStatusChanged($user));
     return response()->json(['status' => true, 'message' => "Vendor updated Successfully.", 'data' => $user]);
   }
 
@@ -204,6 +206,7 @@ class ApiUserController extends Controller
       // $formData['product_category'] = json_encode($request->product_category);
       // dd($formData);
       $formData['phone_number'] = $request->company_phone;
+      // $formData['company_address'] = $request->company_address;
       $vendor = Vendor::create($formData);
       DB::commit();
       Mail::to($request->email)->send(new VendorCreated($vendor));

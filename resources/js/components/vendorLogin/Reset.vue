@@ -11,9 +11,6 @@
     </div>
     <div class="row">
       <div class="col-md-6 m-auto login-row" style="padding: 30px 26px">
-        <div style="text-align: center; front-size: 20px" v-if="loading">
-          loading....
-        </div>
         <h4 class="text-center">Reset new password</h4>
         <form @submit.prevent="submitData">
           <div class="form-group">
@@ -48,9 +45,8 @@
             </div>
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-signup">
-              Submit
-            </button>
+             <loading-button type="submit" class="btn btn-primary btn-signup" 
+             :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
           </div>
         </form>
       </div>
@@ -63,9 +59,11 @@
 import axios from "axios";
 import swal from "sweetalert";
 import { required, sameAs, minLength } from "vuelidate/lib/validators";
+import LoadingButton from "../LoadingButton.vue";
 export default {
   name: "registor",
   props: ["token"],
+  components:{LoadingButton},
   data() {
     return {
       password: "",
