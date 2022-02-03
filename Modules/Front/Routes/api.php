@@ -3,19 +3,8 @@
 use Illuminate\Http\Request;
 use Modules\Front\Http\Controllers\CheckoutController;
 use Modules\Front\Http\Controllers\CustomerApiController;
-use Modules\Front\Http\Controllers\OrderController;
+use Modules\Front\Http\Controllers\OrderApiController;
 use Modules\User\Http\Controllers\ProfileController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::middleware('auth:api')->get('/front', function (Request $request) {
     return $request->user();
@@ -69,7 +58,7 @@ Route::get('my-address', [ProfileController::class, 'getAddress'])->middleware('
 
 // Checkout
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
-Route::get('customer/orders', [OrderController::class, 'index'])->middleware('auth:api');
+Route::get('customer/orders', [OrderApiController::class, 'index'])->middleware('auth:api');
 
 //category for vendor
 Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');

@@ -17,13 +17,12 @@ class DealApiController extends Controller
     public function customerSearch()
     {
         // TODO::must be a vendor
-        $users = User::
-            where('name', 'like', request('q') . '%')
+        $users = User::where('name', 'like', request('q') . '%')
             // ->orWhere('email', 'like', request('q') . '%')
-            ->
-            select('id', 'name', 'email')
+            ->select('id', 'name', 'email')
             ->whereHas(
-                'roles', function($q){
+                'roles',
+                function ($q) {
                     $q->where('slug', 'customer');
                 }
             )
@@ -44,10 +43,24 @@ class DealApiController extends Controller
 
     public function index()
     {
-        $deals = Deal::where('customer_id', Auth::id())->latest()->paginate();
+        $deals = Deal::where('customer_id', Auth::id())
+            ->when(request()->filled('status'), function ($query) {
+                switch (request('status')) {
+                    case 'completed':
+                        return $query->whereNotNull('completed_at');
+                        break;
+                    case 'expired':
+                        return $query->where('expire_at', '<', now());
+                        break;
+                    default:
+                        break;
+                }
+            })
+            ->latest()
+            ->paginate();
 
         return new DealCollection($deals);
-    }  
+    }
 
     public function show(Deal $deal)
     {
