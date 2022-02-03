@@ -54,7 +54,8 @@ class ProductApiController extends Controller
             ->approved()
             ->firstOrFail();
 
-        $product->load(['category', 'ranges', 'productimage']);
+        $product->load(['category', 'ranges', 'productimage', 'user.vendor']);
+        // return $product;
 
         return ProductResource::make($product);
     }
