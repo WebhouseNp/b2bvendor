@@ -3,14 +3,14 @@
 @section('content')
 @include('admin.section.notifications')
 @if($errors->any())
-    <div class="alert alert-danger">
-        <p><strong>Opps Something went wrong</strong></p>
-        <ul>
+<div class="alert alert-danger">
+    <p><strong>Opps Something went wrong</strong></p>
+    <ul>
         @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+        <li>{{ $error }}</li>
         @endforeach
-        </ul>
-    </div>
+    </ul>
+</div>
 @endif
 <div class="page-content fade-in-up">
     <div class="ibox">
@@ -59,18 +59,24 @@
                                             <div class="card-body">
                                                 <h3 class="profile-card-title">{{ucfirst($user->vendor->shop_name)}}</h3>
                                                 <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $user->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Email:</strong> 
+                                                <h4 class="profile-card-subtitle"><strong>Email:</strong>
                                                     <input class="form-control form-control-sm" type="text" value="{{$user->vendor->company_email}}" name="company_email" placeholder="Company Email Here ">
                                                 </h4>
                                                 <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$user->vendor->company_address}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$user->vendor->country->name}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$user->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->company_phone}}</h4>
+                                                <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$user->vendor->phone_number}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
-                                                <h4 class="profile-card-subtitle"><strong>Product Category:</strong> 
+                                                <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
                                                     @foreach($user->vendor->product_category as $cat)
+                                                    @if(!$loop->last)
+                                                    {{$cat}},
+                                                    @endif
+                                                    
+                                                    @if($loop->last)
                                                     {{$cat}}
+                                                    @endif
                                                     @endforeach
                                                 </h4>
                                             </div>
@@ -200,36 +206,34 @@
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description'])
 <script>
+    $(document).ready(function() {
 
-$(document).ready(function() {
+        $("#imageUpload").on('change', function() {
 
-  $("#imageUpload").on('change', function () {
+            if (typeof(FileReader) != "undefined") {
 
-    if (typeof (FileReader) != "undefined") {
+                var image_holder = $("#bank-info-image-holder");
 
-     var image_holder = $("#bank-info-image-holder");
+                $("#bank-info-image-holder").children().remove();
 
-     $("#bank-info-image-holder").children().remove();
+                var reader = new FileReader();
+                reader.onload = function(e) {
 
-     var reader = new FileReader();
-     reader.onload = function (e) {
+                    $("<img />", {
+                        "src": e.target.result,
+                        "class": "thumb-image",
+                        "width": '100%',
+                        "height": '50%'
+                    }).appendTo(image_holder);
 
-         $("<img />", {
-             "src": e.target.result,
-             "class": "thumb-image",
-             "width" : '100%',
-             "height" : '50%'
-         }).appendTo(image_holder);
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[0]);
+            } else {
+                alert("This browser does not support FileReader.");
+            }
+        });
 
-     }
-     image_holder.show();
-     reader.readAsDataURL($(this)[0].files[0]);
- } else {
-     alert("This browser does not support FileReader.");
- }
-});
-
-});
-
+    });
 </script>
 @endpush

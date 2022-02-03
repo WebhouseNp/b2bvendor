@@ -30,7 +30,7 @@ class AccountActivated extends Mailable
      */
     public function build()
     {
-        return $this->view('email.account-activation-mail-reply')
+        return $this->subject('Email Verified')->view('email.account-activation-mail-reply')
         ->with([
             'name' => $this->user->name,
         ]);

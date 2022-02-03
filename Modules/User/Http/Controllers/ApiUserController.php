@@ -236,7 +236,8 @@ class ApiUserController extends Controller
       $user->fill($data);
       $success = $user->save();
       if ($success) {
-        Mail::to($request->email)->send(new AccountActivated($user));
+        Mail::to($user->email)->send(new AccountActivated($user));
+        // return redirect()->to('/vendor-login');
         return response()->json([
           "message" => "Thank You ! Your Account Has been Activated. You can login your account now",
         ], 200);
