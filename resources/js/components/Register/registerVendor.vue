@@ -12,9 +12,6 @@
       </div>
       <div class="row">
         <div class="col-md-6 m-auto login-row" style="padding: 30px 26px">
-          <div style="text-align: center; front-size: 20px" v-if="loading">
-            loading....
-          </div>
           <h4 class="text-center">User Info</h4>
           <form @submit.prevent="submitData">
             <div class="form-group">
@@ -112,9 +109,8 @@
               <p>Note: For verification please provide business related document to us through mail.</p>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary btn-signup">
-                Sign Up
-              </button>
+              <loading-button type="submit" class="btn btn-primary mt-4" 
+             :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
             </div>
           </form>
         </div>
@@ -130,11 +126,12 @@ import axios from "axios";
 import validation from "./../../services/validation";
 import swal from "sweetalert";
 import { sameAs} from "vuelidate/lib/validators";
-
+import LoadingButton from "../LoadingButton.vue";
 
 export default {
   props: ["vendorinfo"],
   name: "registor",
+  components:{LoadingButton},
   data() {
     return {
       validation_rule: new validation(),
