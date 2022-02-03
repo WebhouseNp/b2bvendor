@@ -17,6 +17,7 @@
             <div> Dear {{$name}}, </div>
             <div> Your email address has been verified successfully and you will be able to login once your account is approved by the admin.
             </div>
+            <br>
             <div>Thanks, <br>
                 Sasto WholeSale</div>
         </div>

@@ -60,7 +60,7 @@
                                                 <h3 class="profile-card-title">{{ucfirst($user->vendor->shop_name)}}</h3>
                                                 <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $user->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Email:</strong> 
-                                                    <input class="form-control form-control-sm type="text" value="{{$user->vendor->company_email}}" name="company_email" placeholder="Company Email Here ">
+                                                    <input class="form-control form-control-sm" type="text" value="{{$user->vendor->company_email}}" name="company_email" placeholder="Company Email Here ">
                                                 </h4>
                                                 <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$user->vendor->company_address}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$user->vendor->country->name}}</h4>
@@ -70,7 +70,7 @@
                                                 <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Product Category:</strong> 
                                                     @foreach($user->vendor->product_category as $cat)
-                                                    {{$cat->name}},
+                                                    {{$cat}}
                                                     @endforeach
                                                 </h4>
                                             </div>
