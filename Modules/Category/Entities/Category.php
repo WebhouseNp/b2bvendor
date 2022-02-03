@@ -7,6 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Modules\Subcategory\Entities\Subcategory;
 use Modules\ProductAttribute\Entities\CategoryAttribute;
 use Modules\Product\Entities\Product;
+use Modules\User\Entities\Vendor;
 
 class Category extends Model
 {
@@ -31,6 +32,11 @@ class Category extends Model
         }
 
         return asset('images/listing/' . $this->image);
+    }
+
+    public function vendors()
+    {
+        return $this->belongsToMany(Vendor::class, 'category_vendors', 'category_id', 'vendor_id');
     }
 
     public function subcategory()

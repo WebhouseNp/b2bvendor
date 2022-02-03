@@ -240,6 +240,7 @@ class ApiUserController extends Controller
       $success = $user->save();
       if ($success) {
         Mail::to($user->email)->send(new AccountActivated($user));
+        return view('email-verified');
         // return redirect()->to('/vendor-login');
         return response()->json([
           "message" => "Thank You ! Your Account Has been Activated. You can login your account now",
@@ -251,6 +252,7 @@ class ApiUserController extends Controller
       ], 400);
     }
   }
+  
 
   public function verifificationCode(Request $request)
   {

@@ -74,6 +74,8 @@ class VendorManagementController extends Controller
                $formInput['image'] = $image;
             }
          }
+         $formInput['business_type'] = $request->business_type;
+         // dd($formInput);
         //  $r = json_encode($request->product_category);
         //  dd(json_encode($request->product_category), json_encode($request->cat));
          $oldRecord->update($formInput);
@@ -122,7 +124,7 @@ class VendorManagementController extends Controller
           'phone_num' => 'required',
           'designation' => 'required',
        ]);
-       $formInput = $request->except(['_token','email']);
+       $formInput = $request->except(['_token']);
        $vendor->user->update($formInput);
        return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
     }
