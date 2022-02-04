@@ -4,7 +4,25 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('content')
+@include('admin.section.notifications')
+@if($errors->any())
+<div class="alert alert-danger">
+    <p><strong>Opps Something went wrong</strong></p>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="page-content fade-in-up">
+    <div class="ibox">
+        <div class="ibox-head">
+
+            <div class="ibox-title"> Edit Profile</div>
+
+        </div>
+    </div>
     <div class="ibox">
         <div class="ibox-head">
             <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">

@@ -27,8 +27,10 @@ class VendorController extends Controller
    }
    public function profile()
    {
-      $id = Auth::user()->id;
-      $vendor = User::where('id', Auth::user()->id)->with('vendor', 'products', 'vendor_payments')->first();
+      $id = auth()->user()->id;
+      $user = auth()->user();
+      $vendor = $user->load('vendor','products');
+      // $vendor = User::where('id', Auth::user()->id)->with('vendor', 'products', 'vendor_payments')->first();
       // $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
       // $paid = $vendor->vendor_payments->sum('amount');
       return view('user::vendor-profile', compact('id', 'vendor'));
@@ -36,7 +38,9 @@ class VendorController extends Controller
 
    public function editVendorProfile(Request $request, $id)
    {
-      $user = User::where('id', Auth::user()->id)->with('vendor')->first();
+      $user = auth()->user();
+      $user->load('vendor');
+      // $user = User::where('id', Auth::user()->id)->with('vendor')->first();
       $countries = Country::where('publish', 1)->get();
       return view('user::edit-profile', compact('user', 'countries'));
    }

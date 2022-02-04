@@ -58,8 +58,8 @@ class VendorManagementController extends Controller
         $request->validate([
             'shop_name' => 'required',
             'company_email' => 'required',
-            'company_phone' => 'required',
-            'product_category' => 'required',
+            'phone_number' => 'required',
+            'product_category' => 'nullable',
             'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
          ]);
          $oldRecord = Vendor::where('user_id',$id)->first();

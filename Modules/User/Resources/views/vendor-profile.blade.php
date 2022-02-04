@@ -51,8 +51,7 @@
                                         <div class="card-body">
                                             <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
                                             <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $vendor->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                                            <h4 class="profile-card-subtitle"><strong>Email:</strong>
-                                                <input class="form-control form-control-sm" type="text" value="{{$vendor->vendor->company_email}}" name="company_email" placeholder="Company Email Here ">
+                                            <h4 class="profile-card-subtitle"><strong>Email:</strong>{{$vendor->vendor->company_email}}
                                             </h4>
                                             <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
                                             <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
@@ -103,7 +102,7 @@
                                     <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
                                     <h4 class="profile-card-subtitle"><strong>Bank Name:</strong> {{$vendor->vendor->bank_name}}</h4>
                                     <h4 class="profile-card-subtitle"><strong>Branch Name:</strong>{{$vendor->vendor->branch_name}}</h4>
-                                    <h4 class="profile-card-subtitle"><strong>Account Name:</strong> {{$vendor->vendor->account_number}}</h4>
+                                    <h4 class="profile-card-subtitle"><strong>Account Number:</strong> {{$vendor->vendor->account_number}}</h4>
                                     <h4 class="profile-card-subtitle"><strong>Account Holder's Name:</strong> {{$vendor->vendor->name_on_bank_acc}}</h4>
                                 </div>
                             </div>

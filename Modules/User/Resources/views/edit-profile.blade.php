@@ -15,6 +15,13 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
+
+            <div class="ibox-title"> Edit Profile</div>
+
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-head">
             <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true"><strong>Business Information</strong></a>
@@ -73,7 +80,7 @@
                                                     @if(!$loop->last)
                                                     {{$cat}},
                                                     @endif
-                                                    
+
                                                     @if($loop->last)
                                                     {{$cat}}
                                                     @endif
@@ -195,6 +202,9 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class=" bg-light text-center">
+            <h5>Note:: Please Contact Admin to update uneditable Information!</h5>
         </div>
     </div>
 </div>
