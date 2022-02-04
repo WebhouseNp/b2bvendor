@@ -46,7 +46,7 @@ class VendorController extends Controller
       $request->validate([
          'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
       ]);
-      $oldRecord = Vendor::findorfail($id);
+      $oldRecord = Vendor::where('id',auth()->user()->vendor->id)->first();
 
       $formInput = $request->except(['image']);
       if ($request->hasFile('image')) {
@@ -67,7 +67,7 @@ class VendorController extends Controller
       $request->validate([
          'description' => 'required',
       ]);
-      $oldRecord = Vendor::findorfail($id);
+      $oldRecord = Vendor::where('id',auth()->user()->vendor->id)->first();
       $formInput = $request->except(['_token']);
       $oldRecord->update($formInput);
       return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
@@ -82,10 +82,11 @@ class VendorController extends Controller
          'name_on_bank_acc' => 'nullable',
          'bank_info_image' => 'mimes:jpg,png,jpeg,gif|max:3048',
       ]);
-      if($vendor->bank_name && $vendor->account_number && $vendor->branch_name && $vendor->name_on_bank_acc){
+      if($vendor->bank_name && $vendor->account_number && $vendor->branch_name && $vendor->name_on_bank_acc && $vendor->bank_info_image){
          return redirect()->back()->with('error', 'Please Contact Admin for updating Your Bank Details.');
       }
       $value = $request->except(['bank_info_image','token']);
+      $vendor = Vendor::where('id',auth()->user()->vendor->id)->first();
       if ($request->hasFile('bank_info_image')) {
          if ($vendor->bank_info_image) {
             $this->unlinkImage($vendor->bank_info_image);
@@ -108,11 +109,10 @@ class VendorController extends Controller
          'designation' => 'required',
       ]);
       $formInput = $request->except(['_token','email']);
+      $vendor = Vendor::where('id',auth()->user()->vendor->id)->first();
       $vendor->user->update($formInput);
       return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
-
-
 
    public function imageProcessing($type, $image)
    {

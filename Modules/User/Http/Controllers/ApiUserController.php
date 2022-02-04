@@ -252,7 +252,6 @@ class ApiUserController extends Controller
       ], 400);
     }
   }
-  
 
   public function verifificationCode(Request $request)
   {
