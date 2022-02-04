@@ -22,7 +22,6 @@ Route::post('/vendor/update-password', 'ApiUserController@updatePassword')->name
 Route::post('/vendor/login','ApiUserController@login')->name('vendor.login');
 Route::get('account-activate/{link}', [ApiUserController::class, 'verifyNewAccount'])->name('verifyNewAccount');
 Route::get('reset-password/{token}', 'PasswordResetController@passwordResetForm')->name('passwordResetForm');
-
 Route::prefix('admin')->name('vendor.')->middleware(['auth','Superadmin'])->group(function(){
 Route::get('approved-vendors', 'VendorManagementController@getApprovedVendors')->name('getApprovedVendors');
 Route::get('suspended-vendors', 'VendorManagementController@getSuspendedVendors')->name('getSuspendedVendors');

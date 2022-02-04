@@ -32,7 +32,10 @@
                     <th>Hot Category</td>
                     <th>Featured</td>
                     <th>Contain Subcategory</td>
-                        @if( auth()->user()->hasAnyRole('super_admin|admin'))
+                    @if( auth()->user()->hasRole('vendor'))
+                    <th>Publish</th>
+                    @endif
+                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <th>Publish</th>
                     <th>Action</th>
                     @endif
@@ -54,6 +57,12 @@
                     <td>{{ $detail->hot_category == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->is_featured == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->does_contain_sub_category == 1 ? 'Yes' : 'No' }}</td>
+                    @if( auth()->user()->hasRole('vendor'))
+                    <td><div class="badge badge-primary text-capitalize">
+                        {{ $detail->publish == 1 ? 'Published' : 'Not Published' }}
+                        </div>
+                    </td>
+                    @endif
                     @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <td>
                         <input type="checkbox" class="CategoryStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->publish == 1) checked @endif>

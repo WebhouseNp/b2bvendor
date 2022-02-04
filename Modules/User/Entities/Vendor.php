@@ -7,6 +7,7 @@ use  Modules\Order\Entities\Order;
 use  Modules\Product\Entities\Product;
 use Modules\Country\Entities\Country;
 use App\Models\User;
+use Modules\Category\Entities\Category;
 
 class Vendor extends Model
 {
@@ -29,6 +30,11 @@ class Vendor extends Model
         }
 
         return asset('images/listing/' . $this->image);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_vendors', 'category_id', 'vendor_id');
     }
 
     public function user()

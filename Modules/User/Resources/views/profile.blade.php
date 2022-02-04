@@ -4,7 +4,25 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('content')
+@include('admin.section.notifications')
+@if($errors->any())
+<div class="alert alert-danger">
+    <p><strong>Opps Something went wrong</strong></p>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="page-content fade-in-up">
+    <div class="ibox">
+        <div class="ibox-head">
+
+            <div class="ibox-title"> Edit Profile</div>
+
+        </div>
+    </div>
     <div class="ibox">
         <div class="ibox-head">
             <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">
@@ -69,7 +87,7 @@
                                         <label for="country_id">Country: </label>
                                         <select class="form-control select_group" id="country_id" name="country_id" style="width: 100%">
                                             @foreach($countries as $item)
-                                            <option value="{{$item->id}}">
+                                            <option value="{{$item->id}}" @if ($user->vendor->country_id==$item->id){{"selected"}} @endif>
                                                 {{$item->name}}
                                             </option>
                                             @endforeach
@@ -80,7 +98,7 @@
                                         <label for="business_type">Business Type: </label>
                                         <select class="form-control select_group" id="business_type" name="business_type" style="width: 100%">
                                             @foreach(config('constants.business_type') as $item)
-                                            <option value="{{$item}}">
+                                            <option value="{{$item}}" @if ($user->vendor->business_type==$item){{"selected"}} @endif>
                                                 {{ucfirst($item)}}
                                             </option>
                                             @endforeach
@@ -182,15 +200,20 @@
                     <div class="ibox-body">
                         <div class="row">
                             <div class="col-lg-8 col-sm-12 form-group">
-                                <label><strong> Name </strong></label>
+                                <label><strong>Bank Name </strong></label>
                                 <input class="form-control" type="text" value="{{$user->vendor->bank_name}}" name="bank_name" placeholder="Enter Bank Name Here">
+                            </div>
+
+                            <div class="col-lg-8 col-sm-12 form-group">
+                                <label><strong>Branch Name </strong></label>
+                                <input class="form-control" type="text" value="{{$user->vendor->branch_name}}" name="branch_name" placeholder="Enter Branch Name Here">
                             </div>
                             <div class="col-lg-8 col-sm-12 form-group">
                                 <label><strong>Account Number </strong> </label>
                                 <input class="form-control" type="text" value="{{$user->vendor->account_number}}" name="account_number" placeholder="Enter your Account Number">
                             </div>
                             <div class="col-lg-8 col-sm-12 form-group">
-                                <label><strong> Name On Bank Account </strong></label>
+                                <label><strong> Account Holder's Name</strong></label>
                                 <input class="form-control" type="text" value="{{$user->vendor->name_on_bank_acc}}" name="name_on_bank_acc" placeholder="Enter your Name on Bank Account">
                             </div>
                             <div class="col-md-5">
