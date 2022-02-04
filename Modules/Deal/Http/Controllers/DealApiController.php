@@ -47,7 +47,7 @@ class DealApiController extends Controller
             ->when(request()->filled('status'), function ($query) {
                 switch (request('status')) {
                     case 'available':
-                        return $query->where('expire_at', '>', now())->whereNotNull('completed_at');
+                        return $query->where('expire_at', '>', now())->whereNull('completed_at');
                         break;
                     case 'completed':
                         return $query->whereNotNull('completed_at');
