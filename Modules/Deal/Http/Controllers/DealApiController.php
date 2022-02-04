@@ -43,9 +43,12 @@ class DealApiController extends Controller
 
     public function index()
     {
-        $deals = Deal::where('customer_id', Auth::id())
+        $deals = Deal::with('vendor')->where('customer_id', Auth::id())
             ->when(request()->filled('status'), function ($query) {
                 switch (request('status')) {
+                    case 'available':
+                        return $query->where('expire_at', '>', now())->whereNull('completed_at');
+                        break;
                     case 'completed':
                         return $query->whereNotNull('completed_at');
                         break;

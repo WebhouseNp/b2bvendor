@@ -27,6 +27,7 @@ class DealResource extends JsonResource
             'total_price' => $this->totalPrice(),
             'is_available' => $this->isAvailable(),
             'deal_products' => $this->formattedDealProducts(),
+            // 'vendor' => $this->whenLoaded('vendor'),
         ];
     }
 
