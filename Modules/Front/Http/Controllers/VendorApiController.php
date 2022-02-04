@@ -32,6 +32,13 @@ class VendorApiController extends Controller
         return VendorResource::make($vendor);
     }
 
+    public function showByUserId($userId)
+    {
+        $vendor = Vendor::with('user')->where('user_id', $userId)->firstOrFail();
+
+        return VendorResource::make($vendor);
+    }
+
     public function getLatestVendors()
     {
         $vendors = Vendor::whereHas('user', function ($query) {

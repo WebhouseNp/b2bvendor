@@ -20,6 +20,7 @@
         "laravelcollective/html": "^6.2",
         "nwidart/laravel-modules": "^8.2",
         "pusher/pusher-php-server": "^5.0",
+        "sentry/sentry-laravel": "^2.11",
         "spatie/laravel-permission": "^4.0",
         "yubarajshrestha/nchl": "*"
     },

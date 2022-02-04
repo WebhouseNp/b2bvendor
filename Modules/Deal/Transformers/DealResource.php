@@ -3,7 +3,9 @@
 namespace Modules\Deal\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Front\Transformers\CustomerResource;
 use Modules\Front\Transformers\ProductResource;
+use Modules\Front\Transformers\VendorResource;
 
 class DealResource extends JsonResource
 {
@@ -27,7 +29,8 @@ class DealResource extends JsonResource
             'total_price' => $this->totalPrice(),
             'is_available' => $this->isAvailable(),
             'deal_products' => $this->formattedDealProducts(),
-            // 'vendor' => $this->whenLoaded('vendor'),
+            'vendor' => CustomerResource::make($this->whenLoaded('vendor')), // the vendor user
+            'vendor_shop' => VendorResource::make($this->whenLoaded('vendorShop')),
         ];
     }
 

@@ -72,3 +72,9 @@ Route::post('/pusher/auth', function (Request $request) {
     // $authString = hash_hmac("sha256", $signature_string, $pusher_app_secret);
     return $auth;
 })->middleware('auth');
+
+
+// Sentry test route
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
