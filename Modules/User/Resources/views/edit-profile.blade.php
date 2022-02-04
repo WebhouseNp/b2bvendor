@@ -76,13 +76,10 @@
                                                 <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
-                                                    @foreach($user->vendor->product_category as $cat)
-                                                    @if(!$loop->last)
-                                                    {{$cat}},
-                                                    @endif
-
-                                                    @if($loop->last)
+                                                    @foreach(json_decode($user->vendor->product_category, true) as $cat)
                                                     {{$cat}}
+                                                    @if(!$loop->last)
+                                                    <span>,</span>
                                                     @endif
                                                     @endforeach
                                                 </h4>
