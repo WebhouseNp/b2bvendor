@@ -5,6 +5,7 @@ namespace Modules\Order\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
+use Modules\User\Entities\Vendor;
 
 class Package extends Model
 {
@@ -38,4 +39,9 @@ class Package extends Model
 	{
 		return $this->belongsTo(User::class, 'vendor_user_id');
 	}
+
+    public function vendorShop()
+    {
+      return $this->belongsTo(Vendor::class, 'vendor_user_id', 'user_id');
+    }
 }
