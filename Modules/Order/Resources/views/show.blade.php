@@ -26,7 +26,7 @@
         <div class="col-md-8" id="get__print">
             <div class="d-sm-flex justify-content-between font-poppins">
                 <div>
-                    <div class="info-box border">
+                    <div class="info-box">
                         <span class="info-box-icon bg-primary text-white"><i class="fa fa-suitcase"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text text-sm">Order Status</span>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div>
-                    <div class="info-box border">
+                    <div class="info-box">
                         <span class="info-box-icon bg-danger text-white"><i class="fa fa-credit-card"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text text-sm">Payment Option</span>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div>
-                    <div class="info-box border">
+                    <div class="info-box">
                         <span class="info-box-icon bg-success text-white"><i class="fa fa-money"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text text-sm">Payment Status</span>
@@ -71,10 +71,10 @@
                     <table class="table table-responsive border">
                         <thead>
                             <tr>
-                                <th>Product Title</th>
-                                <th></th>
-                                <th>Shipping</th>
-                                <th>Total</th>
+                                <th class="text-uppercase">Product Title</th>
+                                <th class="text-uppercase"></th>
+                                <th class="text-uppercase">Shipping</th>
+                                <th class="text-uppercase">Total</th>
                             </tr>
                         </thead>
                         <tbody>
