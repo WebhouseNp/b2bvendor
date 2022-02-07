@@ -18,7 +18,9 @@ class OrderApiController extends Controller
                         return $query->where('payment_status', 'pending');
                         break;
                     case 'processing':
-                        return $query->where('status', 'pending')->orWhere('status', 'processing');
+                        return $query->where('status', 'pending')
+                            ->orWhere('status', 'processing')
+                            ->orWhere('status', 'shipped');
                         break;
                     case 'delivered':
                         return $query->where('status', 'completed');
