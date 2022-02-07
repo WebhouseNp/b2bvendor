@@ -99,13 +99,13 @@
             @if (auth()->user()->hasRole('vendor'))
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('orders.package.update', $package) }}" class="form" method="POST">
+                    <form action="{{ route('orders.package.update', $package) }}" class="form js-package-status-update-form js-disable-on-submit" method="POST" data-original-status="{{ $package->status }}">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label>Order Status</label>
                             <select name="status" class="custom-select form-control @error('status') is-invalid @enderror">
-                                @foreach (config('constants.package_statuses') as $status)
+                                @foreach (vendor_editable_package_status() as $status)
                                 <option value="{{ $status }}" @if (old('status', $package->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
                                 @endforeach
                             </select>
@@ -255,5 +255,30 @@
         });
     });
 
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.js-package-status-update-form').on('submit', function(e) {
+            e.preventDefault();
+            let originalStatus = $(this).data('original-status');
+            let newStatus = $(this).find('select[name="status"]').val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are changing the package status from  ${originalStatus} to ${newStatus}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, change it!'
+                }).then((result) => {
+                    if (result.value) {
+                        e.target.submit();
+                    }else {
+                        $(this).find('button[type="submit"]').prop('disabled', false);
+                    }
+                })
+        })
+    });
 </script>
 @endsection

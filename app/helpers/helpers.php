@@ -47,3 +47,10 @@ if (!function_exists('formatted_price')) {
     }
 }
 
+
+if (!function_exists('vendor_editable_package_status')) {
+    function vendor_editable_package_status()
+    {
+        return ['pending', 'processing', 'shipped', 'completed'];
+    }
+}
