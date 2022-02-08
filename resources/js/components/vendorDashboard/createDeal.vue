@@ -69,16 +69,16 @@
                 lang="en"
                 type="datetime"
                 :disabled-date="disableDate"
-                style="width:100%"
+                style="width: 100%"
                 placeholder="select date time"
                 :show-time-panel="showTimePanel"
                 @close="handleOpenChange"
               >
-              <template v-slot:footer>
-                 <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
-                  {{ showTimePanel ? 'select date' : 'select time' }}
-                </button>
-              </template>
+                <template v-slot:footer>
+                  <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
+                    {{ showTimePanel ? "select date" : "select time" }}
+                  </button>
+                </template>
               </date-picker>
               <div
                 v-if="!$v.expire_at.required"
@@ -95,200 +95,229 @@
               <hr />
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
-              <table class="table" style="overflow-y: scroll;">
-                <thead
-                
-                >
-                  <tr>
-                    <!-- <th style="background-color: #d9e7e7">SN</th> -->
-                    <th scope="col" style="background-color: #d9e7e7">Product</th>
-                    <th scope="col" style="background-color: #b4d7d7">Quantity</th>
-                    <th scope="col" style="background-color: #ed9494">Unit Price</th>
-                    <th scope="col" style="background-color: #ed9494">Shipping Charge</th>
-                    <th scope="col" style="background-color: #ed9494">SubTotal Price</th>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <!-- <th style="background-color: #d9e7e7">SN</th> -->
+                      <th scope="col" style="background-color: #d9e7e7">
+                        Product
+                      </th>
+                      <th scope="col" style="background-color: #b4d7d7">
+                        Quantity
+                      </th>
+                      <th scope="col" style="background-color: #ed9494">
+                        Unit Price
+                      </th>
+                      <th scope="col" style="background-color: #ed9494">
+                        Shipping Charge
+                      </th>
+                      <th scope="col" style="background-color: #ed9494">
+                        SubTotal Price
+                      </th>
 
-                    <th scope="col" style="background-color: #ff0000ab">Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="(invoice_product, index) in $v.invoice_products.$each
-                      .$iter"
-                    :key="index"
-                  >
-                    <td scope="row" class="inputProduct">
-                      <multiselect
-                        class="form-control form"
-                        v-model="invoice_product.product_id.$model"
-                        :class="{
-                          'is-invalid': validationStatus(
-                            invoice_product.product_id
-                          ),
-                        }"
-                        :options="products"
-                        :option-height="104"
-                        :custom-label="customLabel"
-                        :show-labels="false"
-                        :hide-selected="true"
-                      >
-                        <template slot="singleLabel" slot-scope="props"
-                          ><img
-                            class="option__image"
-                            :src="props.option.image_url"
-                            style="widht:35px; height:35px;"
-                          /><span class="option__desc"
-                            ><span
-                              class="option__title"
-                              style="margin-left: 10px; font-size: 13px;"
-                              >{{ props.option.title }}</span
-                            ></span
-                          ></template
-                        >
-                        <template slot="option" slot-scope="props">
-                          <div class="option__desc">
-                            <img
-                              class="option__image"
-                              style="widht:35px; height:35px;"
-                              :src="props.option.image_url"
-                            />
-                            <span class="option__title"
-                              style="margin-left: 10px; font-size: 13px;">{{
-                              props.option.title
-                            }}</span>
-                          </div>
-                        </template>
-                        <span slot="noResult">Oops! No data found.</span>
-                      </multiselect>
-                      <div
-                        v-if="!invoice_product.product_id.required"
-                        class="invalid-feedback text-danger"
-                      >
-                        Please Select Product First.
-                      </div>
-                    </td>
-                    <td scope="row" class="inputQuentiry">
-                      <input
-                        class="form-control"
-                        type="number"
-                        placeholder="Quantity"
-                        v-model.number="invoice_product.product_qty.$model"
-                        :class="{
-                          'is-invalid': validationStatus(
-                            invoice_product.product_qty
-                          ),
-                        }"
-                      />
-                      <div
-                        v-if="!invoice_product.product_qty.required"
-                        class="invalid-feedback"
-                      >
-                        Quantity field is required.
-                      </div>
-                      <div
-                        v-if="!invoice_product.product_qty.alphaNum"
-                        class="invalid-feedback"
-                      >
-                        Quantity must have positive integer value.
-                      </div>
-                    </td>
-                    <td scope="row" class="inputPrice">
-                      <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Unit Price"
-                        v-model.number="invoice_product.unit_price.$model"
-                        :class="{
-                          'is-invalid': validationStatus(
-                            invoice_product.unit_price
-                          ),
-                        }"
-                      />
-                       <div
-                        v-if="!invoice_product.unit_price.required"
-                        class="invalid-feedback"
-                      >
-                        Unit price field is required.
-                      </div>
-                      <div
-                        v-if="!invoice_product.unit_price.mustBePositive"
-                        class="invalid-feedback"
-                      >
-                        Unit price field must have positive integer value.
-                      </div>
-                    </td>
-                    <td scope="row" class="shippingCharge">
-                      <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Shipping charge"
-                        v-model.number="invoice_product.shipping_charge.$model"
-                        :class="{
-                          'is-invalid': validationStatus(
-                            invoice_product.shipping_charge
-                          ),
-                        }"
-                      />
-                      <div
-                        v-if="!invoice_product.shipping_charge.mustBePositive"
-                        class="invalid-feedback"
-                      >
-                        Shipping charge field must have positive integer value.
-                      </div>
-                    </td>
-                    <td  scope="row" class="totalPrice">
-                      <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Total price in rupees"
-                        :value="subtotalRow[index]"
-                        disabled
-                      />
-                    </td>
-                    <td
-                      scope="row"
-                      class="trashIconContainer"
-                      style="color: red"
-                      @click="deleteRow(index, invoice_product.$model)"
+                      <th scope="col" style="background-color: #ff0000ab">
+                        Delete
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(invoice_product, index) in $v.invoice_products
+                        .$each.$iter"
+                      :key="index"
                     >
-                      <i class="far fa-trash-alt"></i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="row"></td>
-                    <td scope="row"></td>
-                    <td scope="row"></td>
-                    <td scope="row"></td>
-                    <td scope="row"><strong>Total</strong>: Rs {{ total }}</td>
-                  </tr>
-                  <tr>
-                    <td scope="row">
-                      <button
-                        type="button"
-                        class="btn btn-info addProduct"
-                        @click="addNewRow"
-                        enabled
+                      <td scope="row" class="inputProduct">
+                        <multiselect
+                          class="form-control form"
+                          v-model="invoice_product.product_id.$model"
+                          :class="{
+                            'is-invalid': validationStatus(
+                              invoice_product.product_id
+                            ),
+                          }"
+                          :options="products"
+                          :option-height="104"
+                          :custom-label="customLabel"
+                          :show-labels="false"
+                          :hide-selected="true"
+                        >
+                          <template slot="singleLabel" slot-scope="props"
+                            ><img
+                              class="option__image"
+                              :src="props.option.image_url"
+                              style="widht: 35px; height: 35px"
+                            /><span class="option__desc"
+                              ><span
+                                class="option__title"
+                                style="margin-left: 10px; font-size: 13px"
+                                >{{ props.option.title }}</span
+                              ></span
+                            ></template
+                          >
+                          <template slot="option" slot-scope="props">
+                            <div class="option__desc">
+                              <img
+                                class="option__image"
+                                style="widht: 35px; height: 35px"
+                                :src="props.option.image_url"
+                              />
+                              <span
+                                class="option__title"
+                                style="margin-left: 10px; font-size: 13px"
+                                >{{ props.option.title }}</span
+                              >
+                            </div>
+                          </template>
+                          <span slot="noResult">Oops! No data found.</span>
+                        </multiselect>
+                        <div
+                          v-if="!invoice_product.product_id.required"
+                          class="invalid-feedback text-danger"
+                        >
+                          Please Select Product First.
+                        </div>
+                      </td>
+                      <td scope="row" class="inputQuentiry">
+                        <input
+                          class="form-control"
+                          type="number"
+                          placeholder="Quantity"
+                          v-model.number="invoice_product.product_qty.$model"
+                          :class="{
+                            'is-invalid': validationStatus(
+                              invoice_product.product_qty
+                            ),
+                          }"
+                        />
+                        <div
+                          v-if="!invoice_product.product_qty.required"
+                          class="invalid-feedback"
+                        >
+                          Quantity field is required.
+                        </div>
+                        <div
+                          v-if="!invoice_product.product_qty.alphaNum"
+                          class="invalid-feedback"
+                        >
+                          Quantity must have positive integer value.
+                        </div>
+                      </td>
+                      <td scope="row" class="inputPrice">
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Unit Price"
+                          v-model.number="invoice_product.unit_price.$model"
+                          :class="{
+                            'is-invalid': validationStatus(
+                              invoice_product.unit_price
+                            ),
+                          }"
+                        />
+                        <div
+                          v-if="!invoice_product.unit_price.required"
+                          class="invalid-feedback"
+                        >
+                          Unit price field is required.
+                        </div>
+                        <div
+                          v-if="!invoice_product.unit_price.mustBePositive"
+                          class="invalid-feedback"
+                        >
+                          Unit price field must have positive integer value.
+                        </div>
+                      </td>
+                      <td scope="row" class="shippingCharge">
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Shipping charge"
+                          v-model.number="
+                            invoice_product.shipping_charge.$model
+                          "
+                          :class="{
+                            'is-invalid': validationStatus(
+                              invoice_product.shipping_charge
+                            ),
+                          }"
+                        />
+                        <div
+                          v-if="!invoice_product.shipping_charge.mustBePositive"
+                          class="invalid-feedback"
+                        >
+                          Shipping charge field must have positive integer
+                          value.
+                        </div>
+                      </td>
+                      <td scope="row" class="totalPrice">
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Total price in rupees"
+                          :value="subtotalRow[index]"
+                          disabled
+                        />
+                      </td>
+                      <td
+                        scope="row"
+                        class="trashIconContainer"
+                        style="color: red"
+                        @click="deleteRow(index, invoice_product.$model)"
                       >
-                        <i class="fas fa-plus-circle"></i>
-                        Add
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        <i class="far fa-trash-alt"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td scope="row"></td>
+                      <td scope="row"></td>
+                      <td scope="row"></td>
+                      <td scope="row"></td>
+                      <td scope="row">
+                        <strong>Total</strong>: Rs {{ total }}
+                      </td>
+                    </tr>
+                    <tr style="display: none">
+                      <td colspan="6">
+                        <p class="text-center alert-danger p-2">
+                          No products added/available.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td scope="row">
+                        <button
+                          type="button"
+                          class="btn btn-info addProduct"
+                          @click="addNewRow"
+                          enabled
+                        >
+                          <i class="fas fa-plus-circle"></i>
+                          Add
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
-         <loading-button type="submit" class="btn btn-primary" 
-             :loading="loading">{{ loading ? 'Please wait' : 'Create' }}</loading-button>
+        <loading-button
+          type="submit"
+          class="btn btn-primary btn-signup"
+          :loading="loading"
+          >{{ loading ? "Please wait" : "Create" }}</loading-button
+        >
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import { required , alphaNum , helpers} from "vuelidate/lib/validators";
+import { required, alphaNum, helpers } from "vuelidate/lib/validators";
 import swal from "sweetalert";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
@@ -306,18 +335,18 @@ export default {
   data() {
     return {
       loading: false,
-      showTimePanel:false,
+      showTimePanel: false,
       //select search product state
       invoice_products: [
         {
-          product_id:'',
-          product_qty: '',
-          unit_price: '',
-          shipping_charge: '',
+          product_id: "",
+          product_qty: "",
+          unit_price: "",
+          shipping_charge: "",
         },
       ],
 
-      expire_at: '05:06',
+      expire_at: "05:06",
       customer: {
         id: "",
         name: "",
@@ -331,25 +360,27 @@ export default {
     };
   },
   computed: {
-
     //calculate sub total in each raw ============================//
 
     subtotalRow() {
       return this.invoice_products.map((item) => {
-        return Math.round((item.product_qty * item.unit_price) + item.shipping_charge);
+        return Math.round(
+          item.product_qty * item.unit_price + item.shipping_charge
+        );
       });
     },
 
     //Calculate Total of all raws =====================//
-    
-     total: function(){
-       return this.invoice_products.reduce(function(total, item){
-        return total + Math.round((item.product_qty * item.unit_price) + item.shipping_charge); 
-      },0);
-   
+
+    total: function () {
+      return this.invoice_products.reduce(function (total, item) {
+        return (
+          total +
+          Math.round(item.product_qty * item.unit_price + item.shipping_charge)
+        );
+      }, 0);
+    },
   },
-  },
- 
 
   //validation======================================================//
   validations: {
@@ -359,15 +390,12 @@ export default {
       required,
       $each: {
         product_id: { required },
-        product_qty: { required ,alphaNum},
-        unit_price: {required, mustBePositive },
-        shipping_charge:{mustBePositive}
+        product_qty: { required, alphaNum },
+        unit_price: { required, mustBePositive },
+        shipping_charge: { mustBePositive },
       },
     },
   },
-  //  mounted() {
-  //     this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
-  //   },
   methods: {
     toggleTimePanel() {
       this.showTimePanel = !this.showTimePanel;
@@ -390,7 +418,7 @@ export default {
     },
 
     // Filter customer ===============================//
-    
+
     filterCustomers() {
       if (this.customer.name.length < 3) {
         return true;
@@ -428,7 +456,7 @@ export default {
         product_id: "",
         product_qty: "",
         unit_price: "",
-        shipping_charge:"",
+        shipping_charge: "",
       });
     },
 
@@ -442,23 +470,20 @@ export default {
       if (this.$v.$pendding || this.$v.$error) return;
       try {
         this.loading = true;
-        const response = await axios.post(
-          "/api/deals",
-          {
-            vendor_id: this.auth,
-            customer_id: this.customer.id,
-            expire_at: this.expire_at,
-            invoice_products: this.invoice_products,
-          }
-        );
+        const response = await axios.post("/api/deals", {
+          vendor_id: this.auth,
+          customer_id: this.customer.id,
+          expire_at: this.expire_at,
+          invoice_products: this.invoice_products,
+        });
         this.loading = false;
         if (response.status === 200) {
           swal("Congratulations!", "New deal is created!", "success");
-          window.location.href = "/user/deals"
+          window.location.href = "/user/deals";
         }
       } catch (error) {
         this.loading = false;
-        alert('Somthing went wrong please try again.')
+        alert("Somthing went wrong please try again.");
       }
     },
   },

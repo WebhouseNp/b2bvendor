@@ -3642,6 +3642,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3667,12 +3696,12 @@ var mustBePositive = function mustBePositive(value) {
       showTimePanel: false,
       //select search product state
       invoice_products: [{
-        product_id: '',
-        product_qty: '',
-        unit_price: '',
-        shipping_charge: ''
+        product_id: "",
+        product_qty: "",
+        unit_price: "",
+        shipping_charge: ""
       }],
-      expire_at: '05:06',
+      expire_at: "05:06",
       customer: {
         id: "",
         name: "",
@@ -3726,9 +3755,6 @@ var mustBePositive = function mustBePositive(value) {
       }
     }
   },
-  //  mounted() {
-  //     this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
-  //   },
   methods: {
     toggleTimePanel: function toggleTimePanel() {
       this.showTimePanel = !this.showTimePanel;
@@ -3837,7 +3863,7 @@ var mustBePositive = function mustBePositive(value) {
                 _context.prev = 12;
                 _context.t0 = _context["catch"](3);
                 _this2.loading = false;
-                alert('Somthing went wrong please try again.');
+                alert("Somthing went wrong please try again.");
 
               case 16:
               case "end":
@@ -3881,6 +3907,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -35189,13 +35217,13 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                " +
+                                    "\n                  " +
                                       _vm._s(
                                         _vm.showTimePanel
                                           ? "select date"
                                           : "select time"
                                       ) +
-                                      "\n              "
+                                      "\n                "
                                   ),
                                 ]
                               ),
@@ -35241,13 +35269,8 @@ var render = function () {
               _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-12 col-sm-12 form-group" }, [
-                _c(
-                  "table",
-                  {
-                    staticClass: "table",
-                    staticStyle: { "overflow-y": "scroll" },
-                  },
-                  [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c("table", { staticClass: "table" }, [
                     _vm._m(4),
                     _vm._v(" "),
                     _c(
@@ -35412,7 +35435,7 @@ var render = function () {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                      Please Select Product First.\n                    "
+                                            "\n                        Please Select Product First.\n                      "
                                           ),
                                         ]
                                       )
@@ -35476,7 +35499,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                      Quantity field is required.\n                    "
+                                            "\n                        Quantity field is required.\n                      "
                                           ),
                                         ]
                                       )
@@ -35488,7 +35511,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                      Quantity must have positive integer value.\n                    "
+                                            "\n                        Quantity must have positive integer value.\n                      "
                                           ),
                                         ]
                                       )
@@ -35551,7 +35574,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                      Unit price field is required.\n                    "
+                                            "\n                        Unit price field is required.\n                      "
                                           ),
                                         ]
                                       )
@@ -35563,7 +35586,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                      Unit price field must have positive integer value.\n                    "
+                                            "\n                        Unit price field must have positive integer value.\n                      "
                                           ),
                                         ]
                                       )
@@ -35587,7 +35610,7 @@ var render = function () {
                                           invoice_product.shipping_charge
                                             .$model,
                                         expression:
-                                          "invoice_product.shipping_charge.$model",
+                                          "\n                          invoice_product.shipping_charge.$model\n                        ",
                                         modifiers: { number: true },
                                       },
                                     ],
@@ -35629,7 +35652,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                      Shipping charge field must have positive integer value.\n                    "
+                                            "\n                        Shipping charge field must have positive integer\n                        value.\n                      "
                                           ),
                                         ]
                                       )
@@ -35688,9 +35711,15 @@ var render = function () {
                           _vm._v(" "),
                           _c("td", { attrs: { scope: "row" } }, [
                             _c("strong", [_vm._v("Total")]),
-                            _vm._v(": Rs " + _vm._s(_vm.total)),
+                            _vm._v(
+                              ": Rs " +
+                                _vm._s(_vm.total) +
+                                "\n                    "
+                            ),
                           ]),
                         ]),
+                        _vm._v(" "),
+                        _vm._m(5),
                         _vm._v(" "),
                         _c("tr", [
                           _c("td", { attrs: { scope: "row" } }, [
@@ -35704,7 +35733,7 @@ var render = function () {
                               [
                                 _c("i", { staticClass: "fas fa-plus-circle" }),
                                 _vm._v(
-                                  "\n                      Add\n                    "
+                                  "\n                        Add\n                      "
                                 ),
                               ]
                             ),
@@ -35713,8 +35742,8 @@ var render = function () {
                       ],
                       2
                     ),
-                  ]
-                ),
+                  ]),
+                ]),
               ]),
             ]),
           ]),
@@ -35727,7 +35756,7 @@ var render = function () {
             _c(
               "loading-button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-signup",
                 attrs: { type: "submit", loading: _vm.loading },
               },
               [_vm._v(_vm._s(_vm.loading ? "Please wait" : "Create"))]
@@ -35788,7 +35817,7 @@ var staticRenderFns = [
             staticStyle: { "background-color": "#d9e7e7" },
             attrs: { scope: "col" },
           },
-          [_vm._v("Product")]
+          [_vm._v("\n                      Product\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -35797,7 +35826,7 @@ var staticRenderFns = [
             staticStyle: { "background-color": "#b4d7d7" },
             attrs: { scope: "col" },
           },
-          [_vm._v("Quantity")]
+          [_vm._v("\n                      Quantity\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -35806,7 +35835,7 @@ var staticRenderFns = [
             staticStyle: { "background-color": "#ed9494" },
             attrs: { scope: "col" },
           },
-          [_vm._v("Unit Price")]
+          [_vm._v("\n                      Unit Price\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -35815,7 +35844,11 @@ var staticRenderFns = [
             staticStyle: { "background-color": "#ed9494" },
             attrs: { scope: "col" },
           },
-          [_vm._v("Shipping Charge")]
+          [
+            _vm._v(
+              "\n                      Shipping Charge\n                    "
+            ),
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -35824,7 +35857,11 @@ var staticRenderFns = [
             staticStyle: { "background-color": "#ed9494" },
             attrs: { scope: "col" },
           },
-          [_vm._v("SubTotal Price")]
+          [
+            _vm._v(
+              "\n                      SubTotal Price\n                    "
+            ),
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -35833,8 +35870,22 @@ var staticRenderFns = [
             staticStyle: { "background-color": "#ff0000ab" },
             attrs: { scope: "col" },
           },
-          [_vm._v("Delete")]
+          [_vm._v("\n                      Delete\n                    ")]
         ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticStyle: { display: "none" } }, [
+      _c("td", { attrs: { colspan: "6" } }, [
+        _c("p", { staticClass: "text-center alert-danger p-2" }, [
+          _vm._v(
+            "\n                        No products added/available.\n                      "
+          ),
+        ]),
       ]),
     ])
   },
@@ -36015,10 +36066,7 @@ var render = function () {
                   "div",
                   { staticClass: "col-lg-6 col-sm-12 form-group" },
                   [
-                    _c("label", [
-                      _c("strong", [_vm._v("Expiry Time")]),
-                      _vm._v(" Current: " + _vm._s(_vm.expire_at)),
-                    ]),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
@@ -36027,11 +36075,7 @@ var render = function () {
                       class: {
                         "is-invalid": _vm.validationStatus(_vm.$v.expire_at),
                       },
-                      staticStyle: {
-                        width: "500px",
-                        border: "none",
-                        "margin-top": "-10px",
-                      },
+                      staticStyle: { width: "100%" },
                       attrs: {
                         lang: "en",
                         type: "datetime",
@@ -36103,441 +36147,449 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-12 col-sm-12 form-group" }, [
-                _c("table", [
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    [
-                      _vm._l(
-                        _vm.$v.invoice_products.$each.$iter,
-                        function (invoice_product, index) {
-                          return _c("tr", { key: index }, [
-                            _c(
-                              "td",
-                              { staticClass: "inputProduct" },
-                              [
-                                _c(
-                                  "multiselect",
-                                  {
-                                    staticClass: "form-control form",
-                                    class: {
-                                      "is-invalid": _vm.validationStatus(
-                                        invoice_product.product_id
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c("table", { staticClass: "table" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      [
+                        _vm._l(
+                          _vm.$v.invoice_products.$each.$iter,
+                          function (invoice_product, index) {
+                            return _c("tr", { key: index }, [
+                              _c(
+                                "td",
+                                { staticClass: "inputProduct" },
+                                [
+                                  _c(
+                                    "multiselect",
+                                    {
+                                      staticClass: "form-control form",
+                                      class: {
+                                        "is-invalid": _vm.validationStatus(
+                                          invoice_product.product_id
+                                        ),
+                                      },
+                                      attrs: {
+                                        options: _vm.products,
+                                        "option-height": 104,
+                                        "custom-label": _vm.customLabel,
+                                        "show-labels": false,
+                                        "hide-selected": true,
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          return _vm.onChange(
+                                            invoice_product.product_id.$model
+                                          )
+                                        },
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "singleLabel",
+                                            fn: function (props) {
+                                              return [
+                                                _c("img", {
+                                                  staticClass: "option__image",
+                                                  staticStyle: {
+                                                    widht: "35px",
+                                                    height: "35px",
+                                                  },
+                                                  attrs: {
+                                                    src: props.option.image_url,
+                                                  },
+                                                }),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass: "option__desc",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "option__title",
+                                                        staticStyle: {
+                                                          "margin-left": "10px",
+                                                          "font-size": "13px",
+                                                        },
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            props.option.title
+                                                          )
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            },
+                                          },
+                                          {
+                                            key: "option",
+                                            fn: function (props) {
+                                              return [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "option__desc",
+                                                  },
+                                                  [
+                                                    _c("img", {
+                                                      staticClass:
+                                                        "option__image",
+                                                      staticStyle: {
+                                                        widht: "35px",
+                                                        height: "35px",
+                                                      },
+                                                      attrs: {
+                                                        src: props.option
+                                                          .image_url,
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "option__title",
+                                                        staticStyle: {
+                                                          "margin-left": "10px",
+                                                          "font-size": "13px",
+                                                        },
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            props.option.title
+                                                          )
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            },
+                                          },
+                                        ],
+                                        null,
+                                        true
                                       ),
-                                    },
-                                    attrs: {
-                                      options: _vm.products,
-                                      "option-height": 104,
-                                      "custom-label": _vm.customLabel,
-                                      "show-labels": false,
-                                      "hide-selected": true,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        return _vm.onChange(
-                                          invoice_product.product_id.$model
-                                        )
+                                      model: {
+                                        value:
+                                          invoice_product.product_id.$model,
+                                        callback: function ($$v) {
+                                          _vm.$set(
+                                            invoice_product.product_id,
+                                            "$model",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "invoice_product.product_id.$model",
                                       },
                                     },
-                                    scopedSlots: _vm._u(
-                                      [
+                                    [
+                                      _vm._v(" "),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
                                         {
-                                          key: "singleLabel",
-                                          fn: function (props) {
-                                            return [
-                                              _c("img", {
-                                                staticClass: "option__image",
-                                                staticStyle: {
-                                                  widht: "35px",
-                                                  height: "35px",
-                                                },
-                                                attrs: {
-                                                  src: props.option.image_url,
-                                                },
-                                              }),
-                                              _c(
-                                                "span",
-                                                { staticClass: "option__desc" },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "option__title",
-                                                      staticStyle: {
-                                                        "margin-left": "10px",
-                                                        "font-size": "13px",
-                                                      },
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          props.option.title
-                                                        )
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          },
+                                          attrs: { slot: "noResult" },
+                                          slot: "noResult",
                                         },
+                                        [_vm._v("Oops! No data found.")]
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  !invoice_product.product_id.required
+                                    ? _c(
+                                        "div",
                                         {
-                                          key: "option",
-                                          fn: function (props) {
-                                            return [
-                                              _c(
-                                                "div",
-                                                { staticClass: "option__desc" },
-                                                [
-                                                  _c("img", {
-                                                    staticClass:
-                                                      "option__image",
-                                                    staticStyle: {
-                                                      widht: "35px",
-                                                      height: "35px",
-                                                    },
-                                                    attrs: {
-                                                      src: props.option
-                                                        .image_url,
-                                                    },
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "option__title",
-                                                      staticStyle: {
-                                                        "margin-left": "10px",
-                                                        "font-size": "13px",
-                                                      },
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          props.option.title
-                                                        )
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          },
+                                          staticClass:
+                                            "invalid-feedback text-danger",
                                         },
-                                      ],
-                                      null,
-                                      true
-                                    ),
-                                    model: {
-                                      value: invoice_product.product_id.$model,
-                                      callback: function ($$v) {
-                                        _vm.$set(
-                                          invoice_product.product_id,
-                                          "$model",
-                                          $$v
-                                        )
-                                      },
+                                        [
+                                          _vm._v(
+                                            "\n                      Please Select Product First.\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "inputQuentiry" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.number",
+                                      value: invoice_product.product_qty.$model,
                                       expression:
-                                        "invoice_product.product_id.$model",
+                                        "invoice_product.product_qty.$model",
+                                      modifiers: { number: true },
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.validationStatus(
+                                      invoice_product.product_qty
+                                    ),
+                                  },
+                                  attrs: {
+                                    type: "number",
+                                    placeholder: "Quantity",
+                                  },
+                                  domProps: {
+                                    value: invoice_product.product_qty.$model,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_product.product_qty,
+                                        "$model",
+                                        _vm._n($event.target.value)
+                                      )
+                                    },
+                                    blur: function ($event) {
+                                      return _vm.$forceUpdate()
                                     },
                                   },
-                                  [
-                                    _vm._v(" "),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      {
-                                        attrs: { slot: "noResult" },
-                                        slot: "noResult",
-                                      },
-                                      [_vm._v("Oops! No data found.")]
-                                    ),
-                                  ]
-                                ),
+                                }),
                                 _vm._v(" "),
-                                !invoice_product.product_id.required
+                                !invoice_product.product_qty.required
                                   ? _c(
                                       "div",
-                                      {
-                                        staticClass:
-                                          "invalid-feedback text-danger",
-                                      },
+                                      { staticClass: "invalid-feedback" },
                                       [
                                         _vm._v(
-                                          "\n                      Please Select Product First.\n                    "
+                                          "\n                      Quantity field is required.\n                    "
                                         ),
                                       ]
                                     )
                                   : _vm._e(),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "inputQuentiry" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model.number",
-                                    value: invoice_product.product_qty.$model,
-                                    expression:
-                                      "invoice_product.product_qty.$model",
-                                    modifiers: { number: true },
-                                  },
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.validationStatus(
-                                    invoice_product.product_qty
-                                  ),
-                                },
-                                attrs: {
-                                  type: "number",
-                                  placeholder: "Quantity",
-                                },
-                                domProps: {
-                                  value: invoice_product.product_qty.$model,
-                                },
-                                on: {
-                                  input: function ($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_product.product_qty,
-                                      "$model",
-                                      _vm._n($event.target.value)
+                                _vm._v(" "),
+                                !invoice_product.product_qty.alphaNum
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                      Quantity must not have nagitive and decimal value.\n                    "
+                                        ),
+                                      ]
                                     )
-                                  },
-                                  blur: function ($event) {
-                                    return _vm.$forceUpdate()
-                                  },
-                                },
-                              }),
+                                  : _vm._e(),
+                              ]),
                               _vm._v(" "),
-                              !invoice_product.product_qty.required
-                                ? _c(
-                                    "div",
-                                    { staticClass: "invalid-feedback" },
-                                    [
-                                      _vm._v(
-                                        "\n                      Quantity field is required.\n                    "
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !invoice_product.product_qty.alphaNum
-                                ? _c(
-                                    "div",
-                                    { staticClass: "invalid-feedback" },
-                                    [
-                                      _vm._v(
-                                        "\n                      Quantity must not have nagitive and decimal value.\n                    "
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "inputPrice" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model.number",
+                              _c("td", { staticClass: "inputPrice" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.number",
+                                      value: invoice_product.unit_price.$model,
+                                      expression:
+                                        "invoice_product.unit_price.$model",
+                                      modifiers: { number: true },
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.validationStatus(
+                                      invoice_product.unit_price
+                                    ),
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Unit Price",
+                                  },
+                                  domProps: {
                                     value: invoice_product.unit_price.$model,
-                                    expression:
-                                      "invoice_product.unit_price.$model",
-                                    modifiers: { number: true },
                                   },
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.validationStatus(
-                                    invoice_product.unit_price
-                                  ),
-                                },
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Unit Price",
-                                },
-                                domProps: {
-                                  value: invoice_product.unit_price.$model,
-                                },
-                                on: {
-                                  input: function ($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_product.unit_price,
-                                      "$model",
-                                      _vm._n($event.target.value)
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_product.unit_price,
+                                        "$model",
+                                        _vm._n($event.target.value)
+                                      )
+                                    },
+                                    blur: function ($event) {
+                                      return _vm.$forceUpdate()
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                !invoice_product.unit_price.required
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                      Unit price field is required.\n                    "
+                                        ),
+                                      ]
                                     )
-                                  },
-                                  blur: function ($event) {
-                                    return _vm.$forceUpdate()
-                                  },
-                                },
-                              }),
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                !invoice_product.unit_price.mustBePositive
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                      Unit price field must have positive value.\n                    "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]),
                               _vm._v(" "),
-                              !invoice_product.unit_price.required
-                                ? _c(
-                                    "div",
-                                    { staticClass: "invalid-feedback" },
-                                    [
-                                      _vm._v(
-                                        "\n                      Unit price field is required.\n                    "
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !invoice_product.unit_price.mustBePositive
-                                ? _c(
-                                    "div",
-                                    { staticClass: "invalid-feedback" },
-                                    [
-                                      _vm._v(
-                                        "\n                      Unit price field must have positive value.\n                    "
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "shippingCharge" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model.number",
+                              _c("td", { staticClass: "shippingCharge" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.number",
+                                      value:
+                                        invoice_product.shipping_charge.$model,
+                                      expression:
+                                        "invoice_product.shipping_charge.$model",
+                                      modifiers: { number: true },
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.validationStatus(
+                                      invoice_product.shipping_charge
+                                    ),
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Shipping charge",
+                                  },
+                                  domProps: {
                                     value:
                                       invoice_product.shipping_charge.$model,
-                                    expression:
-                                      "invoice_product.shipping_charge.$model",
-                                    modifiers: { number: true },
                                   },
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.validationStatus(
-                                    invoice_product.shipping_charge
-                                  ),
-                                },
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Shipping charge",
-                                },
-                                domProps: {
-                                  value: invoice_product.shipping_charge.$model,
-                                },
-                                on: {
-                                  input: function ($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_product.shipping_charge,
-                                      "$model",
-                                      _vm._n($event.target.value)
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_product.shipping_charge,
+                                        "$model",
+                                        _vm._n($event.target.value)
+                                      )
+                                    },
+                                    blur: function ($event) {
+                                      return _vm.$forceUpdate()
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                !invoice_product.shipping_charge.mustBePositive
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                      Shipping charge field must have positive integer value.\n                    "
+                                        ),
+                                      ]
                                     )
-                                  },
-                                  blur: function ($event) {
-                                    return _vm.$forceUpdate()
-                                  },
-                                },
-                              }),
+                                  : _vm._e(),
+                              ]),
                               _vm._v(" "),
-                              !invoice_product.shipping_charge.mustBePositive
-                                ? _c(
-                                    "div",
-                                    { staticClass: "invalid-feedback" },
-                                    [
-                                      _vm._v(
-                                        "\n                      Shipping charge field must have positive integer value.\n                    "
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "totalPrice" }, [
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Total price in rupees",
-                                  disabled: "",
-                                },
-                                domProps: { value: _vm.subtotalRow[index] },
-                              }),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              {
-                                staticClass: "trashIconContainer",
-                                staticStyle: { color: "red" },
-                                attrs: { scope: "row" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.deleteRow(
-                                      index,
-                                      invoice_product.$model
-                                    )
+                              _c("td", { staticClass: "totalPrice" }, [
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Total price in rupees",
+                                    disabled: "",
+                                  },
+                                  domProps: { value: _vm.subtotalRow[index] },
+                                }),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "trashIconContainer",
+                                  staticStyle: { color: "red" },
+                                  attrs: { scope: "row" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.deleteRow(
+                                        index,
+                                        invoice_product.$model
+                                      )
+                                    },
                                   },
                                 },
-                              },
-                              [_c("i", { staticClass: "far fa-trash-alt" })]
-                            ),
-                          ])
-                        }
-                      ),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td"),
-                        _vm._v(" "),
-                        _c("td"),
-                        _vm._v(" "),
-                        _c("td"),
-                        _vm._v(" "),
-                        _c("td"),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("strong", [_vm._v("Total")]),
-                          _vm._v(": Rs " + _vm._s(_vm.total)),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-info addProduct",
-                              attrs: { type: "button" },
-                              on: { click: _vm.addNewRow },
-                            },
-                            [
-                              _c("i", { staticClass: "fas fa-plus-circle" }),
-                              _vm._v(
-                                "\n                      Add\n                    "
+                                [_c("i", { staticClass: "far fa-trash-alt" })]
                               ),
-                            ]
-                          ),
+                            ])
+                          }
+                        ),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td"),
+                          _vm._v(" "),
+                          _c("td"),
+                          _vm._v(" "),
+                          _c("td"),
+                          _vm._v(" "),
+                          _c("td"),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("strong", [_vm._v("Total")]),
+                            _vm._v(": Rs " + _vm._s(_vm.total)),
+                          ]),
                         ]),
-                      ]),
-                    ],
-                    2
-                  ),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info addProduct",
+                                attrs: { type: "button" },
+                                on: { click: _vm.addNewRow },
+                              },
+                              [
+                                _c("i", { staticClass: "fas fa-plus-circle" }),
+                                _vm._v(
+                                  "\n                      Add\n                    "
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]),
+                      ],
+                      2
+                    ),
+                  ]),
                 ]),
               ]),
             ]),
@@ -36583,6 +36635,12 @@ var staticRenderFns = [
     return _c("label", { attrs: { for: "" } }, [
       _c("strong", [_vm._v("Customer")]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [_c("strong", [_vm._v("Expiry Time")])])
   },
   function () {
     var _vm = this

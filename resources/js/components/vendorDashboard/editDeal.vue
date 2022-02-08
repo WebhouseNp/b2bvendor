@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="col-lg-6 col-sm-12 form-group">
-              <label><strong>Expiry Time</strong> Current: {{expire_at}}</label>
+              <label><strong>Expiry Time</strong></label>
               <br>
               <date-picker
                 v-model.trim="$v.expire_at.$model"
@@ -70,8 +70,8 @@
                 lang="en"
                 type="datetime"
                 valueType="format"
+                style="width:100%;"
                 :disabled-date="disableDate"
-                style="width: 500px; border: none; margin-top: -10px"
                 placeholder="select date time"
                 :show-time-panel="showTimePanel"
                 @close="handleOpenChange"
@@ -97,7 +97,8 @@
               <hr />
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
-              <table>
+              <div class="table-responsive">
+                 <table class="table">
                 <thead
                   class="
                     table table-bordered table-striped
@@ -285,6 +286,7 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
