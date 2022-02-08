@@ -58,7 +58,14 @@
                                             <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
                                             <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($vendor->vendor->business_type)}}</h4>
                                             <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
-                                               
+                                                @foreach($vendor->vendor->categories as $cat)
+                                                @if(!$loop->last)
+                                                {{ $cat->name }},
+                                                @endif
+                                                @if($loop->last)
+                                                {{ $cat->name }}
+                                                @endif
+                                                @endforeach
                                             </h4>
                                             <div class="row">
                                                 <div class="col-lg-6 col-sm-12 form-group">
@@ -157,9 +164,7 @@
                         <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
                         <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong> @foreach($vendor->vendor->product_category as $cat)
-                            {{$cat}}
-                            @endforeach
+                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong> 
                         </h4>
 
                         <div class="row">

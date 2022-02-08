@@ -20,7 +20,7 @@ class CreateCategoryVendorsTable extends Migration
             $table->unsignedBigInteger('vendor_id')->nullable();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             // $table->unique(['category_id', 'vendor_id']);
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

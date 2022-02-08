@@ -38,6 +38,7 @@ class CreateProductsTable extends Migration
             $table->string('quantity')->nullable();
             $table->text('non_approval_note')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
+            // $table->boolean('status')->default(1);
             $table->enum('isApproved', ['approved', 'not_approved', 'rejected'])->default('not_approved');
             $table->enum('product_type', ['standard_product', 'variant_product'])->default('standard_product');
             $table->enum('type', ['hot', 'new', 'whole_sale', 'top', 'none'])->default('none');

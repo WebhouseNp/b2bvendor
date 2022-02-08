@@ -61,8 +61,8 @@
               </div>
             </div>
             <div class="col-lg-6 col-sm-12 form-group">
-              <label><strong>Expiry Time</strong></label>
-              <!-- <br> -->
+              <label><strong>Expiry Time</strong> Current: {{expire_at}}</label>
+              <br>
               <date-picker
                 v-model.trim="$v.expire_at.$model"
                 class="form-control"
@@ -110,7 +110,7 @@
                   <tr>
                     <!-- <th style="background-color: #d9e7e7">SN</th> -->
                     <th style="background-color: #d9e7e7">Product</th>
-                    <th style="background-color: #b4d7d7">Quentity</th>
+                    <th style="background-color: #b4d7d7">Quantity</th>
                     <th style="background-color: #ed9494">Unit Price</th>
                     <th style="background-color: #ed9494">Shipping Charge</th>
                     <th style="background-color: #ed9494">SubTotal Price</th>
@@ -181,7 +181,7 @@
                       <input
                         class="form-control"
                         type="number"
-                        placeholder="Quentity"
+                        placeholder="Quantity"
                         v-model.number="invoice_product.product_qty.$model"
                         :class="{
                           'is-invalid': validationStatus(
@@ -193,13 +193,13 @@
                         v-if="!invoice_product.product_qty.required"
                         class="invalid-feedback"
                       >
-                        Quentity field is required.
+                        Quantity field is required.
                       </div>
                       <div
                         v-if="!invoice_product.product_qty.alphaNum"
                         class="invalid-feedback"
                       >
-                        Quentity must not have nagitive and decimal value.
+                        Quantity must not have nagitive and decimal value.
                       </div>
                     </td>
                     <td class="inputPrice">
@@ -290,7 +290,7 @@
         </div>
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
-       <loading-button type="submit" class="btn btn-primary btn-signup" 
+       <loading-button type="submit" class="btn btn-primary" 
              :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
       </div>
     </form>

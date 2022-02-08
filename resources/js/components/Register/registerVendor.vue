@@ -178,7 +178,7 @@ export default {
           company_email: this.vendorinfo.company_email,
           company_phone: this.vendorinfo.company_phone,
           business_type: this.vendorinfo.business_type,
-          product_category: this.vendorinfo.product_category,
+          category_id: this.vendorinfo.category_id,
         });
         if (response.status === 200) {
           this.loading = false;
