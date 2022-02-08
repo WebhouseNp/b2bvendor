@@ -15,7 +15,7 @@ class DealController extends Controller
 {
     public function index()
     {
-        $deals = Deal::with(['deal_products.product_info', 'user', 'vendor'])
+        $deals = Deal::with(['deal_products.product_info', 'user', 'vendor', 'vendorShop'])
             ->when(auth()->user()->hasRole('vendor'), function ($query) {
                 return $query->where('vendor_user_id', auth()->id());
             })

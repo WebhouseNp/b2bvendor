@@ -50,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <label><strong>Update Profile Image</strong> </label>
-                                        <input id="fileUpload" class="form-control" value="" name="image" type="file">
+                                        <input id="fileUpload" class="form-control" value="" name="image" type="file"  >
                                         <br>
                                         <div id="wrapper" class="mt-2">
                                             <div id="image-holder">
@@ -76,12 +76,14 @@
                                                 <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($user->vendor_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($user->vendor->business_type)}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
-                                                    @foreach(json_decode($user->vendor->product_category, true) as $cat)
-                                                    {{$cat}}
-                                                    @if(!$loop->last)
-                                                    <span>,</span>
-                                                    @endif
-                                                    @endforeach
+                                                @foreach($user->vendor->categories as $cat)
+                                                @if(!$loop->last)
+                                                {{ $cat->name }},
+                                                @endif
+                                                @if($loop->last)
+                                                {{ $cat->name }}
+                                                @endif
+                                                @endforeach
                                                 </h4>
                                             </div>
                                         </div>

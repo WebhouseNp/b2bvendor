@@ -34,7 +34,7 @@ class Vendor extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'category_vendors', 'category_id', 'vendor_id');
+        return $this->belongsToMany(Category::class, 'category_vendors', 'vendor_id' ,'category_id');
     }
 
     public function user()
@@ -47,16 +47,6 @@ class Vendor extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
-    public function setProductCategoryAttribute($value)
-    {
-        $this->attributes['product_category'] = json_encode($value);
-    }
-
-    public function getProductCategoryAttribute($value)
-    {
-        return $value;
-        return $this->attributes['product_category'] = json_decode($value);
-    }
 
     public function order()
     {

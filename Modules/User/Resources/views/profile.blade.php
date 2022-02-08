@@ -19,7 +19,7 @@
     <div class="ibox">
         <div class="ibox-head">
 
-            <div class="ibox-title"> Edit Profile</div>
+            <div class="ibox-title"> Edit Profile <span style="font-weight: 100;">({{$user->vendor->shop_name}})</span></div>
 
         </div>
     </div>
@@ -43,7 +43,7 @@
         <div class="tab-content" id="component-1-content">
             <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
-                <form method="post" action="{{route('vendor.updateVendorDetails',$user->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('vendor.updateVendorDetails',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
 
@@ -51,22 +51,25 @@
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label><strong>Update Profile Image</strong> </label>
-                                        <input id="fileUpload" class="form-control" value="" name="image" type="file">
-                                        <br>
-                                        <div id="wrapper" class="mt-2">
-                                            <div id="image-holder">
-                                                @if($user->vendor->image)
-                                                <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded">
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong>Shop Name</strong> </label>
                                         <input class="form-control" type="text" value="{{$user->vendor->shop_name}}" name="shop_name" placeholder="Enter Shop Name Here">
                                     </div>
+                                    <div class="col-md-6">
+                                        <label><strong>Update Profile Image</strong> </label>
+                                        <input id="fileUpload" class="form-control" value="" name="image" type="file" style="display: none;">
+                                        <br>
+                                        <div id="wrapper" class="mt-2">
+                                            <div id="image-holder">
+                                                @if($user->vendor->image)
+                                                <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" id="picture" class="rounded">
+                                                @else 
+                                                <img src="https://dummyimage.com/300" name="pic" id="picture">
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong>Company Email</strong> </label>
@@ -85,7 +88,7 @@
 
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label for="country_id">Country: </label>
-                                        <select class="form-control select_group" id="country_id" name="country_id" style="width: 100%">
+                                        <select class="custom-select select_group" id="country_id" name="country_id" style="width: 100%">
                                             @foreach($countries as $item)
                                             <option value="{{$item->id}}" @if ($user->vendor->country_id==$item->id){{"selected"}} @endif>
                                                 {{$item->name}}
@@ -96,7 +99,7 @@
 
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label for="business_type">Business Type: </label>
-                                        <select class="form-control select_group" id="business_type" name="business_type" style="width: 100%">
+                                        <select class="custom-select select_group" id="business_type" name="business_type" style="width: 100%">
                                             @foreach(config('constants.business_type') as $item)
                                             <option value="{{$item}}" @if ($user->vendor->business_type==$item){{"selected"}} @endif>
                                                 {{ucfirst($item)}}
@@ -107,7 +110,7 @@
 
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label for="plan">Plan: </label>
-                                        <select class="form-control select_group" id="plan" name="plan" style="width: 100%">
+                                        <select class="custom-select select_group" id="plan" name="plan" style="width: 100%">
                                             <option value="standard_plan" @if ($user->vendor->plan=="standard_plan"){{"selected"}} @endif>Standard Plan </option>
                                             <option value="premium_plan" @if ($user->vendor->plan=="premium_plan"){{"selected"}} @endif>Premium Plan </option>
                                             <option value="basic_plan" @if ($user->vendor->plan=="basic_plan"){{"selected"}} @endif>Basic Plan </option>
@@ -116,18 +119,17 @@
 
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label for="category">Select Category: </label>
-                                        <select class="form-control select_group" id="category" name="category" style="width: 100%">
+                                        <select class="custom-select select_group" id="category" name="category" style="width: 100%">
                                             <option value="local_seller" @if ($user->vendor->category=="local_seller"){{"selected"}} @endif>Local Seller </option>
                                             <option value="international_seller" @if ($user->vendor->category=="international_seller"){{"selected"}} @endif>International Seller </option>
                                         </select>
                                     </div>
 
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <label for="category_id">Category: </label><span> multiple select</span>
-                                        <select class="form-control select_group" id="category_id" name="product_category[]" multiple style="width: 100%">
-                                            @foreach($categories as $item)
-                                            <option value="{{$item->name}}">
-                                                {{$item->name}}
+                                        <label for="category_id">What Type of product do you sell ? </label><span> (multiple select)</span>
+                                        <select class="form-control select_group" id="category_id" name="category_id[]" multiple style="width: 100%">
+                                            @foreach ($categories->toArray() as $item)
+                                            <option value="{{$item['id']}}" {{($user->vendor->categories->where('name',$item['name'])->count()==0)?'':'selected'}}>{{ $item['name'] }}
                                             </option>
                                             @endforeach
                                         </select>
@@ -218,10 +220,10 @@
                             </div>
                             <div class="col-md-5">
                                 <label><strong> Upload Image </strong> </label>
-                                <input id="fileUpload" class="form-control" value="" name="bank_info_image" type="file">
+                                <input id="imageUpload" class="form-control" value="" name="bank_info_image" type="file">
                                 <br>
                                 <div id="wrapper" class="mt-2">
-                                    <div id="image-holder">
+                                    <div id="bank-info-image-holder">
                                         @if($user->vendor->bank_info_image)
                                         <img src="{{asset('images/listing/'.$user->vendor->bank_info_image)}}" alt="No Image" class="rounded">
                                         @endif
@@ -246,14 +248,19 @@
 @include('dashboard::admin.layouts._partials.imagepreview')
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description'])
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#category_id').select2();
 
-        $('#category_id option[selected]').remove();
     });
+</script>
+<script>
+$(function() {
+$('#picture').on('click', function() {
+    $('#fileUpload').trigger('click');
+});
+});
 </script>
 <script>
     $(document).ready(function() {
