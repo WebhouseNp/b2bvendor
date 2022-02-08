@@ -37,8 +37,9 @@
             }
         });
 
-        $('form').submit(function(e) {
-            $('form button').attr('disabled', true);
+        $('form.js-disable-on-submit').submit(function(e) {
+            $(this).find('button[type="submit"]').prop('disabled', true);
+            // $('form button').attr('disabled', true);
         });
         
         $('[data-toggle="tooltip"]').tooltip()

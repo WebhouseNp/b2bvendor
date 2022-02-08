@@ -16,7 +16,6 @@ class VendorResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
         return $this->filterFields([
             'id' => $this->id,
             'user_id' => $this->user_id,
@@ -27,8 +26,10 @@ class VendorResource extends JsonResource
             'image' => $this->image,
             'image_url' => $this->imageUrl(),
             'image_url_thumbnail' => $this->imageUrl('thumbnail'),
+            'category' => $this->category,
             'description' => $this->description,
-            'user' => $this->whenLoaded('user'),
+            'created_at' => $this->created_at,
+            'user' => CustomerResource::make($this->whenLoaded('user')),
         ]);
     }
 

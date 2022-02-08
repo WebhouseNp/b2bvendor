@@ -8,7 +8,7 @@ use Modules\Product\Entities\Product;
 use App\Traits\Uuid;
 use App\Models\User;
 use Illuminate\Notifications\Notifiable;
-
+use Modules\User\Entities\Vendor;
 
 class Deal extends Model
 {
@@ -54,7 +54,8 @@ class Deal extends Model
     return $this->update(['completed_at' => now()]);
   }
 
-  // relationship name should always be camel case like dealProduct
+  // WARNING::relationship name should always be camel case like dealProduct
+  // cannot delete it currently since its being used in DealProductController
   public function deal_products()
   {
     return $this->hasMany(DealProduct::class);
@@ -65,12 +66,6 @@ class Deal extends Model
     return $this->hasMany(DealProduct::class, 'deal_id');
   }
 
-
-  public function products()
-  {
-    return $this->hasMany(Product::class, 'product_id');
-  }
-
   public function user()
   {
     return $this->belongsTo(User::class, 'customer_id');
@@ -79,5 +74,10 @@ class Deal extends Model
   public function vendor()
   {
     return $this->belongsTo(User::class, 'vendor_user_id');
+  }
+
+  public function vendorShop()
+  {
+    return $this->belongsTo(Vendor::class, 'vendor_user_id', 'user_id');
   }
 }

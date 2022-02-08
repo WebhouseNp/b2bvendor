@@ -95,11 +95,11 @@
                                         <div class="col-lg-4 col-sm-12 form-group">
                                             <label for=""><strong>Type</strong></label>
                                             <select name="type" id="type" class="form-control">
+                                                <option value="none">None</option>
                                                 <option value="top">Top Product</option>
                                                 <option value="new">New Arrivals</option>
                                                 <option value="hot">Hot Categories</option>
                                                 <option value="whole_sale">Sasto Wholesale</option>
-                                                <option value="none">None</option>
                                             </select>
                                         </div>
                                         {{-- <div class="col-lg-4 col-sm-12 form-group">

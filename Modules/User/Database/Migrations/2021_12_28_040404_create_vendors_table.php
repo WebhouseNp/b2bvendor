@@ -30,7 +30,7 @@ class CreateVendorsTable extends Migration
             $table->string('shop_name')->nullable();
             $table->string('company_address')->nullable();
             $table->string('company_email')->nullable();
-            $table->string('company_phone')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('image')->nullable();
             $table->string('business_type')->nullable();
             $table->string('product_category')->nullable();

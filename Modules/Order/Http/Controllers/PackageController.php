@@ -15,7 +15,7 @@ class PackageController extends Controller
     public function update(Request $request, Package $package)
     {
         $request->validate([
-            'status' => ['required', Rule::in(config('constants.package_statuses')), Rule::notIn([$package->status])],
+            'status' => ['required', Rule::in(vendor_editable_package_status()), Rule::notIn([$package->status])],
             'update_silently' => 'nullable'
         ]);
 

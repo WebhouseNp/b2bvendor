@@ -89,7 +89,7 @@ class AdminController extends Controller
         } else {
             Auth::logout();
             Session::flush();
-            return redirect()->to('/vendor-login');;
+            return redirect()->to('/vendor-login');
         }
     }
     

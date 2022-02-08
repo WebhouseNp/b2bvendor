@@ -17,19 +17,11 @@
     <!-- THEME STYLES-->
     <link href="{{asset('/assets/admin/css/main.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/css/BsMultiSelect.bs4.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('/assets/admin/css/style.css') }}" rel="stylesheet" />
 
     <!-- PAGE LEVEL STYLES-->
     @yield('styles')
 
-    <style>
-        button {
-            cursor: pointer;
-        }
-        .table.table-borderless th,
-        .table.table-borderless td {
-            border: none;
-        }
-    </style>
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 
 </head>

@@ -56,13 +56,12 @@ class VendorManagementController extends Controller
 
     public function updateVendorDetails(Request $request , $id){
         $request->validate([
-            // 'shop_name' => 'required',
-            // 'company_email' => 'required',
-            // 'company_phone' => 'required',
-            // 'product_category' => 'required',
+            'shop_name' => 'required',
+            'company_email' => 'required',
+            'phone_number' => 'required',
+            'product_category' => 'nullable',
             'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
          ]);
-        //  dd($id);
          $oldRecord = Vendor::where('user_id',$id)->first();
          $formInput = $request->except(['image']);
          if ($request->hasFile('image')) {
@@ -74,8 +73,7 @@ class VendorManagementController extends Controller
                $formInput['image'] = $image;
             }
          }
-        //  $r = json_encode($request->product_category);
-        //  dd(json_encode($request->product_category), json_encode($request->cat));
+         $formInput['business_type'] = $request->business_type;
          $oldRecord->update($formInput);
          return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
     }
@@ -122,7 +120,7 @@ class VendorManagementController extends Controller
           'phone_num' => 'required',
           'designation' => 'required',
        ]);
-       $formInput = $request->except(['_token','email']);
+       $formInput = $request->except(['_token']);
        $vendor->user->update($formInput);
        return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
     }
