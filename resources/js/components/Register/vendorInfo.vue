@@ -214,7 +214,7 @@ export default {
       country_id:'',
       options: [],
       value: [],
-      product_category:{},
+      category_id:{},
     };
   },
   validations: {
@@ -248,8 +248,8 @@ export default {
         company_phone: this.company_phone,
         business_type: this.business_type,
         country_id: this.country_id,
-        product_category: this.value.map(element =>{
-          return element.name
+        category_id: this.value.map(element =>{
+          return element.id
         })
       };
       this.visible = false;

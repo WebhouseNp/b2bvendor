@@ -290,7 +290,7 @@
         </div>
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
-       <loading-button type="submit" class="btn btn-primary btn-signup" 
+       <loading-button type="submit" class="btn btn-primary" 
              :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
       </div>
     </form>

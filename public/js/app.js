@@ -2318,7 +2318,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   company_email: _this.vendorinfo.company_email,
                   company_phone: _this.vendorinfo.company_phone,
                   business_type: _this.vendorinfo.business_type,
-                  product_category: _this.vendorinfo.product_category
+                  category_id: _this.vendorinfo.category_id
                 });
 
               case 7:
@@ -2929,7 +2929,7 @@ __webpack_require__.r(__webpack_exports__);
       country_id: '',
       options: [],
       value: [],
-      product_category: {}
+      category_id: {}
     };
   },
   validations: {
@@ -2975,8 +2975,8 @@ __webpack_require__.r(__webpack_exports__);
         company_phone: this.company_phone,
         business_type: this.business_type,
         country_id: this.country_id,
-        product_category: this.value.map(function (element) {
-          return element.name;
+        category_id: this.value.map(function (element) {
+          return element.id;
         })
       };
       this.visible = false;
@@ -3726,9 +3726,9 @@ var mustBePositive = function mustBePositive(value) {
       }
     }
   },
-  mounted: function mounted() {
-    this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
-  },
+  //  mounted() {
+  //     this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
+  //   },
   methods: {
     toggleTimePanel: function toggleTimePanel() {
       this.showTimePanel = !this.showTimePanel;
@@ -3787,12 +3787,6 @@ var mustBePositive = function mustBePositive(value) {
         shipping_charge: ""
       });
     },
-    // select search product ===============================//
-    // selectProduct(index, product_id) {
-    //   this.invoice_products[index].product_id = product_id;
-    //   this.selectedProduct = product;
-    //   this.isVisible = false;
-    // },
     customLabel: function customLabel(_ref) {
       var title = _ref.title;
       return "".concat(title);
@@ -3807,21 +3801,19 @@ var mustBePositive = function mustBePositive(value) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                button.attr("disabled", false);
-
                 _this2.$v.$touch();
 
                 if (!(_this2.$v.$pendding || _this2.$v.$error)) {
-                  _context.next = 4;
+                  _context.next = 3;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 4:
-                _context.prev = 4;
+              case 3:
+                _context.prev = 3;
                 _this2.loading = true;
-                _context.next = 8;
+                _context.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/deals", {
                   vendor_id: _this2.auth,
                   customer_id: _this2.customer.id,
@@ -3829,7 +3821,7 @@ var mustBePositive = function mustBePositive(value) {
                   invoice_products: _this2.invoice_products
                 });
 
-              case 8:
+              case 7:
                 response = _context.sent;
                 _this2.loading = false;
 
@@ -3838,21 +3830,21 @@ var mustBePositive = function mustBePositive(value) {
                   window.location.href = "/user/deals";
                 }
 
-                _context.next = 17;
+                _context.next = 16;
                 break;
 
-              case 13:
-                _context.prev = 13;
-                _context.t0 = _context["catch"](4);
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](3);
                 _this2.loading = false;
                 alert('Somthing went wrong please try again.');
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[4, 13]]);
+        }, _callee, null, [[3, 12]]);
       }))();
     }
   }
@@ -35018,7 +35010,6 @@ var render = function () {
     _c(
       "form",
       {
-        attrs: { autocomplete: "off" },
         on: {
           submit: function ($event) {
             $event.preventDefault()
@@ -35736,7 +35727,7 @@ var render = function () {
             _c(
               "loading-button",
               {
-                staticClass: "btn btn-primary mt-4",
+                staticClass: "btn btn-primary",
                 attrs: { type: "submit", loading: _vm.loading },
               },
               [_vm._v(_vm._s(_vm.loading ? "Please wait" : "Create"))]
@@ -36560,7 +36551,7 @@ var render = function () {
             _c(
               "loading-button",
               {
-                staticClass: "btn btn-primary btn-signup",
+                staticClass: "btn btn-primary",
                 attrs: { type: "submit", loading: _vm.loading },
               },
               [_vm._v(_vm._s(_vm.loading ? "Please wait" : "Save Changes"))]

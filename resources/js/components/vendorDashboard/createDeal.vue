@@ -1,6 +1,6 @@
 <template>
   <div class="ibox-body">
-    <form @submit.prevent="submitData" autocomplete="off">
+    <form @submit.prevent="submitData">
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
@@ -280,8 +280,8 @@
         </div>
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
-        <loading-button type="submit" class="btn btn-primary mt-4" 
-          :loading="loading">{{ loading ? 'Please wait' : 'Create' }}</loading-button>
+         <loading-button type="submit" class="btn btn-primary" 
+             :loading="loading">{{ loading ? 'Please wait' : 'Create' }}</loading-button>
       </div>
     </form>
   </div>
@@ -365,9 +365,9 @@ export default {
       },
     },
   },
-   mounted() {
-      this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
-    },
+  //  mounted() {
+  //     this.$refs.datePicker.currentValue = [new Date(String('08-01-2019')), new Date(String('08-30-2019'))];
+  //   },
   methods: {
     toggleTimePanel() {
       this.showTimePanel = !this.showTimePanel;
@@ -432,20 +432,12 @@ export default {
       });
     },
 
-    // select search product ===============================//
-
-    // selectProduct(index, product_id) {
-    //   this.invoice_products[index].product_id = product_id;
-    //   this.selectedProduct = product;
-    //   this.isVisible = false;
-    // },
     customLabel({ title }) {
       return `${title}`;
     },
 
     // Create Deal ========================================================//
     async submitData() {
-      button.attr("disabled", false);
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       try {
