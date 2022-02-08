@@ -51,22 +51,25 @@
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label><strong>Update Profile Image</strong> </label>
-                                        <input id="fileUpload" class="form-control" value="" name="image" type="file">
-                                        <br>
-                                        <div id="wrapper" class="mt-2">
-                                            <div id="image-holder">
-                                                @if($user->vendor->image)
-                                                <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded">
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong>Shop Name</strong> </label>
                                         <input class="form-control" type="text" value="{{$user->vendor->shop_name}}" name="shop_name" placeholder="Enter Shop Name Here">
                                     </div>
+                                    <div class="col-md-6">
+                                        <label><strong>Update Profile Image</strong> </label>
+                                        <input id="fileUpload" class="form-control" value="" name="image" type="file" style="display: none;">
+                                        <br>
+                                        <div id="wrapper" class="mt-2">
+                                            <div id="image-holder">
+                                                @if($user->vendor->image)
+                                                <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" id="picture" class="rounded">
+                                                @else 
+                                                <img src="https://dummyimage.com/300" name="pic" id="picture">
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong>Company Email</strong> </label>
@@ -126,8 +129,7 @@
                                         <label for="category_id">What Type of product do you sell ? </label><span> (multiple select)</span>
                                         <select class="form-control select_group" id="category_id" name="category_id[]" multiple style="width: 100%">
                                             @foreach ($categories->toArray() as $item)
-                                            <option value="{{$item['id']}}"
-                                             {{($user->vendor->categories->where('name',$item['name'])->count()==0)?'':'selected'}}>{{ $item['name'] }}
+                                            <option value="{{$item['id']}}" {{($user->vendor->categories->where('name',$item['name'])->count()==0)?'':'selected'}}>{{ $item['name'] }}
                                             </option>
                                             @endforeach
                                         </select>
@@ -218,10 +220,10 @@
                             </div>
                             <div class="col-md-5">
                                 <label><strong> Upload Image </strong> </label>
-                                <input id="fileUpload" class="form-control" value="" name="bank_info_image" type="file">
+                                <input id="imageUpload" class="form-control" value="" name="bank_info_image" type="file">
                                 <br>
                                 <div id="wrapper" class="mt-2">
-                                    <div id="image-holder">
+                                    <div id="bank-info-image-holder">
                                         @if($user->vendor->bank_info_image)
                                         <img src="{{asset('images/listing/'.$user->vendor->bank_info_image)}}" alt="No Image" class="rounded">
                                         @endif
@@ -252,6 +254,13 @@
         $('#category_id').select2();
 
     });
+</script>
+<script>
+$(function() {
+$('#picture').on('click', function() {
+    $('#fileUpload').trigger('click');
+});
+});
 </script>
 <script>
     $(document).ready(function() {
