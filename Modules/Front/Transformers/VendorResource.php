@@ -29,7 +29,7 @@ class VendorResource extends JsonResource
             'category' => $this->category,
             'description' => $this->description,
             'created_at' => $this->created_at,
-            'user' => $this->whenLoaded('user'),
+            'user' => CustomerResource::make($this->whenLoaded('user')),
         ]);
     }
 

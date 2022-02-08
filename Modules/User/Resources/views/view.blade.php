@@ -6,9 +6,7 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-
             <div class="ibox-title"> Vendor Details</div>
-
         </div>
     </div>
     <div class="ibox">
@@ -147,7 +145,7 @@
     </div>
 </div>
 
-<!-- <div class="card shadow-sm border-0">
+{{-- <!-- <div class="card shadow-sm border-0">
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
@@ -190,7 +188,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div> --> --}}
 
 <!--<div class="row">-->
 <!--    <div class="col-md-4">-->
@@ -767,13 +765,6 @@
 
             // }
         })
-
-
-
-
-
-
     });
 </script>
-
 @endsection

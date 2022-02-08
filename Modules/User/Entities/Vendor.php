@@ -47,15 +47,6 @@ class Vendor extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
-    // public function setProductCategoryAttribute($value)
-    // {
-    //     $this->attributes['product_category'] = json_encode($value);
-    // }
-
-    // public function getProductCategoryAttribute($value)
-    // {
-    //     return $this->attributes['product_category'] = json_decode($value);
-    // }
 
     public function order()
     {

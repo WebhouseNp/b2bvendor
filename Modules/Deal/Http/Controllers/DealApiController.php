@@ -43,7 +43,7 @@ class DealApiController extends Controller
 
     public function index()
     {
-        $deals = Deal::with('vendor')->where('customer_id', Auth::id())
+        $deals = Deal::with(['dealProducts', 'vendor', 'vendorShop'])->where('customer_id', Auth::id())
             ->when(request()->filled('status'), function ($query) {
                 switch (request('status')) {
                     case 'available':

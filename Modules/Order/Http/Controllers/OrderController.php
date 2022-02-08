@@ -55,6 +55,7 @@ class OrderController extends Controller
             // since orderlist is already loaded and constrained
             // it won't load order list again
             'packages.orderLists.product:id,title,slug',
+            'packages.vendorShop',
             'customer:id,name,email',
             'billingAddress',
             'shippingAddress'

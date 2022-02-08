@@ -21,6 +21,7 @@ Route::get('/products/{product_id}/images', 'ProductImageApiController@index');
 
 Route::get('/vendors', 'VendorApiController@index');
 Route::get('/vendors/{vendor}', 'VendorApiController@show');
+Route::get('/vendors/find-by-user-id/{userId}', 'VendorApiController@showByUserId');
 Route::get('/v/latest-suppliers', 'VendorApiController@getLatestVendors');
 
 //customer

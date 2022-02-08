@@ -32,9 +32,13 @@ class ProfileController extends Controller
     try {
       $validator = Validator::make($request->all(), [
         'full_name' => 'sometimes',
-        'phone' => 'sometimes',
+        'email' => 'sometimes|email',
+        'phone' => 'sometimes|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
+        'country' => "sometimes",
         'city' => 'sometimes',
         'street_address' => 'sometimes',
+        'nearest_landmark' => "sometimes",
+        'company_name' => "sometimes"
       ]);
 
       if ($validator->fails()) {
@@ -44,13 +48,14 @@ class ProfileController extends Controller
       // save the address
       $address = [
         'full_name' => $request->full_name,
-        'city' => $request->city,
+        'email' => $request->email,
         'phone' => $request->phone,
+        'country' => $request->country,
+        'city' => $request->city,
         'street_address' => $request->street_address,
+        'nearest_landmark' => $request->nearest_landmark,
+        'company_name' => $request->company_name
       ];
-      // $user->address()->updateOrCreate([
-      //   'type' => null
-      // ], $address);
       $user->address()->updateOrCreate([
           'type' => null
         ], $address);

@@ -4,27 +4,77 @@
 
 @section('content')
 <div class="page-heading">
-    <h2 class="page-title"> Order - #{{ $order->id }} ({{ $order->status }}) 
-        @if (!$order->isDealCheckout())
-        <span class="badge badge-primary">Deal Checkout</span>
-        @endif
-    </h2>
+    <h2 class="page-title"> Order - #{{ $order->id }}</h2>
+</div>
+<div>
+    @if (!$order->isDealCheckout())
+    <span class="badge badge-primary">Deal Checkout</span>
+    @endif
+    @if (!$order->isMultiPackage())
+    <span class="badge badge-primary">Partial Fulfilment</span>
+    @else
+    <span class="badge badge-primary">Full Order</span>
+    @endif
 </div>
 
-@include('admin.section.notifications')
-<div class="ibox-body" id="validation-errors">
+<div class="mt-2">
+    @include('admin.section.notifications')
+</div>
+
+<div class="ibox-body mt-3" id="validation-errors">
     <div class="row">
         <div class="col-md-8" id="get__print">
+            <div class="d-sm-flex justify-content-between font-poppins">
+                <div>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-primary text-white"><i class="fa fa-suitcase"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text text-sm">Order Status</span>
+                            <div class="info-box-number mdb-color-text font-medium">{{ strtoupper($order->status) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-danger text-white"><i class="fa fa-credit-card"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text text-sm">Payment Option</span>
+                            <span class="info-box-number mdb-color-text font-medium">{{ strtoupper($order->payment_type) }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success text-white"><i class="fa fa-money"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text text-sm">Payment Status</span>
+                            <span class="info-box-number mdb-color-text font-medium">{{ strtoupper($order->payment_status) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-body">
-                    {{-- <h6 class="h6-responsive">Order Details</h6> --}}
-                    <table class="table table-borderless">
+                    <div class="d-flex">
+                        <div class="align-self-center">
+                            <h5 class="h5-reponsive d-inline-block mdb-color-text">Order ID: #{{ $order->id }}</h5>
+                            <div class="text-muted">{{ $order->created_at->isoFormat('lll') }}</div>
+                        </div>
+                        <div class="align-self-center ml-auto">
+                            <button class="print__button btn btn-light my-0 border font-poppins text-capitalize" type="button">Print Invoice</button>
+                        </div>
+                    </div>
+                    <div class="my-3"></div>
+                    <table class="table table-responsive border">
                         <thead>
                             <tr>
-                                <th>Product Title</th>
-                                <th></th>
-                                <th>Shipping</th>
-                                <th>Total</th>
+                                <th class="text-uppercase">Product Title</th>
+                                <th class="text-uppercase"></th>
+                                <th class="text-uppercase">Shipping</th>
+                                <th class="text-uppercase">Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,10 +82,10 @@
                             <tr>
                                 <td colspan="42" class="bg-light">
                                     <div class="d-flex">
-                                        <div>Pakage {{ $loop->iteration }} - Sold by STORE NAME HERE</div>
+                                        <div>Pakage {{ $loop->iteration }} - Sold by {{ $package->vendorShop->shop_name }}</div>
                                         <div class="ml-auto">
                                             <div class="badge badge-primary">
-                                                {{ $package->status }}
+                                                {{ ucfirst($package->status) }}
                                             </div>
                                         </div>
                                     </div>
@@ -61,6 +111,7 @@
                             </tr>
                             @endforeach
                             @endforeach
+                        <tfoot>
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="">Subtotal</td>
@@ -76,63 +127,63 @@
                                 <td class="text-primary">Order Total</td>
                                 <td class="text-primary text-nowrap">
                                     <div>{{ formatted_price($totalPrice) }}</div>
-                                    <div class="{{ $order->payment_status == 'paid' ? 'bg-success' : 'bg-danger' }} text-white font-weight-normal p-2 rounded text-center">{{ $order->payment_status == 'paid' ? 'Paid' : 'Unpaid' }}</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                                    {{-- <div class="{{ $order->payment_status == 'paid' ? 'bg-success' : 'bg-danger' }} text-white font-weight-normal p-2 rounded text-center">{{ $order->payment_status == 'paid' ? 'Paid' : 'Unpaid' }}
+                </div> --}}
+                </td>
+                </tr>
+                </tfoot>
 
-            {{-- Customer address --}}
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    @include('order::address-box', ['title' => 'Billing Address', 'address' => $order->billingAddress])
-                </div>
-                <div class="col-md-6">
-                    @include('order::address-box', ['title' => 'Shipping Address', 'address' => $order->shippingAddress])
-                </div>
+                </tbody>
+                </table>
             </div>
+        </div>
 
-        </div>
-        <div class="col-md-4">
-            @if (auth()->user()->hasRole('vendor'))
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{ route('orders.package.update', $package) }}" class="form" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label>Order Status</label>
-                            <select name="status" class="custom-select form-control @error('status') is-invalid @enderror">
-                                @foreach (config('constants.package_statuses') as $status)
-                                <option value="{{ $status }}" @if (old('status', $package->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
-                                @endforeach
-                            </select>
-                            @error('status')
-                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" name="update_silently" class="form-check=-input" value="1">
-                                <span>Do not notify customer</span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block">Update Order</button>
-                        </div>
-                    </form>
-                </div>
+        {{-- Customer address --}}
+        <div class="row mt-3">
+            <div class="col-md-6">
+                @include('order::address-box', ['title' => 'Billing Address', 'address' => $order->billingAddress])
             </div>
-            @endif
+            <div class="col-md-6">
+                @include('order::address-box', ['title' => 'Shipping Address', 'address' => $order->shippingAddress])
+            </div>
         </div>
+
     </div>
-
-    <div class="my-5"></div>
-
-    <button class="btn btn-sm print__button btn-primary">Print</button>
+    <div class="col-md-4">
+        @if (auth()->user()->hasRole('vendor'))
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ route('orders.package.update', $package) }}" class="form js-package-status-update-form js-disable-on-submit" method="POST" data-original-status="{{ $package->status }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label>Order Status</label>
+                        <select name="status" class="custom-select form-control @error('status') is-invalid @enderror">
+                            @foreach (vendor_editable_package_status() as $status)
+                            <option value="{{ $status }}" @if (old('status', $package->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
+                            @endforeach
+                        </select>
+                        @error('status')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="update_silently" class="form-check=-input" value="1">
+                            <span>Do not notify customer</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Update Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @endif
+    </div>
 </div>
+</div>
+
 <!-- Modal -->
 @include('dashboard::admin.modals.orderstatusmodal')
 <div class="modal" id="popupModal">
@@ -255,5 +306,31 @@
         });
     });
 
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Confirm before changing package status
+        $('.js-package-status-update-form').on('submit', function(e) {
+            e.preventDefault();
+            let originalStatus = $(this).data('original-status');
+            let newStatus = $(this).find('select[name="status"]').val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are changing the package status from  ${originalStatus} to ${newStatus}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, change it!'
+                }).then((result) => {
+                    if (result.value) {
+                        e.target.submit();
+                    }else {
+                        $(this).find('button[type="submit"]').prop('disabled', false);
+                    }
+                })
+        })
+    });
 </script>
 @endsection
