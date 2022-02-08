@@ -38,7 +38,7 @@
                             </a>
                         </td>
                         @if( auth()->user()->hasAnyRole('super_admin|admin'))
-                        <td class="text-capitalize">{{ $detail->vendorUser->name }}</td>
+                        <td class="text-capitalize">{{ $detail->vendorShop->shop_name }}</td>
                         @endif
                         <td>{{ formatted_price($detail->total_price) }}</td>
                         <td>
