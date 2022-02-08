@@ -152,11 +152,6 @@ export default {
 }
 
 /********************  card   ********************/
-.custom-card{
-    padding: 20px 0px;
-    margin-right: 60px;
-    margin-left: 60px;
-}
 
 .card-footers {
     padding: .10rem 1.25rem;
@@ -304,10 +299,12 @@ export default {
 }
 
 /********************  Media Queries   ********************/
-@media all and (max-width: 960px) {
-    .card-deck {
-        flex-direction: column;
-    }
+@media all and (min-width: 960px) {
+  .custom-card{
+     padding: 20px 0px;
+     margin-right: 60px;
+     margin-left: 60px;
+  }
 }
 
 

@@ -62,7 +62,6 @@
             </div>
             <div class="col-lg-6 col-sm-12 form-group">
               <label><strong>Expiry Time</strong></label>
-              <!-- <br> -->
               <date-picker
                 v-model.trim="$v.expire_at.$model"
                 class="form-control"
@@ -70,7 +69,7 @@
                 lang="en"
                 type="datetime"
                 :disabled-date="disableDate"
-                style="width: 500px; border: none; margin-top: -10px"
+                style="width:100%"
                 placeholder="select date time"
                 :show-time-panel="showTimePanel"
                 @close="handleOpenChange"
@@ -96,25 +95,19 @@
               <hr />
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
-              <table>
+              <table class="table" style="overflow-y: scroll;">
                 <thead
-                  class="
-                    table table-bordered table-striped
-                    dataTable
-                    dtr-inline
-                  "
-                  role="grid"
-                  aria-describedby="example1_info"
+                
                 >
                   <tr>
                     <!-- <th style="background-color: #d9e7e7">SN</th> -->
-                    <th style="background-color: #d9e7e7">Product</th>
-                    <th style="background-color: #b4d7d7">Quantity</th>
-                    <th style="background-color: #ed9494">Unit Price</th>
-                    <th style="background-color: #ed9494">Shipping Charge</th>
-                    <th style="background-color: #ed9494">SubTotal Price</th>
+                    <th scope="col" style="background-color: #d9e7e7">Product</th>
+                    <th scope="col" style="background-color: #b4d7d7">Quantity</th>
+                    <th scope="col" style="background-color: #ed9494">Unit Price</th>
+                    <th scope="col" style="background-color: #ed9494">Shipping Charge</th>
+                    <th scope="col" style="background-color: #ed9494">SubTotal Price</th>
 
-                    <th style="background-color: #ff0000ab">Delete</th>
+                    <th scope="col" style="background-color: #ff0000ab">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -123,7 +116,7 @@
                       .$iter"
                     :key="index"
                   >
-                    <td class="inputProduct">
+                    <td scope="row" class="inputProduct">
                       <multiselect
                         class="form-control form"
                         v-model="invoice_product.product_id.$model"
@@ -173,7 +166,7 @@
                         Please Select Product First.
                       </div>
                     </td>
-                    <td class="inputQuentiry">
+                    <td scope="row" class="inputQuentiry">
                       <input
                         class="form-control"
                         type="number"
@@ -198,7 +191,7 @@
                         Quantity must have positive integer value.
                       </div>
                     </td>
-                    <td class="inputPrice">
+                    <td scope="row" class="inputPrice">
                       <input
                         class="form-control"
                         type="text"
@@ -223,7 +216,7 @@
                         Unit price field must have positive integer value.
                       </div>
                     </td>
-                    <td class="shippingCharge">
+                    <td scope="row" class="shippingCharge">
                       <input
                         class="form-control"
                         type="text"
@@ -242,7 +235,7 @@
                         Shipping charge field must have positive integer value.
                       </div>
                     </td>
-                    <td class="totalPrice">
+                    <td  scope="row" class="totalPrice">
                       <input
                         class="form-control"
                         type="text"
@@ -261,14 +254,14 @@
                     </td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><strong>Total</strong>: Rs {{ total }}</td>
+                    <td scope="row"></td>
+                    <td scope="row"></td>
+                    <td scope="row"></td>
+                    <td scope="row"></td>
+                    <td scope="row"><strong>Total</strong>: Rs {{ total }}</td>
                   </tr>
                   <tr>
-                    <td>
+                    <td scope="row">
                       <button
                         type="button"
                         class="btn btn-info addProduct"
@@ -288,7 +281,7 @@
       </div>
       <div class="col-md-12 mx-0 mb-3 bg-white rounded p-3">
         <loading-button type="submit" class="btn btn-primary mt-4" 
-          :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
+          :loading="loading">{{ loading ? 'Please wait' : 'Create' }}</loading-button>
       </div>
     </form>
   </div>
