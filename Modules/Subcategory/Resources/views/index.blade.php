@@ -61,7 +61,10 @@
                 <td>{{$detail->is_featured==1? 'Yes':'No'}}</td>
                 <td>{{$detail->category->name}}</td>
                 @if( auth()->user()->hasRole('vendor'))
-                <td>{{$detail->publish==1 ? 'Published':'Not Published'}}</td>
+                <td><div class="badge badge-primary text-capitalize">
+                        {{ $detail->publish == 1 ? 'Published' : 'Not Published' }}
+                        </div>
+                    </td>
                 @endif
                 @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
                 <td>

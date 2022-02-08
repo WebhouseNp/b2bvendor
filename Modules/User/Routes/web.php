@@ -27,8 +27,8 @@ Route::get('approved-vendors', 'VendorManagementController@getApprovedVendors')-
 Route::get('suspended-vendors', 'VendorManagementController@getSuspendedVendors')->name('getSuspendedVendors');
 Route::get('new-vendors', 'VendorManagementController@getNewVendors')->name('getNewVendors');
 Route::get('vendorprofile/{username}', 'VendorManagementController@getVendorProfile')->name('getVendorProfile');
-Route::post('update-vendor-details/{id}', 'VendorManagementController@updateVendorDetails')->name('updateVendorDetails');
-Route::post('update-vendor-desc/{id}', 'VendorManagementController@updateVendorDescription')->name('updateVendorDescription');
+Route::post('update-vendor-details/{vendor}', 'VendorManagementController@updateVendorDetails')->name('updateVendorDetails');
+Route::post('update-vendor-desc/{vendor}', 'VendorManagementController@updateVendorDescription')->name('updateVendorDescription');
 Route::post('update-user-details/{vendor}', 'VendorManagementController@updateUserDetails')->name('updateUserDesc');
 Route::post('update-vendor-bank-details/{vendor}', 'VendorManagementController@updateVendorBankDetails')->name('updateVendorBankDetails');
 Route::get('vendorproducts/{username}', 'VendorManagementController@getVendorProducts')->name('getVendorProducts');

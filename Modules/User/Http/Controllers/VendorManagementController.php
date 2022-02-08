@@ -39,7 +39,7 @@ class VendorManagementController extends Controller
 
     public function getVendorProfile(Request $request, $username){
         $user = User::where('username',$username)->with('vendor')->first();
-        $categories = Category::published()->select('id','name')->get();
+        $categories = Category::published()->select('id','name','slug')->get();
         $countries = Country::published()->get();
         return view('user::profile',compact('user','categories','countries'));
     }
@@ -54,7 +54,7 @@ class VendorManagementController extends Controller
         return view('user::payment',compact('paid'));
     }
 
-    public function updateVendorDetails(Request $request , $id){
+    public function updateVendorDetails(Request $request ,Vendor $vendor){
         $request->validate([
             'shop_name' => 'required',
             'company_email' => 'required',
@@ -62,11 +62,12 @@ class VendorManagementController extends Controller
             'product_category' => 'nullable',
             'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
          ]);
-         $oldRecord = Vendor::where('user_id',$id)->first();
          $formInput = $request->except(['image']);
+         // dd($request->all(),$vendor);
+         // return $request->category_id;
          if ($request->hasFile('image')) {
-            if ($oldRecord->image) {
-               $this->unlinkImage($oldRecord->image);
+            if ($vendor->image) {
+               $this->unlinkImage($vendor->image);
             }
             if ($request->image) {
                $image = $this->imageProcessing('img-', $request->file('image'));
@@ -74,18 +75,18 @@ class VendorManagementController extends Controller
             }
          }
          $formInput['business_type'] = $request->business_type;
-         $oldRecord->update($formInput);
+         $vendor->update($formInput);
+         $vendor->categories()->sync($request->category_id);
          return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
     }
 
-    public function updateVendorDescription(Request $request, $id)
+    public function updateVendorDescription(Request $request, Vendor $vendor)
     {
        $request->validate([
           'description' => 'required',
        ]);
-       $oldRecord = Vendor::where('user_id',$id)->first();
        $formInput = $request->except(['_token']);
-       $oldRecord->update($formInput);
+       $vendor->update($formInput);
        return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
     }
  

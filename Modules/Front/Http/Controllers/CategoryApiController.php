@@ -83,7 +83,7 @@ class CategoryApiController extends Controller
     }
 
     public function vendorCatgeory(){
-        $categories = Category::published()->select('name')
+        $categories = Category::published()->select('id','name')
             ->get();
             return response()->json($categories, 200);
     }
