@@ -2906,6 +2906,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2950,6 +2958,9 @@ __webpack_require__.r(__webpack_exports__);
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
     },
     country_id: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
+    },
+    value: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
     }
   },
@@ -3671,6 +3682,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3701,7 +3720,7 @@ var mustBePositive = function mustBePositive(value) {
         unit_price: "",
         shipping_charge: ""
       }],
-      expire_at: "05:06",
+      expire_at: " ",
       customer: {
         id: "",
         name: "",
@@ -3730,7 +3749,9 @@ var mustBePositive = function mustBePositive(value) {
   //validation======================================================//
   validations: {
     customer: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.required
+      name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.required
+      }
     },
     expire_at: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.required
@@ -4208,6 +4229,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4296,7 +4326,9 @@ var mustBePositive = function mustBePositive(value) {
   //validation======================================================//
   validations: {
     customer: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.required
+      name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.required
+      }
     },
     expire_at: {
       required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.required
@@ -34263,7 +34295,7 @@ var render = function () {
                         !_vm.$v.shop_name.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    The Shop Name field is required.\n                  "
+                                "\n                    Required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34323,7 +34355,7 @@ var render = function () {
                         !_vm.$v.company_address.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    The company address field is required.\n                  "
+                                "\n                    Required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34384,7 +34416,7 @@ var render = function () {
                         !_vm.$v.company_phone.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    The company contact number is required.\n                  "
+                                "\n                    Required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34443,7 +34475,7 @@ var render = function () {
                         !_vm.$v.company_email.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    The Company Email field is required.\n                  "
+                                "\n                    Required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34537,7 +34569,7 @@ var render = function () {
                         !_vm.$v.business_type.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    We must know your business type.\n                  "
+                                "\n                    Required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34614,7 +34646,7 @@ var render = function () {
                         !_vm.$v.country_id.required
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _vm._v(
-                                "\n                    Country field is required.\n                  "
+                                "\n                    Required.\n                  "
                               ),
                             ])
                           : _vm._e(),
@@ -34640,6 +34672,12 @@ var render = function () {
                           _c(
                             "multiselect",
                             {
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.validationStatus(
+                                  _vm.$v.value
+                                ),
+                              },
                               attrs: {
                                 options: _vm.options,
                                 multiple: true,
@@ -34649,11 +34687,15 @@ var render = function () {
                                 label: "name",
                               },
                               model: {
-                                value: _vm.value,
+                                value: _vm.$v.value.$model,
                                 callback: function ($$v) {
-                                  _vm.value = $$v
+                                  _vm.$set(
+                                    _vm.$v.value,
+                                    "$model",
+                                    typeof $$v === "string" ? $$v.trim() : $$v
+                                  )
                                 },
-                                expression: "value",
+                                expression: "$v.value.$model",
                               },
                             },
                             [
@@ -34671,6 +34713,14 @@ var render = function () {
                               ),
                             ]
                           ),
+                          _vm._v(" "),
+                          !_vm.$v.value.required
+                            ? _c("div", { staticClass: "invalid-feedback" }, [
+                                _vm._v(
+                                  "\n                    Required.\n                  "
+                                ),
+                              ])
+                            : _vm._e(),
                         ],
                         1
                       ),
@@ -35064,14 +35114,20 @@ var render = function () {
                           directives: [
                             {
                               name: "model",
-                              rawName: "v-model",
-                              value: _vm.customer.name,
-                              expression: "customer.name",
+                              rawName: "v-model.trim",
+                              value: _vm.$v.customer.name.$model,
+                              expression: "$v.customer.name.$model",
+                              modifiers: { trim: true },
                             },
                           ],
                           staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.validationStatus(
+                              _vm.$v.customer.name
+                            ),
+                          },
                           attrs: { type: "text", placeholder: "Name or email" },
-                          domProps: { value: _vm.customer.name },
+                          domProps: { value: _vm.$v.customer.name.$model },
                           on: {
                             keyup: _vm.filterCustomers,
                             input: function ($event) {
@@ -35079,10 +35135,13 @@ var render = function () {
                                 return
                               }
                               _vm.$set(
-                                _vm.customer,
-                                "name",
-                                $event.target.value
+                                _vm.$v.customer.name,
+                                "$model",
+                                $event.target.value.trim()
                               )
+                            },
+                            blur: function ($event) {
+                              return _vm.$forceUpdate()
                             },
                           },
                         }),
@@ -35113,6 +35172,14 @@ var render = function () {
                             }),
                           ]
                         ),
+                        _vm._v(" "),
+                        !_vm.$v.customer.name.required
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                    Required.\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
                       ]),
                       _vm._v(" "),
                       _vm.customersList.length || _vm.errors.length
@@ -35252,11 +35319,7 @@ var render = function () {
                             staticClass: "invalid-feedback",
                             staticStyle: { "margin-left": "20px" },
                           },
-                          [
-                            _vm._v(
-                              "\n              Expiry Time is required.\n            "
-                            ),
-                          ]
+                          [_vm._v("\n              Required.\n            ")]
                         )
                       : _vm._e(),
                   ],
@@ -35499,7 +35562,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                        Quantity field is required.\n                      "
+                                            "\n                        Required.\n                      "
                                           ),
                                         ]
                                       )
@@ -35511,7 +35574,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                        Quantity must have positive integer value.\n                      "
+                                            "\n                        Must be positive integer value.\n                      "
                                           ),
                                         ]
                                       )
@@ -35574,7 +35637,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                        Unit price field is required.\n                      "
+                                            "\n                        Required.\n                      "
                                           ),
                                         ]
                                       )
@@ -35586,7 +35649,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                        Unit price field must have positive integer value.\n                      "
+                                            "\n                        Must be positive integer value.\n                      "
                                           ),
                                         ]
                                       )
@@ -35652,7 +35715,7 @@ var render = function () {
                                         { staticClass: "invalid-feedback" },
                                         [
                                           _vm._v(
-                                            "\n                        Shipping charge field must have positive integer\n                        value.\n                      "
+                                            "\n                        Must be positive integer value.\n                      "
                                           ),
                                         ]
                                       )
@@ -35756,7 +35819,7 @@ var render = function () {
             _c(
               "loading-button",
               {
-                staticClass: "btn btn-primary btn-signup",
+                staticClass: "btn btn-primary",
                 attrs: { type: "submit", loading: _vm.loading },
               },
               [_vm._v(_vm._s(_vm.loading ? "Please wait" : "Create"))]
@@ -35942,14 +36005,20 @@ var render = function () {
                           directives: [
                             {
                               name: "model",
-                              rawName: "v-model",
-                              value: _vm.customer.name,
-                              expression: "customer.name",
+                              rawName: "v-model.trim",
+                              value: _vm.$v.customer.name.$model,
+                              expression: "$v.customer.name.$model",
+                              modifiers: { trim: true },
                             },
                           ],
                           staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.validationStatus(
+                              _vm.$v.customer.name
+                            ),
+                          },
                           attrs: { type: "text", placeholder: "Name or email" },
-                          domProps: { value: _vm.customer.name },
+                          domProps: { value: _vm.$v.customer.name.$model },
                           on: {
                             keyup: _vm.filterCustomers,
                             input: function ($event) {
@@ -35957,10 +36026,13 @@ var render = function () {
                                 return
                               }
                               _vm.$set(
-                                _vm.customer,
-                                "name",
-                                $event.target.value
+                                _vm.$v.customer.name,
+                                "$model",
+                                $event.target.value.trim()
                               )
+                            },
+                            blur: function ($event) {
+                              return _vm.$forceUpdate()
                             },
                           },
                         }),
@@ -35991,6 +36063,14 @@ var render = function () {
                             }),
                           ]
                         ),
+                        _vm._v(" "),
+                        !_vm.$v.customer.name.required
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v(
+                                "\n                    Required.\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
                       ]),
                       _vm._v(" "),
                       _vm.customersList.length || _vm.errors.length
@@ -36133,11 +36213,7 @@ var render = function () {
                             staticClass: "invalid-feedback",
                             staticStyle: { "margin-left": "20px" },
                           },
-                          [
-                            _vm._v(
-                              "\n              Expiry Time is required.\n            "
-                            ),
-                          ]
+                          [_vm._v("\n              Required.\n            ")]
                         )
                       : _vm._e(),
                   ],
@@ -36377,7 +36453,7 @@ var render = function () {
                                       { staticClass: "invalid-feedback" },
                                       [
                                         _vm._v(
-                                          "\n                      Quantity field is required.\n                    "
+                                          "\n                      Required.\n                    "
                                         ),
                                       ]
                                     )
@@ -36389,7 +36465,7 @@ var render = function () {
                                       { staticClass: "invalid-feedback" },
                                       [
                                         _vm._v(
-                                          "\n                      Quantity must not have nagitive and decimal value.\n                    "
+                                          "\n                      Must be positive integer value.\n                    "
                                         ),
                                       ]
                                     )
@@ -36444,7 +36520,7 @@ var render = function () {
                                       { staticClass: "invalid-feedback" },
                                       [
                                         _vm._v(
-                                          "\n                      Unit price field is required.\n                    "
+                                          "\n                      Required.\n                    "
                                         ),
                                       ]
                                     )
@@ -36456,7 +36532,7 @@ var render = function () {
                                       { staticClass: "invalid-feedback" },
                                       [
                                         _vm._v(
-                                          "\n                      Unit price field must have positive value.\n                    "
+                                          "\n                      Must be positive integer value.\n                    "
                                         ),
                                       ]
                                     )

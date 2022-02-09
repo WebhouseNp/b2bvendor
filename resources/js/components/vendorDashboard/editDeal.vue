@@ -17,8 +17,11 @@
                   <div style="position: relative">
                     <input
                       type="text"
-                      v-model="customer.name"
+                      v-model.trim="$v.customer.name.$model"
                       class="form-control"
+                      :class="{
+                        'is-invalid': validationStatus($v.customer.name),
+                      }"
                       @keyup="filterCustomers"
                       placeholder="Name or email"
                     />
@@ -30,6 +33,12 @@
                         v-bind:class="{ 'animate-spin': loadingCustomerList }"
                       ></i
                     ></span>
+                    <div
+                      v-if="!$v.customer.name.required"
+                      class="invalid-feedback"
+                    >
+                      Required.
+                    </div>
                   </div>
 
                   <div
@@ -87,7 +96,7 @@
                 class="invalid-feedback"
                 style="margin-left: 20px"
               >
-                Expiry Time is required.
+                Required.
               </div>
             </div>
           </div>
@@ -194,13 +203,13 @@
                         v-if="!invoice_product.product_qty.required"
                         class="invalid-feedback"
                       >
-                        Quantity field is required.
+                        Required.
                       </div>
                       <div
                         v-if="!invoice_product.product_qty.alphaNum"
                         class="invalid-feedback"
                       >
-                        Quantity must not have nagitive and decimal value.
+                        Must be positive integer value.
                       </div>
                     </td>
                     <td class="inputPrice">
@@ -219,13 +228,13 @@
                         v-if="!invoice_product.unit_price.required"
                         class="invalid-feedback"
                       >
-                        Unit price field is required.
+                        Required.
                       </div>
                       <div
                         v-if="!invoice_product.unit_price.mustBePositive"
                         class="invalid-feedback"
                       >
-                        Unit price field must have positive value.
+                        Must be positive integer value.
                       </div>
                     </td>
                     <td class="shippingCharge">
@@ -388,7 +397,9 @@ export default {
 
   //validation======================================================//
   validations: {
-    customer: { required },
+    customer: {
+      name:{required}
+    },
     expire_at: { required },
     invoice_products: {
       required,
