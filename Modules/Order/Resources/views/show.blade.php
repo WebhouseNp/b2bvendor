@@ -7,10 +7,10 @@
     <h2 class="page-title"> Order - #{{ $order->id }}</h2>
 </div>
 <div>
-    @if (!$order->isDealCheckout())
+    @if ($order->isDealCheckout())
     <span class="badge badge-primary">Deal Checkout</span>
     @endif
-    @if (!$order->isMultiPackage())
+    @if ($order->isMultiPackage())
     <span class="badge badge-primary">Partial Fulfilment</span>
     @else
     <span class="badge badge-primary">Full Order</span>

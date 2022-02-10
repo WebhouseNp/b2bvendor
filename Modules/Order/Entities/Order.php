@@ -50,8 +50,7 @@ class Order extends Model
 	public function isMultiPackage()
 	{
 		$this->loadMissing('packages');
-		logger('packages count: ' . count($this->packages));
-		return count($this->packages) > 1;
+		return (count($this->packages) > 1) ? true : false;
 	}
 
 	public function customer()
