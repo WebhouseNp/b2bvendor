@@ -26,14 +26,14 @@ class ReviewController extends Controller
                 'rate'             => 'required|numeric'
             ]);
             if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
+                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()],422);
                 exit;
             }
             $formData = $request->all();
             $data = Review::create($formData);
             return response()->json([
                 "message" => "Review created!!"
-              ], 201);
+              ], 200);
         } catch (\Exception $ex) {
             Log::error('Review Created', [
                 'status' => '500',

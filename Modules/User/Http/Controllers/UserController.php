@@ -280,8 +280,8 @@ class UserController extends Controller
   {
       $request->validate([
         'old_password' => 'required',
-        'new_password' => 'required|min:6',
-        'new_confirm_password' => 'required|min:6|same:new_password',
+        'password' => 'required|min:6',
+        'confirm_password' => 'required|min:6|same:new_password',
       ]);
       $auth_user = auth()->user();
       if (!Hash::check($request->old_password, auth()->user()->password)) {
@@ -289,7 +289,7 @@ class UserController extends Controller
           'message' => 'Password does not match'
         ], 403);
       }
-        $user = $auth_user->update(['password' => Hash::make($request->new_password)]);
+        $user = $auth_user->update(['password' => Hash::make($request->password)]);
         return response()->json([
           "message" => "Password has been changed",
         ], 200);

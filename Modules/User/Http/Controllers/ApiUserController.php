@@ -170,7 +170,7 @@ class ApiUserController extends Controller
       ]);
 
       if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'status_code' => 422, 'data' => $validator->messages()], 422);
+        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
       $name = explode(' ', $request->name);
@@ -345,8 +345,8 @@ class ApiUserController extends Controller
     try {
       $validator = Validator::make($request->all(), [
         'old_password' => 'required',
-        'new_password' => 'required|min:6',
-        'new_confirm_password' => 'required|min:6|same:new_password',
+        'password' => 'required|min:6',
+        'confirm_password' => 'required|min:6|same:password',
 
       ]);
 
@@ -356,7 +356,7 @@ class ApiUserController extends Controller
       }
       if (Hash::check($request->old_password, auth()->user()->password)) {
 
-        $user = User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+        $user = User::find(auth()->user()->id)->update(['password' => Hash::make($request->password)]);
         return response()->json([
           "message" => "Password has been changed",
         ], 200);
