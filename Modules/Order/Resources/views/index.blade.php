@@ -16,7 +16,7 @@
                     <th>Customer Name</th>
                     <th>Date</th>
                     <th>Total Amount</th>
-                    <th>Track Number</th>
+                    {{-- <th>Track Number</th> --}}
                     <th>Payment Type</th>
                     <th>Status</th>
                     <th class="text-right">Action</th>
@@ -32,12 +32,12 @@
                         <div>{{ date('g:i A', strtotime($order->created_at)) }}</div>
                     </td>
                     <td>{{ formatted_price($order->total_price) }}</td>
-                    <td>{{ $order->track_no ?? 'N/A' }}</td>
+                    {{-- <td>{{ $order->track_no ?? 'N/A' }}</td> --}}
                     <td>
                         <div class="text-capitalize">{{ $order->payment_type}}</div>
                         <div class="badge badge-primary text-capitalize">{{ $order->payment_status }}</div>
                     </td>
-                    <td><span class="badge badge-primary">{{ $order->status}}</span></td>
+                    <td><span class="badge badge-primary">{{ ucfirst($order->status) }}</span></td>
                     <td class="text-right">
                         <a href="{{ route('orders.show', $order->id) }}" class="btn btn-link text-primary"><i class="fa fa-eye mr-1"></i> View</a>
                     </td>
