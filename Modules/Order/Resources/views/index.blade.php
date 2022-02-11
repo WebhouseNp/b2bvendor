@@ -25,10 +25,10 @@
             <tbody>
                 @forelse($orders as $order)
                 <tr class="category_row{{ $order->id }}">
-                    <td> {{ $loop->iteration }}</td>
+                    <td> #{{ $order->id }}</td>
                     <td>{{ $order->customer->name ?? '' }}</td>
                     <td>
-                        <div>{{ $order->created_at->format('d M, Y')}}</div>
+                        <div>{{ $order->created_at->format('d M, Y') }}</div>
                         <div>{{ date('g:i A', strtotime($order->created_at)) }}</div>
                     </td>
                     <td>{{ formatted_price($order->total_price) }}</td>
