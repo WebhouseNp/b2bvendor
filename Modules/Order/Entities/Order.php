@@ -2,12 +2,15 @@
 
 namespace Modules\Order\Entities;
 
+use App\Jobs\ReleasePaymentJob;
 use Illuminate\Database\Eloquent\Model;
 use  Modules\Product\Entities\Product;
 use  Modules\User\Entities\Vendor;
 use Modules\Order\Entities\OrderList;
 use  App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\App;
+use Modules\Payment\Service\TransactionService;
 use Modules\User\Entities\Address;
 
 class Order extends Model
@@ -35,6 +38,15 @@ class Order extends Model
 				return $query->where('user_id', auth()->user()->id);
 			});
 		});
+
+		// static::updating(function ($order) {
+        //     if ($order->status == 'completed' && ($order->status != $order->getOriginal('status'))) {
+		// 		// Add transaction
+		// 		foreach($order->packages as $package) {
+		// 			app(new \Modules\Payment\Service\TransactionService)->deposit($package->vendor_user_id, $package->total_price, 'Order #' . $order->id);
+		// 		}
+		// 	}
+        // });
 	}
 
 	public function isPaid()
@@ -95,7 +107,12 @@ class Order extends Model
 		if ($this->status === 'shipped') {
 			if (!$this->packages()->where('status', '!=', 'completed')->count()) {
 				$this->update(['status' => 'completed']);
-				// also may be need to send the order completed email
+				ReleasePaymentJob::dispatch($this);
+				// $transactionService = App::make(TransactionService::class);
+				// foreach($this->packages as $package) {
+				// 	$isCod = $this->payment_type == 'cod' ? true : false;
+				// 	$transactionService->deposit($package->vendor_user_id, $package->total_price, $isCod, 'Order #' . $this->id);
+				// }
 			}
 		}
 	}

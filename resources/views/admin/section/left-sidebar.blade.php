@@ -167,6 +167,16 @@ $user_access = json_decode($user->access_level);
                 </ul>
             </li>
 
+            @if (auth()->user()->hasRole('vendor'))
+            <li>
+                <a href="/transactions/{{ auth()->id() }}">
+                    <i class="sidebar-item-icon fa fa-bar-chart "></i>
+                    <span class="nav-label">Transactions</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+            </li>
+            @endif
+
             @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('roles', $user_access)))
             <li>
                 <a href="javascript:;">

@@ -29,14 +29,15 @@ class PackageController extends Controller
                 $order->syncStatusFromPackages();
             }
 
-            if (!$request->filled('update_silently')) {
-                Mail::to($order->customer->email)->send(new \App\Mail\PackageStatusChanged($package));
-            }
             DB::commit();
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            report($th);
+        } catch (\Exception $ex) {
+            DB::commit();
+            report($ex);
             return redirect()->back()->with('error', 'Something went wrong while processing your request.');
+        }
+
+        if (!$request->filled('update_silently')) {
+            Mail::to($order->customer->email)->send(new \App\Mail\PackageStatusChanged($package));
         }
 
         return redirect()->back()->with('success', 'Order Package status updated successfully.');
