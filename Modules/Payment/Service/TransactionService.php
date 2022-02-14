@@ -9,7 +9,7 @@ class TransactionService
     public function deposit($vendorId, $amount, $isCod, $remarks = null)
     {
         try {
-            $currentBalance = Transaction::where('vendor_user_id', $vendorId)->latest()->first()->running_balance ?? 0;
+            $currentBalance = $this->getCurrentBalance($vendorId);
             $transaction = new Transaction();
             $transaction->vendor_user_id = $vendorId;
             $transaction->type = 1;
@@ -36,5 +36,13 @@ class TransactionService
         $transaction->running_balance = $currentBalance - $amount;
         $transaction->remarks = $remarks;
         $transaction->save();
+    }
+
+    public function getCurrentBalance($vendorId)
+    {
+        return Transaction::where('vendor_user_id', $vendorId)
+        ->where('is_cod', false)
+        ->orWhereNull('is_cod')
+        ->latest()->first()->running_balance ?? 0;
     }
 }

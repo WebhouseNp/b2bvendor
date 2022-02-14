@@ -2,7 +2,7 @@
     <div class="ibox-body">
         <div class="row">
             <div class="col-md-6">
-                <form action="">
+                <form action="{{ route('transactions.record-payment', $vendorUser->id) }}" method="POST">
                     @csrf
                     <div class="modal-body mx-3">
                         <div class="form-group">
@@ -11,8 +11,9 @@
                                 <div class="input-group-prepend bg-light p-2 border">
                                     <div class="input-group-text">{{ price_unit() }}</div>
                                 </div>
-                                <input type="number" name="amount" class="form-control" required="" autocomplete="off">
+                                <input type="number" name="amount" class="form-control" required autocomplete="off">
                             </div>
+                            <small>Currently you have to pay: {{ formatted_price($currentBalance) }} in total.</small>
                         </div>
                         <div class="form-group">
                             <label for="">Date</label>
@@ -23,6 +24,10 @@
                             <label for="" class="required">Transaction Remarks</label>
                             <textarea type="text" name="remarks" class="form-control" required></textarea>
                             <small class="form-text">Type in transaction date, E-sewa or bank transaction number.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="required">Attachment</label>
+                            <input type="file" name="attachment" class="form-control">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Deposit</button>
