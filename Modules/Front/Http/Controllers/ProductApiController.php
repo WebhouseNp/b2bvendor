@@ -31,7 +31,6 @@ class ProductApiController extends Controller
                 return $query->where('user_id', request()->from_vendor);
             })
             ->active()
-            ->approved()
             ->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 18);
 
         return ProductResource::collection($products)->hide([
@@ -51,7 +50,6 @@ class ProductApiController extends Controller
     {
         $product = Product::where('slug', $slug)
             ->active()
-            ->approved()
             ->firstOrFail();
 
         $product->load(['category', 'ranges', 'productimage', 'user.vendor']);
@@ -66,7 +64,6 @@ class ProductApiController extends Controller
             ->where('type', 'new')
             ->where('status', 'active')
             ->active()
-            ->approved()
             ->orderBy('created_at', 'DESC')
             ->take(4)
             ->get();
@@ -88,7 +85,6 @@ class ProductApiController extends Controller
             ->where('type', 'top')
             ->where('status', 'active')
             ->active()
-            ->approved()
             ->orderBy('created_at', 'DESC')
             ->take(4)->get();
 
@@ -109,7 +105,6 @@ class ProductApiController extends Controller
              ->where('type', 'whole_sale')
              ->where('status', 'active')
              ->active()
-             ->approved()
              ->orderBy('created_at', 'DESC')
              ->take(18)->get();
  

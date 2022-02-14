@@ -14,14 +14,12 @@ use Modules\Country\Entities\Country;
 
 class VendorController extends Controller
 {
-   /**
-    * Display a listing of the resource.
-    * @return Renderable
-    */
    public function getVendorPaymentReport()
    {
       $id = Auth::user()->id;
-      $vendor = User::where('id', Auth::user()->id)->with('vendor', 'products', 'vendor_payments')->first();
+      $user = auth()->user();
+      $vendor = $user->load('vendor','products');
+      // $vendor = User::where('id', Auth::user()->id)->with('vendor', 'products', 'vendor_payments')->first();
       $paid = $vendor->vendor_payments;
       return view('user::payment', compact('paid'));
    }
@@ -30,9 +28,6 @@ class VendorController extends Controller
       $id = auth()->user()->id;
       $user = auth()->user();
       $vendor = $user->load('vendor','products');
-      // $vendor = User::where('id', Auth::user()->id)->with('vendor', 'products', 'vendor_payments')->first();
-      // $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
-      // $paid = $vendor->vendor_payments->sum('amount');
       return view('user::vendor-profile', compact('id', 'vendor'));
    }
 
@@ -40,7 +35,6 @@ class VendorController extends Controller
    {
       $user = auth()->user();
       $user->load('vendor');
-      // $user = User::where('id', Auth::user()->id)->with('vendor')->first();
       $countries = Country::where('publish', 1)->get();
       return view('user::edit-profile', compact('user', 'countries'));
    }
@@ -66,14 +60,14 @@ class VendorController extends Controller
       return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
-   public function updateVendorDesc(Request $request, $id)
+   public function updateVendorDesc(Request $request, Vendor $vendor)
    {
       $request->validate([
          'description' => 'required',
       ]);
-      $oldRecord = Vendor::where('id',auth()->user()->vendor->id)->first();
+      $vendor = Vendor::where('id',auth()->user()->vendor->id)->first();
       $formInput = $request->except(['_token']);
-      $oldRecord->update($formInput);
+      $vendor->update($formInput);
       return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
@@ -153,8 +147,6 @@ class VendorController extends Controller
    public function view($id)
    {
       $vendor = User::where('id', $id)->with('vendor', 'products', 'vendor_payments')->first();
-      // $order_list = OrderList::where('user_id',$vendor->id)->where('order_status','delivered')->sum('amount');
-      // $paid = $vendor->vendor_payments->sum('amount');
       return view('user::view', compact('id', 'vendor'));
    }
 }

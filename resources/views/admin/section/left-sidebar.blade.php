@@ -296,33 +296,11 @@ $user_access = json_decode($user->access_level);
                         </a>
                     </li>
                     @endif
-                    @if(in_array('super_admin' ,$roles))
-                    <li>
-                        <a href="{{route('product.request')}}">
-                            <span class="fa fa-circle-o"></span>
-                            Unapproved Products
-                        </a>
-                    </li>
+                    @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
                     <li>
                         <a href="{{route('product.index',['type'=>'all'])}}">
                             <span class="fa fa-circle-o"></span>
                             All Products
-                        </a>
-                    </li>
-                    @endif
-                    @if( in_array('vendor' ,$roles))
-                    <li>
-                        <a href="{{route('product.index',['type'=>'approved-products'])}}">
-                            <span class="fa fa-circle-o"></span>
-                            Approved Products
-                        </a>
-                    </li>
-                    @endif
-                    @if( in_array('vendor' ,$roles) || in_array('admin' ,$roles))
-                    <li>
-                        <a href="{{route('product.index',['type'=>'unapproved-products'])}}">
-                            <span class="fa fa-circle-o"></span>
-                            Unapproved Products
                         </a>
                     </li>
                     @endif

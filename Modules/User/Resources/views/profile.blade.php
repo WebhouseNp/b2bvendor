@@ -147,7 +147,7 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="component-1-2" role="tabpanel" aria-labelledby="component-1-2">
-                <form method="post" action="{{route('vendor.updateVendorDescription',$user->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('vendor.updateVendorDescription',$user->vendor->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <div class="ibox-body">

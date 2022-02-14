@@ -38,24 +38,11 @@ class ProductController extends Controller
             ->paginate(10)
             ->withQueryString();
         if (auth()->user()->hasRole('vendor')) {
-            if ($type == 'approved-products') {
-
+            if ($type == 'all') {
                 $details =  Product::when(request()->filled('search'), function ($query) {
                     return $query->where('title', 'like', '%' . request('search') . "%");
                 })
                     ->where('user_id', Auth::id())
-                    ->approved()
-                    // ->with(['category', 'brand', 'offer'])
-                    ->latest()
-                    ->paginate(10)
-                    ->withQueryString();
-            } else if ($type == 'unapproved-products') {
-                $details =  Product::when(request()->filled('search'), function ($query) {
-                    return $query->where('title', 'like', '%' . request('search') . "%");
-                })
-                    ->where('user_id', Auth::id())
-                    ->notapproved()
-                    // ->with(['category', 'brand', 'offer'])
                     ->latest()
                     ->paginate(10)
                     ->withQueryString();
@@ -86,61 +73,6 @@ class ProductController extends Controller
     {
         $brands = Brand::where('publish', 1)->get();
         return response()->json(['data' => $brands, 'status_code' => 200]);
-    }
-
-    public function approveproduct(Request $request)
-    {
-        try {
-            $product = Product::findorFail($request->id);
-            $product['isApproved'] = 'approved';
-            $user = $product->user;
-            $user_info = [
-                'name' => $user->name
-            ];
-            $product->update();
-            Mail::send('email.productapproved', $user_info, function ($message) use ($user_info, $user) {
-                $message->to($user->email,  $user->name)
-
-                    ->subject('Product Approved!! ');
-                $message->from('info@sastowholesale.com', 'Admin');
-            });
-            return response()->json([
-                'status' => 'successful',
-                "message" => "Product approved successfully!"
-            ], 200);
-        } catch (\Exception $exception) {
-            return response([
-                'message' => $exception->getMessage()
-            ], 400);
-        }
-    }
-
-    public function nonapprovalnote(Request $request)
-    {
-        try {
-            $product = Product::findorFail($request->id);
-            $product['isApproved'] = 'rejected';
-            $product['non_approval_note'] = $request->non_approval_note;
-            $product->update();
-            $user_info = [
-                'name' => $product->user->name,
-                'note' => $request->non_approval_note
-            ];
-            Mail::send('email.productrejected', $user_info,  function ($message) use ($user_info, $product) {
-                $message->to($product->user->email, $product->user->name)
-
-                    ->subject('Product Rejected ' . $product->user->name);
-                $message->from('info@sastowholesale.com', 'admin');
-            });
-            return response()->json([
-                'status' => 'true',
-                "message" => "Note added successfully!"
-            ], 200);
-        } catch (\Exception $exception) {
-            return response([
-                'message' => $exception->getMessage()
-            ], 400);
-        }
     }
 
     public function getsubcategory(Request $request)
@@ -176,15 +108,7 @@ class ProductController extends Controller
             }
             DB::beginTransaction();
 
-            $value = $request->except('image', 'best_seller', 'essential');
-
-            $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
-            $value['essential'] = is_null($request->essential) ? 0 : 1;
-            if (auth()->user()->hasRole('vendor')) {
-                $value['isApproved'] = 'not_approved';
-            } else {
-                $value['isApproved'] = 'approved';
-            }
+            $value = $request->except('image');
             if ($request->image) {
                 $image = $this->imageProcessing('img-', $request->file('image'));
                 $value['image'] = $image;
@@ -201,17 +125,6 @@ class ProductController extends Controller
                     $range->save();
                 }
             }
-            $user_info = [
-                'name'  => auth()->user()->name,
-            ];
-            if (auth()->user()->hasRole('vendor')) {
-                Mail::send('email.productapproval', $user_info,  function ($message) use ($user_info) {
-                    $message->to(auth()->user()->email,  auth()->user()->name)
-
-                        ->subject('Product submitted for admin approval ' . auth()->user()->name);
-                    $message->from('info@sastowholesale.com', 'Admin');
-                });
-            }
             DB::commit();
             return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $data]);
         } catch (\Exception $exception) {
@@ -220,17 +133,6 @@ class ProductController extends Controller
                 'message' => $exception->getMessage()
             ], 400);
         }
-    }
-
-    public function productRequest()
-    {
-        $details =  Product::with('user.vendor')
-            ->when(request()->filled('search'), function ($query) {
-                return $query->where('title', 'like', '%' . request('search') . "%");
-            })
-            ->notapproved()->latest()->paginate(10)
-            ->withQueryString();
-        return view('product::productrequest', compact('details'));
     }
 
     public function show($id)
@@ -293,7 +195,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         if (!$product) {
             $request->session()->flash('error', 'Invalid Product Information.');
-            return redirect()->route('product.index',['type'=>'all']);
+            return redirect()->route('product.index', ['type' => 'all']);
         }
         $valid = Validator::make($request->all(), [
             'image.*' =>  'nullable|mimes:jpg,jpeg,png|max:2000|dimensions:width<=765,height<=1020',
@@ -324,7 +226,7 @@ class ProductController extends Controller
             }
         }
         $request->session()->flash('success', 'Product detail updated Successfully.');
-        return redirect()->route('product.index',['type'=>'all']);
+        return redirect()->route('product.index', ['type' => 'all']);
     }
 
     public function deleteImageById(Request $request)
@@ -392,7 +294,6 @@ class ProductController extends Controller
 
     public function updateproduct(Request $request)
     {
-        // try {
         $validator = Validator::make($request->all(), [
             'title'             => 'required|string',
             'shipping_charge'   => 'nullable|numeric',
@@ -409,10 +310,7 @@ class ProductController extends Controller
             exit;
         }
         $product = Product::findorFail($request->id);
-        $value = $request->except('image', 'best_seller', 'essential');
-
-        $value['best_seller'] = is_null($request->best_seller) ? 0 : 1;
-        $value['essential'] = is_null($request->essential) ? 0 : 1;
+        $value = $request->except('image');
         if ($request->image) {
             if ($product->image) {
                 $thumbPath = public_path('images/thumbnail');
@@ -445,11 +343,6 @@ class ProductController extends Controller
             "data" => $value,
             "message" => "product updated successfully"
         ], 200);
-        // } catch (\Exception $exception) {
-        //     return response([
-        //         'message' => $exception->getMessage()
-        //     ], 400);
-        // }
     }
 
     public function imageProcessing($type, $image)
