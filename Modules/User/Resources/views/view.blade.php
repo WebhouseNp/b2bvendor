@@ -311,7 +311,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
-                            <a href="#" target="_blank">
+                            <a href="{{ route('salesReport') }}">
                                 Sales Report
                             </a>
                         </p>
@@ -394,18 +394,17 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
-                            <a href="{{route('vendor.getReport',$vendor->id)}} target=" _blank">Report</a>
+                            <a href="/transactions/{{ $vendor->id }}">Transactions</a>
                         </p>
-
                     </div>
                 </div>
             </div>
             <div class="card-footer border-0">
                 <hr>
                 <div class="stats">
-                    <a href="{{route('vendor.getReport',$vendor->id)}} target=" _blank">
+                    <a href="{{ route('vendor.getReport', $vendor->id) }} target=" _blank">
                         <i class="fa fa-refresh"></i>
-                        View Reports
+                        View Transactions
                     </a>
                 </div>
             </div>

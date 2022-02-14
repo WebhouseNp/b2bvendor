@@ -122,7 +122,7 @@ class SalesReportController extends Controller
 
     public function getOrderInfo()
     {
-        $orders = Package::with(['order'])
+        $orders = Package::with(['order', 'vendorShop'])
             ->when(auth()->user()->hasRole('vendor'), function ($query) {
                 return $query->where('vendor_user_id', auth()->id());
             })

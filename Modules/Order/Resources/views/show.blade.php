@@ -7,10 +7,10 @@
     <h2 class="page-title"> Order - #{{ $order->id }}</h2>
 </div>
 <div>
-    @if (!$order->isDealCheckout())
+    @if ($order->isDealCheckout())
     <span class="badge badge-primary">Deal Checkout</span>
     @endif
-    @if (!$order->isMultiPackage())
+    @if ($order->isMultiPackage())
     <span class="badge badge-primary">Partial Fulfilment</span>
     @else
     <span class="badge badge-primary">Full Order</span>
@@ -111,7 +111,22 @@
                             </tr>
                             @endforeach
                             @endforeach
-                        <tfoot>
+                            <tr class="bg-light">
+                                <td></td>
+                                <td>
+                                    <div>Subtotal</div>
+                                    <div  class="font-weight-bold">{{ formatted_price($subTotalPrice) }}</div>
+                                </td>
+                                <td>
+                                    <div>Shipping</div>
+                                    <div  class="font-weight-bold">{{ formatted_price($totalShippingPrice) }}</div>
+                                </td>
+                                <td class="text-nowrap">
+                                    <div>Order Total</div>
+                                    <div class="font-weight-bold">{{ formatted_price($totalPrice) }}</div>
+                                </td>
+                            </tr>
+                        <tfoot class="d-none">
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="">Subtotal</td>
@@ -161,6 +176,38 @@
                         <select name="status" class="custom-select form-control @error('status') is-invalid @enderror">
                             @foreach (vendor_editable_package_status() as $status)
                             <option value="{{ $status }}" @if (old('status', $package->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
+                            @endforeach
+                        </select>
+                        @error('status')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="update_silently" class="form-check=-input" value="1">
+                            <span>Do not notify customer</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Update Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @endif
+
+        {{-- Order status update for admin and super_admin --}}
+        @if (auth()->user()->hasAnyRole('super_admin|admin'))
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ route('orders.update', $order->id) }}" class="form js-order-status-update-form js-disable-on-submit" method="POST" data-original-status="{{ $order->status }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label>Order Status</label>
+                        <select name="status" class="custom-select form-control @error('status') is-invalid @enderror">
+                            @foreach (config('constants.order_statuses') as $status)
+                            <option value="{{ $status }}" @if (old('status', $order->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
                             @endforeach
                         </select>
                         @error('status')
@@ -330,7 +377,29 @@
                         $(this).find('button[type="submit"]').prop('disabled', false);
                     }
                 })
-        })
+        });
+
+         // Confirm before changing whole order status
+         $('.js-order-status-update-form').on('submit', function(e) {
+            e.preventDefault();
+            let originalStatus = $(this).data('original-status');
+            let newStatus = $(this).find('select[name="status"]').val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are changing the order status from  ${originalStatus} to ${newStatus}.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, change it!'
+                }).then((result) => {
+                    if (result.value) {
+                        e.target.submit();
+                    }else {
+                        $(this).find('button[type="submit"]').prop('disabled', false);
+                    }
+                })
+        });
     });
 </script>
 @endsection

@@ -38,7 +38,8 @@ class ProfileController extends Controller
         'city' => 'sometimes',
         'street_address' => 'sometimes',
         'nearest_landmark' => "sometimes",
-        'company_name' => "sometimes"
+        'company_name' => "sometimes",
+        'vat' => "sometimes",
       ]);
 
       if ($validator->fails()) {
@@ -54,7 +55,8 @@ class ProfileController extends Controller
         'city' => $request->city,
         'street_address' => $request->street_address,
         'nearest_landmark' => $request->nearest_landmark,
-        'company_name' => $request->company_name
+        'company_name' => $request->company_name,
+        'vat' => $request->vat,
       ];
       $user->address()->updateOrCreate([
           'type' => null

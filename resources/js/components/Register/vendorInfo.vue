@@ -41,7 +41,7 @@
                       placeholder=""
                     />
                     <div v-if="!$v.shop_name.required" class="invalid-feedback">
-                      The Shop Name field is required.
+                      Required.
                     </div>
                   </div>
                    <div class="form-group col-md-6">
@@ -60,7 +60,7 @@
                       placeholder=""
                     />
                     <div v-if="!$v.company_address.required" class="invalid-feedback">
-                      The company address field is required.
+                      Required.
                     </div>
                   </div>
                 </div>
@@ -84,7 +84,7 @@
                       v-if="!$v.company_phone.required"
                       class="invalid-feedback"
                     >
-                      The company contact number is required.
+                      Required.
                     </div>
                   </div>
                   <div class="form-group col-md-6">
@@ -105,7 +105,7 @@
                       v-if="!$v.company_email.required"
                       class="invalid-feedback"
                     >
-                      The Company Email field is required.
+                      Required.
                     </div>
                     <div
                       v-if="!$v.company_email.email"
@@ -136,7 +136,7 @@
                       v-if="!$v.business_type.required"
                       class="invalid-feedback"
                     >
-                      We must know your business type.
+                      Required.
                     </div>
                   </div>
                   <div class="form-group col-md-6">
@@ -156,7 +156,7 @@
                       v-if="!$v.country_id.required"
                       class="invalid-feedback"
                     >
-                      Country field is required.
+                      Required.
                     </div>
                   </div>
                 </div>
@@ -169,11 +169,19 @@
                       src="/images/asterik-20.png"
                       alt="asterik-image"
                     />
-                    <multiselect v-model="value" :options="options" 
+                    <multiselect v-model.trim="$v.value.$model" :options="options"
+                    class="form-control" 
+                    :class="{ 'is-invalid': validationStatus($v.value) }"
                     :multiple="true" placeholder="Type to search"
                     track-by="name" :hide-selected="true" label="name">
                     <span slot="noResult">Oops! No category found. Consider changing the search query.</span>
                     </multiselect>
+                    <div
+                      v-if="!$v.value.required"
+                      class="invalid-feedback"
+                    >
+                      Required.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -224,6 +232,7 @@ export default {
     company_phone:{required},
     business_type:{required},
     country_id:{required},
+    value:{required},
   },
 
   mounted(){

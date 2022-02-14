@@ -1,4 +1,3 @@
-
 <?php 
     $user = Auth::user();
     $api_token = $user->api_token;
@@ -38,13 +37,12 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @if($deals->count())
                     @foreach($deals as $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{@$data->user->name}}</td>
-                        <td>{{@$data->vendor->name}}</td>
+                        <td>{{@$data->vendorShop->shop_name}}</td>
                         <td>{{ $data->completed_at ? 'Yes' : 'No' }}</td>
                         <td>{{ $data->expire_at->toDateTimeString() }} 
                             <span>
@@ -81,14 +79,12 @@
                     </tr>
                     @endif
                 </tbody>
-
             </table>
         </div>
     </div>
-
 </div>
-
 @endsection
+
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
