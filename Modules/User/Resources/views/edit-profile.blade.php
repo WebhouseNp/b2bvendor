@@ -179,7 +179,7 @@
                                 <input class="form-control" type="text" value="{{$user->vendor->name_on_bank_acc}}" name="name_on_bank_acc" placeholder="Enter your Name on Bank Account" @if($user->vendor->name_on_bank_acc) disabled @endif>
                             </div>
                             <div class="col-md-5">
-                                <label><strong> Upload Image(Upload Cheque Image with All Bank Detail Shown Clearly ) </strong> </label>
+                                <label><strong> Upload Cheque Image with All Bank Detail Shown Clearly </strong> </label>
                                 <input class="form-control" name="bank_info_image" type="file" id="imageUpload" @if($user->vendor->bank_info_image) disabled @endif>
                                 <br>
                                 <div id="wrapper" class="mt-2">
@@ -189,9 +189,6 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 col-sm-12 form-group">
-                                <h5>Note: If you want to update information please contact admin..</h5>
                             </div>
 
                             <div class="col-lg-12 col-sm-12 form-group">

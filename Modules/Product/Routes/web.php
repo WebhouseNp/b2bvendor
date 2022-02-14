@@ -12,9 +12,6 @@ use Modules\Product\Http\Controllers\ProductController;
 |
 */
 
-Route::prefix('product')->group(function () {
-    // Route::get('/', 'ProductController@index');
-});
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'Adminrole']], function () {
     Route::get('/productimage/{id}', [ProductController::class, 'productImage'])->name('product.images');
     Route::post('/edit-product-images-details/{id}', 'ProductController@updateProductImage')->name('product-update');
@@ -22,11 +19,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'Adminrole']], funct
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::get('/product/view/{id}', [ProductController::class, 'view'])->name('product.view');
     Route::post('/delete-product-image', [ProductController::class, 'deleteImageById'])->name('deleteImageById');
+    Route::post('dropzone/upload/{id}',[ProductImageController::class, 'upload'])->name('dropzone.upload');
+    // Route::post('/delete-product-image', [ProductImageController::class, 'deleteImageById'])->name('deleteImageById');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'Superadmin']], function () {
-    Route::get('/product/request', [ProductController::class, 'productRequest'])->name('product.request');
-});
 Route::group(['prefix' => 'product', 'middleware' => ['auth']], function () {
     Route::get('/{type}', [ProductController::class, 'index'])->name('product.index');
 });
+

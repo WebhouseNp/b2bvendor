@@ -208,7 +208,6 @@ class ApiUserController extends Controller
       $formData['phone_number'] = $request->company_phone;
       // $formData['company_address'] = $request->company_address;
       $vendor = Vendor::create($formData);
-      $vendor->categories()->sync($request->category_id);
       DB::commit();
       Mail::to($request->email)->send(new VendorCreated($vendor));
       return response()->json([
