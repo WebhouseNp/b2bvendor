@@ -281,7 +281,7 @@ class UserController extends Controller
       $request->validate([
         'old_password' => 'required',
         'password' => 'required|min:6',
-        'confirm_password' => 'required|min:6|same:new_password',
+        'confirm_password' => 'required|min:6|same:password',
       ]);
       $auth_user = auth()->user();
       if (!Hash::check($request->old_password, auth()->user()->password)) {
