@@ -48,6 +48,8 @@ class TransactionController extends Controller
 
     public function recordPayment(Request $request, $vendorUserId)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+        
         $request->validate([
             'amount' => 'required|numeric',
             'created_at' => 'nullable|date',

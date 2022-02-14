@@ -3,7 +3,9 @@
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
-
+<div class="pt-4">
+    <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+</div>
 <div class="page-heading">
     @include('admin.section.notifications')
 </div>
