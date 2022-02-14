@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->text('remarks')->nullable();
             $table->boolean('is_cod')->nullable();
             $table->dateTime('settled_at')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
         // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
