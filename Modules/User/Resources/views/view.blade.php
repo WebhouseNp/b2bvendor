@@ -402,27 +402,18 @@
             <div class="card-footer border-0">
                 <hr>
                 <div class="stats">
-                    <a href="{{ route('vendor.getReport', $vendor->id) }} target=" _blank">
+                    <a href="/transactions/{{ $vendor->id }}" target=" _blank">
                         <i class="fa fa-refresh"></i>
                         View Transactions
                     </a>
                 </div>
             </div>
         </div>
-        <!--<div class="page-content fade-in-up">-->
-        <!--    <div class="ibox">-->
-        <!--        <div class="ibox-head">-->
-        <!--            <div class="ibox-title"> -->
-        <!--            <a href="{{route('vendor.getReport',$vendor->id)}}" target="_blank">Report </a>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-3">
+    <!-- <div class="col-md-3">
         <div class="card stats-card fade-in-up">
             <div class="card-body">
                 <div class="row">
@@ -453,18 +444,8 @@
                 </div>
             </div>
         </div>
-
-        <!--<div class="page-content fade-in-up">-->
-        <!--    <div class="ibox">-->
-        <!--        <div class="ibox-head">-->
-        <!--            <div class="ibox-title"> -->
-        <!--                 Total Sales:: -->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
-    </div>
-    <div class="col-md-3">
+    </div> -->
+    <!-- <div class="col-md-3">
         <div class="card stats-card fade-in-up">
             <div class="card-body">
                 <div class="row">
@@ -495,16 +476,7 @@
                 </div>
             </div>
         </div>
-        <!--<div class="page-content fade-in-up">-->
-        <!--    <div class="ibox">-->
-        <!--        <div class="ibox-head">-->
-        <!--            <div class="ibox-title"> -->
-        <!--                 Paid Amount:: Rs. -->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
-    </div>
+    </div> -->
     <div class="col-md-3">
         <div class="card stats-card fade-in-up">
             <div class="card-body">
@@ -519,6 +491,9 @@
                             <a target="_blank">
                                 Due Amount
                             </a>
+                            <span class="card-category-count">
+                                : {{ $due }}
+                            </span>
                         </p>
                         <span class="card-category-count">
                         </span>
@@ -546,12 +521,12 @@
         <!--    </div>-->
         <!--</div>-->
     </div>
-    <div class="col-md-12 mx-auto">
+    <!-- <div class="col-md-12 mx-auto">
         <div class="pay-card text-right">
             <span class="btn changeStatus" data-vendor_id="{{$vendor->id}}">
                 Pay Now
             </span>
-        </div>
+        </div> -->
         <!--<div class="page-content fade-in-up">-->
         <!--    <div class="ibox">-->
         <!--        <div class="ibox-head">-->
@@ -563,7 +538,7 @@
         <!--        </div>-->
         <!--    </div>-->
         <!--</div>-->
-    </div>
+    <!-- </div> -->
 
 </div>
 
