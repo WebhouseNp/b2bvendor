@@ -2,7 +2,7 @@
     <div class="ibox-body">
         <div class="row">
             <div class="col-md-6">
-                <form action="{{ route('transactions.record-payment', $vendorUser->id) }}" method="POST">
+                <form action="{{ route('transactions.record-payment', $vendorUser->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body mx-3">
                         <div class="form-group">
