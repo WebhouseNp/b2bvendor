@@ -5,7 +5,8 @@ namespace Modules\Order\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Mail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
 
@@ -20,6 +21,7 @@ class OrderController extends Controller
         return view('order::index', compact('orders'));
     }
 
+    // not being used right now
     public function updateOrderStatus(Request $request)
     {
         $order = OrderList::where('id', $request->order_id)->first();
@@ -61,7 +63,7 @@ class OrderController extends Controller
             'shippingAddress'
         ]);
 
-        if(auth()->user()->hasRole('vendor')) {
+        if (auth()->user()->hasRole('vendor')) {
             $package = $order->packages->first();
             $subTotalPrice = $package->orderLists->sum->subtotal_price;
             $totalShippingPrice = $package->orderLists->sum->shipping_charge;
@@ -78,5 +80,39 @@ class OrderController extends Controller
             'totalShippingPrice',
             'totalPrice'
         ]));
+    }
+
+    public function update(Request $request, Order $order)
+    {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
+        $request->validate([
+            'order_status' => ['required', Rule::in(config('constants.order_statuses')), Rule::notIn([$order->status])],
+            'update_silently' => 'nullable'
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $order->update(['status' => $request->status]);
+
+            if (!$request->filled('update_silently')) {
+                if ($order->status == 'cancelled') {
+                    // send email to customer
+                    Mail::to($order->customer->email)->send(new \App\Mail\OrderCancelledEmail($order));
+                    // send email to vendors
+                    foreach ($order->packages as $package) {
+                        Mail::to($package->vendorUser->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
+                    }
+                }
+            }
+
+            DB::commit();
+        } catch (\Exception $ex) {
+            DB::commit();
+            report($ex);
+            return redirect()->back()->with('error', 'Something went wrong while processing your request.');
+        }
+
+        return redirect()->back()->with('success', 'Order status changed successfully.');
     }
 }
