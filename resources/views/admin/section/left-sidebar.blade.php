@@ -142,12 +142,12 @@ $user_access = json_decode($user->access_level);
                 </ul>
             </li>
             <li>
-                <a href="javascript:;">
+                <a href="{{ route('salesReport') }}">
                     <i class="sidebar-item-icon fa fa-bar-chart "></i>
                     <span class="nav-label">Sales Report</span>
-                    <i class="fa fa-angle-left arrow"></i>
+                    {{-- <i class="fa fa-angle-left arrow"></i> --}}
                 </a>
-                <ul class="nav-2-level collapse">
+                {{-- <ul class="nav-2-level collapse">
                 @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) || (in_array('vendor' , $roles))))
                     <li>
                         <a href="{{route('salesReport')}}">
@@ -164,7 +164,7 @@ $user_access = json_decode($user->access_level);
                         </a>
                     </li> -->
                     <!-- @endif -->
-                </ul>
+                </ul> --}}
             </li>
 
             @if (auth()->user()->hasRole('vendor'))

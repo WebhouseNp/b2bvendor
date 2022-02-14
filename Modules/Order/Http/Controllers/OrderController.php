@@ -104,6 +104,11 @@ class OrderController extends Controller
                         Mail::to($package->vendorUser->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
                     }
                 }
+
+                if ($order->status == 'refunded') {
+                    // send email to customer
+                    Mail::to($order->customer->email)->send(new \App\Mail\OrderRefundedEmail($order));
+                }
             }
 
             DB::commit();
