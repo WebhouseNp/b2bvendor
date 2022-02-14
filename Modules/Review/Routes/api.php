@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/review', function (Request $request) {
 
 // Route::middleware('auth:api')->group(function () {
     Route::post('create-review', 'ReviewController@createReview')->name('review.create');
+    Route::get('product-review/{id}', 'ReviewController@productReview')->name('review.product');
     Route::put('reviews/{review}/publish', 'ReviewPublicationController@store')->name('api.reviews.publish');
     Route::delete('reviews/{review}/unpublish', 'ReviewPublicationController@destroy')->name('api.reviews.unpublish');
 // });
