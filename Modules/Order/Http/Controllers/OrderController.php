@@ -5,6 +5,7 @@ namespace Modules\Order\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Modules\Order\Entities\Order;
@@ -19,30 +20,6 @@ class OrderController extends Controller
             ->paginate();
 
         return view('order::index', compact('orders'));
-    }
-
-    // not being used right now
-    public function updateOrderStatus(Request $request)
-    {
-        $order = OrderList::where('id', $request->order_id)->first();
-        if ($order) {
-            $order['order_status'] = $request->status;
-        }
-        $product = $order->product;
-        $user = User::where('id', auth()->user()->id)->first();
-        $order_data = [
-            'product_name' => $product->title,
-            'status' => $request->status,
-            'name' => $user->name
-        ];
-        $success  = $order->save();
-        Mail::send('email.order-notice-status', $order_data, function ($message) use ($order, $user) {
-            $message->to($user->email, 'Admin');
-            $message->subject('Order Placed Notice Status for ' . 'b2b');
-        });
-        if ($success) {
-            return response()->json(['status' => 'successful', 'message' => 'Order updated successfully.', 'data' => $order]);
-        }
     }
 
     public function show(Order $order)
@@ -87,7 +64,7 @@ class OrderController extends Controller
         abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
 
         $request->validate([
-            'order_status' => ['required', Rule::in(config('constants.order_statuses')), Rule::notIn([$order->status])],
+            'status' => ['required', Rule::in(config('constants.order_statuses')), Rule::notIn([$order->status])],
             'update_silently' => 'nullable'
         ]);
 
@@ -110,10 +87,10 @@ class OrderController extends Controller
                     Mail::to($order->customer->email)->send(new \App\Mail\OrderRefundedEmail($order));
                 }
             }
-
+            
             DB::commit();
         } catch (\Exception $ex) {
-            DB::commit();
+            DB::rollBack();
             report($ex);
             return redirect()->back()->with('error', 'Something went wrong while processing your request.');
         }

@@ -34,7 +34,7 @@ class OrderCancelledEmailToVedor extends Mailable implements ShouldQueue
         // this email is for customer
         return $this->markdown('email.orders.order-cancelled-to-vendor')
         ->with([
-            'checkStatusLink' => config('constants.customer_app_url') . '/my-orders/' . $this->order->id
+            'checkStatusLink' => route('orders.show', $this->order->id)
         ]);
     }
 }
