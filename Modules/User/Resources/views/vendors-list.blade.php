@@ -15,9 +15,9 @@
                     <tr>
                         <th>SN</th>
                         <th>Full name</th>
+                        <th>Vendor Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Category</th>
                         <th>Vendor Status</th>
                         <th>Profile</th>
                     </tr>
@@ -29,9 +29,9 @@
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$data->name}}</td>
+                        <td>{{$data->vendor->shop_name}}</td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->phone_num}}</td>
-                        <td></td>
                         <td><span class="btn btn-rounded btn-sm {{orderProccess($data->vendor_type) }} changeStatus"
                                 data-status="{{$data->vendor_type}}" data-vendor_id="{{$data->id}}"
                                 style="cursor: pointer;"> Change vendor status</span></td>

@@ -2,6 +2,7 @@
 
 namespace Modules\Dashboard\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -86,16 +87,18 @@ class SalesReportController extends Controller
 
     public function getVendorReport(Request $request, $id)
     {
+        $user = User::where('id', $id)->first();
+        $orders = Package::with(['order', 'vendorShop'])
+            ->where('vendor_user_id', $user->id)
+            ->latest()
+            ->paginate(5);
         $months_day = [];
         $amount = [];
-        $details = VendorOrder::where('user_id', $id)->get();
+        $details = Package::where('vendor_user_id', $user->id)->get();
+        $total_sales = Package::where('vendor_user_id', $user->id)->sum('total_price');
         foreach ($details as $detail) {
             $months_day[] = $detail->created_at->format('Y-m-d');
-
-            $orderlist = OrderList::where('order_id', $detail->order_id)->where('user_id', $detail->user_id)->sum('amount');
-            // else
-            //     $orderlist  = $detail->amount;
-            $amount[] = [$detail->created_at->format('Y-m-d') => $orderlist];
+            $amount[] = [$detail->created_at->format('Y-m-d') => $detail->total_price];
         }
         $finalamount = array();
 
@@ -106,13 +109,9 @@ class SalesReportController extends Controller
         foreach ($finalamount as $value) {
             $amt[] = $value;
         }
-        $total_sales = array_sum($amt);
         $months_day = array_values(array_unique($months_day));
-        // dd($details,$months_day,$amt,$total_sales);
-        // return response()->json(['status' => 'successful',
-        //  'details' => $details ,
-        //  'months_day' => $months_day ,'sales'=>$amt, 'total_sales'=>$total_sales]);
-        return view('user::vendorsalesreport', compact(
+        return view('dashboard::salesreport.sales-info', compact(
+            'orders',
             'details',
             'months_day',
             'amt',
@@ -129,38 +128,40 @@ class SalesReportController extends Controller
             ->latest()
             ->paginate(5);
 
-            $months_day = [];
-            $amount = [];
-            if(auth()->user()->hasRole('vendor')){
-                $details = Package::where('vendor_user_id',auth()->user()->id)->get();
-                $total_sales = Package::where('vendor_user_id', auth()->user()->id)->sum('total_price');
-                foreach ($details as $detail) {
-                    $months_day[] = $detail->created_at->format('Y-m-d');
-                    $amount[] = [$detail->created_at->format('Y-m-d') => $detail->total_price];
-                }
-            } else if(auth()->user()->hasAnyRole('super_admin|admin')){
-                $details = Package::get();
-                $total_sales = Package::sum('total_price');
-                foreach ($details as $detail) {
-                    $months_day[] = $detail->created_at->format('Y-m-d');
-                    $amount[] = [$detail->created_at->format('Y-m-d') => $detail->total_price];
-                }
+        $months_day = [];
+        $amount = [];
+        if (auth()->user()->hasRole('vendor')) {
+            $details = Package::where('vendor_user_id', auth()->user()->id)->get();
+            $total_sales = Package::where('vendor_user_id', auth()->user()->id)->sum('total_price');
+            foreach ($details as $detail) {
+                $months_day[] = $detail->created_at->format('Y-m-d');
+                $amount[] = [$detail->created_at->format('Y-m-d') => $detail->total_price];
             }
-            // dd($amount);
-            $finalamount = array();
-    
-            array_walk_recursive($amount, function ($item, $key) use (&$finalamount) {
-                $finalamount[$key] = isset($finalamount[$key]) ?  $item + $finalamount[$key] : $item;
-            });
-            $amt = [];
-            foreach ($finalamount as $value) {
-                $amt[] = $value;
+        } else if (auth()->user()->hasAnyRole('super_admin|admin')) {
+            $details = Package::get();
+            $total_sales = Package::sum('total_price');
+            foreach ($details as $detail) {
+                $months_day[] = $detail->created_at->format('Y-m-d');
+                $amount[] = [$detail->created_at->format('Y-m-d') => $detail->total_price];
             }
-            $months_day = array_values(array_unique($months_day));
-        return view('dashboard::salesreport.sales-info', compact('orders','details',
-        'months_day',
-        'amt',
-        'total_sales'));
+        }
+        $finalamount = array();
+
+        array_walk_recursive($amount, function ($item, $key) use (&$finalamount) {
+            $finalamount[$key] = isset($finalamount[$key]) ?  $item + $finalamount[$key] : $item;
+        });
+        $amt = [];
+        foreach ($finalamount as $value) {
+            $amt[] = $value;
+        }
+        $months_day = array_values(array_unique($months_day));
+        return view('dashboard::salesreport.sales-info', compact(
+            'orders',
+            'details',
+            'months_day',
+            'amt',
+            'total_sales'
+        ));
     }
 
     // public function getVendorOrderReport(Request $request)

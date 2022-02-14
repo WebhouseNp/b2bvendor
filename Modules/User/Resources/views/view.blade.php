@@ -269,7 +269,7 @@
                     <div class="col-7 col-md-8">
                         <p class="card-category">
                             <a href="{{route('vendor.getVendorProfile',$vendor->username)}}" target="_blank">
-                                Profile
+                                Edit Profile
                             </a>
                         </p>
                     </div>
@@ -311,7 +311,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
-                            <a href="{{ route('salesReport') }}">
+                            <a href="{{ route('getVendorReport',$vendor->id) }}" target="_blank">
                                 Sales Report
                             </a>
                         </p>
@@ -321,7 +321,7 @@
             <div class="card-footer border-0">
                 <hr>
                 <div class="stats">
-                    <a href="#" target="_blank">
+                    <a href="{{ route('getVendorReport',$vendor->id) }}" target="_blank">
                         <i class="fa fa-refresh"></i>
                         View Report
                     </a>
