@@ -31,7 +31,7 @@ class PackageController extends Controller
 
             DB::commit();
         } catch (\Exception $ex) {
-            DB::commit();
+            DB::rollBack();
             report($ex);
             return redirect()->back()->with('error', 'Something went wrong while processing your request.');
         }

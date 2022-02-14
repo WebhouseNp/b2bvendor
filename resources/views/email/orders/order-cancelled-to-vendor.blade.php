@@ -1,6 +1,4 @@
 @component('mail::message')
-## Hi {{ $customerName }}
-
 The order #{{ $order->id }} was cancelled.
 
 @component('mail::button', ['url' => $checkStatusLink])
