@@ -80,25 +80,25 @@
 
     products()
 
-    function deleteProduct(el, id) {
-        var message = confirm('Do You want to delete this product??');
-        if (message) {
-            $.ajax({
-                type: "post",
-                url: "{{route('api.deleteproduct')}}",
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    var validation_errors = JSON.stringify(response.message);
-                    $('#validation-errors').html('');
-                    $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
-                    $(el).closest('tr').remove()
-                }
-            });
-        }
-        return;
-    }
+    // function deleteProduct(el, id) {
+    //     var message = confirm('Do You want to delete this product??');
+    //     if (message) {
+    //         $.ajax({
+    //             type: "post",
+    //             url: "{{route('api.deleteproduct')}}",
+    //             data: {
+    //                 id: id
+    //             },
+    //             success: function(response) {
+    //                 var validation_errors = JSON.stringify(response.message);
+    //                 $('#validation-errors').html('');
+    //                 $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
+    //                 $(el).closest('tr').remove()
+    //             }
+    //         });
+    //     }
+    //     return;
+    // }
 </script>
 <script>
     $(function() {
