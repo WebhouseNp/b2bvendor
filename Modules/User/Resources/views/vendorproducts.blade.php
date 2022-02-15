@@ -19,7 +19,7 @@
                     <div class="col-4 col-md-6">
                         <div class="icon">
                             @if($product->image)
-                            <img src="{{asset('/images/thumbnail/'.$product->image)}}" alt="No Image" class="rounded" width="150" height="150">
+                            <img src="{{asset('/images/thumbnail/'.$product->image)}}" alt="{{$product->title}}" class="rounded" width="150" height="150">
                             @else
                             <div class="icon">
                                 <i class="fa fa-product-hunt"></i>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="col-5 col-md-6">
-                        <strong> {{Str::limit($product->title, 100, $end='.......')}} </strong>
+                    <strong><a href="{{route('product.view',$product->id)}}" target="_blank">{{Str::limit($product->title, 100, $end='.......')}}</a> </strong>
                     </div>
                 </div>
             </div>

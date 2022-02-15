@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>SN</th>
-                        <th>Full name</th>
+                        <th>User Name</th>
                         <th>Vendor Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$data->name}}</td>
-                        <td>{{$data->vendor->shop_name}}</td>
+                        <td>{{@$data->vendor->shop_name}}</td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->phone_num}}</td>
                         <td><span class="btn btn-rounded btn-sm {{orderProccess($data->vendor_type) }} changeStatus"

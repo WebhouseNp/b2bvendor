@@ -42,7 +42,7 @@
                         @endif
                         <td>{{ formatted_price($detail->total_price) }}</td>
                         <td>
-                            <div class="badge {{ $detail->order->isPaid() ? 'bg-success' : 'badge-danger' }}">{{ ucfirst($detail->order->payment_status) }}</div>
+                            <div style="display:inline-block; width:100px" class="badge {{ $detail->order->isPaid() ? 'bg-success' : 'badge-danger' }}">{{ ucfirst($detail->order->payment_status) }}</div>
                         </td>
                         <td>
                             <div>{{ $detail->order->created_at->format('d M, Y') }}</div>

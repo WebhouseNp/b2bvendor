@@ -5,5 +5,5 @@ return  [
 
     'order_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'],
     'package_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'],
-    'business_type' => ['manufacturers','wholesellers','distributors','traders']
+    'business_type' => ['manufacturers','wholesellers','distributors','traders','retailer']
 ];
