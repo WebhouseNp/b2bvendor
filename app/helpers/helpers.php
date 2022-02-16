@@ -67,6 +67,7 @@ if (!function_exists('get_order_status_number')) {
                 break;
             case "pending":
                 $stage = 1;
+                break;
             case "processing":
                 $stage = 2;
                 break;
@@ -96,6 +97,7 @@ if (!function_exists('get_package_status_number')) {
                 break;
             case "pending":
                 $stage = 1;
+                break;
             case "processing":
                 $stage = 2;
                 break;
