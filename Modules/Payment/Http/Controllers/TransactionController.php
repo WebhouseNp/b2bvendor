@@ -28,7 +28,7 @@ class TransactionController extends Controller
         $transactions = Transaction::where('vendor_user_id', $user->id)
             ->where('is_cod', false)
             ->orWhereNull('is_cod')
-            ->latest()->get();
+            ->orderBy('id', 'DESC')->get();
 
             $codTransactions = Transaction::where('vendor_user_id', $user->id)
             ->where('is_cod', true)

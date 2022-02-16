@@ -32,26 +32,30 @@
 
     <ul class="nav nav-tabs mb-0" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="online-payments-tab" data-toggle="tab" href="#onlinePaymentsTab" role="tab" aria-controls="onlinePaymentsTab" aria-selected="true">Online Transactions</a>
+            <a class="nav-link active" id="online-payments-tab" data-toggle="tab" href="#onlinePaymentsTab" role="tab" aria-controls="onlinePaymentsTab" aria-selected="true">Online Transactions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="cod-payments-tab" data-toggle="tab" href="#codPaymentsTab" role="tab" aria-controls="codPaymentsTab" aria-selected="false">COD Transactions</a>
+            <a class="nav-link" id="cod-payments-tab" data-toggle="tab" href="#codPaymentsTab" role="tab" aria-controls="codPaymentsTab" aria-selected="false">COD Transactions</a>
         </li>
+        @if(auth()->user()->hasAnyRole('super_admin|admin'))
         <li class="nav-item">
             <a class="nav-link" id="payment-tab" data-toggle="tab" href="#paymentTab" role="tab" aria-controls="paymentTab" aria-selected="false">Payment</a>
-          </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
+        </li>
+        @endif
+    </ul>
+    <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="onlinePaymentsTab" role="tabpanel" aria-labelledby="online-payments-tab">
             @include('payment::partials.transactions-table')
         </div>
         <div class="tab-pane fade" id="codPaymentsTab" role="tabpanel" aria-labelledby="cod-payments-tab">
             @include('payment::partials.cod-transactions-listing')
         </div>
+        @if(auth()->user()->hasAnyRole('super_admin|admin'))
         <div class="tab-pane fade" id="paymentTab" role="tabpanel" aria-labelledby="payment-tab">
             @include('payment::partials.payment-form')
         </div>
-      </div>
+        @endif
+    </div>
 </div>
 @endsection
 
