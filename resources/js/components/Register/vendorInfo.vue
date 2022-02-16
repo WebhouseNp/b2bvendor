@@ -126,16 +126,13 @@
                     />
                     <select class="form-control" v-model.trim="$v.business_type.$model"
                      :class="{ 'is-invalid': validationStatus($v.business_type) }">
-                     <option value="" disabled>Select Business Type</option>
-                      <option value="Manufacturer">Manufacturer</option>
-                      <option value="Wholeseller">Wholeseller</option>
-                      <option value="Distributor ">Distributor </option>
-                      <option value="Trader">Trader</option>
+                     <option v-for="(business_type,index) in business_types" 
+                      :key="index" :value="business_type">{{business_type}}</option>
                     </select>
                     <div
                       v-if="!$v.business_type.required"
                       class="invalid-feedback"
-                    >
+                     >
                       Required.
                     </div>
                   </div>
@@ -207,7 +204,7 @@ import Multiselect from "vue-multiselect";
 import axios from "axios";
 
 export default {
-  props: ["categoryinfo", "visibility2","countries"],
+  props: ["categoryinfo", "visibility2","countries", "business_types"],
   name: "VendorInfo",
   components: { VendorSave, Multiselect},
   data() {
