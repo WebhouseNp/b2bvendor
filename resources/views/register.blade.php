@@ -20,7 +20,7 @@
     </head>
     <body>
        <div id="app">
-           <register :countries="{{ json_encode($countries) }}"/>
+           <register :countries="{{ json_encode($countries) }}" :business_types="{{json_encode(config('constants.business_type'))}}"/>
        </div>
     </body>
     <script src="{{mix('js/app.js')}}"></script>

@@ -2488,7 +2488,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Plan: _selectPlan_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ["countries"],
+  props: ["countries", "business_types"],
   data: function data() {
     return {
       visible: true,
@@ -2663,7 +2663,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['mainSeller', 'visibility1', "countries"],
+  props: ['mainSeller', 'visibility1', "countries", "business_types"],
   name: 'SelectPlan',
   components: {
     VendorInfo: _vendorInfo_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2911,15 +2911,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["categoryinfo", "visibility2", "countries"],
+  props: ["categoryinfo", "visibility2", "countries", "business_types"],
   name: "VendorInfo",
   components: {
     VendorSave: _registerVendor_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -33720,6 +33717,7 @@ var render = function () {
             mainSeller: _vm.mainSeller,
             visibility1: _vm.visibility1,
             countries: _vm.countries,
+            business_types: _vm.business_types,
           },
         }),
       ],
@@ -33995,6 +33993,7 @@ var render = function () {
             categoryinfo: _vm.categoryinfo,
             visibility2: _vm.visibility2,
             countries: _vm.countries,
+            business_types: _vm.business_types,
           },
         }),
       ],
@@ -34541,29 +34540,20 @@ var render = function () {
                               },
                             },
                           },
-                          [
-                            _c(
-                              "option",
-                              { attrs: { value: "", disabled: "" } },
-                              [_vm._v("Select Business Type")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Manufacturer" } }, [
-                              _vm._v("Manufacturer"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Wholeseller" } }, [
-                              _vm._v("Wholeseller"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Distributor " } }, [
-                              _vm._v("Distributor "),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Trader" } }, [
-                              _vm._v("Trader"),
-                            ]),
-                          ]
+                          _vm._l(
+                            _vm.business_types,
+                            function (business_type, index) {
+                              return _c(
+                                "option",
+                                {
+                                  key: index,
+                                  domProps: { value: business_type },
+                                },
+                                [_vm._v(_vm._s(business_type))]
+                              )
+                            }
+                          ),
+                          0
                         ),
                         _vm._v(" "),
                         !_vm.$v.business_type.required
