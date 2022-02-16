@@ -5,9 +5,12 @@ namespace Modules\Review\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Order\Entities\Order;
 use Validator;
 use Modules\Review\Entities\Review;
 use Modules\Review\Transformers\ReviewCollection;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
@@ -25,6 +28,13 @@ class ReviewController extends Controller
                 exit;
             }
             $formData = $request->all();
+            $orders = Order::where('user_id',$request->customer_id)->with('orderList')->pluck('id');
+            $users = DB::table('order_lists')
+            ->whereIn('order_id', $orders)
+            ->where('product_id',$request->product_id)
+            
+            ->get();
+            dd($users);
             $data = Review::create($formData);
             return response()->json([
                 "message" => "Review created!!"
