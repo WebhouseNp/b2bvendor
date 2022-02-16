@@ -95,15 +95,15 @@ class ProfileController extends Controller
       }
       $formInput = $request->except('publish', 'image');
       $formInput['publish'] = 1;
-      if ($request->hasFile('image')) {
-        if ($user->image) {
-          $this->unlinkImage($user->image);
-        }
-        if ($request->image) {
-          $image = $this->imageProcessing('img-', $request->file('image'));
-          $formInput['image'] = $image;
-        }
-      }
+      // if ($request->hasFile('image')) {
+      //   if ($user->image) {
+      //     $this->unlinkImage($user->image);
+      //   }
+      //   if ($request->image) {
+      //     $image = $this->imageProcessing('img-', $request->file('image'));
+      //     $formInput['image'] = $image;
+      //   }
+      // }
       $user->update($formInput);
 
       return response()->json([
@@ -115,6 +115,42 @@ class ProfileController extends Controller
         'message' => $exception->getMessage()
       ], 400);
     }
+  }
+
+  public function updateImage(Request $request, User $user){
+    try {
+      $validator = Validator::make($request->all(), [
+        'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
+      ]);
+
+      if ($validator->fails()) {
+        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
+        exit;
+      }
+      if ($request->hasFile('image')) {
+        if ($user->image) {
+          $this->unlinkImage($user->image);
+        }
+        if ($request->image) {
+          $image = $this->imageProcessing('img-', $request->file('image'));
+          $formInput['image'] = $image;
+        }
+      }
+      $user->update($formInput);
+      return response()->json([
+        "message" => "User Profile updated Successfully!!",
+        "data" => $user
+      ], 200);
+    } catch (\Exception $exception) {
+      return response([
+        'message' => $exception->getMessage()
+      ], 400);
+    }
+  }
+  
+  public function profileImage(User $user)
+  {
+    return CustomerResource::make($user);
   }
 
   public function imageProcessing($type, $image)
@@ -135,7 +171,6 @@ class ProfileController extends Controller
     $img2 = Image::make($image->getRealPath());
     $img2->save($listingPath . '/' . $input['imagename']);
 
-    $destinationPath = public_path('/images');
     return $input['imagename'];
   }
 

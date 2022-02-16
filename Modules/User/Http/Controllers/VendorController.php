@@ -11,6 +11,7 @@ use Auth;
 use Image, File;
 use Modules\User\Entities\Vendor;
 use Modules\Country\Entities\Country;
+use Modules\Payment\Entities\Transaction;
 
 class VendorController extends Controller
 {
@@ -147,6 +148,7 @@ class VendorController extends Controller
    public function view($id)
    {
       $vendor = User::where('id', $id)->with('vendor', 'products', 'vendor_payments')->first();
-      return view('user::view', compact('id', 'vendor'));
+      $due = Transaction::where('vendor_user_id',$vendor->vendor->id)->where('is_cod',0)->latest()->first();
+      return view('user::view', compact('id', 'vendor','due'));
    }
 }

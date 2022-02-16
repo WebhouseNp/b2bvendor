@@ -51,7 +51,7 @@ class Order extends Model
 
 	public function isPaid()
 	{
-		return $this->status == 'paid';
+		return $this->payment_status == 'paid';
 	}
 
 	public function isDealCheckout()

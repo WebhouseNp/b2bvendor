@@ -199,7 +199,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
-                            <a href="{{route('product.index',['type'=>'approved-products'])}}" target="_blank">
+                            <a href="{{route('product.index',['type'=>'all'])}}" target="_blank">
                                 Products
                             </a>
                             <span class="card-category-count">
@@ -213,7 +213,7 @@
             <div class="card-footer border-0">
                 <hr>
                 <div class="stats">
-                    <a href="{{route('product.index',['type'=>'approved-products'])}}" target="_blank">
+                    <a href="{{route('product.index',['type'=>'all'])}}" target="_blank">
                         <i class="fa fa-refresh"></i>
                         View Products
                     </a>

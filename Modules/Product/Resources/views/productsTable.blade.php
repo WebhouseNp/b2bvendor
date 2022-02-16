@@ -55,7 +55,7 @@
                 <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$detail->id)}}">
                     <i class="fa fa-edit"></i>
                 </a>
-                <button class="btn btn-danger btn-sm delete" onclick="deleteProduct(this,'{{ $detail->id }}')" style="display:inline"><i class="fa fa-trash"></i></button>
+                <!-- <button class="btn btn-danger btn-sm delete" onclick="deleteProduct(this,'{{ $detail->id }}')" style="display:inline"><i class="fa fa-trash"></i></button> -->
             </td>
         </tr>
         @empty

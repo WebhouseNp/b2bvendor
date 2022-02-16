@@ -34,6 +34,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','Adminrole']], functi
 });
 
 Route::get('sales-report' , [SalesReportController::class, 'getOrderInfo'])->middleware('auth')->name('salesReport');
+Route::get('salesreport/{id}', 'SalesReportController@getVendorReport')->name('getVendorReport');
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 

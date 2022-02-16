@@ -47,6 +47,8 @@ Route::prefix('vendor')->name('api.')->group(function(){
         Route::post('change-password', 'UserController@changePassword')->middleware('auth:api')->name('changePassword');
         Route::get('fetch-user-profile/{user}', 'ProfileController@edit')->middleware('auth:api')->name('editUserProfile');
         Route::put('edit-user-profile/{user}', 'ProfileController@update')->middleware('auth:api')->name('updateUserProfile');
+        Route::put('update-user-image/{user}', 'ProfileController@updateImage')->middleware('auth:api')->name('updateUserImage');
+        Route::get('show-user-image/{user}', 'ProfileController@profileImage')->middleware('auth:api')->name('profileImage');
         Route::put('edit-address/{user}', 'ProfileController@editAddress')->middleware('auth:api')->name('editAddress');
         });
 

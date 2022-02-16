@@ -40,6 +40,7 @@ class User extends Authenticatable
         'api_token',
         'birthday',
         'gender',
+        'image',
         'designation'
     ];
 

@@ -54,3 +54,61 @@ if (!function_exists('vendor_editable_package_status')) {
         return ['pending', 'processing', 'shipped', 'completed'];
     }
 }
+
+if (!function_exists('get_order_status_number')) {
+    function get_order_status_number($status)
+    {
+        switch ($status) {
+            case "cancelled":
+                $stage = 0;
+                break;
+            case "refunded":
+                $stage = -1;
+                break;
+            case "pending":
+                $stage = 1;
+            case "processing":
+                $stage = 2;
+                break;
+            case "shipped":
+                $stage = 3;
+                break;
+            case "completed":
+                $stage = 4;
+                break;
+            default:
+                $stage = -100;
+        }
+
+        return $stage;
+    }
+}
+
+if (!function_exists('get_package_status_number')) {
+    function get_package_status_number($status)
+    {
+        switch ($status) {
+            case "cancelled":
+                $stage = 0;
+                break;
+            case "refunded":
+                $stage = -1;
+                break;
+            case "pending":
+                $stage = 1;
+            case "processing":
+                $stage = 2;
+                break;
+            case "shipped":
+                $stage = 3;
+                break;
+            case "completed":
+                $stage = 4;
+                break;
+            default:
+                $stage = -100;
+        }
+
+        return $stage;
+    }
+}

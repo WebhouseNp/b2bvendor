@@ -670,33 +670,4 @@ $name = ['meta_description', 'description', 'highlight'];
         });
     }
 </script>
-<script>
-    function Delete(id) {
-        var message = confirm('Are you sure you want to delete??');
-        if (message) {
-            $.ajax({
-                type: "post",
-                url: "{{ route('api.deleteSku') }}",
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    DataSuccessInDatabase(response.message);
-                    location.reload();
-                }
-            });
-        }
-        return;
-    }
-
-    function addVariantRow() {
-        let variantTable = $('#variantTbl').find("tbody");
-        let firstRowVariantTable = variantTable.find('tr:first');
-        let lastRowVariantTable = variantTable.find('tr:last');
-        let trNew = firstRowVariantTable.clone();
-        trNew.css('display', 'table-row');
-        lastRowVariantTable.after(trNew);
-    }
-</script>
-
 @endpush
