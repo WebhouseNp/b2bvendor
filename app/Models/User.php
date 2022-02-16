@@ -40,6 +40,7 @@ class User extends Authenticatable
         'api_token',
         'birthday',
         'gender',
+        'image',
         'designation'
     ];
 
@@ -164,7 +165,7 @@ class User extends Authenticatable
     {
         if (!$this->image) {
             $queryString = [
-                'name' => $this->full_name,
+                'name' => $this->name,
                 'background' => 'b8daff',
                 'color' => '0D8ABC',
             ];
