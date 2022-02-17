@@ -129,6 +129,17 @@
       'Module' => 'Nwidart\\Modules\\Facades\\Module',
     ),
   ),
+  'qcod/laravel-settings' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'QCod\\Settings\\SettingsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Settings' => 'QCod\\Settings\\Facade',
+    ),
+  ),
   'sentry/sentry-laravel' => 
   array (
     'providers' => 
