@@ -12,6 +12,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Modules\Front\Transformers\CustomerResource;
 use DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -127,6 +128,7 @@ class ProfileController extends Controller
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
+      $formInput = $request->except('image');
       if ($request->hasFile('image')) {
         if ($user->image) {
           $this->unlinkImage($user->image);
