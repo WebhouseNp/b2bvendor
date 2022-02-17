@@ -100,23 +100,41 @@ class ProductApiController extends Controller
         ]);
     }
 
-     // Sasto wholesale mall Products
-     public function sastoWholesaleMallProducts()
-     {
-         $products = Product::with('ranges')
-             ->where('type', 'whole_sale')
-             ->where('status', 'active')
-             ->active()
-             ->orderBy('created_at', 'DESC')
-             ->take(18)->get();
- 
-         return ProductResource::collection($products->shuffle()->all())->hide([
-             'highlight',
-             'description',
-             'meta_title',
-             'meta_keyword',
-             'meta_description',
-             'meta_keyphrase',
-         ]);
-     }
+    // Sasto wholesale mall Products
+    public function sastoWholesaleMallProducts()
+    {
+        $products = Product::with('ranges')
+            ->where('id', sasto_wholesale_store_id())
+            ->where('status', 'active')
+            ->active()
+            ->orderBy('created_at', 'DESC')
+            ->take(18)->get();
+
+        return ProductResource::collection($products->shuffle()->all())->hide([
+            'highlight',
+            'description',
+            'meta_title',
+            'meta_keyword',
+            'meta_description',
+            'meta_keyphrase',
+        ]);
+    }
+
+    public function youMayLike()
+    {
+        $products = Product::with('ranges')
+            ->where('status', 'active')
+            ->active()
+            ->orderBy('created_at', 'DESC')
+            ->take(18)->get();
+
+        return ProductResource::collection($products->shuffle()->all())->hide([
+            'highlight',
+            'description',
+            'meta_title',
+            'meta_keyword',
+            'meta_description',
+            'meta_keyphrase',
+        ]);
+    }
 }

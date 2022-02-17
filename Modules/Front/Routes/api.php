@@ -16,6 +16,7 @@ Route::get('/products/{slug}', 'ProductApiController@show');
 Route::get('/p/new-arrivals', 'ProductApiController@getNewArrivals');
 Route::get('/p/top-products', 'ProductApiController@getTopProducts');
 Route::get('/p/sasto-wholesale-mall-products', 'ProductApiController@sastoWholesaleMallProducts');
+Route::get('/p/you-may-like-products', 'ProductApiController@youMayLike');
 
 Route::get('/products/{product_id}/images', 'ProductImageApiController@index');
 
