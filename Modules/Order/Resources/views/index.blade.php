@@ -35,9 +35,9 @@
                     {{-- <td>{{ $order->track_no ?? 'N/A' }}</td> --}}
                     <td>
                         <div class="text-capitalize">{{ $order->payment_type}}</div>
-                        <div class="badge badge-primary text-capitalize">{{ $order->payment_status }}</div>
+                        <div style="display:inline-block; width:100px" class="badge {{ $order->isPaid() ? 'bg-success' : 'badge-primary' }} text-capitalize">{{ $order->payment_status }}</div>
                     </td>
-                    <td><span class="badge badge-primary">{{ ucfirst($order->status) }}</span></td>
+                    <td><span style="display:inline-block; width:100px" class="badge badge-primary">{{ ucfirst($order->status) }}</span></td>
                     <td class="text-right">
                         <a href="{{ route('orders.show', $order->id) }}" class="btn btn-link text-primary"><i class="fa fa-eye mr-1"></i> View</a>
                     </td>

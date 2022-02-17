@@ -133,7 +133,7 @@ class ProfileController extends Controller
         }
         if ($request->image) {
           $image = $this->imageProcessing('img-', $request->file('image'));
-          $formInput['image'] = $image;
+          $user['image'] = $image;
         }
       }
       $user->update($formInput);
