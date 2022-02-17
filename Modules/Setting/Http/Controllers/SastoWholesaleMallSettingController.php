@@ -22,6 +22,8 @@ class SastoWholesaleMallSettingController extends Controller
 
     public function store(Request $request)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+        
         $request->validate([
             'sasto_wholesale_mall_vendor_id' => 'required',
             'sasto_wholesale_mall_home_products_count' => 'nullable'
