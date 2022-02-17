@@ -62,21 +62,6 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-2 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="is_new_arrival" name="is_new_arrival" value="1">
-                                            <span class="input-span"></span><strong>New Arrival</strong>
-                                        </label>
-                                    </div>
-                                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
-                                    <div class="col-lg-2 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="is_top" name="is_top" value="1">
-                                            <span class="input-span"></span><strong>Top Product</strong>
-                                        </label>
-                                    </div>
-                                    @endif
-
                                     {{-- <div class="col-lg-4 col-sm-12 form-group">
                                             <label><strong> Discount</strong></label>
                                             <input class="form-control" type="text" id="discount_bx" name="discount"
@@ -104,8 +89,8 @@
                                         <input class="form-control" type="text" name="video_link" placeholder="video_link">
                                     </div> -->
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <label>Video Link</label>
-                                        <textarea class="form-control" name="video_link" placeholder="video link"></textarea>
+                                        <label><strong> Video Link(Optional)</strong></label>
+                                        <textarea class="form-control" name="video_link" placeholder="Youtube video link"></textarea>
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">
                                             <label><strong> Stock Quantity</strong></label>
@@ -261,6 +246,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                            <input type="checkbox" id="is_new_arrival" name="is_new_arrival" value="1">
+                                            <span class="input-span"></span><strong>New Arrival</strong>
+                                        </label>
+                                    </div>
+
+                                  @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                                    <div class="form-group">
+                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                            <input type="checkbox" id="is_top" name="is_top" value="1">
+                                            <span class="input-span"></span><strong>Top Product</strong>
+                                        </label>
+                                    </div>
+                                    @endif
 
                                 <div class="form-group">
                                     <label for="status">Status: </label>
@@ -653,7 +654,7 @@ $name = ['meta_description', 'description', 'highlight'];
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
                     window.location.href = "/product/all";
-                } else if(response.status == 'unsuccessful') {
+                } else if (response.status == 'unsuccessful') {
                     $('#blog_submit').attr('value', 'Submit');
                     var validation_errors = JSON.stringify(response.data);
                     var response = JSON.parse(validation_errors);
