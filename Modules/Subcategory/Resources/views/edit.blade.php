@@ -57,11 +57,13 @@
                                     </div>
                                 </div>
                             </div>
-                            @if (auth()->user()->hasRole('super_admin|admin'))
+                            @if (auth()->user()->hasAnyRole('super_admin|admin'))
+                            <div class="form-group">
                                 <div class="check-list">
                                     <label class="ui-checkbox ui-checkbox-primary">
                                         <input name="publish" id="publish" type="checkbox">
                                         <span class="input-span"></span>Publish</label>
+                                    </div>
                                 </div>
                             @endif
                             <div class="form-group">
@@ -143,11 +145,12 @@
                             document.getElementById('publish').checked = false;
                         }
 
-                        if (response.data.is_featured == '1') {
+                        if (response.data.is_featured == true) {
                             document.getElementById('is_featured').checked = true;
-                        } else if (response.data.is_featured == '0') {
+                        } else{
                             document.getElementById('is_featured').checked = false;
                         }
+                        
                         if (response.data.include_in_main_menu == '1') {
                             document.getElementById('include_in_main_menu').checked = true;
                         } else if (response.data.include_in_main_menu == '0') {
