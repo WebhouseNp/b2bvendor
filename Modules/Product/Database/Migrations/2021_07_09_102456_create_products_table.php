@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->text('highlight')->nullable();
             $table->text('description')->nullable();
             $table->string('slug')->unique();
+            $table->text('video_link')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('subcategory_id')->nullable();
             $table->unsignedBigInteger('offer_id')->nullable();
@@ -38,7 +39,9 @@ class CreateProductsTable extends Migration
             $table->string('quantity')->nullable();
             $table->text('non_approval_note')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->enum('type', ['hot', 'new', 'whole_sale', 'top', 'none'])->default('none');
+            $table->boolean('is_new_arrival')->default(false);          
+            $table->boolean('is_top')->default(false);
+            // $table->enum('type', ['hot', 'new', 'whole_sale', 'top', 'none'])->default('none');
 
             //SEO
             $table->text('meta_title')->nullable();

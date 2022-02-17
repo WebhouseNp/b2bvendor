@@ -71,45 +71,20 @@
 
                                         </select>
                                     </div>
-
-
-
-                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
-                                            <label><strong>Offer</strong></label>
-                                            <select name="offer_id" id="offer_id" class="form-control">
-
-                                            </select>
-
-
-
-                                        </div> -->
-                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
-                                            <label><strong>Brand</strong></label>
-                                            <select name="brand_id" id="brand_id" class="form-control">
-
-
-                                            </select>
-
-
-                                        </div> -->
-
-
-                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label><strong> Price</strong></label>
-                                            <input class="form-control" type="text" id="price" value="" name="price" placeholder="Product Price">
-
-
-                                        </div> -->
-                                    <div class="col-lg-4 col-sm-12 form-group">
-                                        <label for=""><strong>Type</strong></label>
-                                        <select name="type" id="type" class="form-control">
-                                            <option value="top">Top Product</option>
-                                            <option value="new">New Arrivals</option>
-                                            <option value="hot">Hot Products</option>
-                                            <option value="whole_sale">Sasto Wholesale</option>
-                                            <option value="none">None</option>
-                                        </select>
+                                    <div class="col-lg-2 col-sm-12 form-group">
+                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
+                                            <input type="checkbox" id="is_new_arrival" name="is_new_arrival" value="1">
+                                            <span class="input-span"></span><strong>New Arrival</strong>
+                                        </label>
                                     </div>
+                                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                                    <div class="col-lg-2 col-sm-12 form-group">
+                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
+                                            <input type="checkbox" id="is_top" name="is_top" value="1">
+                                            <span class="input-span"></span><strong>Top Product</strong>
+                                        </label>
+                                    </div>
+                                    @endif
                                     {{-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Discount</strong></label>
                                         <input class="form-control" type="text" id="discount" name="discount" placeholder="discount">
@@ -127,6 +102,10 @@
                                             <option value="kg">
                                             <option value="m">
                                         </datalist>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 form-group">
+                                        <label>Video Link</label>
+                                        <textarea class="form-control" name="video_link" placeholder="video link">{{$product->video_link}}</textarea>
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">
                                             <label><strong> Stock Quantity</strong></label>
@@ -525,7 +504,16 @@ $name = ['meta_description', 'description', 'highlight'];
                 success: function(response) {
                     document.getElementById('title').value = response.data.title;
                     document.getElementById('status').value = response.data.status;
-                    document.getElementById('type').value = response.data.type;
+                    if (response.data.is_top == 1) {
+                        document.getElementById('is_top').checked = true;
+                    } else {
+                        document.getElementById('is_top').checked = false;
+                    }
+                    if (response.data.is_new_arrival == 1) {
+                        document.getElementById('is_new_arrival').checked = true;
+                    } else {
+                        document.getElementById('is_new_arrival').checked = false;
+                    }
                     // document.getElementById('price').value = response.data.price;
                     // document.getElementById('moq').value = response.data.moq;
                     // document.getElementById('discount').value = response.data.discount;
@@ -652,7 +640,7 @@ $name = ['meta_description', 'description', 'highlight'];
             processData: false,
             success: function(response) {
                 if (response.status == 'successful') {
-                    window.location.href = "/product/approved-products";
+                    window.location.href = "/product/all";
                     var validation_errors = JSON.stringify(response.message);
                     $('#validation-errors').html('');
                     $('#validation-errors').append('<div class="alert alert-success">' + validation_errors +
