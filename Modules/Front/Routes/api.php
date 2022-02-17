@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Modules\Front\Http\Controllers\CheckoutController;
 use Modules\Front\Http\Controllers\CustomerApiController;
+use Modules\Front\Http\Controllers\NewArrivalsProductApiController;
 use Modules\Front\Http\Controllers\OrderApiController;
 use Modules\User\Http\Controllers\ProfileController;
 
@@ -13,7 +14,8 @@ Route::middleware('auth:api')->get('/front', function (Request $request) {
 // Products
 Route::get('/products', 'ProductApiController@index');
 Route::get('/products/{slug}', 'ProductApiController@show');
-Route::get('/p/new-arrivals', 'ProductApiController@getNewArrivals');
+Route::get('/p/new-arrivals-products', [NewArrivalsProductApiController::class, 'index']);
+Route::get('/p/new-arrivals', [NewArrivalsProductApiController::class, 'getNewArrivals']);
 Route::get('/p/top-products', 'ProductApiController@getTopProducts');
 Route::get('/p/sasto-wholesale-mall-products', 'ProductApiController@sastoWholesaleMallProducts');
 Route::get('/p/you-may-like-products', 'ProductApiController@youMayLike');
