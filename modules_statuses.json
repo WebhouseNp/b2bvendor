@@ -20,5 +20,6 @@
     "Review": true,
     "Deal": true,
     "Country": true,
-    "Partner": true
+    "Partner": true,
+    "Setting": true
 }

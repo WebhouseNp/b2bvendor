@@ -108,7 +108,7 @@ class ProductApiController extends Controller
             ->where('status', 'active')
             ->active()
             ->orderBy('created_at', 'DESC')
-            ->take(18)->get();
+            ->take(settings('sasto_wholesale_mall_home_products_count' ,18))->get();
 
         return ProductResource::collection($products->shuffle()->all())->hide([
             'highlight',

@@ -117,6 +117,6 @@ if (!function_exists('get_package_status_number')) {
 
 if (!function_exists('sasto_wholesale_store_id')) {
     function sasto_wholesale_store_id() {
-        return 1;
+        return settings('sasto_wholesale_mall_vendor_id', null);
     }
 }
