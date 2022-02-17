@@ -43,6 +43,7 @@ class OrderApiController extends Controller
     public function show(Order $order)
     {
         // TOOD::authorize
+        abort_unless(auth()->check() && $order->user_id == auth()->user()->id, 403);
 
         $order->loadMissing(['packages.orderLists.product:id,title,image', 'packages.vendorShop:id,user_id,shop_name', 'shippingAddress', 'billingAddress']);
 

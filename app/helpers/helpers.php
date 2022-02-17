@@ -67,6 +67,7 @@ if (!function_exists('get_order_status_number')) {
                 break;
             case "pending":
                 $stage = 1;
+                break;
             case "processing":
                 $stage = 2;
                 break;
@@ -96,6 +97,7 @@ if (!function_exists('get_package_status_number')) {
                 break;
             case "pending":
                 $stage = 1;
+                break;
             case "processing":
                 $stage = 2;
                 break;
@@ -110,5 +112,11 @@ if (!function_exists('get_package_status_number')) {
         }
 
         return $stage;
+    }
+}
+
+if (!function_exists('sasto_wholesale_store_id')) {
+    function sasto_wholesale_store_id() {
+        return 1;
     }
 }

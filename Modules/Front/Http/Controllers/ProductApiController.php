@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Front\Transformers\ProductCollection;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
+use Modules\Subcategory\Entities\Subcategory;
 
 class ProductApiController extends Controller
 {
@@ -25,7 +26,8 @@ class ProductApiController extends Controller
                 return $query->where('category_id', request()->cat);
             })
             ->when(request()->filled('subcat'), function ($query) {
-                return $query->where('subcategory_id', request()->subcat);
+                $subCategory = Subcategory::where('slug', request()->subcat)->first();
+                return $query->where('subcategory_id', $subCategory->id);
             })
             ->when(request()->filled('from_vendor'), function ($query) {
                 return $query->where('user_id', request()->from_vendor);
@@ -98,23 +100,41 @@ class ProductApiController extends Controller
         ]);
     }
 
-     // Sasto wholesale mall Products
-     public function sastoWholesaleMallProducts()
-     {
-         $products = Product::with('ranges')
-             ->where('type', 'whole_sale')
-             ->where('status', 'active')
-             ->active()
-             ->orderBy('created_at', 'DESC')
-             ->take(18)->get();
- 
-         return ProductResource::collection($products->shuffle()->all())->hide([
-             'highlight',
-             'description',
-             'meta_title',
-             'meta_keyword',
-             'meta_description',
-             'meta_keyphrase',
-         ]);
-     }
+    // Sasto wholesale mall Products
+    public function sastoWholesaleMallProducts()
+    {
+        $products = Product::with('ranges')
+            ->where('id', sasto_wholesale_store_id())
+            ->where('status', 'active')
+            ->active()
+            ->orderBy('created_at', 'DESC')
+            ->take(18)->get();
+
+        return ProductResource::collection($products->shuffle()->all())->hide([
+            'highlight',
+            'description',
+            'meta_title',
+            'meta_keyword',
+            'meta_description',
+            'meta_keyphrase',
+        ]);
+    }
+
+    public function youMayLike()
+    {
+        $products = Product::with('ranges')
+            ->where('status', 'active')
+            ->active()
+            ->orderBy('created_at', 'DESC')
+            ->take(18)->get();
+
+        return ProductResource::collection($products->shuffle()->all())->hide([
+            'highlight',
+            'description',
+            'meta_title',
+            'meta_keyword',
+            'meta_description',
+            'meta_keyphrase',
+        ]);
+    }
 }

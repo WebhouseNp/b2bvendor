@@ -18,11 +18,11 @@ class CreateSubcategoriesTable extends Migration
             $table->string('name')->nullable();
             $table->string('slug');
             $table->string('image')->nullable();
-            $table->tinyInteger('is_featured')->default(1);
-            $table->tinyInteger('include_in_main_menu')->default(0);
-            $table->tinyInteger('publish')->default(1);
+            $table->boolean('is_featured')->default(false);
+            $table->boolean('publish')->default(false);
             $table->UnsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

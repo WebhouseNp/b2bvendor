@@ -7,47 +7,37 @@
                 <div class="ibox">
                     <div class="ibox-head">
                         <div class="ibox-title">Edit Sub Category</div>
-
                         <div class="ibox-tools">
-
                         </div>
                     </div>
                     <div class="ibox-body" id="validation-errors">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                     </div>
 
                     <div class="ibox-body" style="">
-                        <form id="subcategory-update-form">
+                        <form id="subcategory-update-form" class="col-md-6">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}"
-                                    placeholder="Enter name">
+                                <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}"placeholder="Enter name">
                             </div>
 
-                            <div class="row form-group col-md-6 ">
-                                <label for="">Category: </label>
-                                <select class="form-control" id="category_id" name="category_id">
+                            <div class="form-group">
+                                <label for="">Category </label>
+                                <select class="form-control custom-select" id="category_id" name="category_id">
                                 </select>
                             </div>
 
-                            <div class="row form-group">
-                                <label for="" class="col-sm-3">Is Featured Category ? :</label>
-                                <div class="col-sm-1">
-                                    <label class="ui-checkbox ui-checkbox-warning">
-                                        <input type="checkbox" name="is_featured" id="is_featured">
-                                        <span class="input-span"></span>Yes
-                                    </label>
-                                </div>
-                                <label class="col-lg-8">
-                                    <span class="alert-warning">
-                                        *Remember: This will allow to display in 'Best Our Collections Section
-                                        in homepage.'
-                                    </span>
+                            @if(auth()->user()->hasAnyRole(['super_admin', 'admin']))
+                            <div class="form-group">
+                                <label class="ui-checkbox ui-checkbox-warning">
+                                    <input type="checkbox" name="is_featured" id="is_featured">
+                                    <span class="input-span"></span>Shown in Hot Category section of homepage.
                                 </label>
                             </div>
+                            @endif
 
 
-                            <div class="row form-group">
+                            {{-- <div class="row form-group">
                                 <label for="" class="col-sm-3">Include In Main Menu:</label>
                                 <div class="col-sm-1">
                                     <label class="ui-checkbox ui-checkbox-warning">
@@ -57,9 +47,9 @@
                                 </div>
                                 <label class="col-lg-8"><span class="alert-warning">*Remember:Don't tick on this
                                         menu if this is not a Top Menu Category.</span></label>
-                            </div>
+                            </div> --}}
 
-                            <div class="row form-group col-md-6">
+                            <div class="form-group">
                                 <label>Image </label>
                                 <input class="form-control" name="image" type="file" id="fileUpload">
                                 <div id="wrapper" class="mt-2">
@@ -67,35 +57,26 @@
                                     </div>
                                 </div>
                             </div>
-                            @if (auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                            @if (auth()->user()->hasAnyRole('super_admin|admin'))
+                            <div class="form-group">
                                 <div class="check-list">
                                     <label class="ui-checkbox ui-checkbox-primary">
                                         <input name="publish" id="publish" type="checkbox">
                                         <span class="input-span"></span>Publish</label>
+                                    </div>
                                 </div>
                             @endif
-                            <br>
-
                             <div class="form-group">
                                 <input onclick="submitSubCategoryNow();" type="button" name="save" value="save"
                                     id="blog_submit" class="btn btn-success">
-
                                 <!-- <button type="submit" class="btn btn-success">Submit</button> -->
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
     </div>
-
-
-
 @endsection
 
 @push('push_scripts')
@@ -136,7 +117,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            var id = <?php echo $id; ?>;
+            var id = {{ $id }};
 
             function editsubcategory(id) {
                 $.ajax({
@@ -164,11 +145,12 @@
                             document.getElementById('publish').checked = false;
                         }
 
-                        if (response.data.is_featured == '1') {
+                        if (response.data.is_featured == true) {
                             document.getElementById('is_featured').checked = true;
-                        } else if (response.data.is_featured == '0') {
+                        } else{
                             document.getElementById('is_featured').checked = false;
                         }
+                        
                         if (response.data.include_in_main_menu == '1') {
                             document.getElementById('include_in_main_menu').checked = true;
                         } else if (response.data.include_in_main_menu == '0') {
@@ -185,5 +167,4 @@
             editsubcategory(id);
         });
     </script>
-
 @endpush

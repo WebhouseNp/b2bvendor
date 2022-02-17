@@ -16,6 +16,7 @@ Route::get('/products/{slug}', 'ProductApiController@show');
 Route::get('/p/new-arrivals', 'ProductApiController@getNewArrivals');
 Route::get('/p/top-products', 'ProductApiController@getTopProducts');
 Route::get('/p/sasto-wholesale-mall-products', 'ProductApiController@sastoWholesaleMallProducts');
+Route::get('/p/you-may-like-products', 'ProductApiController@youMayLike');
 
 Route::get('/products/{product_id}/images', 'ProductImageApiController@index');
 
@@ -60,7 +61,7 @@ Route::get('my-address', [ProfileController::class, 'getAddress'])->middleware('
 // Checkout
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
 Route::get('customer/orders', [OrderApiController::class, 'index'])->middleware('auth:api');
-Route::get('customer/orders/{order}', [OrderApiController::class, 'show']);//->middleware('auth:api');
+Route::get('customer/orders/{order}', [OrderApiController::class, 'show'])->middleware('auth:api');
 
 //category for vendor
 Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');

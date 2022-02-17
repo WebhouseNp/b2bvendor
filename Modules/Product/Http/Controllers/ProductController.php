@@ -92,7 +92,7 @@ class ProductController extends Controller
             $validator = Validator::make($request->all(), [
                 'title'             => 'required|string',
                 'shipping_charge'          => 'nullable|numeric',
-                'type'              => 'required',
+                // 'type'              => 'required',
                 'category_id'       => 'required|numeric|exists:categories,id',
                 'meta_title'        => 'nullable|string|max:200',
                 'meta_description'  => 'nullable|string',
@@ -109,6 +109,8 @@ class ProductController extends Controller
             DB::beginTransaction();
 
             $value = $request->except('image');
+            $value['is_top'] = $request->has('is_top') ? true : false;
+            $value['is_new_arrival'] = $request->has('is_new_arrival') ? true : false;
             if ($request->image) {
                 $image = $this->imageProcessing('img-', $request->file('image'));
                 $value['image'] = $image;
@@ -297,7 +299,7 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'title'             => 'required|string',
             'shipping_charge'   => 'nullable|numeric',
-            'type'              => 'required',
+            // 'type'              => 'required',
             'category_id'       => 'required|numeric|exists:categories,id',
             'meta_title'        => 'nullable|string|max:200',
             'meta_description'  => 'nullable|string',
@@ -311,6 +313,8 @@ class ProductController extends Controller
         }
         $product = Product::findorFail($request->id);
         $value = $request->except('image');
+        $value['is_top'] = $request->has('is_top') ? true : false;
+        $value['is_new_arrival'] = $request->has('is_new_arrival') ? true : false;
         if ($request->image) {
             if ($product->image) {
                 $thumbPath = public_path('images/thumbnail');
