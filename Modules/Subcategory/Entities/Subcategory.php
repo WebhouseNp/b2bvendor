@@ -4,6 +4,7 @@ namespace Modules\Subcategory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Entities\Category;
 use Modules\Product\Entities\Product;
 use Modules\ProductAttribute\Entities\CategoryAttribute;
@@ -11,8 +12,14 @@ use Modules\ProductAttribute\Entities\CategoryAttribute;
 class Subcategory extends Model
 {
     use Sluggable;
+    // use SoftDeletes;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    protected $casts = [
+        'publish' => 'boolean',
+        'is_featured' => 'boolean',
+    ];
 
     public function sluggable(): array
     {
@@ -35,7 +42,12 @@ class Subcategory extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('publish', 1);
+        return $query->where('publish', true);
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
     }
 
     public function category()

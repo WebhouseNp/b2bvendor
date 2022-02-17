@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Front\Transformers\ProductCollection;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
+use Modules\Subcategory\Entities\Subcategory;
 
 class ProductApiController extends Controller
 {
@@ -25,7 +26,8 @@ class ProductApiController extends Controller
                 return $query->where('category_id', request()->cat);
             })
             ->when(request()->filled('subcat'), function ($query) {
-                return $query->where('subcategory_id', request()->subcat);
+                $subCategory = Subcategory::where('slug', request()->subcat)->first();
+                return $query->where('subcategory_id', $subCategory->id);
             })
             ->when(request()->filled('from_vendor'), function ($query) {
                 return $query->where('user_id', request()->from_vendor);

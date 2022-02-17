@@ -5,6 +5,7 @@ namespace Modules\Front\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
+use Modules\Subcategory\Entities\Subcategory;
 
 class CategoryApiController extends Controller
 {
@@ -65,8 +66,8 @@ class CategoryApiController extends Controller
 
     public function hotCategories()
     {
-        $categories = Category::with('subcategory:id,name,slug,category_id')
-            ->where('hot_category', 1)
+        $subCategories = Subcategory::select(['id', 'name', 'slug', 'category_id', 'image', 'is_featured'])
+            ->featured()
             ->published()
             ->get()->map(function ($category) {
                 return [
@@ -75,11 +76,10 @@ class CategoryApiController extends Controller
                     'slug' => $category->slug,
                     'image_url' => $category->imageUrl(),
                     'is_featured' => $category->is_featured,
-                    'subcategory' => $category->subcategory
                 ];
             });
 
-        return response()->json($categories, 200);
+        return response()->json($subCategories, 200);
     }
 
     public function vendorCatgeory(){

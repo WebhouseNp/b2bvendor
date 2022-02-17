@@ -180,6 +180,13 @@ class CheckoutController extends Controller
                 case 'connectips':
                     return $this->processConnectipsPayment($order);
                     break;
+                case 'cod':
+                    return response()->json([
+                        'message' => 'Order placed successfully',
+                        'order' => $order,
+                        'payment_type' => $order->payment_type,
+                    ], 200);
+                    break;
 
                 default:
                     return response()->json(['message' => 'Payment type not supported'], 404);

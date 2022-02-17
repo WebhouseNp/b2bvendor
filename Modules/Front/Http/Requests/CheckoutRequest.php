@@ -26,7 +26,7 @@ class CheckoutRequest extends FormRequest
             [
                 'address' => ['required', 'array'],
                 'checkout_mode' => ['nullable'],
-                'payment_type' => ['required', Rule::in(['esewa', 'connectips'])],
+                'payment_type' => ['required', Rule::in(['esewa', 'connectips', 'cod'])],
 
                 'ship_to_different_address' => ['nullable', 'boolean'],
 
