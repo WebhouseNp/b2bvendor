@@ -5,6 +5,7 @@ use Modules\Front\Http\Controllers\CheckoutController;
 use Modules\Front\Http\Controllers\CustomerApiController;
 use Modules\Front\Http\Controllers\NewArrivalsProductApiController;
 use Modules\Front\Http\Controllers\OrderApiController;
+use Modules\Front\Http\Controllers\TopProductApiController;
 use Modules\User\Http\Controllers\ProfileController;
 
 Route::middleware('auth:api')->get('/front', function (Request $request) {
@@ -15,8 +16,9 @@ Route::middleware('auth:api')->get('/front', function (Request $request) {
 Route::get('/products', 'ProductApiController@index');
 Route::get('/products/{slug}', 'ProductApiController@show');
 Route::get('/p/new-arrivals-products', [NewArrivalsProductApiController::class, 'index']);
-Route::get('/p/new-arrivals', [NewArrivalsProductApiController::class, 'getNewArrivals']);
-Route::get('/p/top-products', 'ProductApiController@getTopProducts');
+Route::get('/p/new-arrivals-filtered', [NewArrivalsProductApiController::class, 'getNewArrivals']);
+Route::get('/p/top-products', [TopProductApiController::class, 'index']);
+Route::get('/p/top-products-filtered', [TopProductApiController::class, 'getTopProducts']);
 Route::get('/p/sasto-wholesale-mall-products', 'ProductApiController@sastoWholesaleMallProducts');
 Route::get('/p/you-may-like-products', 'ProductApiController@youMayLike');
 
