@@ -36,6 +36,7 @@
     border-radius: 1rem;
     margin-bottom: 10px;
     max-width: 250px;
+    overflow-wrap: break-word;
 }
 .message.incomming {
     margin-right: auto;
