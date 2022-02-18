@@ -22,8 +22,7 @@
                     <tr>
                         <th>SN</th>
                         <th>Name</th>
-                        <th>Partner Type</th>
-                        <th>Image</th>
+                        <th>Position</th>
                         <th>Published</th>
                         <th>Action</th>
                     </tr>
@@ -34,21 +33,18 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->name }}</td>
-                        <td>{{ @$data->PartnerType->name }}</td>
+                        <td>{{ $data->position }}</td>
                         <td>
-                         <img src="{{ $data->imageUrl() }}" alt="{{ $data->name }}" class="rounded" style="height: 3rem;">
-                        </td>
-                        <td>
-                            {{ $data->publish ? 'Yes' : 'No' }}
+                            <div class="badge {{ $data->publish ? 'bg-primary' : 'bg-danger'; }}">{{ $data->publish ? 'Published' : 'Not Published' }}</div>
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('partner.edit', $data->id) }}" class="btn btn-link py-0 text-success"><i class="fa fa-edit"></i> Edit</a>
+                                <a href="{{ route('partner-type.edit', $data->id) }}" class="btn btn-link py-0 text-success"><i class="fa fa-edit"></i> Edit</a>
                                 <div>|</div>
-                                <form action="{{ route('partner.destroy', $data->id) }}" method="post" class="d-inline">
+                                <form action="{{ route('partner-type.destroy', $data->id) }}" method="post" class="d-inline">
                                     @csrf()
                                     @method('DELETE')
-                                    <button onclick="return confirm('Are you sure you want to delete this Partner?')" class="btn btn-link py-0 text-danger">
+                                    <button onclick="return confirm('Are you sure you want to delete this Partner Type?')" class="btn btn-link py-0 text-danger">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </form>

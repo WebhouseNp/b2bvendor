@@ -104,7 +104,7 @@
                                         <input class="form-control" type="text" name="video_link" placeholder="video_link">
                                     </div> -->
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <label>Video Link</label>
+                                    <label for="browser"><strong> Video Link </strong></label>
                                         <textarea class="form-control" name="video_link" placeholder="video link"></textarea>
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">

@@ -451,6 +451,32 @@ $user_access = json_decode($user->access_level);
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-address-card"></i>
+                    <span class="nav-label">Partner Types</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+
+                    <li>
+                        <a href="{{route('partner-type.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add New Partner Type
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('partner-type.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Partner Types Lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if(in_array('super_admin' ,$roles))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-address-card"></i>
                     <span class="nav-label">Partner</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>

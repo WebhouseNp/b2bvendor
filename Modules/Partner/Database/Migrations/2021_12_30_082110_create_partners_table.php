@@ -18,6 +18,8 @@ class CreatePartnersTable extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('path')->nullable();
+            $table->unsignedBigInteger('partner_type_id')->nullable();
+            $table->foreign('partner_type_id')->references('id')->on('partner_types')->onDelete('CASCADE');
             $table->tinyInteger('publish')->default(1);
             $table->timestamps();
         });

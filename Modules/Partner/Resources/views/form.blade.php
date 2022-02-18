@@ -46,6 +46,15 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="col-lg-12 col-sm-12 form-group">
+                                        <label class="form-label">Partner Type?</label>
+                                        <select name="partner_type_id" class="form-select">
+                                            <option value="">Please select</option>
+                                            @foreach ($partnerTypes as $type)
+                                            <option value="{{ $type->id }}" @if(old('partner_type_id', $partner->partner_type_id) == $type->id) selected @endif>{{ $type->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +113,5 @@
         }
         reader.readAsDataURL(input.files[0]);
     }
-
 </script>
 @endsection

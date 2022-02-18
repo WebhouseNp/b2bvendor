@@ -127,6 +127,7 @@ class ProfileController extends Controller
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
+      $formInput = $request->except('image');
       if ($request->hasFile('image')) {
         if ($user->image) {
           $this->unlinkImage($user->image);

@@ -24,7 +24,6 @@ class Partner extends Model
     public function imageUrl()
     {
         return Storage::disk('public')->url($this->path);
-        // return storage_publicurl($this->path);
     }
 
     public function deleteImage()
@@ -35,6 +34,11 @@ class Partner extends Model
     public function scopePublished($query, $status = true)
     {
         return $query->where('publish', $status ? 1 : 0);
+    }
+
+    public function partnerType()
+    {
+        return $this->belongsTo(PartnerType::class);
     }
     
     

@@ -103,8 +103,9 @@
                                             <option value="m">
                                         </datalist>
                                     </div>
+
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <label>Video Link</label>
+                                        <label for="video_link"><strong> Video Link </strong></label>
                                         <textarea class="form-control" name="video_link" placeholder="video link">{{$product->video_link}}</textarea>
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">
@@ -133,31 +134,8 @@
                                             </label>
                                         </div> -->
                                 </div>
-                                <!-- <div class="row"> -->
-
-                                <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label for="">Type</label>
-                                            <select name="type" id="type" class="form-control">
-                                                <option value="top">Top Product</option>
-                                                <option value="new">New Arrivals</option>
-                                                <option value="hot">Hot Categories</option>
-                                                <option value="whole_sale">Sasto Wholesale</option>
-                                                <option value="none">None</option>
-                                            </select>
-                                        </div> -->
-
-                                <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label><strong> Delivery Charge</strong></label>
-                                            <input class="form-control" type="text" id="delivery_charge" name="delivery_charge" value="" placeholder="Delivery Charge">
-                                        </div> -->
-                                <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label><strong> Shipping Charge</strong></label>
-                                            <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value=""
-                                                 placeholder="shipping Charge">
-                                        </div> -->
-
-                                <!-- </div> -->
-
+<br>
+<br>
                                 <div class="col-lg-12 col-sm-12 form-group">
                                     <div class="col-md-12 mb-3 ">
                                         <label for="">
