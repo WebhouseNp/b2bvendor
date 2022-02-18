@@ -26,7 +26,7 @@ class PaymentController extends Controller
                 'payment_type' => 'esewa',
                 'esewa_ref_id' => $request->refId
             ]);
-            return redirect(config('constants.customer_app_url') . '/my-orders');
+            return redirect(config('constants.customer_app_url') . '/my-orders/' . $order->id);
         }
 
         return 'payment failed';
