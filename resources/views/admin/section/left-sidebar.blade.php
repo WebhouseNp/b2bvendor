@@ -508,6 +508,15 @@ $user_access = json_decode($user->access_level);
                 </a>
             </li>
             @endif
+
+            @if(auth()->user()->hasAnyRole(['super_admin', 'admin']))
+            <li>
+                <a href="{{ route('settings.sastowholesale-mall.index') }}">
+                    <i class="sidebar-item-icon fa fa-thumbs-up"></i>
+                    <span class="nav-label">Sasto Wholesale Mall</span>
+                </a>
+            </li>
+            @endif
         </ul>
     </div>
 </nav>

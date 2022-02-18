@@ -39,9 +39,9 @@ class CreateProductsTable extends Migration
             $table->string('quantity')->nullable();
             $table->text('non_approval_note')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->boolean('is_new_arrival')->default(false);          
-            $table->boolean('is_top')->default(false);
-            // $table->enum('type', ['hot', 'new', 'whole_sale', 'top', 'none'])->default('none');
+            // $table->boolean('is_new_arrival')->default(false);          
+            // $table->boolean('is_top')->default(false);
+            $table->enum('type', ['is_new_arrival', 'is_top'])->nullable();
 
             //SEO
             $table->text('meta_title')->nullable();

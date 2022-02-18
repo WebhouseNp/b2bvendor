@@ -71,30 +71,17 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-lg-2 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="is_new_arrival" name="is_new_arrival" value="1">
-                                            <span class="input-span"></span><strong>New Arrival</strong>
-                                        </label>
-                                    </div>
-                                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
-                                    <div class="col-lg-2 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="is_top" name="is_top" value="1">
-                                            <span class="input-span"></span><strong>Top Product</strong>
-                                        </label>
-                                    </div>
-                                    @endif
+                                    
                                     {{-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Discount</strong></label>
                                         <input class="form-control" type="text" id="discount" name="discount" placeholder="discount">
                                     </div> --}}
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Shipping Charge</strong></label>
                                         <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value="" placeholder="shipping Charge">
                                     </div>
 
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <div class="col-lg-6 col-sm-12 form-group">
                                         <label for="browser"><strong>Choose unit :</strong></label>
                                         <input list="units" class="form-control" name="unit" id="unit">
                                         <datalist id="units">
@@ -250,6 +237,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                        <input type="radio" id="is_new_arrival" name="type" @if(old('type',$product->type == 'is_new_arrival')) checked @endif>
+                                        <span class="input-span"></span><strong>New Arrival</strong>
+                                    </label>
+                                </div>
+
+                                @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                                <div class="form-group">
+                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                        <input type="radio" id="is_top" name="type" @if(old('type',$product->type == 'is_top')) checked @endif>
+                                        <span class="input-span"></span><strong>Top Product</strong>
+                                    </label>
+                                </div>
+                                @endif
 
                                 <div class="form-group">
                                     <label for="status">Status: </label>
@@ -482,15 +485,10 @@ $name = ['meta_description', 'description', 'highlight'];
                 success: function(response) {
                     document.getElementById('title').value = response.data.title;
                     document.getElementById('status').value = response.data.status;
-                    if (response.data.is_top == 1) {
-                        document.getElementById('is_top').checked = true;
-                    } else {
-                        document.getElementById('is_top').checked = false;
-                    }
-                    if (response.data.is_new_arrival == 1) {
+                    if (response.data.type == 'is_new_arrival') {
                         document.getElementById('is_new_arrival').checked = true;
-                    } else {
-                        document.getElementById('is_new_arrival').checked = false;
+                    } else if(response.data.type == 'is_top') {
+                        document.getElementById('is_top').checked = true;
                     }
                     // document.getElementById('price').value = response.data.price;
                     // document.getElementById('moq').value = response.data.moq;

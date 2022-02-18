@@ -114,3 +114,9 @@ if (!function_exists('get_package_status_number')) {
         return $stage;
     }
 }
+
+if (!function_exists('sasto_wholesale_store_id')) {
+    function sasto_wholesale_store_id() {
+        return settings('sasto_wholesale_mall_vendor_id', null);
+    }
+}
