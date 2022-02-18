@@ -5719,7 +5719,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -5749,7 +5748,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   cluster: "ap2",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
   wsHost: "sellercenter.sastowholesale.com",
-  wsPort: "80",
+  wsPort: "443",
   wssPort: "443",
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
@@ -5757,7 +5756,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
+        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
