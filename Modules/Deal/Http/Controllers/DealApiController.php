@@ -73,7 +73,7 @@ class DealApiController extends Controller
             return response()->json(['message' => 'Deal is not available'], 404);
         }
 
-        $deal->load('dealProducts.product:id,title');
+        $deal->load('dealProducts.product:id,title,image');
 
         return new DealResource($deal);
     }
