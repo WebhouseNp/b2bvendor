@@ -5,8 +5,8 @@
     <div class="page-preloader">Loading</div>
 </div>
 <!-- END PAGA BACKDROPS-->
-<!-- CORE PLUGINS-->
 
+<!-- CORE PLUGINS-->
 <script src="{{asset('/assets/admin/vendors/popper.js/dist/umd/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/vendors/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/vendors/metisMenu/dist/metisMenu.min.js')}}" type="text/javascript"></script>
@@ -14,7 +14,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- PAGE LEVEL PLUGINS-->
-
 
 <!-- CORE SCRIPTS-->
 <script src="{{asset('/assets/admin/js/app.min.js')}}" type="text/javascript"></script>

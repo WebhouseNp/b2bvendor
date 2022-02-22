@@ -21,5 +21,6 @@
     "Deal": true,
     "Country": true,
     "Partner": true,
-    "Setting": true
+    "Setting": true,
+    "ProductCategory": true
 }

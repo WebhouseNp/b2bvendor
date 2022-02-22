@@ -22,7 +22,6 @@
         "pusher/pusher-php-server": "^5.0",
         "qcod/laravel-settings": "^1.1",
         "sentry/sentry-laravel": "^2.11",
-        "spatie/laravel-permission": "^4.0",
         "yubarajshrestha/nchl": "*"
     },
     "require-dev": {

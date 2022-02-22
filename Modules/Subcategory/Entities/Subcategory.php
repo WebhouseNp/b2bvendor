@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Entities\Category;
 use Modules\Product\Entities\Product;
 use Modules\ProductAttribute\Entities\CategoryAttribute;
+use Modules\ProductCategory\Entities\ProductCategory;
 
 class Subcategory extends Model
 {
@@ -53,6 +54,11 @@ class Subcategory extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function productCategory()
+    {
+        return $this->hasMany(ProductCategory::class);
     }
 
     public function attributes()
