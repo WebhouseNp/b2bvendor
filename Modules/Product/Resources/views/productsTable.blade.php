@@ -45,7 +45,7 @@
 
             <!-- <td>{{ $detail->status=='active'? 'Active':'Inactive' }}</td> -->
             <td>
-                <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ProductStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->status == 'active') checked @endif>
+                <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ProductStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->status == 1) checked @endif>
             </td>
             <td>
                 <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$detail->id)}}">

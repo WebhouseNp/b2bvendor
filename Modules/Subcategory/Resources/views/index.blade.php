@@ -28,7 +28,7 @@
                     <th>Name</th>
                     <th>Image</th>
                     <th>Category</th>
-                    <th>Featured</th>
+                    <th>In Homepage</th>
                     @if( auth()->user()->hasRole('vendor'))
                     <th>Publish</th>
                     @endif

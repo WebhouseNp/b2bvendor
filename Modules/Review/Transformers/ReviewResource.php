@@ -34,7 +34,8 @@ class ReviewResource extends JsonResource
             }),
             // 'product' => ProductResource::make($this->whenLoaded('product')),
             'reviews' => $this->reviews,
-            'rate' => $this->rate
+            'rate' => $this->rate,
+            'created_at' => $this->created_at
         ];
     }
 }

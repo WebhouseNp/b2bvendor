@@ -96,6 +96,15 @@ class ProductController extends Controller
                 'category_id'       => 'required|numeric|exists:categories,id',
                 'meta_title'        => 'nullable|string|max:200',
                 'meta_description'  => 'nullable|string',
+                'gender'  => 'nullable|string',
+                'use'  => 'nullable|string',
+                'color'  => 'nullable|string',
+                'size'  => 'nullable|string',
+                'age_group'  => 'nullable|string',
+                'feature'  => 'nullable|string',
+                'warranty'  => 'nullable|string',
+                'country_of_origin'  => 'nullable|string',
+                'payment_mode'  => 'nullable|string',
                 'keyword'           => 'nullable|string|max:200',
                 'meta_keyphrase'    => 'nullable|string|max:200',
                 // 'status'            => 'required|in:active,inactive',
@@ -109,8 +118,8 @@ class ProductController extends Controller
             DB::beginTransaction();
 
             $value = $request->except('image');
-            $value['is_top'] = $request->has('is_top') ? true : false;
-            $value['is_new_arrival'] = $request->has('is_new_arrival') ? true : false;
+            $overview = $request->only('payment_mode', 'size', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
+            $value['overview'] = json_encode($overview);
             if ($request->image) {
                 $image = $this->imageProcessing('img-', $request->file('image'));
                 $value['image'] = $image;
@@ -313,8 +322,10 @@ class ProductController extends Controller
         }
         $product = Product::findorFail($request->id);
         $value = $request->except('image');
-        $value['is_top'] = $request->has('is_top') ? true : false;
-        $value['is_new_arrival'] = $request->has('is_new_arrival') ? true : false;
+        $overview = $request->only('payment_mode', 'size', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
+        $value['overview'] = json_encode($overview);
+        $value['type'] = $request->has('type') ? 'is_top' : 'is_new_arrival';
+        $value['status'] = $request->has('status') ? true : false;
         if ($request->image) {
             if ($product->image) {
                 $thumbPath = public_path('images/thumbnail');

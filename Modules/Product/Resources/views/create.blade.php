@@ -69,12 +69,12 @@
 
 
                                         </div> --}}
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Shipping Charge</strong></label>
                                         <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value="" placeholder="shipping Charge">
                                     </div>
 
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <div class="col-lg-6 col-sm-12 form-group">
                                         <label for="browser"><strong>Product Unit :</strong></label>
                                         <input list="units" class="form-control" name="unit" id="unit">
                                         <datalist id="units">
@@ -188,12 +188,48 @@
                         </div>
                         <div class="ibox">
                             <div class="ibox-body">
-                                <h5>Descriptions</h5>
+                                <h5 style="text-align: center;">Descriptions</h5> <br>
                                 <div class="row">
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Highlights</strong></label>
                                         <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;"></textarea>
 
+                                    </div> -->
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Payment Mode</strong></label>
+                                        <input class="form-control" type="text" id="payment_mode" name="payment_mode" value="" placeholder="Payment Mode">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Country Of Origin</strong></label>
+                                        <input class="form-control" type="text" id="country_of_origin" name="country_of_origin" value="" placeholder="Country Of Origin">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Available Colors</strong></label>
+                                        <input class="form-control" type="text" id="colors" name="colors" value="" placeholder="Colors">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Size</strong></label>
+                                        <input class="form-control" type="text" id="size" name="size" value="" placeholder="Size">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Warranty</strong></label>
+                                        <input class="form-control" type="text" id="warranty" name="warranty" value="" placeholder="Warranty">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Feature</strong></label>
+                                        <input class="form-control" type="text" id="feature" name="feature" value="" placeholder="Feature">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Use</strong></label>
+                                        <input class="form-control" type="text" id="use" name="use" value="" placeholder="Use">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Gender</strong></label>
+                                        <input class="form-control" type="text" id="gender" name="gender" value="" placeholder="Gender">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Age Group</strong></label>
+                                        <input class="form-control" type="text" id="age_group" name="age_group" value="" placeholder="Age Group">
                                     </div>
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Description</strong></label>
@@ -248,20 +284,20 @@
                                 </div>
 
                                 <div class="form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
-                                            <input type="checkbox" id="is_new_arrival" name="is_new_arrival" value="1">
-                                            <span class="input-span"></span><strong>New Arrival</strong>
-                                        </label>
-                                    </div>
+                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                        <input type="radio" id="is_new_arrival" name="type" value="1">
+                                        <span class="input-span"></span><strong>New Arrival</strong>
+                                    </label>
+                                </div>
 
-                                  @if(auth()->user()->hasAnyRole('super_admin|admin'))
-                                    <div class="form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
-                                            <input type="checkbox" id="is_top" name="is_top" value="1">
-                                            <span class="input-span"></span><strong>Top Product</strong>
-                                        </label>
-                                    </div>
-                                    @endif
+                                @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                                <div class="form-group">
+                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                        <input type="radio" id="is_top" name="type" value="1">
+                                        <span class="input-span"></span><strong>Top Product</strong>
+                                    </label>
+                                </div>
+                                @endif
 
                                 <div class="form-group">
                                     <label for="status">Status: </label>

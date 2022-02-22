@@ -22,6 +22,7 @@
                     <tr>
                         <th>SN</th>
                         <th>Name</th>
+                        <th>Partner Type</th>
                         <th>Image</th>
                         <th>Published</th>
                         <th>Action</th>
@@ -33,6 +34,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->name }}</td>
+                        <td>{{ @$data->PartnerType->name }}</td>
                         <td>
                          <img src="{{ $data->imageUrl() }}" alt="{{ $data->name }}" class="rounded" style="height: 3rem;">
                         </td>

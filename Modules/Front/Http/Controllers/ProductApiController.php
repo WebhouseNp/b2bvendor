@@ -9,6 +9,7 @@ use Modules\Front\Transformers\ProductCollection;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
 use Modules\Subcategory\Entities\Subcategory;
+use Modules\User\Entities\Vendor;
 
 class ProductApiController extends Controller
 {
@@ -59,52 +60,13 @@ class ProductApiController extends Controller
         return ProductResource::make($product);
     }
 
-    // New Arrivals
-    public function getNewArrivals()
-    {
-        $products = Product::with('ranges')
-            ->where('type', 'new')
-            ->where('status', 'active')
-            ->active()
-            ->orderBy('created_at', 'DESC')
-            ->take(4)
-            ->get();
-
-        return ProductResource::collection($products)->hide([
-            'highlight',
-            'description',
-            'meta_title',
-            'meta_keyword',
-            'meta_description',
-            'meta_keyphrase',
-        ]);
-    }
-
-    // Top Products
-    public function getTopProducts()
-    {
-        $products = Product::with('ranges')
-            ->where('type', 'top')
-            ->where('status', 'active')
-            ->active()
-            ->orderBy('created_at', 'DESC')
-            ->take(4)->get();
-
-        return ProductResource::collection($products->shuffle()->all())->hide([
-            'highlight',
-            'description',
-            'meta_title',
-            'meta_keyword',
-            'meta_description',
-            'meta_keyphrase',
-        ]);
-    }
-
     // Sasto wholesale mall Products
     public function sastoWholesaleMallProducts()
     {
+        $sastoWholesaleStore = Vendor::where('id', sasto_wholesale_store_id())->firstOrFail();
+        
         $products = Product::with('ranges')
-            ->where('id', sasto_wholesale_store_id())
+            ->where('user_id', $sastoWholesaleStore->user_id)
             ->where('status', 'active')
             ->active()
             ->orderBy('created_at', 'DESC')

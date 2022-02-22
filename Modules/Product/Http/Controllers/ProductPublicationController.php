@@ -11,7 +11,7 @@ class ProductPublicationController extends Controller
 {
     public function store(Request $request,  Product $product)
     {
-        $product->update(['status' => 'active']);
+        $product->update(['status' => 1]);
         return response()->json([
             "status" => "true",
             "message" => "Product Activated!!"
@@ -21,7 +21,7 @@ class ProductPublicationController extends Controller
 
     public function destroy(Request $request,  Product $product)
     {
-        $product->update(['status' => 'inactive']);
+        $product->update(['status' => 0]);
         return response()->json([
             "status" => "true",
             "message" => "Product Inactivated!!"

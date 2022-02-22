@@ -27,7 +27,10 @@ class ChatRoom extends Model
 
     public function customerUser()
     {
-        return $this->belongsTo(User::class, 'customer_user_id');
+        return $this->belongsTo(User::class, 'customer_user_id')
+            ->withDefault([
+                'name' => 'Guest'
+            ]);
     }
 
     public function vendorUser()

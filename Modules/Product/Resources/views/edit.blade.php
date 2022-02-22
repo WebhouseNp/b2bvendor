@@ -71,30 +71,17 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-lg-2 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="is_new_arrival" name="is_new_arrival" value="1">
-                                            <span class="input-span"></span><strong>New Arrival</strong>
-                                        </label>
-                                    </div>
-                                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
-                                    <div class="col-lg-2 col-sm-12 form-group">
-                                        <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                            <input type="checkbox" id="is_top" name="is_top" value="1">
-                                            <span class="input-span"></span><strong>Top Product</strong>
-                                        </label>
-                                    </div>
-                                    @endif
+                                    
                                     {{-- <div class="col-lg-4 col-sm-12 form-group">
                                         <label><strong> Discount</strong></label>
                                         <input class="form-control" type="text" id="discount" name="discount" placeholder="discount">
                                     </div> --}}
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Shipping Charge</strong></label>
                                         <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value="" placeholder="shipping Charge">
                                     </div>
 
-                                    <div class="col-lg-4 col-sm-12 form-group">
+                                    <div class="col-lg-6 col-sm-12 form-group">
                                         <label for="browser"><strong>Choose unit :</strong></label>
                                         <input list="units" class="form-control" name="unit" id="unit">
                                         <datalist id="units">
@@ -103,8 +90,9 @@
                                             <option value="m">
                                         </datalist>
                                     </div>
+
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <label>Video Link</label>
+                                        <label for="video_link"><strong> Video Link </strong></label>
                                         <textarea class="form-control" name="video_link" placeholder="video link">{{$product->video_link}}</textarea>
                                     </div>
                                     <!-- <div class="col-lg-4 col-sm-12 form-group">
@@ -133,31 +121,8 @@
                                             </label>
                                         </div> -->
                                 </div>
-                                <!-- <div class="row"> -->
-
-                                <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label for="">Type</label>
-                                            <select name="type" id="type" class="form-control">
-                                                <option value="top">Top Product</option>
-                                                <option value="new">New Arrivals</option>
-                                                <option value="hot">Hot Categories</option>
-                                                <option value="whole_sale">Sasto Wholesale</option>
-                                                <option value="none">None</option>
-                                            </select>
-                                        </div> -->
-
-                                <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label><strong> Delivery Charge</strong></label>
-                                            <input class="form-control" type="text" id="delivery_charge" name="delivery_charge" value="" placeholder="Delivery Charge">
-                                        </div> -->
-                                <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label><strong> Shipping Charge</strong></label>
-                                            <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value=""
-                                                 placeholder="shipping Charge">
-                                        </div> -->
-
-                                <!-- </div> -->
-
+<br>
+<br>
                                 <div class="col-lg-12 col-sm-12 form-group">
                                     <div class="col-md-12 mb-3 ">
                                         <label for="">
@@ -213,10 +178,46 @@
                                 <h5>Descriptions</h5>
                                 <div class="row">
 
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Highlights</strong></label>
                                         <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;"></textarea>
 
+                                    </div> -->
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Payment Mode</strong></label>
+                                        <input class="form-control" type="text" id="payment_mode" name="payment_mode" value="{{@$product->overview->payment_mode}}" placeholder="Payment Mode">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Country Of Origin</strong></label>
+                                        <input class="form-control" type="text" id="country_of_origin" name="country_of_origin" value="{{@$product->overview->country_of_origin}}" placeholder="Country Of Origin">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Available Colors</strong></label>
+                                        <input class="form-control" type="text" id="colors" name="colors" value="{{@$product->overview->colors}}" placeholder="Colors">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Size</strong></label>
+                                        <input class="form-control" type="text" id="size" name="size" value="{{@$product->overview->size}}" placeholder="Size">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Warranty</strong></label>
+                                        <input class="form-control" type="text" id="warranty" name="warranty" value="{{@$product->overview->warranty}}" placeholder="Warranty">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Feature</strong></label>
+                                        <input class="form-control" type="text" id="feature" name="feature" value="{{@$product->overview->feature}}" placeholder="Feature">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Use</strong></label>
+                                        <input class="form-control" type="text" id="use" name="use" value="{{@$product->overview->use}}" placeholder="Use">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Gender</strong></label>
+                                        <input class="form-control" type="text" id="gender" name="gender" value="{{@$product->overview->gender}}" placeholder="Gender">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Age Group</strong></label>
+                                        <input class="form-control" type="text" id="age_group" name="age_group" value="{{@$product->overview->age_group}}" placeholder="Age Group">
                                     </div>
 
 
@@ -272,6 +273,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                        <input type="radio" id="is_new_arrival" name="type" value="1" @if(old('type',$product->type == 'is_new_arrival')) checked @endif>
+                                        <span class="input-span"></span><strong>New Arrival</strong>
+                                    </label>
+                                </div>
+
+                                @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                                <div class="form-group">
+                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
+                                        <input type="radio" id="is_top" name="type" value="1" @if(old('type',$product->type == 'is_top')) checked @endif>
+                                        <span class="input-span"></span><strong>Top Product</strong>
+                                    </label>
+                                </div>
+                                @endif
 
                                 <div class="form-group">
                                     <label for="status">Status: </label>
@@ -504,20 +521,15 @@ $name = ['meta_description', 'description', 'highlight'];
                 success: function(response) {
                     document.getElementById('title').value = response.data.title;
                     document.getElementById('status').value = response.data.status;
-                    if (response.data.is_top == 1) {
-                        document.getElementById('is_top').checked = true;
-                    } else {
-                        document.getElementById('is_top').checked = false;
-                    }
-                    if (response.data.is_new_arrival == 1) {
+                    if (response.data.type == 'is_new_arrival') {
                         document.getElementById('is_new_arrival').checked = true;
-                    } else {
-                        document.getElementById('is_new_arrival').checked = false;
+                    } else if(response.data.type == 'is_top') {
+                        document.getElementById('is_top').checked = true;
                     }
                     // document.getElementById('price').value = response.data.price;
                     // document.getElementById('moq').value = response.data.moq;
                     // document.getElementById('discount').value = response.data.discount;
-                    CKEDITOR.instances['highlight'].setData(response.data.highlight);
+                    // CKEDITOR.instances['highlight'].setData(response.data.highlight);
                     CKEDITOR.instances.description.setData(response.data.description);
                     CKEDITOR.instances.meta_description.setData(response.data.meta_description);
                     // document.getElementById('quantity').value = response.data.quantity;

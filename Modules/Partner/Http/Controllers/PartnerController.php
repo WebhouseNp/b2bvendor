@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Partner\Entities\Partner;
+use Modules\Partner\Entities\PartnerType;
 
 class PartnerController extends Controller
 {
@@ -24,12 +25,13 @@ class PartnerController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'required',
+            'image' => 'nullable',
+            'partner_type_id'       => 'required|numeric|exists:partner_types,id',
             'publish' => 'nullable'
         ]);
-
         Partner::create([
             'name' => $request->name,
+            'partner_type_id' => $request->partner_type_id,
             'publish' => $request->has('publish') ? 1 : 0,
             'path' => $request->hasFile('image') ? $request->file('image')->store('uploads/partners') : null
         ]);
@@ -51,12 +53,14 @@ class PartnerController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'partner_type_id'       => 'required|numeric|exists:partner_types,id',
             'image' => 'nullable',
             'publish' => 'nullable'
         ]);
 
         $partner->fill([
             'name' => $request->name,
+            'partner_type_id'       => $request->partner_type_id,
             'publish' => $request->has('publish') ? 1 : 0
         ]);
 
@@ -81,11 +85,11 @@ class PartnerController extends Controller
     public function showForm(Partner $partner)
     {
         $updateMode = false;
-
+        $partnerTypes = PartnerType::publish()->positioned()->get();
         if ($partner->exists) {
             $updateMode = true;
         }
 
-        return view('partner::form', compact(['partner', 'updateMode']));
+        return view('partner::form', compact(['partner', 'updateMode','partnerTypes']));
     }
 }

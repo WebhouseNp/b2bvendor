@@ -281,6 +281,32 @@ $user_access = json_decode($user->access_level);
             </li>
             @endif
 
+            @if(auth()->user()->hasAnyrole('super_admin|admin'))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-shopping-cart"></i>
+                    <span class="nav-label">Product Categories</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+
+                    <li>
+                        <a href="{{route('product-category.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add New
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('product-category.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            List All
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-product-hunt"></i>
@@ -441,6 +467,32 @@ $user_access = json_decode($user->access_level);
                         <a href="{{route('country.index')}}">
                             <span class="fa fa-circle-o"></span>
                             All Countries Lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if(in_array('super_admin' ,$roles))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-address-card"></i>
+                    <span class="nav-label">Partner Types</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+
+                    <li>
+                        <a href="{{route('partner-type.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add New Partner Type
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('partner-type.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Partner Types Lists
                         </a>
                     </li>
                 </ul>

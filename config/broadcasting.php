@@ -38,9 +38,13 @@ return [
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER', 'ap2'),
                 'useTLS' => true,
-                'host' => 'admin.b2b.test',
-                'port' => 6001,
-                'scheme' => 'http'
+                'host' => env('LARAVEL_WEBSOCKETS_HOST', '127.0.0.1'),
+                'port' => env('LARAVEL_WEBSOCKETS_PORT', 6001),
+                'scheme' => env('PUSHER_APP_SCHEME', 'http'),
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ],
             ],
         ],
 
