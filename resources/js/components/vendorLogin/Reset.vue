@@ -16,12 +16,32 @@
           <div class="form-group">
             <label for="">New Password</label>
             <input
-              type="password"
+              v-if="showPassword"
+              type="text"
               class="form-control"
               v-model.trim="$v.password.$model"
               :class="{ 'is-invalid': validationStatus($v.password) }"
               placeholder="Enter new password"
             />
+              <input
+                v-else
+                type="password"
+                class="form-control"
+                v-model.trim="$v.password.$model"
+                :class="{ 'is-invalid': validationStatus($v.password) }"
+                placeholder="Enter new password"
+              />
+              <span class="field-icon" @click="toggleShow">
+                <span class="icon is-small is-right">
+                  <i
+                    class="fa"
+                    :class="{
+                      'fa-eye-slash': showPassword,
+                      'fa-eye': !showPassword,
+                    }"
+                  ></i>
+                </span>
+              </span>
             <div v-if="!$v.password.required" class="invalid-feedback text-danger">
               The Password field is required.
             </div>
@@ -31,12 +51,32 @@
           <div class="form-group">
             <label for="">Confirm Password</label>
             <input
-              type="password"
+              v-if="showPassword"
+              type="text"
               class="form-control"
               v-model.trim="$v.confirm_password.$model"
               :class="{ 'is-invalid': validationStatus($v.confirm_password) }"
               placeholder="Enter confirm password"
             />
+            <input
+                v-else
+                type="password"
+                class="form-control"
+               v-model.trim="$v.confirm_password.$model"
+              :class="{ 'is-invalid': validationStatus($v.confirm_password) }"
+                placeholder="Enter confirm password"
+              />
+              <span class="field-icon" @click="toggleShow">
+                <span class="icon is-small is-right">
+                  <i
+                    class="fa"
+                    :class="{
+                      'fa-eye-slash': showPassword,
+                      'fa-eye': !showPassword,
+                    }"
+                  ></i>
+                </span>
+              </span>
             <div v-if="!$v.confirm_password.required" class="invalid-feedback text-danger">
               The Confirm Password field is required.
             </div>
@@ -69,6 +109,7 @@ export default {
       password: "",
       confirm_password: "",
       loading: false,
+      showPassword: false,
     };
   },
   validations: {
@@ -78,6 +119,9 @@ export default {
   methods: {
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
+    },
+     toggleShow() {
+      this.showPassword = !this.showPassword;
     },
     async submitData() {
       this.$v.$touch();

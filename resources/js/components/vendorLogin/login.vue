@@ -66,14 +66,34 @@
                               placeholder="example@gmail.com"
                               v-model="email"
                               
-                            ></Input>
-                            <Input
-                              label="Password"
-                              type="password"
+                            />
+                            <label for="">Password</label>
+                            <input
+                              v-if="showPassword"
+                              type="text"
+                              class="form-control"
                               placeholder="Enter Password"
                               v-model="password"
                             
-                            ></Input>
+                            />
+                            <input
+                                v-else
+                                type="password"
+                                class="form-control"
+                                placeholder="Enter Password"
+                                v-model="password"
+                            />
+                            <span class="field-icon" @click="toggleShow">
+                                <span class="icon is-small is-right">
+                                <i
+                                    class="fa"
+                                    :class="{
+                                    'fa-eye-slash': showPassword,
+                                    'fa-eye': !showPassword,
+                                    }"
+                                ></i>
+                                </span>
+                            </span>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input"
                                  id="rememberMe"
@@ -112,12 +132,16 @@ export default {
          email: "",
           password: "",
           loading: false,
+          showPassword: false,
           error: '',
     };
   },
   methods: {
       vendorHomepage(){
         window.location.href = "/vendor-homepage";
+    },
+     toggleShow() {
+      this.showPassword = !this.showPassword;
     },
      async onSubmit() {
        this.loading = true;
@@ -238,5 +262,14 @@ export default {
     .step-div:not(:last-child) {
         margin-bottom: 1.8rem;
     }
+}
+
+.field-icon {
+  float: right;
+  margin-right: 10px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
 }
 </style>
