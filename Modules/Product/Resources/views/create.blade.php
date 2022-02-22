@@ -188,12 +188,48 @@
                         </div>
                         <div class="ibox">
                             <div class="ibox-body">
-                                <h5>Descriptions</h5>
+                                <h5 style="text-align: center;">Descriptions</h5> <br>
                                 <div class="row">
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Highlights</strong></label>
                                         <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;"></textarea>
 
+                                    </div> -->
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Payment Mode</strong></label>
+                                        <input class="form-control" type="text" id="payment_mode" name="payment_mode" value="" placeholder="Payment Mode">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Country Of Origin</strong></label>
+                                        <input class="form-control" type="text" id="country_of_origin" name="country_of_origin" value="" placeholder="Country Of Origin">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Available Colors</strong></label>
+                                        <input class="form-control" type="text" id="colors" name="colors" value="" placeholder="Colors">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Size</strong></label>
+                                        <input class="form-control" type="text" id="size" name="size" value="" placeholder="Size">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Warranty</strong></label>
+                                        <input class="form-control" type="text" id="warranty" name="warranty" value="" placeholder="Warranty">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Feature</strong></label>
+                                        <input class="form-control" type="text" id="feature" name="feature" value="" placeholder="Feature">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Use</strong></label>
+                                        <input class="form-control" type="text" id="use" name="use" value="" placeholder="Use">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Gender</strong></label>
+                                        <input class="form-control" type="text" id="gender" name="gender" value="" placeholder="Gender">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Age Group</strong></label>
+                                        <input class="form-control" type="text" id="age_group" name="age_group" value="" placeholder="Age Group">
                                     </div>
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Description</strong></label>

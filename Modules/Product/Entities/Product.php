@@ -136,12 +136,17 @@ class Product extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('status', 'active');
+        return $query->where('status', true);
     }
 
     public function youtubeVideo($url){
     	$url_string = parse_url($url, PHP_URL_QUERY);
   		parse_str($url_string, $args);
   		return isset($args['v']) ? $args['v'] : false;
+    }
+
+    public function getOverviewAttribute($value)
+    {
+        return json_decode($value);
     }
 }

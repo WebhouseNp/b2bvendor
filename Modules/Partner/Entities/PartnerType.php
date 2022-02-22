@@ -30,6 +30,7 @@ class PartnerType extends Model
 
     public function canBeDeletedSafely()
     {
-        return $this->partners()->count() ? false : true;
+        // dd($this->partners()->count()==0);
+        return $this->partners()->count() > 0 ? false : true;
     }    
 }

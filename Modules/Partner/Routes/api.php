@@ -18,3 +18,4 @@ use Modules\Partner\Http\Controllers\ApiPartnerController;
 //     return $request->user();
 // });
 Route::get('partners', [ApiPartnerController::class,'index'])->name('api.partners');
+Route::get('partner-types', [ApiPartnerController::class,'partnerTypes'])->name('api.partnerTypes');

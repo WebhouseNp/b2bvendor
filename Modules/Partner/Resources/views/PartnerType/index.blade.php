@@ -13,7 +13,7 @@
         <div class="ibox-head">
             <div class="ibox-title">All Partners</div>
             <div>
-                <a class="btn btn-info btn-md" href="{{route('partner.create')}}">Add New Partner</a>
+                <a class="btn btn-info btn-md" href="{{route('partner-type.create')}}">Add New Partner Type</a>
             </div>
         </div>
         <div class="ibox-body">

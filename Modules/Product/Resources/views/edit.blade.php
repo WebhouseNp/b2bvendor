@@ -178,10 +178,46 @@
                                 <h5>Descriptions</h5>
                                 <div class="row">
 
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Highlights</strong></label>
                                         <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;"></textarea>
 
+                                    </div> -->
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Payment Mode</strong></label>
+                                        <input class="form-control" type="text" id="payment_mode" name="payment_mode" value="{{@$product->overview->payment_mode}}" placeholder="Payment Mode">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Country Of Origin</strong></label>
+                                        <input class="form-control" type="text" id="country_of_origin" name="country_of_origin" value="{{@$product->overview->country_of_origin}}" placeholder="Country Of Origin">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Available Colors</strong></label>
+                                        <input class="form-control" type="text" id="colors" name="colors" value="{{@$product->overview->colors}}" placeholder="Colors">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Size</strong></label>
+                                        <input class="form-control" type="text" id="size" name="size" value="{{@$product->overview->size}}" placeholder="Size">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Warranty</strong></label>
+                                        <input class="form-control" type="text" id="warranty" name="warranty" value="{{@$product->overview->warranty}}" placeholder="Warranty">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Feature</strong></label>
+                                        <input class="form-control" type="text" id="feature" name="feature" value="{{@$product->overview->feature}}" placeholder="Feature">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Use</strong></label>
+                                        <input class="form-control" type="text" id="use" name="use" value="{{@$product->overview->use}}" placeholder="Use">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Gender</strong></label>
+                                        <input class="form-control" type="text" id="gender" name="gender" value="{{@$product->overview->gender}}" placeholder="Gender">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Age Group</strong></label>
+                                        <input class="form-control" type="text" id="age_group" name="age_group" value="{{@$product->overview->age_group}}" placeholder="Age Group">
                                     </div>
 
 
@@ -240,7 +276,7 @@
 
                                 <div class="form-group">
                                     <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
-                                        <input type="radio" id="is_new_arrival" name="type" @if(old('type',$product->type == 'is_new_arrival')) checked @endif>
+                                        <input type="radio" id="is_new_arrival" name="type" value="1" @if(old('type',$product->type == 'is_new_arrival')) checked @endif>
                                         <span class="input-span"></span><strong>New Arrival</strong>
                                     </label>
                                 </div>
@@ -248,7 +284,7 @@
                                 @if(auth()->user()->hasAnyRole('super_admin|admin'))
                                 <div class="form-group">
                                     <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
-                                        <input type="radio" id="is_top" name="type" @if(old('type',$product->type == 'is_top')) checked @endif>
+                                        <input type="radio" id="is_top" name="type" value="1" @if(old('type',$product->type == 'is_top')) checked @endif>
                                         <span class="input-span"></span><strong>Top Product</strong>
                                     </label>
                                 </div>
@@ -493,7 +529,7 @@ $name = ['meta_description', 'description', 'highlight'];
                     // document.getElementById('price').value = response.data.price;
                     // document.getElementById('moq').value = response.data.moq;
                     // document.getElementById('discount').value = response.data.discount;
-                    CKEDITOR.instances['highlight'].setData(response.data.highlight);
+                    // CKEDITOR.instances['highlight'].setData(response.data.highlight);
                     CKEDITOR.instances.description.setData(response.data.description);
                     CKEDITOR.instances.meta_description.setData(response.data.meta_description);
                     // document.getElementById('quantity').value = response.data.quantity;
