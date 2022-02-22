@@ -13,6 +13,8 @@ use Modules\Front\Transformers\CustomerResource;
 use DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -121,7 +123,7 @@ class ProfileController extends Controller
   public function updateImage(Request $request, User $user){
     try {
       $validator = Validator::make($request->all(), [
-        'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
+        'image' => '',
       ]);
 
       if ($validator->fails()) {
@@ -134,8 +136,8 @@ class ProfileController extends Controller
           $this->unlinkImage($user->image);
         }
         if ($request->image) {
-          $image = $this->imageProcessing('img-', $request->file('image'));
-          $user['image'] = $image;
+          $image = $this->imageProcessing('img-', base64_decode($request->file('image')));
+          $user['image'] = 'jhvhjvjvv';
         }
       }
       $user->update($formInput);
@@ -148,6 +150,26 @@ class ProfileController extends Controller
         'message' => $exception->getMessage()
       ], 400);
     }
+  }
+
+  public function imageUpload(Request $request, User $user){
+
+    if($request->hasFile('image')){
+      $file = $request-file('image');
+      $image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $file));
+      $tmpFilePath=sys_get_temp_dir().'/'.uniqid(); 
+      file_put_contents($tmpFilePath, $image_data); 
+      $imageName = time().'.'.str_replace("image/","",$mime_type);
+      $mime_type = finfo_buffer($f, $image_data, FILEINFO_MIME_TYPE);
+      $imageName = time().'.'.$mime_type;
+      $tmpFile=new File($tmpFilePath);
+      $tmpFile->move(public_path('slider_uploads'), $imageName);
+      File::move($tmpFilePath, public_path("slider_uploads/$imageName")); 
+      $slider->img_url = $imageName;
+      $slider->save();
+      return response()->json(['success'=>$imageName]);
+        }
+
   }
   
   public function profileImage(User $user)

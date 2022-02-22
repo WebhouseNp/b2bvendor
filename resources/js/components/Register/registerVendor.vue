@@ -24,9 +24,9 @@
                 aria-describedby=""
                 placeholder="Enter Your Full Name"
               />
-               <div class="text-danger">
-               {{ validation_rule.getMessage('name') }}
-             </div>
+              <div class="text-danger">
+                {{ validation_rule.getMessage("name") }}
+              </div>
             </div>
             <div class="form-group">
               <label for="">Designation</label>
@@ -38,9 +38,9 @@
                 aria-describedby=""
                 placeholder="Enter Your Designation"
               />
-               <div class="text-danger">
-               {{ validation_rule.getMessage('designation') }}
-             </div>
+              <div class="text-danger">
+                {{ validation_rule.getMessage("designation") }}
+              </div>
             </div>
             <div class="form-group">
               <label for="">Mobile Number</label>
@@ -52,9 +52,9 @@
                 aria-describedby=""
                 placeholder="Enter Your Mobile Number"
               />
-               <div class="text-danger">
-               {{ validation_rule.getMessage('phone_num') }}
-             </div>
+              <div class="text-danger">
+                {{ validation_rule.getMessage("phone_num") }}
+              </div>
             </div>
             <div class="form-group">
               <label for="">Email address</label>
@@ -67,50 +67,96 @@
                 placeholder="email@example.com"
               />
               <div class="text-danger">
-               {{ validation_rule.getMessage('email') }}
-             </div>
+                {{ validation_rule.getMessage("email") }}
+              </div>
             </div>
             <div class="form-group">
               <label for="">Password</label>
               <input
-                type="password"
+                v-if="showPassword"
+                type="text"
                 class="form-control"
                 v-model="password"
-                id=""
                 placeholder="Password"
               />
+              <input
+                v-else
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                v-model="password"
+              />
+              <span class="field-icon" @click="toggleShow">
+                <span class="icon is-small is-right">
+                  <i
+                    class="fa"
+                    :class="{
+                      'fa-eye-slash': showPassword,
+                      'fa-eye': !showPassword,
+                    }"
+                  ></i>
+                </span>
+              </span>
               <div class="text-danger">
-               {{ validation_rule.getMessage('password') }}
-             </div>
+                {{ validation_rule.getMessage("password") }}
+              </div>
             </div>
             <div class="form-group">
               <label for="">Confirm Password</label>
               <input
-                type="password"
+                v-if="showPassword"
+                type="text"
                 class="form-control"
                 v-model="confirm_password"
-                id=""
                 placeholder="Confirm Password"
               />
+               <input
+                v-else
+                type="password"
+                class="form-control"
+                placeholder="Confirm Password"
+                v-model="confirm_password"
+              />
+              <span class="field-icon" @click="toggleShow">
+                <span class="icon is-small is-right">
+                  <i
+                    class="fa"
+                    :class="{
+                      'fa-eye-slash': showPassword,
+                      'fa-eye': !showPassword,
+                    }"
+                  ></i>
+                </span>
+              </span>
               <div class="text-danger">
-               {{ validation_rule.getMessage('confirm_password') }}
-             </div>
+                {{ validation_rule.getMessage("confirm_password") }}
+              </div>
             </div>
             <div class="form-check mb-3">
-              <input type="checkbox" class="form-check-input"
-               v-model.trim="$v.terms.$model"
-               :class="{ 'is-invalid': validationStatus($v.terms) }"
-               style="margin-left:0;" />
+              <input
+                type="checkbox"
+                class="form-check-input"
+                v-model.trim="$v.terms.$model"
+                :class="{ 'is-invalid': validationStatus($v.terms) }"
+                style="margin-left: 0"
+              />
               <label class="form-check-label" for=""
                 >I accept all the terms and condition.</label
               >
             </div>
             <div class="form-check mb-3">
-              <p>Note: For verification please provide business related document to us through mail.</p>
+              <p>
+                Note: For verification please provide business related document
+                to us through mail.
+              </p>
             </div>
             <div class="text-center">
-              <loading-button type="submit" class="btn btn-primary mt-4" 
-             :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
+              <loading-button
+                type="submit"
+                class="btn btn-primary mt-4"
+                :loading="loading"
+                >{{ loading ? "Please wait" : "Save Changes" }}</loading-button
+              >
             </div>
           </form>
         </div>
@@ -125,38 +171,42 @@
 import axios from "axios";
 import validation from "./../../services/validation";
 import swal from "sweetalert";
-import { sameAs} from "vuelidate/lib/validators";
+import { sameAs } from "vuelidate/lib/validators";
 import LoadingButton from "../LoadingButton.vue";
 
 export default {
   props: ["vendorinfo"],
   name: "registor",
-  components:{LoadingButton},
+  components: { LoadingButton },
   data() {
     return {
       validation_rule: new validation(),
       name: "",
       email: "",
-      designation:'',
-      phone_num:'',
+      designation: "",
+      phone_num: "",
       password: "",
       confirm_password: "",
       terms: false,
       loading: false,
+      showPassword:false,
       errors: {},
     };
   },
-  validations:{
+  validations: {
     terms: {
-        sameAs: sameAs( () => true )
-      }
+      sameAs: sameAs(() => true),
+    },
   },
   methods: {
-     validationStatus: function (validation) {
+    validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
-    vendorHomepage(){
-        window.location.href = "/vendor-homepage";
+    toggleShow() {
+      this.showPassword = !this.showPassword;
+    },
+    vendorHomepage() {
+      window.location.href = "/vendor-homepage";
     },
     async submitData() {
       this.$v.$touch();
@@ -190,10 +240,9 @@ export default {
           this.loading = false;
           this.errors = error.response.data;
           this.validation_rule.setMessages(this.errors.data);
-        }
-        else{
+        } else {
           this.loading = false;
-          alert('Something went wrong please try again.');
+          alert("Something went wrong please try again.");
         }
       }
     },
