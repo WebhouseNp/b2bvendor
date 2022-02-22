@@ -12,7 +12,7 @@
         <div class="ibox-head">
             <div class="ibox-title"> Product</div>
             <div>
-                <a class="btn btn-info btn-md" href="#">All Products</a>
+                <a class="btn btn-info btn-md" href="/product/all">All Products</a>
             </div>
         </div>
     </div>
@@ -41,24 +41,24 @@
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Title</strong></label>
                                         <input class="form-control" type="text" name="title" placeholder="Product Title Here" value="{{ old('title') }}">
-
-
                                     </div>
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Category</strong></label>
-
                                         <div class="input-group">
-                                            <select name="category_id" id="category_id" class="form-control">
+                                            <select name="category_id" id="category_id" class="form-control custom-select">
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12 col-sm-12 form-group d-none" id="sub_cat_div">
                                         <label><strong>Sub Category</strong></label>
+                                        <select class="form-control custom-select " id="subcategory_id" name="subcategory_id">
+                                        </select>
+                                    </div>
 
-                                        <select class="form-control " id="subcategory_id" name="subcategory_id">
-
-
+                                    <div class="col-lg-12 col-sm-12 form-group d-none" id="product_cat_div">
+                                        <label><strong>Product Category</strong></label>
+                                        <select class="form-control custom-select" id="product_category_id" name="product_category_id">
                                         </select>
                                     </div>
 
@@ -182,19 +182,12 @@
                                     <div id="addvariantsection" class="row  ">
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="ibox">
                             <div class="ibox-body">
                                 <h5 style="text-align: center;">Descriptions</h5> <br>
                                 <div class="row">
-                                    <!-- <div class="col-lg-12 col-sm-12 form-group">
-                                        <label><strong>Product Highlights</strong></label>
-                                        <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;"></textarea>
-
-                                    </div> -->
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Payment Mode</strong></label>
                                         <input class="form-control" type="text" id="payment_mode" name="payment_mode" value="" placeholder="Payment Mode">
@@ -210,6 +203,10 @@
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Size</strong></label>
                                         <input class="form-control" type="text" id="size" name="size" value="" placeholder="Size">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong>Brand</strong></label>
+                                        <input class="form-control" type="text" name="brand" value="{{ $product->getOverviewData('brand') }}" placeholder="Brand">
                                     </div>
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Warranty</strong></label>
@@ -232,10 +229,13 @@
                                         <input class="form-control" type="text" id="age_group" name="age_group" value="" placeholder="Age Group">
                                     </div>
                                     <div class="col-lg-12 col-sm-12 form-group">
+                                        <label><strong>Product Highlights</strong></label>
+                                        <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control"></textarea>
+                                    </div>
+                                    {{-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Description</strong></label>
                                         <textarea name="description" id="description" rows="5" placeholder="description Here" class="form-control" style="resize: none;"></textarea>
-
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -247,22 +247,18 @@
                                         <div class="form-group">
                                             <label for=""><strong>Meta Title</strong></label>
                                             <textarea name="meta_title" id="meta_title" rows="3" class="form-control" placeholder="Meta Title" style="resize:none;"></textarea>
-
                                         </div>
                                         <div class="form-group">
                                             <label for=""><strong>Meta Description</strong></label>
                                             <textarea name="meta_description" id="meta_description" rows="3" class="form-control" placeholder="Meta Description here" style="resize:none;"></textarea>
-
                                         </div>
                                         <div class="form-group">
                                             <label for=""><strong>Keyword</strong></label>
-                                            <textarea name="keyword" id="keyword" rows="3" class="form-control" placeholder="Meta Keyword here" style="resize:none;"></textarea>
-
+                                            <textarea name="meta_keyword" id="keyword" rows="3" class="form-control" placeholder="Meta Keyword here" style="resize:none;"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for=""><strong>Meta Keyphrase</strong></label>
                                             <textarea name="meta_keyphrase" id="meta_keyphrase" rows="3" class="form-control" placeholder="Meta Keyphrase here" style="resize:none;"></textarea>
-
                                         </div>
                                     </div>
                                 </div>
@@ -270,13 +266,12 @@
                         </div>
                     </div>
                     <div class="col-lg-3">
-
                         <div class="ibox">
                             <div class="ibox-body">
                                 <div class="form-group">
                                     <label> Upload Main Banner [image size: width: 800px, height: 800px] [image type: jpg, jpeg, png] </label>
 
-                                    <input class="form-control" name="image" type="file" id="fileUpload">
+                                    <input class="form-control" name="image" type="file" id="fileUpload" accept="image/*">
                                     <div id="wrapper" class="mt-2">
                                         <div id="image-holder">
                                         </div>
@@ -284,16 +279,21 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
-                                        <input type="radio" id="is_new_arrival" name="type" value="1">
+                                    <label for="video_link"><strong>YouTube Video Link </strong></label>
+                                    <input class="form-control" name="video_link" placeholder="video link">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="ui-checkbox ui-checkbox-primary">
+                                        <input type="checkbox" id="is_new_arrival" name="is_new_arrival" value="1">
                                         <span class="input-span"></span><strong>New Arrival</strong>
                                     </label>
                                 </div>
 
                                 @if(auth()->user()->hasAnyRole('super_admin|admin'))
                                 <div class="form-group">
-                                    <label class="ui-checkbox ui-checkbox-primary" style="margin-top:10px; margin-bottom:10px;">
-                                        <input type="radio" id="is_top" name="type" value="1">
+                                    <label class="ui-checkbox ui-checkbox-primary">
+                                        <input type="checkbox" id="is_top" name="is_top" value="1">
                                         <span class="input-span"></span><strong>Top Product</strong>
                                     </label>
                                 </div>
@@ -307,7 +307,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input onclick="submitProductNow(event);" type="button" name="Submit" value="Submit" id="blog_submit" class="btn btn-success">
+                                    <button onclick="submitProductNow(event);" type="button" id="product_submit" class="btn btn-success btn-lg btn-block">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -341,7 +341,7 @@
 
 @endsection
 <?php
-$name = ['meta_description', 'description', 'highlight'];
+$name = ['highlight'];
 ?>
 @push('push_scripts')
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
@@ -398,7 +398,6 @@ $name = ['meta_description', 'description', 'highlight'];
 <script>
     $(document).ready(function(e) {
         function brands() {
-
             $.ajax({
                 type: 'GET',
                 url: '/api/allbrands',
@@ -417,18 +416,14 @@ $name = ['meta_description', 'description', 'highlight'];
                 }
             });
         }
-
-        brands()
-
-
+        // Get the brands
+        brands();
     });
 </script>
 
 <script>
     $(document).ready(function(e) {
-
         function offers() {
-
             $.ajax({
                 type: 'GET',
                 url: '/api/getoffers',
@@ -448,9 +443,8 @@ $name = ['meta_description', 'description', 'highlight'];
                 }
             });
         }
-
+        // Get the offers
         offers()
-
     });
 </script>
 
@@ -458,7 +452,6 @@ $name = ['meta_description', 'description', 'highlight'];
     $(document).ready(function(e) {
 
         function categories() {
-
             $.ajax({
                 type: 'GET',
                 url: '/api/getcategories',
@@ -478,9 +471,8 @@ $name = ['meta_description', 'description', 'highlight'];
                 }
             });
         }
-
+        // Get the categories
         categories()
-
     });
 </script>
 <script>
@@ -662,13 +654,48 @@ $name = ['meta_description', 'description', 'highlight'];
                 $("#subcategory_id").empty();
             }
         });
+
+        $('#subcategory_id').change(function(e) {
+            e.preventDefault();
+            var subcategory_id = $(this).val();
+            if (subcategory_id) {
+                $.ajax({
+                    url: "/api/get-product-category",
+                    type: "POST",
+                    data: {
+                        subcategory_id: subcategory_id
+                    },
+
+                    success: function(response) {
+                        if (response.data) {
+                            $('#product_cat_div').removeClass('d-none');
+
+                            var html_options = "<option value=''>select any one</option>";
+                            $.each(response.data, function(index, productCategory) {
+                                html_options += "<option value='" + productCategory.id +
+                                    "'>" + productCategory.name + "</option>";
+                            });
+                            $('#product_category_id').html(html_options);
+
+                        } else {
+                            $("#product_category_id").empty();
+                        }
+                        if (response.category) {
+                            $('#product_cat_div').addClass('d-none');
+                        }
+                    }
+                });
+            } else {
+                $("#product_cat_div").empty();
+            }
+        });
     });
 </script>
 
 <script>
     function submitProductNow(event) {
         event.preventDefault();
-        $('#blog_submit').attr('value', 'Submitting...');
+        $('#product_submit').html('Submitting...');
 
         for (instance in CKEDITOR.instances) {
             CKEDITOR.instances[instance].updateElement();
@@ -691,7 +718,7 @@ $name = ['meta_description', 'description', 'highlight'];
                     DataSuccessInDatabase(validation_errors);
                     window.location.href = "/product/all";
                 } else if (response.status == 'unsuccessful') {
-                    $('#blog_submit').attr('value', 'Submit');
+                    $('#product_submit').html('Save');
                     var validation_errors = JSON.stringify(response.data);
                     var response = JSON.parse(validation_errors);
                     FailedResponseFromDatabase(response);
