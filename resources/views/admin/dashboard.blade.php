@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('page_title') Admin @endsection
 @section('content')
 <div class="page-content fade-in-up">
