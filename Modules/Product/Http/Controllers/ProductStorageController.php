@@ -108,6 +108,7 @@ class ProductStorageController extends Controller
         try {
             DB::beginTransaction();
             $product = Product::findorFail($request->id);
+            $product->user_id = auth()->id();
             $product->title = $request->title;
             $product->product_category_id = $request->product_category_id;
             $product->shipping_charge = $request->shipping_charge;

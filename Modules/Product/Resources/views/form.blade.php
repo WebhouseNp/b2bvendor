@@ -149,13 +149,13 @@
                                                 @foreach ($product->ranges as $range)
                                                 <div class="row mt-2">
                                                     <div class="col-md-4">
-                                                        <input type="text" name="from[]" value="{{ $range->from }}" placeholder="Range From" class="form-control" required>
+                                                        <input type="number" name="from[]" value="{{ $range->from }}" placeholder="Range From" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <input type="text" name="to[]" value="{{ $range->to }}" placeholder="Range To" class="form-control" required>
+                                                        <input type="number" name="to[]" value="{{ $range->to }}" placeholder="Range To" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="text" name="prices[]" value="{{ $range->price }}" placeholder="Price" class="form-control" required>
+                                                        <input type="number" name="prices[]" value="{{ $range->price }}" placeholder="Price" class="form-control" required>
                                                     </div>
                                                     <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{ asset('/images/remove-icon.png') }}" /></a>
                                                 </div>
@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Product Highlights</strong></label>
-                                        <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;"></textarea>
+                                        <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;">{{ $product->highlight }}</textarea>
                                     </div>
                                     {{-- <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Description</strong></label>
@@ -357,13 +357,13 @@ $name = ['highlight'];
                         <div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input  type="text"  name="from[]" value="" placeholder="Range From" class="form-control">
+                                    <input  type="number"  name="from[]" value="" placeholder="Range From" class="form-control">
                                 </div>
                                 <div class="col-md-4">
-                                    <input  type="text"  name="to[]" value="" placeholder="Range To" class="form-control">
+                                    <input  type="number"  name="to[]" value="" placeholder="Range To" class="form-control">
                                 </div>
                                 <div class="col-md-3">
-                                    <input  type="text"  name="prices[]" value="" placeholder="Price" class="form-control">
+                                    <input  type="number"  name="prices[]" value="" placeholder="Price" class="form-control">
                                 </div>
                                 <a href="javascript:void(0);" class="remove_button" title="Add field"><img src="{{ asset('/images/remove-icon.png') }}"/></a>
                             </div>
