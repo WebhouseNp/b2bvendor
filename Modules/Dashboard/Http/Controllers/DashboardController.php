@@ -2,78 +2,51 @@
 
 namespace Modules\Dashboard\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Order\Entities\Order;
+use Modules\Payment\Entities\Transaction;
+use Modules\Product\Entities\Product;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
     public function index()
     {
-        return view('dashboard::index');
+        if (auth()->user()->hasRole('vendor')) {
+            return $this->vendorDashboard();
+        }
+        return $this->adminDashboard();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
+    protected function adminDashboard()
     {
-        return view('dashboard::create');
+        return view('dashboard::admin.dashboard');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
+    protected function vendorDashboard()
     {
-        //
-    }
+        $totalSales = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->sum('amount');
+        $salesFromOnlinePayment = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->where('is_cod', '!=', true)->sum('amount');
+        $salesFromCOD = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->where('is_cod', true)->sum('amount');
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('dashboard::show');
-    }
+        $payableToAdmin = Transaction::where('vendor_user_id', auth()->id())->where('is_cod', true)->whereNull('settled_at')->sum('amount');
+        $lastTransaction = Transaction::where('vendor_user_id', auth()->id())->latest('id')->first();
+        $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('dashboard::edit');
-    }
+        $totalActiveProductsCount = Product::where('user_id' , auth()->user()->id)->active()->count();
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $orders = Order::with(['orderList'])
+            ->latest()
+            ->paginate();
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+
+        return view('dashboard::vendor.dashboard', [
+            'totalSales' => $totalSales,
+            'salesFromOnlinePayment' => $salesFromOnlinePayment,
+            'salesFromCOD' => $salesFromCOD,
+            'payableToAdmin' => $payableToAdmin,
+            'reveivableFromAdmin' => $reveivableFromAdmin,
+            'totalActiveProductsCount' => $totalActiveProductsCount,
+            'orders' => $orders
+        ]);
     }
 }

@@ -65,16 +65,15 @@
                               type="text"
                               placeholder="example@gmail.com"
                               v-model="email"
-                              
                             />
-                            <label for="">Password</label>
+                            <div class="form-group">
+                                 <label for="">Password</label>
                             <input
                               v-if="showPassword"
                               type="text"
                               class="form-control"
                               placeholder="Enter Password"
                               v-model="password"
-                            
                             />
                             <input
                                 v-else
@@ -94,6 +93,7 @@
                                 ></i>
                                 </span>
                             </span>
+                            </div>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input"
                                  id="rememberMe"
@@ -153,7 +153,7 @@ export default {
         if (response.status === 200) {
            localStorage.setItem('token', response.data.token);
             this.loading = false;
-            window.location.href = '/vendor/dashboard'
+            window.location.href = '/dashboard'
         }
        }catch (e){
         if(e.response.status === 400){
