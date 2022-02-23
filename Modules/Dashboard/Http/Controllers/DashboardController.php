@@ -3,6 +3,9 @@
 namespace Modules\Dashboard\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Modules\Order\Entities\Order;
+use Modules\Payment\Entities\Transaction;
+use Modules\Product\Entities\Product;
 
 class DashboardController extends Controller
 {
@@ -21,6 +24,29 @@ class DashboardController extends Controller
 
     protected function vendorDashboard()
     {
-        return view('dashboard::vendor.dashboard');
+        $totalSales = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->sum('amount');
+        $salesFromOnlinePayment = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->where('is_cod', '!=', true)->sum('amount');
+        $salesFromCOD = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->where('is_cod', true)->sum('amount');
+
+        $payableToAdmin = Transaction::where('vendor_user_id', auth()->id())->where('is_cod', true)->whereNull('settled_at')->sum('amount');
+        $lastTransaction = Transaction::where('vendor_user_id', auth()->id())->latest('id')->first();
+        $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
+
+        $totalActiveProductsCount = Product::where('user_id' , auth()->user()->id)->active()->count();
+
+        $orders = Order::with(['orderList'])
+            ->latest()
+            ->paginate();
+
+
+        return view('dashboard::vendor.dashboard', [
+            'totalSales' => $totalSales,
+            'salesFromOnlinePayment' => $salesFromOnlinePayment,
+            'salesFromCOD' => $salesFromCOD,
+            'payableToAdmin' => $payableToAdmin,
+            'reveivableFromAdmin' => $reveivableFromAdmin,
+            'totalActiveProductsCount' => $totalActiveProductsCount,
+            'orders' => $orders
+        ]);
     }
 }
