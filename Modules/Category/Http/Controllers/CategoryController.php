@@ -17,7 +17,7 @@ class CategoryController extends Controller
         $details = Category::orderBy('created_at', 'desc')->get();
 
         return view('category::index', [
-             'details' => $details
+            'details' => $details
         ]);
     }
 
@@ -26,7 +26,8 @@ class CategoryController extends Controller
         return view('category::create');
     }
 
-    public function createcategory(Request $request){
+    public function createcategory(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:categories|max:255',
             'image' => 'mimes:jpg,jpeg,png',
@@ -35,9 +36,9 @@ class CategoryController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
         }
-        
+
         $value = $request->except('image', 'publish');
-        if( auth()->user()->hasRole('vendor')){
+        if (auth()->user()->hasRole('vendor')) {
             $value['publish'] = 0;
         } else {
             $value['publish'] = $request->has('publish') ? 1 : 0;
@@ -46,12 +47,12 @@ class CategoryController extends Controller
         $value['hot_category'] = $request->has('hot_category') ? 1 : 0;
         $value['include_in_main_menu'] = $request->has('include_in_main_menu') ? 1 : 0;
         $value['does_contain_sub_category'] = $request->has('does_contain_sub_category') ? 1 : 0;
-        if($request->image){
+        if ($request->image) {
             $image = $this->imageProcessing('img-', $request->file('image'));
             $value['image'] = $image;
         }
         $data = Category::create($value);
-        
+
         return response()->json(['status' => 'successful', 'message' => 'Category created successfully.', 'data' => $data]);
     }
 
@@ -65,60 +66,53 @@ class CategoryController extends Controller
 
     public function deletecategory(Request $request,  Category $category)
     {
-            // $category = Category::findorFail($request->id);
-            // if ($category->image) {
-            //     $this->unlinkImage($category->image);
-            // }
-            $category->delete();
-
-      return response()->json([
-        'status' => 'successful',
-        "message" => "Category deleted successfully!"
-      ], 200);
-        
-
+        $category->delete();
+        return response()->json([
+            'status' => 'successful',
+            "message" => "Category deleted successfully!"
+        ], 200);
     }
 
     public function editcategory(Request $request)
     {
-        try{
+        try {
             $category = Category::findorFail($request->id);
 
-      return response()->json([
-        "data" => $category
-      ], 200);
-        } catch(\Exception $exception){
+            return response()->json([
+                "data" => $category
+            ], 200);
+        } catch (\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
-            ],400);
+            ], 400);
         }
-
     }
 
-    public function updatecategory(Request $request){
-        try{
+    public function updatecategory(Request $request)
+    {
+        try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:255',
                 'image' => 'mimes:jpg,jpeg,png',
             ]);
-    
-            if($validator->fails()) {
+
+            if ($validator->fails()) {
                 return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
                 exit;
             }
             $category = Category::findorFail($request->id);
-            $value = $request->except('publish','_token');
+            $value = $request->except('publish', '_token');
             $value['publish'] = is_null($request->publish) ? 0 : 1;
             $value['is_featured'] = $request->has('is_featured') ? 1 : 0;
             $value['hot_category'] = $request->has('hot_category') ? 1 : 0;
             $value['include_in_main_menu'] = $request->has('include_in_main_menu') ? 1 : 0;
             $value['does_contain_sub_category'] = $request->has('does_contain_sub_category') ? 1 : 0;
             if ($request->image) {
-            $image = Category::findorFail($request->id);
+                $image = Category::findorFail($request->id);
                 if ($image->image) {
                     $thumbPath = public_path('images/thumbnail');
                     $listingPath = public_path('images/listing');
-                    if((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))){
+                    if ((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))) {
                         unlink($thumbPath . '/' . $image->image);
                         unlink($listingPath . '/' . $image->image);
                     }
@@ -127,15 +121,15 @@ class CategoryController extends Controller
                 $value['image'] = $image;
             }
             $success = $category->update($value);
-      return response()->json([
-        'status' => 'successful',
-          "data" => $value,
-        "message" => "category updated successfully"
-      ], 200);
-        } catch(\Exception $exception){
+            return response()->json([
+                'status' => 'successful',
+                "data" => $value,
+                "message" => "category updated successfully"
+            ], 200);
+        } catch (\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
-            ],400);
+            ], 400);
         }
     }
 
@@ -147,7 +141,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        return view('category::edit',compact('id'));
+        return view('category::edit', compact('id'));
     }
 
     public function view($id)
@@ -157,18 +151,17 @@ class CategoryController extends Controller
 
     public function viewCategory(Request $request)
     {
-        try{
+        try {
             $category = Category::findorFail($request->id);
-      return response()->json([
-        "message" => "Category view!",
-        'data' => $category
-      ], 200);
-        } catch(\Exception $exception){
+            return response()->json([
+                "message" => "Category view!",
+                'data' => $category
+            ], 200);
+        } catch (\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
-            ],400);
+            ], 400);
         }
-
     }
 
     public function imageProcessing($type, $image)

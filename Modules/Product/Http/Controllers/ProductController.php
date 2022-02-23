@@ -63,12 +63,7 @@ class ProductController extends Controller
     public function getsubcategory(Request $request)
     {
         $categories = Category::find($request->category_id);
-        if ($categories->does_contain_sub_category == 1) {
-            $subcategory = $categories->subcategory;
-            return response()->json(['data' => $subcategory]);
-        } else {
             return response()->json(['category' => $categories]);
-        }
     }
 
     public function getProductCategory(Request $request)

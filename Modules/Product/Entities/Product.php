@@ -157,8 +157,8 @@ class Product extends Model
 
     public function youtubeVideo($url)
     {
-    	$url_string = parse_url($url, PHP_URL_QUERY);
-  		parse_str($url_string, $args);
-  		return isset($args['v']) ? $args['v'] : false;
+        $url_string = parse_url($url, PHP_URL_QUERY);
+        parse_str($url_string, $args);
+        return isset($args['v']) ? $args['v'] : false;
     }
 }

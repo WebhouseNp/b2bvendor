@@ -188,6 +188,10 @@
                                         <input class="form-control" type="text" id="country_of_origin" name="country_of_origin" value="{{ $product->getOverviewData('country_of_origin') }}" placeholder="Country Of Origin">
                                     </div>
                                     <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Brand</strong></label>
+                                        <input class="form-control" type="text" id="brand" name="brand" value="{{@$product->overview->brand}}" placeholder="Brand">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Available Colors</strong></label>
                                         <input class="form-control" type="text" id="colors" name="colors" value="{{ $product->getOverviewData('colors') }}" placeholder="Colors">
                                     </div>

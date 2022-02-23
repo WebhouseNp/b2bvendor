@@ -22,6 +22,8 @@ Route::post('update-user-details/{vendor}', 'VendorManagementController@updateUs
 Route::post('update-vendor-bank-details/{vendor}', 'VendorManagementController@updateVendorBankDetails')->name('updateVendorBankDetails');
 Route::get('vendorproducts/{username}', 'VendorManagementController@getVendorProducts')->name('getVendorProducts');
 Route::get('report/{id}', 'VendorManagementController@getReport')->name('getReport');
+Route::post('update-commission', 'VendorManagementController@updateCommisson')->name('updateCommisson');
+
 
 });
 Route::prefix('vendor')->middleware(['auth','Vendor'])->group(function(){

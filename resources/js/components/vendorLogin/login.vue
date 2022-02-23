@@ -65,16 +65,15 @@
                               type="text"
                               placeholder="example@gmail.com"
                               v-model="email"
-                              
                             />
-                            <label for="">Password</label>
+                            <div class="form-group">
+                                 <label for="">Password</label>
                             <input
                               v-if="showPassword"
                               type="text"
                               class="form-control"
                               placeholder="Enter Password"
                               v-model="password"
-                            
                             />
                             <input
                                 v-else
@@ -94,6 +93,7 @@
                                 ></i>
                                 </span>
                             </span>
+                            </div>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input"
                                  id="rememberMe"

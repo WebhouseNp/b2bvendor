@@ -71,7 +71,7 @@
                                         </div> --}}
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Shipping Charge</strong></label>
-                                        <input class="form-control" type="text" id="shipping_charge" name="shipping_charge" value="" placeholder="shipping Charge">
+                                        <input class="form-control" type="number" id="shipping_charge" name="shipping_charge" value="" placeholder="shipping Charge">
                                     </div>
 
                                     <div class="col-lg-6 col-sm-12 form-group">
@@ -195,6 +195,10 @@
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Country Of Origin</strong></label>
                                         <input class="form-control" type="text" id="country_of_origin" name="country_of_origin" value="" placeholder="Country Of Origin">
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 form-group">
+                                        <label><strong> Brand</strong></label>
+                                        <input class="form-control" type="text" id="brand" name="brand" value="" placeholder="Brand">
                                     </div>
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Available Colors</strong></label>

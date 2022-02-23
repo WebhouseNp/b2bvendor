@@ -67,22 +67,8 @@
                                                 @endif
                                                 @endforeach
                                             </h4>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-sm-12 form-group">
-                                                    <label class="profile-card-subtitle">
-                                                        <strong>Vendor status</strong>
-                                                    </label>
-                                                    <select name="vendor_type" id="vendor_status" class="form-control ">
-                                                        <option value="new" @if ($vendor->vendor_type=="new"){{"selected"}} @endif>New</option>
-                                                        <option value="approved" @if ($vendor->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
-                                                        <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-6 col-sm-12 form-group">
-                                                    <label class="d-block profile-card-subtitle" style="visibility:hidden">save</label>
-                                                    <button type="button" id="submitVendorStatus" class="btn btn-success "><span class="fa fa-send"> Save</button>
-                                                </div>
-                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -143,6 +129,37 @@
             </div>
         </div>
     </div>
+    <div class="ibox">
+        <div class="ibox-body">
+            <form action="{{route('vendor.updateCommisson')}}" method="POST">
+                @csrf
+                <div class="row">
+                    <input type="hidden" name="vendor_id" value="{{$vendor->id}}">
+                    <div class=" col-sm-6 form-group">
+                        <label class="profile-card-subtitle">
+                            <strong>Commission Rate</strong>
+                        </label>
+                        <input class="form-control" type="number" name="commission_rate" value="{{@$vendor->vendor->commission_rate}}" placeholder="Enter Commisson rate here">
+
+                    </div>
+                    <div class=" col-sm-6 form-group">
+                        <label class="profile-card-subtitle">
+                            <strong>Vendor status</strong>
+                        </label>
+                        <select name="vendor_type" id="vendor_status" class="form-control ">
+                            <option value="new" @if ($vendor->vendor_type=="new"){{"selected"}} @endif>New</option>
+                            <option value="approved" @if ($vendor->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
+                            <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-sm-6 form-group">
+                    <button type="submit" class="btn btn-success "><span class="fa fa-send"> Submit</button>
+                        </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 {{-- <!-- <div class="card shadow-sm border-0">
@@ -150,44 +167,44 @@
         <div class="row">
             <div class="col-md-4">
                 <a href="{{asset('images/listing/'.$vendor->vendor->image)}}" target="_adimage">
-                    <img src="{{asset('images/listing/'.$vendor->vendor->image)}}" alt="No Image" class="rounded">
-                </a>
-            </div>
+<img src="{{asset('images/listing/'.$vendor->vendor->image)}}" alt="No Image" class="rounded">
+</a>
+</div>
 
-            <div class="col-md-8">
-                <div class="card profile-card border-0 bg-transparent">
-                    <div class="card-body">
-                        <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
-                        <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $vendor->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->vendor->company_email}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
-                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong> 
-                        </h4>
+<div class="col-md-8">
+    <div class="card profile-card border-0 bg-transparent">
+        <div class="card-body">
+            <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
+            <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $vendor->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
+            <h4 class="profile-card-subtitle"><strong>Email:</strong> {{$vendor->vendor->company_email}}</h4>
+            <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
+            <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
+            <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
+            <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
+            <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
+            </h4>
 
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12 form-group">
-                                <label class="profile-card-subtitle">
-                                    <strong>Vendor status</strong>
-                                </label>
-                                <select name="vendor_type" id="vendor_status" class="form-control ">
-                                    <option value="new" @if ($vendor->vendor_type=="new"){{"selected"}} @endif>New</option>
-                                    <option value="approved" @if ($vendor->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
-                                    <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6 col-sm-12 form-group">
-                                <label class="d-block profile-card-subtitle" style="visibility:hidden">save</label>
-                                <button type="button" id="submitVendorStatus" class="btn btn-success "><span class="fa fa-send"> Save</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 form-group">
+                    <label class="profile-card-subtitle">
+                        <strong>Vendor status</strong>
+                    </label>
+                    <select name="vendor_type" id="vendor_status" class="form-control ">
+                        <option value="new" @if ($vendor->vendor_type=="new"){{"selected"}} @endif>New</option>
+                        <option value="approved" @if ($vendor->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
+                        <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-sm-12 form-group">
+                    <label class="d-block profile-card-subtitle" style="visibility:hidden">save</label>
+                    <button type="button" id="submitVendorStatus" class="btn btn-success "><span class="fa fa-send"> Save</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div> --> --}}
 
 <!--<div class="row">-->
@@ -527,17 +544,17 @@
                 Pay Now
             </span>
         </div> -->
-        <!--<div class="page-content fade-in-up">-->
-        <!--    <div class="ibox">-->
-        <!--        <div class="ibox-head">-->
-        <!--            <div class="ibox-title"> -->
-        <!--                <span class="btn btn-rounded btn-sm changeStatus" data-vendor_id="{{$vendor->id}}">-->
-        <!--                    Pay Now-->
-        <!--                </span>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
+    <!--<div class="page-content fade-in-up">-->
+    <!--    <div class="ibox">-->
+    <!--        <div class="ibox-head">-->
+    <!--            <div class="ibox-title"> -->
+    <!--                <span class="btn btn-rounded btn-sm changeStatus" data-vendor_id="{{$vendor->id}}">-->
+    <!--                    Pay Now-->
+    <!--                </span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
     <!-- </div> -->
 
 </div>

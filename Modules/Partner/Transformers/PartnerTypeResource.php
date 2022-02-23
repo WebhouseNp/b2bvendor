@@ -17,10 +17,7 @@ class PartnerTypeResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
-            'path' => $this->path,
-            'image_url' => $this->imageUrl(),
-            'publish' => $this->publish,
+            'partners' => PartnerResource::make($this->whenLoaded('partners')),
         ];
     }
 }

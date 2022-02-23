@@ -40,7 +40,6 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('vendor_id')->nullable();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('CASCADE');
             $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('CASCADE');
-
             $table->softDeletes();
             $table->timestamps();
         });

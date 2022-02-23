@@ -2,16 +2,6 @@
 @section('page_title') {{ (@$updateMode) ? "Update" : "Add"}} Partner Type @endsection
 
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title"> Partner</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item"> {{ ($updateMode) ? "Update" : "Add"}} Partner Type</li>
-    </ol>
-
-</div>
 @include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">

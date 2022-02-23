@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/subcategory', function (Request $request) {
     return $request->user();
 });
 Route::group([ 'middleware' => ['auth:api']], function () {
-Route::post('/createsubcategory', 'SubcategoryController@createsubcategory');
+Route::post('/createsubcategory', 'SubcategoryController@store');
 Route::get('/getcategory', 'SubcategoryController@getcategories');
 Route::get('/getsubcategories', 'SubcategoryController@getsubcategories');
 Route::delete('/deletesubcategory/{subcategory}', 'SubcategoryController@deletesubcategory')->name('api.deletesubcategory');
