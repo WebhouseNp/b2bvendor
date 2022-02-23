@@ -38,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('terms_condition')->default(1)->nullable();
             $table->string('username')->unique()->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class ProductApiController extends Controller
     public function index()
     {
         // TODO::Append query string
-        $products = Product::with(['category', 'ranges'])
+        $products = Product::with(['productCategory', 'ranges'])
             ->when(request()->filled('q'), function ($query) {
                 return $query->where('title', 'like', '%' . request()->q . '%');
             })
@@ -55,7 +55,7 @@ class ProductApiController extends Controller
             ->active()
             ->firstOrFail();
 
-        $product->load(['category', 'ranges', 'productimage', 'user.vendor']);
+        $product->load(['productCategory', 'ranges', 'productimage', 'user.vendor']);
 
         return ProductResource::make($product);
     }
@@ -67,7 +67,6 @@ class ProductApiController extends Controller
         
         $products = Product::with('ranges')
             ->where('user_id', $sastoWholesaleStore->user_id)
-            ->where('status', 'active')
             ->active()
             ->orderBy('created_at', 'DESC')
             ->take(settings('sasto_wholesale_mall_home_products_count' ,18))->get();
@@ -85,7 +84,6 @@ class ProductApiController extends Controller
     public function youMayLike()
     {
         $products = Product::with('ranges')
-            ->where('status', 'active')
             ->active()
             ->orderBy('created_at', 'DESC')
             ->take(18)->get();

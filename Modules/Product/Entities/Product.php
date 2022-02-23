@@ -18,12 +18,13 @@ use Modules\Product\Entities\ProductImage;
 use Modules\Product\Entities\Range;
 use Modules\Review\Entities\Review;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Product\Entities\ProductAttributeValue;
 use Modules\ProductCategory\Entities\ProductCategory;
 
 class Product extends Model
 {
-    use Sluggable;
+    use SoftDeletes, Sluggable;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

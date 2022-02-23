@@ -9,12 +9,14 @@ use  Modules\User\Entities\Vendor;
 use Modules\Order\Entities\OrderList;
 use  App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 use Modules\Payment\Service\TransactionService;
 use Modules\User\Entities\Address;
 
 class Order extends Model
 {
+	use SoftDeletes;
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 
 	protected static function booted()
