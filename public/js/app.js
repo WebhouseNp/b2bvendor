@@ -37702,7 +37702,7 @@ var render = function () {
                   _c("Input", {
                     attrs: {
                       label: "Username",
-                      type: "email",
+                      type: "text",
                       placeholder: "example@gmail.com",
                     },
                     model: {
