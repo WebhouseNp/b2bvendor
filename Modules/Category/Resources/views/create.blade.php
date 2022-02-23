@@ -18,47 +18,12 @@
                             <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}" placeholder="Enter name">
                         </div>
 
-                        <div class="row form-group">
-                            <label for="" class="col-sm-3">Is Featured Category ? :</label>
-                            <div class="col-sm-1">
-                                <label class="ui-checkbox ui-checkbox-warning">
-                                    <input type="checkbox" name="is_featured" id="is_featured">
-                                    <span class="input-span"></span>Yes
-                                </label>
-                            </div>
-                            <label class="col-lg-8">
-                                <span class="alert-warning">
-                                    *Remember: This will allow to display in 'Best Our Collections Section
-                                    in homepage.'
-                                </span>
+                        <div class="form-group">
+                            <label class="ui-checkbox ui-checkbox-warning">
+                                <input type="checkbox" name="include_in_main_menu" id="include_in_main_menu">
+                                <span class="input-span"></span> Include In Main Menu
                             </label>
                         </div>
-
-
-                        <div class="row form-group">
-                            <label for="" class="col-sm-3">Include In Main Menu:</label>
-                            <div class="col-sm-1">
-                                <label class="ui-checkbox ui-checkbox-warning">
-                                    <input type="checkbox" name="include_in_main_menu" id="include_in_main_menu">
-                                    <span class="input-span"></span>Yes
-                                </label>
-                            </div>
-                            <label class="col-lg-8"><span class="alert-warning">*Remember:Don't tick on this
-                                    menu if this is not a Top Menu Category.</span></label>
-                        </div>
-
-                        <div class="row form-group">
-                            <label for="" class="col-sm-3">Is Hot Category:</label>
-                            <div class="col-sm-1">
-                                <label class="ui-checkbox ui-checkbox-warning">
-                                    <input type="checkbox" name="hot_category" id="hot_category">
-                                    <span class="input-span"></span>Yes
-                                </label>
-                            </div>
-                            <label class="col-lg-8"><span class="alert-warning">*Remember:Don't tick on this
-                                    menu if this is not a Hot Category.</span></label>
-                        </div>
-
 
                         <div class="row form-group col-md-6">
                             <label>Upload Category Image </label>
@@ -108,33 +73,6 @@
 @push('push_scripts')
 @include('dashboard::admin.layouts._partials.imagepreview')
 <script src="{{ asset('/assets/admin/js/sweetalert.js') }}" type="text/javascript"></script>
-<!-- <script>
-    function FailedResponseFromDatabase(message) {
-        html_error = "";
-        $.each(message, function(index, message) {
-            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message +
-                '</p>';
-        });
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            html: html_error,
-            confirmButtonText: 'Close',
-            timer: 10000
-        });
-    }
-
-    function DataSuccessInDatabase(message) {
-        Swal.fire({
-            // position: 'top-end',
-            type: 'success',
-            title: 'Done',
-            html: message,
-            confirmButtonText: 'Close',
-            timer: 10000
-        });
-    }
-</script> -->
 <script>
     function FailedResponseFromDatabase(message) {
         html_error = "";

@@ -11,7 +11,7 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">All Partners</div>
+            <div class="ibox-title">All Partner Types</div>
             <div>
                 <a class="btn btn-info btn-md" href="{{route('partner-type.create')}}">Add New Partner Type</a>
             </div>

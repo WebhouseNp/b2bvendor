@@ -53,14 +53,34 @@ $api_token = $user->api_token;
                             <tr>
                                 <th scope="row">Category</th>
                                 <td>
-                                    <div id="category"></div>
+                                    <div id="category">{{$product->productCategory->subcategory->category->name}}</div>
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"> Product Type</th>
+                                <th scope="row">Sub Category</th>
                                 <td>
-                                    <div style="display:inline-block; width:100px" class="badge {{ $product->type=='is_top' ? 'bg-primary' : 'badge-success' }} text-capitalize">
-                                        {{ $product->status == 'is_top' ? 'Top Product' : 'New Arrival' }}
+                                    <div id="category">{{$product->productCategory->subcategory->name}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Product Category</th>
+                                <td>
+                                    <div id="category">{{$product->productCategory->name}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Top Product</th>
+                                <td>
+                                    <div style="display:inline-block; width:100px" class="badge {{ $product->is_top==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
+                                        {{ $product->is_top == 1 ? 'Yes' : 'No' }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> New Arrival</th>
+                                <td>
+                                    <div style="display:inline-block; width:100px" class="badge {{ $product->is_new_arrival==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
+                                        {{ $product->is_new_arrival == 1 ? 'Yes' : 'No' }}
                                     </div>
                                 </td>
                             </tr>
@@ -78,55 +98,60 @@ $api_token = $user->api_token;
                             </tr>
 
                             <tr>
-                                <th scope="row">Description</th>
+                                <th scope="row">Highlights</th>
                                 <td>
-                                    <div id="description">{!!$product->description!!}</div>
+                                    <div id="description">{!!$product->highlight!!}</div>
                                 </td>
                             </tr>
-
                             <tr>
                                 <th scope="row">Color</th>
                                 <td>
-                                    <div id="description">{{$product->overview->colors}}</div>
+                                    <div id="description">{{ $product->getOverviewData('colors') }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Size</th>
                                 <td>
-                                    <div id="description">{{$product->overview->size}}</div>
+                                    <div id="description">{{ $product->getOverviewData('size') }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Payment Mode</th>
                                 <td>
-                                    <div id="description">{{$product->overview->payment_mode}}</div>
+                                    <div id="description">{{ $product->getOverviewData('payment_mode') }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Country of Origin</th>
                                 <td>
-                                    <div id="description">{{$product->overview->country_of_origin}}</div>
+                                    <div id="description">{{ $product->getOverviewData('country_of_origin') }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Brand</th>
+                                <td>
+                                    <div id="description">{{ $product->getOverviewData('brand') }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Warranty</th>
                                 <td>
-                                    <div id="description">{{$product->overview->warranty}}</div>
+                                    <div id="description">{{ $product->getOverviewData('warranty') }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Feature</th>
                                 <td>
-                                    <div id="description">{{$product->overview->feature}}</div>
+                                    <div id="description">{{ $product->getOverviewData('feature') }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Use</th>
                                 <td>
-                                    <div id="description">{{$product->overview->use}}</div>
+                                    <div id="description">{{ $product->getOverviewData('use') }}</div>
                                 </td>
                             </tr>
-                        
+
 
                             <tr>
                                 <th scope="row">Status</th>
@@ -193,78 +218,4 @@ $api_token = $user->api_token;
     </div>
     @endforeach
 </div>
-@endsection
-@section('scripts')
-<!-- <script>
-    $(document).ready(function() {
-        var id = <?php echo $id; ?>;
-        var api_token = '<?php echo $api_token; ?>';
-
-        function viewproduct(id) {
-            $.ajax({
-                type: "get",
-                url: "/api/view-product",
-                data: {
-                    id: id
-                },
-                headers: {
-                    Authorization: "Bearer " + api_token
-                },
-                success: function(response) {
-                    console.log(response.data)
-                    document.getElementById('title').innerHTML = response.data.title;
-                    document.getElementById('slug').innerHTML = response.data.slug;
-                    if(response.data.is_top == 1){
-						document.getElementById('is_top').innerHTML = '<span class="label label-success">Yes</span>';
-					}
-					else if(response.data.is_top == 0){
-						document.getElementById('is_top').innerHTML = '<span class="label label-danger">No</span>';
-					}
-                    if(response.data.is_new_arrival == 1){
-						document.getElementById('is_new_arrival').innerHTML = '<span class="label label-success">Yes</span>';
-					}
-					else if(response.data.is_new_arrival == 0){
-						document.getElementById('is_new_arrival').innerHTML = '<span class="label label-danger">No</span>';
-					}
-                    // document.getElementById('price').innerHTML = response.data.price;
-                    // document.getElementById('discount').innerHTML = response.data.discount;
-                    // document.getElementById('moq').innerHTML = response.data.moq;
-                    document.getElementById('category').innerHTML = response.data.category.name;
-                    if (response.data.shipping_charge) {
-                        document.getElementById('shipping_charge').innerHTML = response.data
-                            .shipping_charge;
-                    }
-                    if (response.data.unit) {
-                        document.getElementById('unit').innerHTML = response.data.unit;
-                    }
-                    //  document.getElementById('offer').innerHTML = response.data.offer.title;
-                    //  document.getElementById('brand').innerHTML = response.data.brand.title;
-
-                    document.getElementById('highlight').innerHTML = response.data.highlight;
-                    document.getElementById('description').innerHTML = response.data.description;
-                    document.getElementById('type').innerHTML = response.data.type;
-                    if (response.data.status == 'active') {
-                        document.getElementById('status').innerHTML =
-                            '<span class="label label-success">Active</span>';
-                    } else if (response.data.status == 'inactive') {
-                        document.getElementById('status').innerHTML =
-                            '<span class="label label-danger">Inactive</span>';
-                    }
-                    document.getElementById('image').innerHTML =
-                        '<img width="150" height="150" src="<?php echo URL::to('/') . '/images/thumbnail/'; ?>' + response.data
-                        .image + '">';
-                }
-            });
-        }
-        viewproduct(id);
-    });
-
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-</script> -->
-
 @endsection

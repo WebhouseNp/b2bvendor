@@ -38,10 +38,6 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('CASCADE');
-<<<<<<< HEAD
-=======
-
->>>>>>> fa16e788f83f171ee8d24a7b793ea0b9c895476b
             $table->softDeletes();
             $table->timestamps();
         });
