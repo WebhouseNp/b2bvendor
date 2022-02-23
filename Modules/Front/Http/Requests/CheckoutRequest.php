@@ -45,7 +45,8 @@ class CheckoutRequest extends FormRequest
                 'deal_id' => ['required', 'exists:deals,id'],
             ] : [
                 'cart.*.product_id' => ['required'],
-                'cart.*.product_qty' => ['required']
+                'cart.*.product_qty' => ['required'],
+                'vendorId' => ['required']
             ],
 
             ($this->ship_to_different_address) ? [

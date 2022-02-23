@@ -33,7 +33,7 @@ class OrderRefundedEmail extends Mailable implements ShouldQueue
     {
         // this email is for customer
         return $this->markdown('email.orders.order-refunded')
-        ->subject('Order Cancelled')
+        ->subject('Order Refunded')
         ->with([
             'customerName' => $this->order->customer->name,
             // 'checkStatusLink' => config('constants.customer_app_url') . '/my-orders/' . $this->order->id

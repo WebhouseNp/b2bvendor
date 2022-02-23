@@ -12,7 +12,7 @@ class OrderApiController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderList')
+        $orders = Order::with('orderLists')
             ->when(request()->filled('status'), function ($query) {
                 switch (request('status')) {
                     case 'unpaid':
@@ -37,26 +37,27 @@ class OrderApiController extends Controller
             ->latest()
             ->paginate();
 
+        foreach ($orders as $order) {
+            $order->orderLists->map(function ($orderList) {
+                $orderList['product_image_url'] = $orderList->product ? $orderList->product->imageUrl('thumbnail') : 'no_image';
+                unset($orderList->product);
+                return $orderList;
+            });
+        }
+
         return $orders;
     }
 
     public function show(Order $order)
     {
-        // TOOD::authorize
         abort_unless(auth()->check() && $order->user_id == auth()->user()->id, 403);
 
-        $order->loadMissing(['packages.orderLists.product:id,title,image', 'packages.vendorShop:id,user_id,shop_name', 'shippingAddress', 'billingAddress']);
-
-        $order->packages->map(function ($package) {
-            $package->status_number = get_package_status_number($package->status);
-            $package->sold_by = $package->vendorShop->shop_name;
-            unset($package->vendorShop);
-            $package->orderLists->map(function ($orderList) {
-                $orderList['product_image_url'] = $orderList->product ? $orderList->product->imageUrl('thumbnail') : 'no_image';
-                unset($orderList->product);
-                return $orderList;
-            });
-            return $package;
+        $order->loadMissing(['orderLists.product:id,title,image', 'vendor:id,user_id,shop_name', 'shippingAddress', 'billingAddress']);
+        $order->sold_by = $order->vendor->shop_name;
+        $order->orderLists->map(function ($orderList) {
+            $orderList['product_image_url'] = $orderList->product ? $orderList->product->imageUrl('thumbnail') : 'no_image';
+            unset($orderList->product);
+            return $orderList;
         });
 
         $order->status_number = get_order_status_number($order->status);

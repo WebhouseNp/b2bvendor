@@ -17,22 +17,14 @@ use Modules\User\Entities\Address;
 class Order extends Model
 {
 	use SoftDeletes;
+	
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 
 	protected static function booted()
 	{
 		static::addGlobalScope(function (Builder $builder) {
-			// filter order for vendor
-			// $builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
-			// 	return $query->whereHas('orderList', function ($query) {
-			// 		return $query->where('vendor_user_id', auth()->user()->id);
-			// 	});
-			// });
-
 			$builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
-				return $query->whereHas('packages', function ($query) {
-					return $query->where('vendor_user_id', auth()->user()->id);
-				});
+				return $query->where('vendor_id', auth()->user()->vendor->id);
 			});
 
 			// filter order for customer
@@ -61,23 +53,22 @@ class Order extends Model
 		return $this->deal_id;
 	}
 
-	public function isMultiPackage()
-	{
-		$this->loadMissing('packages');
-		return (count($this->packages) > 1) ? true : false;
-	}
-
 	public function customer()
 	{
 		return $this->belongsTo(User::class, 'user_id', 'id');
 	}
 
-	public function packages()
+	public function vendor()
 	{
-		return $this->hasMany(Package::class);
+		return $this->belongsTo(Vendor::class);
 	}
 
-	public function orderList()
+	// public function packages()
+	// {
+	// 	return $this->hasMany(Package::class);
+	// }
+
+	public function orderLists()
 	{
 		return $this->hasMany(OrderList::class, 'order_id');
 	}
@@ -92,6 +83,7 @@ class Order extends Model
 		return $this->morphOne(Address::class, 'addressable')->where('type', 'shipping');
 	}
 
+	// Can be deleted safely
 	public function syncStatusFromPackages()
 	{
 		if ($this->status === 'pending') {

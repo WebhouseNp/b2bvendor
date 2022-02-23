@@ -14,6 +14,7 @@ use Modules\Payment\Entities\Transaction;
 class ReleasePaymentJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    
     public $order;
 
     /**
@@ -34,24 +35,22 @@ class ReleasePaymentJob implements ShouldQueue
     public function handle()
     {
         try {
-            foreach ($this->order->packages as $package) {
-                logger('saving payment');
-                $isCod = $this->order->payment_type == 'cod' ? true : false;
-                $currentBalance = Transaction::where('vendor_user_id', $package->vendor_user_id)
-                    ->where('is_cod', false)
-                    ->latest()->first()->running_balance ?? 0;
+            logger('saving payment');
+            $isCod = $this->order->payment_type == 'cod' ? true : false;
+            $currentBalance = Transaction::where('vendor_id', $this->order->vendor_id)
+                ->where('is_cod', false)
+                ->latest()->first()->running_balance ?? 0;
 
-                $transaction = new Transaction();
-                $transaction->vendor_user_id = $package->vendor_user_id;
-                $transaction->type = 1;
-                $transaction->amount = $package->total_price;
-                $transaction->running_balance = $isCod
-                    ? $package->total_price
-                    : ($currentBalance + $package->total_price);
-                $transaction->remarks = 'Order #' . $this->order->id;
-                $transaction->is_cod = $isCod;
-                $transaction->save();
-            }
+            $transaction = new Transaction();
+            $transaction->vendor_id = $this->order->vendor_id;
+            $transaction->type = 1;
+            $transaction->amount = $this->order->total_price;
+            $transaction->running_balance = $isCod
+                ? $this->order->total_price
+                : ($currentBalance + $this->order->total_price);
+            $transaction->remarks = 'Order #' . $this->order->id;
+            $transaction->is_cod = $isCod;
+            $transaction->save();
         } catch (\Throwable $th) {
             report($th);
             logger('Failed to release payment of order #' . $this->order->id);

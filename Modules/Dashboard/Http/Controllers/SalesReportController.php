@@ -121,40 +121,42 @@ class SalesReportController extends Controller
 
     public function getOrderInfo()
     {
-        $orders = Package::with(['order', 'vendorShop'])
-            ->when(auth()->user()->hasRole('vendor'), function ($query) {
-                return $query->where('vendor_user_id', auth()->id());
+        $vendor = auth()->user()->hasRole('vendor') ? auth()->user()->vendor : 0;
+
+        $orders = Order::with(['vendor'])
+            ->when(auth()->user()->hasRole('vendor'), function ($query) use ($vendor) {
+                return $query->where('vendor_id', $vendor->id);
             })
             ->latest()
             ->paginate(5);
 
         $months_day = [];
         $amount = [];
-        if (auth()->user()->hasRole('vendor')) {
-            $details = Package::where('vendor_user_id', auth()->user()->id)->get();
-            $total_sales = Package::where('vendor_user_id', auth()->user()->id)->sum('total_price');
+            $details = Order::when(auth()->user()->hasRole('vendor'), function ($query) use ($vendor) {
+                return $query->where('vendor_user_id', $vendor->id);
+            })->get();
+
+            $total_sales = Order::when(auth()->user()->hasRole('vendor'), function ($query) use ($vendor) {
+                return $query->where('vendor_user_id', $vendor->id);
+            })->sum('total_price');
+            
             foreach ($details as $detail) {
                 $months_day[] = $detail->created_at->format('Y-m-d');
                 $amount[] = [$detail->created_at->format('Y-m-d') => $detail->total_price];
             }
-        } else if (auth()->user()->hasAnyRole('super_admin|admin')) {
-            $details = Package::get();
-            $total_sales = Package::sum('total_price');
-            foreach ($details as $detail) {
-                $months_day[] = $detail->created_at->format('Y-m-d');
-                $amount[] = [$detail->created_at->format('Y-m-d') => $detail->total_price];
-            }
-        }
+
         $finalamount = array();
 
         array_walk_recursive($amount, function ($item, $key) use (&$finalamount) {
             $finalamount[$key] = isset($finalamount[$key]) ?  $item + $finalamount[$key] : $item;
         });
+
         $amt = [];
         foreach ($finalamount as $value) {
             $amt[] = $value;
         }
         $months_day = array_values(array_unique($months_day));
+
         return view('dashboard::salesreport.sales-info', compact(
             'orders',
             'details',

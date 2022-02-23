@@ -1,3 +1,4 @@
+{{-- For vendor --}}
 @component('mail::message')
 ## Hi
 

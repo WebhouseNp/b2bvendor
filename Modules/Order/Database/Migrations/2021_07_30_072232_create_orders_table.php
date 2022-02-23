@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id()->from(20000);
             $table->unsignedBigInteger('user_id')->nullable();
-            // $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->unsignedBigInteger('vendor_id')->nullable();
             $table->double('subtotal_price', 15, 2)->nullable();
             $table->double('shipping_charge', 8, 2)->nullable();
             $table->double('total_price', 15, 2)->nullable();
@@ -25,7 +25,6 @@ class CreateOrdersTable extends Migration
             $table->text('order_note')->nullable();
             $table->text('track_no')->nullable();
             $table->string('payment_type')->nullable();
-            // $table->enum('status', ['New', 'Verified', 'Cancel', 'Process', 'Delivered'] )->default('New');
             $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'] )->default('pending');
             $table->string('payment_status')->nullable();
             $table->string('esewa_ref_id')->nullable();

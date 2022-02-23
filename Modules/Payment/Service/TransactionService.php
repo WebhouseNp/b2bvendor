@@ -6,12 +6,13 @@ use Modules\Payment\Entities\Transaction;
 
 class TransactionService
 {
+    // Currently not being used anywhere
     public function deposit($vendorId, $amount, $isCod, $remarks = null)
     {
         try {
             $currentBalance = $this->getCurrentBalance($vendorId);
             $transaction = new Transaction();
-            $transaction->vendor_user_id = $vendorId;
+            $transaction->vendor_id = $vendorId;
             $transaction->type = 1;
             $transaction->amount = $amount;
             $transaction->running_balance = $currentBalance + $amount;
@@ -26,9 +27,10 @@ class TransactionService
         }
     }
 
+    // Currently not used anywhere
     public function withdraw($vendorId, $amount, $remarks = null)
     {
-        $currentBalance = Transaction::where('vendor_user_id', $vendorId)->latest()->first()->running_balance ?? 0;
+        $currentBalance = Transaction::where('vendor_id', $vendorId)->latest()->first()->running_balance ?? 0;
         $transaction = new Transaction();
         $transaction->type = 0;
         $transaction->vendor_user_id = $vendorId;
@@ -40,7 +42,7 @@ class TransactionService
 
     public function getCurrentBalance($vendorId)
     {
-        return Transaction::where('vendor_user_id', $vendorId)
+        return Transaction::where('vendor_id', $vendorId)
         ->where('is_cod', false)
         ->orWhereNull('is_cod')
         ->latest()->first()->running_balance ?? 0;

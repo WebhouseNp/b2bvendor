@@ -37,6 +37,8 @@ class CreateProductsTable extends Migration
             $table->text('meta_keyphrase')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
+            $table->unsignedBigInteger('vendor_id')->nullable();
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('CASCADE');
             $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('CASCADE');
 
             $table->softDeletes();

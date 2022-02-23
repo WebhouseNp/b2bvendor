@@ -40,6 +40,7 @@ class CheckoutController extends Controller
 
             $order = Order::create([
                 'user_id' => Auth::id(),
+                'vendor_id' => $request->isDealCheckout() ? $deal->vendorShop->id : $request->vendorId,
                 // For cart checkout we will set the totals at the end
                 'subtotal_price' => $request->checkout_mode == 'deal' ? $deal->subTotalPrice() : 0,
                 'shipping_charge' => $request->checkout_mode == 'deal' ? $deal->totalShippingCharge() : 0,
@@ -48,24 +49,13 @@ class CheckoutController extends Controller
                 'status' => 'pending',
                 'payment_status' => 'pending',
                 'payment_type' => $request->payment_type,
-
             ]);
 
             // Handle deal checkout
             if ($request->isDealCheckout()) {
-                $package = Package::create([
-                    'order_id' => $order->id,
-                    'vendor_user_id' => $deal->vendor_user_id,
-                    'package_no' => 1,
-                    'total_price' => $deal->totalPrice(),
-                    'status' => 'pending',
-                ]);
-
                 foreach ($deal->dealProducts as $dealProduct) {
                     OrderList::create([
                         'order_id' => $order->id,
-                        'package_id' => $package->id,
-                        'vendor_user_id' => $deal->vendor_user_id,
                         'product_id' => $dealProduct->product_id,
                         'product_name' => $dealProduct->product->title,
                         'quantity' => $dealProduct->product_qty,
@@ -87,44 +77,27 @@ class CheckoutController extends Controller
                 $cartItems = collect($request->cart)->map(function ($cartItem) {
                     $cartItem['product'] = Product::select('id', 'user_id', 'title', 'unit', 'shipping_charge')
                         ->with('ranges:id,from,to,price,product_id')->findOrFail($cartItem['product_id']);
-                    $cartItem['vendor_user_id'] = $cartItem['product']->user_id;
                     return $cartItem;
                 });
 
-                $groupedCartItems = $cartItems->groupBy('vendor_user_id');
-
-                foreach ($groupedCartItems as $vendorUserId => $groupedCartItem) {
-                    // create package
-                    $package = Package::create([
+                // create order list
+                foreach ($cartItems as $cartItem) {
+                    $product = $cartItem['product'];
+                    $unitPrice = $this->getUnitPriceFromQuantity($product, $cartItem['product_qty']); // get price fron range
+                    $subtotalPrice = $unitPrice * $cartItem['product_qty'];
+                    OrderList::create([
                         'order_id' => $order->id,
-                        'vendor_user_id' => $vendorUserId,
-                        'total_price' => 0,
-                        'status' => 'pending',
+                        'vendor_id' => $request->vendor_id,
+                        'product_id' => $product->id,
+                        'product_name' => $product->title,
+                        'quantity' => $cartItem['product_qty'],
+                        'unit_price' => $unitPrice,
+                        'subtotal_price' => $subtotalPrice,
+                        'shipping_charge' => $product->shipping_charge ?? 0,
+                        'total_price' => $subtotalPrice + ($product->shipping_charge ?? 0),
                     ]);
-
-                    // create order list
-                    foreach ($groupedCartItem as $cartItem) {
-                        // $product = Product::with('ranges')->findOrFail($cartItem['product_id']);
-                        $product = $cartItem['product'];
-                        $unitPrice = $this->getUnitPriceFromQuantity($product, $cartItem['product_qty']); // get price fron range
-                        $subtotalPrice = $unitPrice * $cartItem['product_qty'];
-                        OrderList::create([
-                            'order_id' => $order->id,
-                            'package_id' => $package->id,
-                            'vendor_user_id' => $product->user_id,
-                            'product_id' => $product->id,
-                            'product_name' => $product->title,
-                            'quantity' => $cartItem['product_qty'],
-                            'unit_price' => $unitPrice,
-                            'subtotal_price' => $subtotalPrice,
-                            'shipping_charge' => $product->shipping_charge ?? 0,
-                            'total_price' => $subtotalPrice + ($product->shipping_charge ?? 0),
-                        ]);
-                        $orderSubtotalPrice += $subtotalPrice;
-                        $orderShippingCharge += $product->shipping_charge ?? 0;
-                    }
-                    // update package total price
-                    $package->syncTotalPrice();
+                    $orderSubtotalPrice += $subtotalPrice;
+                    $orderShippingCharge += $product->shipping_charge ?? 0;
                 }
 
                 // Set the total amount of the order
@@ -133,26 +106,6 @@ class CheckoutController extends Controller
                     'shipping_charge' => $orderShippingCharge,
                     'total_price' => $orderSubtotalPrice + $orderShippingCharge,
                 ]);
-
-                // older logic
-                // foreach ($request->cart as $cartItem) {
-                //     $product = Product::with('ranges')->findOrFail($cartItem['product_id']);
-                //     $unitPrice = $this->getUnitPriceFromQuantity($product, $cartItem['product_qty']); // get price fron range
-                //     $subtotalPrice = $unitPrice * $cartItem['product_qty'];
-                //     OrderList::create([
-                //         'order_id' => $order->id,
-                //         'vendor_user_id' => $product->user_id,
-                //         'product_id' => $product->id,
-                //         'product_name' => $product->title,
-                //         'quantity' => $cartItem['product_qty'],
-                //         'unit_price' => $unitPrice,
-                //         'subtotal_price' => $subtotalPrice,
-                //         'shipping_charge' => $product->shipping_charge ?? 0,
-                //         'total_price' => $subtotalPrice + ($product->shipping_charge ?? 0),
-                //     ]);
-                //     $orderSubtotalPrice += $subtotalPrice;
-                //     $orderShippingCharge += $product->shipping_charge ?? 0;
-                // }
             }
 
             // save the billing and shipping address

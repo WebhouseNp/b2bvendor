@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Payment\Entities\Transaction;
 use Modules\Payment\Service\TransactionService;
+use Modules\User\Entities\Vendor;
 
 class TransactionController extends Controller
 {
@@ -20,22 +21,24 @@ class TransactionController extends Controller
 
     public function index(User $user)
     {
+        $vendor = $user->vendor;
+
         if (!auth()->user()->hasAnyRole('super_admin|admin')) {
             abort_unless(auth()->id() == $user->id, 403);
         }
 
         $vendor = $user->vendor;
-        $transactions = Transaction::where('vendor_user_id', $user->id)
+        $transactions = Transaction::where('vendor_id', $vendor->id)
             ->where('is_cod', false)
             ->orWhereNull('is_cod')
             ->orderBy('id', 'DESC')->get();
 
-            $codTransactions = Transaction::where('vendor_user_id', $user->id)
+            $codTransactions = Transaction::where('vendor_id', $vendor->id)
             ->where('is_cod', true)
             ->latest()->get();
 
             $vendorUser = $user;
-            $currentBalance = $this->transactionService->getCurrentBalance($user->id);
+            $currentBalance = $this->transactionService->getCurrentBalance($vendor->id);
 
         return view('payment::transactions-listing', compact([
             'transactions',
@@ -49,6 +52,8 @@ class TransactionController extends Controller
     public function recordPayment(Request $request, $vendorUserId)
     {
         abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
+        $vendor = Vendor::where('user_id', $vendorUserId)->first();
         
         $request->validate([
             'amount' => 'required|numeric',
@@ -57,9 +62,9 @@ class TransactionController extends Controller
             'file' => 'nullable',
         ]);
 
-        $currentBalance = $this->transactionService->getCurrentBalance($vendorUserId);
+        $currentBalance = $this->transactionService->getCurrentBalance($vendor->id);
         $transaction = new Transaction();
-        $transaction->vendor_user_id = $vendorUserId;
+        $transaction->vendor_id = $vendor->id;
         $transaction->type = 0;
         $transaction->amount = $request->amount;
         $transaction->running_balance = $currentBalance - $request->amount;

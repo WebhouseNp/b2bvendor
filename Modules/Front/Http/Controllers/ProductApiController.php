@@ -5,6 +5,7 @@ namespace Modules\Front\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Category\Entities\Category;
 use Modules\Front\Transformers\ProductCollection;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
@@ -24,11 +25,14 @@ class ProductApiController extends Controller
                 return $query->where('title', 'like', '%' . request()->q . '%');
             })
             ->when(request()->filled('cat'), function ($query) {
-                return $query->where('category_id', request()->cat);
+                $category = Category::where('slug', request()->cat)->first();
+                $productCategoryIds = $category->productCategory()->pluck('product_categories.id')->toArray();
+                return $query->where('product_category_id', $productCategoryIds);
             })
             ->when(request()->filled('subcat'), function ($query) {
                 $subCategory = Subcategory::where('slug', request()->subcat)->first();
-                return $query->where('subcategory_id', $subCategory->id);
+                $productCategoryIds = $subCategory->productCategory()->pluck('id')->toArray();
+                return $query->whereIn('product_category_id', $productCategoryIds);
             })
             ->when(request()->filled('from_vendor'), function ($query) {
                 return $query->where('user_id', request()->from_vendor);
@@ -64,12 +68,12 @@ class ProductApiController extends Controller
     public function sastoWholesaleMallProducts()
     {
         $sastoWholesaleStore = Vendor::where('id', sasto_wholesale_store_id())->firstOrFail();
-        
+
         $products = Product::with('ranges')
             ->where('user_id', $sastoWholesaleStore->user_id)
             ->active()
             ->orderBy('created_at', 'DESC')
-            ->take(settings('sasto_wholesale_mall_home_products_count' ,18))->get();
+            ->take(settings('sasto_wholesale_mall_home_products_count', 18))->get();
 
         return ProductResource::collection($products->shuffle()->all())->hide([
             'highlight',

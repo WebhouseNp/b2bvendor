@@ -127,19 +127,19 @@ $user_access = json_decode($user->access_level);
 
 
             <li>
-                <a href="javascript:;">
+                <a href="{{ route('orders.index') }}">
                     <i class="sidebar-item-icon fa fa-first-order"></i>
-                    <span class="nav-label">Order Management</span>
-                    <i class="fa fa-angle-left arrow"></i>
+                    <span class="nav-label">Orders</span>
+                    {{-- <i class="fa fa-angle-left arrow"></i> --}}
                 </a>
-                <ul class="nav-2-level collapse">
+                {{-- <ul class="nav-2-level collapse">
                     <li>
                         <a href="{{ route('orders.index') }}">
                             <span class="fa fa-eye"></span>
                             All Orders
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
             </li>
             <li>
                 <a href="{{ route('salesReport') }}">

@@ -1,7 +1,7 @@
 @component('mail::message')
 ## Hi {{ $customerName }}
 
-@switch($package->status)
+@switch($order->status)
 @case('processing')
 We are pleased to share that the item(s) from your order #{{ $order->id }} is been processed.
 @break

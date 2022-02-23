@@ -38,10 +38,7 @@ class SendNewOrderEmail implements ShouldQueue
         $customer = $this->order->customer;
         Mail::to($customer->email)->send(new \App\Mail\OrderPlacedEmail($this->order));
 
-        // Send email to vendors
-        foreach ($this->order->packages as $package) {
-            $vendorUser = $package->vendorUser;
-            Mail::to($vendorUser->email)->send(new \App\Mail\NewOrderReceivedEmail($this->order));
-        }
+        $vendorUser = $this->order->vendor->user;
+        Mail::to($vendorUser->email)->send(new \App\Mail\NewOrderReceivedEmail($this->order));
     }
 }

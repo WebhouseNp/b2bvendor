@@ -350,12 +350,12 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <p class="card-category">
-                            <a href="{{route('vendor.getVendorProducts',$vendor->username)}}" target="_blank">
+                            <a href="{{ route('vendor.getVendorProducts',$vendor->username) }}" target="_blank">
                                 Products
                             </a>
-                            <span class="card-category-count">
-                                : {{count($vendor->products)}}
-                            </span>
+                            <div class="card-category-count">
+                                {{ count($vendor->products) }}
+                            </div>
                         </p>
 
                     </div>
@@ -491,9 +491,9 @@
                             <a target="_blank">
                                 Due Amount
                             </a>
-                            <span class="card-category-count">
-                                : {{ $due }}
-                            </span>
+                            <div class="card-category-count">
+                                {{ formatted_price($due) }}
+                            </div>
                         </p>
                         <span class="card-category-count">
                         </span>

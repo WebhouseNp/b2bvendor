@@ -7,6 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Modules\Subcategory\Entities\Subcategory;
 use Modules\ProductAttribute\Entities\CategoryAttribute;
 use Modules\Product\Entities\Product;
+use Modules\ProductCategory\Entities\ProductCategory;
 use Modules\User\Entities\Vendor;
 
 class Category extends Model
@@ -42,6 +43,11 @@ class Category extends Model
     public function subcategory()
     {
         return $this->hasMany(Subcategory::class);
+    }
+    
+    public function productCategory()
+    {
+        return $this->hasManyThrough(ProductCategory::class, Subcategory::class, 'category_id', 'subcategory_id');
     }
 
     public function products()

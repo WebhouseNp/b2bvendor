@@ -21,8 +21,7 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
-            'category_id' => $this->category_id,
-            'subcategory_id' => $this->subcategory_id,
+            'product_category_id' => $this->product_category_id,
             'offer_id' => $this->offer_id,
             'brand_id' => $this->brand_id,
             'price' => $this->price,
@@ -39,12 +38,11 @@ class ProductResource extends JsonResource
             'image_url' => $this->imageUrl(),
             'image_url_thumbnail' => $this->imageUrl('thumbnail'),
             'quantity' => $this->quantity,
-            // 'non_approval_note' => $this->non_approval_note,
             'status' => $this->status,
-            // 'isApproved' => $this->isApproved,
             'product_type' => $this->product_type,
             'type' => $this->type,
             'user_id' => $this->user_id,
+            'vendor_id' => $this->vendor_id,
 
             // can be hidden in collection
             'summary' => $this->summary,

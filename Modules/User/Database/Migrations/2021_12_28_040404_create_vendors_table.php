@@ -15,19 +15,15 @@ class CreateVendorsTable extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
+            $table->string('shop_name')->nullable();
+            $table->string('slug');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
             // Category
             $table->enum('category',['local_seller','international_seller']);
-            
-
             // Plan
             $table->enum('plan',['basic_plan','standard_plan','premium_plan']);
-            
-
             // General Information
-            $table->string('shop_name')->nullable();
             $table->string('company_address')->nullable();
             $table->string('company_email')->nullable();
             $table->string('phone_number')->nullable();

@@ -2,6 +2,7 @@
 
 namespace Modules\Order\Http\Controllers;
 
+use App\Jobs\ReleasePaymentJob;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -15,7 +16,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with(['orderList'])
+        $orders = Order::with(['orderLists'])
             ->latest()
             ->paginate();
 
@@ -25,31 +26,16 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $order->load([
-            'packages' => function ($query) {
-                // we only load the order list which belongs to logged in vendor
-                $query->when(auth()->user()->hasRole('vendor'), function ($query) {
-                    return $query->where('vendor_user_id', auth()->id());
-                });
-            },
-            // since orderlist is already loaded and constrained
-            // it won't load order list again
-            'packages.orderLists.product:id,title,slug',
-            'packages.vendorShop',
+            'orderLists.product:id,title,slug',
+            'vendor',
             'customer:id,name,email',
             'billingAddress',
             'shippingAddress'
         ]);
 
-        if (auth()->user()->hasRole('vendor')) {
-            $package = $order->packages->first();
-            $subTotalPrice = $package->orderLists->sum->subtotal_price;
-            $totalShippingPrice = $package->orderLists->sum->shipping_charge;
-            $totalPrice = $package->orderLists->sum->total_price;
-        } else {
-            $subTotalPrice = $order->subtotal_price;
-            $totalShippingPrice = $order->shipping_charge;
-            $totalPrice = $order->total_price;
-        }
+        $subTotalPrice = $order->subtotal_price;
+        $totalShippingPrice = $order->shipping_charge;
+        $totalPrice = $order->total_price;
 
         return view('order::show', compact([
             'order',
@@ -61,7 +47,8 @@ class OrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
-        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
+        // if vendor, also check if order belongs to him
 
         $request->validate([
             'status' => ['required', Rule::in(config('constants.order_statuses')), Rule::notIn([$order->status])],
@@ -70,24 +57,27 @@ class OrderController extends Controller
 
         try {
             DB::beginTransaction();
+
             $order->update(['status' => $request->status]);
 
             if (!$request->filled('update_silently')) {
-                if ($order->status == 'cancelled') {
-                    // send email to customer
-                    Mail::to($order->customer->email)->send(new \App\Mail\OrderCancelledEmail($order));
-                    // send email to vendors
-                    foreach ($order->packages as $package) {
-                        Mail::to($package->vendorUser->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
-                    }
-                }
-
                 if ($order->status == 'refunded') {
                     // send email to customer
                     Mail::to($order->customer->email)->send(new \App\Mail\OrderRefundedEmail($order));
+                } else {
+                    Mail::to($order->customer->email)->send(new \App\Mail\OrderStatusChanged($order));
+                }
+
+                // send email to vendor in case of cancellation
+                if ($order->status == 'cancelled') {
+                    Mail::to($order->vendor->user->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
                 }
             }
-            
+
+            if ($order->status == 'completed') {
+                ReleasePaymentJob::dispatch($order);
+            }
+
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
@@ -95,6 +85,6 @@ class OrderController extends Controller
             return redirect()->back()->with('error', 'Something went wrong while processing your request.');
         }
 
-        return redirect()->back()->with('success', 'Order status changed successfully.');
+        return redirect()->back()->with('success', 'Order status changed successfully. New status is ' . $order->status);
     }
 }

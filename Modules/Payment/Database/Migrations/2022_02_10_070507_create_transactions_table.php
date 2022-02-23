@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('transactions', function (Blueprint $table) {
             $table->id()->from(20000);
-            $table->unsignedBigInteger('vendor_user_id')->nullable();
+            $table->unsignedBigInteger('vendor_id')->nullable();
             $table->tinyInteger('type')->index();
             $table->double('amount', 8, 2);
             $table->double('running_balance', 8, 2);

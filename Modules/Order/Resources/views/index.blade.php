@@ -44,7 +44,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8">
+                    <td colspan="42" class="text-center">
                         You do not have any order yet.
                     </td>
                 </tr>

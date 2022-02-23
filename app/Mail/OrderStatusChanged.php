@@ -6,21 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Modules\Order\Entities\Package;
+use Modules\Order\Entities\Order;
 
 class OrderStatusChanged extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public Order $order;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public $package;
-    public function __construct(Package $package)
+    public function __construct(Order $order)
     {
-        $this->package = $package;
+        $this->order = $order;
     }
 
     /**
@@ -30,12 +31,13 @@ class OrderStatusChanged extends Mailable
      */
     public function build()
     {
-        return $this->view('email.order-notice-status')
-        ->with([
-            'product_name' => $this->package->product->name,
-            'status' => $this->package->status,
-            'name' => $this->package->order->customer->name,
+        $this->order->loadMissing('customer', 'vendor');
 
-        ]);
+        return $this->subject('Your order has been ' . $this->order->status)
+            ->markdown('email.orders.order-status-changed')
+            ->with([
+                'customerName' => $this->order->customer->name,
+                'checkStatusLink' => config('constants.customer_app_url') . '/my-orders/' . $this->order->id
+            ]);
     }
 }

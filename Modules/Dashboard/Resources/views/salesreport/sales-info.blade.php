@@ -33,20 +33,20 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <a href="{{ route('orders.show', $detail->order) }}">
-                                #{{$detail->order->id}}
+                            <a href="{{ route('orders.show', $detail->id) }}">
+                                #{{ $detail->id }}
                             </a>
                         </td>
                         @if( auth()->user()->hasAnyRole('super_admin|admin'))
-                        <td class="text-capitalize">{{ $detail->vendorShop->shop_name }}</td>
+                        <td class="text-capitalize">{{ $detail->vendor->shop_name }}</td>
                         @endif
                         <td>{{ formatted_price($detail->total_price) }}</td>
                         <td>
-                            <div style="display:inline-block; width:100px" class="badge {{ $detail->order->isPaid() ? 'bg-success' : 'badge-danger' }}">{{ ucfirst($detail->order->payment_status) }}</div>
+                            <div style="display:inline-block; width:100px" class="badge {{ $detail->isPaid() ? 'bg-success' : 'badge-danger' }}">{{ ucfirst($detail->payment_status) }}</div>
                         </td>
                         <td>
-                            <div>{{ $detail->order->created_at->format('d M, Y') }}</div>
-                            <div>{{ date('g:i A', strtotime($detail->order->created_at)) }}</div>
+                            <div>{{ $detail->created_at->format('d M, Y') }}</div>
+                            <div>{{ date('g:i A', strtotime($detail->created_at)) }}</div>
                         </td>
 
                     </tr>

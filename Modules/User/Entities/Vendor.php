@@ -7,24 +7,35 @@ use  Modules\Order\Entities\Order;
 use  Modules\Product\Entities\Product;
 use Modules\Country\Entities\Country;
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Entities\Category;
 
 class Vendor extends Model
 {
-    use SoftDeletes;
-    
+    use SoftDeletes, Sluggable;
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'shop_name',
+                'separator' => '-'
+            ]
+        ];
+    }
 
     public function imageUrl($size = null)
     {
-        if(!$this->image) {
+        if (!$this->image) {
             $queryString = [
                 'name' => $this->shop_name,
                 'background' => 'b8daff',
                 'color' => '0D8ABC',
             ];
-    
+
             return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
         }
 
@@ -37,7 +48,7 @@ class Vendor extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'category_vendors', 'vendor_id' ,'category_id');
+        return $this->belongsToMany(Category::class, 'category_vendors', 'vendor_id', 'category_id');
     }
 
     public function user()
@@ -55,10 +66,9 @@ class Vendor extends Model
     {
         return $this->belongsTo(Order::class, 'vendor_id');
     }
-    
-    public function products(){
-        return $this->hasMany(Product::class,'vendor_id');
-    }
 
-    
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'vendor_id');
+    }
 }

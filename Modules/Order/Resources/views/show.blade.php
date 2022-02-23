@@ -10,11 +10,6 @@
     @if ($order->isDealCheckout())
     <span class="badge badge-primary">Deal Checkout</span>
     @endif
-    @if ($order->isMultiPackage())
-    <span class="badge badge-primary">Partial Fulfilment</span>
-    @else
-    <span class="badge badge-primary">Full Order</span>
-    @endif
 </div>
 
 <div class="mt-2">
@@ -23,7 +18,7 @@
 
 <div class="ibox-body mt-3" id="validation-errors">
     <div class="row">
-        <div class="col-md-8" id="get__print">
+        <div class="col-md-8">
             <div class="d-sm-flex justify-content-between font-poppins">
                 <div>
                     <div class="info-box">
@@ -56,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div id="get__print" class="card">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="align-self-center">
@@ -78,20 +73,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($order->packages as $package)
-                            <tr>
-                                <td colspan="42" class="bg-light">
-                                    <div class="d-flex">
-                                        <div>Pakage {{ $loop->iteration }} - Sold by {{ $package->vendorShop->shop_name }}</div>
-                                        <div class="ml-auto">
-                                            <div class="badge badge-primary">
-                                                {{ ucfirst($package->status) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @foreach($package->orderLists as $orderList)
+                            @foreach($order->orderLists as $orderList)
                             <tr>
                                 <td id="product_title">
                                     <div>{{ $orderList->product_name }}</div>
@@ -109,7 +91,6 @@
                                 <td>{{ formatted_price($orderList->shipping_charge) }}</td>
                                 <td class="text-nowrap">{{ formatted_price($orderList->total_price) }}</td>
                             </tr>
-                            @endforeach
                             @endforeach
                             <tr class="bg-light">
                                 <td></td>
@@ -166,7 +147,7 @@
     </div>
     <div class="col-md-4">
         @if (auth()->user()->hasRole('vendor'))
-        <div class="card">
+        {{-- <div class="card">
             <div class="card-body">
                 <form action="{{ route('orders.package.update', $package) }}" class="form js-package-status-update-form js-disable-on-submit" method="POST" data-original-status="{{ $package->status }}">
                     @csrf
@@ -193,11 +174,9 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
         @endif
 
-        {{-- Order status update for admin and super_admin --}}
-        @if (auth()->user()->hasAnyRole('super_admin|admin'))
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('orders.update', $order->id) }}" class="form js-order-status-update-form js-disable-on-submit" method="POST" data-original-status="{{ $order->status }}">
@@ -226,7 +205,6 @@
                 </form>
             </div>
         </div>
-        @endif
     </div>
 </div>
 </div>

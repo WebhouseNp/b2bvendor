@@ -13,17 +13,17 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();
-            $table->unsignedBigInteger('vendor_user_id')->nullable();
-            $table->integer('package_no')->nullable();
-            $table->integer('total_price');
-            $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'] )->default('pending');
+        // Schema::create('packages', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();
+        //     $table->unsignedBigInteger('vendor_user_id')->nullable();
+        //     $table->integer('package_no')->nullable();
+        //     $table->integer('total_price');
+        //     $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'] )->default('pending');
 
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
     }
 
     /**

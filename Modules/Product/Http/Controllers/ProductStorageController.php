@@ -51,6 +51,8 @@ class ProductStorageController extends Controller
         try {
             DB::beginTransaction();
             $product = new Product();
+            $product->user_id = auth()->id();
+            $product->vendor_id = auth()->user()->vendor->id;
             $product->title = $request->title;
             $product->product_category_id = $request->product_category_id;
             $product->shipping_charge = $request->shipping_charge;
@@ -91,6 +93,7 @@ class ProductStorageController extends Controller
             return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $product]);
         } catch (\Exception $exception) {
             DB::rollback();
+            report($exception);
             return response([
                 'status' => 'unsuccessful',
                 'message' => $exception->getMessage()
@@ -108,7 +111,6 @@ class ProductStorageController extends Controller
         try {
             DB::beginTransaction();
             $product = Product::findorFail($request->id);
-            $product->user_id = auth()->id();
             $product->title = $request->title;
             $product->product_category_id = $request->product_category_id;
             $product->shipping_charge = $request->shipping_charge;
@@ -165,6 +167,7 @@ class ProductStorageController extends Controller
             ], 200);
         } catch (\Exception $exception) {
             DB::rollback();
+            report($exception);
             return response([
                 'status' => 'unsuccessful',
                 'message' => $exception->getMessage()

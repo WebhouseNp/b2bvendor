@@ -148,7 +148,7 @@ class VendorController extends Controller
    public function view($id)
    {
       $vendor = User::where('id', $id)->with('vendor', 'products', 'vendor_payments')->first();
-      $due = Transaction::where('vendor_user_id',$vendor->vendor->id)->where('is_cod',0)->latest()->first();
+      $due = Transaction::where('vendor_id', $vendor->vendor->id)->where('is_cod', '!=', true)->latest()->first()->running_balance ?? 0;
       return view('user::view', compact('id', 'vendor','due'));
    }
 }
