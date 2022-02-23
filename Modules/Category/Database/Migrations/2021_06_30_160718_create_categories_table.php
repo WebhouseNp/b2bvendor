@@ -21,7 +21,6 @@ class CreateCategoriesTable extends Migration
             $table->tinyInteger('is_featured')->default(1);
             $table->tinyInteger('hot_category')->default(0);
             $table->tinyInteger('include_in_main_menu')->default(0);
-            $table->tinyInteger('does_contain_sub_category')->default(0);
             $table->tinyInteger('publish')->default(1);
             $table->timestamps();
         });

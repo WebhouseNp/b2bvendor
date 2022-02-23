@@ -14,39 +14,37 @@ use DB;
 
 class SubcategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
     public function index()
     {
         $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
-        return view('subcategory::index',compact('details'));
+        return view('subcategory::index', compact('details'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
     public function create()
     {
         return view('subcategory::create');
     }
 
-    public function createsubcategory(Request $request){
-        // dd($request->all());
+    public function getcategories()
+    {
+        $categories = Category::where('publish', 1)->get();
+        return response()->json(['data' => $categories, 'status_code' => 200]);
+    }
+
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:subcategories|max:255',
             'image' => 'mimes:jpg,jpeg,png',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
             exit;
         }
-        
+
         $value = $request->except('image', 'publish');
-        if( auth()->user()->hasRole('vendor')){
+        if (auth()->user()->hasRole('vendor')) {
             $value['publish'] = 0;
         } else {
             $value['publish'] = $request->has('publish') ? 1 : 0;
@@ -55,7 +53,7 @@ class SubcategoryController extends Controller
         $value['include_in_main_menu'] = $request->has('include_in_main_menu') ? 1 : 0;
         $value['does_contain_sub_category'] = $request->has('does_contain_sub_category') ? 1 : 0;
 
-        if($request->image){
+        if ($request->image) {
             $image = $this->imageProcessing('img-', $request->file('image'));
             $value['image'] = $image;
         }
@@ -67,32 +65,6 @@ class SubcategoryController extends Controller
         return response()->json(['status' => 'successful', 'message' => 'Sub Category created successfully.', 'data' => $data]);
     }
 
-    public function getcategories(){
-        $categories = Category::where('publish', 1)->where('does_contain_sub_category',1)->get();
-        return response()->json(['data'=>$categories, 'status_code'=>200]);
-    }
-
-    // public function getsubcategories(){
-    //     $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
-    //     $view = \View::make("subcategory::subcategoriesTable")->with('details', $details)->render();
-    //     return response()->json(['html' => $view, 'status' => 'successful', 'data' => $details]);
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function show($id)
     {
         return view('subcategory::show');
@@ -105,91 +77,73 @@ class SubcategoryController extends Controller
 
     public function viewSubcategory(Request $request)
     {
-        try{
-            // $subcategory = Subcategory::findorFail($request->id);
-            $subcategory = Subcategory::where('id',$request->id)->with('category')->first();
-
-
-      return response()->json([
-        "message" => "Subcategory view!",
-        'data' => $subcategory
-      ], 200);
-        } catch(\Exception $exception){
+        try {
+            $subcategory = Subcategory::where('id', $request->id)->with('category')->first();
+            return response()->json([
+                "message" => "Subcategory view!",
+                'data' => $subcategory
+            ], 200);
+        } catch (\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
-            ],400);
+            ], 400);
         }
-
     }
 
     public function deletesubcategory(Request $request, Subcategory $subcategory)
     {
-            // $subcategory = Subcategory::findorFail($request->id);
-            // if ($subcategory->image) {
-            //     $this->unlinkImage($subcategory->image);
-            // }
-            $subcategory->delete();
+        $subcategory->delete();
 
-      return response()->json([
-        'status' => 'successful',
-        "message" => "subcategory deleted successfully!"
-      ], 200);
-        
-
+        return response()->json([
+            'status' => 'successful',
+            "message" => "subcategory deleted successfully!"
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function edit($id)
     {
-        return view('subcategory::edit',compact('id'));
+        return view('subcategory::edit', compact('id'));
     }
 
     public function editsubcategory(Request $request)
     {
-        try{
-            // $subcategory = Subcategory::findorFail($request->id);
+        try {
             $categories = Category::where('publish', 1)->get();
-            $subcategory = Subcategory::where('id',$request->id)->with('category')->first();
-            // dd($subcategory);
-
-      return response()->json([
-        "data" => $subcategory,
-        'categories' => $categories,
-      ], 200);
-        } catch(\Exception $exception){
+            $subcategory = Subcategory::where('id', $request->id)->with('category')->first();
+            return response()->json([
+                "data" => $subcategory,
+                'categories' => $categories,
+            ], 200);
+        } catch (\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
-            ],400);
+            ], 400);
         }
-
     }
 
-    public function updatesubcategory(Request $request){
-        try{
+    public function updatesubcategory(Request $request)
+    {
+        try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:255',
                 'image' => 'mimes:jpg,jpeg,png',
             ]);
-    
-            if($validator->fails()) {
+
+            if ($validator->fails()) {
                 return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
                 exit;
             }
             $subcategory = Subcategory::findorFail($request->id);
-            $value = $request->except('publish','_token');
+            $value = $request->except('publish', '_token');
             $value['publish'] = is_null($request->publish) ? 0 : 1;
             $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
             $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
             if ($request->image) {
-            $image = Category::findorFail($request->id);
+                $image = Category::findorFail($request->id);
                 if ($image->image) {
                     $thumbPath = public_path('images/thumbnail');
                     $listingPath = public_path('images/listing');
-                    if((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))){
+                    if ((file_exists($thumbPath . '/' . $image->image)) && (file_exists($listingPath . '/' . $image->image))) {
                         unlink($thumbPath . '/' . $image->image);
                         unlink($listingPath . '/' . $image->image);
                     }
@@ -198,37 +152,16 @@ class SubcategoryController extends Controller
                 $value['image'] = $image;
             }
             $success = $subcategory->update($value);
-      return response()->json([
-        'status' => 'successful',
-          "data" => $value,
-        "message" => "subcategory updated successfully"
-      ], 200);
-        } catch(\Exception $exception){
+            return response()->json([
+                'status' => 'successful',
+                "data" => $value,
+                "message" => "subcategory updated successfully"
+            ], 200);
+        } catch (\Exception $exception) {
             return response([
                 'message' => $exception->getMessage()
-            ],400);
+            ], 400);
         }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function imageProcessing($type, $image)

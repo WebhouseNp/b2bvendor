@@ -32,18 +32,22 @@ $api_token = $user->api_token;
                         <tbody>
                             <tr>
                                 <th scope="row">Title</th>
-                                <td><span id="title"></span></td>
+                                <td><span id="title"></span>{{$product->title}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Slug</th>
                                 <td>
-                                    <div id="slug"></div>
+                                    <div id="slug">{{$product->slug}}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Image</th>
                                 <td>
-                                    <div id="image"></div>
+                                    @if($product->image)
+                                    <img class="rounded" src="{{ $product->imageUrl('thumbnail') }}" style="width: 4rem;">
+                                    @else
+                                    <p>N/A</p>
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
@@ -52,95 +56,89 @@ $api_token = $user->api_token;
                                     <div id="category"></div>
                                 </td>
                             </tr>
-                            <!-- <tr>
-          <th scope="row">Brand</th>
-          <td><div id="brand"></div></td>
-        </tr>
-        <tr>
-          <th scope="row">Offer</th>
-          <td><div id="offer"></div></td>
-        </tr> -->
                             <tr>
-                                <th scope="row">Top Product</th>
+                                <th scope="row"> Product Type</th>
                                 <td>
-                                    <div id="is_top"></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">New Arrival Product</th>
-                                <td>
-                                    <div id="is_new_arrival"></div>
+                                    <div style="display:inline-block; width:100px" class="badge {{ $product->type=='is_top' ? 'bg-primary' : 'badge-success' }} text-capitalize">
+                                        {{ $product->status == 'is_top' ? 'Top Product' : 'New Arrival' }}
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Shipping Charge</th>
                                 <td>
-                                    <div id="shipping_charge"></div>
+                                    <div id="shipping_charge">{{$product->shipping_charge}}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Units</th>
                                 <td>
-                                    <div id="unit"></div>
+                                    <div id="unit">{{$product->unit}}</div>
                                 </td>
                             </tr>
-                            {{-- <tr>
-                                    <th scope="row">Essential</th>
-                                    <td>
-                                        <div id="essential"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Best Seller</th>
-                                    <td>
-                                        <div id="best_seller"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Price</th>
-                                    <td>
-                                        <div id="price"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Discount</th>
-                                    <td>
-                                        <div id="discount"></div>
-                                    </td>
-                                </tr> --}}
-                            {{-- <tr>
-                                    <th scope="row">Moq</th>
-                                    <td>
-                                        <div id="moq"></div>
-                                    </td>
-                                </tr> --}}
-                            <tr>
-                                <th scope="row">Highlights</th>
-                                <td>
-                                    <div id="highlight"></div>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <th scope="row">Description</th>
                                 <td>
-                                    <div id="description"></div>
+                                    <div id="description">{!!$product->description!!}</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Color</th>
+                                <td>
+                                    <div id="description">{{$product->overview->colors}}</div>
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Status</th>
-                                <td><span id="status"></span><span style="margin-left: 30px;" id="status"></td>
+                                <th scope="row">Size</th>
+                                <td>
+                                    <div id="description">{{$product->overview->size}}</div>
+                                </td>
                             </tr>
-
+                            <tr>
+                                <th scope="row">Payment Mode</th>
+                                <td>
+                                    <div id="description">{{$product->overview->payment_mode}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Country of Origin</th>
+                                <td>
+                                    <div id="description">{{$product->overview->country_of_origin}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Warranty</th>
+                                <td>
+                                    <div id="description">{{$product->overview->warranty}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Feature</th>
+                                <td>
+                                    <div id="description">{{$product->overview->feature}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Use</th>
+                                <td>
+                                    <div id="description">{{$product->overview->use}}</div>
+                                </td>
+                            </tr>
+                        
 
                             <tr>
-                                <th>Product Ranges</th>
-
-
-
-
+                                <th scope="row">Status</th>
+                                <td>
+                                    <div style="display:inline-block; width:100px" class="badge {{ $product->status==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
+                                        {{ $product->status == 1 ? 'Active' : 'Inactive' }}
+                                    </div>
+                                </td>
                             </tr>
-
-
+                            <tr>
+                                <th>Product Ranges</th>
+                            </tr>
                         </tbody>
                     </table>
                     <div>
@@ -197,7 +195,7 @@ $api_token = $user->api_token;
 </div>
 @endsection
 @section('scripts')
-<script>
+<!-- <script>
     $(document).ready(function() {
         var id = <?php echo $id; ?>;
         var api_token = '<?php echo $api_token; ?>';
@@ -267,6 +265,6 @@ $api_token = $user->api_token;
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-</script>
+</script> -->
 
 @endsection

@@ -78,12 +78,7 @@ class ProductController extends Controller
     public function getsubcategory(Request $request)
     {
         $categories = Category::find($request->category_id);
-        if ($categories->does_contain_sub_category == 1) {
-            $subcategory = $categories->subcategory;
-            return response()->json(['data' => $subcategory]);
-        } else {
             return response()->json(['category' => $categories]);
-        }
     }
 
     public function createproduct(Request $request)
@@ -118,7 +113,7 @@ class ProductController extends Controller
             DB::beginTransaction();
 
             $value = $request->except('image');
-            $overview = $request->only('payment_mode', 'size', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
+            $overview = $request->only('payment_mode','brand', 'size', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
             $value['overview'] = json_encode($overview);
             if ($request->image) {
                 $image = $this->imageProcessing('img-', $request->file('image'));

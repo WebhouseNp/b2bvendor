@@ -68,8 +68,6 @@ class PartnerTypeController extends Controller
 
     public function destroy(PartnerType $partnerType)
     {
-        // $partnerType->canBeDeletedSafely();
-        // $partnerType->delete();
         if (!$partnerType->canBeDeletedSafely()) {
             return redirect()->route('partner-type.index')->with('error', 'Partner Type Cannot be Deleted!.');
         }
