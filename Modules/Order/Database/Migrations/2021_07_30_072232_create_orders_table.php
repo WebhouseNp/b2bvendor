@@ -30,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_status')->nullable();
             $table->string('esewa_ref_id')->nullable();
 
+            $table->softDeletes();
             $table->timestamps();
         });
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

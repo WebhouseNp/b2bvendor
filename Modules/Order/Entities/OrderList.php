@@ -4,12 +4,15 @@ namespace Modules\Order\Entities;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Order\Entities\Order;
 use Modules\Product\Entities\Product;
 use Modules\User\Entities\Vendor;
 
 class OrderList extends Model
 {
+	use SoftDeletes;
+	
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 
 	public function order()
