@@ -38,6 +38,11 @@ class ProductCategory extends Model
         return Storage::disk('public')->url($this->image);
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('publish', true);
+    }
+
     protected static function newFactory()
     {
         return \Modules\ProductCategory\Database\factories\ProductCategoryFactory::new();

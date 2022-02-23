@@ -19,13 +19,20 @@ use Modules\Product\Entities\Range;
 use Modules\Review\Entities\Review;
 use App\Models\User;
 use Modules\Product\Entities\ProductAttributeValue;
-use DB;
+use Modules\ProductCategory\Entities\ProductCategory;
 
 class Product extends Model
 {
     use Sluggable;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    protected $casts = [
+        'overview' => 'array',
+        'status' => 'boolean',
+        'is_top' => 'boolean',
+        'is_new_arrival' => 'boolean',
+    ];
 
     public function sluggable(): array
     {
@@ -39,8 +46,6 @@ class Product extends Model
 
     public function imageUrl($size = null)
     {
-        // return "https://picsum.photos/400";
-
         if ($size == 'thumbnail') {
             return asset('images/thumbnail/' . $this->image);
         }
@@ -58,14 +63,24 @@ class Product extends Model
         return 'Rs. ' . number_format(floatval($minPrice)) . ' - ' . number_format(floatVal($maxPrice));
     }
 
-    public function category()
+    public function getOverviewData($key)
     {
-        return $this->belongsTo(Category::class);
+        return $this->overview[$key] ?? null;
     }
 
-    public function subcategory()
+    // public function category()
+    // {
+    //     return $this->belongsTo(Category::class);
+    // }
+
+    // public function subcategory()
+    // {
+    //     return $this->belongsTo(Subcategory::class);
+    // }
+
+    public function productCategory()
     {
-        return $this->belongsTo(Subcategory::class);
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
     public function order()
@@ -139,14 +154,10 @@ class Product extends Model
         return $query->where('status', true);
     }
 
-    public function youtubeVideo($url){
+    public function youtubeVideo($url)
+    {
     	$url_string = parse_url($url, PHP_URL_QUERY);
   		parse_str($url_string, $args);
   		return isset($args['v']) ? $args['v'] : false;
-    }
-
-    public function getOverviewAttribute($value)
-    {
-        return json_decode($value);
     }
 }

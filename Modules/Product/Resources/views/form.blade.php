@@ -6,12 +6,9 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.css" rel="stylesheet" /> -->
 <!-- <link href="{{ asset('/assets/admin/tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" /> -->
-
 @endsection
 
-
 @section('content')
-
 <div class="page-heading">
     <h1 class="page-title"> Product</h1>
 </div>
@@ -29,8 +26,29 @@
     <div class="ibox-body" id="validation-errors">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     </div>
-    <form id="product-update-form">
 
+    <div id="custom-validation-alert" class="validation-alert d-none">
+        <div class="head">
+            Form Not Yet Submitted!
+        </div>
+        <div class="body">
+            <p>
+                Sorry, but the form was not submitted! Please correct the following errors and try again. 
+            </p>
+            <ul id="errors"> 
+                <li>Test</li>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+
+    <form id="product-form">
+        @if($updateMode)
+        <input type="hidden" name="id" value="{{ $product->id }}">
+        @endif
+        
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
@@ -83,10 +101,6 @@
                                         </select>
                                     </div>
 
-                                    {{-- <div class="col-lg-4 col-sm-12 form-group">
-                                        <label><strong> Discount</strong></label>
-                                        <input class="form-control" type="text" id="discount" name="discount" placeholder="discount">
-                                    </div> --}}
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong>Shipping Charge</strong></label>
                                         <input class="form-control" type="number" id="shipping_charge" name="shipping_charge" value="{{ $product->shipping_charge }}" placeholder="shipping Charge">
@@ -101,28 +115,6 @@
                                             <option value="m">
                                         </datalist>
                                     </div>
-
-                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label><strong> Stock Quantity</strong></label>
-                                            <input class="form-control" type="text" id="quantity" name="quantity" placeholder="stock">
-                                        </div> -->
-                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label><strong> MOQ</strong></label>
-                                            <input class="form-control" type="text" id="moq" name="moq" value="" name="price" placeholder="Minimum Order Quantity">
-                                        </div> -->
-
-                                    <!-- <div class="col-lg-4 col-sm-12 form-group">
-                                            <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                                <input type="checkbox" id="essential" name="essential" value="1">
-                                                <span class="input-span"></span><strong>Essential</strong>
-                                            </label>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-12 form-group">
-                                            <label class="ui-checkbox ui-checkbox-primary" style="margin-top: 35px;">
-                                                <input type="checkbox" id="best_seller" name="best_seller" value="1">
-                                                <span class="input-span"></span><strong>Best Seller</strong>
-                                            </label>
-                                        </div> -->
                                 </div>
                             </div>
                         </div>
@@ -186,10 +178,6 @@
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Country Of Origin</strong></label>
                                         <input class="form-control" type="text" id="country_of_origin" name="country_of_origin" value="{{ $product->getOverviewData('country_of_origin') }}" placeholder="Country Of Origin">
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 form-group">
-                                        <label><strong> Brand</strong></label>
-                                        <input class="form-control" type="text" id="brand" name="brand" value="{{@$product->overview->brand}}" placeholder="Brand">
                                     </div>
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong> Available Colors</strong></label>
@@ -303,7 +291,6 @@
                                         <option value="inactive">Inactive</option>
                                     </select>
                                 </div>
-
                                 
                                 <div class="form-group">
                                     <button onclick="submitProductNow();" type="button" id="product_submit" class="btn btn-success btn-lg btn-block">Save</button>
@@ -315,29 +302,6 @@
             </div>
         </div>
     </form>
-
-</div>
-
-
-<!-- Modal -->
-@include('dashboard::admin.modals.attributemodal')
-@include('dashboard::admin.modals.categorymodal')
-
-<div class="modal" id="popupModal">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="popup-modal-title" class="modal-title">
-                    </h5>
-            </div>
-            <div class="modal-body">
-                <div style="text-align: center;" id="popup-modal-body"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
 <?php
@@ -354,9 +318,10 @@ $name = ['highlight'];
 @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => $data])
 @endforeach
 
-@endpush
-@push('push_scripts')
 <script>
+    window.updateMode = @json($updateMode);
+    window.errors = [];
+
     function FailedResponseFromDatabase(message) {
         html_error = "";
         $.each(message, function(index, message) {
@@ -421,15 +386,17 @@ $name = ['highlight'];
             $(this).parent('div').remove(); //Remove field html
             x--; //Decrement field counter
         });
+
+        if(!window.updateMode){
+            addButton.click();
+        }
     });
 </script>
 
 <script>
-
     $(document).ready(function() {
         // Filter subcategory
         function filterSubcategory(selectedCategoryId) {
-            // let selectedCategoryId = $(this).val()
             $('#subcategory_id option').each(function() {
                 if ($(this).data('category-id') == selectedCategoryId || $(this).attr('value') == '') {
                     $(this).show();
@@ -467,38 +434,67 @@ $name = ['highlight'];
 </script>
 
 <script>
+    // Render errors
+    function renderErrors() {
+        var errors = window.errors;
+        $('#custom-validation-alert').removeClass('d-none');
+        $('#errors').html('');
+        $.each(errors, function(key, value) {
+            $('#errors').append('<li>' + value[0] + '</li>');
+        });
+    }
+
+    // Submit the products
     function submitProductNow() {
+        $('#custom-validation-alert').addClass('d-none');
+
         for (instance in CKEDITOR.instances) {
             CKEDITOR.instances[instance].updateElement();
         }
-        var id = "<?php echo $product->id; ?>";
-        var productCreateForm = document.getElementById("product-update-form");
-        var formData = new FormData(productCreateForm);
-        formData.append('id', id);
+
+        var productForm = document.getElementById("product-form");
+        var formData = new FormData(productForm);
+        let url = window.updateMode ?'/api/updateproduct' : '/api/createproduct';
+
+        $('#product_submit').html('<i class="fa fa-spinner fa-spin"></i> Submitting');
+        $('#product_submit').prop('disabled', true);
+
         $.ajax({
             type: 'POST',
-            url: "/api/updateproduct",
+            url: url,
             data: formData,
             enctype: 'multipart/form-data',
             cache: false,
             contentType: false,
             processData: false,
             success: function(response) {
-                if (response.status == 'successful') {
-                    window.location.href = "/product/all";
+                console.log(response.data);
+                let statusText = response.status;
+                if (statusText == 'successful') {
                     var validation_errors = JSON.stringify(response.message);
-                    $('#validation-errors').html('');
-                    $('#validation-errors').append('<div class="alert alert-success">' + validation_errors +
-                        '</div');
-                } else if (response.status == 'unsuccessful') {
-                    var validation_errors = JSON.stringify(response.data);
-                    var response = JSON.parse(validation_errors);
-                    $('#validation-errors').html('');
-                    $.each(response, function(key, value) {
-                        $('#validation-errors').append('<div class="alert alert-danger">' + value +
-                            '</div');
-                    });
+                    DataSuccessInDatabase(validation_errors);
+                    window.location.href = "/product/all";
                 }
+            },
+            error: function(error) {
+                console.log(error);
+                if(error.status == 422) {
+                    console.log('validation fails');
+                    window.errors = error.responseJSON.errors;
+                    renderErrors();
+                }else  {
+                    Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    html: 'Something went wrong while processing your request.',
+                    confirmButtonText: 'Close',
+                    timer: 10000
+                });
+                }
+            },
+            complete: function() {
+                $('#product_submit').html('Save');
+                $('#product_submit').prop('disabled', false);
             }
         });
     }

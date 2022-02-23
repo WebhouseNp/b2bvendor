@@ -2,28 +2,17 @@
 
 namespace Modules\Product\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
-use App\Models\User;
 use Modules\Offer\Entities\Offer;
 use Modules\Brand\Entities\Brand;
 use Modules\Product\Entities\Product;
-use Modules\Product\Entities\Variant;
-use Modules\Product\Entities\Sku;
-use Modules\ProductAttribute\Entities\Productattribute;
-use Modules\ProductAttribute\Entities\CategoryAttribute;
-use Modules\Subcategory\Entities\Subcategory;
 use Modules\Product\Entities\ProductImage;
-use Modules\Product\Entities\Range;
-use Modules\Product\Entities\Product_attribute_value;
-use Validator, DB, File;
+use Validator, File;
 use Image;
 use Auth;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Mail;
-
+use Modules\ProductCategory\Entities\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -51,24 +40,20 @@ class ProductController extends Controller
         return view('product::index', compact('details'));
     }
 
-    public function create()
-    {
-        $attributes = Productattribute::where('publish', 1)->get();
-        return view('product::create', compact('attributes'));
-    }
-
     public function getcategories()
     {
         $categories = Category::where('publish', 1)->get();
         return response()->json(['data' => $categories, 'status_code' => 200]);
     }
 
+    // Not used
     public function getoffers()
     {
         $offers = Offer::where('publish', 1)->get();
         return response()->json(['data' => $offers, 'status_code' => 200]);
     }
 
+    // Not used
     public function allbrands()
     {
         $brands = Brand::where('publish', 1)->get();
@@ -81,69 +66,17 @@ class ProductController extends Controller
             return response()->json(['category' => $categories]);
     }
 
-    public function createproduct(Request $request)
+    public function getProductCategory(Request $request)
     {
-        try {
-            $validator = Validator::make($request->all(), [
-                'title'             => 'required|string',
-                'shipping_charge'          => 'nullable|numeric',
-                // 'type'              => 'required',
-                'category_id'       => 'required|numeric|exists:categories,id',
-                'meta_title'        => 'nullable|string|max:200',
-                'meta_description'  => 'nullable|string',
-                'gender'  => 'nullable|string',
-                'use'  => 'nullable|string',
-                'color'  => 'nullable|string',
-                'size'  => 'nullable|string',
-                'age_group'  => 'nullable|string',
-                'feature'  => 'nullable|string',
-                'warranty'  => 'nullable|string',
-                'country_of_origin'  => 'nullable|string',
-                'payment_mode'  => 'nullable|string',
-                'keyword'           => 'nullable|string|max:200',
-                'meta_keyphrase'    => 'nullable|string|max:200',
-                // 'status'            => 'required|in:active,inactive',
-                'image' =>  'mimes:jpg,jpeg,png|max:3000',
+        $request->validate([
+            'subcategory_id' => ['required', 'exists:subcategories,id'],
+        ]);
 
-            ]);
-            if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-                exit;
-            }
-            DB::beginTransaction();
+        $productCategories  = ProductCategory::select(['id', 'name', 'publish'])
+            ->where('subcategory_id', $request->subcategory_id)
+            ->published()->get();
 
-            $value = $request->except('image');
-            $overview = $request->only('payment_mode','brand', 'size', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
-            $value['overview'] = json_encode($overview);
-            if ($request->image) {
-                $image = $this->imageProcessing('img-', $request->file('image'));
-                $value['image'] = $image;
-            }
-            $data = Product::create($value);
-            $product = $request->all();
-            foreach ($product['from'] as $key => $val) {
-                if (!empty($val)) {
-                    $range = new Range();
-                    $range->product_id = $data->id;
-                    $range->from = $val;
-                    $range->to = $product['to'][$key];
-                    $range->price = $product['prices'][$key];
-                    $range->save();
-                }
-            }
-            DB::commit();
-            return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $data]);
-        } catch (\Exception $exception) {
-            DB::rollback();
-            return response([
-                'message' => $exception->getMessage()
-            ], 400);
-        }
-    }
-
-    public function show($id)
-    {
-        return view('product::show');
+        return response()->json(['data' => $productCategories]);
     }
 
     public function view($id)
@@ -254,105 +187,6 @@ class ProductController extends Controller
         } else {
             return response()->json(['status' => false, 'message' => ["Sorry! Product Image could not be deleted at this time please reload the page page and try again."]]);
         }
-    }
-
-    public function edit($id)
-    {
-        $product = Product::where('id', $id)->with('ranges')->first();
-        return view('product::edit', compact('id', 'product'));
-    }
-
-    public function editproduct(Request $request)
-    {
-        try {
-            $product = Product::where('id', $request->id)->with(['category'])->first();
-            $categories = Category::where('publish', 1)->with('subcategory')->get();
-            $subcategory = Subcategory::where('category_id', $product->category->id)->get();
-            $skus = $product->skus;
-            $attributes = [];
-            if ($product->category_id) {
-                $cAttributes = CategoryAttribute::where('category_id', $product->category->id)->whereNull('subcategory_id')->get();
-                foreach ($cAttributes as $attr) {
-                    $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
-                }
-            }
-            if ($product->subcategory_id) {
-                $attributes = [];
-                $sAttributes = CategoryAttribute::where('subcategory_id', $product->subcategory->id)->whereNull('category_id')->get();
-                foreach ($sAttributes as $attr) {
-                    $attributes[] = Productattribute::where('id', $attr->attribute_id)->first();
-                }
-            }
-
-            return response()->json([
-                "data" => $product,
-                "categories" => $categories,
-                "subcategory" => $subcategory,
-                "skus" => $skus,
-                "attributes" => $attributes
-            ], 200);
-        } catch (\Exception $exception) {
-            return response([
-                'message' => $exception->getMessage()
-            ], 400);
-        }
-    }
-
-    public function updateproduct(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'title'             => 'required|string',
-            'shipping_charge'   => 'nullable|numeric',
-            // 'type'              => 'required',
-            'category_id'       => 'required|numeric|exists:categories,id',
-            'meta_title'        => 'nullable|string|max:200',
-            'meta_description'  => 'nullable|string',
-            'keyword'           => 'nullable|string|max:200',
-            'meta_keyphrase'    => 'nullable|string|max:200',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-            exit;
-        }
-        $product = Product::findorFail($request->id);
-        $value = $request->except('image');
-        $overview = $request->only('payment_mode', 'size', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
-        $value['overview'] = json_encode($overview);
-        $value['type'] = $request->has('type') ? 'is_top' : 'is_new_arrival';
-        $value['status'] = $request->has('status') ? true : false;
-        if ($request->image) {
-            if ($product->image) {
-                $thumbPath = public_path('images/thumbnail');
-                $listingPath = public_path('images/listing');
-                if ((file_exists($thumbPath . '/' . $product->image)) && (file_exists($listingPath . '/' . $product->image))) {
-                    unlink($thumbPath . '/' . $product->image);
-                    unlink($listingPath . '/' . $product->image);
-                }
-            }
-            $image = $this->imageProcessing('img-', $request->file('image'));
-            $value['image'] = $image;
-        }
-        $success = $product->update($value);
-        if (count($product->ranges)) {
-            $product->ranges()->delete();
-        }
-        $product = $request->all();
-        foreach ($product['from'] as $key => $val) {
-            if (!empty($val)) {
-                $range = new Range();
-                $range->product_id = $request->id;
-                $range->from = $val;
-                $range->to = $product['to'][$key];
-                $range->price = $product['prices'][$key];
-                $range->save();
-            }
-        }
-        return response()->json([
-            'status' => 'successful',
-            "data" => $value,
-            "message" => "product updated successfully"
-        ], 200);
     }
 
     public function imageProcessing($type, $image)
