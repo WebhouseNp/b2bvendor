@@ -144,12 +144,16 @@ class UserController extends Controller
   public function login(Request $request)
   {
     $request->validate([
-      'email' => ['required', 'email'],
+      'email' => ['required'],
       'password' => ['required'],
     ]);
 
     try {
-      $user = User::where('email', $request->email)->with('roles')->first();
+      if(is_numeric($request->email)){
+        $user = User::where('phone_num', $request->email)->with('roles')->first();
+      }else{
+        $user = User::where('email', $request->email)->with('roles')->first();
+      }
       if (!$user) {
         return response()->json([
           'message' => 'User not found'
@@ -185,19 +189,36 @@ class UserController extends Controller
         ], 401);
       }
 
-      if (Auth::attempt([
-        'email' => $request['email'],
-        'password' => $request['password'],
-      ])) {
-
-        $token = auth()->user()->createToken('authToken')->accessToken;
-
-        return response()->json([
-          "status" => "true",
-          "message" => "success",
-          'token' => $token,
-          'user' => auth()->user()
-        ], 200);
+      if(is_numeric($request->email)){
+        if (Auth::attempt([
+          'phone_num' => $request['email'],
+          'password' => $request['password'],
+        ])) {
+  
+          $token = auth()->user()->createToken('authToken')->accessToken;
+  
+          return response()->json([
+            "status" => "true",
+            "message" => "success",
+            'token' => $token,
+            'user' => auth()->user()
+          ], 200);
+        }
+      }else{
+        if (Auth::attempt([
+          'email' => $request['email'],
+          'password' => $request['password'],
+        ])) {
+  
+          $token = auth()->user()->createToken('authToken')->accessToken;
+  
+          return response()->json([
+            "status" => "true",
+            "message" => "success",
+            'token' => $token,
+            'user' => auth()->user()
+          ], 200);
+        }
       }
     } catch (\Exception $exception) {
       return response([
