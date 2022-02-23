@@ -499,4 +499,16 @@ $name = ['highlight'];
         });
     }
 </script>
+
+<script>
+    document.getElementById('is_new_arrival').addEventListener('change', function() {
+        console.log('changed');
+        document.getElementById('is_top').checked = false;
+    });
+
+    document.getElementById('is_top').addEventListener('change', function() {
+        console.log('changed');
+        document.getElementById('is_new_arrival').checked = false;
+    });
+</script>
 @endpush

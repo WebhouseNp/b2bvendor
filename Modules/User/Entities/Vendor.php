@@ -7,10 +7,13 @@ use  Modules\Order\Entities\Order;
 use  Modules\Product\Entities\Product;
 use Modules\Country\Entities\Country;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Entities\Category;
 
 class Vendor extends Model
 {
+    use SoftDeletes;
+    
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function imageUrl($size = null)

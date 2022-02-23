@@ -52,6 +52,7 @@ class CreateVendorsTable extends Migration
 
             $table->enum('status',[1,0])->default(1);
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

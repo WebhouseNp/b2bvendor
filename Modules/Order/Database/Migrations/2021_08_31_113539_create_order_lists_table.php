@@ -32,6 +32,8 @@ class CreateOrderListsTable extends Migration
             
             // $table->foreign('vendor_user_id')->references('id')->on('users')->onDelete('SET NULL');
             // $table->foreign('product_id')->references('id')->on('products')->nullOnDelete();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

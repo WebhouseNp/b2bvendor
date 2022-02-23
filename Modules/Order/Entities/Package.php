@@ -5,11 +5,12 @@ namespace Modules\Order\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\User\Entities\Vendor;
 
 class Package extends Model
 {
-    use HasFactory;
+    use SoftDeletes, HasFactory;
 
     protected $guarded = ['id'];
 

@@ -62,7 +62,7 @@
                         <form class="vendor-form"  @submit.prevent="onSubmit()">
                             <Input
                               label="Username"
-                              type="email"
+                              type="text"
                               placeholder="example@gmail.com"
                               v-model="email"
                               

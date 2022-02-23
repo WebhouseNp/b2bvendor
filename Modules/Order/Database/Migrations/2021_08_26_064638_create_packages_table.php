@@ -21,6 +21,7 @@ class CreatePackagesTable extends Migration
             $table->integer('total_price');
             $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'] )->default('pending');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
