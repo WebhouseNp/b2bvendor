@@ -5336,7 +5336,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (response.status === 200) {
                   localStorage.setItem('token', response.data.token);
                   _this.loading = false;
-                  window.location.href = '/vendor/dashboard';
+                  window.location.href = '/dashboard';
                 }
 
                 _context.next = 11;

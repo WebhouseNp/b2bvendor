@@ -65,7 +65,7 @@ class AdminController extends Controller
             $profile->api_token = $token;
             $profile->save();
 
-            return redirect('/admin/dashboard');
+            return redirect('/dashboard');
         } else {
             return back()->withErrors(['login' => 'Something went wrong while logging you in.']);
         }

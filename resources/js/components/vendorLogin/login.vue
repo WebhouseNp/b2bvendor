@@ -153,7 +153,7 @@ export default {
         if (response.status === 200) {
            localStorage.setItem('token', response.data.token);
             this.loading = false;
-            window.location.href = '/vendor/dashboard'
+            window.location.href = '/dashboard'
         }
        }catch (e){
         if(e.response.status === 400){
