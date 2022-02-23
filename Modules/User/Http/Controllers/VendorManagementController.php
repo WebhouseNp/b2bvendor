@@ -2,6 +2,7 @@
 
 namespace Modules\User\Http\Controllers;
 
+use App\Mail\VendorStatusChanged;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -13,6 +14,8 @@ use App\Models\User;
 use Modules\Category\Entities\Category;
 use Modules\Country\Entities\Country;
 use File, Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Mail;
+use Validator;
 
 class VendorManagementController extends Controller
 {
@@ -52,6 +55,23 @@ class VendorManagementController extends Controller
     public function getReport(Request $request,$id){
         $paid = VendorPayment::where('user_id',$id)->get();
         return view('user::payment',compact('paid'));
+    }
+
+    public function updateCommisson(Request $request){
+      $request->validate([
+         'vendor_id'      => 'required|numeric|exists:users,id',
+         'vendor_type'          => 'nullable',
+         'commission_rate'          => 'nullable',
+     ]);
+     $user = User::where('id',$request->vendor_id)->first();
+     $user->update([
+      'vendor_type' => $request->vendor_type
+  ]);
+     $user->vendor->update([
+      'commission_rate' => $request->commission_rate
+     ]);
+     Mail::to($user->email)->send(new VendorStatusChanged($user));
+     return redirect()->back()->with('success', 'Vendor Updated Successfuly.');
     }
 
     public function updateVendorDetails(Request $request ,Vendor $vendor){

@@ -36,6 +36,8 @@ class CreateVendorsTable extends Migration
             $table->string('product_category')->nullable();
             $table->text('description')->nullable();
 
+            //commission
+            $table->string('commission_rate')->nullable();
 
             //country
             $table->unsignedBigInteger('country_id')->nullable();
