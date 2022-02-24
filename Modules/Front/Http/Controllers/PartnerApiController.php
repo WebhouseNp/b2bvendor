@@ -13,6 +13,7 @@ class PartnerApiController extends Controller
     public function __invoke()
     {
         $partners = PartnerType::with('partners')->positioned()->get();
+
         return new PartnerTypeCollection($partners);
     }
 }
