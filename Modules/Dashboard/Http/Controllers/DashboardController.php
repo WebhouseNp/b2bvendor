@@ -35,7 +35,7 @@ class DashboardController extends Controller
 
         $totalActiveProductsCount = Product::where('user_id' , auth()->user()->id)->active()->count();
 
-        $orders = Order::with(['orderList'])
+        $orders = Order::with(['orderLists'])
             ->latest()
             ->paginate();
 

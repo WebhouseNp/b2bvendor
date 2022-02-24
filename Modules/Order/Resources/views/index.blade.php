@@ -12,7 +12,7 @@
         <table class="table table-striped table-responsive table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>S.N</th>
+                    <th>Order ID</th>
                     <th>Customer Name</th>
                     <th>Date</th>
                     <th>Total Amount</th>
@@ -34,8 +34,8 @@
                     <td>{{ formatted_price($order->total_price) }}</td>
                     {{-- <td>{{ $order->track_no ?? 'N/A' }}</td> --}}
                     <td>
-                        <div class="text-capitalize">{{ $order->payment_type}}</div>
                         <div style="display:inline-block; width:100px" class="badge {{ $order->isPaid() ? 'bg-success' : 'badge-primary' }} text-capitalize">{{ $order->payment_status }}</div>
+                        <div class="text-capitalize">{{ $order->payment_type}}</div>
                     </td>
                     <td><span style="display:inline-block; width:100px" class="badge badge-primary">{{ ucfirst($order->status) }}</span></td>
                     <td class="text-right">
