@@ -52,6 +52,30 @@ class ApiUserController extends Controller
     return response()->json(['status' => true, 'message' => "Vendor updated Successfully.", 'data' => $user]);
   }
 
+  public function getVendorStatus(Request $request)
+  {
+    $data = $request->all();
+    $validation = Validator::make($data, [
+      'vendor_id'      => 'required|numeric|exists:users,id',
+      // 'vendor_type'          => 'required',
+    ]);
+    if ($validation->fails()) {
+      foreach ($validation->messages()->getMessages() as $message) {
+        $errors[] = $message;
+      }
+      return response()->json(['status' => false, 'message' => $errors]);
+    }
+    $user = User::find($request->vendor_id);
+    if (!$user) {
+      return response()->json(['status' => false, 'message' => ['Invalid vendor id or vendor not found.']]);
+    }
+    // dd($user);
+    // $user->update($data);
+    // $success = $user->save();
+    // Mail::to($user->email)->send(new VendorStatusChanged($user));
+    return response()->json(['status' => true, 'message' => "Vendor status retrieved Successfully.", 'data' => $user]);
+  }
+
   public function updateVendor(Request $request, $id)
   {
     if (Vendor::where('id', $id)->exists()) {
