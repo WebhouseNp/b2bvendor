@@ -77,6 +77,7 @@ class ProductResource extends JsonResource
                     'image_url_thumbnail' => $this->imageUrl('thumbnail'),
                 ]);
             }),
+            'overview' => $this->overview
         ]);
     }
 
