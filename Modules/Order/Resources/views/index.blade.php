@@ -43,8 +43,8 @@
                         <td>Total Amount</td>
                         {{-- <th>Track Number</th> --}}
                         <td>Payment</td>
-                        <td class="text-center"></td>
-                        <td class="text-right"></td>
+                        <td class="text-center">Status</td>
+                        <td class="text-right">Action</td>
                     </tr>
                 </thead>
                 <tbody>
