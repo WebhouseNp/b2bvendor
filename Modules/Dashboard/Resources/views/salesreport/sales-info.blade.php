@@ -10,6 +10,10 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 </div>
 <div class="page-content fade-in-up">
+    <x-charts.sales-chart-tile></x-charts.sales-chart-tile>
+    
+    <div class="mb-4"></div>
+
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">Sales Report</div>
@@ -62,6 +66,7 @@
 
     </div>
 </div>
+
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">

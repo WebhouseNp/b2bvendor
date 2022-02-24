@@ -58,6 +58,18 @@
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-md-7">
+            <x-charts.sales-chart-tile></x-charts.sales-chart-tile>
+        </div>
+        <div class="col-md-5">
+            <x-charts.payment-type-pie-chart-tile></x-charts.payment-type-pie-chart-tile>
+        </div>
+    </div>
+
+    <div class="my-4"></div>
+    
     <div class="card">
         <div class="card-body">
             <table class="table table-borderless table-responsive">

@@ -19,11 +19,38 @@ class DashboardController extends Controller
 
     protected function adminDashboard()
     {
-        return view('dashboard::admin.dashboard');
+        $title = 'Dashboard';
+        $vendor = auth()->user()->vendor;
+        $totalSales = Transaction::where('type', 1)->sum('amount');
+        $salesFromOnlinePayment = Transaction::where('type', 1)->where('is_cod', '!=', true)->sum('amount');
+        $salesFromCOD = Transaction::where('type', 1)->where('is_cod', true)->sum('amount');
+
+        $payableToAdmin = Transaction::where('is_cod', true)->whereNull('settled_at')->sum('amount');
+        $lastTransaction = Transaction::latest('id')->first();
+        $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
+
+        $totalActiveProductsCount = Product::where('user_id' , auth()->user()->id)->active()->count();
+
+        $orders = Order::with(['orderLists'])
+            ->latest()
+            ->paginate();
+
+
+        return view('dashboard::vendor.dashboard', [
+            'title' => $title,
+            'totalSales' => $totalSales,
+            'salesFromOnlinePayment' => $salesFromOnlinePayment,
+            'salesFromCOD' => $salesFromCOD,
+            'payableToAdmin' => $payableToAdmin,
+            'reveivableFromAdmin' => $reveivableFromAdmin,
+            'totalActiveProductsCount' => $totalActiveProductsCount,
+            'orders' => $orders
+        ]);
     }
 
     protected function vendorDashboard()
     {
+        $title = 'Dashboard';
         $vendor = auth()->user()->vendor;
         $totalSales = Transaction::where('vendor_id', $vendor->id)->where('type', 1)->sum('amount');
         $salesFromOnlinePayment = Transaction::where('vendor_id', $vendor->id)->where('type', 1)->where('is_cod', '!=', true)->sum('amount');
@@ -41,6 +68,7 @@ class DashboardController extends Controller
 
 
         return view('dashboard::vendor.dashboard', [
+            'title' => $title,
             'totalSales' => $totalSales,
             'salesFromOnlinePayment' => $salesFromOnlinePayment,
             'salesFromCOD' => $salesFromCOD,
