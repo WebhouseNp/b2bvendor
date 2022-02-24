@@ -18,9 +18,7 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-
             <div class="ibox-title"> Edit Profile <span style="font-weight: 100;">({{$user->vendor->shop_name}})</span></div>
-
         </div>
     </div>
     <div class="ibox">

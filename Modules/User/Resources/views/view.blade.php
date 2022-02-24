@@ -1,17 +1,29 @@
 @extends('layouts.admin')
-@section('page_title')View Vendor Info @endsection
+@section('page_title'){{ ucfirst($vendor->vendor->shop_name) }} Profile @endsection
 
 @section('content')
+<style>
+     .plain-nav-tabs .nav-link:hover {
+        color: rebeccapurple;
+        border-color: transparent;
+        /* border-bottom: 2px solid rebeccapurple; */
+    }
+    .plain-nav-tabs .nav-link.active {
+        color: rebeccapurple;
+        border: 0px;
+        border-bottom: 2px solid rebeccapurple;
+    }
+</style>
 @include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title"> Vendor Details</div>
+            <div class="ibox-title">{{ ucfirst($vendor->vendor->shop_name) }}</div>
         </div>
     </div>
     <div class="ibox">
         <div class="ibox-head">
-            <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">
+            <ul class="plain-nav-tabs nav nav-tabs lavalamp" id="component-1" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true"><strong>Business Information</strong></a>
                 </li>
@@ -33,18 +45,67 @@
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-5">
-                                    <label><strong> Profile Image</strong> </label>
+                                <div class="col-md-3">
                                     <div id="wrapper" class="mt-2">
                                         <div id="image-holder">
-                                            @if($vendor->vendor->image)
-                                            <img src="{{asset('images/listing/'.$vendor->vendor->image)}}" alt="No Image" class="rounded">
-                                            @endif
+                                            <img class="rounded img-responsive" src="{{ $vendor->vendor->imageUrl() }}" alt="No Image" style="max-width: 200px;">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-7">
+                                <div class="col-md-9">
+                                    <style>
+                                        .title-label {
+                                            font-size: 0.9rem;
+                                            color: gray;
+                                            margin-bottom: 0;
+                                        }
+                                    </style>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-4">
+                                            <label class="title-label">Category</label>
+                                            <div class="text-capitalize">{{ Str::replace('_', ' ', $vendor->vendor->category) }}</div>
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="title-label">Email</label>
+                                            <div>{{ $vendor->vendor->company_email }}</div>
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="title-label">Address</label>
+                                            <div>{{ $vendor->vendor->company_address }}</div>
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="title-label">Country</label>
+                                            <div>{{ $vendor->vendor->country->name }}</div>
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="title-label">Plan</label>
+                                            <div class="text-capitalize">{{ Str::replace('_', ' ', $vendor->vendor->plan) }}</div>
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="title-label">Phone</label>
+                                            <div>{{ $vendor->vendor->phone_number }}</div>
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="title-label">Status</label>
+                                            <div>{{ ucfirst($vendor->vendor_type) }}</div>
+                                          </div>
+                                          <div class="col-md-4 mb-4">
+                                            <label class="title-label">Business Type</label>
+                                            <div>{{ ucfirst($vendor->vendor->business_type) }}</div>
+                                          </div>
+                                          <div class="col-md-12 mb-4">
+                                            <label class="title-label">Type of Product</label>
+                                            <div>
+                                                @foreach($vendor->vendor->categories as $cat)
+                                                {{ $cat->name }}
+                                                @if(!$loop->last)
+                                                <span>,</span>
+                                                @endif
+                                                @endforeach
+                                            </div>
+                                          </div>
+                                    </div>
                                     <div class="card profile-card border-0 bg-transparent">
                                         <div class="card-body">
                                             <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
@@ -67,8 +128,6 @@
                                                 @endif
                                                 @endforeach
                                             </h4>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -131,31 +190,25 @@
     </div>
     <div class="ibox">
         <div class="ibox-body">
-            <form action="{{route('vendor.updateCommisson')}}" method="POST">
+            <form action="{{ route('vendor.updateCommisson') }}" method="POST">
                 @csrf
                 <div class="row">
-                    <input type="hidden" name="vendor_id" value="{{$vendor->id}}">
-                    <div class=" col-sm-6 form-group">
-                        <label class="profile-card-subtitle">
-                            <strong>Commission Rate(In %)</strong>
-                        </label>
+                    <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
+                    <div class="col-md-4 form-group">
+                        <label><strong>Commission Rate(In %)</strong></label>
                         <input class="form-control" type="number" name="commission_rate" value="{{@$vendor->vendor->commission_rate}}" placeholder="Enter Commisson rate here">
-
                     </div>
-                    <div class=" col-sm-6 form-group">
-                        <label class="profile-card-subtitle">
-                            <strong>Vendor status</strong>
-                        </label>
-                        <select name="vendor_type" id="vendor_status" class="form-control ">
+                    <div class="col-md-4 form-group">
+                        <label><strong>Vendor status</strong></label>
+                        <select name="vendor_type" id="vendor_status" class="form-control custom-select">
                             <option value="new" @if ($vendor->vendor_type=="new"){{"selected"}} @endif>New</option>
                             <option value="approved" @if ($vendor->vendor_type=="approved"){{"selected"}} @endif>Approved</option>
                             <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
                         </select>
                     </div>
-                    
-                    <div class="col-sm-6 form-group">
-                    <button type="submit" class="btn btn-success "><span class="fa fa-send"> Submit</button>
-                        </div>
+                    <div class="col-md-4 form-group d-flex align-items-end">
+                        <button type="submit" class="btn btn-success btn-lg"><span class="fa fa-send mr-1"> Submit</button>
+                    </div>
                 </div>
             </form>
         </div>
