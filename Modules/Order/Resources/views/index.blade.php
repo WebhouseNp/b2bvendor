@@ -31,20 +31,20 @@
                 </form>
             </div>
 
-            <table class="table table-striped table-responsive table-bordered table-hover">
+            <table class="custom-table table table-responsive">
                 <thead>
                     <tr>
-                        <th>Order ID</th>
+                        <td>Order No.</td>
                         @if(auth()->user()->hasAnyRole('super_admin|admin'))
-                        <th>Seller</th>
+                        <td>Seller</td>
                         @endif
-                        <th>Customer Name</th>
-                        <th>Placed On</th>
-                        <th>Total Amount</th>
+                        <td>Customer Name</td>
+                        <td>Placed On</td>
+                        <td>Total Amount</td>
                         {{-- <th>Track Number</th> --}}
-                        <th>Payment</th>
-                        <th>Status</th>
-                        <th class="text-right">Action</th>
+                        <td>Payment</td>
+                        <td class="text-center"></td>
+                        <td class="text-right"></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,8 +56,7 @@
                         @endif
                         <td>{{ $order->customer->name ?? 'N/A' }}</td>
                         <td>
-                            <div>{{ $order->created_at->format('d M, Y') }}</div>
-                            <div>{{ date('g:i A', strtotime($order->created_at)) }}</div>
+                            <span>{{ $order->created_at->format('d M, Y') }}, {{ date('g:i A', strtotime($order->created_at)) }}</span>
                         </td>
                         <td>{{ formatted_price($order->total_price) }}</td>
                         {{-- <td>{{ $order->track_no ?? 'N/A' }}</td> --}}
@@ -65,7 +64,7 @@
                             <span class="text-capitalize">{{ $order->payment_type}}</span>
                             <span class="{{ $order->isPaid() ? 'text-success' : 'text-danger' }} text-capitalize">({{ $order->payment_status }})</span>
                         </td>
-                        <td><span style="display:inline-block; width:100px" class="badge badge-primary">{{ ucfirst($order->status) }}</span></td>
+                        <td class="text-center"><span class="px-2 py-2 order-status-badge {{ $order->status }}">{{ ucfirst($order->status) }}</span></td>
                         <td class="text-right">
                             <a href="{{ route('orders.show', $order->id) }}" class="btn btn-link text-primary"><i class="fa fa-eye mr-1"></i> View</a>
                         </td>
@@ -86,4 +85,41 @@
         </div>
     </div>
 </div>
+<style>
+    .custom-table thead {
+        background-color: #f2f5fb;
+        color: #555557;
+        font-size: 1.1rem;
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+        letter-spacing: 0.0025rem;
+    }
+    .custom-table thead tr td {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .custom-table tr:hover {
+        /* background-color: rgb(244, 246, 255); */
+    }
+
+    .custom-table tr td {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .order-status-badge {
+        background-color: #f4f4f4;
+        color: #333;
+        display: inline-block;
+        min-width: 100px;
+        border-radius: 2.5rem;
+        text-align: center;
+        font-size: 13px;
+    }
+    .order-status-badge.completed {
+        background-color: #b1f2cb;
+        color: #064a22;
+    }
+
+</style>
 @endsection
