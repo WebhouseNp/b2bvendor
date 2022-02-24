@@ -12,7 +12,7 @@
         <table class="table table-striped table-responsive table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>S.N</th>
+                    <th>Order ID</th>
                     <th>Customer Name</th>
                     <th>Placed On</th>
                     <th>Total Amount</th>

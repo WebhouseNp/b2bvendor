@@ -137,7 +137,7 @@
                     <input type="hidden" name="vendor_id" value="{{$vendor->id}}">
                     <div class=" col-sm-6 form-group">
                         <label class="profile-card-subtitle">
-                            <strong>Commission Rate</strong>
+                            <strong>Commission Rate(In %)</strong>
                         </label>
                         <input class="form-control" type="number" name="commission_rate" value="{{@$vendor->vendor->commission_rate}}" placeholder="Enter Commisson rate here">
 
