@@ -25,6 +25,12 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
+        
+        if(auth()->user()->hasRole('vendor')) {
+            abort_unless(auth()->user()->vendor->id == $order->vendor_id, 403);
+        }
+
         $order->load([
             'orderLists.product:id,title,slug',
             'vendor',
@@ -59,6 +65,7 @@ class OrderController extends Controller
 
         $orderStatuses = config('constants.order_statuses');
         if(auth()->user()->hasRole('vendor')) {
+            abort_unless(auth()->user()->vendor->id == $order->vendor_id, 403);
             $orderStatuses = array_diff($orderStatuses, ['cancelled', 'refunded']);
         }
 
