@@ -96,11 +96,11 @@
                                 <td></td>
                                 <td>
                                     <div>Subtotal</div>
-                                    <div  class="font-weight-bold">{{ formatted_price($subTotalPrice) }}</div>
+                                    <div class="font-weight-bold">{{ formatted_price($subTotalPrice) }}</div>
                                 </td>
                                 <td>
                                     <div>Shipping</div>
-                                    <div  class="font-weight-bold">{{ formatted_price($totalShippingPrice) }}</div>
+                                    <div class="font-weight-bold">{{ formatted_price($totalShippingPrice) }}</div>
                                 </td>
                                 <td class="text-nowrap">
                                     <div>Order Total</div>
@@ -123,15 +123,14 @@
                                 <td class="text-primary">Order Total</td>
                                 <td class="text-primary text-nowrap">
                                     <div>{{ formatted_price($totalPrice) }}</div>
-                                    {{-- <div class="{{ $order->payment_status == 'paid' ? 'bg-success' : 'bg-danger' }} text-white font-weight-normal p-2 rounded text-center">{{ $order->payment_status == 'paid' ? 'Paid' : 'Unpaid' }}
-                </div> --}}
-                </td>
-                </tr>
-                </tfoot>
+                                </td>
+                            </tr>
+                        </tfoot>
 
-                </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
+
         </div>
 
         {{-- Customer address --}}
@@ -185,7 +184,7 @@
                     <div class="form-group">
                         <label>Order Status</label>
                         <select name="status" class="custom-select form-control @error('status') is-invalid @enderror">
-                            @foreach (config('constants.order_statuses') as $status)
+                            @foreach ($orderStatuses as $status)
                             <option value="{{ $status }}" @if (old('status', $order->status) == $status) selected @endif>{{ ucfirst($status) }}</option>
                             @endforeach
                         </select>

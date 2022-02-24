@@ -14,10 +14,10 @@
                 <tr>
                     <th>S.N</th>
                     <th>Customer Name</th>
-                    <th>Date</th>
+                    <th>Placed On</th>
                     <th>Total Amount</th>
                     {{-- <th>Track Number</th> --}}
-                    <th>Payment Type</th>
+                    <th>Payment</th>
                     <th>Status</th>
                     <th class="text-right">Action</th>
                 </tr>
@@ -26,7 +26,7 @@
                 @forelse($orders as $order)
                 <tr class="category_row{{ $order->id }}">
                     <td> #{{ $order->id }}</td>
-                    <td>{{ $order->customer->name ?? '' }}</td>
+                    <td>{{ $order->customer->name ?? 'N/A' }}</td>
                     <td>
                         <div>{{ $order->created_at->format('d M, Y') }}</div>
                         <div>{{ date('g:i A', strtotime($order->created_at)) }}</div>
@@ -34,8 +34,8 @@
                     <td>{{ formatted_price($order->total_price) }}</td>
                     {{-- <td>{{ $order->track_no ?? 'N/A' }}</td> --}}
                     <td>
-                        <div class="text-capitalize">{{ $order->payment_type}}</div>
-                        <div style="display:inline-block; width:100px" class="badge {{ $order->isPaid() ? 'bg-success' : 'badge-primary' }} text-capitalize">{{ $order->payment_status }}</div>
+                        <span class="text-capitalize">{{ $order->payment_type}}</span>
+                        <span class="{{ $order->isPaid() ? 'text-success' : 'text-danger' }} text-capitalize">({{ $order->payment_status }})</span>
                     </td>
                     <td><span style="display:inline-block; width:100px" class="badge badge-primary">{{ ucfirst($order->status) }}</span></td>
                     <td class="text-right">

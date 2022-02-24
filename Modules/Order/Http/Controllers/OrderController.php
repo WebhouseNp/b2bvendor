@@ -16,7 +16,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with(['orderLists'])
+        $orders = Order::with(['orderLists', 'customer'])
             ->latest()
             ->paginate();
 
@@ -37,11 +37,18 @@ class OrderController extends Controller
         $totalShippingPrice = $order->shipping_charge;
         $totalPrice = $order->total_price;
 
+        $orderStatuses = config('constants.order_statuses');
+
+        if (auth()->user()->hasRole('vendor')) {
+            $orderStatuses = array_diff($orderStatuses, ['cancelled', 'refunded']);
+        }
+
         return view('order::show', compact([
             'order',
             'subTotalPrice',
             'totalShippingPrice',
-            'totalPrice'
+            'totalPrice',
+            'orderStatuses'
         ]));
     }
 
@@ -50,8 +57,13 @@ class OrderController extends Controller
         abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
         // if vendor, also check if order belongs to him
 
+        $orderStatuses = config('constants.order_statuses');
+        if(auth()->user()->hasRole('vendor')) {
+            $orderStatuses = array_diff($orderStatuses, ['cancelled', 'refunded']);
+        }
+
         $request->validate([
-            'status' => ['required', Rule::in(config('constants.order_statuses')), Rule::notIn([$order->status])],
+            'status' => ['required', Rule::in($orderStatuses), Rule::notIn([$order->status])],
             'update_silently' => 'nullable'
         ]);
 
