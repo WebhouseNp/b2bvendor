@@ -17,6 +17,12 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with(['orderLists', 'customer', 'vendor:id,shop_name'])
+            ->when(request()->filled('order_id'), function($query) {
+                return $query->where('id', request('order_id'));
+            })
+            ->when(request()->filled('status'), function($query) {
+                return $query->where('status', request('status'));
+            })
             ->latest()
             ->paginate();
 
