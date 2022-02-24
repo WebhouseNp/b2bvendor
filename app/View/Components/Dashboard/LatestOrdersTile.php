@@ -3,6 +3,7 @@
 namespace App\View\Components\Dashboard;
 
 use Illuminate\View\Component;
+use Modules\Order\Entities\Order;
 
 class LatestOrdersTile extends Component
 {
@@ -23,6 +24,13 @@ class LatestOrdersTile extends Component
      */
     public function render()
     {
-        return view('components.dashboard.latest-orders-tile');
+        $orders = Order::with(['orderLists', 'vendor', 'customer'])
+            ->whereIn('status', ['pending', 'shipped'])
+            ->latest()
+            ->limit(10)->get();
+
+        return view('components.dashboard.latest-orders-tile', [
+            'orders' => $orders
+        ]);
     }
 }

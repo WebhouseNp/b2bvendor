@@ -85,41 +85,4 @@
         </div>
     </div>
 </div>
-<style>
-    .custom-table thead {
-        background-color: #f2f5fb;
-        color: #555557;
-        font-size: 1.1rem;
-        font-weight: 600;
-        font-family: Arial, Helvetica, sans-serif;
-        letter-spacing: 0.0025rem;
-    }
-    .custom-table thead tr td {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-    .custom-table tr:hover {
-        /* background-color: rgb(244, 246, 255); */
-    }
-
-    .custom-table tr td {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-
-    .order-status-badge {
-        background-color: #f4f4f4;
-        color: #333;
-        display: inline-block;
-        min-width: 100px;
-        border-radius: 2.5rem;
-        text-align: center;
-        font-size: 13px;
-    }
-    .order-status-badge.completed {
-        background-color: #b1f2cb;
-        color: #064a22;
-    }
-
-</style>
 @endsection

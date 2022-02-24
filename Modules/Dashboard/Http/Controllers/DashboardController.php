@@ -20,7 +20,6 @@ class DashboardController extends Controller
     protected function adminDashboard()
     {
         $title = 'Dashboard';
-        $vendor = auth()->user()->vendor;
         $totalSales = Transaction::where('type', 1)->sum('amount');
         $salesFromOnlinePayment = Transaction::where('type', 1)->where('is_cod', '!=', true)->sum('amount');
         $salesFromCOD = Transaction::where('type', 1)->where('is_cod', true)->sum('amount');
@@ -29,12 +28,7 @@ class DashboardController extends Controller
         $lastTransaction = Transaction::latest('id')->first();
         $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
 
-        $totalActiveProductsCount = Product::where('user_id' , auth()->user()->id)->active()->count();
-
-        $orders = Order::with(['orderLists'])
-            ->latest()
-            ->paginate();
-
+        $totalActiveProductsCount = Product::active()->count();
 
         return view('dashboard::vendor.dashboard', [
             'title' => $title,
@@ -44,7 +38,6 @@ class DashboardController extends Controller
             'payableToAdmin' => $payableToAdmin,
             'reveivableFromAdmin' => $reveivableFromAdmin,
             'totalActiveProductsCount' => $totalActiveProductsCount,
-            'orders' => $orders
         ]);
     }
 
@@ -60,12 +53,7 @@ class DashboardController extends Controller
         $lastTransaction = Transaction::where('vendor_id', $vendor->id)->latest('id')->first();
         $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
 
-        $totalActiveProductsCount = Product::where('user_id' , auth()->user()->id)->active()->count();
-
-        $orders = Order::with(['orderLists'])
-            ->latest()
-            ->paginate();
-
+        $totalActiveProductsCount = Product::where('vendor_id', $vendor->id)->active()->count();
 
         return view('dashboard::vendor.dashboard', [
             'title' => $title,
@@ -75,7 +63,6 @@ class DashboardController extends Controller
             'payableToAdmin' => $payableToAdmin,
             'reveivableFromAdmin' => $reveivableFromAdmin,
             'totalActiveProductsCount' => $totalActiveProductsCount,
-            'orders' => $orders
         ]);
     }
 }
