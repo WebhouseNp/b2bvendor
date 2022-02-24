@@ -53,3 +53,4 @@ Route::prefix('vendor')->name('api.')->group(function(){
         });
 
         Route::post('changeVendorStatus', 'ApiUserController@changeVendorStatus')->name('api.changeVendorStatus');
+        Route::post('getVendorStatus', 'ApiUserController@getVendorStatus')->name('api.getVendorStatus');
