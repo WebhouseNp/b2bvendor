@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
         $category = Category::create([
                 'name' => 'Electronics',
                 'slug' => 'electronics',
-                'does_contain_sub_category' => 1,
                 'publish' => 1,
         ]);
 
