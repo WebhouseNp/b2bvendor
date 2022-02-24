@@ -13,6 +13,9 @@
             <thead>
                 <tr>
                     <th>Order ID</th>
+                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                    <th>Seller</th>
+                    @endif
                     <th>Customer Name</th>
                     <th>Placed On</th>
                     <th>Total Amount</th>
@@ -26,6 +29,9 @@
                 @forelse($orders as $order)
                 <tr class="category_row{{ $order->id }}">
                     <td> #{{ $order->id }}</td>
+                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                    <td>{{ $order->vendor->shop_name ?? 'N/A' }}</td>
+                    @endif
                     <td>{{ $order->customer->name ?? 'N/A' }}</td>
                     <td>
                         <div>{{ $order->created_at->format('d M, Y') }}</div>

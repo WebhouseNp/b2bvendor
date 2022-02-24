@@ -177,6 +177,32 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
+        <li>
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-product-hunt"></i>
+                <span class="nav-label">Product</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse">
+                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
+                <li>
+                    <a href="{{route('product.create')}}">
+                        <span class="fa fa-plus"></span>
+                        Add Product
+                    </a>
+                </li>
+                @endif
+                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
+                <li>
+                    <a href="{{route('product.index',['type'=>'all'])}}">
+                        <span class="fa fa-circle-o"></span>
+                        All Products
+                    </a>
+                </li>
+                @endif
+            </ul>
+        </li>
+
         @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('roles', $user_access)))
         <li>
             <a href="javascript:;">
@@ -306,33 +332,6 @@ $user_access = json_decode($user->access_level);
             </ul>
         </li>
         @endif
-
-        <li>
-            <a href="javascript:;">
-                <i class="sidebar-item-icon fa fa-product-hunt"></i>
-                <span class="nav-label">Product</span>
-                <i class="fa fa-angle-left arrow"></i>
-            </a>
-            <ul class="nav-2-level collapse">
-                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
-                <li>
-                    <a href="{{route('product.create')}}">
-                        <span class="fa fa-plus"></span>
-                        Add Product
-                    </a>
-                </li>
-                @endif
-                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
-                <li>
-                    <a href="{{route('product.index',['type'=>'all'])}}">
-                        <span class="fa fa-circle-o"></span>
-                        All Products
-                    </a>
-                </li>
-                @endif
-            </ul>
-        </li>
-
 
         @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('advertisement', $user_access)))
         <li>

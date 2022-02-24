@@ -16,7 +16,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with(['orderLists', 'customer'])
+        $orders = Order::with(['orderLists', 'customer', 'vendor:id,shop_name'])
             ->latest()
             ->paginate();
 
