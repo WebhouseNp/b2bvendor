@@ -10,7 +10,7 @@ class TopProductApiController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['category', 'ranges'])
+        $products = Product::with(['productC', 'ranges'])
             ->where('is_top', true)
             ->active()
             ->orderBy('id', 'DESC')->cursorPaginate(request('per_page') ?? 18)->withQueryString();
