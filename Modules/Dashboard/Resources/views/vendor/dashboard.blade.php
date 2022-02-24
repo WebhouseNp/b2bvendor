@@ -52,7 +52,7 @@
             <div class="card">
                 <div class="card-body">
                     <p>Total Active Products</p>
-                    <h2>{{ formatted_price($totalActiveProductsCount) }}</h2>
+                    <h2>{{ $totalActiveProductsCount }}</h2>
                 </div>
             </div>
         </div>
@@ -83,8 +83,8 @@
                         </td>
                         <td>{{ formatted_price($order->total_price) }}</td>
                         <td>
-                            <div class="text-capitalize">{{ $order->payment_type}}</div>
-                            <div style="display:inline-block; width:100px" class="badge {{ $order->isPaid() ? 'bg-success' : 'badge-primary' }} text-capitalize">{{ $order->payment_status }}</div>
+                            <span class="text-capitalize">{{ $order->payment_type}}</span>
+                            <span class="{{ $order->isPaid() ? 'text-success' : 'text-danger' }} text-capitalize">({{ $order->payment_status }})</span>
                         </td>
                         <td><span style="display:inline-block; width:100px" class="badge badge-primary">{{ ucfirst($order->status) }}</span></td>
                         <td class="text-right">
