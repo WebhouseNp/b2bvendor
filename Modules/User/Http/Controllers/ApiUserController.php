@@ -28,11 +28,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ApiUserController extends Controller
 {
-  public function index()
-  {
-    $vendors = Vendor::all();
-    return response(['vendors' => $vendors, 'message' => 'Retrieved successfully'], 200);
-  }
 
   public function changeVendorStatus(Request $request)
   {
@@ -76,149 +71,6 @@ class ApiUserController extends Controller
     } else {
       return response()->json([
         "message" => "Vendor not found"
-      ], 400);
-    }
-  }
-
-
-
-  public function login(Request $request)
-  {
-    $credentials = $request->only('email', 'password');
-    try {
-      $user = User::where('email', $request->email)->with('roles')->first();
-      if (!$user) {
-        return response()->json([
-          "message" => "User Not Found!!"
-        ], 401);
-      }
-      $roles = [];
-      foreach ($user->roles as $role) {
-        $slug = $role->slug;
-        array_push($roles, $slug);
-      }
-      if (!\Hash::check($request->password, $user->password)) {
-        return response()->json([
-          "message" => "Invalid Password!!"
-        ], 401);
-      }
-      if (in_array('vendor', $roles) && $user->publish == '0') {
-        return response()->json([
-          "message" => "Please contact admin!!"
-        ], 401);
-      }
-
-      if (in_array('vendor', $roles)) {
-        if (Auth::attempt([
-          'email' => $request['email'],
-          'password' => $request['password'],
-        ])) {
-          $user = User::where('email', $request->email)->first();
-          $token = auth()->user()->createToken('authToken')->accessToken;
-          $user->api_token = $token;
-          $user->save();
-
-          if ($user->verified == 0) {
-            session()->flush();
-            return response()->json([
-              "status_code" => 401,
-              "message" => "Please Verify your account first!!"
-            ], 401);
-          }
-          if ($user->vendor_type == 'new' || $user->vendor_type == 'suspended') {
-            session()->flush();
-            return response()->json([
-              "status_code" => 401,
-              "message" => "Please Verify your account by admin first!!"
-            ], 400);
-          }
-          return response()->json([
-            "status_code" => 200,
-            "message" => "success",
-            'token' => $token,
-            'user' => $user
-          ], 200);
-        }
-      } else {
-        return response()->json([
-          "status_code" => 401,
-          "message" => "You are not authorized.",
-        ], 401);
-      }
-    } catch (\Exception $exception) {
-      return response([
-        'message' => $exception->getMessage()
-      ], 400);
-    }
-
-
-    return response()->json([
-      "message" => "Invalid Username/password"
-    ], 500);
-  }
-
-  public function register(Request $request)
-  {
-    DB::beginTransaction();
-    try {
-      $validator = Validator::make($request->all(), [
-        'email' => 'required|email|unique:users',
-        'name' => 'required',
-        'password' => 'required|min:6',
-        'confirm_password' => 'required_with:password|same:password'
-
-      ]);
-
-      if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
-        exit;
-      }
-      $name = explode(' ', $request->name);
-      $username = strtolower($name[0] . rand(10, 1000));
-      $formData = $request->except(['password']);
-      $data['publish'] = 1;
-      $data['username'] = $username;
-      $data['activation_link'] = Str::random(63);
-      $data['otp'] =  random_int(100000, 999999);
-      $data['name'] = $request->name;
-      $data['designation'] = $request->designation;
-      $data['gender'] = $request->gender;
-      $data['email'] = $request->email;
-      $data['phone_num'] = $request->phone_num;
-      $data['password'] = bcrypt($request->password);
-      $userExist = User::create($data);
-
-      if ($userExist) {
-        $user = User::where('email', $request->email)->first();
-      }
-
-      $formData['user_id'] = $user->id;
-      $formData['country_id'] = $request->country_id;
-      $role = Role::where('name', 'vendor')->first();
-      $role_data = [
-        'role_id' => $role->id,
-        'user_id' => $formData['user_id']
-      ];
-      $formData = $request->except('activation_link', 'terms_condition',  '_token');
-      $formData['user_id'] = $user->id;
-      $role_user = Role_user::create($role_data);
-      // dd($request->product_category);
-      // $formData['product_category'] = json_encode($request->product_category);
-      // dd($formData);
-      $formData['phone_number'] = $request->company_phone;
-      // $formData['company_address'] = $request->company_address;
-      $vendor = Vendor::create($formData);
-      DB::commit();
-      Mail::to($request->email)->send(new VendorCreated($vendor));
-      return response()->json([
-        "status_code" => 200,
-        "message" => "success",
-        'vendor' => $vendor
-      ], 200);
-    } catch (\Exception $exception) {
-      DB::rollback();
-      return response([
-        'message' => $exception->getMessage()
       ], 400);
     }
   }
@@ -365,30 +217,6 @@ class ApiUserController extends Controller
         'message' => $exception->getMessage()
       ], 400);
     }
-  }
-
-  public function createdue(Request $request)
-  {
-    $validator = Validator::make($request->all(), [
-      'remarks' => 'required',
-      'image' => 'mimes:jpg,jpeg,png',
-    ]);
-
-    if ($validator->fails()) {
-      return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-      exit;
-    }
-
-    $value = $request->except('image');
-    if ($request->image) {
-      $image = $this->imageProcessing('img-', $request->file('image'));
-      $value['image'] = $image;
-    }
-
-    DB::beginTransaction();
-    $data = VendorPayment::create($value);
-    DB::commit();
-    return response()->json(['status' => 'successful', 'message' => 'Payment done successfully.', 'data' => $data]);
   }
 
   public function imageProcessing($type, $image)
