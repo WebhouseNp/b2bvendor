@@ -24,12 +24,13 @@ class DashboardController extends Controller
 
     protected function vendorDashboard()
     {
-        $totalSales = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->sum('amount');
-        $salesFromOnlinePayment = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->where('is_cod', '!=', true)->sum('amount');
-        $salesFromCOD = Transaction::where('vendor_user_id', auth()->id())->where('type', 1)->where('is_cod', true)->sum('amount');
+        $vendor = auth()->user()->vendor;
+        $totalSales = Transaction::where('vendor_id', $vendor->id)->where('type', 1)->sum('amount');
+        $salesFromOnlinePayment = Transaction::where('vendor_id', $vendor->id)->where('type', 1)->where('is_cod', '!=', true)->sum('amount');
+        $salesFromCOD = Transaction::where('vendor_id', $vendor->id)->where('type', 1)->where('is_cod', true)->sum('amount');
 
-        $payableToAdmin = Transaction::where('vendor_user_id', auth()->id())->where('is_cod', true)->whereNull('settled_at')->sum('amount');
-        $lastTransaction = Transaction::where('vendor_user_id', auth()->id())->latest('id')->first();
+        $payableToAdmin = Transaction::where('vendor_id', $vendor->id)->where('is_cod', true)->whereNull('settled_at')->sum('amount');
+        $lastTransaction = Transaction::where('vendor_id', $vendor->id)->latest('id')->first();
         $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
 
         $totalActiveProductsCount = Product::where('user_id' , auth()->user()->id)->active()->count();

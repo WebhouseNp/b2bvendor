@@ -70,3 +70,5 @@ Route::get('customer/orders/{order}', [OrderApiController::class, 'show'])->midd
 //category for vendor
 Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 
+// Partners
+Route::get('our-partners', 'PartnerApiController');

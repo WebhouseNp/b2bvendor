@@ -17,7 +17,6 @@
         @csrf
         @if($updateMode)
         @method('PUT')
-        {{-- <input type="hidden" name="_method" value="PUT"> --}}
         @endif
         <div class="row">
             <div class="col-lg-12">
@@ -55,7 +54,7 @@
                                             <button class="btn btn-success" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

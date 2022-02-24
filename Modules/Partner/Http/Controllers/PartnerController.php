@@ -13,7 +13,7 @@ class PartnerController extends Controller
     public function index()
     {
         $partners = Partner::get();
-        return view('partner::index',compact('partners'));
+        return view('partner::index', compact('partners'));
     }
 
     public function create()
@@ -90,6 +90,6 @@ class PartnerController extends Controller
             $updateMode = true;
         }
 
-        return view('partner::form', compact(['partner', 'updateMode','partnerTypes']));
+        return view('partner::form', compact(['partner', 'updateMode', 'partnerTypes']));
     }
 }

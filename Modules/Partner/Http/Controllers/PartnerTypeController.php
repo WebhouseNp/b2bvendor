@@ -12,12 +12,12 @@ class PartnerTypeController extends Controller
     public function index()
     {
         $partners = PartnerType::get();
-        return view('partner::PartnerType.index',compact('partners'));
+        return view('partner::partner-type.index', compact('partners'));
     }
 
     public function create()
     {
-        return $this->showForm(new PartnerType());
+        return $this->showForm(new PartnerType(['position' => PartnerType::getNextPosition()]));
     }
 
     public function store(Request $request)
@@ -83,6 +83,6 @@ class PartnerTypeController extends Controller
             $updateMode = true;
         }
 
-        return view('partner::PartnerType.create', compact(['partner', 'updateMode']));
+        return view('partner::partner-type.form', compact(['partner', 'updateMode']));
     }
 }
