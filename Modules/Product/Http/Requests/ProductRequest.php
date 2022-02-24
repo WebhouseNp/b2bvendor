@@ -16,7 +16,7 @@ class ProductRequest extends FormRequest
         return [
             'id'                => 'sometimes|exists:products,id',
             'title'             => 'required|string',
-            'product_category_id' => 'required|numeric|exists:categories,id',
+            'product_category_id' => 'required|numeric|exists:product_categories,id',
             'shipping_charge'   => 'nullable|numeric',
             'unit'              => 'nullable|string',
             'highlight'         => 'nullable',
