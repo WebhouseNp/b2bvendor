@@ -21,7 +21,8 @@
         </div>
     </div>
     <div class="ibox">
-        <div class="ibox-head">
+        <x-profile></x-profile>
+        <!-- <div class="ibox-head">
             <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true"><strong>Business Information</strong></a>
@@ -36,7 +37,7 @@
                     <a class="nav-link" data-toggle="tab" href="#component-1-4" role="tab" aria-controls="component-1-4" aria-selected="false"><strong>Bank Details </strong></a>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <div class="tab-content" id="component-1-content">
             <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
