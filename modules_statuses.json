@@ -24,5 +24,6 @@
     "Setting": true,
     "ProductCategory": true,
     "Blog": true,
-    "Faq": true
+    "Faq": true,
+    "AlternativeUser": true
 }
