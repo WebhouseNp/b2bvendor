@@ -15,7 +15,7 @@ class Transaction extends Model
     protected $casts = [
         'is_cod' => 'boolean'
     ];
-    
+
     protected static function newFactory()
     {
         return \Modules\Payment\Database\factories\TransactionFactory::new();
@@ -24,5 +24,15 @@ class Transaction extends Model
     public function fileUrl()
     {
         return Storage::disk('public')->url($this->file);
+    }
+    
+    public function scopeOnlyOnlinePayments($query)
+    {
+        return $query->where('is_cod', false)->orWhereNull('is_cod');
+    }
+
+    public function scopeOnlyCOD($query)
+    {
+        return $query->where('is_cod', true);
     }
 }

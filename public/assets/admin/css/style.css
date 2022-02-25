@@ -93,8 +93,8 @@ button {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.custom-table tr:hover {
-    /* background-color: rgb(244, 246, 255); */
+.custom-table.table-hover tr:hover {
+    background-color: rgb(244, 246, 255);
 }
 
 .custom-table tr td {

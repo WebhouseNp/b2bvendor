@@ -28,11 +28,11 @@ class TransactionController extends Controller
         }
 
         $transactions = Transaction::where('vendor_id', $vendor->id)
-            ->where('is_cod', '!=', true)
+            ->onlyOnlinePayments()
             ->orderBy('id', 'DESC')->get();
 
         $codTransactions = Transaction::where('vendor_id', $vendor->id)
-            ->where('is_cod', true)
+            ->onlyCOD()
             ->latest()->get();
 
         $vendorUser = $user;
@@ -74,5 +74,24 @@ class TransactionController extends Controller
         $transaction->save();
 
         return redirect()->route('transactions.index', $vendorUserId)->with('success', 'Payment recorded successfully.');
+    }
+
+    public function changeCodTransactionStatus(Request $request, Transaction $transaction)
+    {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
+        $request->validate([
+            'status' => 'required|in:settled,unsettled',
+        ]);
+
+        $transaction->update([
+            'settled_at' => $request->status == 'settled' ? now() : null
+        ]);
+
+        if ($request->ajax()) {
+            return response()->json(['status' => 'success', 'message' => 'Transaction status updated successfully.', 'new_status' => $transaction->settled_at ? 'settled' : 'unsettled']);
+        }
+
+        return redirect()->back()->with('success', 'Transaction status updated successfully.');
     }
 }
