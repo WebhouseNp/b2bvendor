@@ -29,7 +29,7 @@ class Vendor extends Model
 
     public function imageUrl($size = null)
     {
-        if ($this->image) {
+        if (!$this->image) {
             $queryString = [
                 'name' => $this->shop_name,
                 'background' => 'b8daff',
