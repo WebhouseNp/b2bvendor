@@ -33,7 +33,12 @@
         <header class="header">
             <div class="page-brand">
                 <a class="link" href="index.html">
-                    <span class="brand">B2B
+                    <span class="brand">
+                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                        {{ auth()->user()->name }}
+                        @else
+                        {{ auth()->user()->vendor->shop_name }}
+                        @endif
                     </span>
                     <span class="brand-mini">L</span>
                 </a>
