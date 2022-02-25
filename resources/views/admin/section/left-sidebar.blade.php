@@ -255,7 +255,7 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
-        @if(in_array('vendor' ,$roles) || in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('category', $user_access)))
+        @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
                 <i class="sidebar-item-icon fa fa-list-alt"></i>
@@ -281,7 +281,7 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
-        @if(in_array('vendor' ,$roles) || in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('subcategory', $user_access)))
+        @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
                 <i class="sidebar-item-icon fa fa-shopping-cart"></i>
@@ -307,7 +307,7 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
-        @if(auth()->user()->hasAnyrole('super_admin|admin'))
+        @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
                 <i class="sidebar-item-icon fa fa-shopping-cart"></i>
