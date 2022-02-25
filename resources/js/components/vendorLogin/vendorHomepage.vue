@@ -16,18 +16,18 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="#">Home</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="#">About Us</a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Why Us</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">Blog</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Become a Partner</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">FAQ</a>
                 </li>
@@ -339,7 +339,7 @@
             </div>
             <hr>
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-sm-12 col-lg-12 col-md-12">
                     <div class="pt-we-accept">
                         <h3>We Accept</h3>
@@ -369,7 +369,7 @@
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr> -->
             <div class="bottom-footer">
                 <p>Product Listing Policy -Intellectual Property Protection - Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
                 <p><b>©2021 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>

@@ -21,7 +21,7 @@ $user_access = json_decode($user->access_level);
         </div>
         <ul class="side-menu metismenu">
             <li>
-                <a class="active" href="{{route('dashboard')}}"><i class="sidebar-item-icon fa fa-th-large"></i>
+                <a class="active" href="{{route('dashboard')}}"><i class="sidebar-item-icon fa fa-tachometer"></i>
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
@@ -30,7 +30,7 @@ $user_access = json_decode($user->access_level);
             @if(in_array('vendor' ,$roles))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-user"></i>
+                    <i class="sidebar-item-icon fa fa-user-circle"></i>
                     <span class="nav-label"> Profile</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -51,7 +51,7 @@ $user_access = json_decode($user->access_level);
             </li>
 
             <li>
-                <a href="/chat" target="_blank"><i class="sidebar-item-icon fa fa-th-large"></i>
+                <a href="/chat" target="_blank"><i class="sidebar-item-icon fa fa-comments"></i>
                     <span class="nav-label">Chat</span>
                 </a>
             </li>
@@ -170,7 +170,7 @@ $user_access = json_decode($user->access_level);
         @if (auth()->user()->hasRole('vendor'))
         <li>
             <a href="/transactions/{{ auth()->id() }}">
-                <i class="sidebar-item-icon fa fa-bar-chart "></i>
+                <i class="sidebar-item-icon fa fa-credit-card "></i>
                 <span class="nav-label">Transactions</span>
                 <i class="fa fa-angle-left arrow"></i>
             </a>
@@ -284,7 +284,7 @@ $user_access = json_decode($user->access_level);
         @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
-                <i class="sidebar-item-icon fa fa-shopping-cart"></i>
+                <i class="sidebar-item-icon fa fa-sort-amount-desc"></i>
                 <span class="nav-label">Sub Categories</span>
                 <i class="fa fa-angle-left arrow"></i>
             </a>
@@ -310,7 +310,7 @@ $user_access = json_decode($user->access_level);
         @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
-                <i class="sidebar-item-icon fa fa-shopping-cart"></i>
+                <i class="sidebar-item-icon fa fa-cube"></i>
                 <span class="nav-label">Product Categories</span>
                 <i class="fa fa-angle-left arrow"></i>
             </a>

@@ -67,7 +67,6 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
-        // if vendor, also check if order belongs to him
 
         $orderStatuses = config('constants.order_statuses');
         if(auth()->user()->hasRole('vendor')) {
