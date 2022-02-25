@@ -1,6 +1,11 @@
 <div class="card">
     <div class="card-header bg-light">
-        <div class="card-title">New Orders</div>
+        <div class="d-flex">
+            <div class="card-title">New Orders</div>
+            <div class="ml-auto">
+                <a href="{{ route('orders.index') }}">View All</a>
+            </div>
+        </div>
     </div>
 
     <table class="custom-table table table-responsive">

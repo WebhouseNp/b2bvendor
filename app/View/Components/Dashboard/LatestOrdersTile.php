@@ -25,7 +25,7 @@ class LatestOrdersTile extends Component
     public function render()
     {
         $orders = Order::with(['orderLists', 'vendor', 'customer'])
-            ->whereIn('status', ['pending', 'shipped'])
+            ->whereIn('status', ['pending', 'processing', 'shipped'])
             ->latest()
             ->limit(10)->get();
 
