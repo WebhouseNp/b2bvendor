@@ -2612,7 +2612,7 @@ body.fullscreen-mode {
 }
 
 .dropdown-menu-right {
-    right: 0;
+    /* right: 0; */
     left: auto
 }
 
@@ -4695,7 +4695,7 @@ body.fixed-layout.sidebar-mini .content-wrapper {
     -webkit-transition: margin .2s ease-in-out;
     -o-transition: margin .2s ease-in-out;
     transition: margin .2s ease-in-out;
-    min-height: 1200px
+    min-height: 100vh;
 }
 
 .page-header {

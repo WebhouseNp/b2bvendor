@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header bg-light">
+    <div class="card-header">
         <div class="d-flex">
             <div class="card-title">New Orders</div>
             <div class="ml-auto">
@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <table class="custom-table table table-responsive">
+    <table class="custom-table table table-responsive table-hover">
         <thead>
             <tr>
                 <td>Order No.</td>

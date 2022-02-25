@@ -32,7 +32,7 @@
 
         <header class="header">
             <div class="page-brand">
-                <a class="link" href="index.html">
+                <a class="link" href="#">
                     <span class="brand">
                         @if(auth()->user()->hasAnyRole('admin|super_admin'))
                         {{ auth()->user()->name }}
@@ -40,7 +40,7 @@
                         {{ auth()->user()->vendor->shop_name }}
                         @endif
                     </span>
-                    <span class="brand-mini">L</span>
+                    <span class="brand-mini">VR</span>
                 </a>
             </div>
             <div class="flexbox flex-1">
@@ -62,9 +62,11 @@
                             <span></span>{{ @Auth::user()->name }}<i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
                             <a class="dropdown-item" href="{{route('change.password')}}">
                                 <i class="fa fa-cog"></i>Change Password
                             </a>
+                            </li>
                             <!-- <a class="dropdown-item" href="profile.html">
                                 <i class="fa fa-cog"></i>Settings
                             </a>
