@@ -368,58 +368,6 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
-        <!-- @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('offer', $user_access))) -->
-        <!-- <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-gift"></i>
-                    <span class="nav-label">Offer</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('offer.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add New
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('offer.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Lists
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
-        <!-- @endif -->
-
-        <!-- @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('brand', $user_access))) -->
-        <!-- <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-dollar"></i>
-                    <span class="nav-label">Brand</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('brand.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add New
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('brand.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Lists
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
-        <!-- @endif  -->
-
         @if(in_array('super_admin' ,$roles))
         <li>
             <a href="javascript:;">
@@ -466,6 +414,58 @@ $user_access = json_decode($user->access_level);
                     <a href="{{route('country.index')}}">
                         <span class="fa fa-circle-o"></span>
                         All Countries Lists
+                    </a>
+                </li>
+            </ul>
+        </li>
+        @endif
+
+        @if(in_array('super_admin' ,$roles))
+        <li>
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-flag"></i>
+                <span class="nav-label">Blogs</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse">
+
+                <li>
+                    <a href="{{route('blog.create')}}">
+                        <span class="fa fa-plus"></span>
+                        Add New Blog
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('blog.index')}}">
+                        <span class="fa fa-circle-o"></span>
+                        All Blogs
+                    </a>
+                </li>
+            </ul>
+        </li>
+        @endif
+
+        @if(in_array('super_admin' ,$roles))
+        <li>
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-flag"></i>
+                <span class="nav-label">FAQ</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse">
+
+                <li>
+                    <a href="{{route('faq.create')}}">
+                        <span class="fa fa-plus"></span>
+                        Add New FAQ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('faq.index')}}">
+                        <span class="fa fa-circle-o"></span>
+                        All FAQS
                     </a>
                 </li>
             </ul>
