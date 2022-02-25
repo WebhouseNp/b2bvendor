@@ -12,7 +12,7 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="py-3 px-4">
-            <div class="d-flex">
+            <div class="transaction-header">
                 <div>
                     <h4>{{ $vendor->shop_name }}</h4>
                     <div>{{ $vendor->company_address }}</div>

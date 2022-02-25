@@ -49,7 +49,7 @@ button {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 .info-box .info-box-number {
     display: block;
@@ -136,10 +136,10 @@ button {
     border-top: 3px solid #007bff;
 }
 
-.card {
+/* .card {
     box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
     margin-bottom: 1rem;
-}
+} */
 
 .profile-user-img {
     border: 3px solid #adb5bd;
@@ -174,8 +174,28 @@ button {
     background-color: #007bff;
 }
 
+/* Mofified Tabs */
+.plain-nav-tabs .nav-link:hover {
+    color: rebeccapurple;
+    border-color: transparent;
+    /* border-bottom: 2px solid rebeccapurple; */
+}
+.plain-nav-tabs .nav-link.active {
+    color: rebeccapurple;
+    border: 0px;
+    border-bottom: 2px solid rebeccapurple;
+}
 
 /* #sidebar {
     max-height: 100vh;
     position: fixed;
 } */
+.transaction-header {
+    display: flex;
+}
+
+@media screen and (max-width: 576px) {
+    .transaction-header {
+        display: block;
+    }
+}
