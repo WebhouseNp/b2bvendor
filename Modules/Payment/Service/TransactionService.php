@@ -43,8 +43,12 @@ class TransactionService
     public function getCurrentBalance($vendorId)
     {
         return Transaction::where('vendor_id', $vendorId)
-        ->where('is_cod', false)
-        ->orWhereNull('is_cod')
-        ->latest()->first()->running_balance ?? 0;
+            ->onlyOnlinePayments()
+            ->latest()->first()->running_balance ?? 0;
+    }
+
+    public function calculateCommission($amount, $commissionPercentage)
+    {
+        return $amount * ($commissionPercentage / 100);
     }
 }

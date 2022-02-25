@@ -8,13 +8,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\App;
 use Modules\Order\Entities\Order;
 use Modules\Payment\Entities\Transaction;
+use Modules\Payment\Service\TransactionService;
+use Modules\User\Entities\Vendor;
 
-class ReleasePaymentJob implements ShouldQueue
+class ReleasePaymentJob
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    
+
     public $order;
 
     /**
@@ -35,19 +38,24 @@ class ReleasePaymentJob implements ShouldQueue
     public function handle()
     {
         try {
-            logger('saving payment');
+            $transactionService = App::make(TransactionService::class);
             $isCod = $this->order->payment_type == 'cod' ? true : false;
-            $currentBalance = Transaction::where('vendor_id', $this->order->vendor_id)
-                ->where('is_cod', false)
-                ->latest()->first()->running_balance ?? 0;
+            $vendor = $this->order->vendor;
+            $currentBalance = $transactionService->getCurrentBalance($vendor->id);
+
+            $amountBeforeCommission = $this->order->total_price;
+            $commission = $transactionService->calculateCommission($this->order->total_price, $vendor->commission_rate ?? 0);
+            $amountAfterCommission = $amountBeforeCommission - $commission;
 
             $transaction = new Transaction();
-            $transaction->vendor_id = $this->order->vendor_id;
+            $transaction->vendor_id = $vendor->id;
             $transaction->type = 1;
-            $transaction->amount = $this->order->total_price;
+            $transaction->amount_before_commission = $amountBeforeCommission;
+            $transaction->commission = $commission;
+            $transaction->amount = $amountAfterCommission;
             $transaction->running_balance = $isCod
-                ? $this->order->total_price
-                : ($currentBalance + $this->order->total_price);
+                ? $amountAfterCommission
+                : ($currentBalance + $amountAfterCommission);
             $transaction->remarks = 'Order #' . $this->order->id;
             $transaction->is_cod = $isCod;
             $transaction->save();

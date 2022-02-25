@@ -93,8 +93,8 @@ button {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.custom-table tr:hover {
-    /* background-color: rgb(244, 246, 255); */
+.custom-table.table-hover tr:hover {
+    background-color: rgb(244, 246, 255);
 }
 
 .custom-table tr td {
@@ -115,4 +115,16 @@ button {
 .order-status-badge.completed {
     background-color: #b1f2cb;
     color: #064a22;
+}
+
+/* Mofified Tabs */
+.plain-nav-tabs .nav-link:hover {
+    color: rebeccapurple;
+    border-color: transparent;
+    /* border-bottom: 2px solid rebeccapurple; */
+}
+.plain-nav-tabs .nav-link.active {
+    color: rebeccapurple;
+    border: 0px;
+    border-bottom: 2px solid rebeccapurple;
 }

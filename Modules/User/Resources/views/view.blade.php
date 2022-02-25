@@ -2,18 +2,6 @@
 @section('page_title'){{ ucfirst($vendor->vendor->shop_name) }} Profile @endsection
 
 @section('content')
-<style>
-     .plain-nav-tabs .nav-link:hover {
-        color: rebeccapurple;
-        border-color: transparent;
-        /* border-bottom: 2px solid rebeccapurple; */
-    }
-    .plain-nav-tabs .nav-link.active {
-        color: rebeccapurple;
-        border: 0px;
-        border-bottom: 2px solid rebeccapurple;
-    }
-</style>
 @include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">
