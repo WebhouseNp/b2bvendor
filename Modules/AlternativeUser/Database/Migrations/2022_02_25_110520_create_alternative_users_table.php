@@ -17,10 +17,10 @@ class CreateAlternativeUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone_num')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('password');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->json('permissions')->nullable();
+            $table->text('permissions')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

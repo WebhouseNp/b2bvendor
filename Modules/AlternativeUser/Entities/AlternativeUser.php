@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class AlternativeUser extends Model
 {
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'permissions' => 'array',
+    ];
+
+    public function hasPermission($permission)
+    {
+        return $this->permissions && in_array($permission, $this->permissions);
+    }
     
     public function user()
     {

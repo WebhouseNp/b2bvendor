@@ -528,6 +528,15 @@ $user_access = json_decode($user->access_level);
             </a>
         </li>
         @endif
+
+        @if(auth()->user()->hasAnyRole(['vendor']))
+        <li>
+            <a href="{{ route('alternative-users.index') }}">
+                <i class="sidebar-item-icon fa fa-thumbs-up"></i>
+                <span class="nav-label">Alternative Users</span>
+            </a>
+        </li>
+        @endif
         </ul>
     </div>
 </nav>

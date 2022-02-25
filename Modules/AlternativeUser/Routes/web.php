@@ -1,16 +1,11 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Modules\AlternativeUser\Http\Controllers\AlternativeUserController;
 
-Route::prefix('alternativeuser')->group(function() {
-    Route::get('/', 'AlternativeUserController@index');
+Route::group(['middleware' => 'role:vendor'], function() {
+    Route::get('alternative-users', [AlternativeUserController::class, 'index'])->name('alternative-users.index');
+    Route::get('alternative-users/create', [AlternativeUserController::class, 'create'])->name('alternative-users.create');
+    Route::post('alternative-users', [AlternativeUserController::class, 'store'])->name('alternative-users.store');
+    Route::get('alternative-users/{alternativeUser}/edit', [AlternativeUserController::class, 'edit'])->name('alternative-users.edit');
+    Route::put('alternative-users/{alternativeUser}', [AlternativeUserController::class, 'update'])->name('alternative-users.update');
 });
