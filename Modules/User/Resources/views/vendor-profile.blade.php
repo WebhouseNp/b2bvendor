@@ -38,10 +38,7 @@
                                 <b>Sales Report</b> <a class="float-right" href="{{route('salesReport')}}" target="_blank">View</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Products</b> <a class="float-right" href="{{route('product.index',['type'=>'all'])}}" >View</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Total Sales</b> <a class="float-right" href="{{route('product.index',['type'=>'all'])}}" >View</a>
+                                <b>Products</b> <a class="float-right" href="{{route('product.index')}}" >View</a>
                             </li>
                         </ul>
                         <a href="{{route('editVendorProfile',$vendor->id)}}" target="_blank" class="btn btn-primary btn-block"><b>Edit Profile</b></a>

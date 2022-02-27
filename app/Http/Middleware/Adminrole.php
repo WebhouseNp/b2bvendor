@@ -33,8 +33,6 @@ class Adminrole
             if (in_array('admin', $roles)) {
                 $user_access = json_decode(auth()->user()->access_level);
                 if (in_array($segment, $user_access)) {
-                    // dd('hi');
-                    // dd(in_array($segment, $user_access));
                     return $next($request);
                 }
                 return redirect()->route('dashboard')->with('message', 'You dont have admin access');

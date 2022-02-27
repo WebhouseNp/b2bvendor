@@ -67,7 +67,9 @@
     </div>
 </div>
 
-<div class="page-content fade-in-up">
+
+
+<!-- <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">Sales Report in Chart</div>
@@ -77,7 +79,7 @@
             Total Sales Amount:: Rs. <input type="text" id="total_amt" value="{{$total_sales}}" disabled>
         </div>
     </div>
-</div>
+</div> -->
 @endsection
 @push('push_scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
