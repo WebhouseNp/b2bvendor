@@ -25,20 +25,29 @@
                     <div class="card-body">
                       <h3 class="card-head">Local Seller</h3>
                       <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Laboriosam dolore ipsum unde et nihil quasi
-                        quibusdam quos. Facilis explicabo itaque, laborum unde
-                        quod numquam placeat facere ea fuga. Praesentium,
-                        soluta.
+                        Sastowholesale.com offers Local seller to reach
+                        wide range of customers nationwide with different seller tools.
                       </p>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
-                        <p class="pl-2 text-left">You are based locally</p>
+                        <p class="pl-2 text-left">You can sell Product/service nationwide</p>
                       </div>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
                         <p class="pl-2 text-left">
-                          Pay Marketplace fee only when you sell
+                          Access to wide array of seller tools
+                        </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">
+                          You can receive Nepali currency
+                        </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">
+                          No registration fees
                         </p>
                       </div>
                     </div>
@@ -67,20 +76,29 @@
                     <div class="card-body">
                       <h3 class="card-head">International Seller</h3>
                       <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Laboriosam dolore ipsum unde et nihil quasi
-                        quibusdam quos. Facilis explicabo itaque, laborum unde
-                        quod numquam placeat facere ea fuga. Praesentium,
-                        soluta.
+                        Sastowholesale.com offers international seller to reach
+                        wide range of customers globally 
                       </p>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
-                        <p class="pl-2 text-left">You are based out of Nepal</p>
+                        <p class="pl-2 text-left">You can sell product/service globally</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">
+                          No registration Fees
+                        </p>
                       </div>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
                         <p class="pl-2 text-left">
                           You are a registered business
+                        </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">
+                          You can receive currency in your local currency & USD too
                         </p>
                       </div>
                     </div>

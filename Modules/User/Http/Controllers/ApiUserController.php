@@ -165,6 +165,7 @@ class ApiUserController extends Controller
         'email' => 'required|email|unique:users',
         'name' => 'required',
         'password' => 'required|min:6',
+        'phone_num' => 'required',
         'confirm_password' => 'required_with:password|same:password'
 
       ]);
