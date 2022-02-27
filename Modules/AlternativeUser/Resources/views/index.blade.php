@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('page_title')
-Product Categories
+Users
 @endsection
 
 @section('styles')
@@ -53,7 +53,7 @@ Product Categories
                                 <i class="fa fa-edit mr-1"></i> Edit
                             </a>
                             <span class="mx-1"></span>
-                            <form action="{{ route('product-category.destroy', $alternativeUser->id) }}" method="POST" class="js-delete-prdoduct-category-form form-inline d-inline">
+                            <form action="{{ route('alternative-users.destroy', $alternativeUser->id) }}" method="POST" class="js-delete-alternative-user-form form-inline d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger border-0"><i class="fa fa-trash mr-1"></i> Delete</button>
@@ -75,6 +75,7 @@ Product Categories
 
 @push('push_scripts')
 <script src="{{ asset('/assets/admin/vendors/DataTables/datatables.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin/js/sweetalert.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
             $('#alternative-users-table').DataTable({
@@ -85,6 +86,27 @@ Product Categories
                 }]
             });
         });
+
+
+         // Confirm before delete
+         $('.js-delete-alternative-user-form').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?'
+                    , text: `Are you sure to delete this user? This action is irreversible.`
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.value) {
+                        e.target.submit();
+                    } else {
+                        $(this).find('button[type="submit"]').prop('disabled', false);
+                    }
+                })
+            });
 
 </script>
 @endpush

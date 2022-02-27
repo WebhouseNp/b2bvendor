@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('page_title')
+Users
+@endsection
+
 @section('content')
 <div class="page-content container fade-in-up" style="max-width: 600px;">
 
@@ -11,7 +15,7 @@
 
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">{{ $updateMode ? 'Update' : 'Add New' }} Sub Category</div>
+            <div class="ibox-title">{{ $updateMode ? 'Update' : 'Add' }} User</div>
             <div class="ibox-tools">
             </div>
         </div>

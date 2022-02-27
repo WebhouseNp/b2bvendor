@@ -35,11 +35,6 @@ class AlternativeUserController extends Controller
         return redirect()->route('alternative-users.index')->with('success', $alternativeUser->name . ' has been added to user list.');
     }
 
-    public function show($id)
-    {
-        return view('alternativeuser::show');
-    }
-
     public function edit(AlternativeUser $alternativeUser)
     {
         return $this->showForm($alternativeUser);
@@ -62,7 +57,9 @@ class AlternativeUserController extends Controller
 
     public function destroy(AlternativeUser $alternativeUser)
     {
-        //
+        $alternativeUser->delete();
+
+        return redirect()->route('alternative-users.index')->with('success', 'User has been deleted.');
     }
 
     protected function showForm(AlternativeUser $alternativeUser)
