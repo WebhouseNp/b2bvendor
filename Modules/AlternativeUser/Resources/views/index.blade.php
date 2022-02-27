@@ -9,10 +9,8 @@ Users
 @endsection
 
 @section('content')
-<div class="ibox-body" id="validation-errors">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-</div>
 <div class="page-content fade-in-up">
+    <x-alerts></x-alerts>
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">Users</div>

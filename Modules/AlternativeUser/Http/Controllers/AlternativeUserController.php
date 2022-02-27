@@ -59,7 +59,7 @@ class AlternativeUserController extends Controller
     {
         $alternativeUser->delete();
 
-        return redirect()->route('alternative-users.index')->with('success', 'User has been deleted.');
+        return redirect()->route('alternative-users.index')->with('error', 'User has been deleted.');
     }
 
     protected function showForm(AlternativeUser $alternativeUser)
