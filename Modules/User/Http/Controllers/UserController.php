@@ -21,6 +21,7 @@ use Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail as FacadesMail;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -110,8 +111,6 @@ class UserController extends Controller
       ], 400);
     }
   }
-
-  
 
   public function verifificationCode(Request $request)
   {
@@ -315,5 +314,40 @@ class UserController extends Controller
           "message" => "Password has been changed",
         ], 200);
   }
+
+  //GoogleLogin
+  public function redirectToGoogle(){
+    return Socialite::driver('google')->redirect();
+  }
   
+  //Google Callback
+  public function handleGoogleCallBack(){
+    $user = Socialite::driver('google')->user();
+    $this->_registerOrLoginUser($user);
+
+    return redirect()->route('home');
+  }
+
+  //FacebookLogin
+  public function redirectToFacebook(){
+    return Socialite::driver('facebook')->redirect();
+  }
+  
+  //Facebook Callback
+  public function handleFacebookCallBack(){
+    $user = Socialite::driver('facebook')->user();
+  }
+
+  protected function _registerOrLoginUser($data){
+    $user = User::where('email',$data->email)->first();
+    if(!$user){
+      $user = new User();
+      $user->name = $data->name;
+      $user->email = $data->email;
+      $user->password = $data->password;
+      $user->api_token = $data->token;
+      $user->save();
+    }
+    Auth::login($user);
+  }
 }

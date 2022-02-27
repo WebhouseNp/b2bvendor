@@ -25,6 +25,16 @@
     21 => 'Illuminate\\View\\ViewServiceProvider',
     22 => 'Barryvdh\\Debugbar\\ServiceProvider',
     23 => 'BeyondCode\\LaravelWebSockets\\WebSocketsServiceProvider',
+<<<<<<< HEAD
+    24 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
+    25 => 'Facade\\Ignition\\IgnitionServiceProvider',
+    26 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    27 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    28 => 'Intervention\\Image\\ImageServiceProvider',
+    29 => 'Laravel\\Passport\\PassportServiceProvider',
+    30 => 'Laravel\\Sail\\SailServiceProvider',
+    31 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+=======
     24 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
     25 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
     26 => 'Facade\\Ignition\\IgnitionServiceProvider',
@@ -33,6 +43,7 @@
     29 => 'Intervention\\Image\\ImageServiceProvider',
     30 => 'Laravel\\Passport\\PassportServiceProvider',
     31 => 'Laravel\\Sail\\SailServiceProvider',
+>>>>>>> ec04818c6ac96bc3d69d6d5cce6cf3e06a4e9f22
     32 => 'Laravel\\Tinker\\TinkerServiceProvider',
     33 => 'Laravel\\Ui\\UiServiceProvider',
     34 => 'Collective\\Html\\HtmlServiceProvider',
@@ -211,6 +222,7 @@
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
+    'Laravel\\Socialite\\Contracts\\Factory' => 'Laravel\\Socialite\\SocialiteServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'html' => 'Collective\\Html\\HtmlServiceProvider',
     'form' => 'Collective\\Html\\HtmlServiceProvider',
@@ -256,6 +268,9 @@
     array (
     ),
     'Laravel\\Sail\\SailServiceProvider' => 
+    array (
+    ),
+    'Laravel\\Socialite\\SocialiteServiceProvider' => 
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 

@@ -5,16 +5,18 @@ use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\Front\JobseekerLoginController;
 use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\Front\DefaultController;
+use App\Http\Controllers\SocialiteLoginController;
 use Illuminate\Support\Facades\Artisan;
 use Pusher\Pusher;
 use Illuminate\Http\Request;
 use Modules\Country\Entities\Country;
+use Modules\User\Http\Controllers\UserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/vendor-homepage');
+Route::redirect('/', '/vendor-homepage')->name('home');
 
 Route::get('optimize-clear', function () {
     Artisan::call('optimize:clear');
@@ -78,3 +80,11 @@ Route::post('/pusher/auth', function (Request $request) {
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
+
+//login with Google
+Route::get('login/google',[SocialiteLoginController::class ,'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback',[SocialiteLoginController::class,'handleGoogleCallBack']);
+
+//login with Facebook
+Route::get('login/facebook',[SocialiteLoginController::class,'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback',[SocialiteLoginController::class,'handleFacebookCallBack']);
