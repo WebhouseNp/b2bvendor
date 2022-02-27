@@ -2532,6 +2532,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SelectCategory",
@@ -5754,8 +5772,116 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'LoginHomePage',
+  name: "LoginHomePage",
   methods: {
     onClickSingup: function onClickSingup() {
       window.location.href = "/vendor-registor";
@@ -6122,6 +6248,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.logo {\n  height: 80px;\n}\n.vendor-bg {\n  background: url(\"/images/pexels-photo-5668841.jpeg\") no-repeat;\n  background-size: cover;\n  background-position: center center;\n}\n.vendor-overlay {\n  padding: 104px 0;\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vendor-title {\n  color: #ffffff;\n  font-size: 2.8rem;\n  font-weight: 500;\n  line-height: 1.5;\n}\n.vendor-sign-in-form,\n.vendor-section {\n  background: #f2f3f7;\n}\n.vendor-btn {\n  margin-bottom: 2rem;\n}\n.vendor-form {\n  padding: 18px 20px;\n  border: 1px solid lightgray;\n}\n.vendor-form-bt {\n  padding: 18px 20px;\n  border: 1px solid lightgray;\n}\n.form-check {\n  margin-bottom: 1rem;\n}\n\n/*************** Steps ****************/\n.step-div {\n  display: inline-block;\n  width: 200px;\n  padding: 12px;\n  background: #ffffff;\n  box-shadow: 1px 1px 6px 0px lightblue;\n}\n.step-group {\n  display: flex;\n  justify-content: space-around;\n}\n.step-subtitle {\n  color: #ffa500;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n.step-div-h1 {\n  color: #1e76bd;\n}\n.step-div-p {\n  font-weight: 500;\n}\n.vendor-img-wrap {\n  margin: 1.4rem 0;\n}\n@media screen and (max-width: 600px) {\n.step-group {\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n}\n.step-div:not(:last-child) {\n    margin-bottom: 1.8rem;\n}\n}\n.field-icon {\n  float: right;\n  margin-right: 10px;\n  margin-top: -30px;\n  position: relative;\n  z-index: 2;\n  cursor: pointer;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2] {\r\n  margin-left: 30px;\r\n  margin-right: 30px;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n    color: #FFA500;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31531,6 +31681,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_style_index_0_id_cbdddaa2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_style_index_0_id_cbdddaa2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_style_index_0_id_cbdddaa2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -32562,23 +32742,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _vendorHomepage_vue_vue_type_template_id_cbdddaa2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendorHomepage.vue?vue&type=template&id=cbdddaa2& */ "./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&");
+/* harmony import */ var _vendorHomepage_vue_vue_type_template_id_cbdddaa2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true& */ "./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true&");
 /* harmony import */ var _vendorHomepage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vendorHomepage.vue?vue&type=script&lang=js& */ "./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _vendorHomepage_vue_vue_type_style_index_0_id_cbdddaa2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css& */ "./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _vendorHomepage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _vendorHomepage_vue_vue_type_template_id_cbdddaa2___WEBPACK_IMPORTED_MODULE_0__.render,
-  _vendorHomepage_vue_vue_type_template_id_cbdddaa2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _vendorHomepage_vue_vue_type_template_id_cbdddaa2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _vendorHomepage_vue_vue_type_template_id_cbdddaa2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "cbdddaa2",
   null
   
 )
@@ -32953,6 +33135,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_style_index_0_id_cbdddaa2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=style&index=0&id=cbdddaa2&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/LoadingButton.vue?vue&type=template&id=b8be879a&scoped=true&":
 /*!**********************************************************************************************!*\
   !*** ./resources/js/components/LoadingButton.vue?vue&type=template&id=b8be879a&scoped=true& ***!
@@ -33225,19 +33420,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2& ***!
-  \***********************************************************************************************/
+/***/ "./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true& ***!
+  \***********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_template_id_cbdddaa2___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_template_id_cbdddaa2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_template_id_cbdddaa2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_template_id_cbdddaa2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_template_id_cbdddaa2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./vendorHomepage.vue?vue&type=template&id=cbdddaa2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_template_id_cbdddaa2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true&");
 
 
 /***/ }),
@@ -33943,7 +34138,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
         _vm._v(
-          "\n                      Lorem ipsum, dolor sit amet consectetur adipisicing\n                      elit. Laboriosam dolore ipsum unde et nihil quasi\n                      quibusdam quos. Facilis explicabo itaque, laborum unde\n                      quod numquam placeat facere ea fuga. Praesentium,\n                      soluta.\n                    "
+          "\n                      Sastowholesale.com offers Local seller to reach\n                      wide range of customers nationwide with different seller tools.\n                    "
         ),
       ]),
       _vm._v(" "),
@@ -33951,7 +34146,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "fa fa-check pt-1" }),
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
-          _vm._v("You are based locally"),
+          _vm._v("You can sell Product/service nationwide"),
         ]),
       ]),
       _vm._v(" "),
@@ -33960,7 +34155,27 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
           _vm._v(
-            "\n                        Pay Marketplace fee only when you sell\n                      "
+            "\n                        Access to wide array of seller tools\n                      "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v(
+            "\n                        You can receive Nepali currency\n                      "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v(
+            "\n                        No registration fees\n                      "
           ),
         ]),
       ]),
@@ -33989,7 +34204,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
         _vm._v(
-          "\n                      Lorem ipsum, dolor sit amet consectetur adipisicing\n                      elit. Laboriosam dolore ipsum unde et nihil quasi\n                      quibusdam quos. Facilis explicabo itaque, laborum unde\n                      quod numquam placeat facere ea fuga. Praesentium,\n                      soluta.\n                    "
+          "\n                      Sastowholesale.com offers international seller to reach\n                      wide range of customers globally \n                    "
         ),
       ]),
       _vm._v(" "),
@@ -33997,7 +34212,17 @@ var staticRenderFns = [
         _c("i", { staticClass: "fa fa-check pt-1" }),
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
-          _vm._v("You are based out of Nepal"),
+          _vm._v("You can sell product/service globally"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v(
+            "\n                        No registration Fees\n                      "
+          ),
         ]),
       ]),
       _vm._v(" "),
@@ -34007,6 +34232,16 @@ var staticRenderFns = [
         _c("p", { staticClass: "pl-2 text-left" }, [
           _vm._v(
             "\n                        You are a registered business\n                      "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v(
+            "\n                        You can receive currency in your local currency & USD too\n                      "
           ),
         ]),
       ]),
@@ -37906,10 +38141,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&":
-/*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2& ***!
-  \**************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/vendorHomepage.vue?vue&type=template&id=cbdddaa2&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37960,7 +38195,7 @@ var render = function () {
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "\n                Sastowholesale.com is the dynamic marketplace for Manufacturers, \n                Wholesalers & Traders: who are seeking to engage with more customers \n                online, Sales lead or Business growth.\n            "
+            "\n        Sastowholesale.com is the dynamic marketplace for Manufacturers,\n        Wholesalers & Traders: who are seeking to engage with more customers\n        online, Sales lead or Business growth.\n      "
           ),
         ]),
         _vm._v(" "),
@@ -37976,7 +38211,7 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "alert-login" }, [
           _c("span", [
-            _vm._v("Already a Seller? "),
+            _vm._v("Already a Seller?\n          "),
             _c(
               "a",
               {
@@ -38165,7 +38400,7 @@ var staticRenderFns = [
                   },
                   [
                     _vm._v(
-                      "\n                                    vendor@sastowholsale.com\n                                "
+                      "\n                  vendor@sastowholsale.com\n                "
                     ),
                   ]
                 ),
@@ -38187,74 +38422,59 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-5" }, [
-          _c("div", { staticClass: "col-lg-2 col-md-6 col-6 mx-auto mb-4" }, [
-            _c("div", { staticClass: "why-join-box" }, [
-              _c("div", { staticClass: "why-join-box-icon" }, [
-                _c("i", { staticClass: "fas fa-money-check" }),
-              ]),
-              _vm._v(" "),
-              _c("h5", { staticClass: "why-join-box-title" }, [
-                _vm._v("Free Registration"),
-              ]),
+          _c("div", { staticClass: "description" }, [
+            _c("p", [
+              _vm._v(
+                "\n            B@2C, C2C Ecommerce is growing rapidly in Nepalese market. Most of\n            the users are using online payment, doing online purchase these\n            days. Internet user is growing ever year. We have many B2B, B2C\n            Ecommerce in Nepal, while we are going into a digital era, B2B\n            Ecommerce is the future of Nepal. We believe in promoting B2B\n            Ecommerce and making Digital Nepal. By registering in\n            Sastowholesale.com you can reach more customers, more engagements\n            & more sales.\n          "
+              ),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-5" }, [
+          _c("div", { staticClass: "heading" }, [
+            _c("h2", [
+              _vm._v(
+                "Here are some of our benefits choosing Sastowholesale.com:"
+              ),
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2 col-md-6 col-6 mx-auto mb-4" }, [
-            _c("div", { staticClass: "why-join-box" }, [
-              _c("div", { staticClass: "why-join-box-icon" }, [
-                _c("i", { staticClass: "fas fa-chalkboard-teacher" }),
+          _c("div", { staticClass: "list mt-5" }, [
+            _c("ul", [
+              _c("li", [
+                _c("i", { staticClass: "fa fa-check pt-1" }),
+                _vm._v(
+                  "\n              Sastowholesale.com is fully dedicated in promoting National and\n              International products around the world.\n            "
+                ),
               ]),
               _vm._v(" "),
-              _c("h5", { staticClass: "why-join-box-title" }, [
-                _vm._v("Business Support & Training"),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2 col-md-6 col-6 mx-auto mb-4" }, [
-            _c("div", { staticClass: "why-join-box" }, [
-              _c("div", { staticClass: "why-join-box-icon" }, [
-                _c("i", { staticClass: "fas fa-file-invoice-dollar" }),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-check pt-1" }),
+                _vm._v(
+                  " Sastowholesale.com provides\n              payment assurance to vendor and buyer.\n            "
+                ),
               ]),
               _vm._v(" "),
-              _c("h5", { staticClass: "why-join-box-title" }, [
-                _vm._v("Weekly Payments After Sales"),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2 col-md-6 col-6 mx-auto mb-4" }, [
-            _c("div", { staticClass: "why-join-box" }, [
-              _c("div", { staticClass: "why-join-box-icon" }, [
-                _c("i", { staticClass: "fas fa-users" }),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-check pt-1" }),
+                _vm._v(
+                  " Sastowholesale.com helps in\n              providing Local & International logistic Management and custom\n              clearance management.\n            "
+                ),
               ]),
               _vm._v(" "),
-              _c("h5", { staticClass: "why-join-box-title" }, [
-                _vm._v("Minimum Marketplace Fees"),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2 col-md-6 col-6 mx-auto mb-4" }, [
-            _c("div", { staticClass: "why-join-box" }, [
-              _c("div", { staticClass: "why-join-box-icon" }, [
-                _c("i", { staticClass: "fas fa-shopping-bag" }),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-check pt-1" }),
+                _vm._v(
+                  " Sastowholesale.com provides\n              different guidelines to vendor for exporting/importing goods to\n              Nepal.\n            "
+                ),
               ]),
               _vm._v(" "),
-              _c("h5", { staticClass: "why-join-box-title" }, [
-                _vm._v("Guidance In International Trade"),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-2 col-md-6 col-6 mx-auto mb-4" }, [
-            _c("div", { staticClass: "why-join-box" }, [
-              _c("div", { staticClass: "why-join-box-icon" }, [
-                _c("i", { staticClass: "fas fa-chart-line" }),
-              ]),
-              _vm._v(" "),
-              _c("h5", { staticClass: "why-join-box-title" }, [
-                _vm._v("Lower Cost To Maximize Your Profit"),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-check pt-1" }),
+                _vm._v(
+                  " \n              Registration is free for 1st year.\n            "
+                ),
               ]),
             ]),
           ]),
@@ -38461,7 +38681,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "bottom-footer" }, [
           _c("p", [
             _vm._v(
-              "Product Listing Policy -Intellectual Property Protection - Privacy Policy - Terms of Use - User Information Legal Enquiry Guide"
+              "\n          Product Listing Policy -Intellectual Property Protection - Privacy\n          Policy - Terms of Use - User Information Legal Enquiry Guide\n        "
             ),
           ]),
           _vm._v(" "),
@@ -38479,7 +38699,7 @@ var staticRenderFns = [
           _c("p", [
             _c("b", [_vm._v("Tel:")]),
             _vm._v(
-              " +977-01-4563782 Customer Services: +977-01-23452312 Email: info@sastowholesale.com Fax: +977-01-4234345"
+              " +977-01-4563782 Customer Services: +977-01-23452312\n          Email: info@sastowholesale.com Fax: +977-01-4234345\n        "
             ),
           ]),
           _vm._v(" "),

@@ -69,24 +69,6 @@
     }
 </script>
 <script>
-    function products() {
-        $.ajax({
-            type: 'GET',
-            url: '/api/allproducts',
-            success: function(response) {
-                if (response.data) {
-                    $('#appendProduct').html(response.html)
-                    $("#example-table").DataTable();
-                }
-            },
-            error: function(error) {
-                $('#notification-bar').text('An error occurred');
-            }
-        });
-    }
-
-    products()
-
     // function deleteProduct(el, id) {
     //     var message = confirm('Do You want to delete this product??');
     //     if (message) {

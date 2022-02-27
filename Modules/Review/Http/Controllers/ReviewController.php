@@ -30,31 +30,46 @@ class ReviewController extends Controller
                 exit;
             }
             $formData = $request->all();
-            $order_list = Order::with('orderList')
-                ->whereHas('orderList', function (Builder $query) use ($request) {
-                    $query->where('product_id', $request->product_id);
-                })
-                ->get();
             $reviews = DB::table('reviews')
                 ->where('product_id', $request->product_id)
                 ->where('customer_id', $request->customer_id)
                 ->get();
-            if ($reviews->isNotEmpty()) {
-                return response()->json([
-                    "message" => "You have already given review to the product!!"
-                ], 200);
-            }
-            if ($order_list->isEmpty()) {
-                return response()->json([
-                    "message" => "Review cannot be created as you have not brought the product!!"
-                ], 200);
-            } else if ($order_list->isNotEmpty() && $reviews->isEmpty()) {
-                $data = Review::create($formData);
-                return response()->json([
-                    "message" => "Review created!!",
-                    "data" => $data
-                ], 200);
-            }
+                if ($reviews->isNotEmpty()) {
+                        return response()->json([
+                            "message" => "You have already given review to the product!!"
+                        ], 200);
+                    }else{
+                        $data = Review::create($formData);
+                        return response()->json([
+                            "message" => "Review created!!",
+                            "data" => $data
+                        ], 200);
+                    }
+            // $order_list = Order::with('orderList')
+            //     ->whereHas('orderList', function (Builder $query) use ($request) {
+            //         $query->where('product_id', $request->product_id);
+            //     })
+            //     ->get();
+            // $reviews = DB::table('reviews')
+            //     ->where('product_id', $request->product_id)
+            //     ->where('customer_id', $request->customer_id)
+            //     ->get();
+            // if ($reviews->isNotEmpty()) {
+            //     return response()->json([
+            //         "message" => "You have already given review to the product!!"
+            //     ], 200);
+            // }
+            // if ($order_list->isEmpty()) {
+            //     return response()->json([
+            //         "message" => "Review cannot be created as you have not brought the product!!"
+            //     ], 200);
+            // } else if ($order_list->isNotEmpty() && $reviews->isEmpty()) {
+            //     $data = Review::create($formData);
+            //     return response()->json([
+            //         "message" => "Review created!!",
+            //         "data" => $data
+            //     ], 200);
+            // }
         } catch (\Exception $ex) {
             Log::error('Review Created', [
                 'status' => '500',

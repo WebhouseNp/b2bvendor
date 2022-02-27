@@ -9,23 +9,19 @@
 @endsection
 
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title"> Product</h1>
+<div class="page-content fade-in-up">
+    <div class="page-heading d-flex mb-3">
+    <h1 class="h4-responsive">{{ $updateMode ? 'Edit' : 'Add' }} Product</h1>
+    <div class="ml-auto">
+        <a class="btn btn-info btn-md" href="/product/all">All Products</a>
+    </div>
 </div>
 @include('admin.section.notifications')
-<div class="page-content fade-in-up">
-    <div class="ibox">
-        <div class="ibox-head">
-            <div class="ibox-title">Edit Product</div>
-            <div>
-                <a class="btn btn-info btn-md" href="/product/all">All Products</a>
-            </div>
-        </div>
-    </div>
-
     <div class="ibox-body" id="validation-errors">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     </div>
+
+    @include('product::__partials.product-form-tabs')
 
     <div id="custom-validation-alert" class="validation-alert d-none">
         <div class="head">
@@ -63,7 +59,7 @@
                                         <label><strong>Product Title</strong></label>
                                         <input class="form-control" type="text" id="title" name="title" value="{{ $product->title }}" placeholder="Product Title Here">
                                     </div>
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <div class="col-md-6 form-group">
                                         <label><strong>Category</strong></label>
                                         <div class="input-group">
                                             <select name="category_id" id="category_id" class="form-control custom-select">
@@ -75,7 +71,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12 col-sm-12 form-group" id="sub_cat_div">
+                                    <div class="col-md-6 form-group" id="sub_cat_div">
                                         <label><strong>Sub Category</strong></label>
                                         <select class="form-control custom-select " id="subcategory_id" name="subcategory_id">
                                             <option value="">Select Category</option>
@@ -87,7 +83,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-12 col-sm-12 form-group" id="product_cat_div">
+                                    <div class="col-md-6 form-group" id="product_cat_div">
                                         <label><strong>Product Category</strong></label>
                                         <select class="form-control custom-select" id="product_category_id" name="product_category_id">
                                             <option value="">Select Category</option>
@@ -467,7 +463,7 @@ $name = ['highlight'];
                 if (statusText == 'successful') {
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
-                    window.location.href = "/product/all";
+                    window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
                 }
             },
             error: function(error) {

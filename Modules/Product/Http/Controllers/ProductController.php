@@ -19,29 +19,18 @@ class ProductController extends Controller
 {
     use AuthorizesRequests;
 
-    public function index($type = null)
+    public function index()
     {
         $this->authorize('manageProducts');
 
         $details = Product::with('user.vendor')
-            // ->without('user.roles')
             ->when(request()->filled('search'), function ($query) {
                 return $query->where('title', 'like', '%' . request('search') . "%");
             })
             ->latest()
             ->paginate(10)
             ->withQueryString();
-        if (auth()->user()->hasRole('vendor')) {
-            if ($type == 'all') {
-                $details =  Product::when(request()->filled('search'), function ($query) {
-                    return $query->where('title', 'like', '%' . request('search') . "%");
-                })
-                    ->where('user_id', Auth::id())
-                    ->latest()
-                    ->paginate(10)
-                    ->withQueryString();
-            }
-        }
+
         return view('product::index', compact('details'));
     }
 
@@ -68,7 +57,7 @@ class ProductController extends Controller
     public function getsubcategory(Request $request)
     {
         $categories = Category::find($request->category_id);
-            return response()->json(['category' => $categories]);
+        return response()->json(['category' => $categories]);
     }
 
     public function getProductCategory(Request $request)
@@ -127,13 +116,11 @@ class ProductController extends Controller
         }
     }
 
-    public function productImage($id)
+    public function productImage(Product $product)
     {
-        $product_info = Product::find($id);
-        if (!$product_info) {
-            $request->session()->flash('error', 'Invalid Product Information.');
-        }
-        return view('product::image', compact('id', 'product_info'));
+        $updateMode = true;
+
+        return view('product::image', compact('product', 'updateMode'));
     }
 
     public function updateProductImage($id, Request $request)

@@ -7,19 +7,13 @@
             @if( auth()->user()->hasAnyRole('super_admin|admin'))
             <th>Vendor</th>
             @endif
-            <th>Images</th>
-            <!-- <th>Price</th> -->
-            {{-- <th> Discount</th> --}}
-
             <th>Status</th>
-
             <th>Action</th>
         </tr>
     </thead>
 
     <tbody id="sortable">
         @forelse ($details as $key=>$detail)
-
         <tr>
             <td>{{ $details->firstItem() + $loop->index }}</td>
             <td>
@@ -33,17 +27,6 @@
             @if( auth()->user()->hasAnyRole('super_admin|admin'))
             <td>{{ @$detail->user->vendor->shop_name }}</td>
             @endif
-            <td style="text-align: center">
-                <a href="{{route('product.images',$detail->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-            </td>
-            <!-- <td>NPR. {{ number_format($detail->price)}}</td> -->
-            {{-- <td>
-                        @if($detail->discount)
-                        {{  $detail->discount}}
-            @endif
-            </td> --}}
-
-            <!-- <td>{{ $detail->status=='active'? 'Active':'Inactive' }}</td> -->
             <td>
                 <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ProductStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->status == 1) checked @endif>
             </td>
