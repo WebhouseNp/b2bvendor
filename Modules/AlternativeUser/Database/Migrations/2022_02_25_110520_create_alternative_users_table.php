@@ -19,7 +19,7 @@ class CreateAlternativeUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('mobile')->nullable();
             $table->string('password');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->index();
             $table->text('permissions')->nullable();
             $table->softDeletes();
             $table->timestamps();

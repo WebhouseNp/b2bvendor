@@ -3,19 +3,22 @@
 namespace Modules\Order\Http\Controllers;
 
 use App\Jobs\ReleasePaymentJob;
-use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Modules\Order\Entities\Order;
-use Modules\Order\Entities\OrderList;
 
 class OrderController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
+        $this->authorize('manageOrders');
+
         $orders = Order::with(['orderLists', 'customer', 'vendor:id,shop_name'])
             ->when(request()->filled('order_id'), function($query) {
                 return $query->where('id', request('order_id'));
@@ -31,7 +34,8 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
+        // abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
+        $this->authorize('manageOrders');
         
         if(auth()->user()->hasRole('vendor')) {
             abort_unless(auth()->user()->vendor->id == $order->vendor_id, 403);
@@ -66,7 +70,8 @@ class OrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
-        abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
+        // abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
+        $this->authorize('manageOrders');
 
         $orderStatuses = config('constants.order_statuses');
         if(auth()->user()->hasRole('vendor')) {

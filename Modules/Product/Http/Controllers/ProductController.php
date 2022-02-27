@@ -12,12 +12,17 @@ use Modules\Product\Entities\ProductImage;
 use Validator, File;
 use Image;
 use Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Modules\ProductCategory\Entities\ProductCategory;
 
 class ProductController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index($type = null)
     {
+        $this->authorize('manageProducts');
+
         $details = Product::with('user.vendor')
             // ->without('user.roles')
             ->when(request()->filled('search'), function ($query) {
@@ -102,6 +107,8 @@ class ProductController extends Controller
 
     public function deleteproduct(Request $request)
     {
+        $this->authorize('manageProducts');
+
         try {
             $product = Product::findorFail($request->id);
             if ($product->image) {

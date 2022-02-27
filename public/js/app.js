@@ -5258,32 +5258,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5303,7 +5277,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       password: "",
       loading: false,
       showPassword: false,
-      error: ''
+      error: ""
     };
   },
   methods: {
@@ -5322,46 +5296,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this.error = "";
                 _this.loading = true;
-                _context.prev = 1;
-                _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/vendor/login', {
+                _context.prev = 2;
+                _context.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/vendor/login", {
                   email: _this.email,
                   password: _this.password
                 });
 
-              case 4:
+              case 5:
                 response = _context.sent;
 
                 if (response.status === 200) {
-                  localStorage.setItem('token', response.data.token);
+                  localStorage.setItem("token", response.data.token);
                   _this.loading = false;
-                  window.location.href = '/dashboard';
+                  window.location.href = "/dashboard";
                 }
 
-                _context.next = 11;
+                _context.next = 12;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](2);
 
                 if (_context.t0.response.status === 400) {
                   _this.loading = false;
                   _this.error = _context.t0.response.data.message;
 
                   _this.validation.setMessages(_this.error);
+                } else if (_context.t0.response.status === 422) {
+                  _this.loading = false;
+                  _this.error = 'Please fill both Email & Password.';
+
+                  _this.validation.setMessages(_this.error);
                 } else {
                   _this.loading = false;
-                  _this.error = "Invalid username/password!";
+                  _this.error = "Invalid email/password!";
                 }
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[2, 9]]);
       }))();
     },
     onClickSingup: function onClickSingup() {
@@ -6141,7 +6121,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.logo{\n    height: 80px;\n}\n.vendor-bg {\n    background: url(\"/images/pexels-photo-5668841.jpeg\") no-repeat;\n    background-size: cover;\n    background-position: center center;\n}\n.vendor-overlay {\n    padding: 104px 0;\n    background-color: rgba(0, 0, 0, 0.3);\n}\n.vendor-title {\n    color: #FFFFFF;\n    font-size: 2.8rem;\n    font-weight: 500;\n    line-height: 1.5;\n}\n.vendor-sign-in-form, .vendor-section {\n    background: #F2F3F7;\n}\n.vendor-btn {\n    margin-bottom: 2rem;\n}\n.vendor-form {\n    padding: 18px 20px;\n    border: 1px solid lightgray;\n}\n.vendor-form-bt{\n    padding: 18px 20px;\n    border: 1px solid lightgray\n}\n.form-check {\n    margin-bottom: 1rem;\n}\n\n/*************** Steps ****************/\n.step-div {\n    display: inline-block;\n    width: 200px;\n    padding: 12px;\n    background: #FFFFFF;\n    box-shadow: 1px 1px 6px 0px lightblue;\n}\n.step-group {\n    display: flex;\n    justify-content: space-around;\n}\n.step-subtitle {\n    color: #FFA500;\n    font-size: 1.2rem;\n    font-weight: 500;\n}\n.step-div-h1 {\n    color: #1e76bd;\n}\n.step-div-p {\n    font-weight: 500;\n}\n.vendor-img-wrap {\n    margin: 1.4rem 0;\n}\n@media screen and (max-width: 600px) {\n.step-group {\n        flex-direction: column;\n        align-items: center;\n        text-align: center;\n}\n.step-div:not(:last-child) {\n        margin-bottom: 1.8rem;\n}\n}\n.field-icon {\n  float: right;\n  margin-right: 10px;\n  margin-top: -30px;\n  position: relative;\n  z-index: 2;\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.logo {\n  height: 80px;\n}\n.vendor-bg {\n  background: url(\"/images/pexels-photo-5668841.jpeg\") no-repeat;\n  background-size: cover;\n  background-position: center center;\n}\n.vendor-overlay {\n  padding: 104px 0;\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vendor-title {\n  color: #ffffff;\n  font-size: 2.8rem;\n  font-weight: 500;\n  line-height: 1.5;\n}\n.vendor-sign-in-form,\n.vendor-section {\n  background: #f2f3f7;\n}\n.vendor-btn {\n  margin-bottom: 2rem;\n}\n.vendor-form {\n  padding: 18px 20px;\n  border: 1px solid lightgray;\n}\n.vendor-form-bt {\n  padding: 18px 20px;\n  border: 1px solid lightgray;\n}\n.form-check {\n  margin-bottom: 1rem;\n}\n\n/*************** Steps ****************/\n.step-div {\n  display: inline-block;\n  width: 200px;\n  padding: 12px;\n  background: #ffffff;\n  box-shadow: 1px 1px 6px 0px lightblue;\n}\n.step-group {\n  display: flex;\n  justify-content: space-around;\n}\n.step-subtitle {\n  color: #ffa500;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n.step-div-h1 {\n  color: #1e76bd;\n}\n.step-div-p {\n  font-weight: 500;\n}\n.vendor-img-wrap {\n  margin: 1.4rem 0;\n}\n@media screen and (max-width: 600px) {\n.step-group {\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n}\n.step-div:not(:last-child) {\n    margin-bottom: 1.8rem;\n}\n}\n.field-icon {\n  float: right;\n  margin-right: 10px;\n  margin-top: -30px;\n  position: relative;\n  z-index: 2;\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -37679,151 +37659,143 @@ var render = function () {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            { staticClass: "vendor-sign-in-form" },
-            [
-              _vm.error
-                ? _c("error", { attrs: { error: _vm.error } })
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  staticClass: "vendor-form",
-                  on: {
-                    submit: function ($event) {
-                      $event.preventDefault()
-                      return _vm.onSubmit()
-                    },
+          _c("div", { staticClass: "vendor-sign-in-form" }, [
+            _c(
+              "form",
+              {
+                staticClass: "vendor-form",
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.onSubmit()
                   },
                 },
-                [
-                  _c("Input", {
-                    attrs: {
-                      label: "Username",
-                      type: "text",
-                      placeholder: "example@gmail.com",
+              },
+              [
+                _vm.error
+                  ? _c("error", { attrs: { error: _vm.error } })
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("Input", {
+                  attrs: {
+                    label: "Email",
+                    type: "text",
+                    placeholder: "example@gmail.com",
+                  },
+                  model: {
+                    value: _vm.email,
+                    callback: function ($$v) {
+                      _vm.email = $$v
                     },
-                    model: {
-                      value: _vm.email,
-                      callback: function ($$v) {
-                        _vm.email = $$v
-                      },
-                      expression: "email",
-                    },
-                  }),
+                    expression: "email",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
-                    _vm._v(" "),
-                    _vm.showPassword
-                      ? _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.password,
-                              expression: "password",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Enter Password",
+                  _vm.showPassword
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password,
+                            expression: "password",
                           },
-                          domProps: { value: _vm.password },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.password = $event.target.value
-                            },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Enter Password" },
+                        domProps: { value: _vm.password },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password = $event.target.value
                           },
-                        })
-                      : _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.password,
-                              expression: "password",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "password",
-                            placeholder: "Enter Password",
+                        },
+                      })
+                    : _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password,
+                            expression: "password",
                           },
-                          domProps: { value: _vm.password },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.password = $event.target.value
-                            },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          placeholder: "Enter Password",
+                        },
+                        domProps: { value: _vm.password },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password = $event.target.value
                           },
-                        }),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "field-icon",
-                        on: { click: _vm.toggleShow },
-                      },
-                      [
-                        _c("span", { staticClass: "icon is-small is-right" }, [
-                          _c("i", {
-                            staticClass: "fa",
-                            class: {
-                              "fa-eye-slash": _vm.showPassword,
-                              "fa-eye": !_vm.showPassword,
-                            },
-                          }),
-                        ]),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(1),
+                        },
+                      }),
                   _vm._v(" "),
                   _c(
-                    "loading-button",
+                    "span",
                     {
-                      staticClass: "btn btn-primary mt-4",
-                      attrs: { type: "submit", loading: _vm.loading },
+                      staticClass: "field-icon",
+                      on: { click: _vm.toggleShow },
                     },
-                    [_vm._v(_vm._s(_vm.loading ? "Please wait" : "Sign In"))]
+                    [
+                      _c("span", { staticClass: "icon is-small is-right" }, [
+                        _c("i", {
+                          staticClass: "fa",
+                          class: {
+                            "fa-eye-slash": _vm.showPassword,
+                            "fa-eye": !_vm.showPassword,
+                          },
+                        }),
+                      ]),
+                    ]
                   ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "vendor-form-bt" }, [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "javascript:void(0)" },
-                    on: { click: _vm.onClickSingup },
-                  },
-                  [_vm._v(" New around here? Sign Up")]
-                ),
-                _c("br"),
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
                 _vm._v(" "),
                 _c(
-                  "a",
+                  "loading-button",
                   {
-                    attrs: { href: "javascript:void(0)" },
-                    on: { click: _vm.onClickForget },
+                    staticClass: "btn btn-primary mt-4",
+                    attrs: { type: "submit", loading: _vm.loading },
                   },
-                  [_vm._v("Forgot Password?")]
+                  [_vm._v(_vm._s(_vm.loading ? "Please wait" : "Sign In"))]
                 ),
-              ]),
-            ],
-            1
-          ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "vendor-form-bt" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0)" },
+                  on: { click: _vm.onClickSingup },
+                },
+                [_vm._v(" New around here? Sign Up")]
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0)" },
+                  on: { click: _vm.onClickForget },
+                },
+                [_vm._v("Forgot Password?")]
+              ),
+            ]),
+          ]),
         ]),
       ]),
     ]),
@@ -37839,11 +37811,9 @@ var staticRenderFns = [
         _c("div", { staticClass: "vendor-bg" }, [
           _c("div", { staticClass: "vendor-overlay" }, [
             _c("h2", { staticClass: "vendor-title text-center" }, [
-              _vm._v("\n                                  Become Vendor,"),
+              _vm._v("\n                Become Vendor,"),
               _c("br"),
-              _vm._v(
-                "\n                                  Grow Your Business\n                              "
-              ),
+              _vm._v("\n                Grow Your Business\n              "),
             ]),
           ]),
         ]),
@@ -56597,6 +56567,11 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
+module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+
+/***/ })
+
+/******/ 	});
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
