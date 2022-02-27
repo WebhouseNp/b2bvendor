@@ -16,7 +16,7 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">Edit Product</div>
+            <div class="ibox-title">{{ $updateMode ? 'Edit' : 'Add' }} Product</div>
             <div>
                 <a class="btn btn-info btn-md" href="/product/all">All Products</a>
             </div>
@@ -25,6 +25,19 @@
 
     <div class="ibox-body" id="validation-errors">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    </div>
+
+    <div class="ibox">
+        <div class="ibox-head">
+            <ul class="plain-nav-tabs nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ $updateMode ? route('product.edit', $product) : route('product.create') }}"><strong>General Information</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ $updateMode ? route('dropzone.upload', $product->id) : '#' }}"><strong>Images </strong></a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div id="custom-validation-alert" class="validation-alert d-none">
@@ -63,7 +76,7 @@
                                         <label><strong>Product Title</strong></label>
                                         <input class="form-control" type="text" id="title" name="title" value="{{ $product->title }}" placeholder="Product Title Here">
                                     </div>
-                                    <div class="col-lg-12 col-sm-12 form-group">
+                                    <div class="col-md-6 form-group">
                                         <label><strong>Category</strong></label>
                                         <div class="input-group">
                                             <select name="category_id" id="category_id" class="form-control custom-select">
@@ -75,7 +88,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12 col-sm-12 form-group" id="sub_cat_div">
+                                    <div class="col-md-6 form-group" id="sub_cat_div">
                                         <label><strong>Sub Category</strong></label>
                                         <select class="form-control custom-select " id="subcategory_id" name="subcategory_id">
                                             <option value="">Select Category</option>
@@ -87,7 +100,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-12 col-sm-12 form-group" id="product_cat_div">
+                                    <div class="col-md-6 form-group" id="product_cat_div">
                                         <label><strong>Product Category</strong></label>
                                         <select class="form-control custom-select" id="product_category_id" name="product_category_id">
                                             <option value="">Select Category</option>
