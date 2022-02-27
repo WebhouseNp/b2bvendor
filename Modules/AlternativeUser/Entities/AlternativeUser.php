@@ -9,6 +9,8 @@ class AlternativeUser extends Model
 {
     protected $guarded = ['id'];
 
+    protected $hidden = ['password'];
+
     protected $casts = [
         'permissions' => 'array',
     ];

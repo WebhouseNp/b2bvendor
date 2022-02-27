@@ -12,7 +12,7 @@ return  [
         'products' => 'Manage Products',
         'orders' => 'Manage Orders',
         'chat' => 'Access Chat',
-        'deal' => 'Manage Deals',
+        'deals' => 'Manage Deals',
         'transactions' => 'View Transactions',
         'sales_report' => 'View Sales Report',
     ],

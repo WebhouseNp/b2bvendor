@@ -4,6 +4,7 @@ namespace Modules\Payment\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Contracts\Support\Rendersable;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Payment\Entities\Transaction;
@@ -12,6 +13,7 @@ use Modules\User\Entities\Vendor;
 
 class TransactionController extends Controller
 {
+    use AuthorizesRequests;
     protected $transactionService;
 
     public function __construct(TransactionService $transactionService)
@@ -21,6 +23,7 @@ class TransactionController extends Controller
 
     public function index(User $user)
     {
+        $this->authorize('viewTransactions');
         $vendor = $user->vendor;
 
         if (!auth()->user()->hasAnyRole('super_admin|admin')) {

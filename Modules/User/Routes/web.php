@@ -2,13 +2,10 @@
 
 use Modules\User\Http\Controllers\ApiUserController;
 use Modules\User\Http\Controllers\UserController;
+use Modules\User\Http\Controllers\VendorLoginController;
 
-
-Route::prefix('user')->group(function() {
-    // Route::get('/', 'UserController@index');
-});
 Route::post('/vendor/update-password', 'ApiUserController@updatePassword')->name('updatePassword');
-Route::post('/vendor/login','VendorRegistrationController@login')->name('vendor.login');
+Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
 Route::get('account-activate/{link}', [ApiUserController::class, 'verifyNewAccount'])->name('verifyNewAccount');
 Route::get('reset-password/{token}', 'PasswordResetController@passwordResetForm')->name('passwordResetForm');
 Route::prefix('admin')->name('vendor.')->middleware(['auth','Superadmin'])->group(function(){
