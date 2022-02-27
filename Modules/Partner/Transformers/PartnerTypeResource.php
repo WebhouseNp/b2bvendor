@@ -17,7 +17,7 @@ class PartnerTypeResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'partners' => PartnerResource::make($this->whenLoaded('partners')),
+            'partners' => PartnerResource::collection($this->whenLoaded('partners')),
         ];
     }
 }

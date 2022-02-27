@@ -8,6 +8,7 @@ use  Modules\Product\Entities\Product;
 use  Modules\User\Entities\Vendor;
 use Modules\Order\Entities\OrderList;
 use  App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
@@ -17,7 +18,7 @@ use Modules\User\Entities\Address;
 class Order extends Model
 {
 	use SoftDeletes;
-	
+
 	protected $guarded = ['id', 'created_at', 'updated_at'];
 
 	protected static function booted()
@@ -34,13 +35,13 @@ class Order extends Model
 		});
 
 		// static::updating(function ($order) {
-        //     if ($order->status == 'completed' && ($order->status != $order->getOriginal('status'))) {
+		//     if ($order->status == 'completed' && ($order->status != $order->getOriginal('status'))) {
 		// 		// Add transaction
 		// 		foreach($order->packages as $package) {
 		// 			app(new \Modules\Payment\Service\TransactionService)->deposit($package->vendor_user_id, $package->total_price, 'Order #' . $order->id);
 		// 		}
 		// 	}
-        // });
+		// });
 	}
 
 	public function isPaid()
@@ -52,6 +53,18 @@ class Order extends Model
 	{
 		return $this->deal_id;
 	}
+
+	public function scopeCreatedBetweenDates($query, array $dates)
+	{
+		$start = ($dates[0] instanceof Carbon) ? $dates[0] : Carbon::parse($dates[0]);
+		$end   = ($dates[1] instanceof Carbon) ? $dates[1] : Carbon::parse($dates[1]);
+
+		return $query->whereBetween('created_at', [
+			$start->startOfDay(),
+			$end->endOfDay()
+		]);
+	}
+
 
 	public function customer()
 	{

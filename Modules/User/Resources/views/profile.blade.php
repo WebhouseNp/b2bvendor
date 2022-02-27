@@ -1,45 +1,22 @@
 @extends('layouts.admin')
 @section('page_title')Edit Vendor Info @endsection
+
 @section('styles')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
+
 @section('content')
-@include('admin.section.notifications')
-@if($errors->any())
-<div class="alert alert-danger">
-    <p><strong>Opps Something went wrong</strong></p>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-
             <div class="ibox-title"> Edit Profile <span style="font-weight: 100;">({{$user->vendor->shop_name}})</span></div>
-
         </div>
     </div>
     <div class="ibox">
-        <div class="ibox-head">
-            <ul class="nav nav-tabs lavalamp" id="component-1" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#component-1-1" role="tab" aria-controls="component-1-1" aria-selected="true"><strong>Business Information</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#component-1-2" role="tab" aria-controls="component-1-2" aria-selected="false"><strong>About Company </strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#component-1-3" role="tab" aria-controls="component-1-3" aria-selected="false"><strong>User Information </strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#component-1-4" role="tab" aria-controls="component-1-4" aria-selected="false"><strong>Bank Details </strong></a>
-                </li>
-            </ul>
-        </div>
+        @include('admin.section.notifications')
+        
+        <x-profile></x-profile>
+        
         <div class="tab-content" id="component-1-content">
             <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
@@ -186,8 +163,6 @@
                                 <label><strong>Contact Number</strong></label>
                                 <input class="form-control" type="text" value="{{$user->phone_num}}" name="phone_num" placeholder="Enter your Phone Number">
                             </div>
-
-
                             <div class="col-lg-12 col-sm-12 form-group">
                                 <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
                             </div>
@@ -252,7 +227,6 @@
 <script>
     $(document).ready(function() {
         $('#category_id').select2();
-
     });
 </script>
 <script>

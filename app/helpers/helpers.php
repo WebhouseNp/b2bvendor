@@ -116,7 +116,44 @@ if (!function_exists('get_package_status_number')) {
 }
 
 if (!function_exists('sasto_wholesale_store_id')) {
-    function sasto_wholesale_store_id() {
+    function sasto_wholesale_store_id()
+    {
         return settings('sasto_wholesale_mall_vendor_id', null);
+    }
+}
+
+if (!function_exists('is_alternative_login')) {
+    function is_alternative_login()
+    {
+        if (session()->has('alt_usr')) {
+            return true;
+        }
+        return false;
+    }
+}
+
+if (!function_exists('alt_usr')) {
+    function alt_usr()
+    {
+        if (!is_alternative_login()) {
+            return null;
+        }
+
+        return session()->get('alt_usr');
+    }
+}
+
+if (!function_exists('alt_usr_has_permission')) {
+    function alt_usr_has_permission($permision)
+    {
+        if (!is_alternative_login()) {
+            return false;
+        }
+        // Some users do not have any permissios 
+        // In such case the permission will be null and in_array will throw error
+        if (!alt_usr()->permissions) {
+            return false;
+        }
+        return in_array($permision, alt_usr()->permissions);
     }
 }

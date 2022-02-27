@@ -22,5 +22,8 @@
     "Country": true,
     "Partner": true,
     "Setting": true,
-    "ProductCategory": true
+    "ProductCategory": true,
+    "Blog": true,
+    "Faq": true,
+    "AlternativeUser": true
 }

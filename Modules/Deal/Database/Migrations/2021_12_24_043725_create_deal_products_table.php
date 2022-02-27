@@ -18,7 +18,7 @@ class CreateDealProductsTable extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
             $table->uuid('deal_id')->nullable();
-            $table->foreign('deal_id')->references('id')->on('deals')->onDelete('SET NULL');
+            $table->foreign('deal_id')->references('id')->on('deals')->onDelete('CASCADE');
             $table->string('product_qty')->nullable();
             $table->string('unit_price')->nullable();
             $table->string('shipping_charge')->nullable();

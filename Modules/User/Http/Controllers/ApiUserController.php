@@ -28,11 +28,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ApiUserController extends Controller
 {
-  public function index()
-  {
-    $vendors = Vendor::all();
-    return response(['vendors' => $vendors, 'message' => 'Retrieved successfully'], 200);
-  }
 
   public function changeVendorStatus(Request $request)
   {
@@ -55,6 +50,30 @@ class ApiUserController extends Controller
     $success = $user->save();
     Mail::to($user->email)->send(new VendorStatusChanged($user));
     return response()->json(['status' => true, 'message' => "Vendor updated Successfully.", 'data' => $user]);
+  }
+
+  public function getVendorStatus(Request $request)
+  {
+    $data = $request->all();
+    $validation = Validator::make($data, [
+      'vendor_id'      => 'required|numeric|exists:users,id',
+      // 'vendor_type'          => 'required',
+    ]);
+    if ($validation->fails()) {
+      foreach ($validation->messages()->getMessages() as $message) {
+        $errors[] = $message;
+      }
+      return response()->json(['status' => false, 'message' => $errors]);
+    }
+    $user = User::find($request->vendor_id);
+    if (!$user) {
+      return response()->json(['status' => false, 'message' => ['Invalid vendor id or vendor not found.']]);
+    }
+    // dd($user);
+    // $user->update($data);
+    // $success = $user->save();
+    // Mail::to($user->email)->send(new VendorStatusChanged($user));
+    return response()->json(['status' => true, 'message' => "Vendor status retrieved Successfully.", 'data' => $user]);
   }
 
   public function updateVendor(Request $request, $id)
@@ -80,6 +99,7 @@ class ApiUserController extends Controller
     }
   }
 
+<<<<<<< HEAD
 
 
   public function login(Request $request)
@@ -224,6 +244,8 @@ class ApiUserController extends Controller
     }
   }
 
+=======
+>>>>>>> ec04818c6ac96bc3d69d6d5cce6cf3e06a4e9f22
   public function VerifyNewAccount($link, Request $request)
   {
     try {
@@ -366,30 +388,6 @@ class ApiUserController extends Controller
         'message' => $exception->getMessage()
       ], 400);
     }
-  }
-
-  public function createdue(Request $request)
-  {
-    $validator = Validator::make($request->all(), [
-      'remarks' => 'required',
-      'image' => 'mimes:jpg,jpeg,png',
-    ]);
-
-    if ($validator->fails()) {
-      return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()]);
-      exit;
-    }
-
-    $value = $request->except('image');
-    if ($request->image) {
-      $image = $this->imageProcessing('img-', $request->file('image'));
-      $value['image'] = $image;
-    }
-
-    DB::beginTransaction();
-    $data = VendorPayment::create($value);
-    DB::commit();
-    return response()->json(['status' => 'successful', 'message' => 'Payment done successfully.', 'data' => $data]);
   }
 
   public function imageProcessing($type, $image)

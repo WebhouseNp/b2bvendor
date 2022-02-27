@@ -16,12 +16,12 @@ $user_access = json_decode($user->access_level);
                 <img src="{{asset('/assets/admin/images/admin-avatar.png')}}" width="45px" />
             </div>
             <div class="admin-info">
-                <div class="font-strong">{{ @Auth::user()->name }}</div>
+                <div class="font-strong">{{ is_alternative_login() ? alt_usr()->name : Auth::user()->name }}</div>
             </div>
         </div>
         <ul class="side-menu metismenu">
             <li>
-                <a class="active" href="{{route('dashboard')}}"><i class="sidebar-item-icon fa fa-th-large"></i>
+                <a class="active" href="{{route('dashboard')}}"><i class="sidebar-item-icon fa fa-tachometer"></i>
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
@@ -30,7 +30,7 @@ $user_access = json_decode($user->access_level);
             @if(in_array('vendor' ,$roles))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-user"></i>
+                    <i class="sidebar-item-icon fa fa-user-circle"></i>
                     <span class="nav-label"> Profile</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -50,11 +50,13 @@ $user_access = json_decode($user->access_level);
                 </ul>
             </li>
 
+            @can('accessChat')
             <li>
-                <a href="/chat" target="_blank"><i class="sidebar-item-icon fa fa-th-large"></i>
+                <a href="/chat" target="_blank"><i class="sidebar-item-icon fa fa-comments"></i>
                     <span class="nav-label">Chat</span>
                 </a>
             </li>
+            @endcan
             @endif
             @if(in_array('vendor' ,$roles) || in_array('admin' ,$roles) || in_array('super_admin' ,$roles))
             <li>
@@ -125,22 +127,15 @@ $user_access = json_decode($user->access_level);
             </li>
             @endif
 
-
+            @can('manageOrders')
             <li>
                 <a href="{{ route('orders.index') }}">
                     <i class="sidebar-item-icon fa fa-first-order"></i>
                     <span class="nav-label">Orders</span>
-                    {{-- <i class="fa fa-angle-left arrow"></i> --}}
                 </a>
-                {{-- <ul class="nav-2-level collapse">
-                    <li>
-                        <a href="{{ route('orders.index') }}">
-                            <span class="fa fa-eye"></span>
-                            All Orders
-                        </a>
-                    </li>
-                </ul> --}}
             </li>
+            @endcan
+
             <li>
                 <a href="{{ route('salesReport') }}">
                     <i class="sidebar-item-icon fa fa-bar-chart "></i>
@@ -167,15 +162,45 @@ $user_access = json_decode($user->access_level);
         </ul> --}}
         </li>
 
-        @if (auth()->user()->hasRole('vendor'))
+        {{-- @if (auth()->user()->hasRole('vendor')) --}}
+        @can('viewTransactions')
         <li>
             <a href="/transactions/{{ auth()->id() }}">
-                <i class="sidebar-item-icon fa fa-bar-chart "></i>
+                <i class="sidebar-item-icon fa fa-credit-card "></i>
                 <span class="nav-label">Transactions</span>
                 <i class="fa fa-angle-left arrow"></i>
             </a>
         </li>
-        @endif
+        @endcan
+        {{-- @endif --}}
+
+        @can('manageProducts')
+        <li>
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-product-hunt"></i>
+                <span class="nav-label">Product</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse">
+                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
+                <li>
+                    <a href="{{route('product.create')}}">
+                        <span class="fa fa-plus"></span>
+                        Add Product
+                    </a>
+                </li>
+                @endif
+                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
+                <li>
+                    <a href="{{route('product.index',['type'=>'all'])}}">
+                        <span class="fa fa-circle-o"></span>
+                        All Products
+                    </a>
+                </li>
+                @endif
+            </ul>
+        </li>
+        @endcan
 
         @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('roles', $user_access)))
         <li>
@@ -229,7 +254,7 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
-        @if(in_array('vendor' ,$roles) || in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('category', $user_access)))
+        @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
                 <i class="sidebar-item-icon fa fa-list-alt"></i>
@@ -255,10 +280,10 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
-        @if(in_array('vendor' ,$roles) || in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('subcategory', $user_access)))
+        @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
-                <i class="sidebar-item-icon fa fa-shopping-cart"></i>
+                <i class="sidebar-item-icon fa fa-sort-amount-desc"></i>
                 <span class="nav-label">Sub Categories</span>
                 <i class="fa fa-angle-left arrow"></i>
             </a>
@@ -281,10 +306,10 @@ $user_access = json_decode($user->access_level);
         </li>
         @endif
 
-        @if(auth()->user()->hasAnyrole('super_admin|admin'))
+        @if(auth()->user()->hasAnyrole('super_admin|admin|vendor'))
         <li>
             <a href="javascript:;">
-                <i class="sidebar-item-icon fa fa-shopping-cart"></i>
+                <i class="sidebar-item-icon fa fa-cube"></i>
                 <span class="nav-label">Product Categories</span>
                 <i class="fa fa-angle-left arrow"></i>
             </a>
@@ -306,33 +331,6 @@ $user_access = json_decode($user->access_level);
             </ul>
         </li>
         @endif
-
-        <li>
-            <a href="javascript:;">
-                <i class="sidebar-item-icon fa fa-product-hunt"></i>
-                <span class="nav-label">Product</span>
-                <i class="fa fa-angle-left arrow"></i>
-            </a>
-            <ul class="nav-2-level collapse">
-                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
-                <li>
-                    <a href="{{route('product.create')}}">
-                        <span class="fa fa-plus"></span>
-                        Add Product
-                    </a>
-                </li>
-                @endif
-                @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
-                <li>
-                    <a href="{{route('product.index',['type'=>'all'])}}">
-                        <span class="fa fa-circle-o"></span>
-                        All Products
-                    </a>
-                </li>
-                @endif
-            </ul>
-        </li>
-
 
         @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('advertisement', $user_access)))
         <li>
@@ -368,58 +366,6 @@ $user_access = json_decode($user->access_level);
             </a>
         </li>
         @endif
-
-        <!-- @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('offer', $user_access))) -->
-        <!-- <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-gift"></i>
-                    <span class="nav-label">Offer</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('offer.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add New
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('offer.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Lists
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
-        <!-- @endif -->
-
-        <!-- @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) && in_array('brand', $user_access))) -->
-        <!-- <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-dollar"></i>
-                    <span class="nav-label">Brand</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('brand.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add New
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('brand.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Lists
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
-        <!-- @endif  -->
 
         @if(in_array('super_admin' ,$roles))
         <li>
@@ -467,6 +413,58 @@ $user_access = json_decode($user->access_level);
                     <a href="{{route('country.index')}}">
                         <span class="fa fa-circle-o"></span>
                         All Countries Lists
+                    </a>
+                </li>
+            </ul>
+        </li>
+        @endif
+
+        @if(in_array('super_admin' ,$roles))
+        <li>
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-flag"></i>
+                <span class="nav-label">Blogs</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse">
+
+                <li>
+                    <a href="{{route('blog.create')}}">
+                        <span class="fa fa-plus"></span>
+                        Add New Blog
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('blog.index')}}">
+                        <span class="fa fa-circle-o"></span>
+                        All Blogs
+                    </a>
+                </li>
+            </ul>
+        </li>
+        @endif
+
+        @if(in_array('super_admin' ,$roles))
+        <li>
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-flag"></i>
+                <span class="nav-label">FAQ</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse">
+
+                <li>
+                    <a href="{{route('faq.create')}}">
+                        <span class="fa fa-plus"></span>
+                        Add New FAQ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('faq.index')}}">
+                        <span class="fa fa-circle-o"></span>
+                        All FAQS
                     </a>
                 </li>
             </ul>
@@ -526,6 +524,15 @@ $user_access = json_decode($user->access_level);
             <a href="{{ route('settings.sastowholesale-mall.index') }}">
                 <i class="sidebar-item-icon fa fa-thumbs-up"></i>
                 <span class="nav-label">Sasto Wholesale Mall</span>
+            </a>
+        </li>
+        @endif
+
+        @if(auth()->user()->hasAnyRole(['vendor']))
+        <li>
+            <a href="{{ route('alternative-users.index') }}">
+                <i class="sidebar-item-icon fa fa-users"></i>
+                <span class="nav-label">Users</span>
             </a>
         </li>
         @endif

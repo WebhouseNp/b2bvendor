@@ -5,32 +5,39 @@
 @endsection
 @section('content')
 <div class="ibox-body" id="validation-errors">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
 </div>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Products</div>
             <div>
-                <a class="btn btn-info btn-md" href="{{route('product.create')}}">New Product</a>
+                @if(auth()->user()->hasRole('vendor'))
+                <a class="btn btn-info btn-md" href="{{ route('product.create') }}">New Product</a>
+                @endif
             </div>
         </div>
-        <div class="ibox-body" id="validation-errors">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        </div>
-        <div class="px-4">
-            <form action="" class="form-inline" method="GET">
-                <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
-        <div class="ibox-body table-responsive" id="appendUser">
-            @include('product::productsTable')
+        <div class="ibox-body">
+            <div class="mb-4">
+                <form action="" class="form-inline" method="GET">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto form-group">
+                            <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search">
+                        </div>
+                        <div class="col-auto form-group">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="appendUser">
+                @include('product::productsTable')
+            </div>
         </div>
     </div>
 </div>
-
 @endsection
+
 @section('scripts')
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>

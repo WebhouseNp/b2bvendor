@@ -1,6 +1,6 @@
-<?php 
-    $user = Auth::user();
-    $api_token = $user->api_token;
+<?php
+$user = Auth::user();
+$api_token = $user->api_token;
 ?>
 @extends('layouts.admin')
 @section('styles')
@@ -23,8 +23,7 @@
         </div>
 
         <div class="ibox-body">
-            <table class="table table-responsive table-bordered" id="example-table" cellspacing="0"
-                width="100%">
+            <table class="table table-responsive table-bordered" id="example-table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>SN</th>
@@ -44,13 +43,13 @@
                         <td>{{@$data->user->name}}</td>
                         <td>{{@$data->vendorShop->shop_name}}</td>
                         <td>{{ $data->completed_at ? 'Yes' : 'No' }}</td>
-                        <td>{{ $data->expire_at->toDateTimeString() }} 
+                        <td>{{ $data->expire_at->toDateTimeString() }}
                             <span>
                                 @if ($data->isAvailable())
-                                <i class="fa fa-check text-success"></i> 
+                                <i class="fa fa-check text-success"></i>
                                 @else
                                 <i class="fa fa-times text-danger"></i></span>
-                                @endif
+                            @endif
                         </td>
                         <td>
                             <button type="button" class="btn btn-link ml-0 pl-0" onclick="copyLink(this)" data-link="{{ config('constants.customer_app_url') . '/deals/' . $data->id }}" title="Click to copy">
@@ -61,12 +60,12 @@
                         <td>
                             <a class="btn btn-primary btn-sm" href="{{route('deals.show',$data->id)}}" title="view">
                                 <i class="fa fa-eye"></i>
-                            </a> 
+                            </a>
                             @if (auth()->user()->hasRole('vendor'))
                             <a class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}" title="Edit">
                                 <i class="fa fa-edit"></i>
-                            </a> 
-                            <button class="btn btn-danger btn-sm delete" onclick="return confirm('Are you sure to delete this deal?') && deleteDeal(this,'{{ $data->id }}')"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                            </a>
+                            <button class="btn btn-danger btn-sm delete" onclick="deleteDeal(this,'{{ $data->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                             @endif
                         </td>
                     </tr>
@@ -98,34 +97,33 @@
     })
 </script>
 <script>
-    function FailedResponseFromDatabase(message){
-    html_error = "";
-    $.each(message, function(index, message){
-        html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> '+message+ '</p>';
-    });
-    Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        html:html_error ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
-function DataSuccessInDatabase(message){
-    Swal.fire({
-        // position: 'top-end',
-        type: 'success',
-        title: 'Done',
-        html: message ,
-        confirmButtonText: 'Close',
-        timer: 10000
-    });
-}
+    function FailedResponseFromDatabase(message) {
+        html_error = "";
+        $.each(message, function(index, message) {
+            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+        });
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            html: html_error,
+            confirmButtonText: 'Close',
+            timer: 10000
+        });
+    }
+
+    function DataSuccessInDatabase(message) {
+        Swal.fire({
+            type: 'success',
+                title: 'Deleted',
+                toast: true,
+                position: 'top-end',
+                timer: 3000
+        });
+    }
 </script>
 <script>
-    function copyLink(el)
-    {
-        navigator.clipboard.writeText(el.dataset.link).then(function () {
+    function copyLink(el) {
+        navigator.clipboard.writeText(el.dataset.link).then(function() {
             Swal.fire({
                 type: 'success',
                 title: 'Linked copied',
@@ -133,7 +131,7 @@ function DataSuccessInDatabase(message){
                 position: 'top-end',
                 timer: 3000
             })
-        }, function () {
+        }, function() {
             console.log('Failure to copy. Check permissions for clipboard');
             Swal.fire({
                 type: 'error',
@@ -144,33 +142,42 @@ function DataSuccessInDatabase(message){
         });
     }
 
-    
-    function deleteDeal(el,id) {
-       
-        var api_token = '<?php echo $api_token; ?>';
-      
-        let url = "/api/deals/" + id;
-            $.ajax({ 
-                type: "post", 
-                url: url, 
-                data:{
-                    _method: 'delete'
-                },
-                headers: {
-                    Authorization: "Bearer " + api_token
+
+    function deleteDeal(el, id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You Want to Delete this Deal?? `,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete it!'
+        }).then((result) => {
+            if (result.value) {
+                var api_token = '<?php echo $api_token; ?>';
+
+                let url = "/api/deals/" + id;
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: {
+                        _method: 'delete'
                     },
-                success: function(response)
-                    {
-                    console.log(response.message)
-                    var validation_errors = JSON.stringify(response.message);
-                        $('#validation-errors').html('');
-                        $('#validation-errors').append('<div class="alert alert-success">'+validation_errors+'</div');
+                    headers: {
+                        Authorization: "Bearer " + api_token
+                    },
+                    success: function(response) {
                         DataSuccessInDatabase(response.message);
                         $(el).closest('tr').remove()
-                }
-            }); 
-            return true;
-          } 
+                    }
+                });
+                return true;
+            } else {
+                $(this).find('button[type="submit"]').prop('disabled', false);
+            }
+        })
+
+    }
 </script>
 
 @endsection

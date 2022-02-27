@@ -129,35 +129,29 @@
                                         <a href="javascript:void(0);" class="add_button pull-right" title="add field"><img src="{{ asset('/images/add-icon.png') }}" /></a>
                                         <div class="field_wrapper">
                                             <div class="mt-2">
+                                                @foreach ($product->ranges as $range)
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <label for="">
                                                             <strong>From Quantity</strong>
                                                         </label>
+                                                        <input type="number" name="from[]" value="{{ $range->from }}" placeholder="Range From" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label for="">
                                                             <strong>To Quantity</strong>
                                                         </label>
+                                                        <input type="number" name="to[]" value="{{ $range->to }}" placeholder="Range To" class="form-control" required>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="">
                                                             <strong> Price</strong>
                                                         </label>
-                                                    </div>
-                                                </div>
-                                                @foreach ($product->ranges as $range)
-                                                <div class="row mt-2">
-                                                    <div class="col-md-4">
-                                                        <input type="number" name="from[]" value="{{ $range->from }}" placeholder="Range From" class="form-control" required>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <input type="number" name="to[]" value="{{ $range->to }}" placeholder="Range To" class="form-control" required>
-                                                    </div>
-                                                    <div class="col-md-3">
                                                         <input type="number" name="prices[]" value="{{ $range->price }}" placeholder="Price" class="form-control" required>
                                                     </div>
-                                                    <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{ asset('/images/remove-icon.png') }}" /></a>
+                                                    <div class="col-md-12">
+                                                        <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{ asset('/images/remove-icon.png') }}" /></a>
+                                                    </div>
                                                 </div>
                                                 @endforeach
                                             </div>

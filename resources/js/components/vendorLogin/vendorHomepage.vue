@@ -2,27 +2,35 @@
   <div>
     <!-- header start -->
     <header class="header position-sticky">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="javascript:void(0)">
-            <img
-              src="/images/logo.png"
-              alt="site logo"
-              @click="vendorHomepage"
-              class="img-fluid site-logo"
-            />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="javascript:void(0)">
+                    <img src="/images/logo.png" alt="site logo" @click="vendorHomepage" class="img-fluid site-logo">
+                </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="#">About Us</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Why Us</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Become a Partner</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">FAQ</a>
+                </li>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
@@ -277,8 +285,8 @@
             </div>
           </div>
         </div> -->
-      </div>
-    </section>
+      <!-- </div>
+    </section> -->
     <!-- why join sastowholsale end -->
 
     <!-- steps start -->
@@ -359,12 +367,34 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto">
-            <div class="process-single-item">
-              <div class="process-single-thumb">
-                <i class="fas fa-comments"></i>
-                <div class="process-number">
-                  <span>05</span>
+            <!-- <div class="row">
+                <div class="col-sm-12 col-lg-12 col-md-12">
+                    <div class="pt-we-accept">
+                        <h3>We Accept</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner1.png">
+                            </li>
+                            <li>
+                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner2.png">
+                            </li>
+                            <li>
+                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner3.png">
+                            </li>
+                            <li>
+                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner4.png">
+                            </li>
+                            <li>
+                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner5.png">
+                            </li>
+                            <li>
+                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner1.png">
+                            </li>
+                            <li>
+                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner2.png">
+                            </li>
+                        </ul>
+                    </div>
                 </div>
               </div>
               <div class="process-content">
@@ -374,22 +404,13 @@
                 <p>You need to reply to inquiries/messages</p>
               </div>
             </div>
-          </div>
-
-          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto">
-            <div class="process-single-item">
-              <div class="process-single-thumb">
-                <i class="fas fa-chart-line"></i>
-                <div class="process-number">
-                  <span>06</span>
-                </div>
-              </div>
-              <div class="process-content">
-                <div class="process-content-title">
-                  <h4>Start Selling</h4>
-                </div>
-                <p>Protect your order & payments</p>
-              </div>
+            <hr> -->
+            <div class="bottom-footer">
+                <p>Product Listing Policy -Intellectual Property Protection - Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
+                <p><b>©2021 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>
+                <p><b>Head Office:</b> Krishna Galli Pulchowk-04, Kathamandu Nepal</p>
+                <p><b>Tel:</b> +977-01-4563782 Customer Services: +977-01-23452312 Email: info@sastowholesale.com Fax: +977-01-4234345</p>
+                <p><b>Designed &amp; Developed By: Web House Nepal</b></p>
             </div>
           </div>
         </div>
@@ -521,6 +542,6 @@ export default {
   list-style: none;
 }
 .list i {
-    color: #FFA500;
+  color: #ffa500;
 }
 </style>

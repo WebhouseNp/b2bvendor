@@ -4,6 +4,7 @@ namespace Modules\Payment\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Contracts\Support\Rendersable;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Payment\Entities\Transaction;
@@ -12,6 +13,7 @@ use Modules\User\Entities\Vendor;
 
 class TransactionController extends Controller
 {
+    use AuthorizesRequests;
     protected $transactionService;
 
     public function __construct(TransactionService $transactionService)
@@ -21,24 +23,23 @@ class TransactionController extends Controller
 
     public function index(User $user)
     {
+        $this->authorize('viewTransactions');
         $vendor = $user->vendor;
 
         if (!auth()->user()->hasAnyRole('super_admin|admin')) {
             abort_unless(auth()->id() == $user->id, 403);
         }
 
-        $vendor = $user->vendor;
         $transactions = Transaction::where('vendor_id', $vendor->id)
-            ->where('is_cod', false)
-            ->orWhereNull('is_cod')
+            ->onlyOnlinePayments()
             ->orderBy('id', 'DESC')->get();
 
-            $codTransactions = Transaction::where('vendor_id', $vendor->id)
-            ->where('is_cod', true)
+        $codTransactions = Transaction::where('vendor_id', $vendor->id)
+            ->onlyCOD()
             ->latest()->get();
 
-            $vendorUser = $user;
-            $currentBalance = $this->transactionService->getCurrentBalance($vendor->id);
+        $vendorUser = $user;
+        $currentBalance = $this->transactionService->getCurrentBalance($vendor->id);
 
         return view('payment::transactions-listing', compact([
             'transactions',
@@ -54,7 +55,7 @@ class TransactionController extends Controller
         abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
 
         $vendor = Vendor::where('user_id', $vendorUserId)->first();
-        
+
         $request->validate([
             'amount' => 'required|numeric',
             'created_at' => 'nullable|date',
@@ -76,5 +77,24 @@ class TransactionController extends Controller
         $transaction->save();
 
         return redirect()->route('transactions.index', $vendorUserId)->with('success', 'Payment recorded successfully.');
+    }
+
+    public function changeCodTransactionStatus(Request $request, Transaction $transaction)
+    {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
+        $request->validate([
+            'status' => 'required|in:settled,unsettled',
+        ]);
+
+        $transaction->update([
+            'settled_at' => $request->status == 'settled' ? now() : null
+        ]);
+
+        if ($request->ajax()) {
+            return response()->json(['status' => 'success', 'message' => 'Transaction status updated successfully.', 'new_status' => $transaction->settled_at ? 'settled' : 'unsettled']);
+        }
+
+        return redirect()->back()->with('success', 'Transaction status updated successfully.');
     }
 }

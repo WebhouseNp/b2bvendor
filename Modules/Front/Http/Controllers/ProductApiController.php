@@ -9,6 +9,7 @@ use Modules\Category\Entities\Category;
 use Modules\Front\Transformers\ProductCollection;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
+use Modules\ProductCategory\Entities\ProductCategory;
 use Modules\Subcategory\Entities\Subcategory;
 use Modules\User\Entities\Vendor;
 
@@ -33,6 +34,10 @@ class ProductApiController extends Controller
                 $subCategory = Subcategory::where('slug', request()->subcat)->first();
                 $productCategoryIds = $subCategory->productCategory()->pluck('id')->toArray();
                 return $query->whereIn('product_category_id', $productCategoryIds);
+            })
+            ->when(request()->filled('prod_cat'), function ($query) {
+                $productCategory = ProductCategory::where('slug', request()->prod_cat)->first();
+                return $query->where('product_category_id', $productCategory->id);
             })
             ->when(request()->filled('from_vendor'), function ($query) {
                 return $query->where('user_id', request()->from_vendor);

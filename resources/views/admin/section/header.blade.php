@@ -23,6 +23,13 @@
 
     <!-- PAGE LEVEL STYLES-->
     @yield('styles')
+    <style>
+             .title-label {
+                font-size: 0.9rem;
+                color: gray;
+                margin-bottom: 0;
+            }
+    </style>
 
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 </head>
@@ -32,10 +39,21 @@
 
         <header class="header">
             <div class="page-brand">
-                <a class="link" href="index.html">
-                    <span class="brand">B2B
+                <a class="link" href="#">
+                    <span class="brand">
+                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                        {{ auth()->user()->name }}
+                        @else
+                        {{ auth()->user()->vendor->shop_name }}
+                        @endif
                     </span>
-                    <span class="brand-mini">L</span>
+                    <span class="brand-mini text-nowrap">
+                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                        {{ auth()->user()->name }}
+                        @else
+                        {{ auth()->user()->vendor->shop_name }}
+                        @endif
+                    </span>
                 </a>
             </div>
             <div class="flexbox flex-1">
@@ -44,22 +62,21 @@
                     <li>
                         <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
                     </li>
-
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
-
-
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="{{asset('/assets/admin/images/admin-avatar.png')}}" />
-                            <span></span>{{ @Auth::user()->name }}<i class="fa fa-angle-down m-l-5"></i>
+                            <span>{{ is_alternative_login() ? alt_usr()->name : Auth::user()->name }}</span><i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{route('change.password')}}">
-                                <i class="fa fa-cog"></i>Change Password
-                            </a>
+                            <li>
+                                <a class="dropdown-item" href="{{route('change.password')}}">
+                                    <i class="fa fa-cog"></i>Change Password
+                                </a>
+                            </li>
                             <!-- <a class="dropdown-item" href="profile.html">
                                 <i class="fa fa-cog"></i>Settings
                             </a>
@@ -67,14 +84,12 @@
                                 <i class="fa fa-support"></i>Support
                             </a> -->
                             <li class="dropdown-divider"></li>
-                            <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-power-off"></i>Logout
                             </a>
                             <form id="logout-form" action="{{ route('admin.logout') }}" style="display: none;">
                                 @csrf
                             </form>
-
                         </ul>
                     </li>
                 </ul>

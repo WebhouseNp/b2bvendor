@@ -56,7 +56,7 @@ class ProductResource extends JsonResource
             // Relationships
             // category, ranges, 
             // 'category' => new CategoryResource($this->whenLoaded($this->category))
-            'category' => $this->whenLoaded('category'),
+            'product_category' => $this->whenLoaded('productCategory'),
             // 'ranges' => new RangeCollection($this->whenLoaded($this->ranges))
             'ranges' => $this->whenLoaded('ranges'),
             'price_range' => $this->priceRange(),
@@ -77,6 +77,7 @@ class ProductResource extends JsonResource
                     'image_url_thumbnail' => $this->imageUrl('thumbnail'),
                 ]);
             }),
+            'overview' => $this->overview
         ]);
     }
 

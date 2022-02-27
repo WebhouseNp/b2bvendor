@@ -7,14 +7,19 @@ use Modules\Category\Entities\Category;
 use Modules\Product\Entities\Product;
 use Modules\Product\Entities\Range;
 use File;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Image;
 use Illuminate\Support\Facades\DB;
 use Modules\Product\Http\Requests\ProductRequest;
 
 class ProductStorageController extends Controller
 {
+    use AuthorizesRequests;
+
     public function create()
     {
+        $this->authorize('manageProducts');
+
         return $this->showProductForm(new Product());
     }
 
@@ -48,6 +53,8 @@ class ProductStorageController extends Controller
 
     public function store(ProductRequest $request)
     {
+        $this->authorize('manageProducts');
+
         try {
             DB::beginTransaction();
             $product = new Product();
@@ -103,11 +110,15 @@ class ProductStorageController extends Controller
 
     public function edit(Product $product)
     {
+        $this->authorize('manageProducts');
+
         return $this->showProductForm($product);
     }
 
     public function update(ProductRequest $request)
     {
+        $this->authorize('manageProducts');
+
         try {
             DB::beginTransaction();
             $product = Product::findorFail($request->id);
@@ -203,7 +214,8 @@ class ProductStorageController extends Controller
         $listingPath = public_path('images/listing/') . $imagename;
         if (file_exists($thumbPath)) {
             unlink($thumbPath);
-        }
+        $this->authorize('manageProducts');
+    }
         if (file_exists($listingPath)) {
             unlink($listingPath);
         }

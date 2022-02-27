@@ -34,6 +34,7 @@ class Vendor extends Model
                 'name' => $this->shop_name,
                 'background' => 'b8daff',
                 'color' => '0D8ABC',
+                'size' => '400'
             ];
 
             return 'https://ui-avatars.com/api/?' . http_build_query($queryString);

@@ -71,7 +71,7 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-        $roles =  auth()->user()->roles->pluck('slug')->all();
+        $roles =  $this->roles->pluck('slug')->all();
         return in_array($role, $roles);
     }
 

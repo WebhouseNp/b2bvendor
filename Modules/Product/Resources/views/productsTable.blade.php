@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+<table class="table custom-table table-responsive table-hover" id="example-table" cellspacing="0" width="100%">
     <thead>
         <tr class="border-0">
             <th>SN</th>
