@@ -15,7 +15,7 @@ class AlternativeUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:alternative_users,email,' . $this->id,
+            'email' => 'required|email|unique:alternative_users,email,' . $this->id . '|unique:users,email',
             'mobile' => 'required',
             'password' => $this->updateMode() ? ['nullable'] : ['required'],
             'permissions' => 'nullable',

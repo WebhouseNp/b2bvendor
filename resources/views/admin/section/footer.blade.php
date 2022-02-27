@@ -43,7 +43,20 @@
             // $('form button').attr('disabled', true);
         });
         
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Url driven nav-tabs
+        $(function() {
+                $('.js-enable-tab-url a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            history.pushState({}, '', e.target.hash);
+            });
+        
+            var hash = document.location.hash;
+            var prefix = "tab_";
+            if (hash) {
+                $('.nav-tabs a[href="'+hash.replace(prefix,"")+'"]').tab('show');
+            }
+        });
     });
 
 </script>

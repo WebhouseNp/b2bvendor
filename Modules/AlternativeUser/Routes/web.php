@@ -8,4 +8,5 @@ Route::group(['middleware' => 'role:vendor'], function() {
     Route::post('alternative-users', [AlternativeUserController::class, 'store'])->name('alternative-users.store');
     Route::get('alternative-users/{alternativeUser}/edit', [AlternativeUserController::class, 'edit'])->name('alternative-users.edit');
     Route::put('alternative-users/{alternativeUser}', [AlternativeUserController::class, 'update'])->name('alternative-users.update');
+    Route::delete('alternative-users/{alternativeUser}', [AlternativeUserController::class, 'destroy'])->name('alternative-users.destroy');
 });

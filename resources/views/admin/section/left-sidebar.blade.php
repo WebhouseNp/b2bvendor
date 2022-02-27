@@ -127,6 +127,15 @@ $user_access = json_decode($user->access_level);
             </li>
             @endif
 
+            @if(auth()->user()->hasAnyRole('admin|super_admin|vendor'))
+            <li>
+                <a href="{{route('salesReport')}}">
+                    <i class="sidebar-item-icon fa fa-bar-chart"></i>
+                    <span class="nav-label">Sales Report</span>
+                </a>
+            </li>
+            @endif
+
             @can('manageOrders')
             <li>
                 <a href="{{ route('orders.index') }}">
@@ -135,24 +144,6 @@ $user_access = json_decode($user->access_level);
                 </a>
             </li>
             @endcan
-
-            <li>
-                <a href="{{ route('salesReport') }}">
-                    <i class="sidebar-item-icon fa fa-bar-chart "></i>
-                    <span class="nav-label">Sales Report</span>
-                    <!-- <i class="fa fa-angle-left arrow"></i> -->
-                </a>
-                <!-- <ul class="nav-2-level collapse">
-                    @if(in_array('super_admin' ,$roles) || (in_array('admin' ,$roles) || (in_array('vendor' , $roles))))
-                    <li>
-                        <a href="{{route('salesReport')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Sales Reports
-                        </a>
-                    </li>
-                    @endif
-                </ul> -->
-            </li>
 
             {{-- @if (auth()->user()->hasRole('vendor')) --}}
             @can('viewTransactions')
@@ -520,14 +511,14 @@ $user_access = json_decode($user->access_level);
             </li>
             @endif
 
-            @if(auth()->user()->hasAnyRole(['vendor']))
-            <li>
-                <a href="{{ route('alternative-users.index') }}">
-                    <i class="sidebar-item-icon fa fa-thumbs-up"></i>
-                    <span class="nav-label">Alternative Users</span>
-                </a>
-            </li>
-            @endif
+        @if(auth()->user()->hasAnyRole(['vendor']))
+        <li>
+            <a href="{{ route('alternative-users.index') }}">
+                <i class="sidebar-item-icon fa fa-users"></i>
+                <span class="nav-label">Users</span>
+            </a>
+        </li>
+        @endif
         </ul>
     </div>
 </nav>

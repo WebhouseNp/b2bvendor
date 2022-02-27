@@ -40,9 +40,6 @@
                             <li class="list-group-item">
                                 <b>Products</b> <a class="float-right" href="{{route('product.index',['type'=>'all'])}}" >View</a>
                             </li>
-                            <li class="list-group-item">
-                                <b>Total Sales</b> <a class="float-right" href="{{route('product.index',['type'=>'all'])}}" >View</a>
-                            </li>
                         </ul>
                         <a href="{{route('editVendorProfile',$vendor->id)}}" target="_blank" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
                     </div>
@@ -50,11 +47,9 @@
             </div>
 
             <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <x-profile></x-profile>
-                    </div>
-                    <div class="card-body">
+                <div class="ibox">
+                    <x-profile></x-profile>
+                    <div class="ibox-body">
                         <div class="tab-content" id="component-1-content">
                             <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
@@ -71,26 +66,51 @@
                                     </div> -->
 
                                     <div class="col-md-12">
-                                        <h3 class="profile-card-title">{{ucfirst($vendor->vendor->shop_name)}}</h3>
-                                        <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $vendor->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                                        <h4 class="profile-card-subtitle"><strong>Email:</strong>{{$vendor->vendor->company_email}}
-                                        </h4>
-                                        <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$vendor->vendor->company_address}}</h4>
-                                        <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$vendor->vendor->country->name}}</h4>
-                                        <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $vendor->vendor->plan=="basic_plan" ? 'Basic Plan' :$vendor->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>
-                                        <h4 class="profile-card-subtitle"><strong>Phone:</strong> {{$vendor->vendor->phone_number}}</h4>
-                                        <h4 class="profile-card-subtitle"><strong>Status:</strong> {{ucfirst($vendor->vendor_type)}}</h4>
-                                        <h4 class="profile-card-subtitle"><strong>Business Type:</strong> {{ucfirst($vendor->vendor->business_type)}}</h4>
-                                        <h4 class="profile-card-subtitle"><strong>Product Category:</strong>
-                                            @foreach($vendor->vendor->categories as $cat)
-                                            @if(!$loop->last)
-                                            {{ $cat->name }},
-                                            @endif
-                                            @if($loop->last)
-                                            {{ $cat->name }}
-                                            @endif
-                                            @endforeach
-                                        </h4>
+                                        <div class="row">
+                                            <div class="col-md-4 mb-4">
+                                                <label class="title-label">Category</label>
+                                                <div class="text-capitalize">{{ Str::replace('_', ' ', $vendor->vendor->category) }}</div>
+                                              </div>
+                                              <div class="col-md-4 mb-4">
+                                                <label class="title-label">Email</label>
+                                                <div>{{ $vendor->vendor->company_email }}</div>
+                                              </div>
+                                              <div class="col-md-4 mb-4">
+                                                <label class="title-label">Address</label>
+                                                <div>{{ $vendor->vendor->company_address }}</div>
+                                              </div>
+                                              <div class="col-md-4 mb-4">
+                                                <label class="title-label">Country</label>
+                                                <div>{{ $vendor->vendor->country->name }}</div>
+                                              </div>
+                                              <div class="col-md-4 mb-4">
+                                                <label class="title-label">Plan</label>
+                                                <div class="text-capitalize">{{ Str::replace('_', ' ', $vendor->vendor->plan) }}</div>
+                                              </div>
+                                              <div class="col-md-4 mb-4">
+                                                <label class="title-label">Phone</label>
+                                                <div>{{ $vendor->vendor->phone_number }}</div>
+                                              </div>
+                                              <div class="col-md-4 mb-4">
+                                                <label class="title-label">Status</label>
+                                                <div>{{ ucfirst($vendor->vendor_type) }}</div>
+                                              </div>
+                                              <div class="col-md-4 mb-4">
+                                                <label class="title-label">Business Type</label>
+                                                <div>{{ ucfirst($vendor->vendor->business_type) }}</div>
+                                              </div>
+                                              <div class="col-md-12 mb-4">
+                                                <label class="title-label">Type of Product</label>
+                                                <div>
+                                                    @foreach($vendor->vendor->categories as $cat)
+                                                    {{ $cat->name }}
+                                                    @if(!$loop->last)
+                                                    <span>,</span>
+                                                    @endif
+                                                    @endforeach
+                                                </div>
+                                              </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

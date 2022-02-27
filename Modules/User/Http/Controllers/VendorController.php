@@ -97,7 +97,7 @@ class VendorController extends Controller
       }
       
       $vendor->update($value);
-      return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
+      return redirect()->to(url()->previous(). '#component-1-4')->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
    public function updateUserDetails(Request $request, Vendor $vendor)

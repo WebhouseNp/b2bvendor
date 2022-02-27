@@ -13,7 +13,7 @@
     <link href="{{asset('/assets/admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/vendors/themify-icons/css/themify-icons.css')}}" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
-    <link href="{{asset('/assets/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
+<link href="{{asset('/assets/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href="{{asset('/assets/admin/css/main.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/css/BsMultiSelect.bs4.min.css')}}" rel="stylesheet" />
@@ -23,6 +23,13 @@
 
     <!-- PAGE LEVEL STYLES-->
     @yield('styles')
+    <style>
+             .title-label {
+                font-size: 0.9rem;
+                color: gray;
+                margin-bottom: 0;
+            }
+    </style>
 
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 </head>
@@ -40,7 +47,13 @@
                         {{ auth()->user()->vendor->shop_name }}
                         @endif
                     </span>
-                    <span class="brand-mini">VR</span>
+                    <span class="brand-mini text-nowrap">
+                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                        {{ auth()->user()->name }}
+                        @else
+                        {{ auth()->user()->vendor->shop_name }}
+                        @endif
+                    </span>
                 </a>
             </div>
             <div class="flexbox flex-1">
@@ -51,6 +64,12 @@
                     </li>
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
+                <h4><strong>Welcome,</strong>
+                @if(auth()->user()->hasRole('vendor'))
+                   <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
+                @endif
+                </h4>
+                <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->id }}'" >View Store</button>
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-user">
@@ -64,12 +83,6 @@
                                     <i class="fa fa-cog"></i>Change Password
                                 </a>
                             </li>
-                            <!-- <a class="dropdown-item" href="profile.html">
-                                <i class="fa fa-cog"></i>Settings
-                            </a>
-                            <a class="dropdown-item" href="https://webhousenepal.com/">
-                                <i class="fa fa-support"></i>Support
-                            </a> -->
                             <li class="dropdown-divider"></li>
                             <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-power-off"></i>Logout

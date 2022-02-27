@@ -33,11 +33,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header p-2">
+                <div class="ibox">
+                    {{-- <div class="card-header p-2"> --}}
                         <x-profile></x-profile>
-                    </div>
-                    <div class="card-body">
+                    {{-- </div> --}}
+                    <div class="ibox-body">
                         <div class="tab-content" id="component-1-content">
                             <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
@@ -187,7 +187,7 @@
                             </div>
                         </div>
                         <div class=" bg-light text-center">
-                            <h5>Note:: Please Contact Admin to update uneditable Information!</h5>
+                            <h5>Note: Please Contact Admin to update uneditable Information!</h5>
                         </div>
                     </div>
                 </div>

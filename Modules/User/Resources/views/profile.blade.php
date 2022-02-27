@@ -1,20 +1,11 @@
 @extends('layouts.admin')
 @section('page_title')Edit Vendor Info @endsection
+
 @section('styles')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
+
 @section('content')
-@include('admin.section.notifications')
-@if($errors->any())
-<div class="alert alert-danger">
-    <p><strong>Opps Something went wrong</strong></p>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -22,8 +13,10 @@
         </div>
     </div>
     <div class="ibox">
-    <x-profile></x-profile>
-
+        @include('admin.section.notifications')
+        
+        <x-profile></x-profile>
+        
         <div class="tab-content" id="component-1-content">
             <div class="tab-pane fade show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
 
@@ -170,8 +163,6 @@
                                 <label><strong>Contact Number</strong></label>
                                 <input class="form-control" type="text" value="{{$user->phone_num}}" name="phone_num" placeholder="Enter your Phone Number">
                             </div>
-
-
                             <div class="col-lg-12 col-sm-12 form-group">
                                 <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
                             </div>
@@ -236,7 +227,6 @@
 <script>
     $(document).ready(function() {
         $('#category_id').select2();
-
     });
 </script>
 <script>
