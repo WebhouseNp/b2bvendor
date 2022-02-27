@@ -23,6 +23,13 @@
 
     <!-- PAGE LEVEL STYLES-->
     @yield('styles')
+    <style>
+             .title-label {
+                font-size: 0.9rem;
+                color: gray;
+                margin-bottom: 0;
+            }
+    </style>
 
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 </head>
@@ -40,7 +47,13 @@
                         {{ auth()->user()->vendor->shop_name }}
                         @endif
                     </span>
-                    <span class="brand-mini">VR</span>
+                    <span class="brand-mini text-nowrap">
+                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                        {{ auth()->user()->name }}
+                        @else
+                        {{ auth()->user()->vendor->shop_name }}
+                        @endif
+                    </span>
                 </a>
             </div>
             <div class="flexbox flex-1">
