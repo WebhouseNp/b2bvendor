@@ -192,7 +192,7 @@ $user_access = json_decode($user->access_level);
                 @endif
                 @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
                 <li>
-                    <a href="{{route('product.index',['type'=>'all'])}}">
+                    <a href="{{ route('product.index') }}">
                         <span class="fa fa-circle-o"></span>
                         All Products
                     </a>

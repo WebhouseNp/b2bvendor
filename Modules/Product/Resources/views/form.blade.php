@@ -9,36 +9,19 @@
 @endsection
 
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title"> Product</h1>
+<div class="page-content fade-in-up">
+    <div class="page-heading d-flex mb-3">
+    <h1 class="h4-responsive">{{ $updateMode ? 'Edit' : 'Add' }} Product</h1>
+    <div class="ml-auto">
+        <a class="btn btn-info btn-md" href="/product/all">All Products</a>
+    </div>
 </div>
 @include('admin.section.notifications')
-<div class="page-content fade-in-up">
-    <div class="ibox">
-        <div class="ibox-head">
-            <div class="ibox-title">{{ $updateMode ? 'Edit' : 'Add' }} Product</div>
-            <div>
-                <a class="btn btn-info btn-md" href="/product/all">All Products</a>
-            </div>
-        </div>
-    </div>
-
     <div class="ibox-body" id="validation-errors">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     </div>
 
-    <div class="ibox">
-        <div class="ibox-head">
-            <ul class="plain-nav-tabs nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ $updateMode ? route('product.edit', $product) : route('product.create') }}"><strong>General Information</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ $updateMode ? route('dropzone.upload', $product->id) : '#' }}"><strong>Images </strong></a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    @include('product::__partials.product-form-tabs')
 
     <div id="custom-validation-alert" class="validation-alert d-none">
         <div class="head">
@@ -480,7 +463,7 @@ $name = ['highlight'];
                 if (statusText == 'successful') {
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
-                    window.location.href = "/product/all";
+                    window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
                 }
             },
             error: function(error) {

@@ -1,39 +1,19 @@
 @extends('layouts.admin')
-@section('page_title') {{ ($product_info) ? "Update" : "Add"}} Product @endsection
+@section('page_title') {{ ($product) ? "Update" : "Add"}} Product @endsection
 
 @section('content')
-
-<div class="page-heading">
-    <h1 class="page-title"> Product</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href=""><i class="la la-home font-20"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item"> {{ ($product_info) ? "Update" : "Add"}} Product</li>
-    </ol>
-
-</div>
 <div class="page-content fade-in-up">
-    <div class="ibox">
-        <div class="ibox-head">
-            <div class="ibox-title">{{ ($product_info) ? "Update" : "Add"}} Product</div>
-            <div>
-                <a class="btn btn-info btn-md" href="{{route('product.index',['type'=>'all'])}}">All Products</a>
-            </div>
+    <div class="page-heading d-flex mb-3">
+        <h1 class="h4-responsive">Product images</h1>
+        <div class="ml-auto">
+            <a class="btn btn-info btn-md" href="/product/all">All Products</a>
         </div>
-
-        <!--  <div class="ibox-body">
-
-
-        </div> -->
     </div>
 
-    {{--dd($product_info)--}}
+    @include('product::__partials.product-form-tabs')
 
-    <form class="form form-responsive form-horizontal" action="{{route('product-update', $product_info->id)}}"
+    <form class="form form-responsive form-horizontal" action="{{route('product-update', $product->id)}}"
         enctype="multipart/form-data" method="post">
-
-
         {{csrf_field()}}
         <div class="row">
             <div class="col-lg-12">
@@ -48,33 +28,22 @@
                                         <input class="form-control" type="file" name="image[]" id="image"
                                             accept="image/*" multiple>
                                     </div>
-
-
-
                                     @if(Session::get('image_warning'))
                                     <?php $image_error = Session::get('image_warning'); ?>
-
-
                                     @foreach($image_error as $err)
                                     <div class="error alert-danger">{{$err}}</div>
                                     @endforeach
                                     @endif
-
-
-
-
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            @if(isset($product_info->productimage) && $product_info->productimage->count())
-                            @foreach($product_info->productimage as $image_key => $image_data)
+                            @if(isset($product->productimage) && $product->productimage->count())
+                            @foreach($product->productimage as $image_key => $image_data)
                             <div class="col-lg-3 col-md-12 col-12  image_id{{$image_data->id}}">
                                 <div class="ibox">
-
                                     @if(isset($image_data->images) && !empty($image_data->images) &&
                                     file_exists(public_path().'/uploads/product/other-image/'.$image_data->images))
-
                                     <div class="form-group">
                                         <div class="m-r-10 product_images">
                                             <div class="remove_image" data-image_id="{{$image_data->id}}"><i
@@ -89,9 +58,7 @@
                             </div>
                             @endforeach
                             @endif
-
                         </div>
-
                     </div>
                     <div class="col-lg-12">
                         <div class="ibox">
@@ -107,10 +74,9 @@
             </div>
         </div>
     </form>
-
 </div>
-
 @endsection
+
 @section('scripts')
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/admin/js/jquery-ui.js')}}"></script>
