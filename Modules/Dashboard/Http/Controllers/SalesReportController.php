@@ -133,11 +133,11 @@ class SalesReportController extends Controller
         $months_day = [];
         $amount = [];
             $details = Order::when(auth()->user()->hasRole('vendor'), function ($query) use ($vendor) {
-                return $query->where('vendor_user_id', $vendor->id);
+                return $query->where('vendor_id', $vendor->id);
             })->get();
 
             $total_sales = Order::when(auth()->user()->hasRole('vendor'), function ($query) use ($vendor) {
-                return $query->where('vendor_user_id', $vendor->id);
+                return $query->where('vendor_id', $vendor->id);
             })->sum('total_price');
             
             foreach ($details as $detail) {
@@ -166,35 +166,7 @@ class SalesReportController extends Controller
         ));
     }
 
-    // public function getVendorOrderReport(Request $request)
-    // {
-    //     $months_day = [];
-    //     $amount = [];
-    //     $id = Auth::user()->id;
-    //     $details = OrderList::where('vendor_user_id', $id)->get();
-    //     $orderlist = OrderList::where('vendor_user_id', $id)->sum('total_price');
-    //     foreach ($details as $detail) {
-    //         $months_day[] = $detail->created_at->format('Y-m-d');
-    //         $amount[] = [$detail->created_at->format('Y-m-d') => $detail->amount];
-    //     }
-    //     $finalamount = array();
-
-    //     array_walk_recursive($amount, function ($item, $key) use (&$finalamount) {
-    //         $finalamount[$key] = isset($finalamount[$key]) ?  $item + $finalamount[$key] : $item;
-    //     });
-    //     $amt = [];
-    //     foreach ($finalamount as $value) {
-    //         $amt[] = $value;
-    //     }
-    //     $total_sales = $orderlist;
-    //     $months_day = array_values(array_unique($months_day));
-    //     return view('user::vendorsalesreport', compact(
-    //         'details',
-    //         'months_day',
-    //         'amt',
-    //         'total_sales'
-    //     ));
-    // }
+    
 
     public function weekly_report()
     {

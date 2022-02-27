@@ -67,14 +67,7 @@
     </div>
 </div>
 
-<div class="row">
-        <div class="col-md-7">
-            <x-charts.sales-chart-tile></x-charts.sales-chart-tile>
-        </div>
-        <div class="col-md-5">
-            <x-charts.payment-type-pie-chart-tile></x-charts.payment-type-pie-chart-tile>
-        </div>
-    </div>
+
 
 <!-- <div class="page-content fade-in-up">
     <div class="ibox">
