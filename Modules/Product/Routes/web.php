@@ -3,7 +3,7 @@
 use Modules\Product\Http\Controllers\ProductController;
 use Modules\Product\Http\Controllers\ProductStorageController;
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'Adminrole']], function () {
+Route::group(['middleware' => ['auth', 'role:super_admin|admin|vendor']], function () {
     Route::get('/productimage/{id}', [ProductController::class, 'productImage'])->name('product.images');
     Route::post('/edit-product-images-details/{id}', 'ProductController@updateProductImage')->name('product-update');
     Route::get('/product/create', [ProductStorageController::class, 'create'])->name('product.create');
