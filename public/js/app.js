@@ -2391,7 +2391,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.loading = false;
                   _this.errors = _context.t0.response.data;
 
-                  _this.validation_rule.setMessages(_this.errors.data);
+                  _this.validation_rule.setMessages(_this.errors.errors);
                 } else {
                   _this.loading = false;
                   alert("Something went wrong please try again.");
@@ -5422,6 +5422,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       validation: new _services_validation__WEBPACK_IMPORTED_MODULE_4__["default"](),
       email: "",
       password: "",
+      remember_me: 0,
       loading: false,
       showPassword: false,
       error: ""
@@ -38601,7 +38602,7 @@ var staticRenderFns = [
           _c("div", { staticClass: "description" }, [
             _c("p", [
               _vm._v(
-                "\n            B@2C, C2C Ecommerce is growing rapidly in Nepalese market. Most of\n            the users are using online payment, doing online purchase these\n            days. Internet user is growing every year. We have many B2B, B2C\n            Ecommerce in Nepal, while we are going into a digital era, B2B\n            Ecommerce is the future of Nepal. We believe in promoting B2B\n            Ecommerce and making Digital Nepal. By registering in\n            Sastowholesale.com you can reach more customers, more engagements\n            & more sales.\n          "
+                "\n            B2B, C2C Ecommerce is growing rapidly in Nepalese market. Most of\n            the users are using online payment, doing online purchase these\n            days. Internet user is growing every year. We have many B2B, B2C\n            Ecommerce in Nepal, while we are going into a digital era, B2B\n            Ecommerce is the future of Nepal. We believe in promoting B2B\n            Ecommerce and making Digital Nepal. By registering in\n            Sastowholesale.com you can reach more customers, more engagements\n            & more sales.\n          "
               ),
             ]),
           ]),

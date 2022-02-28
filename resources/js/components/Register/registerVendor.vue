@@ -239,7 +239,7 @@ export default {
         if (error.response.status === 422) {
           this.loading = false;
           this.errors = error.response.data;
-          this.validation_rule.setMessages(this.errors.data);
+          this.validation_rule.setMessages(this.errors.errors);
         } else {
           this.loading = false;
           alert("Something went wrong please try again.");
