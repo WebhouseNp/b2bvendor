@@ -11,6 +11,8 @@ class AlternativeUserController extends Controller
 {
     public function index()
     {
+        abort_unless(!is_alternative_login(), 403);
+
         $alternativeUsers = AlternativeUser::where('user_id', auth()->id())->latest()->get();
 
         return view('alternativeuser::index', compact('alternativeUsers'));
@@ -18,11 +20,14 @@ class AlternativeUserController extends Controller
 
     public function create()
     {
+        abort_unless(!is_alternative_login(), 403);
         return $this->showForm(new AlternativeUser());
     }
 
     public function store(AlternativeUserRequest $request)
     {
+        abort_unless(!is_alternative_login(), 403);
+
         $alternativeUser = AlternativeUser::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -37,11 +42,15 @@ class AlternativeUserController extends Controller
 
     public function edit(AlternativeUser $alternativeUser)
     {
+        abort_unless(!is_alternative_login(), 403);
+
         return $this->showForm($alternativeUser);
     }
 
     public function update(AlternativeUserRequest $request, AlternativeUser $alternativeUser)
     {
+        abort_unless(!is_alternative_login(), 403);
+
         $alternativeUser->name =  $request->name;
         $alternativeUser->email = $request->email;
         $alternativeUser->mobile = $request->mobile;
@@ -57,6 +66,8 @@ class AlternativeUserController extends Controller
 
     public function destroy(AlternativeUser $alternativeUser)
     {
+        abort_unless(!is_alternative_login(), 403);
+
         $alternativeUser->delete();
 
         return redirect()->route('alternative-users.index')->with('error', 'User has been deleted.');

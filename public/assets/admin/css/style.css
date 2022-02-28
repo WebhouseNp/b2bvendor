@@ -198,4 +198,13 @@ button {
     .transaction-header {
         display: block;
     }
+
+    .ibox .ibox-body {
+        padding: 5px 10px 10px 10px;
+    }
+
+    .content-wrapper {
+        padding: 0;
+    }
 }
+

@@ -135,11 +135,13 @@
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
                 <h4>
-                @if(auth()->user()->hasRole('vendor'))
-                <strong>Welcome,</strong>
-                <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
-                <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
-                @endif
+                    @if(auth()->user()->hasRole('vendor'))
+                    <span class="d-md-inline d-none">
+                    <strong>Welcome,</strong>
+                    <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
+                    </span>
+                    <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
+                    @endif
                 </h4>
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
@@ -149,12 +151,14 @@
                             <span>{{ is_alternative_login() ? alt_usr()->name : Auth::user()->name }}</span><i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
+                            @if(!is_alternative_login())
                             <li>
-                                <a class="dropdown-item" href="{{route('change.password')}}">
+                                <a class="dropdown-item" href="{{ route('change.password') }}">
                                     <i class="fa fa-cog"></i>Change Password
                                 </a>
                             </li>
                             <li class="dropdown-divider"></li>
+                            @endif
                             <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-power-off"></i>Logout
                             </a>

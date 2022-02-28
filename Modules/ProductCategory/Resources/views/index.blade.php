@@ -65,7 +65,7 @@ Product Categories
                             </div>
                         </td>
                         @endif
-                        @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                        @if( auth()->user()->hasAnyRole('super_admin|admin'))
                         <td>
                             <input type="checkbox" class="js-product-category-status btn btn-success btn-sm" rel="{{ $productCategory->id }}" data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($productCategory->publish == 1) checked @endif>
                         </td>
