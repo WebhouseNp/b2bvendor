@@ -1,3 +1,4 @@
+{{-- Can be safely deleted --}}
 @extends('layouts.admin')
 @section('page_title') {{ ($product) ? "Update" : "Add"}} Product @endsection
 
