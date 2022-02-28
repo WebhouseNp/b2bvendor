@@ -36,10 +36,19 @@
                 <a data-v-cbdddaa2="" href="#" class="nav-link">Home</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
+                <a data-v-cbdddaa2="" href="#" class="nav-link">Partners</a>
+              </li>
+              <li data-v-cbdddaa2="" class="nav-item">
                 <a data-v-cbdddaa2="" href="#" class="nav-link">Blog</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
                 <a data-v-cbdddaa2="" href="#" class="nav-link">FAQ</a>
+              </li>
+              <li data-v-cbdddaa2="" class="nav-item">
+                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link"  @click="onClickSingup">Register</a>
+              </li>
+              <li data-v-cbdddaa2="" class="nav-item">
+                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link" @click="onClickLogin">Login</a>
               </li>
             </ul>
           </div>
@@ -122,7 +131,7 @@
         >
         <div class="alert-login">
           <span>Already a Seller?</span><br><br>
-          <a href="javascript:void(0)" class="btn btn-slider" @click="onClickLogin"
+          <a href="javascript:void(0)" class="btn btn-slider mb-5" @click="onClickLogin"
               >Login here</a>
         </div>
       </div>
