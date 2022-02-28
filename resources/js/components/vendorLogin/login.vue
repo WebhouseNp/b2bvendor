@@ -3,93 +3,89 @@
     <section class="login-main">
       <div class="container">
         <div class="login-form-card">
-          <div class="row">
-            <div class="col-lg-5 col-md-8 mx-auto col-12">
-              <div class="card login-card border-0">
-                <div class="card-body">
-                  <div class="text-center">
-                    <a href="/" class="router-link-active">
-                      <img src="/images/logo.png" alt="logo" class="logo-img" />
-                    </a>
-                  </div>
-                  <div class="row">
-                    <div class="col-12">
-                      <h4 class="login-title">
-                        Welcome To <span>Seller Market</span>
-                      </h4>
-                    </div>
-                    <div class="col-12">
-                      <form @submit.prevent="onSubmit()">
-                        <error v-if="error" :error="error" />
-                        <Input
-                          label="Email"
-                          type="text"
-                          placeholder="example@gmail.com"
-                          v-model="email"
-                        />
-                        <div class="form-group">
-                          <label for="">
-                            Password
-                            <span class="pt-fp"
-                              ><a href="/forgot-password" class="" tabindex="-1"
-                                >Forgot Password?</a
-                              ></span
-                            >
-                          </label>
-                          <input
-                            v-if="showPassword"
-                            type="text"
-                            class="form-control"
-                            placeholder="Enter Password"
-                            v-model="password"
-                          />
-                          <input
-                            v-else
-                            type="password"
-                            class="form-control"
-                            placeholder="Enter Password"
-                            v-model="password"
-                          />
-                          <span class="field-icon icon-cl" @click="toggleShow">
-                            <span class="icon is-small is-right">
-                              <i
-                                class="fa"
-                                :class="{
-                                  'fa-eye-slash': showPassword,
-                                  'fa-eye': !showPassword,
-                                }"
-                              ></i>
-                            </span>
-                          </span>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            type="checkbox"
-                            class="form-check-input"
-                            id="rememberMe"
-                            style="margin-left: 0; margin-top: 6px"
-                          />
-                          <label class="form-check-label" for="rememberMe"
-                            >Remember Me</label
-                          >
-                        </div>
-                        <loading-button
-                          type="submit"
-                          class="btn btn-primary"
-                          :loading="loading"
-                          >{{
-                            loading ? "Please wait" : "Sign In"
-                          }}</loading-button
+          <div class="card login-card border-0">
+            <div class="card-body">
+              <div class="text-center">
+                <a href="/" class="router-link-active">
+                  <img src="/images/logo.png" alt="logo" class="logo-img" />
+                </a>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="login-title">
+                    Welcome To <span>Seller Market</span>
+                  </h4>
+                </div>
+                <div class="col-12">
+                  <form @submit.prevent="onSubmit()">
+                    <error v-if="error" :error="error" />
+                    <Input
+                      label="Email"
+                      type="text"
+                      placeholder="example@gmail.com"
+                      v-model="email"
+                    />
+                    <div class="form-group">
+                      <label for="">
+                        Password
+                        <span class="pt-fp"
+                          ><a href="/forgot-password" class="" tabindex="-1"
+                            >Forgot Password?</a
+                          ></span
                         >
-                        <p class="signup">
-                        New around here?
-                        <a href="javascript:void(0)" @click="onClickSingup">
-                          Sign Up</a
-                        >
-                      </p>
-                      </form>
+                      </label>
+                      <input
+                        v-if="showPassword"
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        v-model="password"
+                      />
+                      <input
+                        v-else
+                        type="password"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        v-model="password"
+                      />
+                      <span class="field-icon icon-cl" @click="toggleShow">
+                        <span class="icon is-small is-right">
+                          <i
+                            class="fa"
+                            :class="{
+                              'fa-eye-slash': showPassword,
+                              'fa-eye': !showPassword,
+                            }"
+                          ></i>
+                        </span>
+                      </span>
                     </div>
-                    <!-- <div class="col-md-5 col-sm-12">
+                    <div class="form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="rememberMe"
+                        style="margin-left: 0; margin-top: 6px"
+                      />
+                      <label class="form-check-label" for="rememberMe"
+                        >Remember Me</label
+                      >
+                    </div>
+                    <loading-button
+                      type="submit"
+                      class="btn btn-primary"
+                      :loading="loading"
+                      >{{ loading ? "Please wait" : "Sign In" }}</loading-button
+                    >
+                    <p class="signup">
+                      New around here?
+                      <a href="javascript:void(0)" @click="onClickSingup">
+                        Sign Up</a
+                      >
+                    </p>
+                  </form>
+                </div>
+                <!-- <div class="col-md-5 col-sm-12">
                       <span class="login-span">Or, signin with</span>
                       <div class="third-party-login">
                         <button class="btn btn-facebook">
@@ -106,18 +102,16 @@
                         >
                       </p>
                     </div> -->
-                  </div>
-                </div>
               </div>
             </div>
           </div>
+          <div class="copyright">
+            <p>
+              Copyright &copy; 2022 <a href="#">Sasto Wholesale</a> All Rights
+              Reserved
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="copyright">
-        <p>
-          Copyright &copy; 2022 <a href="#">Sasto Wholesale</a> All Rights
-          Reserved
-        </p>
       </div>
     </section>
 
@@ -239,6 +233,7 @@ export default {
       validation: new validation(),
       email: "",
       password: "",
+      remember_me: 0,
       loading: false,
       showPassword: false,
       error: "",
@@ -400,7 +395,6 @@ export default {
   position: relative;
   background-position: center;
   min-height: 100vh;
-  padding: 50px 0px;
 }
 
 .login-title {
@@ -416,8 +410,13 @@ export default {
   color: #fc0001;
 }
 
-.login-card {
+.login-form-card {
   border-radius: 5px !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
 }
 
 .login-card label {
@@ -446,6 +445,10 @@ export default {
 .login-span {
   color: #757575;
   font-size: 13px;
+}
+
+.login-card {
+  border-radius: 5px !important;
 }
 
 .third-party-login {
@@ -516,5 +519,16 @@ export default {
 .icon-cl i {
   color: #535758;
   font-size: 14px;
+}
+
+@media screen and (max-width: 576px) {
+  .login-form-card {
+  border-radius: 5px !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+}
 }
 </style>

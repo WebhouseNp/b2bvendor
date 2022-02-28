@@ -96,4 +96,5 @@ class VendorLoginController extends Controller
             "message" => "Invalid Username/password"
         ], 500);
     }
+    
 }

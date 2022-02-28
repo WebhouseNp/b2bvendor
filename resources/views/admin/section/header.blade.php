@@ -140,7 +140,7 @@
                     <strong>Welcome,</strong>
                     <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
                     </span>
-                    <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
+                    <button class="btn btn-primary btn-sm" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
                     @endif
                 </h4>
                 <!-- START TOP-RIGHT TOOLBAR-->
