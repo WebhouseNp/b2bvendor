@@ -86,56 +86,21 @@
                         <a href="javascript:void(0)" @click="onClickSingup">
                           Sign Up</a
                         >
-                      </label>
-                      <input
-                        v-if="showPassword"
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Password"
-                        v-model="password"
-                      />
-                      <input
-                        v-else
-                        type="password"
-                        class="form-control"
-                        placeholder="Enter Password"
-                        v-model="password"
-                      />
-                      <span class="field-icon icon-cl" @click="toggleShow">
-                        <span class="icon is-small is-right">
-                          <i
-                            class="fa"
-                            :class="{
-                              'fa-eye-slash': showPassword,
-                              'fa-eye': !showPassword,
-                            }"
-                          ></i>
-                        </span>
-                      </span>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="rememberMe"
-                        style="margin-left: 0; margin-top: 6px"
-                      />
-                      <label class="form-check-label" for="rememberMe"
-                        >Remember Me</label
-                      >
+                      </p>
+                      </form>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="copyright">
-            <p>
-              Copyright &copy; 2022 <a href="#">Sasto Wholesale</a> All Rights
-              Reserved
-            </p>
-          </div>
         </div>
+      </div>
+      <div class="copyright">
+        <p>
+          Copyright &copy; 2022 <a href="#">Sasto Wholesale</a> All Rights
+          Reserved
+        </p>
       </div>
     </section>
   </div>
@@ -318,6 +283,7 @@ export default {
   position: relative;
   background-position: center;
   min-height: 100vh;
+  padding: 50px 0px;
 }
 
 .login-title {
@@ -333,13 +299,8 @@ export default {
   color: #fc0001;
 }
 
-.login-form-card {
+.login-card {
   border-radius: 5px !important;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 450px;
 }
 
 .login-card label {
@@ -368,10 +329,6 @@ export default {
 .login-span {
   color: #757575;
   font-size: 13px;
-}
-
-.login-card {
-  border-radius: 5px !important;
 }
 
 .third-party-login {
@@ -442,16 +399,5 @@ export default {
 .icon-cl i {
   color: #535758;
   font-size: 14px;
-}
-
-@media screen and (max-width: 576px) {
-  .login-form-card {
-  border-radius: 5px !important;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-}
 }
 </style>
