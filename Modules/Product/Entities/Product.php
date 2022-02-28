@@ -69,16 +69,6 @@ class Product extends Model
         return $this->overview[$key] ?? null;
     }
 
-    // public function category()
-    // {
-    //     return $this->belongsTo(Category::class);
-    // }
-
-    // public function subcategory()
-    // {
-    //     return $this->belongsTo(Subcategory::class);
-    // }
-
     public function productCategory()
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id');

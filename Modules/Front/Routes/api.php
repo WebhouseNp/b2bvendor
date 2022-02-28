@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Front\Http\Controllers\BlogApiController;
 use Modules\Front\Http\Controllers\CheckoutController;
 use Modules\Front\Http\Controllers\CustomerApiController;
+use Modules\Front\Http\Controllers\FaqApiController;
 use Modules\Front\Http\Controllers\NewArrivalsProductApiController;
 use Modules\Front\Http\Controllers\OrderApiController;
 use Modules\Front\Http\Controllers\TopProductApiController;
@@ -72,3 +74,12 @@ Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 
 // Partners
 Route::get('our-partners', 'PartnerApiController');
+
+//Blogs
+Route::get('all-blogs', [BlogApiController::class, 'index'])->name('api.blogs.index');
+Route::get('single-blog/{blog:slug}', [BlogApiController::class, 'show'])->name('api.blogs.show');
+
+//Faqs
+Route::get('all-faqs', [FaqApiController::class, 'index']);
+
+

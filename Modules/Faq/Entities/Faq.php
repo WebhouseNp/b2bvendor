@@ -10,6 +10,11 @@ class Faq extends Model
     use HasFactory;
 
     protected $guarded = ['id','created_at','updated_at'];
+
+    public function scopePublished($query, $is_active = true)
+    {
+        return $query->where('is_active', $is_active ? 1 : 0);
+    }
     
     public function scopePositioned($query)
     {

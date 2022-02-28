@@ -33,5 +33,11 @@ class Blog extends Model
     {
         return Storage::delete($this->image);
     }
+
+    public function scopePublished($query, $is_active = true)
+    {
+        return $query->where('is_active', $is_active ? 1 : 0);
+    }
+    
     
 }

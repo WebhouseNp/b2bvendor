@@ -1,4 +1,5 @@
 <?php
+
 use Modules\Admin\Http\Controllers\AdminController;
 
 /*
@@ -12,17 +13,17 @@ use Modules\Admin\Http\Controllers\AdminController;
 |
 */
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
 });
-Route::get('/admin/login',[AdminController::class,'login'])->name('login');
-Route::post('/admin/login',[AdminController::class,'postLogin'])->name('postLogin');
+Route::get('/admin/login', [AdminController::class, 'login'])->name('login');
+Route::post('/admin/login', [AdminController::class, 'postLogin'])->name('postLogin');
 
 // Route::post('/postLogin',[AdminController::class,'postLogin'])->name('postLogin');
 
-Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],function(){
+Route::group(['namespace' => 'Admin', 'middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
-    Route::get('logout',[AdminController::class,'admin__logout'])->name('admin.logout');
-    Route::get('change-password',[AdminController::class,'changePassword'])->name('change.password');
-    Route::post('change-password',[AdminController::class,'updatePassword'])->name('update.password');
+    Route::get('logout', [AdminController::class, 'admin__logout'])->name('admin.logout');
+    Route::get('change-password', [AdminController::class, 'changePassword'])->name('change.password');
+    Route::post('change-password', [AdminController::class, 'updatePassword'])->name('update.password');
 });
