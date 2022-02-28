@@ -145,9 +145,8 @@
                                                         </label>
                                                         <input type="number" name="prices[]" value="{{ $range->price }}" placeholder="Price" class="form-control" required>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{ asset('/images/remove-icon.png') }}" /></a>
-                                                    </div>
+                                                    <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{ asset('/images/remove-icon.png') }}" /></a>
+                                                    
                                                 </div>
                                                 @endforeach
                                             </div>
