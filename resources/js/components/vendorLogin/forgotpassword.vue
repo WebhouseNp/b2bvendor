@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-12 my-3">
           <nav>
-            <a href="">
+            <a href="/">
               <img class="logo" src="/images/logo.png" alt="logo" />
             </a>
           </nav>
@@ -44,7 +44,7 @@
 
 <script>
 import axios from "axios";
-import validation from "./../../services/validation";
+import validation from "../../services/validation";
 import swal from 'sweetalert';
 import LoadingButton from "../LoadingButton.vue";
 export default {
@@ -75,6 +75,9 @@ export default {
           this.loading = false;
           this.errors = error.response.data;
           this.validation.setMessages(this.errors.data);
+        }else{
+          this.loading = false;
+          alert('something went wrong please try again!');
         }
       }
     },

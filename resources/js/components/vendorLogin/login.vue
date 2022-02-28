@@ -31,7 +31,7 @@
                           <label for="">
                             Password
                             <span class="pt-fp"
-                              ><a href="/forgot-password" class="" tabindex="-1"
+                              ><a href="javascript:void(0)" class="" tabindex="-1" @click="onClickForgot"
                                 >Forgot Password?</a
                               ></span
                             >
@@ -89,23 +89,6 @@
                       </p>
                       </form>
                     </div>
-                    <!-- <div class="col-md-5 col-sm-12">
-                      <span class="login-span">Or, signin with</span>
-                      <div class="third-party-login">
-                        <button class="btn btn-facebook">
-                          <i class="fab fa-facebook mr-2"></i> Facebook
-                        </button>
-                        <button class="btn btn-google">
-                          <i class="fab fa-google mr-2"></i> Google
-                        </button>
-                      </div>
-                      <p class="signup">
-                        New around here?
-                        <a href="javascript:void(0)" @click="onClickSingup">
-                          Sign Up</a
-                        >
-                      </p>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -120,107 +103,6 @@
         </p>
       </div>
     </section>
-
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-md-12 my-3">
-          <nav>
-            <a href="javascript:void(0)" @click="vendorHomepage">
-              <img class="logo" src="/images/logo.png" alt="logo" />
-            </a>
-          </nav>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8">
-          <div class="vendor-section">
-            <div class="vendor-bg">
-              <div class="vendor-overlay">
-                <h2 class="vendor-title text-center">
-                  Become Vendor,<br />
-                  Grow Your Business
-                </h2>
-              </div>
-            </div>
-            <div class="row pb-3">
-              <div class="col-md-12 my-4">
-                <h3 class="text-center text-uppercase">
-                  Welcome to Seller market
-                </h3>
-              </div>
-              
-            </div>
-          </div>
-         
-        </div>
-        <div class="col-md-4">
-          <div class="vendor-sign-in-form">
-            <form class="vendor-form" @submit.prevent="onSubmit()">
-              <error v-if="error" :error="error" />
-              <Input
-                label="Email"
-                type="text"
-                placeholder="example@gmail.com"
-                v-model="email"
-              />
-              <div class="form-group">
-                <label for="">Password</label>
-                <input
-                  v-if="showPassword"
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter Password"
-                  v-model="password"
-                />
-                <input
-                  v-else
-                  type="password"
-                  class="form-control"
-                  placeholder="Enter Password"
-                  v-model="password"
-                />
-                <span class="field-icon" @click="toggleShow">
-                  <span class="icon is-small is-right">
-                    <i
-                      class="fa"
-                      :class="{
-                        'fa-eye-slash': showPassword,
-                        'fa-eye': !showPassword,
-                      }"
-                    ></i>
-                  </span>
-                </span>
-              </div>
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="rememberMe"
-                  style="margin-left: 0; margin-top: 6px"
-                />
-                <label class="form-check-label" for="rememberMe"
-                  >Remember Me</label
-                >
-              </div>
-              <loading-button
-                type="submit"
-                class="btn btn-primary mt-4"
-                :loading="loading"
-                >{{ loading ? "Please wait" : "Sign In" }}</loading-button
-              >
-            </form>
-            <div class="vendor-form-bt">
-              <a href="javascript:void(0)" @click="onClickSingup">
-                New around here? Sign Up</a
-              ><br />
-              <a href="javascript:void(0)" @click="onClickForget"
-                >Forgot Password?</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -283,8 +165,8 @@ export default {
     onClickSingup() {
       window.location.href = "/vendor-registor";
     },
-    onClickForget() {
-      window.location.href = "/forget-password";
+    onClickForgot() {
+      window.location.href = "/forgot-password";
     },
   },
 };

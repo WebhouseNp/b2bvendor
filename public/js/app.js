@@ -5021,9 +5021,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -5036,7 +5036,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _services_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../services/validation */ "./resources/js/services/validation.js");
+/* harmony import */ var _services_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/validation */ "./resources/js/services/validation.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _LoadingButton_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../LoadingButton.vue */ "./resources/js/components/LoadingButton.vue");
@@ -5145,6 +5145,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.errors = _context.t0.response.data;
 
                   _this.validation.setMessages(_this.errors.data);
+                } else {
+                  _this.loading = false;
+                  alert('something went wrong please try again!');
                 }
 
               case 11:
@@ -5185,124 +5188,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5501,8 +5386,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     onClickSingup: function onClickSingup() {
       window.location.href = "/vendor-registor";
     },
-    onClickForget: function onClickForget() {
-      window.location.href = "/forget-password";
+    onClickForgot: function onClickForgot() {
+      window.location.href = "/forgot-password";
     }
   }
 });
@@ -5993,7 +5878,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use((vue_chat_scroll__WEBPACK_IMPORT
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('loginhomepage', (__webpack_require__(/*! ./components/vendorLogin/vendorHomepage.vue */ "./resources/js/components/vendorLogin/vendorHomepage.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('login', (__webpack_require__(/*! ./components/vendorLogin/login.vue */ "./resources/js/components/vendorLogin/login.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('register', (__webpack_require__(/*! ./components/Register/selectCategory.vue */ "./resources/js/components/Register/selectCategory.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('forgetpassword', (__webpack_require__(/*! ./components/vendorLogin/forgetpassword.vue */ "./resources/js/components/vendorLogin/forgetpassword.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('forgotpassword', (__webpack_require__(/*! ./components/vendorLogin/forgotpassword.vue */ "./resources/js/components/vendorLogin/forgotpassword.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('verification', (__webpack_require__(/*! ./components/vendorLogin/accountVerification.vue */ "./resources/js/components/vendorLogin/accountVerification.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('resetpassword', (__webpack_require__(/*! ./components/vendorLogin/Reset.vue */ "./resources/js/components/vendorLogin/Reset.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('createdeal', (__webpack_require__(/*! ./components/vendorDashboard/createDeal.vue */ "./resources/js/components/vendorDashboard/createDeal.vue")["default"]));
@@ -6017,6 +5902,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -6042,19 +5928,19 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "somekey",
+  key: "cbe0b7b8904e2ede8292",
   cluster: "ap2",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: "sellercenter.sastowholesale.com",
-  wsPort: "80",
-  wssPort: "443",
+  wsHost: process.env.MIX_PUSHER_WSHOST,
+  wsPort: process.env.MIX_PUSHER_WSPORT,
+  wssPort: process.env.MIX_PUSHER_WSSPORT,
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
+        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -32725,9 +32611,9 @@ component.options.__file = "resources/js/components/vendorLogin/accountVerificat
 
 /***/ }),
 
-/***/ "./resources/js/components/vendorLogin/forgetpassword.vue":
+/***/ "./resources/js/components/vendorLogin/forgotpassword.vue":
 /*!****************************************************************!*\
-  !*** ./resources/js/components/vendorLogin/forgetpassword.vue ***!
+  !*** ./resources/js/components/vendorLogin/forgotpassword.vue ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -32736,8 +32622,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _forgetpassword_vue_vue_type_template_id_6e0e103e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forgetpassword.vue?vue&type=template&id=6e0e103e& */ "./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=template&id=6e0e103e&");
-/* harmony import */ var _forgetpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./forgetpassword.vue?vue&type=script&lang=js& */ "./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=script&lang=js&");
+/* harmony import */ var _forgotpassword_vue_vue_type_template_id_c8ba4fd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forgotpassword.vue?vue&type=template&id=c8ba4fd2& */ "./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=template&id=c8ba4fd2&");
+/* harmony import */ var _forgotpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./forgotpassword.vue?vue&type=script&lang=js& */ "./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -32747,9 +32633,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _forgetpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _forgetpassword_vue_vue_type_template_id_6e0e103e___WEBPACK_IMPORTED_MODULE_0__.render,
-  _forgetpassword_vue_vue_type_template_id_6e0e103e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _forgotpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _forgotpassword_vue_vue_type_template_id_c8ba4fd2___WEBPACK_IMPORTED_MODULE_0__.render,
+  _forgotpassword_vue_vue_type_template_id_c8ba4fd2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -32759,7 +32645,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/vendorLogin/forgetpassword.vue"
+component.options.__file = "resources/js/components/vendorLogin/forgotpassword.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -33070,9 +32956,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************!*\
-  !*** ./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -33081,8 +32967,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_forgetpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./forgetpassword.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_forgetpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_forgotpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./forgotpassword.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_forgotpassword_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -33460,19 +33346,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=template&id=6e0e103e&":
+/***/ "./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=template&id=c8ba4fd2&":
 /*!***********************************************************************************************!*\
-  !*** ./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=template&id=6e0e103e& ***!
+  !*** ./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=template&id=c8ba4fd2& ***!
   \***********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_forgetpassword_vue_vue_type_template_id_6e0e103e___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_forgetpassword_vue_vue_type_template_id_6e0e103e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_forgotpassword_vue_vue_type_template_id_c8ba4fd2___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_forgotpassword_vue_vue_type_template_id_c8ba4fd2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_forgetpassword_vue_vue_type_template_id_6e0e103e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./forgetpassword.vue?vue&type=template&id=6e0e103e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=template&id=6e0e103e&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_forgotpassword_vue_vue_type_template_id_c8ba4fd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./forgotpassword.vue?vue&type=template&id=c8ba4fd2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=template&id=c8ba4fd2&");
 
 
 /***/ }),
@@ -37801,9 +37687,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=template&id=6e0e103e&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=template&id=c8ba4fd2&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgetpassword.vue?vue&type=template&id=6e0e103e& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/vendorLogin/forgotpassword.vue?vue&type=template&id=c8ba4fd2& ***!
   \**************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -37909,7 +37795,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 my-3" }, [
         _c("nav", [
-          _c("a", { attrs: { href: "" } }, [
+          _c("a", { attrs: { href: "/" } }, [
             _c("img", {
               staticClass: "logo",
               attrs: { src: "/images/logo.png", alt: "logo" },
@@ -37987,7 +37873,24 @@ var render = function () {
                           }),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group" }, [
-                            _vm._m(2),
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v(
+                                "\n                          Password\n                          "
+                              ),
+                              _c("span", { staticClass: "pt-fp" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "javascript:void(0)",
+                                      tabindex: "-1",
+                                    },
+                                    on: { click: _vm.onClickForgot },
+                                  },
+                                  [_vm._v("Forgot Password?")]
+                                ),
+                              ]),
+                            ]),
                             _vm._v(" "),
                             _vm.showPassword
                               ? _c("input", {
@@ -38063,7 +37966,7 @@ var render = function () {
                             ),
                           ]),
                           _vm._v(" "),
-                          _vm._m(3),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c(
                             "loading-button",
@@ -38103,7 +38006,7 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(4),
+      _vm._m(3),
     ]),
   ])
 }
@@ -38129,21 +38032,6 @@ var staticRenderFns = [
       _c("h4", { staticClass: "login-title" }, [
         _vm._v("\n                      Welcome To "),
         _c("span", [_vm._v("Seller Market")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "" } }, [
-      _vm._v(
-        "\n                          Password\n                          "
-      ),
-      _c("span", { staticClass: "pt-fp" }, [
-        _c("a", { attrs: { href: "/forgot-password", tabindex: "-1" } }, [
-          _vm._v("Forgot Password?"),
-        ]),
       ]),
     ])
   },
@@ -57097,7 +56985,7 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\b2bvendor"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\sastowholesale\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\sastowholesale\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

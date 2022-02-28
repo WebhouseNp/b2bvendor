@@ -36,8 +36,8 @@ Route::get('/vendor-registor', function () {
     $countries = Country::select('id', 'name')->get();
     return view('register')->with(compact('countries'));
 });
-Route::get('/forget-password', function () {
-    return view('forgetpassword');
+Route::get('/forgot-password', function () {
+    return view('forgotpassword');
 });
 Route::get('/passwod-resetform/{token}',function($token){
     $token = $token;
