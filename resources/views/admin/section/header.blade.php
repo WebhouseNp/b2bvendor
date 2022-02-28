@@ -151,12 +151,14 @@
                             <span>{{ is_alternative_login() ? alt_usr()->name : Auth::user()->name }}</span><i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
+                            @if(!is_alternative_login())
                             <li>
-                                <a class="dropdown-item" href="{{route('change.password')}}">
+                                <a class="dropdown-item" href="{{ route('change.password') }}">
                                     <i class="fa fa-cog"></i>Change Password
                                 </a>
                             </li>
                             <li class="dropdown-divider"></li>
+                            @endif
                             <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-power-off"></i>Logout
                             </a>
