@@ -104,6 +104,7 @@ export default {
       validation: new validation(),
       email: "",
       password: "",
+      remember_me: 0,
       loading: false,
       showPassword: false,
       error: "",

@@ -177,7 +177,7 @@
         <div class="row mt-5">
           <div class="description">
             <p>
-              B@2C, C2C Ecommerce is growing rapidly in Nepalese market. Most of
+              B2B, C2C Ecommerce is growing rapidly in Nepalese market. Most of
               the users are using online payment, doing online purchase these
               days. Internet user is growing every year. We have many B2B, B2C
               Ecommerce in Nepal, while we are going into a digital era, B2B
