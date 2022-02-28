@@ -1,36 +1,24 @@
 <template>
   <div>
-    <div class="pt-login-nav">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <div class="nav-logo">
-              <a href="/" class="router-link-active">
-                <img src="/images/logo.png" alt="logo" class="logo" />
-              </a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-6"></div>
-        </div>
-      </div>
-    </div>
-
     <section class="login-main">
       <div class="container">
         <div class="login-form-card">
           <div class="row">
-            <div class="col-lg-8 mx-auto col-12">
-              <h4 class="login-title">Welcome To <span>Seller Market</span></h4>
-
+            <div class="col-lg-5 col-md-8 mx-auto col-12">
               <div class="card login-card border-0">
                 <div class="card-body">
+                  <div class="text-center">
+                    <a href="/" class="router-link-active">
+                      <img src="/images/logo.png" alt="logo" class="logo-img" />
+                    </a>
+                  </div>
                   <div class="row">
                     <div class="col-12">
-                      <h5 class="login-heading">
-                        Become Vendor, Grow Your Business
-                      </h5>
+                      <h4 class="login-title">
+                        Welcome To <span>Seller Market</span>
+                      </h4>
                     </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-12">
                       <form @submit.prevent="onSubmit()">
                         <error v-if="error" :error="error" />
                         <Input
@@ -40,7 +28,14 @@
                           v-model="email"
                         />
                         <div class="form-group">
-                          <label for="">Password</label>
+                          <label for="">
+                            Password
+                            <span class="pt-fp"
+                              ><a href="/forgot-password" class="" tabindex="-1"
+                                >Forgot Password?</a
+                              ></span
+                            >
+                          </label>
                           <input
                             v-if="showPassword"
                             type="text"
@@ -55,7 +50,7 @@
                             placeholder="Enter Password"
                             v-model="password"
                           />
-                          <span class="field-icon" @click="toggleShow">
+                          <span class="field-icon icon-cl" @click="toggleShow">
                             <span class="icon is-small is-right">
                               <i
                                 class="fa"
@@ -86,14 +81,15 @@
                             loading ? "Please wait" : "Sign In"
                           }}</loading-button
                         >
-                        <div class="link-forget">
-                          <a href="javascript:void(0)" @click="onClickForget"
-                            >Forgot Password?</a
-                          >
-                        </div>
+                        <p class="signup">
+                        New around here?
+                        <a href="javascript:void(0)" @click="onClickSingup">
+                          Sign Up</a
+                        >
+                      </p>
                       </form>
                     </div>
-                    <div class="col-md-5 col-sm-12">
+                    <!-- <div class="col-md-5 col-sm-12">
                       <span class="login-span">Or, signin with</span>
                       <div class="third-party-login">
                         <button class="btn btn-facebook">
@@ -109,7 +105,7 @@
                           Sign Up</a
                         >
                       </p>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -117,10 +113,14 @@
           </div>
         </div>
       </div>
+      <div class="copyright">
+        <p>
+          Copyright &copy; 2022 <a href="#">Sasto Wholesale</a> All Rights
+          Reserved
+        </p>
+      </div>
     </section>
-    <div class="copyright">
-      <p>Copyright &copy; 2022 <a href="#">Sasto Wholesale</a> All Rights Reserved</p>
-    </div>
+
     <!-- <div class="container">
       <div class="row">
         <div class="col-md-12 my-3">
@@ -399,30 +399,21 @@ export default {
   background-repeat: no-repeat;
   position: relative;
   background-position: center;
-  min-height: 550px;
+  min-height: 100vh;
   padding: 50px 0px;
 }
 
 .login-title {
   text-align: center;
-  font-size: 32px;
-  color: #fff;
+  font-size: 24px;
+  color: #252829;
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 }
 
 .login-title span {
-  color: #dd6b6b;
-}
-
-.login-heading {
-  margin: 10px 0 20px 0;
-  text-align: center;
-  font-size: 22px;
-  color: #1e76bd;
-  font-weight: 600;
-  text-transform: capitalize;
+  color: #fc0001;
 }
 
 .login-card {
@@ -495,23 +486,35 @@ export default {
   background-color: #fff;
 }
 
-.nav-logo img {
+.logo-img {
   height: 55px;
-  padding: 5px 0px;
+  margin-bottom: 20px;
 }
 
 .copyright {
   text-align: center;
   padding: 20px 0;
+  color: #fff;
 }
 
 .copyright p a {
-  color: #1d75bd;
+  color: #fff;
+  text-decoration: underline;
 }
 
-.copyright p a:hover {
-  color: #dd6b6b;
-  text-decoration: none;
+/* .copyright p a:hover {
+  color: #1e76bd;
+} */
+
+.pt-fp {
+  position: absolute;
+  right: 30px;
+  font-size: 14px;
+  color: #1e76bd;
 }
 
+.icon-cl i {
+  color: #535758;
+  font-size: 14px;
+}
 </style>
