@@ -64,12 +64,13 @@
                     </li>
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
-                <h4><strong>Welcome,</strong>
+                <h4>
                 @if(auth()->user()->hasRole('vendor'))
-                   <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
+                <strong>Welcome,</strong>
+                <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
+                <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
                 @endif
                 </h4>
-                <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->id }}'" >View Store</button>
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-user">

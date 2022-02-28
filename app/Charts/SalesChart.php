@@ -25,13 +25,23 @@ class SalesChart extends BaseChart
 		$to   = ($to instanceof Carbon) ? $to->endOfDay() : Carbon::parse($to)->endOfDay();
         
         $reportType = $request->report_type ?? 'date';
-
-        $totalEarnings = \DB::table('orders')->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
+        if(auth()->user()->hasRole('vendor')){
+            $totalEarnings = \DB::table('orders')->where('vendor_id',auth()->user()->vendor->id)->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
             ->whereBetween('created_at', [$from, $to])
             ->groupBy('label')
             ->pluck('total_sales', 'label')
             ->all();
             logger($totalEarnings);
+        } else {
+
+            $totalEarnings = \DB::table('orders')->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
+                ->whereBetween('created_at', [$from, $to])
+                ->groupBy('label')
+                ->pluck('total_sales', 'label')
+                ->all();
+                logger($totalEarnings);
+        }
+
 
         $labels = collect(array_keys($totalEarnings))->map(function ($label) use ($reportType) {
             switch ($reportType) {

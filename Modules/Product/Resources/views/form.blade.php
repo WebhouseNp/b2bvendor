@@ -202,7 +202,7 @@
                                         <input class="form-control" type="text" id="age_group" name="age_group" value="{{ $product->getOverviewData('age_group') }}" placeholder="Age Group">
                                     </div>
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <label><strong>Product Highlights</strong></label>
+                                        <label><strong>Product Description</strong></label>
                                         <textarea name="highlight" id="highlight" rows="5" placeholder="Product Highlights Here" class="form-control" style="resize: none;">{{ $product->highlight }}</textarea>
                                     </div>
                                     {{-- <div class="col-lg-12 col-sm-12 form-group">
