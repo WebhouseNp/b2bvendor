@@ -63,7 +63,7 @@ $api_token = $user->api_token;
                                 </td>
                             </tr>
                             <tr>
-                            <th scope="row">Product Category</th>
+                                <th scope="row">Product Category</th>
                                 <td>
                                     <div id="category">{{$product->productCategory->name}}</div>
                                 </td>
@@ -203,14 +203,10 @@ $api_token = $user->api_token;
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
 </div>
 <div class="row">
-    @foreach ($product->productimage as $image)
+    @foreach ($product->images as $image)
     <div class="m-r-10">
         <a href="{{ asset('/uploads/product/other-image/' . $image->images) }}" target="_adimage">
             <img src="{{ asset('/uploads/product/other-image/' . $image->images) }}" alt="No Image" class="rounded" width="70">

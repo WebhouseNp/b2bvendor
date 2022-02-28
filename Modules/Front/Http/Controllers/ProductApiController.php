@@ -64,7 +64,7 @@ class ProductApiController extends Controller
             ->active()
             ->firstOrFail();
 
-        $product->load(['productCategory', 'ranges', 'productimage', 'user.vendor']);
+        $product->load(['productCategory', 'ranges', 'images', 'user.vendor']);
 
         return ProductResource::make($product);
     }
