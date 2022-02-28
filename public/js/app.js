@@ -5276,6 +5276,141 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5346,7 +5481,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.validation.setMessages(_this.error);
                 } else if (_context.t0.response.status === 422) {
                   _this.loading = false;
-                  _this.error = 'Please fill both Email & Password.';
+                  _this.error = "Please fill both Email & Password.";
 
                   _this.validation.setMessages(_this.error);
                 } else {
@@ -5881,7 +6016,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -5907,19 +6041,19 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "cbe0b7b8904e2ede8292",
+  key: "somekey",
   cluster: "ap2",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: process.env.MIX_PUSHER_WSHOST,
-  wsPort: process.env.MIX_PUSHER_WSPORT,
-  wssPort: process.env.MIX_PUSHER_WSSPORT,
+  wsHost: "sellercenter.sastowholesale.com",
+  wsPort: "80",
+  wssPort: "443",
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
+        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -6186,7 +6320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.logo {\r\n  height: 80px;\n}\n.vendor-bg {\r\n  background: url(\"/images/pexels-photo-5668841.jpeg\") no-repeat;\r\n  background-size: cover;\r\n  background-position: center center;\n}\n.vendor-overlay {\r\n  padding: 104px 0;\r\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vendor-title {\r\n  color: #ffffff;\r\n  font-size: 2.8rem;\r\n  font-weight: 500;\r\n  line-height: 1.5;\n}\n.vendor-sign-in-form,\r\n.vendor-section {\r\n  background: #f2f3f7;\n}\n.vendor-btn {\r\n  margin-bottom: 2rem;\n}\n.vendor-form {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.vendor-form-bt {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.form-check {\r\n  margin-bottom: 1rem;\n}\r\n\r\n/*************** Steps ****************/\n.step-div {\r\n  display: inline-block;\r\n  width: 200px;\r\n  padding: 12px;\r\n  background: #ffffff;\r\n  box-shadow: 1px 1px 6px 0px lightblue;\n}\n.step-group {\r\n  display: flex;\r\n  justify-content: space-around;\n}\n.step-subtitle {\r\n  color: #ffa500;\r\n  font-size: 1.2rem;\r\n  font-weight: 500;\n}\n.step-div-h1 {\r\n  color: #1e76bd;\n}\n.step-div-p {\r\n  font-weight: 500;\n}\n.vendor-img-wrap {\r\n  margin: 1.4rem 0;\n}\n@media screen and (max-width: 600px) {\n.step-group {\r\n    flex-direction: column;\r\n    align-items: center;\r\n    text-align: center;\n}\n.step-div:not(:last-child) {\r\n    margin-bottom: 1.8rem;\n}\n}\n.field-icon {\r\n  float: right;\r\n  margin-right: 10px;\r\n  margin-top: -30px;\r\n  position: relative;\r\n  z-index: 2;\r\n  cursor: pointer;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.logo {\r\n  height: 80px;\n}\n.vendor-bg {\r\n  background: url(\"/images/pexels-photo-5668841.jpeg\") no-repeat;\r\n  background-size: cover;\r\n  background-position: center center;\n}\n.vendor-overlay {\r\n  padding: 104px 0;\r\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vendor-title {\r\n  color: #ffffff;\r\n  font-size: 2.8rem;\r\n  font-weight: 500;\r\n  line-height: 1.5;\n}\n.vendor-sign-in-form,\r\n.vendor-section {\r\n  background: #f2f3f7;\n}\n.vendor-btn {\r\n  margin-bottom: 2rem;\n}\n.vendor-form {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.vendor-form-bt {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.form-check {\r\n  margin-bottom: 1rem;\n}\r\n\r\n/*************** Steps ****************/\n.step-div {\r\n  display: inline-block;\r\n  width: 200px;\r\n  padding: 12px;\r\n  background: #ffffff;\r\n  box-shadow: 1px 1px 6px 0px lightblue;\n}\n.step-group {\r\n  display: flex;\r\n  justify-content: space-around;\n}\n.step-subtitle {\r\n  color: #ffa500;\r\n  font-size: 1.2rem;\r\n  font-weight: 500;\n}\n.step-div-h1 {\r\n  color: #1e76bd;\n}\n.step-div-p {\r\n  font-weight: 500;\n}\n.vendor-img-wrap {\r\n  margin: 1.4rem 0;\n}\n@media screen and (max-width: 600px) {\n.step-group {\r\n    flex-direction: column;\r\n    align-items: center;\r\n    text-align: center;\n}\n.step-div:not(:last-child) {\r\n    margin-bottom: 1.8rem;\n}\n}\n.field-icon {\r\n  float: right;\r\n  margin-right: 10px;\r\n  margin-top: -30px;\r\n  position: relative;\r\n  z-index: 2;\r\n  cursor: pointer;\n}\r\n\r\n/* new */\n.login-main {\r\n  background-image: linear-gradient(\r\n      to bottom,\r\n      rgba(0, 0, 0, 0.3),\r\n      rgba(0, 183, 255, 0.3)\r\n    ),\r\n    url(\"/images/pexels-photo-5668841.jpeg\");\r\n  background-size: cover;\r\n  background-position: center center;\r\n  background-repeat: no-repeat;\r\n  position: relative;\r\n  background-position: center;\r\n  min-height: 550px;\r\n  padding: 50px 0px;\n}\n.login-title {\r\n  text-align: center;\r\n  font-size: 32px;\r\n  color: #fff;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  margin-bottom: 20px;\n}\n.login-title span {\r\n  color: #dd6b6b;\n}\n.login-heading {\r\n  margin: 10px 0 20px 0;\r\n  text-align: center;\r\n  font-size: 22px;\r\n  color: #1e76bd;\r\n  font-weight: 600;\r\n  text-transform: capitalize;\n}\n.login-card {\r\n  border-radius: 5px !important;\n}\n.login-card label {\r\n  font-size: 14px;\n}\n.login-card .btn {\r\n  cursor: pointer;\r\n  display: block;\r\n  width: 100%;\r\n  margin-bottom: 15px;\r\n\r\n  padding: 10px 0;\r\n  font-size: 16px;\r\n  border-radius: 35px;\r\n  -webkit-border-radius: 35px;\r\n  -moz-border-radius: 35px;\r\n  -ms-border-radius: 35px;\r\n  -o-border-radius: 35px;\n}\n.login-card .btn-primary {\r\n  background-color: #1d75bd;\n}\n.login-span {\r\n  color: #757575;\r\n  font-size: 13px;\n}\n.third-party-login {\r\n  margin-top: 10px;\n}\n.login-card .btn-facebook {\r\n  color: #fff;\r\n  background-color: #3b5998;\n}\n.login-card:hover {\r\n  box-shadow: 0 0 0 0 #fff !important;\n}\n.btn-google {\r\n  color: #fff;\r\n  background-color: #d34836;\n}\n.link-forget {\r\n  margin: 15px 0;\r\n  text-align: center;\n}\n.link-forget a {\r\n  font-size: 14px;\r\n  color: #1e76bd;\n}\n.signup {\r\n  font-size: 14px;\r\n  text-align: center;\n}\n.pt-login-nav {\r\n  padding: 15px 0px;\r\n  background-color: #fff;\n}\n.nav-logo img {\r\n  height: 55px;\r\n  padding: 5px 0px;\n}\n.copyright {\r\n  text-align: center;\r\n  padding: 20px 0;\n}\n.copyright p a {\r\n  color: #1d75bd;\n}\n.copyright p a:hover {\r\n  color: #dd6b6b;\r\n  text-decoration: none;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -37808,171 +37942,191 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12 my-3" }, [
-          _c("nav", [
-            _c(
-              "a",
-              {
-                attrs: { href: "javascript:void(0)" },
-                on: { click: _vm.vendorHomepage },
-              },
-              [
-                _c("img", {
-                  staticClass: "logo",
-                  attrs: { src: "/images/logo.png", alt: "logo" },
-                }),
-              ]
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" }, [
-          _c("div", { staticClass: "vendor-sign-in-form" }, [
-            _c(
-              "form",
-              {
-                staticClass: "vendor-form",
-                on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.onSubmit()
-                  },
-                },
-              },
-              [
-                _vm.error
-                  ? _c("error", { attrs: { error: _vm.error } })
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("Input", {
-                  attrs: {
-                    label: "Email",
-                    type: "text",
-                    placeholder: "example@gmail.com",
-                  },
-                  model: {
-                    value: _vm.email,
-                    callback: function ($$v) {
-                      _vm.email = $$v
-                    },
-                    expression: "email",
-                  },
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
-                  _vm._v(" "),
-                  _vm.showPassword
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.password,
-                            expression: "password",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Enter Password" },
-                        domProps: { value: _vm.password },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.password = $event.target.value
-                          },
-                        },
-                      })
-                    : _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.password,
-                            expression: "password",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "password",
-                          placeholder: "Enter Password",
-                        },
-                        domProps: { value: _vm.password },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.password = $event.target.value
-                          },
-                        },
-                      }),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "field-icon",
-                      on: { click: _vm.toggleShow },
-                    },
-                    [
-                      _c("span", { staticClass: "icon is-small is-right" }, [
-                        _c("i", {
-                          staticClass: "fa",
-                          class: {
-                            "fa-eye-slash": _vm.showPassword,
-                            "fa-eye": !_vm.showPassword,
-                          },
-                        }),
-                      ]),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "loading-button",
-                  {
-                    staticClass: "btn btn-primary mt-4",
-                    attrs: { type: "submit", loading: _vm.loading },
-                  },
-                  [_vm._v(_vm._s(_vm.loading ? "Please wait" : "Sign In"))]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "vendor-form-bt" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "javascript:void(0)" },
-                  on: { click: _vm.onClickSingup },
-                },
-                [_vm._v(" New around here? Sign Up")]
-              ),
-              _c("br"),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "login-main" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "login-form-card" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-lg-8 mx-auto col-12" }, [
+              _vm._m(1),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: { href: "javascript:void(0)" },
-                  on: { click: _vm.onClickForget },
-                },
-                [_vm._v("Forgot Password?")]
-              ),
+              _c("div", { staticClass: "card login-card border-0" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-7 col-sm-12" }, [
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function ($event) {
+                              $event.preventDefault()
+                              return _vm.onSubmit()
+                            },
+                          },
+                        },
+                        [
+                          _vm.error
+                            ? _c("error", { attrs: { error: _vm.error } })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("Input", {
+                            attrs: {
+                              label: "Email",
+                              type: "text",
+                              placeholder: "example@gmail.com",
+                            },
+                            model: {
+                              value: _vm.email,
+                              callback: function ($$v) {
+                                _vm.email = $$v
+                              },
+                              expression: "email",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v("Password"),
+                            ]),
+                            _vm._v(" "),
+                            _vm.showPassword
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.password,
+                                      expression: "password",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Enter Password",
+                                  },
+                                  domProps: { value: _vm.password },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.password = $event.target.value
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.password,
+                                      expression: "password",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "password",
+                                    placeholder: "Enter Password",
+                                  },
+                                  domProps: { value: _vm.password },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.password = $event.target.value
+                                    },
+                                  },
+                                }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "field-icon",
+                                on: { click: _vm.toggleShow },
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticClass: "icon is-small is-right" },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa",
+                                      class: {
+                                        "fa-eye-slash": _vm.showPassword,
+                                        "fa-eye": !_vm.showPassword,
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c(
+                            "loading-button",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { type: "submit", loading: _vm.loading },
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(_vm.loading ? "Please wait" : "Sign In")
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "link-forget" }, [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "javascript:void(0)" },
+                                on: { click: _vm.onClickForget },
+                              },
+                              [_vm._v("Forgot Password?")]
+                            ),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5 col-sm-12" }, [
+                      _c("span", { staticClass: "login-span" }, [
+                        _vm._v("Or, signin with"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "signup" }, [
+                        _vm._v(
+                          "\n                      New around here?\n                      "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:void(0)" },
+                            on: { click: _vm.onClickSingup },
+                          },
+                          [_vm._v("\n                        Sign Up")]
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
             ]),
           ]),
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _vm._m(5),
   ])
 }
 var staticRenderFns = [
@@ -37980,79 +38134,48 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-8" }, [
-      _c("div", { staticClass: "vendor-section" }, [
-        _c("div", { staticClass: "vendor-bg" }, [
-          _c("div", { staticClass: "vendor-overlay" }, [
-            _c("h2", { staticClass: "vendor-title text-center" }, [
-              _vm._v("\n                Become Vendor,"),
-              _c("br"),
-              _vm._v("\n                Grow Your Business\n              "),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row pb-3" }, [
-          _c("div", { staticClass: "col-md-12 my-4" }, [
-            _c("h3", { staticClass: "text-center text-uppercase" }, [
-              _vm._v("Welcome to Seller market"),
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-center step-subtitle" }, [
-              _vm._v("3 Easy Steps to Sell on Sasto Wholesale"),
+    return _c("div", { staticClass: "pt-login-nav" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-6 col-md-6 col-lg-6" }, [
+            _c("div", { staticClass: "nav-logo" }, [
+              _c(
+                "a",
+                { staticClass: "router-link-active", attrs: { href: "/" } },
+                [
+                  _c("img", {
+                    staticClass: "logo",
+                    attrs: { src: "/images/logo.png", alt: "logo" },
+                  }),
+                ]
+              ),
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-12 mb-4" }, [
-            _c("div", { staticClass: "step-group" }, [
-              _c("div", { staticClass: "step-div text-center" }, [
-                _c("h1", { staticClass: "step-div-h1" }, [_vm._v("1")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "vendor-img-wrap" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "step-div-p" }, [
-                  _vm._v("Sign-up"),
-                  _c("br"),
-                  _vm._v("store profile"),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "step-div text-center" }, [
-                _c("h1", { staticClass: "step-div-h1" }, [_vm._v("2")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "vendor-img-wrap" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "step-div-p" }, [
-                  _vm._v("Upload product"),
-                  _c("br"),
-                  _vm._v("to start selling"),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "step-div text-center" }, [
-                _c("h1", { staticClass: "step-div-h1" }, [_vm._v("3")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "vendor-img-wrap" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "step-div-p" }, [
-                  _vm._v("Adopt tools to"),
-                  _c("br"),
-                  _vm._v("maximize sales"),
-                ]),
-              ]),
-            ]),
-          ]),
+          _c("div", { staticClass: "col-sm-6 col-md-6 col-lg-6" }),
         ]),
       ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-block vendor-btn",
-          attrs: { type: "button" },
-        },
-        [_vm._v("Click here to list your product as a vendor !!!")]
-      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h4", { staticClass: "login-title" }, [
+      _vm._v("Welcome To "),
+      _c("span", [_vm._v("Seller Market")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("h5", { staticClass: "login-heading" }, [
+        _vm._v(
+          "\n                      Become Vendor, Grow Your Business\n                    "
+        ),
+      ]),
     ])
   },
   function () {
@@ -38071,6 +38194,34 @@ var staticRenderFns = [
         { staticClass: "form-check-label", attrs: { for: "rememberMe" } },
         [_vm._v("Remember Me")]
       ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "third-party-login" }, [
+      _c("button", { staticClass: "btn btn-facebook" }, [
+        _c("i", { staticClass: "fab fa-facebook mr-2" }),
+        _vm._v(" Facebook\n                      "),
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-google" }, [
+        _c("i", { staticClass: "fab fa-google mr-2" }),
+        _vm._v(" Google\n                      "),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "copyright" }, [
+      _c("p", [
+        _vm._v("Copyright © 2022 "),
+        _c("a", { attrs: { href: "#" } }, [_vm._v("Sasto Wholesale")]),
+        _vm._v(" All Rights Reserved"),
+      ]),
     ])
   },
 ]
@@ -56993,7 +57144,7 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\sastowholesale\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\sastowholesale\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\b2bvendor"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

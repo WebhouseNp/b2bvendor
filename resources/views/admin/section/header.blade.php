@@ -135,11 +135,13 @@
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
                 <h4>
-                @if(auth()->user()->hasRole('vendor'))
-                <strong>Welcome,</strong>
-                <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
-                <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
-                @endif
+                    @if(auth()->user()->hasRole('vendor'))
+                    <span class="d-md-inline d-none">
+                    <strong>Welcome,</strong>
+                    <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
+                    </span>
+                    <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
+                    @endif
                 </h4>
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
