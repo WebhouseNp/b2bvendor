@@ -64,7 +64,7 @@
                     </li>
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
-                <h4><strong>Welcome,</strong>
+                <h4 class="d-md-block d-none"><strong>Welcome,</strong>
                 @if(auth()->user()->hasRole('vendor'))
                    <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
                 @endif
