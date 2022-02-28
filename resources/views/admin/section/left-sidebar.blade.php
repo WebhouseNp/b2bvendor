@@ -27,7 +27,7 @@ $user_access = json_decode($user->access_level);
             </li>
             <li class="heading">Menu</li>
 
-            @if(in_array('vendor' ,$roles))
+            @if(auth()->user()->hasRole('vendor'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-user-circle"></i>
@@ -35,12 +35,14 @@ $user_access = json_decode($user->access_level);
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
+                    @if(!is_alternative_login())
                     <li>
                         <a href="{{route('editVendorProfile',$user->id)}}">
                             <span class="fa fa-edit"></span>
                             Edit Profile
                         </a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{route('vendor.profile')}}">
                             <span class="fa fa-eye"></span>
