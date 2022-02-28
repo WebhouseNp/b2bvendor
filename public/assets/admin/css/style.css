@@ -206,5 +206,9 @@ button {
     .content-wrapper {
         padding: 0;
     }
-}
 
+    .nav-tabs .nav-item {
+        width: 100%;
+        /* text-align: center; */
+    }
+}

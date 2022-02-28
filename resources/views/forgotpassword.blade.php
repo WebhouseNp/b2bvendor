@@ -17,7 +17,7 @@
     </head>
     <body>
        <div id="app">
-           <forgetpassword/>
+           <forgotpassword/>
        </div>
     </body>
     <script src="{{mix('js/app.js')}}"></script>

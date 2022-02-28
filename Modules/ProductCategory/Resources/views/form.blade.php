@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
-                <a href="{{ route('product-category.index') }}" class="btn btn-primary">Back to listing</a>
+                <a href="{{ route('product-category.index') }}" class="btn btn-primary ml-md-0 ml-3">Back to listing</a>
             </div>
 
             <x-validation-errors></x-validation-errors>

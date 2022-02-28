@@ -1,18 +1,18 @@
 <div class="card z-depth-0">
     <div class="card-header bg-light">
-        <div class="d-flex align-items-center">
+        <div class="d-md-flex align-items-center">
             <div class="card-title">Sales</div>
             <div class="ml-auto">
                 <form id="earnings-query-form" action="#" class="form-inline">
-                    <input type="date" name="from" class="form-control form-control-sm mr-1 bg-transparent" value="{{ $from }}">
-                    <span class="px-2">To</span>
-                    <input type="date" name="to" class="form-control form-control-sm mr-1 bg-transparent" value="{{ $to }}">
-                    <select name="report_type" class="form-control form-control-sm mr-1 bg-transparent">
+                    <input type="date" name="from" class="form-control form-control-sm mr-1 bg-transparent mb-2" value="{{ $from }}">
+                    <span class="px-2 mb-2">To</span>
+                    <input type="date" name="to" class="form-control form-control-sm mr-1 bg-transparent mb-2" value="{{ $to }}">
+                    <select name="report_type" class="form-control form-control-sm mr-1 bg-transparent mb-2">
                         <option value="date">Daily</option>
                         <option value="month">Monthly</option>
                         <option value="year">Yearly</option>
                     </select>
-                    <button type="submit" class="btn btn-outline-primary btn-sm z-depth-0">Go</button>
+                    <button type="submit" class="btn btn-outline-primary btn-sm z-depth-0 mb-2">Go</button>
                 </form>
             </div>
         </div>
