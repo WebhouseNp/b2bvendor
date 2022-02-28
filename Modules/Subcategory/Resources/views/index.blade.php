@@ -29,6 +29,7 @@
                     <th>Image</th>
                     <th>Category</th>
                     <th>In Homepage</th>
+                    <th>Total Products</th>
                     @if( auth()->user()->hasRole('vendor'))
                     <th>Publish</th>
                     @endif
@@ -53,6 +54,7 @@
                     </td>
                     <td>{{$detail->category->name}}</td>
                     <td>{{$detail->is_featured==1? 'Yes':'No'}}</td>
+                    <td>{{count($detail->products)}}</td>
                     @if( auth()->user()->hasRole('vendor'))
                     <td>
                         <div style="display:inline-block; width:100px" class="badge  {{ $detail->publish==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">

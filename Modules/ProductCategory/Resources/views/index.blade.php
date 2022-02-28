@@ -33,6 +33,7 @@ Product Categories
                         <th>Name</th>
                         <th>Image</th>
                         <th>Falls Under</th>
+                        <th>Total Products</th>
                         {{-- <th>In Homepage</th> --}}
                         @if( auth()->user()->hasRole('vendor'))
                         <th>Publish</th>
@@ -57,6 +58,7 @@ Product Categories
                             @endif
                         </td>
                         <td>{{ $productCategory->subcategory->name }}</td>
+                        <td>{{ count($productCategory->products) }}</td>
                         {{-- <td>{{ $productCategory->is_featured==1 ? 'Yes' : 'No' }}</td> --}}
                         @if( auth()->user()->hasRole('vendor'))
                         <td>
