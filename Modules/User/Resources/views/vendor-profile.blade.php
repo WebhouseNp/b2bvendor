@@ -23,7 +23,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-4 mb-3">
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
@@ -41,12 +41,12 @@
                                 <b>Products</b> <a class="float-right" href="{{route('product.index')}}" >View</a>
                             </li>
                         </ul>
-                        <a href="{{route('editVendorProfile',$vendor->id)}}" target="_blank" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+                        <a href="{{route('editVendorProfile',$vendor->id)}}" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-lg-9 col-md-8">
                 <div class="ibox">
                     <x-profile></x-profile>
                     <div class="ibox-body">
