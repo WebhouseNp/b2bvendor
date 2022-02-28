@@ -3,7 +3,7 @@
 namespace Modules\Product\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Storage;
 
 class ProductImage extends Model
 {
@@ -14,8 +14,12 @@ class ProductImage extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function imageUrl()
+    public function imageUrl($size = null)
     {
-        return asset('uploads/product/other-image/' . $this->images);
+        if ($size == 'thumbnail' && $this->thumbnail_path) {
+            return Storage::url($this->thumbnail_path);
+        }
+
+        return Storage::disk('public')->url($this->path);
     }
 }
