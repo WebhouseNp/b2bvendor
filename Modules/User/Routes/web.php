@@ -20,15 +20,16 @@ Route::post('update-vendor-bank-details/{vendor}', 'VendorManagementController@u
 Route::get('vendorproducts/{username}', 'VendorManagementController@getVendorProducts')->name('getVendorProducts');
 Route::get('report/{id}', 'VendorManagementController@getReport')->name('getReport');
 Route::post('update-commission', 'VendorManagementController@updateCommisson')->name('updateCommisson');
-
-
 });
+
 Route::prefix('vendor')->middleware(['auth','Vendor'])->group(function(){
 Route::get('profile', 'VendorController@profile')->name('vendor.profile');
 Route::get('editprofile/{id}', 'VendorController@editVendorProfile')->name('editVendorProfile');
 Route::post('updateprofile/{id}', 'VendorController@updateVendorProfile')->name('updateVendorProfile');
 
 Route::get('report', 'VendorController@getVendorPaymentReport')->name('getVendorPaymentReport');
+Route::get('shipping-info', 'VendorShippingInfoController@create')->name('getShippingInfo');
+Route::post('update-shipping-info', 'VendorShippingInfoController@store')->name('updateShippingInfo');
 });
 Route::post('updatevendordesc/{id}', 'VendorController@updateVendorDesc')->name('updateVendorDesc');
 Route::post('update-vendor-bank-details/{vendor}', 'VendorController@updateVendorBankDetails')->name('updateVendorBankDetails');

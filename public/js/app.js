@@ -5961,6 +5961,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     vendorHomepage: function vendorHomepage() {
       window.location.href = "/vendor-homepage";
+    },
+    onClickPartners: function onClickPartners() {
+      window.location.href = "https://staging.sastowholesale.com/partners";
     }
   }
 });
@@ -38286,11 +38289,31 @@ var render = function () {
                       [
                         _vm._m(2),
                         _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            staticClass: "nav-item",
+                            attrs: { "data-v-cbdddaa2": "" },
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "nav-link",
+                                attrs: {
+                                  "data-v-cbdddaa2": "",
+                                  href: "javascript:void(0)",
+                                },
+                                on: { click: _vm.onClickPartners },
+                              },
+                              [_vm._v("Partners")]
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
                         _vm._m(3),
                         _vm._v(" "),
                         _vm._m(4),
-                        _vm._v(" "),
-                        _vm._m(5),
                         _vm._v(" "),
                         _c(
                           "li",
@@ -38347,7 +38370,7 @@ var render = function () {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "slider-wrapper" }, [
-      _vm._m(6),
+      _vm._m(5),
       _vm._v(" "),
       _c("div", { staticClass: "slider-content" }, [
         _c("h1", [_vm._v("Moving Into The Digital Era")]),
@@ -38385,14 +38408,14 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(7),
+      _vm._m(6),
     ]),
+    _vm._v(" "),
+    _vm._m(7),
     _vm._v(" "),
     _vm._m(8),
     _vm._v(" "),
     _vm._m(9),
-    _vm._v(" "),
-    _vm._m(10),
   ])
 }
 var staticRenderFns = [
@@ -38459,25 +38482,6 @@ var staticRenderFns = [
             attrs: { "data-v-cbdddaa2": "", href: "#" },
           },
           [_vm._v("Home")]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      { staticClass: "nav-item", attrs: { "data-v-cbdddaa2": "" } },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { "data-v-cbdddaa2": "", href: "#" },
-          },
-          [_vm._v("Partners")]
         ),
       ]
     )

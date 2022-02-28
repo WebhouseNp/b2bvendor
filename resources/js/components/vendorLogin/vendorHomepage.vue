@@ -36,7 +36,7 @@
                 <a data-v-cbdddaa2="" href="#" class="nav-link">Home</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="#" class="nav-link">Partners</a>
+                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link" @click="onClickPartners">Partners</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
                 <a data-v-cbdddaa2="" href="#" class="nav-link">Blog</a>
@@ -442,6 +442,9 @@ export default {
     vendorHomepage() {
       window.location.href = "/vendor-homepage";
     },
+    onClickPartners(){
+      window.location.href = "https://staging.sastowholesale.com/partners"
+    }
   },
 };
 </script>

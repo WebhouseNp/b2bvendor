@@ -4,24 +4,26 @@ namespace Modules\subcategory\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Category\Entities\Category;
 use Modules\Subcategory\Entities\Subcategory;
 use Validator;
 use Image;
 use DB;
 
-
 class SubcategoryController extends Controller
 {
     public function index()
     {
+        $this->authorize('manageCategories');
         $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
         return view('subcategory::index', compact('details'));
     }
 
     public function create()
     {
+        $this->authorize('manageCategories');
+
         return view('subcategory::create');
     }
 

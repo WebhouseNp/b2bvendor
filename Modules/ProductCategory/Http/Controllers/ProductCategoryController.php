@@ -2,22 +2,16 @@
 
 namespace Modules\ProductCategory\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Category\Entities\Category;
 use Modules\ProductCategory\Entities\ProductCategory;
 use Modules\ProductCategory\Http\Requests\ProductCategoryRequest;
 
 class ProductCategoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
+        $this->authorize('manageCategories');
         $productCategories = ProductCategory::with('subcategory')->latest()->get();
 
         return view('productcategory::index', compact('productCategories'));
@@ -25,11 +19,14 @@ class ProductCategoryController extends Controller
 
     public function create()
     {
+        $this->authorize('manageCategories');
         return $this->showForm(new ProductCategory());
     }
 
     public function store(ProductCategoryRequest $request)
     {
+        $this->authorize('manageCategories');
+
         $productCategory = new ProductCategory();
         $productCategory->name = $request->name;
         $productCategory->subcategory_id = $request->subcategory_id;
@@ -53,11 +50,15 @@ class ProductCategoryController extends Controller
 
     public function edit(ProductCategory $productCategory)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
         return $this->showForm($productCategory);
     }
 
     public function update(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
         $productCategory->name = $request->name;
         if ($request->filled('slug')) {
             $productCategory->slug = $request->slug;
@@ -78,6 +79,8 @@ class ProductCategoryController extends Controller
      */
     public function destroy(ProductCategory $productCategory)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
         $productCategory->delete();
 
         return redirect()->route('product-category.index')->with('success', 'Item deleted successfully.');

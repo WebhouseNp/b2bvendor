@@ -83,8 +83,6 @@ class VendorManagementController extends Controller
             'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
          ]);
          $formInput = $request->except(['image']);
-         // dd($request->all(),$vendor);
-         // return $request->category_id;
          if ($request->hasFile('image')) {
             if ($vendor->image) {
                $this->unlinkImage($vendor->image);
