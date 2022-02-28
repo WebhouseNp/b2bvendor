@@ -62,11 +62,11 @@ class ProductResource extends JsonResource
             'price_range' => $this->priceRange(),
             'min_order' => $this->ranges->min('from') . $this->unit . ' (Min. Order)',
             // 'vendor' => $this->when($this->relationLoaded('user'), new VendorResource($this->user->vendor))
-            'images' => $this->when($this->relationLoaded('productimage'), function () {
-                return $this->productimage->map(function($image) {
+            'images' => $this->when($this->relationLoaded('images'), function () {
+                return $this->images->map(function($image) {
                     return [
                         'id' => $image->id,
-                        'image' => $image->images,
+                        'image' => $image->path,
                         'image_url' => $image->imageUrl(),
                         'image_url_thumbnail' => $image->imageUrl('thumbnail'),
                     ];

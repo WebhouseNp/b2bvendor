@@ -4,7 +4,7 @@
 <div class="container-fluid py-4">
 
     <div class="row">
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
                 <span class="info-box-icon bg-info">
                     <i class="fa fa-bar-chart text-white"></i>
@@ -21,7 +21,7 @@
                 </div>
             </div> -->
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
                 <span class="info-box-icon bg-success">
                     <i class="fa fa-google-wallet text-white"></i>
@@ -38,7 +38,7 @@
                 </div>
             </div> -->
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
                 <span class="info-box-icon bg-warning text-white">
                     <i class="fa fa-credit-card"></i>
@@ -57,7 +57,7 @@
             </div> -->
         </div>
 
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
                 <span class="info-box-icon bg-red text-white">
                     <i class="fa fa-money"></i>
@@ -76,7 +76,7 @@
         </div>
 
 
-        <div class="col-md-4 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4">
             <div class="info-box">
                 <span class="info-box-icon bg-success text-white">
                     <i class="fa fa-money"></i>
@@ -94,7 +94,7 @@
             </div> -->
         </div>
 
-        <div class="col-md-4 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4">
             <div class="info-box">
                 <span class="info-box-icon bg-info">
                     <i class="fa fa-cubes text-white"></i>
