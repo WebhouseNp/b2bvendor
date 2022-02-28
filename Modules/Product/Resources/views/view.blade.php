@@ -22,7 +22,7 @@ $api_token = $user->api_token;
                 </div>
 
                 <div class="ibox-body" style="">
-                    <table class="table">
+                    <table class="table table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Product</th>
