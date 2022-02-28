@@ -77,7 +77,7 @@
 		<div class="text">
 			<strong>OOPS !!</strong>
 			No Images to show
-		</text>
+        </div>
 	</div>
     
 </script>
@@ -113,8 +113,8 @@
             function loadImages() {
                 $('#images-loading').show();
                 $.ajax("{{ route('ajax.product-images.listing', $product) }}", {
-                    dataType: 'json'
-                    , success: function(data, status, xhr) {
+                    dataType: 'json',
+                    success: function(data, status, xhr) {
                         // console.log(data);
                         images.empty();
                         console.log(typeof(data));
@@ -125,8 +125,8 @@
                                 renderImageTemplate(image);
                             });
                         }
-                    }
-                    , error: function(jqXhr, textStatus, errorMessage) {
+                    },
+                    error: function(jqXhr, textStatus, errorMessage) {
                         console.log(errorMessage);
                     }
                 }).done(function() {
@@ -138,9 +138,9 @@
             loadImages();
 
             var myAwesomeDropzone = new Dropzone("form#myAwesomeDropzone", {
-                acceptedFiles: '.png,.jpg,.jpeg,.gif'
-                , previewsContainer: '.dropzone-previews'
-                , init: function() {
+                acceptedFiles: '.png,.jpg,.jpeg,.gif',
+                previewsContainer: '.dropzone-previews',
+                init: function() {
                     var myDropzone = this;
                     this.on("sendingmultiple", function() {});
                     this.on("successmultiple", function(files, response) {
@@ -165,12 +165,12 @@
                     console.log("requesting to " + imageDeleteUrl);
                     $(this).hide();
                     $.ajax({
-                            url: imageDeleteUrl
-                            , type: 'POST'
-                            , data: {
+                            url: imageDeleteUrl,
+                            type: 'POST',
+                            data: {
                                 _method: 'delete'
-                            }
-                        , })
+                            },
+                        })
                         .done(function(response) {
                             console.log("success");
                         })
@@ -187,6 +187,5 @@
                 }
             });
         });
-
     </script>
     @endpush

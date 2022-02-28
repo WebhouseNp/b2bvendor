@@ -60,7 +60,7 @@
                         </div>
                     </td>
                     @endif
-                    @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
+                    @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <td>
                         <input type="checkbox" class="SubcategoryStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->publish == 1) checked @endif>
                     </td>

@@ -2,7 +2,7 @@
 
 use Modules\ProductCategory\Http\Controllers\ProductCategoryController;
 
-Route::prefix('product-category')->group(function() {
+Route::group(['prefix'=> 'product-category', 'middleware' => 'auth'], function() {
     Route::get('/', [ProductCategoryController::class, 'index'])->name('product-category.index');
     Route::get('/create', [ProductCategoryController::class, 'create'])->name('product-category.create');
     Route::post('/', [ProductCategoryController::class, 'store'])->name('product-category.store');

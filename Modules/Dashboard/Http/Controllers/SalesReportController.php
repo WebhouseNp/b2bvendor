@@ -5,7 +5,7 @@ namespace Modules\Dashboard\Http\Controllers;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderList;
 use Modules\User\Entities\Vendor;
