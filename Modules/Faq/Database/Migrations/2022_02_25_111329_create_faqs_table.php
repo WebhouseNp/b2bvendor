@@ -18,6 +18,7 @@ class CreateFaqsTable extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->longText('description')->nullable();
+            $table->integer('position')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

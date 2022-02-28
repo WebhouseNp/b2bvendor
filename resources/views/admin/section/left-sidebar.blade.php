@@ -519,6 +519,16 @@ $user_access = json_decode($user->access_level);
             </a>
         </li>
         @endif
+
+        @if(auth()->user()->hasAnyRole(['vendor']))
+        <li>
+            <a href="{{ route('getShippingInfo') }}">
+                <i class="sidebar-item-icon fa fa-thumbs-up"></i>
+                <span class="nav-label">Shipping Info</span>
+            </a>
+        </li>
+        @endif
+
         </ul>
     </div>
 </nav>

@@ -9,10 +9,15 @@ class Faq extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $guarded = ['id','created_at','updated_at'];
     
-    protected static function newFactory()
+    public function scopePositioned($query)
     {
-        return \Modules\Faq\Database\factories\FaqFactory::new();
+        return $query->orderByRaw('ISNULL(position), position ASC');
+    }
+
+    public static function getNextPosition()
+    {
+        return Faq::max('position') + 1;
     }
 }
