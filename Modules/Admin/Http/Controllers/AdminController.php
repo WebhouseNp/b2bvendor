@@ -108,7 +108,6 @@ class AdminController extends Controller
             'old_password' => 'required',
             'new_password' => 'required|min:6',
             'password_confirmation' => 'required|min:6|same:new_password',
-      
           ]);
           if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
