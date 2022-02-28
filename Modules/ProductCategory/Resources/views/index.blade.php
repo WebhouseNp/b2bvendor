@@ -58,7 +58,7 @@ Product Categories
                             @endif
                         </td>
                         <td>{{ $productCategory->subcategory->name }}</td>
-                        <td>{{ count($productCategory->products) }}</td>
+                        <td>{{ $productCategory->products_count }}</td>
                         {{-- <td>{{ $productCategory->is_featured==1 ? 'Yes' : 'No' }}</td> --}}
                         @if( auth()->user()->hasRole('vendor'))
                         <td>

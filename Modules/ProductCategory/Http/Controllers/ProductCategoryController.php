@@ -14,7 +14,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $this->authorize('manageCategories');
-        $productCategories = ProductCategory::with('subcategory','products')->latest()->get();
+        $productCategories = ProductCategory::with('subcategory')->withCount('products')->latest()->get();
         return view('productcategory::index', compact('productCategories'));
     }
 
