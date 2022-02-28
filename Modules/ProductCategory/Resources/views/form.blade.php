@@ -12,7 +12,7 @@
 
             <div class="ibox">
                 <div class="ibox-head">
-                    <div class="ibox-title">{{ $updateMode ? 'Update' : 'Add New' }} Sub Category</div>
+                    <div class="ibox-title">{{ $updateMode ? 'Update' : 'Add New' }} Product Category</div>
                     <div class="ibox-tools">
                     </div>
                 </div>

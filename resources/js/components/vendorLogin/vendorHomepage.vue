@@ -1,56 +1,45 @@
 <template>
   <div>
     <!-- header start -->
-    <header class="header position-sticky">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="javascript:void(0)">
-                    <img src="/images/logo.png" alt="site logo" @click="vendorHomepage" class="img-fluid site-logo">
-                </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home</a>
-                </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="#">About Us</a>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Why Us</a>
-                </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Become a Partner</a>
-                </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">FAQ</a>
-                </li>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+    <header data-v-cbdddaa2="" class="header position-sticky">
+      <nav
+        data-v-cbdddaa2=""
+        class="navbar navbar-expand-lg navbar-light bg-light"
+      >
+        <div data-v-cbdddaa2="" class="container">
+          <a data-v-cbdddaa2="" href="javascript:void(0)" class="navbar-brand"
+            ><img
+              data-v-cbdddaa2=""
+              src="/images/logo.png"
+              alt="site logo"
+              class="img-fluid site-logo"
+          /></a>
+          <button
+            data-v-cbdddaa2=""
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            class="navbar-toggler"
+          >
+            <span data-v-cbdddaa2="" class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            data-v-cbdddaa2=""
+            id="navbarSupportedContent"
+            class="collapse navbar-collapse"
+          >
+            <ul data-v-cbdddaa2="" class="navbar-nav ml-auto">
+              <li data-v-cbdddaa2="" class="nav-item active">
+                <a data-v-cbdddaa2="" href="#" class="nav-link">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+              <li data-v-cbdddaa2="" class="nav-item">
+                <a data-v-cbdddaa2="" href="#" class="nav-link">Blog</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Why Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Become a Partner</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">FAQ</a>
+              <li data-v-cbdddaa2="" class="nav-item">
+                <a data-v-cbdddaa2="" href="#" class="nav-link">FAQ</a>
               </li>
             </ul>
           </div>
@@ -132,12 +121,9 @@
           >Start Selling</a
         >
         <div class="alert-login">
-          <span
-            >Already a Seller?
-            <a href="javascript:void(0)" @click="onClickLogin"
-              >Login here</a
-            ></span
-          >
+          <span>Already a Seller?</span><br><br>
+          <a href="javascript:void(0)" class="btn btn-slider" @click="onClickLogin"
+              >Login here</a>
         </div>
       </div>
       <!-- content end -->
@@ -184,7 +170,7 @@
             <p>
               B@2C, C2C Ecommerce is growing rapidly in Nepalese market. Most of
               the users are using online payment, doing online purchase these
-              days. Internet user is growing ever year. We have many B2B, B2C
+              days. Internet user is growing every year. We have many B2B, B2C
               Ecommerce in Nepal, while we are going into a digital era, B2B
               Ecommerce is the future of Nepal. We believe in promoting B2B
               Ecommerce and making Digital Nepal. By registering in
@@ -219,76 +205,14 @@
                 Nepal.
               </li>
               <li>
-                <i class="fa fa-check pt-1"></i> 
+                <i class="fa fa-check pt-1"></i>
                 Registration is free for 1st year.
               </li>
             </ul>
           </div>
         </div>
-        <!-- section heading end -->
-        <!-- <div class="row mt-5">
-          <div class="col-lg-2 col-md-6 col-6 mx-auto mb-4">
-            <div class="why-join-box">
-              <div class="why-join-box-icon">
-                <i class="fas fa-money-check"></i>
-              </div>
-              <h5 class="why-join-box-title">Free Registration</h5>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 col-6 mx-auto mb-4">
-            <div class="why-join-box">
-              <div class="why-join-box-icon">
-                <i class="fas fa-chalkboard-teacher"></i>
-              </div>
-              <h5 class="why-join-box-title">Business Support & Training</h5>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 col-6 mx-auto mb-4">
-            <div class="why-join-box">
-              <div class="why-join-box-icon">
-                <i class="fas fa-file-invoice-dollar"></i>
-              </div>
-              <h5 class="why-join-box-title">Weekly Payments After Sales</h5>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 col-6 mx-auto mb-4">
-            <div class="why-join-box">
-              <div class="why-join-box-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <h5 class="why-join-box-title">Minimum Marketplace Fees</h5>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 col-6 mx-auto mb-4">
-            <div class="why-join-box">
-              <div class="why-join-box-icon">
-                <i class="fas fa-shopping-bag"></i>
-              </div>
-              <h5 class="why-join-box-title">
-                Guidance In International Trade
-              </h5>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 col-6 mx-auto mb-4">
-            <div class="why-join-box">
-              <div class="why-join-box-icon">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <h5 class="why-join-box-title">
-                Lower Cost To Maximize Your Profit
-              </h5>
-            </div>
-          </div>
-        </div> -->
-      <!-- </div>
-    </section> -->
-    <!-- why join sastowholsale end -->
-
+      </div>
+    </section>
     <!-- steps start -->
     <section class="step">
       <div class="container">
@@ -366,51 +290,38 @@
               </div>
             </div>
           </div>
-
-            <!-- <div class="row">
-                <div class="col-sm-12 col-lg-12 col-md-12">
-                    <div class="pt-we-accept">
-                        <h3>We Accept</h3>
-                        <ul class="list-unstyled">
-                            <li>
-                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner1.png">
-                            </li>
-                            <li>
-                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner2.png">
-                            </li>
-                            <li>
-                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner3.png">
-                            </li>
-                            <li>
-                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner4.png">
-                            </li>
-                            <li>
-                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner5.png">
-                            </li>
-                            <li>
-                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner1.png">
-                            </li>
-                            <li>
-                                <img src="https://b2bfrontend.webhouse.com.np/assets/image/partner2.png">
-                            </li>
-                        </ul>
-                    </div>
+          <div data-v-cbdddaa2="" class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+            <div data-v-cbdddaa2="" class="process-single-item">
+              <div data-v-cbdddaa2="" class="process-single-thumb">
+                <i data-v-cbdddaa2="" class="fas fa-comments"></i>
+                <div data-v-cbdddaa2="" class="process-number">
+                  <span data-v-cbdddaa2="">05</span>
                 </div>
               </div>
-              <div class="process-content">
-                <div class="process-content-title">
-                  <h4>Inquiries/messages</h4>
+              <div data-v-cbdddaa2="" class="process-content">
+                <div data-v-cbdddaa2="" class="process-content-title">
+                  <h4 data-v-cbdddaa2="">Inquiries/messages</h4>
                 </div>
-                <p>You need to reply to inquiries/messages</p>
+                <p data-v-cbdddaa2="">
+                  You need to reply to inquiries/messages
+                </p>
               </div>
             </div>
-            <hr> -->
-            <div class="bottom-footer">
-                <p>Product Listing Policy -Intellectual Property Protection - Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
-                <p><b>©2021 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>
-                <p><b>Head Office:</b> Krishna Galli Pulchowk-04, Kathamandu Nepal</p>
-                <p><b>Tel:</b> +977-01-4563782 Customer Services: +977-01-23452312 Email: info@sastowholesale.com Fax: +977-01-4234345</p>
-                <p><b>Designed &amp; Developed By: Web House Nepal</b></p>
+          </div>
+          <div data-v-cbdddaa2="" class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+            <div data-v-cbdddaa2="" class="process-single-item">
+              <div data-v-cbdddaa2="" class="process-single-thumb">
+                <i data-v-cbdddaa2="" class="fas fa-chart-line"></i>
+                <div data-v-cbdddaa2="" class="process-number">
+                  <span data-v-cbdddaa2="">06</span>
+                </div>
+              </div>
+              <div data-v-cbdddaa2="" class="process-content">
+                <div data-v-cbdddaa2="" class="process-content-title">
+                  <h4 data-v-cbdddaa2="">Start Selling</h4>
+                </div>
+                <p data-v-cbdddaa2="">Protect your order &amp; payments</p>
+              </div>
             </div>
           </div>
         </div>
@@ -419,7 +330,7 @@
     <!-- footer start -->
     <footer class="footer">
       <div class="container">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-lg-6">
             <h4 class="footer-title">Quick links</h4>
             <ul class="footer-list">
@@ -442,13 +353,10 @@
                   >vendor@sastowholsale.com</a
                 >
               </li>
-              <li>
-                <a href="tel:+9779803020102">+977 9803020102</a>
-              </li>
             </ul>
           </div>
         </div>
-        <hr />
+        <hr /> -->
 
         <div class="row">
           <div class="col-sm-12 col-lg-12 col-md-12">
@@ -502,10 +410,7 @@
           </p>
           <p><b>©2021 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>
           <p><b>Head Office:</b> Krishna Galli Pulchowk-04, Kathamandu Nepal</p>
-          <p>
-            <b>Tel:</b> +977-01-4563782 Customer Services: +977-01-23452312
-            Email: info@sastowholesale.com Fax: +977-01-4234345
-          </p>
+          <p>Email: info@sastowholesale.com</p>
           <p><b>Designed &amp; Developed By: Web House Nepal</b></p>
         </div>
         <hr />
@@ -535,8 +440,8 @@ export default {
 <style scoped>
 .description p,
 .list {
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 .list ul li {
   list-style: none;

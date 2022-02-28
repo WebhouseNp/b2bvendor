@@ -203,35 +203,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card stats-card fade-in-up">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon">
-                            <i class="fa fa-bar-chart icon-success"></i>
-                        </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <p class="card-category">
-                            <a href="{{ route('getVendorReport',$vendor->id) }}" target="_blank">
-                                Sales Report
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer border-0">
-                <hr>
-                <div class="stats">
-                    <a href="{{ route('getVendorReport',$vendor->id) }}" target="_blank">
-                        <i class="fa fa-refresh"></i>
-                        View Report
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="col-md-3">
         <div class="card stats-card fade-in-up">
             <div class="card-body">

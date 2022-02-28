@@ -2,16 +2,6 @@
 @section('page_title') {{ (@$updateMode) ? "Update" : "Add"}} Blog @endsection
 
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title"> Blog</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item"> {{ ($updateMode) ? "Update" : "Add"}} Blog</li>
-    </ol>
-
-</div>
 @include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">

@@ -13,7 +13,7 @@
     <link href="{{asset('/assets/admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/vendors/themify-icons/css/themify-icons.css')}}" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
-    <link href="{{asset('/assets/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
+<link href="{{asset('/assets/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href="{{asset('/assets/admin/css/main.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/css/BsMultiSelect.bs4.min.css')}}" rel="stylesheet" />
@@ -134,6 +134,12 @@
                     </li>
                 </ul>
                 <!-- END TOP-LEFT TOOLBAR-->
+                <h4><strong>Welcome,</strong>
+                @if(auth()->user()->hasRole('vendor'))
+                   <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
+                @endif
+                </h4>
+                <button class="btn btn-primary" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->id }}'" >View Store</button>
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-user">
@@ -147,12 +153,6 @@
                                     <i class="fa fa-cog"></i>Change Password
                                 </a>
                             </li>
-                            <!-- <a class="dropdown-item" href="profile.html">
-                                <i class="fa fa-cog"></i>Settings
-                            </a>
-                            <a class="dropdown-item" href="https://webhousenepal.com/">
-                                <i class="fa fa-support"></i>Support
-                            </a> -->
                             <li class="dropdown-divider"></li>
                             <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-power-off"></i>Logout

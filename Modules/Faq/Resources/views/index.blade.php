@@ -34,7 +34,7 @@ Faqs
                         <th>Description</th>
                         <th>Status</th>
                         @if( auth()->user()->hasAnyRole('super_admin|admin'))
-                        <th>Change Status</th>
+                        <!-- <th>Change Status</th> -->
                         <th>Action</th>
                         @endif
                     </tr>
@@ -52,9 +52,9 @@ Faqs
                             </div>
                         </td>
                         @if( auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('admin'))
-                        <td>
+                        <!-- <td>
                             <input type="checkbox" class="js-faq-status btn btn-success btn-sm" rel="{{ $faq->id }}" data-toggle="toggle" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($faq->is_active == 1) checked @endif>
-                        </td>
+                        </td> -->
                         <td>
                             <a title="Edit" class="btn btn-primary btn-sm" href="{{ route('faq.edit',$faq->id) }}">
                                 <i class="fa fa-edit"></i> Edit
@@ -145,39 +145,6 @@ Faqs
             , toast: true
         });
     }
-
-</script>
-
-<script>
-    $(function() {
-        $('.js-product-category-status').change(function() {
-            let id = $(this).attr('rel');
-            let status = $(this).prop('checked') == true ? 1 : 0;
-            let url = "/api/product-category/" + id;
-            if (status == 1) {
-                url = url + '/publish';
-            } else {
-                url = url + '/unpublish';
-            }
-            $.ajax({
-                method: "POST"
-                , url: url
-                , data: {
-                    _method: "patch"
-                }
-                , success: function(response) {
-                    if (response.status == 'success') {
-                        DataSuccessInDatabase(response.message);
-                    } else {
-                        FailedResponseFromDatabase(response.message);
-                    }
-                }
-                , error: function(error) {
-                    FailedResponseFromDatabase('Something went wrong.');
-                }
-            });
-        })
-    })
 
 </script>
 
