@@ -4,16 +4,17 @@ namespace Modules\ProductCategory\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\Category\Entities\Category;
+use Modules\Product\Entities\Product;
 use Modules\ProductCategory\Entities\ProductCategory;
 use Modules\ProductCategory\Http\Requests\ProductCategoryRequest;
+use Modules\Subcategory\Entities\Subcategory;
 
 class ProductCategoryController extends Controller
 {
     public function index()
     {
         $this->authorize('manageCategories');
-        $productCategories = ProductCategory::with('subcategory')->latest()->get();
-
+        $productCategories = ProductCategory::with('subcategory','products')->latest()->get();
         return view('productcategory::index', compact('productCategories'));
     }
 

@@ -61,13 +61,14 @@ class Subcategory extends Model
         return $this->hasMany(ProductCategory::class);
     }
 
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, ProductCategory::class);
+    }
+
     public function attributes()
     {
         return $this->hasMany(CategoryAttribute::class);
     }
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
 }

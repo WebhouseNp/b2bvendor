@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
+use Modules\Product\Entities\Product;
 use Modules\Subcategory\Entities\Subcategory;
 
 class ProductCategory extends Model
@@ -52,4 +53,11 @@ class ProductCategory extends Model
     {
         return $this->belongsTo(Subcategory::class);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    
 }
