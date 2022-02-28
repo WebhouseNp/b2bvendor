@@ -17,28 +17,14 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'name' => 'Super Admin',
-            'email' => 'info@user.com',
+            'email' => 'super-admin@sastowholesale.com',
             'password' => bcrypt('secret'),
             'publish' => 1,
         ]);
 
         User::create([
             'name' => 'Admin',
-            'email' => 'info@admin.com',
-            'password' => bcrypt('secret'),
-            'publish' => 1,
-        ]);
-
-        // User::create([
-        //     'name' => 'vendor',
-        //     'email' => 'info@vendor.com',
-        //     'password' => bcrypt('secret'),
-        //     'publish' => 1,
-        // ]);
-
-        User::create([
-            'name' => 'customer',
-            'email' => 'info@customer.com',
+            'email' => 'admin@sastowholesale.com',
             'password' => bcrypt('secret'),
             'publish' => 1,
         ]);

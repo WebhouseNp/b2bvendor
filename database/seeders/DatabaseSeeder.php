@@ -14,34 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call(UsersTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
-        $this->call(CountriesTableDataSeeder::class);
-
-        $category = Category::create([
-                'name' => 'Electronics',
-                'slug' => 'electronics',
-                'publish' => 1,
-        ]);
-
-        $category->subcategory()->create([
-                'name' => 'Mobile',
-                'slug' => 'mobile',
-                'publish' => 1,
-        ]);
-
-        $category->subcategory()->create([
-                'name' => 'Laptop',
-                'slug' => 'laptop',
-                'publish' => 1,
-        ]);
-
-        $category->subcategory()->create([
-                'name' => 'Tablet',
-                'slug' => 'tablet',
-                'publish' => 1,
-        ]);
+        // $this->call(CountriesTableDataSeeder::class);
     }
 }

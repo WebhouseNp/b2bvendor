@@ -145,7 +145,7 @@
                                                         </label>
                                                         <input type="number" name="prices[]" value="{{ $range->price }}" placeholder="Price" class="form-control" required>
                                                     </div>
-                                                    <a href="javascript:void(0);" class="remove_button" title="remove field"><img src="{{ asset('/images/remove-icon.png') }}" /></a>
+                                                    <a href="javascript:void(0);" class="remove_button pl-md-0 pl-3 pt-md-4 pt-0 mt-3" title="remove field"><img src="{{ asset('/images/remove-icon.png') }}" /></a>
                                                     
                                                 </div>
                                                 @endforeach
@@ -354,7 +354,7 @@ $name = ['highlight'];
                                 <div class="col-md-3">
                                     <input  type="number"  name="prices[]" value="" placeholder="Price" class="form-control">
                                 </div>
-                                <a href="javascript:void(0);" class="remove_button" title="Add field"><img src="{{ asset('/images/remove-icon.png') }}"/></a>
+                                <a href="javascript:void(0);" class="remove_button pl-md-0 pl-3 mt-1" title="Add field"><img src="{{ asset('/images/remove-icon.png') }}"/></a>
                             </div>
                         </div>
                     </div>`;

@@ -2,6 +2,9 @@
 
 @push('styles')
 <style>
+    #admin-login-card button[type="submit"] {
+        background-color:#1d75bd;
+    }
     @media screen AND (min-width: 768px) {
         #admin-login-card {
             min-width: 400px;
