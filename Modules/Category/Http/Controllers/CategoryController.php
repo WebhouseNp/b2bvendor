@@ -2,9 +2,8 @@
 
 namespace Modules\Category\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\Category\Entities\Category;
 use Validator;
 use Image;
@@ -14,6 +13,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        $this->authorize('manageCategories');
         $details = Category::orderBy('created_at', 'desc')->get();
 
         return view('category::index', [
@@ -23,6 +23,7 @@ class CategoryController extends Controller
 
     public function create()
     {
+        $this->authorize('manageCategories');
         return view('category::create');
     }
 
@@ -66,7 +67,10 @@ class CategoryController extends Controller
 
     public function deletecategory(Request $request,  Category $category)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
         $category->delete();
+
         return response()->json([
             'status' => 'successful',
             "message" => "Category deleted successfully!"
@@ -90,6 +94,8 @@ class CategoryController extends Controller
 
     public function updatecategory(Request $request)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
         try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:255',
@@ -141,6 +147,8 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+
         return view('category::edit', compact('id'));
     }
 
