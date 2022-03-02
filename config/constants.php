@@ -4,7 +4,7 @@ return  [
     'customer_app_url' => env('CUSTOMER_APP_URL', 'https://staging.sastowholesale.com/'),
 
     'order_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'],
-    'package_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'],
+    'package_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'], // Not in use
     'business_type' => ['manufacturers','wholesellers','distributors','traders','retailer'],
 
     'alternative_user_permissions' => [
