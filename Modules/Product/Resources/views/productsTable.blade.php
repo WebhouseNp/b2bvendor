@@ -11,34 +11,33 @@
             <th>Action</th>
         </tr>
     </thead>
-
     <tbody id="sortable">
-        @forelse ($details as $key=>$detail)
+        @forelse ($products as $product)
         <tr>
-            <td>{{ $details->firstItem() + $loop->index }}</td>
+            <td>{{ $products->firstItem() + $loop->index }}</td>
             <td>
-                @if($detail->image)
-                <img class="rounded" src="{{ $detail->imageUrl('thumbnail') }}" style="width: 4rem;">
+                @if($product->image)
+                <img class="rounded" src="{{ $product->imageUrl('thumbnail') }}" style="width: 4rem;">
                 @else
                 <p>N/A</p>
                 @endif
             </td>
-            <td>{{ $detail->title }}</td>
+            <td>{{ $product->title }}</td>
             @if( auth()->user()->hasAnyRole('super_admin|admin'))
-            <td>{{ @$detail->user->vendor->shop_name }}</td>
+            <td>{{ @$product->user->vendor->shop_name }}</td>
             @endif
             <td>
-                <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ProductStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->status == 1) checked @endif>
+                <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ProductStatus btn btn-success btn-sm" rel="{{$product->id}}" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($product->status == 1) checked @endif>
             </td>
             <td>
-                <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$detail->id)}}">
+                <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$product->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
 
-                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$detail->id)}}">
+                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$product->id)}}">
                     <i class="fa fa-edit"></i>
                 </a>
-                <!-- <button class="btn btn-danger btn-sm delete" onclick="deleteProduct(this,'{{ $detail->id }}')" style="display:inline"><i class="fa fa-trash"></i></button> -->
+                <!-- <button class="btn btn-danger btn-sm delete" onclick="deleteProduct(this,'{{ $product->id }}')" style="display:inline"><i class="fa fa-trash"></i></button> -->
             </td>
         </tr>
         @empty
@@ -46,10 +45,5 @@
             <td colspan="8">No Products Yet </td>
         </tr>
         @endforelse
-
-
-
     </tbody>
-
 </table>
-{{ $details->links() }}

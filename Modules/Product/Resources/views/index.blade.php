@@ -19,19 +19,42 @@
         </div>
         <div class="ibox-body">
             <div class="mb-4">
-                <form action="" class="form-inline" method="GET">
-                    <div class="form-row align-items-center">
-                        <div class="col-auto form-group">
-                            <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search">
-                        </div>
-                        <div class="col-auto form-group">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                <div class="d-flex">
+                    <div class="d-flex align-items-center">
+                        <span class="flex-shrink-0 align-self-center text-nowrap">Showing &nbsp;</span>
+                        <button class="form-control form-control-sm custom-select dropdown-toggle d-inline" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request('per_page', 15) }}</button>
+                        <span class="flex-shrink-0 align-self-center text-nowrap"> &nbsp; Records Per Page</span>
+                        <div class="dropdown-menu">
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 20]) }}" class="dropdown-item" value="true">20</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 50]) }}" class="dropdown-item" value="true">50</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 100]) }}" class="dropdown-item" value="true">100</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 200]) }}" class="dropdown-item" value="true">200</a>
                         </div>
                     </div>
-                </form>
+                    <div class="ml-auto">
+                        <form action="" class="form-inline" method="GET">
+                            <div class="form-row align-items-center">
+                                <div class="col-auto form-group">
+                                    <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search">
+                                </div>
+                                <div class="col-auto form-group">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div id="appendUser">
                 @include('product::productsTable')
+            </div>
+            <div class="d-flex">
+                <div>
+                    Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} entries
+                </div>
+                <div class="ml-auto">
+                    {{ $products->appends(request()->query())->links() }}
+                </div>
             </div>
         </div>
     </div>

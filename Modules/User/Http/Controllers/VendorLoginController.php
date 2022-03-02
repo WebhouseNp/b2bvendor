@@ -20,6 +20,7 @@ class VendorLoginController extends Controller
         $request->validate([
             'email' => 'required',
             'password' => 'required',
+            'remember' => 'nullable|boolean',
         ]);
 
         try {
@@ -28,7 +29,7 @@ class VendorLoginController extends Controller
 
             if (!$user) {
                 $alternativeUser = AlternativeUser::with('user')->where('email', $request->email)->first();
-                $user = $alternativeUser->user;
+                $user = $alternativeUser->user ?? null;
             }
 
             if (!$user) {
@@ -65,7 +66,7 @@ class VendorLoginController extends Controller
                 ], 401);
             }
 
-            Auth::login($user);
+            Auth::login($user, $request->filled('remember'));
             if ($alternativeUser) {
                 session()->put('alt_usr', $alternativeUser);
             }
@@ -87,7 +88,9 @@ class VendorLoginController extends Controller
                 'token' => $token,
                 'user' => $user
             ], 200);
+
         } catch (\Exception $exception) {
+            report($exception);
             return response([
                 'message' => $exception->getMessage()
             ], 400);
