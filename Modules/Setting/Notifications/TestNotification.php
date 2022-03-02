@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class TestNotification extends Notification
+class TestNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -29,8 +29,7 @@ class TestNotification extends Notification
      */
     public function via($notifiable)
     {
-        // return ['smsapi', 'database', 'mail'];
-        return ['database', 'mail'];
+        return ['smsapi', 'database', 'mail'];
     }
 
     /**
