@@ -32,8 +32,8 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <p>Remaining Payable Amount To Admin</p>
-                    <h2>{{ formatted_price($payableToAdmin) }}</h2>
+                    <p>Receivable Amount From Vendors</p>
+                    <h2>{{ formatted_price($receivableFromVendors) }}</h2>
                 </div>
             </div>
         </div>
@@ -42,8 +42,8 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <p>Remaining Receivable Amount From Admin</p>
-                    <h2>{{ formatted_price($reveivableFromAdmin) }}</h2>
+                    <p>Payment Amount To Vendors</p>
+                    <h2>{{ formatted_price($payableToVendors) }}</h2>
                 </div>
             </div>
         </div>

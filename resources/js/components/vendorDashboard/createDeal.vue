@@ -105,7 +105,7 @@
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
               <div class="table-responsive">
-                <table class="table">
+                <table class="table tb-overflow">
                   <thead>
                     <tr>
                       <!-- <th style="background-color: #d9e7e7">SN</th> -->
