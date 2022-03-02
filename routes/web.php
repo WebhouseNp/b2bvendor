@@ -12,20 +12,10 @@ use Illuminate\Http\Request;
 use Modules\Country\Entities\Country;
 use Modules\User\Http\Controllers\UserController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/mailable', function () {
-    return new App\Mail\OrderPlacedEmail(\Modules\Order\Entities\Order::first());
-});
-
 Route::redirect('/', '/vendor-homepage')->name('home');
 
 Route::get('optimize-clear', function () {
     Artisan::call('optimize:clear');
-    // dd(Artisan::output());
-    // return redirect()->route('home');
 });
 
 //=======================vendor page Router============================================//
