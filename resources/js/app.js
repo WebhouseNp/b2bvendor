@@ -10,6 +10,7 @@ import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
 
 Vue.component('loginhomepage',require('./components/vendorLogin/vendorHomepage.vue').default);
+Vue.component('faq',require('./components/FAQ.vue').default);
 Vue.component('login',require('./components/vendorLogin/login.vue').default);
 Vue.component('register', require('./components/Register/selectCategory.vue').default);
 Vue.component('forgotpassword', require('./components/vendorLogin/forgotpassword.vue').default);

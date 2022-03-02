@@ -29,6 +29,9 @@ Route::get('optimize-clear', function () {
 Route::get('/vendor-homepage', function () {
     return view('vendor_homepage');
 });
+Route::get('/faq', function () {
+    return view('faq');
+});
 Route::get('/vendor-login', function () {
     return view('vendor_login');
 });
