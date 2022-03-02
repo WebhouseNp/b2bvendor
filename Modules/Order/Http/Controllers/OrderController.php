@@ -20,10 +20,10 @@ class OrderController extends Controller
         $this->authorize('manageOrders');
 
         $orders = Order::with(['orderLists', 'customer', 'vendor:id,shop_name'])
-            ->when(request()->filled('order_id'), function($query) {
+            ->when(request()->filled('order_id'), function ($query) {
                 return $query->where('id', request('order_id'));
             })
-            ->when(request()->filled('status'), function($query) {
+            ->when(request()->filled('status'), function ($query) {
                 return $query->where('status', request('status'));
             })
             ->latest()
@@ -36,8 +36,8 @@ class OrderController extends Controller
     {
         // abort_unless(auth()->user()->hasAnyRole('super_admin|admin|vendor'), 403);
         $this->authorize('manageOrders');
-        
-        if(auth()->user()->hasRole('vendor')) {
+
+        if (auth()->user()->hasRole('vendor')) {
             abort_unless(auth()->user()->vendor->id == $order->vendor_id, 403);
         }
 
@@ -74,7 +74,7 @@ class OrderController extends Controller
         $this->authorize('manageOrders');
 
         $orderStatuses = config('constants.order_statuses');
-        if(auth()->user()->hasRole('vendor')) {
+        if (auth()->user()->hasRole('vendor')) {
             abort_unless(auth()->user()->vendor->id == $order->vendor_id, 403);
             $orderStatuses = array_diff($orderStatuses, ['cancelled', 'refunded']);
         }
@@ -88,6 +88,11 @@ class OrderController extends Controller
             DB::beginTransaction();
 
             $order->update(['status' => $request->status]);
+
+            // Mark COD order as paid after order is completed
+            if (($order->status == "completed") && ($order->payment_type == "cod")) {
+                $order->update(['payment_status' => "paid"]);
+            }
 
             if (!$request->filled('update_silently')) {
                 if ($order->status == 'refunded') {
