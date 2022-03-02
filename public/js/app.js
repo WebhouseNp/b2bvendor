@@ -5384,7 +5384,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     onClickSingup: function onClickSingup() {
-      window.location.href = "/vendor-registor";
+      window.location.href = "/vendor-register";
     },
     onClickForgot: function onClickForgot() {
       window.location.href = "/forgot-password";
@@ -5840,7 +5840,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "LoginHomePage",
   methods: {
     onClickSingup: function onClickSingup() {
-      window.location.href = "/vendor-registor";
+      window.location.href = "/vendor-register";
     },
     onClickLogin: function onClickLogin() {
       window.location.href = "/vendor-login";

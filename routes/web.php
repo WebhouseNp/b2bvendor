@@ -32,7 +32,7 @@ Route::get('/vendor-homepage', function () {
 Route::get('/vendor-login', function () {
     return view('vendor_login');
 });
-Route::get('/vendor-registor', function () {
+Route::get('/vendor-register', function () {
     $countries = Country::select('id', 'name')->get();
     return view('register')->with(compact('countries'));
 });
