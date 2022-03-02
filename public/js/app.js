@@ -33701,24 +33701,30 @@ var render = function () {
                         },
                       }),
                   _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "field-icon",
-                      on: { click: _vm.toggleShow },
-                    },
-                    [
-                      _c("span", { staticClass: "icon is-small is-right" }, [
-                        _c("i", {
-                          staticClass: "fa",
-                          class: {
-                            "fa-eye-slash": _vm.showPassword,
-                            "fa-eye": !_vm.showPassword,
-                          },
-                        }),
-                      ]),
-                    ]
-                  ),
+                  _vm.password
+                    ? _c(
+                        "span",
+                        {
+                          staticClass: "field-icon",
+                          on: { click: _vm.toggleShow },
+                        },
+                        [
+                          _c(
+                            "span",
+                            { staticClass: "icon is-small is-right" },
+                            [
+                              _c("i", {
+                                staticClass: "fa",
+                                class: {
+                                  "fa-eye-slash": _vm.showPassword,
+                                  "fa-eye": !_vm.showPassword,
+                                },
+                              }),
+                            ]
+                          ),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-danger" }, [
                     _vm._v(
@@ -33784,24 +33790,30 @@ var render = function () {
                         },
                       }),
                   _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "field-icon",
-                      on: { click: _vm.toggleShow },
-                    },
-                    [
-                      _c("span", { staticClass: "icon is-small is-right" }, [
-                        _c("i", {
-                          staticClass: "fa",
-                          class: {
-                            "fa-eye-slash": _vm.showPassword,
-                            "fa-eye": !_vm.showPassword,
-                          },
-                        }),
-                      ]),
-                    ]
-                  ),
+                  _vm.password
+                    ? _c(
+                        "span",
+                        {
+                          staticClass: "field-icon",
+                          on: { click: _vm.toggleShow },
+                        },
+                        [
+                          _c(
+                            "span",
+                            { staticClass: "icon is-small is-right" },
+                            [
+                              _c("i", {
+                                staticClass: "fa",
+                                class: {
+                                  "fa-eye-slash": _vm.showPassword,
+                                  "fa-eye": !_vm.showPassword,
+                                },
+                              }),
+                            ]
+                          ),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-danger" }, [
                     _vm._v(
@@ -37944,28 +37956,30 @@ var render = function () {
                                   },
                                 }),
                             _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "field-icon icon-cl",
-                                on: { click: _vm.toggleShow },
-                              },
-                              [
-                                _c(
+                            _vm.password
+                              ? _c(
                                   "span",
-                                  { staticClass: "icon is-small is-right" },
+                                  {
+                                    staticClass: "field-icon icon-cl",
+                                    on: { click: _vm.toggleShow },
+                                  },
                                   [
-                                    _c("i", {
-                                      staticClass: "fa",
-                                      class: {
-                                        "fa-eye-slash": _vm.showPassword,
-                                        "fa-eye": !_vm.showPassword,
-                                      },
-                                    }),
+                                    _c(
+                                      "span",
+                                      { staticClass: "icon is-small is-right" },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa",
+                                          class: {
+                                            "fa-eye-slash": _vm.showPassword,
+                                            "fa-eye": !_vm.showPassword,
+                                          },
+                                        }),
+                                      ]
+                                    ),
                                   ]
-                                ),
-                              ]
-                            ),
+                                )
+                              : _vm._e(),
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-check" }, [
@@ -38061,7 +38075,20 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "copyright" }, [
+        _c("p", [
+          _vm._v("\n        Copyright © 2022 "),
+          _c(
+            "a",
+            {
+              attrs: { href: "javascript:void(0)" },
+              on: { click: _vm.vendorHomepage },
+            },
+            [_vm._v("Sasto Wholesale")]
+          ),
+          _vm._v(" All Rights\n        Reserved\n      "),
+        ]),
+      ]),
     ]),
   ])
 }
@@ -38087,18 +38114,6 @@ var staticRenderFns = [
       _c("h4", { staticClass: "login-title" }, [
         _vm._v("\n                      Welcome To "),
         _c("span", [_vm._v("Seller Market")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "copyright" }, [
-      _c("p", [
-        _vm._v("\n        Copyright © 2022 "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Sasto Wholesale")]),
-        _vm._v(" All Rights\n        Reserved\n      "),
       ]),
     ])
   },

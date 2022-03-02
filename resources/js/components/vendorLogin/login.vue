@@ -50,7 +50,7 @@
                             placeholder="Enter Password"
                             v-model="password"
                           />
-                          <span class="field-icon icon-cl" @click="toggleShow">
+                          <span class="field-icon icon-cl" @click="toggleShow" v-if="password">
                             <span class="icon is-small is-right">
                               <i
                                 class="fa"
@@ -99,7 +99,7 @@
       </div>
       <div class="copyright">
         <p>
-          Copyright &copy; 2022 <a href="#">Sasto Wholesale</a> All Rights
+          Copyright &copy; 2022 <a href="javascript:void(0)" @click="vendorHomepage">Sasto Wholesale</a> All Rights
           Reserved
         </p>
       </div>
