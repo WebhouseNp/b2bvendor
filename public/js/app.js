@@ -5296,6 +5296,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -5313,7 +5314,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       validation: new _services_validation__WEBPACK_IMPORTED_MODULE_4__["default"](),
       email: "",
       password: "",
-      remember_me: 0,
+      remember_me: true,
       loading: false,
       showPassword: false,
       error: ""
@@ -5341,7 +5342,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/vendor/login", {
                   email: _this.email,
-                  password: _this.password
+                  password: _this.password,
+                  remember: _this.remember_me
                 });
 
               case 5:
@@ -37966,7 +37968,60 @@ var render = function () {
                             ),
                           ]),
                           _vm._v(" "),
-                          _vm._m(2),
+                          _c("div", { staticClass: "form-check" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.remember_me,
+                                  expression: "remember_me",
+                                },
+                              ],
+                              staticClass: "form-check-input",
+                              staticStyle: {
+                                "margin-left": "0",
+                                "margin-top": "6px",
+                              },
+                              attrs: { type: "checkbox", id: "rememberMe" },
+                              domProps: {
+                                checked: Array.isArray(_vm.remember_me)
+                                  ? _vm._i(_vm.remember_me, null) > -1
+                                  : _vm.remember_me,
+                              },
+                              on: {
+                                change: function ($event) {
+                                  var $$a = _vm.remember_me,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.remember_me = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.remember_me = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.remember_me = $$c
+                                  }
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "rememberMe" },
+                              },
+                              [_vm._v("Remember Me")]
+                            ),
+                          ]),
                           _vm._v(" "),
                           _c(
                             "loading-button",
@@ -38006,7 +38061,7 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(3),
+      _vm._m(2),
     ]),
   ])
 }
@@ -38033,24 +38088,6 @@ var staticRenderFns = [
         _vm._v("\n                      Welcome To "),
         _c("span", [_vm._v("Seller Market")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-check" }, [
-      _c("input", {
-        staticClass: "form-check-input",
-        staticStyle: { "margin-left": "0", "margin-top": "6px" },
-        attrs: { type: "checkbox", id: "rememberMe" },
-      }),
-      _vm._v(" "),
-      _c(
-        "label",
-        { staticClass: "form-check-label", attrs: { for: "rememberMe" } },
-        [_vm._v("Remember Me")]
-      ),
     ])
   },
   function () {

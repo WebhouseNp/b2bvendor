@@ -67,6 +67,7 @@
                             type="checkbox"
                             class="form-check-input"
                             id="rememberMe"
+                            v-model="remember_me"
                             style="margin-left: 0; margin-top: 6px"
                           />
                           <label class="form-check-label" for="rememberMe"
@@ -121,7 +122,7 @@ export default {
       validation: new validation(),
       email: "",
       password: "",
-      remember_me: 0,
+      remember_me: true,
       loading: false,
       showPassword: false,
       error: "",
@@ -141,6 +142,7 @@ export default {
         const response = await axios.post("/vendor/login", {
           email: this.email,
           password: this.password,
+          remember: this.remember_me,
         });
         if (response.status === 200) {
           localStorage.setItem("token", response.data.token);
