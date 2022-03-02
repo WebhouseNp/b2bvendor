@@ -18,6 +18,7 @@ use Modules\Product\Entities\ProductImage;
 use Modules\Product\Entities\Range;
 use Modules\Review\Entities\Review;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Product\Entities\ProductAttributeValue;
 use Modules\ProductCategory\Entities\ProductCategory;
@@ -34,6 +35,15 @@ class Product extends Model
         'is_top' => 'boolean',
         'is_new_arrival' => 'boolean',
     ];
+
+    protected static function booted()
+	{
+		static::addGlobalScope(function (Builder $builder) {
+			$builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
+				return $query->where('vendor_id', auth()->user()->vendor->id);
+			});
+		});
+    }
 
     public function sluggable(): array
     {
@@ -73,7 +83,6 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
-
 
     public function order()
     {

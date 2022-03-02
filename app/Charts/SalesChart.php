@@ -26,6 +26,7 @@ class SalesChart extends BaseChart
         
         $reportType = $request->report_type ?? 'date';
         if(auth()->user()->hasRole('vendor')){
+            logger('from vendor');
             $totalEarnings = \DB::table('orders')->where('vendor_id',auth()->user()->vendor->id)->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
             ->whereBetween('created_at', [$from, $to])
             ->groupBy('label')
@@ -33,6 +34,7 @@ class SalesChart extends BaseChart
             ->all();
             logger($totalEarnings);
         } else {
+            logger('from admin');
 
             $totalEarnings = \DB::table('orders')->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
                 ->whereBetween('created_at', [$from, $to])
