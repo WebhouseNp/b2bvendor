@@ -187,7 +187,7 @@
                             </div>
                         </div>
                         <div class=" bg-light text-center">
-                            <h5>Note: Please Contact Admin to update uneditable Information!</h5>
+                            <p>Note: Please Contact Admin to update uneditable Information!</p>
                         </div>
                     </div>
                 </div>
