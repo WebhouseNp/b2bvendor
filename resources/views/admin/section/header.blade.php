@@ -13,7 +13,7 @@
     <link href="{{asset('/assets/admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/vendors/themify-icons/css/themify-icons.css')}}" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
-<link href="{{asset('/assets/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/admin/vendors/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href="{{asset('/assets/admin/css/main.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/css/BsMultiSelect.bs4.min.css')}}" rel="stylesheet" />
@@ -25,28 +25,28 @@
     @yield('styles')
     @stack('styles')
     <style>
-             .title-label {
-                font-size: 0.9rem;
-                color: gray;
-                margin-bottom: 0;
-            }
+        .title-label {
+            font-size: 0.9rem;
+            color: gray;
+            margin-bottom: 0;
+        }
 
-            /*==========
+        /*==========
             * Dropzone
             ===========*/
 
-            .dropzone {
+        .dropzone {
             border: 3px dotted #ccc;
-            }
+        }
 
-            #productImages {
+        #productImages {
             background-color: #f5f5f5;
             margin: 15px auto;
             /* display: grid; */
             /* grid-template-columns: auto auto auto auto; */
-            }
+        }
 
-            #productImages .img-wrap {
+        #productImages .img-wrap {
             position: relative;
             display: block;
             margin: 0 10px 10px 0;
@@ -55,16 +55,16 @@
             border: 2px solid #eee;
             border-radius: 5px;
             overflow: hidden;
-            }
+        }
 
-            #productImages .img-wrap img {
+        #productImages .img-wrap img {
             overflow: hidden;
             width: auto;
             width: auto;
             height: 150px;
-            }
+        }
 
-            #productImages .img-wrap .del-btn-wrapper {
+        #productImages .img-wrap .del-btn-wrapper {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -73,31 +73,68 @@
             display: none;
             justify-content: center;
             background-color: rgba(0, 0, 0, 0.2);
-            }
+        }
 
-            #productImages .img-wrap:hover .del-btn-wrapper {
+        #productImages .img-wrap:hover .del-btn-wrapper {
             display: block;
-            }
+        }
 
-            #productImages .img-wrap .del-image-btn {
+        #productImages .img-wrap .del-image-btn {
             display: block;
             width: 100%;
-            }
+        }
 
-            #no-image {
+        #no-image {
             text-align: center;
             background-color: #fff;
             padding: 20px;
-            }
+        }
 
-            #no-image .image-icon {
+        #no-image .image-icon {
             font-size: 72px;
             color: #a5a5a5;
-            }
+        }
 
-            #no-image .text {
+        #no-image .text {
             font-style: italic;
-            }
+        }
+
+        /* left sidebar */
+        .page-sidebar {
+            position: fixed;
+            height: calc(100vh - 56px);
+            min-height: calc(100vh - 56px);
+        }
+
+        #sidebar-collapse {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebar-collapse .side-menu {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-bottom: 100px;
+            scrollbar
+        }
+
+        .side-menu::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .side-menu::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border-radius: 4px;
+        }
+
+        .side-menu:hover::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .side-menu::-webkit-scrollbar-thumb:hover {
+            background: #778af1;
+        }
 
     </style>
 
@@ -137,10 +174,10 @@
                 <h4>
                     @if(auth()->user()->hasRole('vendor'))
                     <span class="d-md-inline d-none">
-                    <strong>Welcome,</strong>
-                    <strong> {{ auth()->user()->vendor->shop_name }} </strong> 
+                        <strong>Welcome,</strong>
+                        <strong> {{ auth()->user()->vendor->shop_name }} </strong>
                     </span>
-                    <button class="btn btn-primary btn-sm" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'" >View Store</button>
+                    <button class="btn btn-primary btn-sm" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'">View Store</button>
                     @endif
                 </h4>
                 <!-- START TOP-RIGHT TOOLBAR-->
