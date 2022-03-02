@@ -113,10 +113,10 @@ class AdminController extends Controller
             return redirect()->back()->withInput()->withErrors($validator);
           }
         if (Hash::check($request->old_password, auth()->user()->password)) {
-            $user = User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+            auth()->user()->update(['password' => Hash::make($request->new_password)]);
             return redirect()->back()->with(['message' => 'Password Updated Successfully']);
         } else {
-            return redirect()->back()->with(['error' => 'Password donot match with old one.']);
+            return redirect()->back()->withErrors(['old_password' => 'Sorry your old password is incorrect']);
         }
     }
 }
