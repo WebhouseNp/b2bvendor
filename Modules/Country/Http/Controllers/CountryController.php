@@ -72,7 +72,10 @@ class CountryController extends Controller
 
     public function destroy(Country $country)
     {
-        // TODO::We must check if there are vendors in this country before deleting
+        // check if there are vendors in this country before deleting
+        if (!$country->canBeDeletedSafely()) {
+            return redirect()->route('country.index')->with('error', 'Country Cannot be Deleted!.');
+        }
         $country->deleteFlagImage();
         $country->delete();
 
