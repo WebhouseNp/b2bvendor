@@ -28,15 +28,15 @@ class ProductController extends Controller
     {
         $this->authorize('manageProducts');
 
-        $details = Product::with('user.vendor')
+        $products = Product::with('user.vendor')
             ->when(request()->filled('search'), function ($query) {
                 return $query->where('title', 'like', '%' . request('search') . "%");
             })
             ->latest()
-            ->paginate(10)
+            ->paginate(request('per_page') ?? 15)
             ->withQueryString();
 
-        return view('product::index', compact('details'));
+        return view('product::index', compact('products'));
     }
 
     public function getcategories()
