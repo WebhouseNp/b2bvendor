@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Charts;
 
@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class SalesChart extends BaseChart
 {
+    public ?array $middlewares = ['auth'];
+
     /**
      * Handles the HTTP request for the given chart.
      * It must always return an instance of Chartisan
@@ -22,28 +24,20 @@ class SalesChart extends BaseChart
         $to = $request->to ?? Carbon::today();
 
         $from = ($from instanceof Carbon) ? $from->startOfDay() : Carbon::parse($from)->startOfDay();
-		$to   = ($to instanceof Carbon) ? $to->endOfDay() : Carbon::parse($to)->endOfDay();
-        
+        $to   = ($to instanceof Carbon) ? $to->endOfDay() : Carbon::parse($to)->endOfDay();
+
         $reportType = $request->report_type ?? 'date';
-        if(auth()->user()->hasRole('vendor')){
-            logger('from vendor');
-            $totalEarnings = \DB::table('orders')->where('vendor_id',auth()->user()->vendor->id)->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
+
+        $totalEarnings = \DB::table('orders')
+            ->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
+            ->whereNotIn('status', ['cancelled', 'refunded'])
             ->whereBetween('created_at', [$from, $to])
+            ->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
+                return $query->where('vendor_id', auth()->user()->vendor->id);
+            })
             ->groupBy('label')
             ->pluck('total_sales', 'label')
             ->all();
-            logger($totalEarnings);
-        } else {
-            logger('from admin');
-
-            $totalEarnings = \DB::table('orders')->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
-                ->whereBetween('created_at', [$from, $to])
-                ->groupBy('label')
-                ->pluck('total_sales', 'label')
-                ->all();
-                logger($totalEarnings);
-        }
-
 
         $labels = collect(array_keys($totalEarnings))->map(function ($label) use ($reportType) {
             switch ($reportType) {
