@@ -163,7 +163,7 @@ export default {
       }
     },
     onClickSingup() {
-      window.location.href = "/vendor-registor";
+      window.location.href = "/vendor-register";
     },
     onClickForgot() {
       window.location.href = "/forgot-password";

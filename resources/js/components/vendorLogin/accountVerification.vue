@@ -133,6 +133,7 @@ export default {
     display: flex;
     justify-content: center;
     margin-top: 40px;
+    margin-left: 20px;
 }
 .input{
     margin-right: 20px;
@@ -142,6 +143,12 @@ export default {
     border-bottom: 1px solid #eee;
     font-size: 24px;
     outline: none;
+}
+
+@media screen and (max-width: 768px){
+    .input{
+        width: 34px;
+    }
 }
 .input :last-of-type{
     margin-right: 0;

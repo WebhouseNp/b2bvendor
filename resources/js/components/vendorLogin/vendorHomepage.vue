@@ -434,7 +434,7 @@ export default {
   name: "LoginHomePage",
   methods: {
     onClickSingup() {
-      window.location.href = "/vendor-registor";
+      window.location.href = "/vendor-register";
     },
     onClickLogin() {
       window.location.href = "/vendor-login";

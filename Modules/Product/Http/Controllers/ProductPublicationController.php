@@ -29,7 +29,7 @@ class ProductPublicationController extends Controller
         $product->update(['status' => 0]);
         return response()->json([
             "status" => "true",
-            "message" => "Product Inactivated!!"
+            "message" => "Product Deactivated!!"
         ], 200);
     }
 }
