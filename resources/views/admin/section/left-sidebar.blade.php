@@ -7,7 +7,7 @@ $user = auth()->user();
             <div>
                 <img src="{{asset('/assets/admin/images/admin-avatar.png')}}" width="45px" />
             </div>
-            <div class="admin-info">
+            <div class="admin-info align-self-center">
                 <div class="font-strong">{{ is_alternative_login() ? alt_usr()->name : Auth::user()->name }}</div>
             </div>
         </div>
@@ -17,7 +17,8 @@ $user = auth()->user();
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
-            <li class="heading">Menu</li>
+
+            <li class="heading">Store</li>
 
             @if(auth()->user()->hasRole('vendor'))
             <li>
@@ -60,7 +61,7 @@ $user = auth()->user();
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
-                @if(auth()->user()->hasRole('vendor'))
+                    @if(auth()->user()->hasRole('vendor'))
                     <li>
                         <a href="{{route('deals.create')}}">
                             <span class="fa fa-plus"></span>
@@ -153,87 +154,40 @@ $user = auth()->user();
             @can('manageProducts')
             <li>
                 @if( auth()->user()->hasRole('vendor'))
-                    <a href="javascript:;">
-                        <i class="sidebar-item-icon fa fa-product-hunt"></i>
-                        <span class="nav-label">Product</span>
-                        <i class="fa fa-angle-left arrow"></i>
-                    </a>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-product-hunt"></i>
+                    <span class="nav-label">Product</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
                 @endif
                 @if( auth()->user()->hasAnyRole('super_admin|admin'))
-                    <li>
-                        <a href="{{route('product.index')}}">
-                            <i class="sidebar-item-icon fa fa-product-hunt "></i>
-                            <span class="nav-label">Products</span>
-                        </a>
-                    </li>
-                @endif
-                @if( auth()->user()->hasRole('vendor'))
-                <ul class="nav-2-level collapse">
-                    <li>
-                        <a href="{{route('product.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add Product
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('product.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Products
-                        </a>
-                    </li>
-                </ul>
-                @endif
+            <li>
+                <a href="{{route('product.index')}}">
+                    <i class="sidebar-item-icon fa fa-product-hunt "></i>
+                    <span class="nav-label">Products</span>
+                </a>
+            </li>
+            @endif
+            @if( auth()->user()->hasRole('vendor'))
+            <ul class="nav-2-level collapse">
+                <li>
+                    <a href="{{route('product.create')}}">
+                        <span class="fa fa-plus"></span>
+                        Add Product
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('product.index')}}">
+                        <span class="fa fa-circle-o"></span>
+                        All Products
+                    </a>
+                </li>
+            </ul>
+            @endif
             </li>
             @endcan
-            @if(auth()->user()->hasAnyRole('admin|super_admin|vendor'))
-            <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-tasks"></i>
-                    <span class="nav-label">Roles</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-                    <!-- <li>
-                        <a href="{{route('role.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add Role
-                        </a>
-                    </li> -->
-                    <li>
-                        <a href="{{route('role.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Roles
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            @endif
 
-            @if(auth()->user()->hasAnyRole('super_admin|admin'))
-            <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-file"></i>
-                    <span class="nav-label">Sliders</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('slider.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add Slider
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('slider.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Slider
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            @endif
+            <li class="heading">Categories</li>
 
             @can('manageCategories')
             <li>
@@ -307,29 +261,14 @@ $user = auth()->user();
             </li>
             @endcan
 
-            @if(auth()->user()->hasAnyRole('admin|super_admin'))
+            <li class="heading">CMS</li>
+
+            @if(auth()->user()->hasAnyRole(['vendor']))
             <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-adn"></i>
-                    <span class="nav-label">Advertise</span>
-                    <i class="fa fa-angle-left arrow"></i>
+                <a href="{{ route('getShippingInfo') }}">
+                    <i class="sidebar-item-icon fa fa-thumbs-up"></i>
+                    <span class="nav-label">Shipping Info</span>
                 </a>
-                <ul class="nav-2-level collapse">
-
-                    <li>
-                        <a href="{{route('advertisement.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add New
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('advertisement.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All Lists
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endif
 
@@ -339,32 +278,6 @@ $user = auth()->user();
                     <span class="nav-label">Reviews</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
-            </li>
-            @endif
-
-            @if(auth()->user()->hasAnyRole('super_admin|admin'))
-            <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-user"></i>
-                    <span class="nav-label">All Users</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-
-                    <!-- <li>
-                        <a href="{{route('user.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add New
-                        </a>
-                    </li> -->
-
-                    <li>
-                        <a href="{{route('user.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All User Lists
-                        </a>
-                    </li>
-                </ul>
             </li>
             @endif
 
@@ -489,17 +402,75 @@ $user = auth()->user();
                 <a href="{{route('subscriber.index')}}">
                     <i class="sidebar-item-icon fa fa-thumbs-up"></i>
                     <span class="nav-label">Subscribers</span>
-                    <i class="fa fa-angle-left arrow"></i>
                 </a>
             </li>
             @endif
 
-            @if(auth()->user()->hasAnyRole(['super_admin', 'admin']))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
-                <a href="{{ route('settings.sastowholesale-mall.index') }}">
-                    <i class="sidebar-item-icon fa fa-thumbs-up"></i>
-                    <span class="nav-label">Sasto Wholesale Mall</span>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-file"></i>
+                    <span class="nav-label">Sliders</span>
+                    <i class="fa fa-angle-left arrow"></i>
                 </a>
+                <ul class="nav-2-level collapse">
+
+                    <li>
+                        <a href="{{route('slider.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add Slider
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('slider.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Slider
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-user"></i>
+                    <span class="nav-label">All Users</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('user.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All User Lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if(auth()->user()->hasAnyRole('admin|super_admin'))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-tasks"></i>
+                    <span class="nav-label">Roles</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <!-- <li>
+                        <a href="{{route('role.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add Role
+                        </a>
+                    </li> -->
+                    <li>
+                        <a href="{{route('role.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Roles
+                        </a>
+                    </li>
+                </ul>
             </li>
             @endif
 
@@ -512,12 +483,53 @@ $user = auth()->user();
             </li>
             @endif
 
-            @if(auth()->user()->hasAnyRole(['vendor']))
+            @if(auth()->user()->hasAnyRole('admin|super_admin'))
             <li>
-                <a href="{{ route('getShippingInfo') }}">
-                    <i class="sidebar-item-icon fa fa-thumbs-up"></i>
-                    <span class="nav-label">Shipping Info</span>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-adn"></i>
+                    <span class="nav-label">Advertise</span>
+                    <i class="fa fa-angle-left arrow"></i>
                 </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('advertisement.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add New
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('advertisement.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-adn"></i>
+                    <span class="nav-label">Settings</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{ route('settings.sastowholesale-mall.index') }}">
+                            <span class="fa fa-circle-o"></span>
+                            Sasto Wholesale Mall
+                        </a>
+                    </li>
+                    @if(auth()->user()->hasAnyRole('super_admin'))
+                    <li>
+                        <a href="{{ route('settings.notification.index') }}">
+                            <span class="fa fa-circle-o"></span>
+                            <span>Test Notifications</span>
+                        </a>
+                    </li>
+                    @endif
+                </ul>
             </li>
             @endif
 

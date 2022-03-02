@@ -13,6 +13,7 @@ use App\Mail\VendorStatusChanged;
 use Auth;
 use App\Models\User;
 use App\Password;
+use App\Rules\Mobile;
 use Modules\User\Entities\Vendor;
 use Modules\Role\Entities\Role_user;
 use Modules\Role\Entities\Role;
@@ -38,7 +39,8 @@ class VendorRegistrationController extends Controller
         'email' => 'required|email|unique:users',
         'name' => 'required',
         'designation' => 'required',
-        'phone_num'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
+        'phone_num' => ['required', new Mobile],
+        // 'phone_num'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
         'password' => 'required|min:6',
         'confirm_password' => 'required_with:password|same:password'
 

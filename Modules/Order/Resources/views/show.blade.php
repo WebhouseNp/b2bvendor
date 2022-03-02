@@ -81,15 +81,6 @@
                                 <tr>
                                     <td id="product_title">
                                         <div>{{ $orderList->product_name }}</div>
-                                        <div class="d-flex">
-                                            @if (auth()->user()->hasRole('vendor'))
-                                            <div class="badge badge-primary changeStatus" data-status="{{$orderList->status}}" data-order_id="{{$orderList->id}}">
-                                                {{ $orderList->order_status }}
-                                            </div>
-                                            @else
-                                            <div class="badge badge-primary">{{ $orderList->order_status }}</div>
-                                            @endif
-                                        </div>
                                     </td>
                                     <td class="text-nowrap">{{ formatted_price($orderList->unit_price) }} x {{ $orderList->quantity }} = {{ formatted_price($orderList->subtotal_price) }}</td>
                                     <td>{{ formatted_price($orderList->shipping_charge) }}</td>
@@ -149,6 +140,15 @@
 
             </div>
             <div class="col-md-4">
+                @if(in_array($order->status, ['cancelled', 'refunded']))
+                <div class="bg-danger text-white p-4 rounded mb-4">
+                    <h5 class="text-center">Order <span class="text-capitalize">{{ $order->status }}</span></h5>
+                    <p class="text-center">
+                        This order has been {{ $order->status }}.
+                    </p>
+                </div>
+                @endif
+                @if(!in_array($order->status, ['cancelled', 'refunded']) || auth()->user()->hasAnyRole('super_admin|admin'))
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('orders.update', $order->id) }}" class="form js-order-status-update-form js-disable-on-submit" method="POST" data-original-status="{{ $order->status }}">
@@ -177,6 +177,7 @@
                         </form>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -190,35 +191,36 @@
 <script type="text/javascript">
     $('.print__button').click(function() {
         $("#get__print").printThis({
-            header: null,
-            footer: null
-             });
+            header: null
+            , footer: null
+        });
     });
 
 </script>
 <script>
-    $(document).ready(function () {
-         // Confirm before changing whole order status
-         $('.js-order-status-update-form').on('submit', function(e) {
+    $(document).ready(function() {
+        // Confirm before changing whole order status
+        $('.js-order-status-update-form').on('submit', function(e) {
             e.preventDefault();
             let originalStatus = $(this).data('original-status');
             let newStatus = $(this).find('select[name="status"]').val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: `You are changing the order status from  ${originalStatus} to ${newStatus}.`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, change it!'
-                }).then((result) => {
-                    if (result.value) {
-                        e.target.submit();
-                    }else {
-                        $(this).find('button[type="submit"]').prop('disabled', false);
-                    }
-                })
+                title: 'Are you sure?'
+                , text: `You are changing the order status from  ${originalStatus} to ${newStatus}.`
+                , icon: 'warning'
+                , showCancelButton: true
+                , confirmButtonColor: '#3085d6'
+                , cancelButtonColor: '#d33'
+                , confirmButtonText: 'Yes, change it!'
+            }).then((result) => {
+                if (result.value) {
+                    e.target.submit();
+                } else {
+                    $(this).find('button[type="submit"]').prop('disabled', false);
+                }
+            })
         });
     });
+
 </script>
 @endsection

@@ -86,7 +86,7 @@
                 placeholder="Password"
                 v-model="password"
               />
-              <span class="field-icon" @click="toggleShow">
+              <span class="field-icon" @click="toggleShow" v-if="password">
                 <span class="icon is-small is-right">
                   <i
                     class="fa"
@@ -117,7 +117,7 @@
                 placeholder="Confirm Password"
                 v-model="confirm_password"
               />
-              <span class="field-icon" @click="toggleShow">
+              <span class="field-icon" @click="toggleShow" v-if="password">
                 <span class="icon is-small is-right">
                   <i
                     class="fa"

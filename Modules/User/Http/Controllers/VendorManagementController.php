@@ -11,6 +11,7 @@ use Modules\Role\Entities\Role_user;
 use Modules\Role\Entities\Role;
 use Modules\User\Entities\VendorPayment;
 use App\Models\User;
+use App\Rules\Mobile;
 use Modules\Category\Entities\Category;
 use Modules\Country\Entities\Country;
 use File, Intervention\Image\Facades\Image;
@@ -78,7 +79,8 @@ class VendorManagementController extends Controller
         $request->validate([
             'shop_name' => 'required',
             'company_email' => 'required',
-            'phone_number' => 'required',
+            'phone_num' => ['required', new Mobile],
+            // 'phone_number' => 'required',
             'product_category' => 'nullable',
             'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
          ]);
@@ -136,7 +138,8 @@ class VendorManagementController extends Controller
     {
        $request->validate([
           'name' => 'required',
-          'phone_num' => 'required',
+          'phone_num' => ['required', new Mobile],
+         //  'phone_num' => 'required',
           'designation' => 'required',
        ]);
        $formInput = $request->except(['_token']);

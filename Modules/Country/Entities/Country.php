@@ -49,4 +49,9 @@ class Country extends Model
     {
         return $this->hasMany(Vendor::class, 'country_id');
     }
+
+    public function canBeDeletedSafely()
+    {
+        return ($this->vendors()->count() > 0) ? false : true;
+    } 
 }

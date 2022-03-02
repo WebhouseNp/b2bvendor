@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Auth;
 use App\Models\User;
 use App\Password;
+use App\Rules\Mobile;
 use Modules\User\Entities\Vendor;
 use Modules\Role\Entities\Role_user;
 use Modules\Role\Entities\Role;
@@ -32,7 +33,8 @@ class UserController extends Controller
     try {
       $validator = Validator::make($request->all(), [
         'full_name' => 'required|string',
-        'phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
+        'phone_num' => ['required', new Mobile],
+        // 'phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
         'email' => 'required|email|unique:users',
         'password' => 'required',
         'confirm_password' => 'required|min:6|same:password',
@@ -61,8 +63,9 @@ class UserController extends Controller
       if ($userExist) {
         $user = User::where('email', $request->email)->first();
       }
+      $role = Role::where('name','customer')->first();
       $role_data = [
-        'role_id' => 4,
+        'role_id' => $role->id,
         'user_id' => $user->id
       ];
       $role_user = Role_user::create($role_data);
