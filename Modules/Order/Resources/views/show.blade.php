@@ -81,15 +81,6 @@
                                 <tr>
                                     <td id="product_title">
                                         <div>{{ $orderList->product_name }}</div>
-                                        <div class="d-flex">
-                                            @if (auth()->user()->hasRole('vendor'))
-                                            <div class="badge badge-primary changeStatus" data-status="{{$orderList->status}}" data-order_id="{{$orderList->id}}">
-                                                {{ $orderList->order_status }}
-                                            </div>
-                                            @else
-                                            <div class="badge badge-primary">{{ $orderList->order_status }}</div>
-                                            @endif
-                                        </div>
                                     </td>
                                     <td class="text-nowrap">{{ formatted_price($orderList->unit_price) }} x {{ $orderList->quantity }} = {{ formatted_price($orderList->subtotal_price) }}</td>
                                     <td>{{ formatted_price($orderList->shipping_charge) }}</td>
