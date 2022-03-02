@@ -14,7 +14,8 @@ class CategoryController extends Controller
     public function index()
     {
         $this->authorize('manageCategories');
-        $details = Category::orderBy('created_at', 'desc')->withCount('products')->get();
+        $details = Category::orderBy('created_at', 'desc')->withCount('subcategory')->withCount('products')->get();
+        // $details = Category::withCount('subcategory')->orderBy('created_at', 'desc')->get();
 
         return view('category::index', [
             'details' => $details

@@ -30,6 +30,7 @@
                     <th>Image</td>
                     <th>Include in main menu</td>
                     <th>Total Products</th>
+                    <th>Sub-categories</th>
                     @if( auth()->user()->hasRole('vendor'))
                     <th>Publish</th>
                     @endif
@@ -53,6 +54,7 @@
                     </td>
                     <td>{{ $detail->include_in_main_menu == 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $detail->products_count }}</td>
+                    <td>{{ $detail->subcategory_count }}</td>
                     @if( auth()->user()->hasRole('vendor'))
                     <td><div style="display:inline-block; width:100px" class="badge {{ $detail->publish==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
                         {{ $detail->publish == 1 ? 'Published' : 'Not Published' }}

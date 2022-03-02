@@ -16,7 +16,7 @@ class SubcategoryController extends Controller
     public function index()
     {
         $this->authorize('manageCategories');
-        $details = Subcategory::orderBy('created_at', 'desc')->with('category')->get();
+        $details = Subcategory::orderBy('created_at', 'desc')->with('category')->withCount('products')->get();
         return view('subcategory::index', compact('details'));
     }
 

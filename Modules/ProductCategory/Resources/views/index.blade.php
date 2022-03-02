@@ -33,7 +33,7 @@ Product Categories
                         <th>Name</th>
                         <th>Image</th>
                         <th>Falls Under</th>
-                        <th>Total Products</th>
+                        <th>Products</th>
                         {{-- <th>In Homepage</th> --}}
                         @if( auth()->user()->hasRole('vendor'))
                         <th>Publish</th>

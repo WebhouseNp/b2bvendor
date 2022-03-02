@@ -12,7 +12,7 @@ class FaqApiController extends Controller
 {
     public function index()
     {
-        $faqs = Faq::published()->get();
+        $faqs = Faq::published()->positioned()->get();
         return new FaqCollection($faqs);
     }
 
