@@ -2181,6 +2181,21 @@ body.fullscreen-mode {
     padding: .7rem 1rem
 }
 
+@media screen and (max-width: 576px){
+    .nav-tabs .nav-link {
+        padding: .5rem .8rem;
+        text-align: center;
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .ibox .plain-nav-tabs {
+        overflow-y: scroll;
+        flex-wrap: nowrap;
+        padding: 10px 0 10px 10px;
+    }
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {

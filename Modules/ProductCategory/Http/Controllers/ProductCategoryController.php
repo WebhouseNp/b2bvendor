@@ -15,7 +15,6 @@ class ProductCategoryController extends Controller
     {
         $this->authorize('manageCategories');
         $productCategories = ProductCategory::with('subcategory')->withCount('products')->latest()->get();
-
         return view('productcategory::index', compact('productCategories'));
     }
 

@@ -14,7 +14,11 @@ class BlogApiController extends Controller
     public function index()
     {
         $blogs = Blog::published()->get();
-        return new BlogCollection($blogs);
+        return BlogResource::collection($blogs)->hide([
+            'description',
+            'short_description'
+        ]);
+        // return new BlogCollection($blogs);
     }
 
     public function show(Blog $blog)
