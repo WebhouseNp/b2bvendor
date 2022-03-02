@@ -14,18 +14,18 @@
                 <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$detail->name}}</td>
-                <td>{{$detail->publish}}</td>
+                <td>
+                <div style="display:inline-block; width:100px" class="badge {{ $detail->publish==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
+                        {{ $detail->publish == 1 ? 'Published' : 'Not Published' }}
+                        </div>
+                </td>
                 <td>
                 <a title="view" class="btn btn-success btn-sm" href="{{route('role.view',$detail->id)}}">
                     <i class="fa fa-eye"></i>
                 </a> 
-                <!-- <button type="button" title="View" class="btn btn-success btn-sm view" onclick="viewrole({{ $detail->id }})" data-id="{{$detail->id}}">
-                    <i class="fa fa-eye"></i>
-                </button> -->
-                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('role.edit',$detail->id)}}">
+                <!-- <a title="Edit" class="btn btn-primary btn-sm" href="{{route('role.edit',$detail->id)}}">
                     <i class="fa fa-edit"></i>
-                </a> 
-                <button class="btn btn-danger delete" onclick="deleteRole({{ $detail->id }})"  class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                </a>  -->
                 </td>
                 </tr>
                 @empty

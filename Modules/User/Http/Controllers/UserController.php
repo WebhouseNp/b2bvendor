@@ -61,8 +61,9 @@ class UserController extends Controller
       if ($userExist) {
         $user = User::where('email', $request->email)->first();
       }
+      $role = Role::where('name','customer')->first();
       $role_data = [
-        'role_id' => 4,
+        'role_id' => $role->id,
         'user_id' => $user->id
       ];
       $role_user = Role_user::create($role_data);

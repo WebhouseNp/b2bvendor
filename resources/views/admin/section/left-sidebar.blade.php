@@ -185,7 +185,7 @@ $user = auth()->user();
                 @endif
             </li>
             @endcan
-            @if(auth()->user()->hasAnyRole('admin|super_admin|vendor'))
+            @if(auth()->user()->hasAnyRole('admin|super_admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-tasks"></i>

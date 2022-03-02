@@ -75,10 +75,10 @@
                document.getElementById('name').innerHTML = response.data.name;
                document.getElementById('slug').innerHTML = response.data.slug;
 			   if(response.data.publish == '1'){
-						document.getElementById('publish').innerHTML = '<span class="label label-success">Active</span>';
+						document.getElementById('publish').innerHTML = '<span class="label label-success">Published</span>';
 					}
 					else if(response.data.publish == '0'){
-						document.getElementById('publish').innerHTML = '<span class="label label-danger">Inactive</span>';
+						document.getElementById('publish').innerHTML = '<span class="label label-danger">Not Published</span>';
 					}            
            }
        });
