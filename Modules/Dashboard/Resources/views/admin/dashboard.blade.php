@@ -42,7 +42,7 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <p>Payment Amount To Vendors</p>
+                    <p>Payable Amount To Vendors</p>
                     <h2>{{ formatted_price($payableToVendors) }}</h2>
                 </div>
             </div>

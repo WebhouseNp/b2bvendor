@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $salesFromOnlinePayment = $this->dashboardService->getSalesFromOnlinePayment();
         $salesFromCOD = $this->dashboardService->getSalesFromCOD();
 
-        $receivableFromVendors = Transaction::where('is_cod', true)->whereNull('settled_at')->sum('amount');
+        $receivableFromVendors = Transaction::where('is_cod', true)->whereNull('settled_at')->sum('commission');
         $payableToVendors = Transaction::onlyOnlinePayments()
         ->whereIn('id', function($query) {
             $query->select(\DB::raw('MAX(id) FROM transactions GROUP BY vendor_id'));
@@ -60,7 +60,7 @@ class DashboardController extends Controller
         $salesFromOnlinePayment = $this->dashboardService->getSalesFromOnlinePayment();
         $salesFromCOD = $this->dashboardService->getSalesFromCOD();
 
-        $payableToAdmin = Transaction::where('vendor_id', $vendor->id)->where('is_cod', true)->whereNull('settled_at')->sum('amount');
+        $payableToAdmin = Transaction::where('vendor_id', $vendor->id)->where('is_cod', true)->whereNull('settled_at')->sum('commission');
         $lastTransaction = Transaction::where('vendor_id', $vendor->id)->latest('id')->first();
         $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
 
