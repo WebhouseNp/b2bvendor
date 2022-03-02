@@ -19,12 +19,12 @@
             <div class="col-sm-6">
                 <h2>Edit Profile</h2>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                     <li class="breadcrumb-item active">Edit Profile</li>
                 </ol>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
