@@ -35697,7 +35697,7 @@ var render = function () {
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-12 col-sm-12 form-group" }, [
                 _c("div", { staticClass: "table-responsive" }, [
-                  _c("table", { staticClass: "table" }, [
+                  _c("table", { staticClass: "table tb-overflow" }, [
                     _vm._m(4),
                     _vm._v(" "),
                     _c(
