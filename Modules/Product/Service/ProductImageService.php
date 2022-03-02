@@ -18,9 +18,14 @@ class ProductImageService
 
     public function create(Product $product, $image)
     {
+        $imageSize = getimagesize($image);
+
         $productImage = new ProductImage([
             'path' => $this->imageService->storeImage($image),
             'thumbnail_path' => $this->imageService->storeImage($image),
+            'width' => $imageSize[0] ?? null,
+            'height' => $imageSize[1] ?? null,
+            'size' => $image->getSize(),
         ]);
 
         $this->imageService->createThumbnail( Storage::path($productImage['thumbnail_path']), null, 350);

@@ -32,6 +32,7 @@ class ProductImageController extends Controller
         $productImages = $product->images()->latest()->get();
         $productImages = $productImages->map(function ($productImage) {
             $productImage['url'] = $productImage->imageUrl();
+            $productImage['readable_size'] = $productImage->getReadableSize($productImage->size);
             return $productImage;
         });
 

@@ -36,52 +36,52 @@
             ===========*/
 
         .dropzone {
-            border: 3px dotted #ccc;
+            border: 2px dashed #5370e9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: 600;
+        }
+
+        @media screen AND (min-width: 600px) {
+            .dropzone {
+                min-height: 300px;
+            }
         }
 
         #productImages {
-            background-color: #f5f5f5;
-            margin: 15px auto;
+            /* background-color: #f5f5f5; */
             /* display: grid; */
             /* grid-template-columns: auto auto auto auto; */
         }
 
         #productImages .img-wrap {
-            position: relative;
             display: block;
-            margin: 0 10px 10px 0;
             background-color: #fff;
-            text-align: center;
-            border: 2px solid #eee;
             border-radius: 5px;
             overflow: hidden;
         }
 
         #productImages .img-wrap img {
             overflow: hidden;
-            width: auto;
-            width: auto;
-            height: 150px;
-        }
-
-        #productImages .img-wrap .del-btn-wrapper {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            /* height: 100%; */
             width: 100%;
-            display: none;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        #productImages .img-wrap:hover .del-btn-wrapper {
-            display: block;
+                aspect-ratio: 900 / 900;
         }
 
         #productImages .img-wrap .del-image-btn {
-            display: block;
-            width: 100%;
+            background-color: transparent;
+            border: 0px;
+            outline: none;
+            border-radius: 50%;
+            line-height: 1;
+            color: #f55252;
+            transition: background-color 150ms ease-in;
+        }
+
+        #productImages .img-wrap .del-image-btn:hover {
+            background-color: whitesmoke;
         }
 
         #no-image {
