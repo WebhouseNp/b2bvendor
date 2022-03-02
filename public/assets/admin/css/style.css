@@ -242,4 +242,8 @@ button {
     .page-footer {
         display: none;
     }
+
+    .h4-responsive {
+        font-size: 2rem;
+    }
 }
