@@ -178,7 +178,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-12 col-sm-12 form-group">
+                                            <div class="col-lg-12 col-sm-12 form-group mt-3">
                                                 <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
                                             </div>
                                         </div>
@@ -187,7 +187,7 @@
                             </div>
                         </div>
                         <div class=" bg-light text-center">
-                            <h5>Note: Please Contact Admin to update uneditable Information!</h5>
+                            <p>Note: Please Contact Admin to update uneditable Information!</p>
                         </div>
                     </div>
                 </div>
