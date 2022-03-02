@@ -104,11 +104,6 @@ class AdminController extends Controller
     }
 
     public function updatePassword(Request $request){
-        // $request->validate([
-        //     'old_password' => 'required',
-        //     'new_password' => 'required|min:6',
-        //     'password_confirmation' => 'required|min:6|same:new_password',
-        // ]);
         $validator = Validator::make($request->all(), [
             'old_password' => 'required',
             'new_password' => 'required|min:6',
