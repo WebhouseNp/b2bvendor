@@ -13,6 +13,7 @@ use Modules\User\Entities\Vendor;
 class Category extends Model
 {
     use Sluggable;
+    use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -24,6 +25,12 @@ class Category extends Model
                 'separator' => '_'
             ]
         ];
+    }
+
+
+    public function products()
+    {
+        return $this->hasManyDeep(Product::class, [Subcategory::class, ProductCategory::class]);
     }
 
     public function imageUrl($size = null)
@@ -50,10 +57,10 @@ class Category extends Model
         return $this->hasManyThrough(ProductCategory::class, Subcategory::class, 'category_id', 'subcategory_id');
     }
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
 
     public function attributes()
     {
