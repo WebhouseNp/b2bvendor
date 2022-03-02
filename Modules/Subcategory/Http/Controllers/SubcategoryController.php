@@ -141,7 +141,7 @@ class SubcategoryController extends Controller
             $value['is_featured'] = is_null($request->is_featured) ? 0 : 1;
             $value['include_in_main_menu'] = is_null($request->include_in_main_menu) ? 0 : 1;
             if ($request->image) {
-                $image = Category::findorFail($request->id);
+                $image = Subcategory::findorFail($request->id);
                 if ($image->image) {
                     $thumbPath = public_path('images/thumbnail');
                     $listingPath = public_path('images/listing');
