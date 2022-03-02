@@ -25,7 +25,12 @@ class AdminController extends Controller
 
     public function login()
     {
-        return view('admin::login');
+       if(auth()->check()){
+        return back();
+       } else {
+           return view('admin::login');
+       }
+
     }
 
     public function postLogin(Request $request)
