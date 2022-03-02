@@ -13,7 +13,7 @@
     <div class="page-heading d-flex mb-3">
     <h1 class="h4-responsive">{{ $updateMode ? 'Edit' : 'Add' }} Product</h1>
     <div class="ml-auto">
-        <a class="btn btn-info btn-md" href="/product/all">All Products</a>
+        <a class="btn btn-info btn-md" href="{{route('product.index')}}">All Products</a>
     </div>
 </div>
 @include('admin.section.notifications')

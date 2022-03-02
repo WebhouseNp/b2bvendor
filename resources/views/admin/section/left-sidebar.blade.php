@@ -164,7 +164,7 @@ $user_access = json_decode($user->access_level);
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
-                    @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
+                    @if( in_array('vendor' ,$roles))
                     <li>
                         <a href="{{route('product.create')}}">
                             <span class="fa fa-plus"></span>
@@ -174,7 +174,7 @@ $user_access = json_decode($user->access_level);
                     @endif
                     @if(in_array('super_admin' ,$roles) || in_array('vendor' ,$roles) || (in_array('admin' ,$roles) && in_array('product', $user_access)))
                     <li>
-                        <a href="{{route('product.index',['type'=>'all'])}}">
+                        <a href="{{route('product.index')}}">
                             <span class="fa fa-circle-o"></span>
                             All Products
                         </a>
