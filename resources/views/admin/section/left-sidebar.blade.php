@@ -1,3 +1,6 @@
+@php
+$user = auth()->user();
+@endphp
 <nav class="page-sidebar" id="sidebar">
     <div id="sidebar-collapse">
         <div class="admin-block d-flex">
@@ -77,7 +80,7 @@
             </li>
             @endcan
 
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-user-circle"></i>
@@ -109,7 +112,7 @@
                 </ul>
             </li>
             @endif
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="{{route('allquotations')}}">
                     <i class="sidebar-item-icon fa fa-quote-left"></i>
@@ -136,6 +139,7 @@
             </li>
             @endcan
 
+            @if(auth()->user()->hasRole('vendor'))
             @can('viewTransactions')
             <li>
                 <a href="/transactions/{{ auth()->id() }}">
@@ -144,6 +148,7 @@
                 </a>
             </li>
             @endcan
+            @endif
 
             @can('manageProducts')
             <li>
@@ -180,7 +185,7 @@
                 @endif
             </li>
             @endcan
-            @if(auth()->user()->hasRole('admin|super_admin|vendor'))
+            @if(auth()->user()->hasAnyRole('admin|super_admin|vendor'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-tasks"></i>
@@ -204,7 +209,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->hasRole('super_admin|admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-file"></i>
@@ -302,7 +307,7 @@
             </li>
             @endcan
 
-            @if(auth()->user()->hasRole('admin|super_admin'))
+            @if(auth()->user()->hasAnyRole('admin|super_admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-adn"></i>
@@ -328,7 +333,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->HasRole('admin|super_admin'))
+            @if(auth()->user()->hasAnyRole('admin|super_admin'))
             <li>
                 <a href="{{route('review.index')}}"><i class="sidebar-item-icon fa fa-th-large"></i>
                     <span class="nav-label">Reviews</span>
@@ -337,7 +342,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-user"></i>
@@ -363,7 +368,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-flag"></i>
@@ -389,7 +394,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-flag"></i>
@@ -415,7 +420,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-flag"></i>
@@ -441,7 +446,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-address-card"></i>
@@ -479,7 +484,7 @@
             </li>
             @endif
 
-            @if(auth()->user()->hasRole('super_admin'))
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="{{route('subscriber.index')}}">
                     <i class="sidebar-item-icon fa fa-thumbs-up"></i>

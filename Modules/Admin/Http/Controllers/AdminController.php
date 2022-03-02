@@ -55,7 +55,7 @@ class AdminController extends Controller
         }
 
         // Return if user is not super_admin or admin or vendor
-        if (!in_array('super_admin', $roles, TRUE) && !in_array('admin', $roles, TRUE) && !in_array('vendor', $roles, TRUE)) {
+        if (!in_array('super_admin', $roles, TRUE) && !in_array('admin', $roles, TRUE)) {
             return $this->sendLoginErrorResponse($request);
         }
 
