@@ -16,6 +16,10 @@ use Modules\User\Http\Controllers\UserController;
 //     return view('welcome');
 // });
 
+Route::get('/mailable', function () {
+    return new App\Mail\OrderPlacedEmail(\Modules\Order\Entities\Order::first());
+});
+
 Route::redirect('/', '/vendor-homepage')->name('home');
 
 Route::get('optimize-clear', function () {
