@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\User;
+use App\Rules\Mobile;
 use Modules\Order\Entities\OrderList;
 use Auth;
 use Image, File;
@@ -104,7 +105,7 @@ class VendorController extends Controller
    {
       $request->validate([
          'name' => 'required',
-         'phone_num' => 'required',
+         'phone_num' => ['required', new Mobile],
          'designation' => 'required',
       ]);
       $formInput = $request->except(['_token','email']);

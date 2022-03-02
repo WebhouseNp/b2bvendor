@@ -12,7 +12,7 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </button>
                 </div>
                 <div class="ibox-body" style="">
-                    <form id="category-create-form">
+                    <form id="category-create-form" class="col-md-6">
                         <div class="form-group ">
                             <label>Category Name</label>
                             <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}" placeholder="Enter name">
@@ -25,7 +25,7 @@
                             </label>
                         </div>
 
-                        <div class="row form-group col-md-6">
+                        <div class="form-group ">
                             <label>Upload Category Image </label>
                             <input class="form-control" name="image" type="file" id="fileUpload">
                             <div id="wrapper" class="mt-2">
