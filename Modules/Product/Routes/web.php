@@ -9,7 +9,6 @@ Route::group(['middleware' => ['auth', 'role:super_admin|admin|vendor']], functi
     Route::get('/product/create', [ProductStorageController::class, 'create'])->name('product.create');
     Route::get('/product/edit/{product}', [ProductStorageController::class, 'edit'])->name('product.edit');
     Route::get('/product/view/{id}', [ProductController::class, 'view'])->name('product.view');
-    
     Route::get('/product-images/{product}', [ProductImageController::class, 'index'])->name('product-images.index');
     Route::get('/product-images/{product}/listing', [ProductImageController::class, 'listing'])->name('ajax.product-images.listing');
     Route::post('/product-images', [ProductImageController::class, 'store'])->name('ajax.product-images.store');

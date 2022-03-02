@@ -270,3 +270,8 @@ button {
         width: 150px;
     }
 }
+
+.title-label {
+    color: #000 !important;
+    font-weight: 700;
+}

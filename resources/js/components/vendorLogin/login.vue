@@ -122,7 +122,7 @@ export default {
       validation: new validation(),
       email: "",
       password: "",
-      remember_me: true,
+      remember_me: false,
       loading: false,
       showPassword: false,
       error: "",

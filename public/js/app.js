@@ -5314,7 +5314,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       validation: new _services_validation__WEBPACK_IMPORTED_MODULE_4__["default"](),
       email: "",
       password: "",
-      remember_me: true,
+      remember_me: false,
       loading: false,
       showPassword: false,
       error: ""
