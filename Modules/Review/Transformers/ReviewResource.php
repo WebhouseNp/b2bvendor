@@ -20,15 +20,15 @@ class ReviewResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             // 'user' => CustomerResource::make($this->whenLoaded('user')),
-            'user' => $this->whenLoaded('user',function(){
+            'user' => $this->whenLoaded('user', function () {
                 return [
-                    'id' =>$this->user->id,
+                    'id' => $this->user->id,
                     'name' => $this->user->name
                 ];
             }),
-            'product' => $this->whenLoaded('product',function(){
+            'product' => $this->whenLoaded('product', function () {
                 return [
-                    'id' =>$this->product->id,
+                    'id' => $this->product->id,
                     'title' => $this->product->title
                 ];
             }),

@@ -15,6 +15,27 @@ use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
+    public function canReviewProduct($productId, $customerId)
+    {
+        return response()->json(Review::canReview($productId, $customerId), 200);
+    }
+
+    public function index()
+    {
+        $reviews = Review::get();
+        return view('review::index', compact('reviews'));
+    }
+
+    public function productReview($productId)
+    {
+        $reviews = Review::with('user:id,name', 'product:id,title')
+            ->where('product_id', $productId)
+            ->latest()
+            ->get();
+
+        return new ReviewCollection($reviews);
+    }
+
     public function createReview(Request $request)
     {
         try {
@@ -27,24 +48,28 @@ class ReviewController extends Controller
             ]);
             if ($validator->fails()) {
                 return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
-                exit;
             }
+
+            if (!Review::canReview($request->product_id, $request->customer_id)) {
+                return response()->json(['status' => 'unsuccessful', 'data' => 'Sorry you cannot review this product.'], 422);
+            }
+
             $formData = $request->all();
             $reviews = DB::table('reviews')
                 ->where('product_id', $request->product_id)
                 ->where('customer_id', $request->customer_id)
                 ->get();
-                if ($reviews->isNotEmpty()) {
-                        return response()->json([
-                            "message" => "You have already given review to the product!!"
-                        ], 200);
-                    }else{
-                        $data = Review::create($formData);
-                        return response()->json([
-                            "message" => "Review created!!",
-                            "data" => $data
-                        ], 200);
-                    }
+            if ($reviews->isNotEmpty()) {
+                return response()->json([
+                    "message" => "You have already given review to the product!!"
+                ], 200);
+            } else {
+                $data = Review::create($formData);
+                return response()->json([
+                    "message" => "Review created!!",
+                    "data" => $data
+                ], 200);
+            }
             // $order_list = Order::with('orderList')
             //     ->whereHas('orderList', function (Builder $query) use ($request) {
             //         $query->where('product_id', $request->product_id);
@@ -80,17 +105,5 @@ class ReviewController extends Controller
                 'message' => 'Something  went wrong'
             ], 500);
         }
-    }
-
-    public function index()
-    {
-        $reviews = Review::get();
-        return view('review::index', compact('reviews'));
-    }
-
-    public function productReview($id)
-    {
-        $reviews = Review::where('product_id', $id)->with('user:id,name', 'product:id,title')->get();
-        return new ReviewCollection($reviews);
     }
 }
