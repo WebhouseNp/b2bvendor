@@ -1,5 +1,6 @@
 <template>
-  <div>
+
+    <div>
     <!-- header start -->
     <header data-v-cbdddaa2="" class="header position-sticky">
       <nav
@@ -33,7 +34,7 @@
           >
             <ul data-v-cbdddaa2="" class="navbar-nav ml-auto">
               <li data-v-cbdddaa2="" class="nav-item active">
-                <a data-v-cbdddaa2="" href="#" class="nav-link">Home</a>
+                <a data-v-cbdddaa2="" href="/" class="nav-link">Home</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
                 <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link" @click="onClickPartners">Partners</a>
@@ -58,17 +59,12 @@
     <!-- header end -->
 
     <!-- slider start -->
-    <div class="slider-wrapper">
+    <div class="slider-wrapper" v-scrollanimation style="min-height: 450px;">
       <div
         id="carouselExampleCaptions"
         class="carousel slide"
         data-ride="carousel"
       >
-        <!-- <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            </ol> -->
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="slider-overlay"></div>
@@ -168,14 +164,14 @@
     <!-- slider end -->
 
     <!-- why join sastowholsale start -->
-    <section class="why-join">
+    <section class="why-join animated zoomIn" v-scrollanimation>
       <div class="container">
         <!-- section heading start -->
         <div class="heading">
           <h2>Why Join Sastowholsale.com?</h2>
         </div>
         <div class="row mt-5">
-          <div class="description">
+          <div class="description" v-scrollanimation>
             <p>
               B2B, C2C Ecommerce is growing rapidly in Nepalese market. Most of
               the users are using online payment, doing online purchase these
@@ -188,11 +184,11 @@
             </p>
           </div>
         </div>
-        <div class="row mt-5">
-          <div class="heading">
-            <h2>Here are some of our benefits choosing Sastowholesale.com:</h2>
+        <div class="row mt-2" v-scrollanimation>
+          <div class="secondary-heading" v-scrollanimation>
+            <h4>Here are some of our benefits choosing Sastowholesale.com:</h4>
           </div>
-          <div class="list mt-5">
+          <div class="list mt-2" v-scrollanimation>
             <ul>
               <li>
                 <i class="fa fa-check pt-1"></i>
@@ -224,15 +220,15 @@
     </section>
     <!-- steps start -->
     <section class="step">
-      <div class="container">
+      <div class="container" v-scrollanimation>
         <!-- section heading start -->
         <div class="heading">
           <h2>SIX EASY STEPS TO SELL ON SASTOWHOLESALE.COM</h2>
         </div>
         <!-- section heading end -->
 
-        <div class="row mt-5">
-          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+        <div class="row mt-5" v-scrollanimation>
+          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto step-1" v-scrollanimation>
             <div class="process-single-item">
               <div class="process-single-thumb">
                 <i class="fas fa-user-plus"></i>
@@ -249,7 +245,7 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto step-2" v-scrollanimation>
             <div class="process-single-item">
               <div class="process-single-thumb">
                 <i class="fas fa-file-alt"></i>
@@ -266,7 +262,7 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto step-3" v-scrollanimation>
             <div class="process-single-item">
               <div class="process-single-thumb">
                 <i class="fas fa-check-circle"></i>
@@ -283,7 +279,7 @@
             </div>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+          <div class="col-sm-12 col-md-6 col-lg-3 mx-auto step-4" v-scrollanimation>
             <div class="process-single-item">
               <div class="process-single-thumb">
                 <i class="fas fa-list"></i>
@@ -299,7 +295,7 @@
               </div>
             </div>
           </div>
-          <div data-v-cbdddaa2="" class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+          <div data-v-cbdddaa2="" class="col-sm-12 col-md-6 col-lg-3 mx-auto step-4" v-scrollanimation>
             <div data-v-cbdddaa2="" class="process-single-item">
               <div data-v-cbdddaa2="" class="process-single-thumb">
                 <i data-v-cbdddaa2="" class="fas fa-comments"></i>
@@ -317,7 +313,7 @@
               </div>
             </div>
           </div>
-          <div data-v-cbdddaa2="" class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+          <div data-v-cbdddaa2="" class="col-sm-12 col-md-6 col-lg-3 mx-auto step-6" v-scrollanimation>
             <div data-v-cbdddaa2="" class="process-single-item">
               <div data-v-cbdddaa2="" class="process-single-thumb">
                 <i data-v-cbdddaa2="" class="fas fa-chart-line"></i>
@@ -337,7 +333,7 @@
       </div>
     </section>
     <!-- footer start -->
-    <footer class="footer">
+    <footer class="footer ">
       <div class="container">
         <!-- <div class="row">
           <div class="col-lg-6">
@@ -426,7 +422,7 @@
       </div>
     </footer>
     <!-- footer end -->
-  </div>
+    </div>
 </template>
 
 <script>
@@ -453,10 +449,20 @@ export default {
 </script>
 
 <style scoped>
+
+.card{
+  min-height: 0px;
+}
 .description p,
-.list {
+.list, .secondary-heading {
   margin-left: 50px;
   margin-right: 50px;
+  transition-delay: 0.4s;
+}
+.secondary-heading{
+    color: #868585;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 .list ul li {
   list-style: none;
@@ -464,4 +470,65 @@ export default {
 .list i {
   color: #ffa500;
 }
+/*------------animation-------*/
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.slider-wrapper, .why-join,.description,
+ .step-1, .step-2, .step-3, .step-4, .step-5,
+ .step-6, .secondary-heading, .list {
+  opacity: 0;
+}
+
+.slider-wrapper
+{
+  animation-delay: 0.3s;
+}
+.why-join{
+  animation-delay: 0.4s;
+}
+.description, .step-1, .secondary-heading,.list{
+  animation-delay: 0.3s;
+}
+.step-2{
+  animation-delay: 0.6s;
+}
+.step-3{
+  animation-delay: 0.9s;
+}
+.step-4{
+  animation-delay: 1s;
+}
+.step-5{
+  animation-delay: 1.2s;
+}
+.step-6{
+  animation-delay: 1.3s;
+}
+
+
+.before-enter{
+  opacity: 0;
+   -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.enter,.zoomIn{
+  opacity: 1;
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
+
+
 </style>

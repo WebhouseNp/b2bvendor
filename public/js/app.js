@@ -3019,6 +3019,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['mainSeller', 'visibility1', "countries", "business_types"],
@@ -6124,10 +6163,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LoginHomePage",
   methods: {
@@ -6163,6 +6198,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-chat-scroll */ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js");
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _directive_ScrollAnimation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./directive/ScrollAnimation */ "./resources/js/directive/ScrollAnimation.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -6170,6 +6206,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuelidate__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use((vue_chat_scroll__WEBPACK_IMPORTED_MODULE_2___default()));
+
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].directive('scrollanimation', _directive_ScrollAnimation__WEBPACK_IMPORTED_MODULE_3__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('loginhomepage', (__webpack_require__(/*! ./components/vendorLogin/vendorHomepage.vue */ "./resources/js/components/vendorLogin/vendorHomepage.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('faq', (__webpack_require__(/*! ./components/FAQ.vue */ "./resources/js/components/FAQ.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('login', (__webpack_require__(/*! ./components/vendorLogin/login.vue */ "./resources/js/components/vendorLogin/login.vue")["default"]));
@@ -6198,6 +6236,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -6223,19 +6262,19 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "somekey",
+  key: "cbe0b7b8904e2ede8292",
   cluster: "ap2",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: "sellercenter.sastowholesale.com",
-  wsPort: "80",
-  wssPort: "443",
+  wsHost: process.env.MIX_PUSHER_WSHOST,
+  wsPort: process.env.MIX_PUSHER_WSPORT,
+  wssPort: process.env.MIX_PUSHER_WSSPORT,
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
+        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -6254,6 +6293,34 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
         });
       }
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/directive/ScrollAnimation.js":
+/*!***************************************************!*\
+  !*** ./resources/js/directive/ScrollAnimation.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var animatedScrollObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('enter');
+      animatedScrollObserver.unobserve(entry.target);
+    }
+  });
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  bind: function bind(el) {
+    el.classList.add('before-enter');
+    animatedScrollObserver.observe(el);
   }
 });
 
@@ -6400,7 +6467,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.category-body {\r\n    background: #F2F3F7;\n}\r\n/********************  Image   ********************/\n.img-wrapper {\r\n    height: 120px;\r\n    width: 120px;\r\n    margin: 0 auto;\n}\n.img-wrapper > img {\r\n    height: inherit;\r\n    width: inherit;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-radius: 50%;\n}\r\n\r\n/********************  card   ********************/\n.card-footers {\r\n    padding: .10rem 1.25rem;\r\n    border-top: none;\r\n    background: none;\n}\n.card-footers button{\r\n    border-radius: 2.25rem;\n}\r\n\r\n/********************  Button Category   ********************/\n*:focus {\r\n    box-shadow: none!important;\n}\n.btn-category {\r\n    font-weight: 500;\r\n    color: #FFFFFF;\r\n    background: #FFA500;\r\n    border: 1px solid #FFA500;\r\n    width: 250px;\r\n    margin: 0 auto;\n}\n.btn-category:hover{\r\n    color: #FFFFFF;\r\n    background: rgb(240, 156, 0);\r\n    border: 1px solid rgb(240, 156, 0);\n}\r\n\r\n/********************  Button Select   ********************/\n.btn-select {\r\n    height: 40px;\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    font-weight: 500;\r\n    border-radius: 20px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\n.btn-select:hover {\r\n    color: #1e76bd;\r\n    background: #FFFFFF;\n}\n.card:hover {\r\n    transition: all .4s ease-in;\r\n    box-shadow: 2px 1px 7px 0px #1e76bd; /* 6px 1px */\n}\r\n\r\n/********************  Button Category Plan   ********************/\n.list-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0 18px;\n}\n.list-item  > p {\r\n    margin: 0;\n}\n.list-item > i {\r\n    color: #FFA500;\n}\r\n\r\n/********************  Media Queries   ********************/\n@media all and (max-width: 960px) {\n.card-deck {\r\n        flex-direction: column;\n}\n.card-deck .card{\r\n        margin-right: 30px;\r\n        margin-left: 30px;\n}\n}\n.select-plan-body {\r\n    background: #F2F3F7;\n}\n.select-title-wrapper {\r\n    margin-bottom: 2.8rem;\n}\n.select-title {\r\n    color: #FFFFFF;\r\n    font-size: 1.4rem;\r\n    padding: 10px 0;\r\n    background: #737372;\n}\r\n\r\n/********************  Image   ********************/\n.img-wrapper {\r\n    height: 120px;\r\n    width: 120px;\r\n    margin: 0 auto;\n}\n.img-wrapper > img {\r\n    height: inherit;\r\n    width: inherit;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-radius: 50%;\n}\r\n\r\n/********************  card   ********************/\n.card {\r\n    border-radius: 2.25rem;\n}\n.card-deck .card{\r\n    padding: 20px 25px;\n}\n.card-footer {\r\n    border-top: none;\r\n    background-color: #FFFFFF;\n}\r\n\r\n/********************  Button Category  ********************/\n.btn-category {\r\n    font-weight: 500;\r\n    color: #FFFFFF;\r\n    background: #FFA500;\r\n    border: 1px solid #FFA500;\r\n    width: 250px;\r\n    margin: 0 auto;\n}\n.btn-category:hover{\r\n    color: #FFFFFF;\r\n    background: rgb(240, 156, 0);\r\n    border: 1px solid rgb(240, 156, 0);\n}\r\n/********************  Button Select  ********************/\n.btn-select { \r\n    height: 34px;\r\n    /* width: 96px;  */\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    border-radius: 18px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\r\n\r\n/********************  Media Queries   ********************/\n@media all and (min-width: 960px) {\n.custom-card{\r\n     padding: 20px 0px;\r\n     margin-right: 60px;\r\n     margin-left: 60px;\n}\n}\r\n\r\n\r\n\r\n/**************************  general information.html  ***************************/\r\n/********************************************************************************/\n.general-information {\r\n    background: #FFFFFF;\n}\n.general-row {\r\n    border: 1px solid lightgray;\r\n    border-radius: 35px;\r\n    padding: 26px 10px;\r\n    background: #F2F3F7;\n}\n.general-title {\r\n    font-size: 1.4rem;\r\n    font-weight: bolder;\n}\n.general-subtitle {\r\n    color: #f37b34;\r\n    font-size: 1.2rem;\r\n    margin-bottom: 1.4rem;\n}\n.general-label {\r\n    font-size: 1rem;\n}\n.general-row label {\r\n    color: #595d64;\r\n    font-weight: 500;\n}\n.custom-submit-btn {\r\n    width: 200px;\n}\n.logo {\r\n    height: 80px;\n}\n.fa-asterisk {\r\n    color:#f37b34;\n}\n.img-asterik {\r\n    margin-bottom: 6px;\n}\r\n\r\n/**************************  login.html  ***************************/\r\n/**********************************************************************/\n.login-row {\r\n    border: 1px solid lightgray;\r\n    /* padding: 30px 18px; */\r\n    border-radius: 20px;\r\n    background: #F2F3F7;\n}\n.btn-signup {\r\n    width: 126px;\r\n    border-radius: 20px;\n}\r\n\r\n/***************************** otp form *******************************/\n.otp-form-wrapper {\r\n    /* margin: 0 auto; */\r\n    padding: 40px;\r\n    box-shadow: 1px 1px 6px 0px lightblue;\r\n    background: #F2F3F7;\n}\n.otp-verification-status {\r\n    padding: 16px 30px;\r\n    color: #3a6449;\r\n    background: #d4edda;\r\n    border-radius: 4px;\n}\n.otp-form  input {\r\n    margin-bottom: 1rem;\n}\n.otp-btn {\r\n    width: 100%;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card{\r\n  min-height: 520px;\n}\n.category-body {\r\n    background: #F2F3F7;\n}\r\n/********************  Image   ********************/\n.img-wrapper {\r\n    height: 120px;\r\n    width: 120px;\r\n    margin: 0 auto;\n}\n.img-wrapper > img {\r\n    height: inherit;\r\n    width: inherit;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-radius: 50%;\n}\r\n\r\n/********************  card   ********************/\n.card-footers {\r\n    padding: .10rem 1.25rem;\r\n    border-top: none;\r\n    background: none;\n}\n.card-footers button{\r\n    border-radius: 2.25rem;\n}\r\n\r\n/********************  Button Category   ********************/\n*:focus {\r\n    box-shadow: none!important;\n}\n.btn-category {\r\n    font-weight: 500;\r\n    color: #FFFFFF;\r\n    background: #FFA500;\r\n    border: 1px solid #FFA500;\r\n    width: 250px;\r\n    margin: 0 auto;\n}\n.btn-category:hover{\r\n    color: #FFFFFF;\r\n    background: rgb(240, 156, 0);\r\n    border: 1px solid rgb(240, 156, 0);\n}\r\n\r\n/********************  Button Select   ********************/\n.btn-select {\r\n    height: 40px;\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    font-weight: 500;\r\n    border-radius: 20px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\n.btn-select:hover {\r\n    color: #1e76bd;\r\n    background: #FFFFFF;\n}\n.card:hover {\r\n    transition: all .4s ease-in;\r\n    box-shadow: 2px 1px 7px 0px #1e76bd; /* 6px 1px */\n}\r\n\r\n/********************  Button Category Plan   ********************/\n.list-item {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    margin: 0 18px;\n}\n.list-item  > p {\r\n    margin: 0;\n}\n.list-item > i {\r\n    color: #FFA500;\n}\r\n\r\n/********************  Media Queries   ********************/\n@media all and (max-width: 960px) {\n.card-deck {\r\n        flex-direction: column;\n}\n.card-deck .card{\r\n        margin-right: 30px;\r\n        margin-left: 30px;\n}\n}\n.select-plan-body {\r\n    background: #F2F3F7;\n}\n.select-title-wrapper {\r\n    margin-bottom: 2.8rem;\n}\n.select-title {\r\n    color: #FFFFFF;\r\n    font-size: 1.4rem;\r\n    padding: 10px 0;\r\n    background: #737372;\n}\r\n\r\n/********************  Image   ********************/\n.img-wrapper {\r\n    height: 120px;\r\n    width: 120px;\r\n    margin: 0 auto;\n}\n.img-wrapper > img {\r\n    height: inherit;\r\n    width: inherit;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n    border-radius: 50%;\n}\r\n\r\n/********************  card   ********************/\n.card {\r\n    border-radius: 2.25rem;\n}\n.card-deck .card{\r\n    padding: 20px 25px;\n}\n.card-footer {\r\n    border-top: none;\r\n    background-color: #FFFFFF;\n}\r\n\r\n/********************  Button Category  ********************/\n.btn-category {\r\n    font-weight: 500;\r\n    color: #FFFFFF;\r\n    background: #FFA500;\r\n    border: 1px solid #FFA500;\r\n    width: 250px;\r\n    margin: 0 auto;\n}\n.btn-category:hover{\r\n    color: #FFFFFF;\r\n    background: rgb(240, 156, 0);\r\n    border: 1px solid rgb(240, 156, 0);\n}\r\n/********************  Button Select  ********************/\n.btn-select { \r\n    height: 34px;\r\n    /* width: 96px;  */\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    border-radius: 18px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\r\n\r\n/********************  Media Queries   ********************/\n@media all and (min-width: 960px) {\n.custom-card{\r\n     padding: 20px 0px;\r\n     margin-right: 60px;\r\n     margin-left: 60px;\n}\n}\r\n\r\n\r\n\r\n/**************************  general information.html  ***************************/\r\n/********************************************************************************/\n.general-information {\r\n    background: #FFFFFF;\n}\n.general-row {\r\n    border: 1px solid lightgray;\r\n    border-radius: 35px;\r\n    padding: 26px 10px;\r\n    background: #F2F3F7;\n}\n.general-title {\r\n    font-size: 1.4rem;\r\n    font-weight: bolder;\n}\n.general-subtitle {\r\n    color: #f37b34;\r\n    font-size: 1.2rem;\r\n    margin-bottom: 1.4rem;\n}\n.general-label {\r\n    font-size: 1rem;\n}\n.general-row label {\r\n    color: #595d64;\r\n    font-weight: 500;\n}\n.custom-submit-btn {\r\n    width: 200px;\n}\n.logo {\r\n    height: 80px;\n}\n.fa-asterisk {\r\n    color:#f37b34;\n}\n.img-asterik {\r\n    margin-bottom: 6px;\n}\r\n\r\n/**************************  login.html  ***************************/\r\n/**********************************************************************/\n.login-row {\r\n    border: 1px solid lightgray;\r\n    /* padding: 30px 18px; */\r\n    border-radius: 20px;\r\n    background: #F2F3F7;\n}\n.btn-signup {\r\n    width: 126px;\r\n    border-radius: 20px;\n}\r\n\r\n/***************************** otp form *******************************/\n.otp-form-wrapper {\r\n    /* margin: 0 auto; */\r\n    padding: 40px;\r\n    box-shadow: 1px 1px 6px 0px lightblue;\r\n    background: #F2F3F7;\n}\n.otp-verification-status {\r\n    padding: 16px 30px;\r\n    color: #3a6449;\r\n    background: #d4edda;\r\n    border-radius: 4px;\n}\n.otp-form  input {\r\n    margin-bottom: 1rem;\n}\n.otp-btn {\r\n    width: 100%;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6550,7 +6617,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n  color: #ffa500;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-cbdddaa2]{\r\n  min-height: 0px;\n}\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\r\n  transition-delay: 0.4s;\n}\n.secondary-heading[data-v-cbdddaa2]{\r\n    color: #868585;\r\n    font-weight: 400;\r\n    text-transform: uppercase;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n  color: #ffa500;\n}\r\n/*------------animation-------*/\n@-webkit-keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n@keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n.slider-wrapper[data-v-cbdddaa2], .why-join[data-v-cbdddaa2],.description[data-v-cbdddaa2],\r\n .step-1[data-v-cbdddaa2], .step-2[data-v-cbdddaa2], .step-3[data-v-cbdddaa2], .step-4[data-v-cbdddaa2], .step-5[data-v-cbdddaa2],\r\n .step-6[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2], .list[data-v-cbdddaa2] {\r\n  opacity: 0;\n}\n.slider-wrapper[data-v-cbdddaa2]\r\n{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.why-join[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.4s;\r\n          animation-delay: 0.4s;\n}\n.description[data-v-cbdddaa2], .step-1[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2],.list[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.step-2[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.6s;\r\n          animation-delay: 0.6s;\n}\n.step-3[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.9s;\r\n          animation-delay: 0.9s;\n}\n.step-4[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1s;\r\n          animation-delay: 1s;\n}\n.step-5[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.2s;\r\n          animation-delay: 1.2s;\n}\n.step-6[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.3s;\r\n          animation-delay: 1.3s;\n}\n.before-enter[data-v-cbdddaa2]{\r\n  opacity: 0;\r\n   -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-cbdddaa2],.zoomIn[data-v-cbdddaa2]{\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn-data-v-cbdddaa2;\r\n  animation-name: zoomIn-data-v-cbdddaa2;\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35336,17 +35403,41 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-body" }, [
       _c("h3", { staticClass: "card-head" }, [_vm._v("Basic Plan")]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v(
-          "\n                      Lorem ipsum, dolor sit amet consectetur adipisicing\n                      elit. Laboriosam dolore ipsum unde et nihil quasi\n                      quibusdam quos. Facilis explicabo itaque, laborum unde\n                      quod numquam placeat facere ea fuga. Praesentium,\n                      soluta.\n                    "
-        ),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Post unlimited products "),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "list-item" }, [
         _c("i", { staticClass: "fa fa-check pt-1" }),
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
-          _vm._v("You are based locally"),
+          _vm._v("Receive & response to inquires "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Response to RFQ’s"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [_vm._v("Sub accounts")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Business verification "),
         ]),
       ]),
       _vm._v(" "),
@@ -35355,7 +35446,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
           _vm._v(
-            "\n                        Pay Marketplace fee only when you sell\n                      "
+            "\n                        Support via email & chat \n                      "
           ),
         ]),
       ]),
@@ -35382,17 +35473,49 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-body" }, [
       _c("h3", { staticClass: "card-head" }, [_vm._v("Standard Plan")]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v(
-          "\n                      Lorem ipsum, dolor sit amet consectetur adipisicing\n                      elit. Laboriosam dolore ipsum unde et nihil quasi\n                      quibusdam quos. Facilis explicabo itaque, laborum unde\n                      quod numquam placeat facere ea fuga. Praesentium,\n                      soluta.\n                    "
-        ),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Post unlimited products "),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "list-item" }, [
         _c("i", { staticClass: "fa fa-check pt-1" }),
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
-          _vm._v("You are based out of Nepal"),
+          _vm._v("Receive & response to inquires "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Response to RFQ’s"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [_vm._v("Sub accounts")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Business verification "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Support via email, phone & chat "),
         ]),
       ]),
       _vm._v(" "),
@@ -35401,7 +35524,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
           _vm._v(
-            "\n                        You are a registered business\n                      "
+            "\n                        Listing in Sastowholesale Mall\n                      "
           ),
         ]),
       ]),
@@ -35428,17 +35551,57 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-body" }, [
       _c("h3", { staticClass: "card-head" }, [_vm._v("Premium Plan")]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v(
-          "\n                      Lorem ipsum, dolor sit amet consectetur adipisicing\n                      elit. Laboriosam dolore ipsum unde et nihil quasi\n                      quibusdam quos. Facilis explicabo itaque, laborum unde\n                      quod numquam placeat facere ea fuga. Praesentium,\n                      soluta.\n                    "
-        ),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Post unlimited products"),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "list-item" }, [
         _c("i", { staticClass: "fa fa-check pt-1" }),
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
-          _vm._v("You are based out of Nepal"),
+          _vm._v("Receive & response to inquires "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Response to RFQ’s"),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [_vm._v("Sub accounts")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Business verification "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Support via email, phone & chat "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-item" }, [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "pl-2 text-left" }, [
+          _vm._v("Market research "),
         ]),
       ]),
       _vm._v(" "),
@@ -35447,7 +35610,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", { staticClass: "pl-2 text-left" }, [
           _vm._v(
-            "\n                        You are a registered business\n                      "
+            "\n                        Guide to export products \n                      "
           ),
         ]),
       ]),
@@ -39192,53 +39355,222 @@ var render = function () {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "slider-wrapper" }, [
-      _vm._m(4),
-      _vm._v(" "),
-      _c("div", { staticClass: "slider-content" }, [
-        _c("h1", [_vm._v("Moving Into The Digital Era")]),
+    _c(
+      "div",
+      {
+        directives: [{ name: "scrollanimation", rawName: "v-scrollanimation" }],
+        staticClass: "slider-wrapper",
+        staticStyle: { "min-height": "450px" },
+      },
+      [
+        _vm._m(4),
         _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "\n        Sastowholesale.com is the dynamic marketplace for Manufacturers,\n        Wholesalers & Traders: who are seeking to engage with more customers\n        online, Sales lead or Business growth.\n      "
-          ),
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-slider",
-            attrs: { href: "javascript:void(0)" },
-            on: { click: _vm.onClickSingup },
-          },
-          [_vm._v("Start Selling")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "alert-login" }, [
-          _c("span", [_vm._v("Already a Seller?")]),
-          _c("br"),
-          _c("br"),
+        _c("div", { staticClass: "slider-content" }, [
+          _c("h1", [_vm._v("Moving Into The Digital Era")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n      Sastowholesale.com is the dynamic marketplace for Manufacturers,\n      Wholesalers & Traders: who are seeking to engage with more customers\n      online, Sales lead or Business growth.\n    "
+            ),
+          ]),
           _vm._v(" "),
           _c(
             "a",
             {
-              staticClass: "btn btn-slider mb-5",
+              staticClass: "btn btn-slider",
               attrs: { href: "javascript:void(0)" },
-              on: { click: _vm.onClickLogin },
+              on: { click: _vm.onClickSingup },
             },
-            [_vm._v("Login here")]
+            [_vm._v("Start Selling")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-login" }, [
+            _c("span", [_vm._v("Already a Seller?")]),
+            _c("br"),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-slider mb-5",
+                attrs: { href: "javascript:void(0)" },
+                on: { click: _vm.onClickLogin },
+              },
+              [_vm._v("Login here")]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(5),
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "section",
+      {
+        directives: [{ name: "scrollanimation", rawName: "v-scrollanimation" }],
+        staticClass: "why-join animated zoomIn",
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _vm._m(6),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mt-5" }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  { name: "scrollanimation", rawName: "v-scrollanimation" },
+                ],
+                staticClass: "description",
+              },
+              [
+                _c("p", [
+                  _vm._v(
+                    "\n          B2B, C2C Ecommerce is growing rapidly in Nepalese market. Most of\n          the users are using online payment, doing online purchase these\n          days. Internet user is growing every year. We have many B2B, B2C\n          Ecommerce in Nepal, while we are going into a digital era, B2B\n          Ecommerce is the future of Nepal. We believe in promoting B2B\n          Ecommerce and making Digital Nepal. By registering in\n          Sastowholesale.com you can reach more customers, more engagements\n          & more sales.\n        "
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                { name: "scrollanimation", rawName: "v-scrollanimation" },
+              ],
+              staticClass: "row mt-2",
+            },
+            [
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "secondary-heading",
+                },
+                [
+                  _c("h4", [
+                    _vm._v(
+                      "Here are some of our benefits choosing Sastowholesale.com:"
+                    ),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "list mt-2",
+                },
+                [_vm._m(7)]
+              ),
+            ]
           ),
         ]),
-      ]),
-      _vm._v(" "),
-      _vm._m(5),
+      ]
+    ),
+    _vm._v(" "),
+    _c("section", { staticClass: "step" }, [
+      _c(
+        "div",
+        {
+          directives: [
+            { name: "scrollanimation", rawName: "v-scrollanimation" },
+          ],
+          staticClass: "container",
+        },
+        [
+          _vm._m(8),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                { name: "scrollanimation", rawName: "v-scrollanimation" },
+              ],
+              staticClass: "row mt-5",
+            },
+            [
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto step-1",
+                },
+                [_vm._m(9)]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto step-2",
+                },
+                [_vm._m(10)]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto step-3",
+                },
+                [_vm._m(11)]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto step-4",
+                },
+                [_vm._m(12)]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto step-4",
+                  attrs: { "data-v-cbdddaa2": "" },
+                },
+                [_vm._m(13)]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    { name: "scrollanimation", rawName: "v-scrollanimation" },
+                  ],
+                  staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto step-6",
+                  attrs: { "data-v-cbdddaa2": "" },
+                },
+                [_vm._m(14)]
+              ),
+            ]
+          ),
+        ]
+      ),
     ]),
     _vm._v(" "),
-    _vm._m(6),
-    _vm._v(" "),
-    _vm._m(7),
-    _vm._v(" "),
-    _vm._m(8),
+    _vm._m(15),
   ])
 }
 var staticRenderFns = [
@@ -39302,7 +39634,7 @@ var staticRenderFns = [
           "a",
           {
             staticClass: "nav-link",
-            attrs: { "data-v-cbdddaa2": "", href: "#" },
+            attrs: { "data-v-cbdddaa2": "", href: "/" },
           },
           [_vm._v("Home")]
         ),
@@ -39440,7 +39772,7 @@ var staticRenderFns = [
                   },
                   [
                     _vm._v(
-                      "\n                  vendor@sastowholsale.com\n                "
+                      "\n                vendor@sastowholsale.com\n              "
                     ),
                   ]
                 ),
@@ -39455,69 +39787,77 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "why-join" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "heading" }, [
-          _c("h2", [_vm._v("Why Join Sastowholsale.com?")]),
+    return _c("div", { staticClass: "heading" }, [
+      _c("h2", [_vm._v("Why Join Sastowholsale.com?")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(
+          "\n            Sastowholesale.com is fully dedicated in promoting National and\n            International products around the world.\n          "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(
+          " Sastowholesale.com provides\n            payment assurance to vendor and buyer.\n          "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(
+          " Sastowholesale.com helps in\n            providing Local & International logistic Management and custom\n            clearance management.\n          "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v(
+          " Sastowholesale.com provides\n            different guidelines to vendor for exporting/importing goods to\n            Nepal.\n          "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("i", { staticClass: "fa fa-check pt-1" }),
+        _vm._v("\n            Registration is free for 1st year.\n          "),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "heading" }, [
+      _c("h2", [_vm._v("SIX EASY STEPS TO SELL ON SASTOWHOLESALE.COM")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "process-single-item" }, [
+      _c("div", { staticClass: "process-single-thumb" }, [
+        _c("i", { staticClass: "fas fa-user-plus" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "process-number" }, [
+          _c("span", [_vm._v("01")]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "process-content" }, [
+        _c("div", { staticClass: "process-content-title" }, [
+          _c("h4", [_vm._v("Register Now")]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row mt-5" }, [
-          _c("div", { staticClass: "description" }, [
-            _c("p", [
-              _vm._v(
-                "\n            B2B, C2C Ecommerce is growing rapidly in Nepalese market. Most of\n            the users are using online payment, doing online purchase these\n            days. Internet user is growing every year. We have many B2B, B2C\n            Ecommerce in Nepal, while we are going into a digital era, B2B\n            Ecommerce is the future of Nepal. We believe in promoting B2B\n            Ecommerce and making Digital Nepal. By registering in\n            Sastowholesale.com you can reach more customers, more engagements\n            & more sales.\n          "
-              ),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-5" }, [
-          _c("div", { staticClass: "heading" }, [
-            _c("h2", [
-              _vm._v(
-                "Here are some of our benefits choosing Sastowholesale.com:"
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "list mt-5" }, [
-            _c("ul", [
-              _c("li", [
-                _c("i", { staticClass: "fa fa-check pt-1" }),
-                _vm._v(
-                  "\n              Sastowholesale.com is fully dedicated in promoting National and\n              International products around the world.\n            "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fa fa-check pt-1" }),
-                _vm._v(
-                  " Sastowholesale.com provides\n              payment assurance to vendor and buyer.\n            "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fa fa-check pt-1" }),
-                _vm._v(
-                  " Sastowholesale.com helps in\n              providing Local & International logistic Management and custom\n              clearance management.\n            "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fa fa-check pt-1" }),
-                _vm._v(
-                  " Sastowholesale.com provides\n              different guidelines to vendor for exporting/importing goods to\n              Nepal.\n            "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fa fa-check pt-1" }),
-                _vm._v(
-                  "\n              Registration is free for 1st year.\n            "
-                ),
-              ]),
-            ]),
-          ]),
+        _c("p", [
+          _vm._v("Click Register now and fill the form with your details."),
         ]),
       ]),
     ])
@@ -39526,246 +39866,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "step" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "heading" }, [
-          _c("h2", [_vm._v("SIX EASY STEPS TO SELL ON SASTOWHOLESALE.COM")]),
+    return _c("div", { staticClass: "process-single-item" }, [
+      _c("div", { staticClass: "process-single-thumb" }, [
+        _c("i", { staticClass: "fas fa-file-alt" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "process-number" }, [
+          _c("span", [_vm._v("02")]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "process-content" }, [
+        _c("div", { staticClass: "process-content-title" }, [
+          _c("h4", [_vm._v("Documents and Details")]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row mt-5" }, [
-          _c("div", { staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto" }, [
-            _c("div", { staticClass: "process-single-item" }, [
-              _c("div", { staticClass: "process-single-thumb" }, [
-                _c("i", { staticClass: "fas fa-user-plus" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "process-number" }, [
-                  _c("span", [_vm._v("01")]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "process-content" }, [
-                _c("div", { staticClass: "process-content-title" }, [
-                  _c("h4", [_vm._v("Register Now")]),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Click Register now and fill the form with your details."
-                  ),
-                ]),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto" }, [
-            _c("div", { staticClass: "process-single-item" }, [
-              _c("div", { staticClass: "process-single-thumb" }, [
-                _c("i", { staticClass: "fas fa-file-alt" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "process-number" }, [
-                  _c("span", [_vm._v("02")]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "process-content" }, [
-                _c("div", { staticClass: "process-content-title" }, [
-                  _c("h4", [_vm._v("Documents and Details")]),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Provide us the Business related documents & Bank details"
-                  ),
-                ]),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto" }, [
-            _c("div", { staticClass: "process-single-item" }, [
-              _c("div", { staticClass: "process-single-thumb" }, [
-                _c("i", { staticClass: "fas fa-check-circle" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "process-number" }, [
-                  _c("span", [_vm._v("03")]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "process-content" }, [
-                _c("div", { staticClass: "process-content-title" }, [
-                  _c("h4", [_vm._v("Get Verified")]),
-                ]),
-                _vm._v(" "),
-                _c("p", [_vm._v("You will get verified")]),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto" }, [
-            _c("div", { staticClass: "process-single-item" }, [
-              _c("div", { staticClass: "process-single-thumb" }, [
-                _c("i", { staticClass: "fas fa-list" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "process-number" }, [
-                  _c("span", [_vm._v("04")]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "process-content" }, [
-                _c("div", { staticClass: "process-content-title" }, [
-                  _c("h4", [_vm._v("List Products")]),
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v("List your products by providing their details"),
-                ]),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto",
-              attrs: { "data-v-cbdddaa2": "" },
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "process-single-item",
-                  attrs: { "data-v-cbdddaa2": "" },
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "process-single-thumb",
-                      attrs: { "data-v-cbdddaa2": "" },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-comments",
-                        attrs: { "data-v-cbdddaa2": "" },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "process-number",
-                          attrs: { "data-v-cbdddaa2": "" },
-                        },
-                        [
-                          _c("span", { attrs: { "data-v-cbdddaa2": "" } }, [
-                            _vm._v("05"),
-                          ]),
-                        ]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "process-content",
-                      attrs: { "data-v-cbdddaa2": "" },
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "process-content-title",
-                          attrs: { "data-v-cbdddaa2": "" },
-                        },
-                        [
-                          _c("h4", { attrs: { "data-v-cbdddaa2": "" } }, [
-                            _vm._v("Inquiries/messages"),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("p", { attrs: { "data-v-cbdddaa2": "" } }, [
-                        _vm._v(
-                          "\n                You need to reply to inquiries/messages\n              "
-                        ),
-                      ]),
-                    ]
-                  ),
-                ]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-sm-12 col-md-6 col-lg-3 mx-auto",
-              attrs: { "data-v-cbdddaa2": "" },
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "process-single-item",
-                  attrs: { "data-v-cbdddaa2": "" },
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "process-single-thumb",
-                      attrs: { "data-v-cbdddaa2": "" },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-chart-line",
-                        attrs: { "data-v-cbdddaa2": "" },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "process-number",
-                          attrs: { "data-v-cbdddaa2": "" },
-                        },
-                        [
-                          _c("span", { attrs: { "data-v-cbdddaa2": "" } }, [
-                            _vm._v("06"),
-                          ]),
-                        ]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "process-content",
-                      attrs: { "data-v-cbdddaa2": "" },
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "process-content-title",
-                          attrs: { "data-v-cbdddaa2": "" },
-                        },
-                        [
-                          _c("h4", { attrs: { "data-v-cbdddaa2": "" } }, [
-                            _vm._v("Start Selling"),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("p", { attrs: { "data-v-cbdddaa2": "" } }, [
-                        _vm._v("Protect your order & payments"),
-                      ]),
-                    ]
-                  ),
-                ]
-              ),
-            ]
-          ),
+        _c("p", [
+          _vm._v("Provide us the Business related documents & Bank details"),
         ]),
       ]),
     ])
@@ -39774,7 +39890,165 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "footer" }, [
+    return _c("div", { staticClass: "process-single-item" }, [
+      _c("div", { staticClass: "process-single-thumb" }, [
+        _c("i", { staticClass: "fas fa-check-circle" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "process-number" }, [
+          _c("span", [_vm._v("03")]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "process-content" }, [
+        _c("div", { staticClass: "process-content-title" }, [
+          _c("h4", [_vm._v("Get Verified")]),
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("You will get verified")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "process-single-item" }, [
+      _c("div", { staticClass: "process-single-thumb" }, [
+        _c("i", { staticClass: "fas fa-list" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "process-number" }, [
+          _c("span", [_vm._v("04")]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "process-content" }, [
+        _c("div", { staticClass: "process-content-title" }, [
+          _c("h4", [_vm._v("List Products")]),
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("List your products by providing their details")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "process-single-item", attrs: { "data-v-cbdddaa2": "" } },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "process-single-thumb",
+            attrs: { "data-v-cbdddaa2": "" },
+          },
+          [
+            _c("i", {
+              staticClass: "fas fa-comments",
+              attrs: { "data-v-cbdddaa2": "" },
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "process-number",
+                attrs: { "data-v-cbdddaa2": "" },
+              },
+              [_c("span", { attrs: { "data-v-cbdddaa2": "" } }, [_vm._v("05")])]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "process-content", attrs: { "data-v-cbdddaa2": "" } },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "process-content-title",
+                attrs: { "data-v-cbdddaa2": "" },
+              },
+              [
+                _c("h4", { attrs: { "data-v-cbdddaa2": "" } }, [
+                  _vm._v("Inquiries/messages"),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c("p", { attrs: { "data-v-cbdddaa2": "" } }, [
+              _vm._v(
+                "\n              You need to reply to inquiries/messages\n            "
+              ),
+            ]),
+          ]
+        ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "process-single-item", attrs: { "data-v-cbdddaa2": "" } },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "process-single-thumb",
+            attrs: { "data-v-cbdddaa2": "" },
+          },
+          [
+            _c("i", {
+              staticClass: "fas fa-chart-line",
+              attrs: { "data-v-cbdddaa2": "" },
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "process-number",
+                attrs: { "data-v-cbdddaa2": "" },
+              },
+              [_c("span", { attrs: { "data-v-cbdddaa2": "" } }, [_vm._v("06")])]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "process-content", attrs: { "data-v-cbdddaa2": "" } },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "process-content-title",
+                attrs: { "data-v-cbdddaa2": "" },
+              },
+              [
+                _c("h4", { attrs: { "data-v-cbdddaa2": "" } }, [
+                  _vm._v("Start Selling"),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c("p", { attrs: { "data-v-cbdddaa2": "" } }, [
+              _vm._v("Protect your order & payments"),
+            ]),
+          ]
+        ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "footer " }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-12 col-lg-12 col-md-12" }, [
@@ -39847,7 +40121,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "bottom-footer" }, [
           _c("p", [
             _vm._v(
-              "\n          Product Listing Policy -Intellectual Property Protection - Privacy\n          Policy - Terms of Use - User Information Legal Enquiry Guide\n        "
+              "\n        Product Listing Policy -Intellectual Property Protection - Privacy\n        Policy - Terms of Use - User Information Legal Enquiry Guide\n      "
             ),
           ]),
           _vm._v(" "),
@@ -57948,7 +58222,7 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\sastowholesale\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\sastowholesale\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

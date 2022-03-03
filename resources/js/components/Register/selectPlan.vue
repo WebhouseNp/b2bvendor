@@ -24,21 +24,30 @@
                     </div>
                     <div class="card-body">
                       <h3 class="card-head">Basic Plan</h3>
-                      <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Laboriosam dolore ipsum unde et nihil quasi
-                        quibusdam quos. Facilis explicabo itaque, laborum unde
-                        quod numquam placeat facere ea fuga. Praesentium,
-                        soluta.
-                      </p>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
-                        <p class="pl-2 text-left">You are based locally</p>
+                        <p class="pl-2 text-left">Post unlimited products </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Receive & response to inquires </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Response to RFQ’s</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Sub accounts</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Business verification </p>
                       </div>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
                         <p class="pl-2 text-left">
-                          Pay Marketplace fee only when you sell
+                          Support via email & chat 
                         </p>
                       </div>
                     </div>
@@ -63,21 +72,34 @@
                     </div>
                     <div class="card-body">
                       <h3 class="card-head">Standard Plan</h3>
-                      <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Laboriosam dolore ipsum unde et nihil quasi
-                        quibusdam quos. Facilis explicabo itaque, laborum unde
-                        quod numquam placeat facere ea fuga. Praesentium,
-                        soluta.
-                      </p>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
-                        <p class="pl-2 text-left">You are based out of Nepal</p>
+                        <p class="pl-2 text-left">Post unlimited products </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Receive & response to inquires </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Response to RFQ’s</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Sub accounts</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Business verification </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Support via email, phone & chat </p>
                       </div>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
                         <p class="pl-2 text-left">
-                          You are a registered business
+                          Listing in Sastowholesale Mall
                         </p>
                       </div>
                     </div>
@@ -102,21 +124,38 @@
                     </div>
                     <div class="card-body">
                       <h3 class="card-head">Premium Plan</h3>
-                      <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Laboriosam dolore ipsum unde et nihil quasi
-                        quibusdam quos. Facilis explicabo itaque, laborum unde
-                        quod numquam placeat facere ea fuga. Praesentium,
-                        soluta.
-                      </p>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
-                        <p class="pl-2 text-left">You are based out of Nepal</p>
+                        <p class="pl-2 text-left">Post unlimited products</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Receive & response to inquires </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Response to RFQ’s</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Sub accounts</p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Business verification </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Support via email, phone & chat </p>
+                      </div>
+                      <div class="list-item">
+                        <i class="fa fa-check pt-1"></i>
+                        <p class="pl-2 text-left">Market research </p>
                       </div>
                       <div class="list-item">
                         <i class="fa fa-check pt-1"></i>
                         <p class="pl-2 text-left">
-                          You are a registered business
+                          Guide to export products 
                         </p>
                       </div>
                     </div>
@@ -171,7 +210,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
