@@ -463,7 +463,7 @@ $name = ['highlight'];
                 if (statusText == 'successful') {
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
-                    if (window.updateMode){
+                    if (!window.updateMode){
                         window.location.href = '/product-images/' + response.data.id;
                     }
                     // window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
