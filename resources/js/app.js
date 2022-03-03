@@ -13,6 +13,7 @@ import ScrollAnimation from "./directive/ScrollAnimation";
 
 Vue.directive('scrollanimation', ScrollAnimation);
 
+Vue.component('frontmaster',require('./components/Layouts/FrontMaster.vue').default);
 Vue.component('loginhomepage',require('./components/vendorLogin/vendorHomepage.vue').default);
 Vue.component('faq',require('./components/FAQ.vue').default);
 Vue.component('login',require('./components/vendorLogin/login.vue').default);
