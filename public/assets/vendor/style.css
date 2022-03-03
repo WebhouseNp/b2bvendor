@@ -288,7 +288,7 @@ section {
 /* steps */
 .step {
     padding-bottom: 50px;
-    background: #F4F7FC url(../img/sv-bg1.png) no-repeat center/cover;
+    /* background: #F4F7FC url(../img/sv-bg1.png) no-repeat center/cover; */
 }
 
 

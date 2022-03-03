@@ -151,7 +151,9 @@ export default {
 </script>
 
 <style>
-
+.card{
+  min-height: 520px;
+}
 .category-body {
     background: #F2F3F7;
 }
