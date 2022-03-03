@@ -171,7 +171,7 @@
                 init: function() {
                     var myDropzone = this;
                     this.on("error", function(file, message) { 
-                        Swal.fire({title: message, icon: 'error', toast: true, position: "top-end", showConfirmButton: false, timer: 1500 });
+                        Swal.fire({title: message, icon: 'error', toast: true, position: "top-end", showConfirmButton: false, timer: 3000 });
                         this.removeFile(file); 
                     });
                     this.on("sendingmultiple", function() {});
@@ -184,7 +184,7 @@
                     });
                     this.on('success', function(file, response) {
                         console.log('Successful upload');
-                        Swal.fire({title: 'Product Image Saved', icon: 'success', toast: true, position: "top-end", showConfirmButton: false, timer: 1500 });
+                        Swal.fire({title: 'Product Image Saved', icon: 'success', toast: true, position: "top-end", showConfirmButton: false, timer: 3000 });
                         loadImages();
                     });
                     this.on('complete', function(file, response) {
