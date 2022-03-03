@@ -14,6 +14,7 @@ use Modules\User\Http\Controllers\UserController;
 
 Route::redirect('/', '/vendor-homepage')->name('home');
 
+
 Route::get('optimize-clear', function () {
     Artisan::call('optimize:clear');
 });

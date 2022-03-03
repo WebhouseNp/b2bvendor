@@ -13,9 +13,6 @@ use Modules\Admin\Http\Controllers\AdminController;
 |
 */
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@index');
-});
 Route::get('/admin/login', [AdminController::class, 'login'])->name('login');
 Route::post('/admin/login', [AdminController::class, 'postLogin'])->name('postLogin');
 

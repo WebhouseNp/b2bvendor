@@ -43,7 +43,6 @@ class UserController extends Controller
 
       if ($validator->fails()) {
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
-        exit;
       }
       $name = explode(' ', $request->full_name);
       $username = strtolower($name[0] . rand(10, 1000));
