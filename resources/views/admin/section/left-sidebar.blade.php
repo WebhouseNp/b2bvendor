@@ -284,7 +284,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-flag"></i>
+                    <i class="sidebar-item-icon fa fa-map-marker"></i>
                     <span class="nav-label">Country</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -310,7 +310,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-flag"></i>
+                    <i class="sidebar-item-icon fa fa-edit"></i>
                     <span class="nav-label">Blogs</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -336,7 +336,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-flag"></i>
+                    <i class="sidebar-item-icon fa fa-question-circle"></i>
                     <span class="nav-label">FAQ</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -409,7 +409,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-file"></i>
+                    <i class="sidebar-item-icon fa fa-image"></i>
                     <span class="nav-label">Sliders</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -510,7 +510,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-adn"></i>
+                    <i class="sidebar-item-icon fa fa-cogs"></i>
                     <span class="nav-label">Settings</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
