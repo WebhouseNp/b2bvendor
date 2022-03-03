@@ -10,7 +10,7 @@
     <div class="page-heading d-flex align-items-center mb-3">
         <h2 class="h2-responsive">Product images</h2>
         <div class="ml-auto">
-            <a class="btn btn-info btn-md" href="/product/all">All Products</a>
+            <a class="btn btn-info btn-md" href="/product">All Products</a>
         </div>
     </div>
 
