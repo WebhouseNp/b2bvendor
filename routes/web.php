@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Pusher\Pusher;
 use Illuminate\Http\Request;
 use Modules\Country\Entities\Country;
+use Modules\Faq\Entities\Faq;
 use Modules\User\Http\Controllers\UserController;
 
 Route::redirect('/', '/vendor-homepage')->name('home');
@@ -35,7 +36,10 @@ Route::get('/vendor-homepage', function () {
     return view('vendor_homepage');
 });
 
-Route::view('/faq', 'faq');
+Route::get('/faq', function(){
+    $faqs = Faq::published()->get();
+    return view('faq')->with(compact('faqs'));
+});
 
 Route::group([], function () {
     // Route::get('admin/login', [LoginController::class, 'login'])->name('admin.login');
