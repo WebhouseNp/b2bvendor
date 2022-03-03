@@ -27,6 +27,7 @@ class FaqController extends Controller
         $faq = new Faq();
         $faq->title = $request->title;
         $faq->description = $request->description;
+        $faq->position = $request->position;
         $faq->is_active = $request->filled('is_active');
         $faq->save();
 
@@ -48,6 +49,7 @@ class FaqController extends Controller
     {
         $faq->title = $request->title;
         $faq->description = $request->description;
+        $faq->position = $request->position;
         $faq->is_active = $request->filled('is_active');
         $faq->update();
 
