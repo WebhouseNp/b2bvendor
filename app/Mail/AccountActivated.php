@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AccountActivated extends Mailable
+class AccountActivated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -31,7 +31,7 @@ class AccountActivated extends Mailable
     public function build()
     {
         return 
-        $this->markdown('email.account-activation-mail-reply')
+        $this->markdown('email.users.user-account-verified')
         ->subject('Email Verified')
         ->with([
             'name' => $this->user->name,

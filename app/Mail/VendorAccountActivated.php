@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 
-class VendorAccountActivated extends Mailable
+class VendorAccountActivated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
