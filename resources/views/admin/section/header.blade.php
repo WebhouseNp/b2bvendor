@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <link rel="shortcut icon" rel="icon" href="{{asset('/assets/front/images/icon.png')}}" type="image/gif" />
+    <link rel="icon" href="{{ asset('/images/favicon.png') }}" type="image/gif" />
     <title> @yield('page_title') | {{ config('app.name') }}</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="{{asset('/assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -177,7 +177,7 @@
                         <strong>Welcome,</strong>
                         <strong> {{ auth()->user()->vendor->shop_name }} </strong>
                     </span>
-                    <button class="btn btn-primary btn-sm" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'">View Store</button>
+                    <!-- <button class="btn btn-primary btn-sm" onclick="location.href=' {{ config('constants.customer_app_url') . '/suppliers/' . auth()->user()->vendor->id }}'">View Store</button> -->
                     @endif
                 </h4>
                 <!-- START TOP-RIGHT TOOLBAR-->

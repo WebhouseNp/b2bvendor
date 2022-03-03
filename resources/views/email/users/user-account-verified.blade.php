@@ -3,7 +3,7 @@
 
 Congratulations!!!
 
-Your email address has been verified successfully!!
+Your Account has been verified. You can login now.
 
 Thanks,<br>
 {{ config('app.name') }}

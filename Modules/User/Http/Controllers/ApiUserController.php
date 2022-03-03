@@ -4,6 +4,7 @@ namespace Modules\User\Http\Controllers;
 
 use App\Mail\AccountActivated;
 use App\Mail\PasswordReset;
+use App\Mail\VendorAccountActivated;
 use App\Mail\VendorCreated;
 use App\Mail\VendorStatusChanged;
 use Illuminate\Contracts\Support\Renderable;
@@ -115,7 +116,7 @@ class ApiUserController extends Controller
       $user->fill($data);
       $success = $user->save();
       if ($success) {
-        Mail::to($user->email)->send(new AccountActivated($user));
+        Mail::to($user->email)->send(new VendorAccountActivated($user));
         return view('email-verified');
         // return redirect()->to('/vendor-login');
         return response()->json([

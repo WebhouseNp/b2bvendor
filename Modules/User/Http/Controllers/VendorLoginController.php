@@ -75,7 +75,7 @@ class VendorLoginController extends Controller
             $user->save();
 
             if ($user->vendor_type == 'new' || $user->vendor_type == 'suspended') {
-                session()->flush();
+                Auth::logout();
                 return response()->json([
                     "status_code" => 401,
                     "message" => "Please Verify your account by admin first!!"

@@ -30,11 +30,11 @@ class UserCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.account-verification-mail')
+        return $this->markdown('email.users.user-account-verification')
             ->subject('Account Verification')
             ->with([
                 'name' => $this->user->name,
-                'link' => url('account-activate/' . $this->user->activation_link),
+                'link' => url('user-account-activate/' . $this->user->activation_link),
                 'otp' => $this->user->otp,
             ]);
     }

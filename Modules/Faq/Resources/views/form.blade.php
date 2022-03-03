@@ -51,6 +51,13 @@
                         <div class="ibox">
                             <div class="ibox-body">
                                 <div class="form-group">
+                                    <label><strong>Position *</strong></label>
+                                    <input type="number" class="form-control @error('position') is-invalid @enderror" value="{{ old('position', $faq->position) }}" name="position" placeholder="faq position here">
+                                    @error('position')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <div class="check-list">
                                         <label class="ui-checkbox ui-checkbox-primary">
                                             <input name="is_active" id="is_active" type="checkbox" @if(old('is_active',$faq->is_active)) checked @endif>

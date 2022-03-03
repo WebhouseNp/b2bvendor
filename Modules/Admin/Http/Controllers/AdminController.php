@@ -78,7 +78,7 @@ class AdminController extends Controller
 
     public function admin__logout()
     {
-        if(checkrole(auth()->user()->id) == 'admin' || checkrole(auth()->user()->id) == 'super_admin' ){
+        if(auth()->user()->hasAnyRole('super_admin|admin') ){
             Auth::logout();
             Session::flush();
             return redirect()->route('login');

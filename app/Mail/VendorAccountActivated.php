@@ -2,27 +2,22 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
-class AccountActivated extends Mailable
+class VendorAccountActivated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public $user;
     public function __construct(User $user)
     {
         $this->user = $user;
     }
-
+    
     /**
      * Build the message.
      *
@@ -30,11 +25,10 @@ class AccountActivated extends Mailable
      */
     public function build()
     {
-        return 
-        $this->markdown('email.account-activation-mail-reply')
-        ->subject('Email Verified')
+        return $this->markdown('email.account-activation-mail-reply')
+        ->subject('Account Verified')
         ->with([
-            'name' => $this->user->name,
+            'name' => $this->user->vendor->shop_name,
         ]);
     }
 }

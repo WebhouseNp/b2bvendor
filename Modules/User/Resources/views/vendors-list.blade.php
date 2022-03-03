@@ -31,9 +31,9 @@
                         <td>{{@$data->vendor->shop_name}}</td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->phone_num}}</td>
-                        <td><span class="btn btn-rounded btn-sm {{orderProccess($data->vendor_type) }} changeStatus" data-status="{{$data->vendor_type}}" data-vendor_id="{{$data->id}}" style="cursor: pointer;"> Change vendor status</span></td>
+                        <td><span class="btn btn-sm {{vendorStatus($data->vendor_type) }} ">{{ ucfirst($data->vendor_type) }}</span></td>
                         <td>
-                            <a title="View Profile" class="btn btn-success btn-sm" href="{{route('vendor.view',$data->id)}}">
+                            <a title="View Profile" class="btn btn-info btn-sm" href="{{route('vendor.view',$data->id)}}">
                                 View Profile
                             </a>
 

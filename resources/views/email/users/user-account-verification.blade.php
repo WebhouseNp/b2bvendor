@@ -3,7 +3,7 @@
 
 Congratulations!!!
 
-You have successfully registered in Sasto Wholesale as a Vendor. So as to login, account activation is required.
+You have successfully registered in Sasto Wholesale. So as to login, account activation is required.
 
 Click the button below to activate your account.
 

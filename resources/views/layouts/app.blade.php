@@ -8,7 +8,7 @@
     <title>Admin Login || Sasto Whole Sale</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-     
+    <link rel="icon" href="{{ asset('/images/favicon.png') }}" type="image/gif" />
     <!-- GLOBAL MAINLY STYLES-->
     <link href="{{asset('/assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />

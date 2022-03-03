@@ -1,36 +1,21 @@
 <?php
-function orderProccess($type)
+function vendorStatus($type)
 {
     switch ($type) {
-        case 'New':
-            $button = 'btn-primary';
+        case 'approved':
+            $button = 'btn-success';
             break;
-        case 'Verified':
-            $button = 'btn-warning';
-            break;
-        case 'Cancel':
+        case 'suspended':
             $button = 'btn-danger';
             break;
-        case 'Process':
-            $button = 'btn-secondary';
-            break;
-        case 'Delivered':
-            $button = 'btn-success';
+        case 'new':
+            $button = 'btn-primary';
             break;
         default:
             $button = 'btn-info';
             break;
     }
     return $button;
-}
-
-if (!function_exists('checkRole')) {
-    function checkRole($id)
-    {
-        $role_user = DB::table('role_user')->where('user_id', $id)->first();
-        $role = DB::table('roles')->where('id', $role_user->role_id)->first();
-        return $role->slug;
-    }
 }
 
 if (!function_exists('price_unit')) {
@@ -157,3 +142,5 @@ if (!function_exists('alt_usr_has_permission')) {
         return in_array($permision, alt_usr()->permissions);
     }
 }
+
+
