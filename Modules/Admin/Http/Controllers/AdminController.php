@@ -14,15 +14,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
-        return view('admin::index');
-    }
-
     public function login()
     {
        if(auth()->check()){

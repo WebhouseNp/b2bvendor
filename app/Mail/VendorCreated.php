@@ -12,12 +12,13 @@ class VendorCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $vendor;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public $vendor;
     public function __construct(Vendor $vendor)
     {
         $this->vendor = $vendor;
@@ -30,11 +31,14 @@ class VendorCreated extends Mailable
      */
     public function build()
     {
-        return $this->view('email.account-activation-mail')
-        ->with([
-            'name' => $this->vendor->user->name,
-            'link' => $this->vendor->user->activation_link,
-            'otp' => $this->vendor->user->otp,
-        ]);
+        $this->vendor->loadMissing('user');
+
+        return $this->markdown('email.account-verification-mail')
+            ->subject('Account Verification')
+            ->with([
+                'name' => $this->vendor->user->name,
+                'link' => url('account-activate/' . $this->vendor->user->activation_link),
+                'otp' => $this->vendor->user->otp,
+            ]);
     }
 }
