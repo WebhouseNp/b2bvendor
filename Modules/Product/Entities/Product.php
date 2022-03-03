@@ -20,6 +20,7 @@ use Modules\Review\Entities\Review;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Modules\Product\Entities\ProductAttributeValue;
 use Modules\ProductCategory\Entities\ProductCategory;
 
@@ -37,12 +38,12 @@ class Product extends Model
     ];
 
     protected static function booted()
-	{
-		static::addGlobalScope(function (Builder $builder) {
-			$builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
-				return $query->where('vendor_id', auth()->user()->vendor->id);
-			});
-		});
+    {
+        static::addGlobalScope(function (Builder $builder) {
+            $builder->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
+                return $query->where('vendor_id', auth()->user()->vendor->id);
+            });
+        });
     }
 
     public function sluggable(): array
@@ -58,10 +59,10 @@ class Product extends Model
     public function imageUrl($size = null)
     {
         if ($size == 'thumbnail') {
-            return asset('images/thumbnail/' . $this->image);
+            return Storage::url($this->image_thumbnail);
         }
 
-        return asset('images/listing/' . $this->image);
+        return Storage::url($this->image);
     }
 
     public function priceRange()

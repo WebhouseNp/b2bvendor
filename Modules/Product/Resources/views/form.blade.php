@@ -250,6 +250,7 @@
                                             </div>
                                         </div>
                                         <input class="" name="image" type="file" id="fileUpload" accept="image/*">
+                                        <small>* Max size 2MB.</small>
                                 </div>
 
                                 <div class="form-group">
