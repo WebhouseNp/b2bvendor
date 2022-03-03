@@ -21,8 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/createdue', 'ApiUserController@createdue');
 Route::prefix('vendor')->name('api.')->group(function(){
     Route::get('/', 'ApiUserController@index')->name('vendor')->middleware('auth:api');
-    Route::post('/login','VendorLoginController@login')->name('login')->middleware('Vendor');
-    Route::post('/register','VendorRegistrationController@register')->name('register');
+    Route::post('/login','VendorLoginController@login')->name('login')->middleware('guest');
+    Route::post('/register','VendorRegistrationController@register')->name('register')->middleware('guest');
 
     Route::get('getVendorFromID/{id}', 'ApiUserController@getVendorFromID')->middleware('auth:api')->name('getVendorFromID');
     
