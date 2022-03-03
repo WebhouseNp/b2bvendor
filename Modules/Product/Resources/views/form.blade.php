@@ -464,7 +464,7 @@ $name = ['highlight'];
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
                     if (window.updateMode){
-                        window.location.href = /product-images/' + response.data.id;
+                        window.location.href = '/product-images/' + response.data.id;
                     }
                     // window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
                 }
@@ -499,9 +499,11 @@ $name = ['highlight'];
         document.getElementById('is_top').checked = false;
     });
 
+    @if(auth()->user()->hasAnyRole('super_admin|admin'))
     document.getElementById('is_top').addEventListener('change', function() {
         console.log('changed');
         document.getElementById('is_new_arrival').checked = false;
     });
+    @endif
 </script>
 @endpush
