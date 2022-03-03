@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\LoginController;
-use App\Http\Controllers\Front\JobseekerLoginController;
 use App\Http\Controllers\Admin\PasswordResetController;
-use App\Http\Controllers\Front\DefaultController;
 use App\Http\Controllers\SocialiteLoginController;
 use Illuminate\Support\Facades\Artisan;
 use Pusher\Pusher;
@@ -14,21 +12,9 @@ use Modules\User\Http\Controllers\UserController;
 
 Route::redirect('/', '/vendor-homepage')->name('home');
 
-Route::get('optimize-clear', function () {
-    Artisan::call('optimize:clear');
-});
+// Vendor Routes
+Route::view('/vendor-login', 'vendor_login')->middleware('guest');
 
-//=======================vendor page Router============================================//
-
-Route::get('/vendor-homepage', function () {
-    return view('vendor_homepage');
-});
-Route::get('/faq', function () {
-    return view('faq');
-});
-Route::get('/vendor-login', function () {
-    return view('vendor_login');
-});
 Route::get('/vendor-register', function () {
     $countries = Country::select('id', 'name')->get();
     return view('register')->with(compact('countries'));
@@ -36,15 +22,20 @@ Route::get('/vendor-register', function () {
 Route::get('/forgot-password', function () {
     return view('forgotpassword');
 });
-Route::get('/passwod-resetform/{token}',function($token){
+Route::get('/passwod-resetform/{token}', function ($token) {
     $token = $token;
     return view('reset_password')->with(compact('token'));
 });
 Route::get('/account-verification', function () {
     return view('account_verification');
 });
-// Route::get('passwod-resetform/{token}', 'PasswordResetController@passwordResetForm')->name('passwordResetForm');
-//==========================end vendor====================================================//
+// End of Vendor Routes
+
+Route::get('/vendor-homepage', function () {
+    return view('vendor_homepage');
+});
+
+Route::view('/faq', 'faq');
 
 Route::group([], function () {
     // Route::get('admin/login', [LoginController::class, 'login'])->name('admin.login');
@@ -56,7 +47,7 @@ Route::group([], function () {
 });
 
 
-Route::get('/payment-test', [App\Http\Controllers\TestController::class, 'payment']);
+// Route::get('/payment-test', [App\Http\Controllers\TestController::class, 'payment']);
 
 Route::post('/pusher/auth', function (Request $request) {
     $pusher_id = "1283512";
@@ -79,9 +70,9 @@ Route::get('/debug-sentry', function () {
 });
 
 //login with Google
-Route::get('login/google',[SocialiteLoginController::class ,'redirectToGoogle'])->name('login.google');
-Route::get('login/google/callback',[SocialiteLoginController::class,'handleGoogleCallBack']);
+Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack']);
 
 //login with Facebook
-Route::get('login/facebook',[SocialiteLoginController::class,'redirectToFacebook'])->name('login.facebook');
-Route::get('login/facebook/callback',[SocialiteLoginController::class,'handleFacebookCallBack']);
+Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
