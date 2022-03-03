@@ -2339,9 +2339,6 @@ __webpack_require__.r(__webpack_exports__);
     vendorHomepage: function vendorHomepage() {
       window.location.href = "/vendor-homepage";
     },
-    onClickPartners: function onClickPartners() {
-      window.location.href = "https://staging.sastowholesale.com/partners";
-    },
     onClickFaq: function onClickFaq() {
       window.location.href = "/faq";
     }
@@ -34304,29 +34301,9 @@ var render = function () {
                       [
                         _vm._m(2),
                         _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "nav-item",
-                            attrs: { "data-v-cbdddaa2": "" },
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  "data-v-cbdddaa2": "",
-                                  href: "javascript:void(0)",
-                                },
-                                on: { click: _vm.onClickPartners },
-                              },
-                              [_vm._v("Partners")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
                         _vm._m(3),
+                        _vm._v(" "),
+                        _vm._m(4),
                         _vm._v(" "),
                         _c(
                           "li",
@@ -34469,6 +34446,25 @@ var staticRenderFns = [
             attrs: { "data-v-cbdddaa2": "", href: "/" },
           },
           [_vm._v("Home")]
+        ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "li",
+      { staticClass: "nav-item", attrs: { "data-v-cbdddaa2": "" } },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { "data-v-cbdddaa2": "", href: "javascript:void(0)" },
+          },
+          [_vm._v("Partners")]
         ),
       ]
     )
