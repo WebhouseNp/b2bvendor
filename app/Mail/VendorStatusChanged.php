@@ -32,7 +32,8 @@ class VendorStatusChanged extends Mailable
         return $this->markdown('email.vendors.vendor-status')
         ->with([
             'status' => $this->user->vendor_type,
-            'name' => $this->user->vendor->shop_name,
+            'name' => $this->user->name,
+            'shop_name' => $this->user->vendor->shop_name,
         ]);
     }
 }

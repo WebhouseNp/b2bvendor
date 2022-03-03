@@ -3,7 +3,7 @@
 
 Congratulations!!!
 
-Your Account has been verified. You can login now.
+Your Account has been verified. 
 
 Thanks,<br>
 {{ config('app.name') }}
