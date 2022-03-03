@@ -2,6 +2,8 @@
 
 namespace Modules\Product\Http\Controllers;
 
+use App\Service\ImageService;
+use Exception;
 use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
 use Modules\Product\Entities\Product;
@@ -10,11 +12,19 @@ use File;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Image;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Modules\Product\Http\Requests\ProductRequest;
 
 class ProductStorageController extends Controller
 {
     use AuthorizesRequests;
+
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
 
     public function create()
     {
@@ -79,8 +89,9 @@ class ProductStorageController extends Controller
             $product->overview = $request->only('payment_mode', 'size', 'brand', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
 
             if ($request->hasFile('image')) {
-                $image = $this->imageProcessing('img-', $request->file('image'));
-                $product->image = $image;
+                $product->image = $this->imageService->storeImage($request->file('image'));
+                $product->image_thumbnail = $this->imageService->storeImage($request->file('image'));
+                $this->imageService->createThumbnail(Storage::path($product->image_thumbnail), null, 350);
             }
 
             $product->save();
@@ -100,6 +111,7 @@ class ProductStorageController extends Controller
             return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $product]);
         } catch (\Exception $exception) {
             DB::rollback();
+            $this->deleteMainProductImage($product);
             report($exception);
             return response([
                 'status' => 'unsuccessful',
@@ -141,16 +153,10 @@ class ProductStorageController extends Controller
             $product->overview = $request->only('payment_mode', 'size', 'brand', 'colors', 'country_of_origin', 'warranty', 'feature', 'use', 'gender', 'age_group');
 
             if ($request->hasFile('image')) {
-                if ($product->image) {
-                    $thumbPath = public_path('images/thumbnail');
-                    $listingPath = public_path('images/listing');
-                    if ((file_exists($thumbPath . '/' . $product->image)) && (file_exists($listingPath . '/' . $product->image))) {
-                        unlink($thumbPath . '/' . $product->image);
-                        unlink($listingPath . '/' . $product->image);
-                    }
-                }
-                $image = $this->imageProcessing('img-', $request->file('image'));
-                $product->image = $image;
+                $this->deleteMainProductImage($product);
+                $product->image = $this->imageService->storeImage($request->file('image'));
+                $product->image_thumbnail = $this->imageService->storeImage($request->file('image'));
+                $this->imageService->createThumbnail(Storage::path($product->image_thumbnail), null, 350);
             }
 
             $product->update();
@@ -186,39 +192,13 @@ class ProductStorageController extends Controller
         }
     }
 
-    public function imageProcessing($type, $image)
+    protected function deleteMainProductImage(Product $product)
     {
-        $input['imagename'] = $type . time() . '.' . $image->getClientOriginalExtension();
-        $thumbPath = public_path() . "/images/thumbnail";
-        if (!File::exists($thumbPath)) {
-            File::makeDirectory($thumbPath, 0777, true, true);
+        if ($product->image) {
+            $this->imageService->unlinkImage($product->image);
         }
-        $listingPath = public_path() . "/images/listing";
-        if (!File::exists($listingPath)) {
-            File::makeDirectory($listingPath, 0777, true, true);
+        if ($product->image_thumbnail) {
+            $this->imageService->unlinkImage($product->image_thumbnail);
         }
-        $img1 = Image::make($image->getRealPath());
-        $img1->fit(99, 88)->save($thumbPath . '/' . $input['imagename']);
-
-
-        $img2 = Image::make($image->getRealPath());
-        $img2->save($listingPath . '/' . $input['imagename']);
-
-        $destinationPath = public_path('/images');
-        return $input['imagename'];
-    }
-
-    public function unlinkImage($imagename)
-    {
-        $thumbPath = public_path('images/thumbnail/') . $imagename;
-        $listingPath = public_path('images/listing/') . $imagename;
-        if (file_exists($thumbPath)) {
-            unlink($thumbPath);
-        $this->authorize('manageProducts');
-    }
-        if (file_exists($listingPath)) {
-            unlink($listingPath);
-        }
-        return true;
     }
 }

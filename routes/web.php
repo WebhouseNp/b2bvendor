@@ -12,22 +12,19 @@ use Illuminate\Http\Request;
 use Modules\Country\Entities\Country;
 use Modules\User\Http\Controllers\UserController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::redirect('/', '/vendor-homepage')->name('home');
 
 Route::get('optimize-clear', function () {
     Artisan::call('optimize:clear');
-    // dd(Artisan::output());
-    // return redirect()->route('home');
 });
 
 //=======================vendor page Router============================================//
 
 Route::get('/vendor-homepage', function () {
     return view('vendor_homepage');
+});
+Route::get('/faq', function () {
+    return view('faq');
 });
 Route::get('/vendor-login', function () {
     return view('vendor_login');

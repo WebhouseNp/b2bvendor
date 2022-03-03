@@ -284,7 +284,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-flag"></i>
+                    <i class="sidebar-item-icon fa fa-map-marker"></i>
                     <span class="nav-label">Country</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -310,7 +310,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-flag"></i>
+                    <i class="sidebar-item-icon fa fa-edit"></i>
                     <span class="nav-label">Blogs</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -336,7 +336,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-flag"></i>
+                    <i class="sidebar-item-icon fa fa-question-circle"></i>
                     <span class="nav-label">FAQ</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -406,19 +406,10 @@ $user = auth()->user();
             </li>
             @endif
 
-            @if(auth()->user()->hasAnyRole(['super_admin', 'admin']))
-            <li>
-                <a href="{{ route('settings.sastowholesale-mall.index') }}">
-                    <i class="sidebar-item-icon fa fa-thumbs-up"></i>
-                    <span class="nav-label">Sasto Wholesale Mall</span>
-                </a>
-            </li>
-            @endif
-
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-file"></i>
+                    <i class="sidebar-item-icon fa fa-image"></i>
                     <span class="nav-label">Sliders</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -512,6 +503,32 @@ $user = auth()->user();
                             All Lists
                         </a>
                     </li>
+                </ul>
+            </li>
+            @endif
+
+            @if(auth()->user()->hasAnyRole('super_admin|admin'))
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-cogs"></i>
+                    <span class="nav-label">Settings</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{ route('settings.sastowholesale-mall.index') }}">
+                            <span class="fa fa-circle-o"></span>
+                            Sasto Wholesale Mall
+                        </a>
+                    </li>
+                    @if(auth()->user()->hasAnyRole('super_admin'))
+                    <li>
+                        <a href="{{ route('settings.notification.index') }}">
+                            <span class="fa fa-circle-o"></span>
+                            <span>Test Notifications</span>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
             </li>
             @endif

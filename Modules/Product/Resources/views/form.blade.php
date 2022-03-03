@@ -250,6 +250,7 @@
                                             </div>
                                         </div>
                                         <input class="" name="image" type="file" id="fileUpload" accept="image/*">
+                                        <small>* Max size 2MB.</small>
                                 </div>
 
                                 <div class="form-group">
@@ -462,7 +463,10 @@ $name = ['highlight'];
                 if (statusText == 'successful') {
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
-                    window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
+                    if (!window.updateMode){
+                        window.location.href = '/product-images/' + response.data.id;
+                    }
+                    // window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
                 }
             },
             error: function(error) {
@@ -495,9 +499,11 @@ $name = ['highlight'];
         document.getElementById('is_top').checked = false;
     });
 
+    @if(auth()->user()->hasAnyRole('super_admin|admin'))
     document.getElementById('is_top').addEventListener('change', function() {
         console.log('changed');
         document.getElementById('is_new_arrival').checked = false;
     });
+    @endif
 </script>
 @endpush

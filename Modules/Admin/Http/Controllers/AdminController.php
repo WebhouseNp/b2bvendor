@@ -25,7 +25,12 @@ class AdminController extends Controller
 
     public function login()
     {
-        return view('admin::login');
+       if(auth()->check()){
+        return back();
+       } else {
+           return view('admin::login');
+       }
+
     }
 
     public function postLogin(Request $request)
@@ -99,11 +104,6 @@ class AdminController extends Controller
     }
 
     public function updatePassword(Request $request){
-        // $request->validate([
-        //     'old_password' => 'required',
-        //     'new_password' => 'required|min:6',
-        //     'password_confirmation' => 'required|min:6|same:new_password',
-        // ]);
         $validator = Validator::make($request->all(), [
             'old_password' => 'required',
             'new_password' => 'required|min:6',

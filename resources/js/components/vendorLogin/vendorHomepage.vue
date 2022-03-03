@@ -43,7 +43,7 @@
                 <a data-v-cbdddaa2="" href="#" class="nav-link">Blog</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="#" class="nav-link">FAQ</a>
+                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link"  @click="onClickFaq">FAQ</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
                 <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link"  @click="onClickSingup">Register</a>
@@ -440,6 +440,9 @@ export default {
     },
     onClickPartners(){
       window.location.href = "https://staging.sastowholesale.com/partners"
+    },
+    onClickFaq(){
+      window.location.href = "/faq";
     }
   },
 };

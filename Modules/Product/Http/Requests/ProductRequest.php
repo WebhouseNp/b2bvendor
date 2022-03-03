@@ -21,7 +21,7 @@ class ProductRequest extends FormRequest
             'unit'              => 'nullable|string',
             'highlight'         => 'nullable',
             'description'       => 'nullable',
-            'image'             => $this->updateMode() ? 'nullable' : 'required',
+            'image'             => $this->updateMode() ? 'nullable|max:2048' : 'required|max:2048',
             'video_link'        => 'nullable|url',
             'is_top'            => 'nullable|boolean',
             'is_new_arrival'    => 'nullable|boolean',

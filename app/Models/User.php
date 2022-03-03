@@ -69,6 +69,11 @@ class User extends Authenticatable
 
     protected $with = ['roles'];
 
+    public function routeNotificationForSmsApi($notifiable)
+    {
+        return $this->phone_num;
+    }
+
     public function hasRole($role)
     {
         $roles =  $this->roles->pluck('slug')->all();

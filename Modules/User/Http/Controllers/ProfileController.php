@@ -12,6 +12,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Modules\Front\Transformers\CustomerResource;
 use DB;
 use App\Models\User;
+use App\Rules\Mobile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -36,7 +37,8 @@ class ProfileController extends Controller
       $validator = Validator::make($request->all(), [
         'full_name' => 'sometimes',
         'email' => 'sometimes|email',
-        'phone' => 'sometimes|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
+        'phone' => ['required', new Mobile],
+        // 'phone' => 'sometimes|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
         'country' => "sometimes",
         'city' => 'sometimes',
         'street_address' => 'sometimes',
@@ -88,7 +90,8 @@ class ProfileController extends Controller
         'email' => 'nullable',
         'birthday' => 'nullable|',
         'gender' => 'sometimes',
-        'phone_num' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
+        'phone' => ['required', new Mobile],
+        // 'phone_num' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
 
       ]);
 

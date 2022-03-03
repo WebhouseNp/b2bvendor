@@ -42,4 +42,8 @@ return [
         'redirect' => 'http://localhost:8000/login/facebook/callback',
     ],
 
+    'sms_api' => [
+        'driver' => env('SMS_API_DRIVER', 'log'),
+    ],
+
 ];

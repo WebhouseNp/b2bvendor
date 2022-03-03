@@ -15,13 +15,9 @@ $api_token = $user->api_token;
             <div class="ibox">
                 <div class="ibox-head">
                     <div class="ibox-title">Product Details</div>
-
-                    <div class="ibox-tools">
-
-                    </div>
+                    <a href="/product" class="btn btn-primary">Back to Listing</a>
                 </div>
-
-                <div class="ibox-body" style="">
+                <div class="ibox-body">
                     <table class="table table-responsive">
                         <thead>
                             <tr>
@@ -38,6 +34,14 @@ $api_token = $user->api_token;
                                 <th scope="row">Slug</th>
                                 <td>
                                     <div id="slug">{{$product->slug}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Status</th>
+                                <td>
+                                    <div style="display:inline-block; width:100px" class="badge {{ $product->status==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
+                                        {{ $product->status == 1 ? 'Active' : 'Inactive' }}
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -151,16 +155,6 @@ $api_token = $user->api_token;
                                     <div id="description">{{ $product->getOverviewData('use') }}</div>
                                 </td>
                             </tr>
-
-
-                            <tr>
-                                <th scope="row">Status</th>
-                                <td>
-                                    <div style="display:inline-block; width:100px" class="badge {{ $product->status==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
-                                        {{ $product->status == 1 ? 'Active' : 'Inactive' }}
-                                    </div>
-                                </td>
-                            </tr>
                             <tr>
                                 <th>Product Ranges</th>
                             </tr>
@@ -204,14 +198,21 @@ $api_token = $user->api_token;
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    @foreach ($product->images as $image)
-    <div class="m-r-10">
-        <a href="{{ asset('/uploads/product/other-image/' . $image->images) }}" target="_adimage">
-            <img src="{{ asset('/uploads/product/other-image/' . $image->images) }}" alt="No Image" class="rounded" width="70">
-        </a>
+
+    <div class="ibox">
+        <div class="ibox-body">
+            <h4 class="h4-responsive">Product Images</h4>
+            <div class="row">
+                @foreach ($product->images as $image)
+                <div class="col-6 col-sm-6 col-md-3 col-xl-2 mb-4">
+                    <a href="{{ $image->imageUrl() }}" target="_adimage">
+                        <img src="{{ $image->imageUrl('thumbnail') }}" class="rounded" style="width: 100%; height: auto;">
+                    </a>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
-    @endforeach
 </div>
+
 @endsection

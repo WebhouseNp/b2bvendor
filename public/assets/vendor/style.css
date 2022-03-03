@@ -13,7 +13,9 @@ body {
     width: 150px;
 }
 
+
 /* SLIDER */
+
 .slider-wrapper {
     position: relative;
 }
@@ -123,9 +125,13 @@ body {
     color: #232323;
     font-weight: 600;
 }
+
+
 /* SLIDER END */
 
+
 /*  */
+
 .cta {
     padding: 2rem 0;
 }
@@ -137,6 +143,7 @@ body {
 .cta .card {
     text-align: center;
 }
+
 .cta .card-title {
     font-weight: 700;
     margin-top: 2rem;
@@ -235,7 +242,9 @@ body {
     color: #fff;
 }
 
+
 /* new ui */
+
 section {
     padding: 50px 0 0;
 }
@@ -264,11 +273,9 @@ section {
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin: 0 auto;
 }
 
@@ -285,12 +292,13 @@ section {
     line-height: 25px;
 }
 
+
 /* steps */
+
 .step {
     padding-bottom: 50px;
     /* background: #F4F7FC url(../img/sv-bg1.png) no-repeat center/cover; */
 }
-
 
 .process-single-item {
     text-align: center;
@@ -394,9 +402,8 @@ section {
     opacity: 1;
 }
 
+
 /* steps end */
-
-
 
 @media only screen and (max-width: 576px) {
     .heading h2 {
@@ -407,7 +414,6 @@ section {
     }
 }
 
-
 @media only screen and (max-width: 576px) {
     .btn__primary {
         padding: 5px 10px;
@@ -415,25 +421,20 @@ section {
     }
 }
 
-
 @media only screen and (max-width: 1200px) {
     .slider-content h1 {
         font-size: 24px;
     }
-
     .slider-content p {
         font-size: 1rem;
     }
-
     .btn-slider {
         font-size: 1rem;
         padding: 5px 25px;
     }
-
     .alert-login {
         margin-top: 0;
     }
-
     .alert-login span {
         font-size: 1rem;
     }
@@ -443,15 +444,12 @@ section {
     .slider-wrapper {
         height: 40vh;
     }
-
     .carousel-inner {
         height: 40vh;
     }
-
     .carousel-inner .carousel-item {
         height: 100%;
     }
-
     .carousel-inner img {
         height: 100%;
         object-fit: cover;
@@ -462,38 +460,29 @@ section {
     .slider-wrapper {
         height: 70vh;
     }
-
     .carousel-inner {
         height: 70vh;
     }
-
     .carousel-inner .carousel-item {
         height: 100%;
     }
-
     .carousel-inner img {
         height: 100%;
         object-fit: cover;
     }
-
-
     .slider-content h1 {
         font-size: 20px;
     }
-
     .slider-content p {
         font-size: 0.8rem;
     }
-
     .btn-slider {
         font-size: .8rem;
         padding: 2px 25px;
     }
-
     .alert-login span {
         font-size: .8rem;
     }
-
     .slider-content {
         top: 40%;
     }
@@ -503,21 +492,93 @@ section {
     .slider-wrapper {
         height: 90vh;
     }
-
     .carousel-inner {
         height: 90vh;
     }
-
     .carousel-inner .carousel-item {
         height: 100%;
     }
-
     .carousel-inner img {
         height: 100%;
         object-fit: cover;
     }
-
     .slider-content {
         top: 40%;
     }
+}
+
+
+/* faq */
+
+.faq {
+    padding: 50px 0;
+}
+
+.faq-content {
+    width: 80%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.question {
+    position: relative;
+    background: #2B5374;
+    color: #fff;
+    margin: 0;
+    padding: 10px 10px 10px 50px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+.answers {
+    padding: 0px 15px;
+    margin: 5px 0;
+    width: 100%!important;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    position: relative;
+    opacity: 0;
+    -webkit-transition: .3s ease;
+    -moz-transition: .3s ease;
+    -o-transition: .3s ease;
+    transition: .3s ease;
+    background: #f9f9f9;
+}
+
+.questions:checked~.answers {
+    height: auto;
+    opacity: 1;
+    padding: 15px;
+}
+
+.plus {
+    position: absolute;
+    margin-left: 10px;
+    z-index: 5;
+    color: #fff;
+    font-size: 2em;
+    line-height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-transition: .3s ease;
+    -moz-transition: .3s ease;
+    -o-transition: .3s ease;
+    transition: .3s ease;
+    -ms-transition: .3s ease;
+}
+
+.questions:checked~.plus {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.questions {
+    display: none;
 }
