@@ -76,14 +76,16 @@ class VendorManagementController extends Controller
     }
 
     public function updateVendorDetails(Request $request ,Vendor $vendor){
+      // dd($request->all());
+
         $request->validate([
             'shop_name' => 'required',
             'company_email' => 'required',
-            'phone_num' => ['required', new Mobile],
-            // 'phone_number' => 'required',
+            'phone_number' => ['required', new Mobile],
             'product_category' => 'nullable',
             'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
          ]);
+
          $formInput = $request->except(['image']);
          if ($request->hasFile('image')) {
             if ($vendor->image) {
