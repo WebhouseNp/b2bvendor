@@ -1,53 +1,58 @@
 <template>
   <frontmaster>
-    <section class="faq">
+     <section class="faq">
       <div class="container">
         <div class="text-center heading">
           <h2>Frequently Asked Question</h2>
         </div>
         <br />
-        <div class="faq-content">
-          <div v-for="(faq,index) in faqs" :key="index">
-            <input type="checkbox" id="question1" name="q" class="questions" />
-            <div class="plus">+</div>
-            <label for="question1" class="question">
-              {{faq.title}}
-            </label>
-            <div class="answers" v-html="faq.description">
-            </div>
-          </div>
+        <div class="faq-content" v-scrollanimation>
+        <vue-faq-accordion :items="faqItems"></vue-faq-accordion>
         </div>
       </div>
-    </section>
+    </section> 
   </frontmaster>
 </template>
 
 <script>
+import VueFaqAccordion from 'vue-faq-accordion';
 export default {
   name: "LoginHomePage",
+  components:{VueFaqAccordion},
   props:["faqs"],
   data(){
     return{
-      faqs:[],
+      faqItems:[
+        {
+          title:"",
+          value:"",
+        },
+      ],
     }
   },
+  mounted(){
+    this.faqItems = this.faqs.map(el=>{
+      return{
+        title:el.title,
+        value:el.description
+      }
+    })
+  }
 };
 </script>
 
 <style scoped>
-.description p,
-.list {
-  margin-left: 50px;
-  margin-right: 50px;
+.before-enter{
+  opacity: 0;
+   -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
-.list ul li {
-  list-style: none;
-}
-.list i {
-  color: #ffa500;
-}
-.question{
-  color: #ffffffad;
-  font-weight: 400;
+
+.enter,.zoomIn{
+  opacity: 1;
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
 }
 </style>
