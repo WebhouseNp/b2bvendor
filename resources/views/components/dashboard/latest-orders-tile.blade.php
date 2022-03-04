@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <table class="custom-table table table-responsive table-hover">
+    <table class="custom-table table table-responsive-sm table-hover">
         <thead>
             <tr>
                 <td>Order No.</td>

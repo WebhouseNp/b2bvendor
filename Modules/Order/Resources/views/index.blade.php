@@ -31,7 +31,7 @@
                 </form>
             </div>
 
-            <table class="custom-table table table-responsive">
+            <table class="custom-table table table-responsive-sm">
                 <thead>
                     <tr>
                         <td>Order No.</td>

@@ -1,6 +1,6 @@
 <div class="ibox">
     <div class="ibox-body">
-        <table class="custom-table table table-responsive">
+        <table class="custom-table table table-responsive-sm">
             <thead>
                 <tr>
                     <td>Transaction ID</td>

@@ -1,4 +1,4 @@
-<table class="table table-striped table-responsive table-bordered table-hover" id="example-table" style="width:100%">
+<table class="table table-striped table-responsive-sm table-bordered table-hover" id="example-table" style="width:100%">
     <thead>
         <tr class="border-0">
             <th>S.N</th>
