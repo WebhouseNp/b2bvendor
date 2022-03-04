@@ -60,13 +60,13 @@
                                     <label>Upload Image</label>
                                     <input type="file" name="image" id="fileUpload" class="form-control-file @error('image') is-invalid @enderror" accept="image/*">
                                     <small class="form-text">Recommended image size: 400x400px</small>
-                                    @if($updateMode)
-                                    <div id="wrapper" class="py-2">
+                                    <div id="wrapper" class="mt-2">
                                         <div id="image-holder">
+                                            @if($updateMode)
                                             <img src="{{ $partner->imageUrl() }}" height="120px" width="120px">
+                                            @endif
                                         </div>
                                     </div>
-                                    @endif
                                     @error('image')
                                     <div class="invalid-feedback">{{$errors->first('image')}}</div>
                                     @enderror
