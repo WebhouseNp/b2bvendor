@@ -56,6 +56,33 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Total Active Vendors</p>
+                    <h2>{{ $totalActiveVendors }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Total New Vendors</p>
+                    <h2>{{ $totalNewVendors }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Total Customers</p>
+                    <h2>{{ $totalCustomers }}</h2>
+                </div>
+            </div>
+        </div>
     </div>
 
 
