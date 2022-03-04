@@ -69,7 +69,7 @@
         >
         <div class="alert-login">
           <span>Already a Seller?</span><br><br>
-          <a href="javascript:void(0)" class="btn btn-slider mb-5" @click="onClickLogin"
+          <a href="javascript:void(0)" class="btn btn-slider login-bottom" @click="onClickLogin"
             >Login here</a>
         </div>
       </div>
@@ -292,6 +292,11 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (min-width: 992px) {
+  .login-bottom{
+  margin-bottom: 80px;
+}
+}
 
 .card{
   min-height: 0px;

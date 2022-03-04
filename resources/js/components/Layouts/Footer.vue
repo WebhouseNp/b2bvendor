@@ -81,8 +81,7 @@
             Product Listing Policy -Intellectual Property Protection - Privacy
             Policy - Terms of Use - User Information Legal Enquiry Guide
           </p>
-          <p><b>©2021 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>
-          <p><b>Head Office:</b> Krishna Galli Pulchowk-04, Kathamandu Nepal</p>
+          <p><b>©2022 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>
           <p>Email: info@sastowholesale.com</p>
           <p><b>Designed &amp; Developed By: Web House Nepal</b></p>
         </div>
