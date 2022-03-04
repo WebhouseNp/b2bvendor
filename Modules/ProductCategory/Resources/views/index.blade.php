@@ -71,7 +71,7 @@ Product Categories
                         <td>
                             <input type="checkbox" class="js-product-category-status btn btn-success btn-sm" rel="{{ $productCategory->id }}" data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($productCategory->publish == 1) checked @endif>
                         </td>
-                        <td>
+                        <td class="text-no-wrap">
                             {{-- <a title="view" class="btn btn-success btn-sm" href="{{ route('subcategory.view',$productCategory->id) }}">
                             <i class="fa fa-eye"></i>
                             </a> --}}
