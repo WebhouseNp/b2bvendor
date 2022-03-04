@@ -10,6 +10,10 @@ Please process the order as soon as possible.
 Order Status
 @endcomponent --}}
 
+@component('mail::button', ['url' => $viewOrder])
+Order Status
+@endcomponent
+
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent

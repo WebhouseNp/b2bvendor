@@ -35,7 +35,8 @@ class OrderPlacedEmail extends Mailable implements ShouldQueue
         return $this->markdown('email.orders.order-placed')
         ->with([
             'customerName' => $this->order->customer->name,
-            'checkStatusLink' => config('constants.customer_app_url') . '/my-orders/' . $this->order->id
+            'checkStatusLink' => config('constants.customer_app_url') . '/my-orders/' . $this->order->id,
+            'viewOrder' => config('constants.vendor_app_url') . '/orders/' . $this->order->id
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 return  [
     'customer_app_url' => env('CUSTOMER_APP_URL', 'https://staging.sastowholesale.com/'),
+    'vendor_app_url' => env('Vendor_APP_URL', 'https://sellercenter.sastowholesale.com/'),
 
     'order_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'],
     'package_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'], // Not in use
