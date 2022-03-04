@@ -100,7 +100,7 @@
                     <i class="fa fa-cubes text-white"></i>
                 </span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Total Active Products</span>
+                    <span class="info-box-text">Active Products</span>
                     <span class="info-box-number">{{ $totalActiveProductsCount }}</span>
                 </div>
             </div>
