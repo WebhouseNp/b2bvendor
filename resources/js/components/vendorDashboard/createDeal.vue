@@ -102,8 +102,8 @@
               <h5 style="font-weight: 700; margin-bottom: 20px;">Select Product</h5>
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
-              <div class="table-responsive">
-                <table class="table tb-overflow">
+              <div class="">
+                <table class="table table-responsive-sm">
                   <thead>
                     <tr>
                       <!-- <th style="background-color: #d9e7e7">SN</th> -->
@@ -134,9 +134,10 @@
                         .$each.$iter"
                       :key="index"
                     >
-                      <td scope="row" class="inputProduct">
+                      <td scope="" class="inputProduct">
+                        <div>
                         <multiselect
-                          class="form-control form"
+                          class=""
                           v-model="invoice_product.product_id.$model"
                           :class="{
                             'is-invalid': validationStatus(
@@ -144,7 +145,8 @@
                             ),
                           }"
                           :options="products"
-                          :option-height="104"
+                          :option-height="200"
+                          :option-width="200"
                           :custom-label="customLabel"
                           :show-labels="false"
                           :hide-selected="true"
@@ -183,6 +185,7 @@
                           class="invalid-feedback text-danger"
                         >
                           Please Select Product First.
+                        </div>
                         </div>
                       </td>
                       <td scope="row" class="inputQuentiry">
@@ -500,6 +503,10 @@ export default {
 
 <style scoped>
 @import "vue-multiselect/dist/vue-multiselect.min.css";
+
+.multiselect__content-wrapper{
+  width: 250px;
+}
 .ibox .ibox-body {
   margin-top: -14px;
 }

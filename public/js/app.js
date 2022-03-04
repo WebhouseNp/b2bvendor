@@ -4256,6 +4256,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -6262,6 +6265,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -6287,19 +6291,19 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "somekey",
+  key: "cbe0b7b8904e2ede8292",
   cluster: "ap2",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: "sellercenter.sastowholesale.com",
-  wsPort: "80",
-  wssPort: "443",
+  wsHost: process.env.MIX_PUSHER_WSHOST,
+  wsPort: process.env.MIX_PUSHER_WSPORT,
+  wssPort: process.env.MIX_PUSHER_WSSPORT,
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
+        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -6567,7 +6571,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.ibox .ibox-body[data-v-686a4f54] {\r\n  margin-top: -14px;\n}\nselect[data-v-686a4f54] {\r\n  padding: 0;\n}\n.inputProduct[data-v-686a4f54] {\r\n  width: 35%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-686a4f54] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 340px;\n}\n.inputProduct select[data-v-686a4f54] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-686a4f54] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-686a4f54] {\r\n  color: #070606;\n}\n.trashIconContainer[data-v-686a4f54],\r\n.addProduct[data-v-686a4f54] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-686a4f54],\r\n.table th[data-v-686a4f54] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-686a4f54],\r\n.far[data-v-686a4f54] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-686a4f54] {\r\n  font-size: 13px;\n}\n.animate-spin[data-v-686a4f54] {\r\n  -webkit-animation: spin-data-v-686a4f54 1s linear infinite;\r\n          animation: spin-data-v-686a4f54 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-686a4f54] {\r\n  padding: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.multiselect__content-wrapper[data-v-686a4f54]{\r\n  width: 250px;\n}\n.ibox .ibox-body[data-v-686a4f54] {\r\n  margin-top: -14px;\n}\nselect[data-v-686a4f54] {\r\n  padding: 0;\n}\n.inputProduct[data-v-686a4f54] {\r\n  width: 35%;\r\n  box-sizing: border-box;\n}\n.inputProduct .form[data-v-686a4f54] {\r\n  border: none;\r\n  margin-left: -10px;\r\n  max-width: 340px;\n}\n.inputProduct select[data-v-686a4f54] {\r\n  background-color: #d9e7e7;\r\n  color: #070606;\n}\n.inputQuentiry input[type=\"text\"][data-v-686a4f54] {\r\n  background-color: #b4d7d7;\r\n  color: #070606;\n}\n.inputPrice input[type=\"text\"][data-v-686a4f54] {\r\n  color: #070606;\n}\n.trashIconContainer[data-v-686a4f54],\r\n.addProduct[data-v-686a4f54] {\r\n  cursor: pointer;\r\n  text-align: center;\n}\n.table td[data-v-686a4f54],\r\n.table th[data-v-686a4f54] {\r\n  padding: 0.75rem;\r\n  vertical-align: middle;\r\n  border-top: 1px solid #e9ecef;\n}\n.fa-regular[data-v-686a4f54],\r\n.far[data-v-686a4f54] {\r\n  font-weight: 900;\r\n  font-size: 20px;\n}\n.invalid-feedback[data-v-686a4f54] {\r\n  font-size: 13px;\n}\n.animate-spin[data-v-686a4f54] {\r\n  -webkit-animation: spin-data-v-686a4f54 1s linear infinite;\r\n          animation: spin-data-v-686a4f54 1s linear infinite;\n}\n@-webkit-keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-686a4f54 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n/*----spiner color ----*/\n.crateDealLoader[data-v-686a4f54] {\r\n  padding: 10px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -63421,8 +63425,8 @@ var render = function () {
               _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-12 col-sm-12 form-group" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c("table", { staticClass: "table tb-overflow" }, [
+                _c("div", {}, [
+                  _c("table", { staticClass: "table table-responsive-sm" }, [
                     _vm._m(4),
                     _vm._v(" "),
                     _c(
@@ -63436,80 +63440,34 @@ var render = function () {
                                 "td",
                                 {
                                   staticClass: "inputProduct",
-                                  attrs: { scope: "row" },
+                                  attrs: { scope: "" },
                                 },
                                 [
                                   _c(
-                                    "multiselect",
-                                    {
-                                      staticClass: "form-control form",
-                                      class: {
-                                        "is-invalid": _vm.validationStatus(
-                                          invoice_product.product_id
-                                        ),
-                                      },
-                                      attrs: {
-                                        options: _vm.products,
-                                        "option-height": 104,
-                                        "custom-label": _vm.customLabel,
-                                        "show-labels": false,
-                                        "hide-selected": true,
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "singleLabel",
-                                            fn: function (props) {
-                                              return [
-                                                _c("img", {
-                                                  staticClass: "option__image",
-                                                  staticStyle: {
-                                                    widht: "35px",
-                                                    height: "35px",
-                                                  },
-                                                  attrs: {
-                                                    src: props.option.image_url,
-                                                  },
-                                                }),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "option__desc",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "option__title",
-                                                        staticStyle: {
-                                                          "margin-left": "10px",
-                                                          "font-size": "13px",
-                                                        },
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            props.option.title
-                                                          )
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                              ]
-                                            },
+                                    "div",
+                                    [
+                                      _c(
+                                        "multiselect",
+                                        {
+                                          class: {
+                                            "is-invalid": _vm.validationStatus(
+                                              invoice_product.product_id
+                                            ),
                                           },
-                                          {
-                                            key: "option",
-                                            fn: function (props) {
-                                              return [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "option__desc",
-                                                  },
-                                                  [
+                                          attrs: {
+                                            options: _vm.products,
+                                            "option-height": 200,
+                                            "option-width": 200,
+                                            "custom-label": _vm.customLabel,
+                                            "show-labels": false,
+                                            "hide-selected": true,
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "singleLabel",
+                                                fn: function (props) {
+                                                  return [
                                                     _c("img", {
                                                       staticClass:
                                                         "option__image",
@@ -63522,78 +63480,139 @@ var render = function () {
                                                           .image_url,
                                                       },
                                                     }),
-                                                    _vm._v(" "),
                                                     _c(
                                                       "span",
                                                       {
                                                         staticClass:
-                                                          "option__title",
-                                                        staticStyle: {
-                                                          "margin-left": "10px",
-                                                          "font-size": "13px",
-                                                        },
+                                                          "option__desc",
                                                       },
                                                       [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            props.option.title
-                                                          )
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "option__title",
+                                                            staticStyle: {
+                                                              "margin-left":
+                                                                "10px",
+                                                              "font-size":
+                                                                "13px",
+                                                            },
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                props.option
+                                                                  .title
+                                                              )
+                                                            ),
+                                                          ]
                                                         ),
                                                       ]
                                                     ),
                                                   ]
-                                                ),
-                                              ]
+                                                },
+                                              },
+                                              {
+                                                key: "option",
+                                                fn: function (props) {
+                                                  return [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "option__desc",
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          staticClass:
+                                                            "option__image",
+                                                          staticStyle: {
+                                                            widht: "35px",
+                                                            height: "35px",
+                                                          },
+                                                          attrs: {
+                                                            src: props.option
+                                                              .image_url,
+                                                          },
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "option__title",
+                                                            staticStyle: {
+                                                              "margin-left":
+                                                                "10px",
+                                                              "font-size":
+                                                                "13px",
+                                                            },
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                props.option
+                                                                  .title
+                                                              )
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                },
+                                              },
+                                            ],
+                                            null,
+                                            true
+                                          ),
+                                          model: {
+                                            value:
+                                              invoice_product.product_id.$model,
+                                            callback: function ($$v) {
+                                              _vm.$set(
+                                                invoice_product.product_id,
+                                                "$model",
+                                                $$v
+                                              )
                                             },
+                                            expression:
+                                              "invoice_product.product_id.$model",
                                           },
-                                        ],
-                                        null,
-                                        true
-                                      ),
-                                      model: {
-                                        value:
-                                          invoice_product.product_id.$model,
-                                        callback: function ($$v) {
-                                          _vm.$set(
-                                            invoice_product.product_id,
-                                            "$model",
-                                            $$v
-                                          )
-                                        },
-                                        expression:
-                                          "invoice_product.product_id.$model",
-                                      },
-                                    },
-                                    [
-                                      _vm._v(" "),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noResult" },
-                                          slot: "noResult",
-                                        },
-                                        [_vm._v("Oops! No data found.")]
-                                      ),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  !invoice_product.product_id.required
-                                    ? _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "invalid-feedback text-danger",
                                         },
                                         [
-                                          _vm._v(
-                                            "\n                        Please Select Product First.\n                      "
+                                          _vm._v(" "),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            {
+                                              attrs: { slot: "noResult" },
+                                              slot: "noResult",
+                                            },
+                                            [_vm._v("Oops! No data found.")]
                                           ),
                                         ]
-                                      )
-                                    : _vm._e(),
-                                ],
-                                1
+                                      ),
+                                      _vm._v(" "),
+                                      !invoice_product.product_id.required
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "invalid-feedback text-danger",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                        Please Select Product First.\n                      "
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                    ],
+                                    1
+                                  ),
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -85056,7 +85075,7 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\sastowholesale\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\sastowholesale\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
