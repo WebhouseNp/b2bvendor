@@ -24,7 +24,7 @@
     </head>
     <body>
        <div id="app">
-           <faq/>
+           <faq :faqs="{{ json_encode($faqs) }}"/>
        </div>
     </body>
     <script src="{{mix('js/app.js')}}"></script>

@@ -2,11 +2,13 @@
 
 namespace Modules\Dashboard\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Routing\Controller;
 use Modules\Dashboard\Service\DashboardService;
 use Modules\Order\Entities\Order;
 use Modules\Payment\Entities\Transaction;
 use Modules\Product\Entities\Product;
+use Modules\User\Entities\Vendor;
 
 class DashboardController extends Controller
 {
@@ -31,7 +33,16 @@ class DashboardController extends Controller
         $totalSales = $this->dashboardService->getTotalSales();
         $salesFromOnlinePayment = $this->dashboardService->getSalesFromOnlinePayment();
         $salesFromCOD = $this->dashboardService->getSalesFromCOD();
+        $totalActiveVendors = Vendor::whereHas('user', function($q){
+            $q->where('vendor_type', 'approved');
+        })->count();
+        $totalNewVendors = Vendor::whereHas('user', function($q){
+            $q->where('vendor_type', 'new');
+        })->count();
 
+        $totalCustomers = User::whereHas('roles', function($q){
+            $q->where('name', 'customer');
+        })->count();
         $receivableFromVendors = Transaction::where('is_cod', true)->whereNull('settled_at')->sum('commission');
         $payableToVendors = Transaction::onlyOnlinePayments()
         ->whereIn('id', function($query) {
@@ -49,6 +60,9 @@ class DashboardController extends Controller
             'payableToVendors' => $payableToVendors,
             'receivableFromVendors' => $receivableFromVendors,
             'totalActiveProductsCount' => $totalActiveProductsCount,
+            'totalActiveVendors' => $totalActiveVendors,
+            'totalNewVendors' => $totalNewVendors,
+            'totalCustomers' => $totalCustomers
         ]);
     }
 

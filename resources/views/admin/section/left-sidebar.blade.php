@@ -267,7 +267,7 @@ $user = auth()->user();
             <li>
                 <a href="{{ route('getShippingInfo') }}">
                     <i class="sidebar-item-icon fa fa-thumbs-up"></i>
-                    <span class="nav-label">Shipping And Written Policy</span>
+                    <span class="nav-label">Shipping & Return </span>
                 </a>
             </li>
             @endif

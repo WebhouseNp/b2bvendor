@@ -1,63 +1,5 @@
 <template>
-
-    <div>
-    <!-- header start -->
-    <header data-v-cbdddaa2="" class="header position-sticky">
-      <nav
-        data-v-cbdddaa2=""
-        class="navbar navbar-expand-lg navbar-light bg-light"
-      >
-        <div data-v-cbdddaa2="" class="container">
-          <a data-v-cbdddaa2="" href="javascript:void(0)" class="navbar-brand"
-            ><img
-              data-v-cbdddaa2=""
-              src="/images/logo.png"
-              alt="site logo"
-              class="img-fluid site-logo"
-          /></a>
-          <button
-            data-v-cbdddaa2=""
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            class="navbar-toggler"
-          >
-            <span data-v-cbdddaa2="" class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            data-v-cbdddaa2=""
-            id="navbarSupportedContent"
-            class="collapse navbar-collapse"
-          >
-            <ul data-v-cbdddaa2="" class="navbar-nav ml-auto">
-              <li data-v-cbdddaa2="" class="nav-item active">
-                <a data-v-cbdddaa2="" href="/" class="nav-link">Home</a>
-              </li>
-              <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link" @click="onClickPartners">Partners</a>
-              </li>
-              <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="#" class="nav-link">Blog</a>
-              </li>
-              <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link"  @click="onClickFaq">FAQ</a>
-              </li>
-              <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link"  @click="onClickSingup">Register</a>
-              </li>
-              <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link" @click="onClickLogin">Login</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <!-- header end -->
-
+   <frontmaster>
     <!-- slider start -->
     <div class="slider-wrapper" v-scrollanimation style="min-height: 450px;">
       <div
@@ -128,7 +70,7 @@
         <div class="alert-login">
           <span>Already a Seller?</span><br><br>
           <a href="javascript:void(0)" class="btn btn-slider mb-5" @click="onClickLogin"
-              >Login here</a>
+            >Login here</a>
         </div>
       </div>
       <!-- content end -->
@@ -332,97 +274,7 @@
         </div>
       </div>
     </section>
-    <!-- footer start -->
-    <footer class="footer ">
-      <div class="container">
-        <!-- <div class="row">
-          <div class="col-lg-6">
-            <h4 class="footer-title">Quick links</h4>
-            <ul class="footer-list">
-              <li>
-                <a href="#">Payment Terms</a>
-              </li>
-              <li>
-                <a href="#">Local Seller Guidelines</a>
-              </li>
-              <li>
-                <a href="#">International Seller Guidelines</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-6">
-            <h4 class="footer-title">Contact Us</h4>
-            <ul class="footer-list">
-              <li>
-                <a href="mailto:vendor@sastowholsale.com"
-                  >vendor@sastowholsale.com</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <hr /> -->
-
-        <div class="row">
-          <div class="col-sm-12 col-lg-12 col-md-12">
-            <div class="pt-we-accept">
-              <h3>We Accept</h3>
-              <ul class="list-unstyled">
-                <li>
-                  <img
-                    src="https://b2bfrontend.webhouse.com.np/assets/image/partner1.png"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://b2bfrontend.webhouse.com.np/assets/image/partner2.png"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://b2bfrontend.webhouse.com.np/assets/image/partner3.png"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://b2bfrontend.webhouse.com.np/assets/image/partner4.png"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://b2bfrontend.webhouse.com.np/assets/image/partner5.png"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://b2bfrontend.webhouse.com.np/assets/image/partner1.png"
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://b2bfrontend.webhouse.com.np/assets/image/partner2.png"
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="bottom-footer">
-          <p>
-            Product Listing Policy -Intellectual Property Protection - Privacy
-            Policy - Terms of Use - User Information Legal Enquiry Guide
-          </p>
-          <p><b>©2021 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>
-          <p><b>Head Office:</b> Krishna Galli Pulchowk-04, Kathamandu Nepal</p>
-          <p>Email: info@sastowholesale.com</p>
-          <p><b>Designed &amp; Developed By: Web House Nepal</b></p>
-        </div>
-        <hr />
-      </div>
-    </footer>
-    <!-- footer end -->
-    </div>
+   </frontmaster>
 </template>
 
 <script>
@@ -435,15 +287,6 @@ export default {
     onClickLogin() {
       window.location.href = "/vendor-login";
     },
-    vendorHomepage() {
-      window.location.href = "/vendor-homepage";
-    },
-    onClickPartners(){
-      window.location.href = "https://staging.sastowholesale.com/partners"
-    },
-    onClickFaq(){
-      window.location.href = "/faq";
-    }
   },
 };
 </script>

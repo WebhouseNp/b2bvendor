@@ -13,7 +13,7 @@
                 @endif
                 <div class="col-lg-12 col-sm-12 form-group">
                     <div style="text-align: center;"  >
-                        <label><strong><h4 style="font-weight: bold;">Shipping And Written Policy</h4></strong></label>
+                        <label><strong><h4 style="font-weight: bold;">Shipping And Return Policy</h4></strong></label>
                     </div>
                     <textarea name="shipping_info" id="shipping_info" rows="5" placeholder="Shipping Info Here" class="form-control" style="resize: none;">{{ auth()->user()->vendor->shipping_info }}</textarea>
                 </div>

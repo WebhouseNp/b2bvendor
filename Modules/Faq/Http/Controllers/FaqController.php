@@ -19,7 +19,8 @@ class FaqController extends Controller
 
     public function create()
     {
-        return $this->showForm(new Faq());
+        return $this->showForm(new Faq(['position' => Faq::getNextPosition()]));
+
     }
 
     public function store(FaqRequest $request)

@@ -48,7 +48,7 @@
                                     <div class="ibox-body">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <label><strong>Update Profile Image</strong> </label>
+                                                <label><strong>Update Profile Image[Image size: width: 800px, height: 800px] [Image type: jpg, jpeg, png]</strong> </label>
                                                 <input id="fileUpload" class="form-control" value="" name="image" type="file">
                                                 <br>
                                                 <div id="wrapper" class="mt-2">

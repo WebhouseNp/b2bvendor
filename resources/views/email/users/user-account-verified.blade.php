@@ -3,7 +3,9 @@
 
 Congratulations!!!
 
-Your Account has been verified. You can login now.
+Your Account has been verified. 
+
+Enjoy shopping with Sasto Wholesale.
 
 Thanks,<br>
 {{ config('app.name') }}

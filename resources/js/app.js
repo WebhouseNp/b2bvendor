@@ -13,13 +13,14 @@ import ScrollAnimation from "./directive/ScrollAnimation";
 
 Vue.directive('scrollanimation', ScrollAnimation);
 
+Vue.component('frontmaster',require('./components/Layouts/FrontMaster.vue').default);
 Vue.component('loginhomepage',require('./components/vendorLogin/vendorHomepage.vue').default);
 Vue.component('faq',require('./components/FAQ.vue').default);
 Vue.component('login',require('./components/vendorLogin/login.vue').default);
 Vue.component('register', require('./components/Register/selectCategory.vue').default);
 Vue.component('forgotpassword', require('./components/vendorLogin/forgotpassword.vue').default);
 Vue.component('verification', require('./components/vendorLogin/accountVerification.vue').default);
-Vue.component('resetpassword', require('./components/vendorLogin/Reset.vue').default);
+Vue.component('resetpassword', require('./components/vendorLogin/Reset.vue').faqdefault);
 Vue.component('createdeal', require('./components/vendorDashboard/createDeal.vue').default);
 Vue.component('editdeal',require('./components/vendorDashboard/editDeal.vue').default);
 
