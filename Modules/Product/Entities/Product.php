@@ -143,7 +143,7 @@ class Product extends Model
 
     public function ranges()
     {
-        return $this->hasMany(Range::class);
+        return $this->hasMany(Range::class)->orderBy('from', 'asc');
     }
 
     public function reviews()

@@ -11,7 +11,7 @@
 @section('content')
 <div class="page-content fade-in-up">
     <div class="page-heading d-flex mb-3">
-    <h1 class="h4-responsive">{{ $updateMode ? 'Edit' : 'Add' }} Product</h1>
+    <h2 class="h2-responsive">{{ $updateMode ? 'Edit' : 'Add' }} Product</h2>
     <div class="ml-auto">
         <a class="btn btn-info btn-md" href="{{route('product.index')}}">All Products</a>
     </div>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div class="ibox">
+                        {{-- <div class="ibox">
                             <div class="ibox-body">
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 form-group">
@@ -154,7 +154,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="ibox">
                             <div class="ibox-body">
@@ -274,16 +274,16 @@
                                 </div>
                                 @endif
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="status"><strong>Status</strong></label>
                                     <select name="status" id="status" class="form-control custom-select">
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 
                                 <div class="form-group">
-                                    <button onclick="submitProductNow();" type="button" id="product_submit" class="btn btn-success btn-lg btn-block">Save</button>
+                                    <button onclick="submitProductNow();" type="button" id="product_submit" class="btn btn-success btn-lg btn-block">{{ $updateMode ? 'Save' : 'Save & Continue' }}</button>
                                 </div>
                             </div>
                         </div>
@@ -464,7 +464,7 @@ $name = ['highlight'];
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
                     if (!window.updateMode){
-                        window.location.href = '/product-images/' + response.data.id;
+                        window.location.href = '/product-pricing/' + response.data.id;
                     }
                     // window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
                 }
@@ -486,7 +486,11 @@ $name = ['highlight'];
                 }
             },
             complete: function() {
-                $('#product_submit').html('Save');
+                if(window.updateMode) {
+                    $('#product_submit').html('Save');
+                } else {
+                    $('#product_submit').html('Save & Continue');
+                }
                 $('#product_submit').prop('disabled', false);
             }
         });

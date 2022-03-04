@@ -8,11 +8,12 @@ use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
 use Modules\Product\Entities\Product;
 use Modules\Product\Entities\Range;
-use File;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Image;
+use Illuminate\Http\Client\ResponseSequence;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Modules\Product\Http\Requests\ProductPricingRequest;
 use Modules\Product\Http\Requests\ProductRequest;
 
 class ProductStorageController extends Controller
@@ -79,7 +80,8 @@ class ProductStorageController extends Controller
             $product->video_link = $request->video_link;
             $product->is_top = $request->has('is_top') ? true : false;
             $product->is_new_arrival = $request->has('is_new_arrival') ? true : false;
-            $product->status = $request->status == 'active' ? true : false;
+            // $product->status = $request->status == 'active' ? true : false;
+            $product->status = false;
 
             $product->meta_title = $request->meta_title;
             $product->meta_description = $request->meta_description;
@@ -96,19 +98,20 @@ class ProductStorageController extends Controller
 
             $product->save();
 
-            foreach ($request->from as $key => $val) {
-                if (!empty($val)) {
-                    $range = new Range();
-                    $range->product_id = $product->id;
-                    $range->from = $val;
-                    $range->to = $request->to[$key] ?? null;
-                    $range->price = $request->prices[$key];
-                    $range->save();
-                }
-            }
+            // foreach ($request->from as $key => $val) {
+            //     if (!empty($val)) {
+            //         $range = new Range();
+            //         $range->product_id = $product->id;
+            //         $range->from = $val;
+            //         $range->to = $request->to[$key] ?? null;
+            //         $range->price = $request->prices[$key];
+            //         $range->save();
+            //     }
+            // }
+
             DB::commit();
 
-            return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $product]);
+            return response()->json(['status' => 'successful', 'message' => 'Product information saved successfully.', 'data' => $product]);
         } catch (\Exception $exception) {
             DB::rollback();
             $this->deleteMainProductImage($product);
@@ -118,6 +121,48 @@ class ProductStorageController extends Controller
                 'message' => $exception->getMessage()
             ], 500);
         }
+    }
+
+    public function pricing(Product $product)
+    {
+        $updateMode = true;
+        $product->loadMissing('ranges');
+        $product->above_range_price = collect($product->ranges)->whereNull('to')->first()->price ?? 0;
+        return view('product::price_range', compact('updateMode', 'product'));
+    }
+
+    public function savePricing(ProductPricingRequest $request, Product $product)
+    {
+        $product->ranges()->delete();
+
+        $maxTo = 1;
+
+        foreach ($request->ranges as $range) {
+            $productRange = new Range();
+            $productRange->product_id = $product->id;
+            $productRange->from = $range['from'];
+            $productRange->to = $range['to'];
+            $productRange->price = $range['price'];
+            $productRange->save();
+
+            if($range['to'] > $maxTo) {
+                $maxTo = $range['to'];
+            }
+        }
+
+        Range::create([
+            'product_id' => $product->id,
+            'from' => $maxTo + 1,
+            'to' => null,
+            'price' => $request->above_range_price,
+        ]);
+
+        $product->update(['status' => true]);
+
+        return response()->json([
+            'message' => 'Pricing saved successfully.',
+            'redirect_url' => route('product-images.index', $product->id)
+        ], 200);
     }
 
     public function edit(Product $product)
@@ -161,20 +206,20 @@ class ProductStorageController extends Controller
 
             $product->update();
 
-            if (count($product->ranges)) {
-                $product->ranges()->delete();
-            }
+            // if (count($product->ranges)) {
+            //     $product->ranges()->delete();
+            // }
+            // foreach ($request->from as $key => $val) {
+            //     if (!empty($val)) {
+            //         $range = new Range();
+            //         $range->product_id = $product->id;
+            //         $range->from = $val;
+            //         $range->to = $request->to[$key] ?? null;
+            //         $range->price = $request->prices[$key];
+            //         $range->save();
+            //     }
+            // }
 
-            foreach ($request->from as $key => $val) {
-                if (!empty($val)) {
-                    $range = new Range();
-                    $range->product_id = $product->id;
-                    $range->from = $val;
-                    $range->to = $request->to[$key] ?? null;
-                    $range->price = $request->prices[$key];
-                    $range->save();
-                }
-            }
             DB::commit();
 
             return response()->json([
