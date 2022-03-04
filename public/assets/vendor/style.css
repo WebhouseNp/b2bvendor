@@ -60,6 +60,7 @@ body {
     font-size: 1.3rem;
     font-weight: 700;
     padding: 8px 30px;
+    margin-bottom: 20px;
     transition: all .5s ease-in;
     text-transform: uppercase;
     border-radius: 0;
@@ -78,21 +79,15 @@ body {
     color: red;
 }
 
-.alert-login {
-    margin-top: 20px;
-}
-
 .alert-login span {
     color: #fff;
     font-size: 1.3rem;
     font-weight: 600;
     font-style: italic;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.alert-login span a {
-    color: red;
-    text-decoration: underline;
-}
 
 .feature {
     position: absolute;

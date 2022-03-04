@@ -2225,7 +2225,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -6263,7 +6262,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.before-enter[data-v-c602b80a]{\r\n  opacity: 0;\r\n   -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-c602b80a],.zoomIn[data-v-c602b80a]{\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn;\r\n  animation-name: zoomIn;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.faq-wrapper[data-v-c602b80a] {\r\n  max-width: 100px !important;\n}\n.before-enter[data-v-c602b80a] {\r\n  opacity: 0;\r\n  -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-c602b80a],\r\n.zoomIn[data-v-c602b80a] {\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn;\r\n  animation-name: zoomIn;\n}\n.accordion__title[data-v-c602b80a] {\r\n  background-color: #f5f7f8 !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6485,7 +6484,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-cbdddaa2]{\r\n  min-height: 0px;\n}\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\r\n  transition-delay: 0.4s;\n}\n.secondary-heading[data-v-cbdddaa2]{\r\n    color: #868585;\r\n    font-weight: 400;\r\n    text-transform: uppercase;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n  color: #ffa500;\n}\r\n/*------------animation-------*/\n@-webkit-keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n@keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n.slider-wrapper[data-v-cbdddaa2], .why-join[data-v-cbdddaa2],.description[data-v-cbdddaa2],\r\n .step-1[data-v-cbdddaa2], .step-2[data-v-cbdddaa2], .step-3[data-v-cbdddaa2], .step-4[data-v-cbdddaa2], .step-5[data-v-cbdddaa2],\r\n .step-6[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2], .list[data-v-cbdddaa2] {\r\n  opacity: 0;\n}\n.slider-wrapper[data-v-cbdddaa2]\r\n{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.why-join[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.4s;\r\n          animation-delay: 0.4s;\n}\n.description[data-v-cbdddaa2], .step-1[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2],.list[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.step-2[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.6s;\r\n          animation-delay: 0.6s;\n}\n.step-3[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.9s;\r\n          animation-delay: 0.9s;\n}\n.step-4[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1s;\r\n          animation-delay: 1s;\n}\n.step-5[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.2s;\r\n          animation-delay: 1.2s;\n}\n.step-6[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.3s;\r\n          animation-delay: 1.3s;\n}\n.before-enter[data-v-cbdddaa2]{\r\n  opacity: 0;\r\n   -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-cbdddaa2],.zoomIn[data-v-cbdddaa2]{\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn-data-v-cbdddaa2;\r\n  animation-name: zoomIn-data-v-cbdddaa2;\n}\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media only screen and (min-width: 992px) {\n.login-bottom[data-v-cbdddaa2]{\r\n  margin-bottom: 80px;\n}\n}\n.card[data-v-cbdddaa2]{\r\n  min-height: 0px;\n}\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\r\n  transition-delay: 0.4s;\n}\n.secondary-heading[data-v-cbdddaa2]{\r\n    color: #868585;\r\n    font-weight: 400;\r\n    text-transform: uppercase;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n  color: #ffa500;\n}\r\n/*------------animation-------*/\n@-webkit-keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n@keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n.slider-wrapper[data-v-cbdddaa2], .why-join[data-v-cbdddaa2],.description[data-v-cbdddaa2],\r\n .step-1[data-v-cbdddaa2], .step-2[data-v-cbdddaa2], .step-3[data-v-cbdddaa2], .step-4[data-v-cbdddaa2], .step-5[data-v-cbdddaa2],\r\n .step-6[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2], .list[data-v-cbdddaa2] {\r\n  opacity: 0;\n}\n.slider-wrapper[data-v-cbdddaa2]\r\n{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.why-join[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.4s;\r\n          animation-delay: 0.4s;\n}\n.description[data-v-cbdddaa2], .step-1[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2],.list[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.step-2[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.6s;\r\n          animation-delay: 0.6s;\n}\n.step-3[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.9s;\r\n          animation-delay: 0.9s;\n}\n.step-4[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1s;\r\n          animation-delay: 1s;\n}\n.step-5[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.2s;\r\n          animation-delay: 1.2s;\n}\n.step-6[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.3s;\r\n          animation-delay: 1.3s;\n}\n.before-enter[data-v-cbdddaa2]{\r\n  opacity: 0;\r\n   -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-cbdddaa2],.zoomIn[data-v-cbdddaa2]{\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn-data-v-cbdddaa2;\r\n  animation-name: zoomIn-data-v-cbdddaa2;\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34665,13 +34664,8 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _c("b", [
-                _vm._v("©2021 Sasto Wholesale Pvt. Ltd. All rights Reserved."),
+                _vm._v("©2022 Sasto Wholesale Pvt. Ltd. All rights Reserved."),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("b", [_vm._v("Head Office:")]),
-              _vm._v(" Krishna Galli Pulchowk-04, Kathamandu Nepal"),
             ]),
             _vm._v(" "),
             _c("p", [_vm._v("Email: info@sastowholesale.com")]),
@@ -39934,7 +39928,7 @@ var render = function () {
             _c(
               "a",
               {
-                staticClass: "btn btn-slider mb-5",
+                staticClass: "btn btn-slider login-bottom",
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.onClickLogin },
               },
