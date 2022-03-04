@@ -48,16 +48,21 @@
                                     <div class="ibox-body">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <label><strong>Update Profile Image</strong> [Image size: width: 800px, height: 800px] [Image type: jpg, jpeg, png]</label>
-                                                <input id="fileUpload" class="form-control form-control-lg" value="" name="image" type="file">
-                                                <br>
-                                                <div id="wrapper" class="mt-2">
+                                                <label><strong>Update Profile Image</strong></label>
+                                                <input id="vendor-profile-image" class="form-control-file d-none" value="" name="image" type="file">
+                                                <small class="form-text">
+                                                    Recommended image size: 800x800px. Must be: jpg, jpeg, png
+                                                </small>
+                                                <div id="wrapper" class="py-2">
                                                     <div id="image-holder">
                                                         @if($user->vendor->image)
-                                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded">
+                                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded" style="max-height: 250px;">
+                                                        @else
+                                                        <img src="https://dummyimage.com/800x800/e8e8e8/0011ff" name="pic" id="picture" style="max-height: 250px;">
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <input id="vendor-profile-image" class="form-control-file" value="" name="image" type="file">
                                             </div>
 
                                             <div class="col-md-7">
@@ -167,7 +172,7 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <label><strong> Upload Cheque Image with All Bank Detail Shown Clearly </strong> </label>
-                                                <input class="form-control" name="bank_info_image" type="file" id="imageUpload" @if($user->vendor->bank_info_image) disabled @endif>
+                                                <input class="form-control-file" name="bank_info_image" type="file" id="imageUpload" @if($user->vendor->bank_info_image) disabled @endif>
                                                 <br>
                                                 <div id="wrapper" class="mt-2">
                                                     <div id="bank-info-image-holder">

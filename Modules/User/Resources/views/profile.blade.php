@@ -35,7 +35,7 @@
                     @method('post')
 
                     <div class="ibox-body">
-                        <div class="card shadow-sm border-0">
+                        <div class="card border-0">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-12 form-group">
@@ -43,21 +43,20 @@
                                         <input class="form-control" type="text" value="{{$user->vendor->shop_name}}" name="shop_name" placeholder="Enter Shop Name Here">
                                     </div>
                                     <div class="col-md-6">
+                                        <div class="form-group">
                                         <label><strong>Update Profile Image</strong> </label>
-                                        <input id="fileUpload" class="form-control" value="" name="image" type="file" style="display: none;">
-                                        <br>
-                                        <div id="wrapper" class="mt-2">
+                                        <div id="wrapper" class="py-2">
                                             <div id="image-holder">
-                                                @if($user->vendor->image)
-                                                <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" id="picture" class="rounded">
-                                                @else 
-                                                <img src="https://dummyimage.com/300" name="pic" id="picture">
-                                                @endif
+                                                {{-- @if($user->vendor->image)
+                                                <img src="{{ asset('images/listing/'.$user->vendor->image) }}" alt="No Image" id="picture" class="rounded">
+                                                @else  --}}
+                                                <img src="https://dummyimage.com/800x800/e8e8e8/0011ff" name="pic" id="picture" style="max-height: 250px;">
+                                                {{-- @endif --}}
                                             </div>
                                         </div>
+                                        <input id="fileUpload" class="form-control-file" value="" name="image" type="file">
                                     </div>
-
-
+                                    </div>
                                     <div class="col-lg-6 col-sm-12 form-group">
                                         <label><strong>Company Email</strong> </label>
                                         <input class="form-control" type="text" value="{{$user->vendor->company_email}}" name="company_email" placeholder="Enter Company Email Here">
@@ -205,9 +204,8 @@
                             </div>
                             <div class="col-md-5">
                                 <label><strong> Upload Image </strong> </label>
-                                <input id="imageUpload" class="form-control" value="" name="bank_info_image" type="file">
-                                <br>
-                                <div id="wrapper" class="mt-2">
+                                <input id="imageUpload" class="form-control-file" name="bank_info_image" type="file">
+                                <div id="wrapper" class="py-2">
                                     <div id="bank-info-image-holder">
                                         @if($user->vendor->bank_info_image)
                                         <img src="{{asset('images/listing/'.$user->vendor->bank_info_image)}}" alt="No Image" class="rounded">
@@ -215,9 +213,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-lg-12 col-sm-12 form-group mt-3">
-                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                            <div class="col-lg-12 col-sm-12 form-group">
+                                <button type="submit" class="btn btn-success px-4 border-0 "><span class="fa fa-send mr-2"></span> Update</button>
                             </div>
                         </div>
                     </div>

@@ -45,13 +45,13 @@ $user = auth()->user();
                 </ul>
             </li>
 
-            @can('accessChat')
+            {{-- @can('accessChat')
             <li>
                 <a href="/chat" target="_blank"><i class="sidebar-item-icon fa fa-comments"></i>
                     <span class="nav-label">Chat</span>
                 </a>
             </li>
-            @endcan
+            @endcan --}}
             @endif
             @can('manageDeals')
             <li>

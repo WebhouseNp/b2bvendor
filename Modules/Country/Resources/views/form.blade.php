@@ -54,9 +54,10 @@
                         <div class="ibox">
                             <div class="ibox-body">
                                 <div class="form-group">
-                                    <label> Upload Flag [image size: width: 750px, height: 472px ] </label>
-                                    <input type="file" name="flag" id="image" class="form-control @error('flag') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
-                                    <div id="wrapper" class="mt-2">
+                                    <label> Upload Flag </label>
+                                    <input type="file" name="flag" id="image" class="form-control-file @error('flag') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
+                                    <small class="form-text">Recommended image size: 400x400px</small>
+                                    <div id="wrapper" class="py-2">
                                         <div id="image-holder">
                                             @if($updateMode)
                                             <img src="{{ $country->flagUrl() }}" height="120px" width="120px">
@@ -79,7 +80,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
+                                    <button class="btn btn-success px-4 border-0" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
                                 </div>
                             </div>
                         </div>

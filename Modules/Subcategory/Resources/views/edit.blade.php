@@ -51,7 +51,7 @@
 
                             <div class="form-group">
                                 <label>Image </label>
-                                <input class="form-control" name="image" type="file" id="fileUpload">
+                                <input class="form-control-file" name="image" type="file" id="fileUpload">
                                 <div id="wrapper" class="mt-2">
                                     <div id="image-holder">
                                     </div>

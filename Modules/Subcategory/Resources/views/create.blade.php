@@ -53,7 +53,7 @@
 
                         <div class="form-group">
                             <label>Image </label>
-                            <input class="form-control" name="image" type="file" id="fileUpload">
+                            <input class="form-control-file" name="image" type="file" id="fileUpload">
                             <div id="wrapper" class="mt-2">
                                 <div id="image-holder">
                                 </div>
@@ -71,7 +71,7 @@
                         @endif
 
                         <div class="form-group">
-                            <input onclick="submitSubCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success btn-lg">
+                            <input onclick="submitSubCategoryNow();" type="button" name="save" value="Save" id="blog_submit" class="btn btn-success btn-lg px-4 border-0">
                             <!-- <button type="submit" class="btn btn-success">Submit</button> -->
                         </div>
 

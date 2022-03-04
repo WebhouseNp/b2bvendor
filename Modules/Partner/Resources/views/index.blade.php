@@ -43,12 +43,12 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('partner.edit', $data->id) }}" class="btn btn-link py-0 text-success"><i class="fa fa-edit"></i> Edit</a>
-                                <div>|</div>
+                                <a href="{{ route('partner.edit', $data->id) }}" class="btn btn-primary border-0"><i class="fa fa-edit"></i> Edit</a>
+                                <div class="mx-2"></div>
                                 <form action="{{ route('partner.destroy', $data->id) }}" method="post" class="d-inline">
                                     @csrf()
                                     @method('DELETE')
-                                    <button onclick="return confirm('Are you sure you want to delete this Partner?')" class="btn btn-link py-0 text-danger">
+                                    <button onclick="return confirm('Are you sure you want to delete this Partner?')" class="btn btn-danger border-0">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </form>

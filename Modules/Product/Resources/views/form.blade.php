@@ -243,14 +243,17 @@
                         <div class="ibox">
                             <div class="ibox-body">
                                 <div class="form-group">
-                                    <label> Upload Main Banner [image size: width: 800px, height: 800px] [image type: jpg, jpeg, png] </label>
+                                    <label>Main Product Image</label>
                                         <div id="wrapper" class="mb-2">
                                             <div id="image-holder">
                                                 <img class="rounded" src="{{ $product->image ? $product->imageUrl() : 'https://dummyimage.com/800x800/e8e8e8/0011ff' }}" width="150" height="150">
                                             </div>
                                         </div>
-                                        <input class="" name="image" type="file" id="fileUpload" accept="image/*">
-                                        <small>* Max size 2MB.</small>
+                                        <input class="" name="image" type="file" id="fileUpload" class="form-control-file" accept="image/*">
+                                        <small class="form-text">
+                                            Recommended image size: 800x800px. Must be: jpg, jpeg, png
+                                        </small>
+                                        <small class="form-text">* Max size 2MB.</small>
                                 </div>
 
                                 <div class="form-group">
@@ -283,7 +286,7 @@
                                 </div> --}}
                                 
                                 <div class="form-group">
-                                    <button onclick="submitProductNow();" type="button" id="product_submit" class="btn btn-success btn-lg btn-block">{{ $updateMode ? 'Save' : 'Save & Continue' }}</button>
+                                    <button onclick="submitProductNow();" type="button" id="product_submit" class="btn btn-success btn-lg btn-block border-0">{{ $updateMode ? 'Save' : 'Save & Continue' }}</button>
                                 </div>
                             </div>
                         </div>

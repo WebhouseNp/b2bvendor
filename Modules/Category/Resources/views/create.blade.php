@@ -27,7 +27,7 @@
 
                         <div class="form-group ">
                             <label>Upload Category Image </label>
-                            <input class="form-control" name="image" type="file" id="fileUpload">
+                            <input class="form-control-file" name="image" type="file" id="fileUpload">
                             <div id="wrapper" class="mt-2">
                                 <div id="image-holder">
                                 </div>
@@ -42,7 +42,7 @@
                         @endif
                         <br>
                         <div class="form-group">
-                            <input onclick="submitCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success">
+                            <input onclick="submitCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success px-4 border-0">
                         </div>
                     </form>
                 </div>
