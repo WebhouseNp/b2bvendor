@@ -69,7 +69,7 @@
           </table>
 
           <div class="form-group px-2">
-            <label class="mr-2">Price for purchase quantity above the range.</label>
+            <label class="mr-2">Price for purchase quantity without/above the range.</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Rs. </span>
