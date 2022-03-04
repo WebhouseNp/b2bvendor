@@ -26,21 +26,21 @@
                         @endif
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name', $productCategory->name) }}" placeholder="Enter name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name', $productCategory->name) }}" placeholder="Enter name" required>
                             <x-invalid-feedback field="name" />
                         </div>
 
                         @if($updateMode)
                         <div class="form-group">
                             <label>Slug</label>
-                            <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{ old('slug', $productCategory->slug) }}" placeholder="Enter name">
+                            <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{ old('slug', $productCategory->slug) }}" placeholder="Enter name" required>
                             <x-invalid-feedback field="slug" />
                         </div>
                         @endif
 
                         <div class="form-group">
                             <label for="">Category</label>
-                            <select class="form-control custom-select" id="js-category-id" name="category_id">
+                            <select class="form-control custom-select" id="js-category-id" name="category_id" required>
                                 <option value="">Choose one...</option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -50,7 +50,7 @@
 
                         <div class="form-group">
                             <label for="">Sub Category</label>
-                            <select class="form-control custom-select @error('subcategory_id') is-invalid @enderror" id="js-sub-category-id" name="subcategory_id">
+                            <select class="form-control custom-select @error('subcategory_id') is-invalid @enderror" id="js-sub-category-id" name="subcategory_id" required>
                                 <option value="">Choose one...</option>
                                 @foreach ($categories as $category)
                                 @foreach ($category->subcategory as $cat)
