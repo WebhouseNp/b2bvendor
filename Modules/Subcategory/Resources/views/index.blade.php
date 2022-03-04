@@ -63,14 +63,14 @@
                     <td>
                         <input type="checkbox" class="SubcategoryStatus btn btn-success btn-sm" rel="{{$detail->id}}" data-toggle="toggle" data-on="Publish" data-off="Unpublish" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($detail->publish == 1) checked @endif>
                     </td>
-                    <td>
+                    <td class="text-nowrap">
                         <a title="view" class="btn btn-success btn-sm" href="{{route('subcategory.view',$detail->id)}}">
                             <i class="fa fa-eye"></i>
                         </a>
                         <a title="Edit" class="btn btn-primary btn-sm" href="{{route('subcategory.edit',$detail->id)}}">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <button class="btn btn-danger delete" onclick="return confirm('Do You want to delete this sub-category??') && deleteSubcategory(this,'{{ $detail->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-danger btn-sm delete" onclick="return confirm('Do You want to delete this sub-category??') && deleteSubcategory(this,'{{ $detail->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
                     </td>
                     @endif
                 </tr>
