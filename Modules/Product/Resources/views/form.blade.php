@@ -115,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div class="ibox">
+                        {{-- <div class="ibox">
                             <div class="ibox-body">
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 form-group">
@@ -154,7 +154,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="ibox">
                             <div class="ibox-body">
@@ -283,7 +283,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <button onclick="submitProductNow();" type="button" id="product_submit" class="btn btn-success btn-lg btn-block">Save</button>
+                                    <button onclick="submitProductNow();" type="button" id="product_submit" class="btn btn-success btn-lg btn-block">{{ $updateMode ? 'Save' : 'Save & Continue' }}</button>
                                 </div>
                             </div>
                         </div>
@@ -464,7 +464,7 @@ $name = ['highlight'];
                     var validation_errors = JSON.stringify(response.message);
                     DataSuccessInDatabase(validation_errors);
                     if (!window.updateMode){
-                        window.location.href = '/product-images/' + response.data.id;
+                        window.location.href = '/product-pricing/' + response.data.id;
                     }
                     // window.location.href =  window.updateMode ?'/product' : '/product-images/' + response.data.id;
                 }

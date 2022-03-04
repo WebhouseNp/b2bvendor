@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@syncfusion/ej2-vue-dropdowns": "^19.4.40",
+        "form-backend-validation": "^2.4.0",
         "laravel-echo": "^1.11.3",
         "pusher-js": "^7.0.3",
         "sass-loader": "^12.4.0",

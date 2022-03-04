@@ -23,6 +23,8 @@ Vue.component('resetpassword', require('./components/vendorLogin/Reset.vue').def
 Vue.component('createdeal', require('./components/vendorDashboard/createDeal.vue').default);
 Vue.component('editdeal',require('./components/vendorDashboard/editDeal.vue').default);
 
+Vue.component('PriceRange',require('./components/Product/PriceRange.vue').default);
+
 // Chat components
 Vue.component ('chatbox', require('./components/chat/Chatbox.vue').default);
 Vue.component ('inbox-list', require('./components/chat/InboxList.vue').default);
