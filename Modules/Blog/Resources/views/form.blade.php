@@ -17,7 +17,6 @@
         @csrf
         @if($updateMode)
         @method('PUT')
-        {{-- <input type="hidden" name="_method" value="PUT"> --}}
         @endif
         <div class="row">
             <div class="col-lg-12">
@@ -65,8 +64,8 @@
                         <div class="ibox">
                             <div class="ibox-body">
                                 <div class="form-group">
-                                    <label> Upload Image [image size: width: 750px, height: 472px ] </label>
-                                    <input type="file" name="image" id="image" class="form-control @error('imahe') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
+                                    <label>Upload Image</label>
+                                    <input type="file" name="image" id="image" class="form-control-file @error('imahe') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
                                     <div id="wrapper" class="mt-2">
                                         <div id="image-holder">
                                             @if($updateMode)
@@ -90,7 +89,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
+                                    <button class="btn btn-success px-4 border-0" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
                                 </div>
                             </div>
                         </div>

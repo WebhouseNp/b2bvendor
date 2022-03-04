@@ -2,18 +2,11 @@
 @section('page_title') {{ (@$updateMode) ? "Update" : "Add"}} Partner @endsection
 
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title"> Partner</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item"> {{ ($updateMode) ? "Update" : "Add"}} Partner</li>
-    </ol>
-
-</div>
 @include('admin.section.notifications')
 <div class="page-content fade-in-up">
+    <div class="page-heading">
+        <h1 class="page-title"> Partner</h1>
+    </div>
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">{{ ($updateMode) ? "Update" : "Add"}} Partner</div>
@@ -41,19 +34,20 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label><strong>Partner's Name *</strong></label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $partner->name) }}" name="name" placeholder="partner Name here">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $partner->name) }}" name="name" placeholder="Partner's name here">
                                         @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-lg-12 col-sm-12 form-group">
                                         <label class="form-label">Partner Type:</label>
-                                        <select name="partner_type_id" class="form-control">
+                                        <select name="partner_type_id" class="form-control custom-select @error('partner_type_id') is-invalid @enderror">
                                             <option value="">Please Select Type</option>
                                             @foreach ($partnerTypes as $type)
                                             <option value="{{ $type->id }}" @if(old('partner_type_id', $partner->partner_type_id) == $type->id) selected @endif>{{ $type->name }}</option>
                                             @endforeach
                                         </select>
+                                        <x-invalid-feedback field="partner_type_id"></x-invalid-feedback>
                                     </div>
                                 </div>
                             </div>
@@ -63,15 +57,16 @@
                         <div class="ibox">
                             <div class="ibox-body">
                                 <div class="form-group">
-                                    <label> Upload Image [image size: width: 750px, height: 472px ] </label>
-                                    <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
-                                    <div id="wrapper" class="mt-2">
+                                    <label>Upload Image</label>
+                                    <input type="file" name="image" id="image" class="form-control-file @error('image') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
+                                    <small class="form-text">Recommended image size: 400x400px</small>
+                                    @if($updateMode)
+                                    <div id="wrapper" class="py-2">
                                         <div id="image-holder">
-                                            @if($updateMode)
                                             <img src="{{ $partner->imageUrl() }}" height="120px" width="120px">
-                                            @endif
                                         </div>
                                     </div>
+                                    @endif
                                     @error('image')
                                     <div class="invalid-feedback">{{$errors->first('image')}}</div>
                                     @enderror

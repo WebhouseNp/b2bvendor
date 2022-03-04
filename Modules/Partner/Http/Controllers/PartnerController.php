@@ -25,8 +25,8 @@ class PartnerController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'nullable',
-            'partner_type_id'       => 'required|numeric|exists:partner_types,id',
+            'image' => 'required',
+            'partner_type_id' => 'required|numeric|exists:partner_types,id',
             'publish' => 'nullable'
         ]);
         Partner::create([
@@ -53,8 +53,8 @@ class PartnerController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'partner_type_id'       => 'required|numeric|exists:partner_types,id',
-            'image' => 'nullable',
+            'partner_type_id' => 'required|numeric|exists:partner_types,id',
+            'image' => 'required',
             'publish' => 'nullable'
         ]);
 
