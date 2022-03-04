@@ -49,7 +49,7 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <label><strong>Update Profile Image</strong> [Image size: width: 800px, height: 800px] [Image type: jpg, jpeg, png]</label>
-                                                <input id="fileUpload" class="form-control form-control-lg" value="" name="image" type="file">
+                                                <input id="fileUpload" class="form-control-file" value="" name="image" type="file">
                                                 <br>
                                                 <div id="wrapper" class="mt-2">
                                                     <div id="image-holder">

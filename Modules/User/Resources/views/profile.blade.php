@@ -205,7 +205,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label><strong> Upload Image </strong> </label>
-                                <input id="imageUpload" class="form-control" value="" name="bank_info_image" type="file">
+                                <input id="imageUpload" class="form-control-file" value="" name="bank_info_image" type="file">
                                 <br>
                                 <div id="wrapper" class="mt-2">
                                     <div id="bank-info-image-holder">
