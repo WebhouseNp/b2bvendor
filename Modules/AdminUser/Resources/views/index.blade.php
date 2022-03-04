@@ -20,7 +20,7 @@
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </div>
-        <div class="ibox-body table-responsive" id="appendUser">
+        <div class="ibox-body table-responsives-sm" id="appendUser">
         @include('adminuser::usersTable')
         </div>
     </div>

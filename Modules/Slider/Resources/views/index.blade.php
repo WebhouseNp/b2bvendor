@@ -17,7 +17,7 @@
          
 
         <div class="ibox-body">
-            <table class="table table-striped table-responsive table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+            <table class="table table-striped table-responsive-sm table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>S.N</th>

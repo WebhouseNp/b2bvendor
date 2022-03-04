@@ -18,7 +18,7 @@ $api_token = $user->api_token;
                     <a href="/product" class="btn btn-primary">Back to Listing</a>
                 </div>
                 <div class="ibox-body">
-                    <table class="table table-responsive">
+                    <table class="table table-responsive-sm">
                         <thead>
                             <tr>
                                 <th scope="col">Product</th>

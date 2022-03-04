@@ -19,7 +19,7 @@
             <div class="ibox-title">Sales Report</div>
         </div>
         <div class="ibox-body">
-            <table class="table table-responsive table-bordered table-hover" cellspacing="0" width="100%">
+            <table class="table table-responsive-sm table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr class="border-0">
                         <th>S.N</th>

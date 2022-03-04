@@ -173,10 +173,8 @@
                                 </div>
 
                                 <div class="row standard">
-
-
                                 </div>
-                                <div class="table-responsive table-hover" id="variant_table">
+                                <div class="table-responsive-sm table-hover" id="variant_table">
                                 </div>
                                 <div class="mb-3 bg-white rounded p-3 ">
                                     <div id="addvariantsection" class="row  ">
