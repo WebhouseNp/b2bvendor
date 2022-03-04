@@ -22,9 +22,8 @@
             <div class="ibox-title">All Subscribers list</div>
         </div>
 
-
         <div class="ibox-body">
-            <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
+            <table class="table table-striped table-responsive-sm table-bordered table-hover" id="example-table" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>

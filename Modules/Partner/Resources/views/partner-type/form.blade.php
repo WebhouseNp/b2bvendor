@@ -50,9 +50,7 @@
                                     </div>
                                     <br>
                                     <div class="col-lg-12 col-sm-12 form-group">
-                                        <div class="col text-center">
-                                            <button class="btn btn-success" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
-                                        </div>
+                                        <button class="btn btn-success px-4 border-0" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
                                     </div>
 
                                 </div>

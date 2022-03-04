@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="ibox-body">
-            <table id="countries-table" class="table table-responsive table-striped table-bordered table-hover">
+            <table id="countries-table" class="table table-responsive-sm table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>SN</th>

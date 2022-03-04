@@ -29,15 +29,8 @@
                             <div class="ibox">
                                 <div class="ibox-head">
                                     <div class="ibox-title">Slider Information</div>
-                                    <div class="ibox-tools">
-                                        {{--
-                                <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-                                    --}}
-                                        {{--dd($slider_info)--}}
-                                    </div>
                                 </div>
                                 <div class="ibox-body">
-
                                     <div class="row">
                                         <div class="col-lg-12 col-sm-12 form-group">
                                             <label>Slider Title</label>
@@ -60,18 +53,16 @@
                                             @endif
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-lg-3">
                             <div class="ibox">
                                 <div class="ibox-body">
                                     <div class="form-group">
                                         <label> Upload Banner</label>
-                                        <label>[ Image size: width:1420px, height:400px ]</label>
-                                        <input class="form-control" type="file" name="image" id="image" accept="image/*"
+                                        <small class="form-text">Recommended image size: 800x650px</small>
+                                        <input class="form-control-file" type="file" name="image" id="image" accept="image/*"
                                             onchange="showThumbnail(this);">
                                         @if($errors->has('image'))
                                         <div class="error alert-danger">{{$errors->first('image')}}</div>

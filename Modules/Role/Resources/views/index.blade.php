@@ -25,7 +25,7 @@ $api_token = $user->api_token;
         <div class="ibox-body" id="validation-errors">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         </div>
-        <div class="ibox-body table-responsive" id="appendRole">
+        <div class="ibox-body table-responsive-sm" id="appendRole">
 
         </div>
     </div>

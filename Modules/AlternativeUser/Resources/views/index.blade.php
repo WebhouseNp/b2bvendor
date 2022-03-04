@@ -20,7 +20,7 @@ Users
         </div>
 
         <div class="ibox-body">
-            <table id="alternative-users-table" class="table table-responsive table-bordered table-hover" cellspacing="0">
+            <table id="alternative-users-table" class="table table-responsive-sm table-bordered table-hover" cellspacing="0">
                 <thead>
                     <tr>
                         <th>S.N</th>

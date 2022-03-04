@@ -23,7 +23,7 @@ $api_token = $user->api_token;
         </div>
 
         <div class="ibox-body">
-            <table class="table table-responsive table-bordered" id="example-table" cellspacing="0" width="100%">
+            <table class="table table-responsive-sm table-bordered" id="example-table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>SN</th>

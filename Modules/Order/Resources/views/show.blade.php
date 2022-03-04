@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="my-3"></div>
-                        <table class="table table-responsive border">
+                        <table class="table table-responsive-sm border">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase">Product Title</th>

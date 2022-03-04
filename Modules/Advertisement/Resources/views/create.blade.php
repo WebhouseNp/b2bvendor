@@ -65,7 +65,7 @@
                                 <div class="form-group">
                                     <label> Upload Banner <br><span class="image_dimension">( 360px * 270px )</span>
                                     </label>
-                                    <input class="form-control" type="file" name="image" id="fileUpload"
+                                    <input class="form-control-file" type="file" name="image" id="fileUpload"
                                         accept="image/*">
 
                                     <div id=" wrapper" class="mt-2">
@@ -77,7 +77,7 @@
 
                                 <div class="form-group">
                                     <label>Status:</label>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control custom-select" name="status">
                                         <option value="Publish">
                                             Publish</option>
                                         <option value="Unpublish">

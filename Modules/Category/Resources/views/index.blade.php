@@ -18,11 +18,11 @@
             </div>
         </div>
 
-        <div class="ibox-body table-responsive" id="validation-errors">
+        <div class="ibox-body" id="validation-errors">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         </div>
         {{-- <div class="ibox-body" id="appendCategory"></div> --}}
-        <table class="table table-striped table-responsive table-hover dt-responsive display" id="example-table" cellspacing="0" style="width:100%">
+        <table class="table table-striped table-responsive-sm table-hover dt-responsive display" id="example-table" cellspacing="0" style="width:100%">
             <thead>
                 <tr class="border-0">
                     <th>S.N</th>

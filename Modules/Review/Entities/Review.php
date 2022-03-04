@@ -34,13 +34,11 @@ class Review extends Model
 
         // Check if has purchased product
         $hasPurchasedProduct = \Modules\Order\Entities\Order::whereHas('orderLists', function ($query) use ($productId) {
-            logger('subquery');
             $query->where('product_id', $productId);
         })
             ->where('user_id', $customerId)->count();
 
         if ($hasPurchasedProduct) {
-            logger('here');
             return true;
         }
         
