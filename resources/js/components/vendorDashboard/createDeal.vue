@@ -4,8 +4,7 @@
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
-            <h5>Select User</h5>
-            <hr />
+            <h5 style="font-weight:700; margin-bottom: 10px;">Select User</h5>
           </div>
         </div>
         <div>
@@ -18,7 +17,7 @@
                     <input
                       type="text"
                       v-model.trim="$v.customer.name.$model"
-                      class="form-control"
+                      class="form-control rounded"
                       :class="{
                         'is-invalid': validationStatus($v.customer.name),
                       }"
@@ -78,7 +77,7 @@
                 lang="en"
                 type="datetime"
                 :disabled-date="disableDate"
-                style="width: 100%"
+                style="width: 100%; border:none; margin-top: -7px;"
                 placeholder="select date time"
                 :show-time-panel="showTimePanel"
                 @close="handleOpenChange"
@@ -100,8 +99,7 @@
           </div>
           <div class="row">
             <div class="col-5">
-              <h5>Select Product</h5>
-              <hr />
+              <h5 style="font-weight: 700; margin-bottom: 20px;">Select Product</h5>
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
               <div class="table-responsive">
@@ -189,7 +187,7 @@
                       </td>
                       <td scope="row" class="inputQuentiry">
                         <input
-                          class="form-control"
+                          class="form-control rounded"
                           type="number"
                           placeholder="Quantity"
                           v-model.number="invoice_product.product_qty.$model"
@@ -214,7 +212,7 @@
                       </td>
                       <td scope="row" class="inputPrice">
                         <input
-                          class="form-control"
+                          class="form-control rounded"
                           type="text"
                           placeholder="Unit Price"
                           v-model.number="invoice_product.unit_price.$model"
@@ -239,7 +237,7 @@
                       </td>
                       <td scope="row" class="shippingCharge">
                         <input
-                          class="form-control"
+                          class="form-control rounded"
                           type="text"
                           placeholder="Shipping charge"
                           v-model.number="
@@ -260,7 +258,7 @@
                       </td>
                       <td scope="row" class="totalPrice">
                         <input
-                          class="form-control"
+                          class="form-control rounded"
                           type="text"
                           placeholder="Total price in rupees"
                           :value="subtotalRow[index]"
