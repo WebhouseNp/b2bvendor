@@ -58,7 +58,7 @@
                             <div class="ibox-body">
                                 <div class="form-group">
                                     <label>Upload Image</label>
-                                    <input type="file" name="image" id="image" class="form-control-file @error('image') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
+                                    <input type="file" name="image" id="fileUpload" class="form-control-file @error('image') is-invalid @enderror" accept="image/*">
                                     <small class="form-text">Recommended image size: 400x400px</small>
                                     @if($updateMode)
                                     <div id="wrapper" class="py-2">
@@ -96,17 +96,6 @@
 </div>
 
 @endsection
-@section('scripts')
-
-<script>
-    function showThumbnail(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-        }
-        reader.onload = function(e) {
-            $('#thumbnail').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-</script>
-@endsection
+@push('push_scripts')
+@include('dashboard::admin.layouts._partials.imagepreview')
+@endpush
