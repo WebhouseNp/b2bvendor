@@ -14,12 +14,6 @@
                     <span class="info-box-number">{{ formatted_price($totalSales) }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Total Sales</p>
-                    <h2>{{ formatted_price($totalSales) }}</h2>
-                </div>
-            </div> -->
         </div>
         <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
@@ -31,12 +25,6 @@
                     <span class="info-box-number">{{ formatted_price($salesFromOnlinePayment) }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Sales from Online Payment</p>
-                    <h2>{{ formatted_price($salesFromOnlinePayment) }}</h2>
-                </div>
-            </div> -->
         </div>
         <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
@@ -48,13 +36,6 @@
                     <span class="info-box-number">{{ formatted_price($salesFromCOD) }}</span>
                 </div>
             </div>
-            
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Sales from COD</p>
-                    <h2>{{ formatted_price($salesFromCOD) }}</h2>
-                </div>
-            </div> -->
         </div>
 
         <div class="col-lg-4 col-md-6 mb-3">
@@ -67,14 +48,7 @@
                     <span class="info-box-number">{{ formatted_price($payableToAdmin) }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Remaining Payable Amount To Admin</p>
-                    <h2>{{ formatted_price($payableToAdmin) }}</h2>
-                </div>
-            </div> -->
         </div>
-
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="info-box">
@@ -83,15 +57,14 @@
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Receivable Amount From Admin</span>
-                    <span class="info-box-number">{{ formatted_price($reveivableFromAdmin) }}</span>
+                    <span class="info-box-number d-md-flex">
+                        <div>{{ formatted_price($reveivableFromAdmin) }}</div>
+                        <div class="ml-auto">
+                            <button id="js-request-payment-btn" class="btn btn-primary btn-sm border-0">Request Payment</button>
+                        </div>
+                    </span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Remaining Receivable Amount From Admin</p>
-                    <h2>{{ formatted_price($reveivableFromAdmin) }}</h2>
-                </div>
-            </div> -->
         </div>
 
         <div class="col-lg-4 col-md-6 mb-4">
@@ -104,12 +77,6 @@
                     <span class="info-box-number">{{ $totalActiveProductsCount }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Total Active Products</p>
-                    <h2>{{ $totalActiveProductsCount }}</h2>
-                </div>
-            </div> -->
         </div>
     </div>
 
@@ -130,6 +97,39 @@
 </div>
 @endsection
 
-@section('scripts')
-
-@endsection
+@push('push_scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $('#js-request-payment-btn').click(function () {
+                $(this).html('<i class="fa fa-spinner fa-spin"></i> Requesting...');
+                $(this).prop('disabled', true);
+                $.ajax({
+                    url: '{{ route('request-payment') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Request Sent',
+                            text: 'Your request for payment has been sent successfully.',
+                        });
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong while sending your request. Please try again later.',
+                        });
+                    },
+                    complete: function () {
+                        $('#js-request-payment-btn').html('Request Payment');
+                        $('#js-request-payment-btn').prop('disabled', false);
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
