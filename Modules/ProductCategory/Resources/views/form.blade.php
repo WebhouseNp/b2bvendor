@@ -72,10 +72,9 @@
 
                         <div class="form-group">
                             <label>Image </label>
-                            <input class="form-control-file" name="image" type="file" id="fileUpload" accept="image/*">
-                            <div id="wrapper" class="mt-2">
-                                <div id="image-holder">
-                                </div>
+                            <input class="form-control-file" name="image" type="file" onchange="handleUploadPreview()" data-preview-el-id="js-product-cat-img-preview" accept="image/*">
+                            <div class="py-2">
+                                <img id="js-product-cat-img-preview" class="rounded" src="{{ $productCategory->image ? $productCategory->imageUrl() : 'https://dummyimage.com/400x400/284ec9/ededed&text=400x400' }}" style="max-height: 200px;">
                             </div>
                         </div>
 
@@ -91,7 +90,6 @@
                         @endif
 
                         <div class="form-group">
-                            {{-- <input onclick="submitSubCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success btn-lg"> --}}
                             <button type="submit" class="btn btn-success px-4 border-0">Submit</button>
                         </div>
 

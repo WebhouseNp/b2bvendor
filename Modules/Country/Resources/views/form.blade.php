@@ -55,15 +55,9 @@
                             <div class="ibox-body">
                                 <div class="form-group">
                                     <label> Upload Flag </label>
-                                    <input type="file" name="flag" id="image" class="form-control-file @error('flag') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
+                                    <input type="file" name="flag" id="image" class="form-control-file @error('flag') is-invalid @enderror" accept="image/*" onchange="handleUploadPreview()" data-preview-el-id="js-country-img-preview">
                                     <small class="form-text">Recommended image size: 400x400px</small>
-                                    <div id="wrapper" class="py-2">
-                                        <div id="image-holder">
-                                            @if($updateMode)
-                                            <img src="{{ $country->flagUrl() }}" height="120px" width="120px">
-                                            @endif
-                                        </div>
-                                    </div>
+                                    <img id="js-country-img-preview" class="rounded my-2" src="{{ $country->path ? $country->flagUrl() : 'https://dummyimage.com/400x400/e8e8e8/0011ff' }}" style="max-height: 200px;">
                                     @error('flag')
                                     <div class="invalid-feedback">{{$errors->first('flag')}}</div>
                                     @enderror
@@ -91,20 +85,4 @@
     </form>
 
 </div>
-
-@endsection
-@section('scripts')
-
-<script>
-    function showThumbnail(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-        }
-        reader.onload = function(e) {
-            $('#thumbnail').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-
-</script>
 @endsection

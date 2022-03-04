@@ -57,7 +57,14 @@
                 $('.nav-tabs a[href="'+hash.replace(prefix,"")+'"]').tab('show');
             }
         });
+
     });
+    
+    // for image preview
+    function handleUploadPreview() {
+        console.log('handleUploadPreview');
+        document.getElementById(event.target.dataset.previewElId).src = URL.createObjectURL(event.target.files[0]);
+    }
 
 </script>
 @stack('push_scripts')
