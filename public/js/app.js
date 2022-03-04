@@ -2486,6 +2486,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -39316,11 +39323,13 @@ var render = function () {
             "table",
             { staticClass: "table table-borderless" },
             [
+              _vm._m(1),
+              _vm._v(" "),
               _vm._l(_vm.form.ranges, function (range, index) {
                 return _c("tr", { key: index, staticClass: "table" }, [
                   _c("td", [
                     _c("div", { staticClass: "input-group" }, [
-                      _vm._m(1, true),
+                      _vm._m(2, true),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -39364,7 +39373,7 @@ var render = function () {
                   _vm._v(" "),
                   _c("td", [
                     _c("div", { staticClass: "input-group" }, [
-                      _vm._m(2, true),
+                      _vm._m(3, true),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -39404,7 +39413,7 @@ var render = function () {
                   _vm._v(" "),
                   _c("td", [
                     _c("div", { staticClass: "input-group" }, [
-                      _vm._m(3, true),
+                      _vm._m(4, true),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -39485,7 +39494,7 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "input-group" }, [
-              _vm._m(4),
+              _vm._m(5),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -39546,6 +39555,20 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ibox-head" }, [
       _c("h5", [_vm._v("Price Ranges")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { attrs: { colspan: "42" } }, [
+        _c("div", [
+          _vm._v(
+            '\n                You can also add price ranges to your products by clicking "Add Price Range" button.\n              '
+          ),
+        ]),
+      ]),
     ])
   },
   function () {

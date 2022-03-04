@@ -10,6 +10,13 @@
         </div>
         <div>
           <table class="table table-borderless">
+            <tr>
+              <td colspan="42">
+                <div>
+                  You can also add price ranges to your products by clicking "Add Price Range" button.
+                </div>
+              </td>
+            </tr>
             <tr v-for="(range, index) in form.ranges" class="table" :key="index">
               <td>
                 <div class="input-group">
