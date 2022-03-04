@@ -7,6 +7,7 @@
 				initial-scale=1,
 				shrink-to-fit=no">
     <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('/images/favicon.png') }}" type="image/gif" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js">
     </script>
