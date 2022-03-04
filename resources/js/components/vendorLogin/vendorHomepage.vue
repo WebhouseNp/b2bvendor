@@ -68,10 +68,10 @@
           >Start Selling</a
         >
         <div class="alert-login">
-          <span>Already a Seller?</span><br><br>
-          <a href="javascript:void(0)" class="btn btn-slider login-bottom" @click="onClickLogin"
-            >Login here</a>
+          <span>Already a Seller?</span>
         </div>
+        <a href="javascript:void(0)" class="btn btn-slider login-bottom" @click="onClickLogin"
+            >Login here</a>
       </div>
       <!-- content end -->
 

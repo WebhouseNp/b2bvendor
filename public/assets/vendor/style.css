@@ -60,7 +60,7 @@ body {
     font-size: 1.3rem;
     font-weight: 700;
     padding: 8px 30px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     transition: all .5s ease-in;
     text-transform: uppercase;
     border-radius: 0;
@@ -87,7 +87,6 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
 
 .feature {
     position: absolute;
@@ -397,6 +396,10 @@ section {
     opacity: 1;
 }
 
+.alert-login {
+    padding-bottom: 10px;
+}
+
 
 /* steps end */
 
@@ -480,6 +483,7 @@ section {
     }
     .slider-content {
         top: 40%;
+        width: 100%;
     }
 }
 
@@ -552,7 +556,8 @@ section {
     position: absolute;
     margin-left: 10px;
     z-index: 5;
-    color: #ddd;;
+    color: #ddd;
+    ;
     font-size: 2em;
     line-height: 100%;
     -webkit-user-select: none;
