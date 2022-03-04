@@ -74,7 +74,7 @@
                             <label>Image </label>
                             <input class="form-control-file" name="image" type="file" onchange="handleUploadPreview()" data-preview-el-id="js-product-cat-img-preview" accept="image/*">
                             <div class="py-2">
-                                <img id="js-product-cat-img-preview" class="rounded" src="{{ $productCategory->image ? $productCategory->imageUrl() : 'https://dummyimage.com/400x400/284ec9/ededed&text=400x400' }}" style="max-height: 200px;">
+                                <img id="js-product-cat-img-preview" class="rounded" src="{{ $productCategory->image ? $productCategory->imageUrl() : 'https://dummyimage.com/400x400/e8e8e8/0011ff' }}" style="max-height: 150px;">
                             </div>
                         </div>
 
