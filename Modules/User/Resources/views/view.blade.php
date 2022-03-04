@@ -216,11 +216,11 @@
                     <div class="col-7 col-md-8">
                         <p class="card-category">
                             <a href="{{ route('vendor.getVendorProducts',$vendor->username) }}" target="_blank">
-                                Products
+                                Products: {{ count($vendor->products) }}
                             </a>
-                            <div class="card-category-count">
+                            <!-- <div class="card-category-count">
                                 {{ count($vendor->products) }}
-                            </div>
+                            </div> -->
                         </p>
 
                     </div>
@@ -265,9 +265,7 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
     <div class="col-md-3">
         <div class="card stats-card fade-in-up">
             <div class="card-body">
