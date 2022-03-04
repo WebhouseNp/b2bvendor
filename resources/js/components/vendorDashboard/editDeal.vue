@@ -4,8 +4,7 @@
       <div class="mb-3 bg-white rounded p-3">
         <div class="row">
           <div class="col-5">
-            <h5>Select User</h5>
-            <hr />
+            <h5 style="font-weight: 700; margin-bottom: 10px">Select User</h5>
           </div>
         </div>
         <div>
@@ -18,7 +17,7 @@
                     <input
                       type="text"
                       v-model.trim="$v.customer.name.$model"
-                      class="form-control"
+                      class="form-control rounded"
                       :class="{
                         'is-invalid': validationStatus($v.customer.name),
                       }"
@@ -79,7 +78,7 @@
                 lang="en"
                 type="datetime"
                 valueType="format"
-                style="width:100%;"
+                style="width:100%; border:none; margin-top: -7px;"
                 :disabled-date="disableDate"
                 placeholder="select date time"
                 :show-time-panel="showTimePanel"
@@ -102,8 +101,7 @@
           </div>
           <div class="row">
             <div class="col-5">
-              <h5>Select Product</h5>
-              <hr />
+              <h5 style="font-weight: 700; margin-bottom: 20px;">Select Product</h5>
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
               <div class="table-responsive">
@@ -189,7 +187,7 @@
                     </td>
                     <td class="inputQuentiry">
                       <input
-                        class="form-control"
+                        class="form-control rounded"
                         type="number"
                         placeholder="Quantity"
                         v-model.number="invoice_product.product_qty.$model"
@@ -214,7 +212,7 @@
                     </td>
                     <td class="inputPrice">
                       <input
-                        class="form-control"
+                        class="form-control rounded"
                         type="text"
                         placeholder="Unit Price"
                         v-model.number="invoice_product.unit_price.$model"
@@ -239,7 +237,7 @@
                     </td>
                     <td class="shippingCharge">
                       <input
-                        class="form-control"
+                        class="form-control rounded"
                         type="text"
                         placeholder="Shipping charge"
                         v-model.number="invoice_product.shipping_charge.$model"
@@ -258,7 +256,7 @@
                     </td>
                     <td class="totalPrice">
                       <input
-                        class="form-control"
+                        class="form-control rounded"
                         type="text"
                         placeholder="Total price in rupees"
                         :value="subtotalRow[index]"
@@ -317,12 +315,18 @@ import axios from "axios";
 import LoadingButton from "../LoadingButton.vue";
 import Multiselect from "vue-multiselect";
 const mustBePositive = (value) => !helpers.req(value) || value >= 0;
+import moment from 'moment';
 export default {
   props: ["auth", "products","deal","customers"],
   components: {
     DatePicker,
     Multiselect,
     LoadingButton,
+  },
+  filters: {
+    moment(date) {
+      return moment(date).format("YYYY-MM-DD hh:mm:ss");
+    },
   },
   data() {
     return {
@@ -358,7 +362,7 @@ export default {
       name : customer.name,
       email: customer.email 
     }
-    this.expire_at = this.deal.expire_at;
+    this.expire_at = this.$options.filters.moment(this.deal.expire_at);
     this.invoice_products = this.deal.deal_products.map(element => {
       let product = this.products.find((product) => product.id == element.product_id);
       return {
@@ -375,7 +379,6 @@ export default {
 
   },
   computed: {
-
     //calculate sub total in each raw ============================//
 
     subtotalRow() {
@@ -412,7 +415,9 @@ export default {
     },
   },
   methods: {
-
+    format(){
+      this.filters;
+    },
     toggleTimePanel() {
       this.showTimePanel = !this.showTimePanel;
     },

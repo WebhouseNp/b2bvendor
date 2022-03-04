@@ -26,21 +26,21 @@
                         @endif
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name', $productCategory->name) }}" placeholder="Enter name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name', $productCategory->name) }}" placeholder="Enter name" required>
                             <x-invalid-feedback field="name" />
                         </div>
 
                         @if($updateMode)
                         <div class="form-group">
                             <label>Slug</label>
-                            <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{ old('slug', $productCategory->slug) }}" placeholder="Enter name">
+                            <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{ old('slug', $productCategory->slug) }}" placeholder="Enter name" required>
                             <x-invalid-feedback field="slug" />
                         </div>
                         @endif
 
                         <div class="form-group">
                             <label for="">Category</label>
-                            <select class="form-control custom-select" id="js-category-id" name="category_id">
+                            <select class="form-control custom-select" id="js-category-id" name="category_id" required>
                                 <option value="">Choose one...</option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -50,7 +50,7 @@
 
                         <div class="form-group">
                             <label for="">Sub Category</label>
-                            <select class="form-control custom-select @error('subcategory_id') is-invalid @enderror" id="js-sub-category-id" name="subcategory_id">
+                            <select class="form-control custom-select @error('subcategory_id') is-invalid @enderror" id="js-sub-category-id" name="subcategory_id" required>
                                 <option value="">Choose one...</option>
                                 @foreach ($categories as $category)
                                 @foreach ($category->subcategory as $cat)
@@ -72,10 +72,9 @@
 
                         <div class="form-group">
                             <label>Image </label>
-                            <input class="form-control-file" name="image" type="file" id="fileUpload" accept="image/*">
-                            <div id="wrapper" class="mt-2">
-                                <div id="image-holder">
-                                </div>
+                            <input class="form-control-file" name="image" type="file" onchange="handleUploadPreview()" data-preview-el-id="js-product-cat-img-preview" accept="image/*">
+                            <div class="py-2">
+                                <img id="js-product-cat-img-preview" class="rounded" src="{{ $productCategory->image ? $productCategory->imageUrl() : 'https://dummyimage.com/400x400/284ec9/ededed&text=400x400' }}" style="max-height: 200px;">
                             </div>
                         </div>
 
@@ -91,7 +90,6 @@
                         @endif
 
                         <div class="form-group">
-                            {{-- <input onclick="submitSubCategoryNow();" type="button" name="save" value="save" id="blog_submit" class="btn btn-success btn-lg"> --}}
                             <button type="submit" class="btn btn-success px-4 border-0">Submit</button>
                         </div>
 
