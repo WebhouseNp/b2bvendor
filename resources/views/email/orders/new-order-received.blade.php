@@ -1,6 +1,6 @@
 {{-- For vendor --}}
 @component('mail::message')
-## Hi
+## Hi 
 
 You have received a new order #{{ $order->id }}.
 
