@@ -111,7 +111,7 @@ class ProductStorageController extends Controller
 
             DB::commit();
 
-            return response()->json(['status' => 'successful', 'message' => 'Product created successfully.', 'data' => $product]);
+            return response()->json(['status' => 'successful', 'message' => 'Product information saved successfully.', 'data' => $product]);
         } catch (\Exception $exception) {
             DB::rollback();
             $this->deleteMainProductImage($product);

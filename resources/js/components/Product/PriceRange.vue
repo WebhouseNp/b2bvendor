@@ -108,12 +108,6 @@ export default {
       });
 
       this.form.above_range_price = this.product.above_range_price;
-    } else {
-      this.form.ranges.push({
-        from: "",
-        to: "",
-        price: "",
-      });
     }
   },
 

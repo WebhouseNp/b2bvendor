@@ -2506,12 +2506,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       this.form.above_range_price = this.product.above_range_price;
-    } else {
-      this.form.ranges.push({
-        from: "",
-        to: "",
-        price: ""
-      });
     }
   },
   data: function data() {
@@ -6232,7 +6226,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('login', (__webpack_requir
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('register', (__webpack_require__(/*! ./components/Register/selectCategory.vue */ "./resources/js/components/Register/selectCategory.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('forgotpassword', (__webpack_require__(/*! ./components/vendorLogin/forgotpassword.vue */ "./resources/js/components/vendorLogin/forgotpassword.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('verification', (__webpack_require__(/*! ./components/vendorLogin/accountVerification.vue */ "./resources/js/components/vendorLogin/accountVerification.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('resetpassword', (__webpack_require__(/*! ./components/vendorLogin/Reset.vue */ "./resources/js/components/vendorLogin/Reset.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('resetpassword', (__webpack_require__(/*! ./components/vendorLogin/Reset.vue */ "./resources/js/components/vendorLogin/Reset.vue").faqdefault));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('createdeal', (__webpack_require__(/*! ./components/vendorDashboard/createDeal.vue */ "./resources/js/components/vendorDashboard/createDeal.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('editdeal', (__webpack_require__(/*! ./components/vendorDashboard/editDeal.vue */ "./resources/js/components/vendorDashboard/editDeal.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('PriceRange', (__webpack_require__(/*! ./components/Product/PriceRange.vue */ "./resources/js/components/Product/PriceRange.vue")["default"])); // Chat components
