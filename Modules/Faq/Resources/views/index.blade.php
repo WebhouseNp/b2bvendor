@@ -31,7 +31,7 @@ Faqs
                     <tr>
                         <th>S.N</th>
                         <th>Title</th>
-                        <th>Description</th>
+                        <th>Position</th>
                         <th>Status</th>
                         @if( auth()->user()->hasAnyRole('super_admin|admin'))
                         <!-- <th>Change Status</th> -->
@@ -45,7 +45,7 @@ Faqs
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $faq->title }}</td>
-                        <td>{!! $faq->description !!}</td>
+                        <td>{{ $faq->position }}</td>
                         <td>
                             <div style="display:inline-block; width:100px" class="badge  {{ $faq->is_active==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
                                 {{ $faq->is_active == 1 ? 'Active' : 'Inactive' }}

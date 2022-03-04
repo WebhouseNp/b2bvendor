@@ -65,7 +65,7 @@
                             <div class="ibox-body">
                                 <div class="form-group">
                                     <label>Upload Image</label>
-                                    <input type="file" name="image" id="image" class="form-control-file @error('imahe') is-invalid @enderror" accept="image/*" onchange="showThumbnail(this);">
+                                    <input type="file" name="image" id="fileUpload" class="form-control-file @error('image') is-invalid @enderror" accept="image/*" >
                                     <div id="wrapper" class="mt-2">
                                         <div id="image-holder">
                                             @if($updateMode)
@@ -111,15 +111,4 @@ $name = ['description'];
 @foreach ($name as $data)
 @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => $data])
 @endforeach
-<script>
-    function showThumbnail(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-        }
-        reader.onload = function(e) {
-            $('#thumbnail').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-</script>
 @endpush

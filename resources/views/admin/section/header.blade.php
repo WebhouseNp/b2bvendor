@@ -52,12 +52,6 @@
             }
         }
 
-        #productImages {
-            /* background-color: #f5f5f5; */
-            /* display: grid; */
-            /* grid-template-columns: auto auto auto auto; */
-        }
-
         #productImages .img-wrap {
             display: block;
             background-color: #fff;
@@ -100,7 +94,9 @@
             font-style: italic;
         }
 
-        /* left sidebar */
+        /* Left sidebar */
+        /* Scrollable content in sidebar only in large screens */
+        @media screen AND (min-width: 600px) {
         .page-sidebar {
             position: fixed;
             height: calc(100vh - 56px);
@@ -136,6 +132,7 @@
         .side-menu::-webkit-scrollbar-thumb:hover {
             background: #778af1;
         }
+    }
 
     </style>
 
