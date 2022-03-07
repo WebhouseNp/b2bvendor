@@ -22,7 +22,7 @@ class NotificationController extends Controller
         } else {
             $notifications = $notifications->notifications();
         }
-        
+
         $notifications = $notifications->simplePaginate(30)->withQueryString();
 
         return view('notification::index', compact(['notifications', 'filter']));
@@ -51,6 +51,8 @@ class NotificationController extends Controller
 
     public function getUnreadCount()
     {
-        return auth()->user()->unreadNotifications()->count();
+        return response()->json([
+            'count' => auth()->user()->unreadNotifications()->count()
+        ], 200);
     }
 }

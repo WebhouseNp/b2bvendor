@@ -79,7 +79,6 @@ $api_token = $user->api_token;
   $(function() {
     $('#example-table').DataTable({
       pageLength: 15,
-      "scrollX": true
     });
   })
   $("#sortable").sortable({

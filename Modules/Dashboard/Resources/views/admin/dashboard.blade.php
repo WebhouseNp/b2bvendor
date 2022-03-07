@@ -79,7 +79,7 @@
             <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($payableToVendors) }}</h3>
-                    <p>Payable Amount From Vendors</p>
+                    <p>Payable Amount To Vendors</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-credit-card text-gold"></i>
@@ -97,7 +97,7 @@
             <div class="small-box">
                 <div class="inner">
                     <h3>{{ $totalActiveProductsCount }}</h3>
-                    <p>Active Products</p>
+                    <p><a href="{{route('product.index')}}" class="text-dark">Active Products</a></p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-cubes text-aqua"></i>
@@ -115,7 +115,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-green text-white"><i class="fa fa-truck"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Active Vendors</span>
+                    <span class="info-box-text"><a href="{{route('vendor.getApprovedVendors')}}" class="text-dark">Active Vendors</a></span>
                     <span class="info-box-number">{{ $totalActiveVendors }}</span>
                 </div>
             </div>
@@ -132,7 +132,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fa fa-info-circle"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Vendor Requests</span>
+                    <span class="info-box-text"><a href="{{route('vendor.getNewVendors')}}" class="text-dark">Vendor Requests</a></span>
                     <span class="info-box-number">{{ $totalNewVendors }}</span>
                 </div>
             </div>
@@ -143,12 +143,12 @@
                 </div>
             </div> -->
         </div>
-
+        
         <div class="col-md-4 mb-4">
             <div class="info-box">
                 <span class="info-box-icon bg-red"><i class="fa fa-users text-white"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Customers</span>
+                    <span class="info-box-text"><a href="{{route('user.getAllCustomers')}}" class="text-dark">Customers</a></span>
                     <span class="info-box-number">{{ $totalCustomers }}</span>
                 </div>
             </div>
