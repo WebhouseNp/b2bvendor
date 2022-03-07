@@ -10,6 +10,19 @@ button {
 
 /* Info box */
 
+.notification-link {
+    position: relative;
+}
+
+.navbar-badge {
+    font-size: .6rem;
+    font-weight: 300;
+    padding: 1px 4px;
+    position: absolute;
+    right: 3px;
+    top: 9px;
+}
+
 .info-box {
     border-radius: 0.25rem;
     background: #fff;
