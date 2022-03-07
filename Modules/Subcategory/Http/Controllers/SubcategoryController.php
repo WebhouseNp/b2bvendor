@@ -61,9 +61,15 @@ class SubcategoryController extends Controller
         }
 
         DB::beginTransaction();
-        // dd($value);
         $data = Subcategory::create($value);
         DB::commit();
+        
+        if (auth()->user()->hasRole('vendor')) {
+            foreach(admin_users() as $admin) {
+                $admin->notify(new \Modules\Subcategory\Notifications\SubcategoryRequestNotification($data));
+            }
+        }
+
         return response()->json(['status' => 'successful', 'message' => 'Sub Category created successfully.', 'data' => $data]);
     }
 

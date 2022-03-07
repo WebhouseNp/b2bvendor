@@ -19,7 +19,7 @@
         </div>
         <div class="ibox-body">
             <div class="mb-4">
-                <div class="d-flex">
+                <div class="d-md-flex">
                     <div class="d-flex align-items-center">
                         <span class="flex-shrink-0 align-self-center text-nowrap">Showing &nbsp;</span>
                         <button class="form-control form-control-sm custom-select dropdown-toggle d-inline" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request('per_page', 15) }}</button>
@@ -31,7 +31,7 @@
                             <a href="{{ request()->fullUrlWithQuery(['per_page' => 200]) }}" class="dropdown-item" value="true">200</a>
                         </div>
                     </div>
-                    <div class="ml-auto">
+                    <div class="ml-auto mt-3">
                         <form action="" class="form-inline" method="GET">
                             <div class="form-row align-items-center">
                                 <div class="col-auto form-group">
