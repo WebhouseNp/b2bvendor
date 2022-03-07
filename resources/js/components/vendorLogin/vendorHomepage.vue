@@ -92,8 +92,8 @@
               <div class="card border-0">
                 <div class="card-body">
                   <i class="fas fa-envelope mr-2"></i>
-                  <a href="mailto:vendor@sastowholsale.com" class="card-link">
-                    vendor@sastowholsale.com
+                  <a href="mailto:vendor@sastowholesale.com" class="card-link">
+                    vendor@sastowholesale.com
                   </a>
                 </div>
               </div>

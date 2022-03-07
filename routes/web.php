@@ -11,35 +11,42 @@ use Modules\Country\Entities\Country;
 use Modules\Faq\Entities\Faq;
 use Modules\User\Http\Controllers\UserController;
 
-Route::redirect('/', '/vendor-homepage')->name('home');
-
 // Vendor Routes
+
+Route::redirect('/', '/vendor-homepage')->name('home');
 Route::view('/vendor-login', 'vendor_login')->middleware('guest');
 
 Route::get('/vendor-register', function () {
     $countries = Country::select('id', 'name')->get();
     return view('register')->with(compact('countries'));
 });
-Route::get('/forgot-password', function () {
-    return view('forgotpassword');
-});
+
+Route::view('/forgot-password', 'forgotpassword');
+
 Route::get('/passwod-resetform/{token}', function ($token) {
     $token = $token;
     return view('reset_password')->with(compact('token'));
 });
-Route::get('/account-verification', function () {
-    return view('account_verification');
-});
-// End of Vendor Routes
 
-Route::get('/vendor-homepage', function () {
-    return view('vendor_homepage');
-});
+Route::view('/account-verification', 'account_verification');
+
+Route::view('/vendor-homepage', 'vendor_homepage');
 
 Route::get('/faq', function(){
     $faqs = Faq::published()->get();
     return view('faq')->with(compact('faqs'));
 });
+
+Route::view('/about-us', 'footer_pages.about_us');
+
+Route::view('/terms-conditations', 'footer_pages.terms_conditation');
+
+Route::view('/terms-of-use', 'footer_pages.terms_of_use');
+
+Route::view('/privacy-policy', 'footer_pages.privacy_policy');
+Route::view('/logistics-management','footer_pages.logistics_management');
+// End of Vendor Routes
+
 
 Route::group([], function () {
     // Route::get('admin/login', [LoginController::class, 'login'])->name('admin.login');

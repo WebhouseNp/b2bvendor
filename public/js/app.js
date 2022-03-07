@@ -2181,51 +2181,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Footer',
+  methods: {
+    termsConditations: function termsConditations() {
+      window.location.href = "/terms-conditations";
+    },
+    termsUse: function termsUse() {
+      window.location.href = "/terms-of-use";
+    },
+    privacyPolicy: function privacyPolicy() {
+      window.location.href = "/privacy-policy";
+    },
+    logisticManagement: function logisticManagement() {
+      window.location.href = "/logistics-management";
+    },
+    becomeSeller: function becomeSeller() {
+      window.location.href = "/vendor-register";
+    },
+    helpCenter: function helpCenter() {
+      window.location.href = "/faq";
+    }
+  }
+});
 
 /***/ }),
 
@@ -3932,8 +3910,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
 //
 //
 //
@@ -6213,6 +6189,820 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/AboutUs.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/AboutUs.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/LogisticsManagement.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/LogisticsManagement.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -6245,6 +7035,11 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('verification', (__webpack
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('resetpassword', (__webpack_require__(/*! ./components/vendorLogin/Reset.vue */ "./resources/js/components/vendorLogin/Reset.vue").faqdefault));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('createdeal', (__webpack_require__(/*! ./components/vendorDashboard/createDeal.vue */ "./resources/js/components/vendorDashboard/createDeal.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('editdeal', (__webpack_require__(/*! ./components/vendorDashboard/editDeal.vue */ "./resources/js/components/vendorDashboard/editDeal.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('AboutUs', (__webpack_require__(/*! ./pages/AboutUs.vue */ "./resources/js/pages/AboutUs.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('TermsConditaions', (__webpack_require__(/*! ./pages/TermsConditations.vue */ "./resources/js/pages/TermsConditations.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('termsOfUse', (__webpack_require__(/*! ./pages/TermsOfUse.vue */ "./resources/js/pages/TermsOfUse.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('PrivacyPolicy', (__webpack_require__(/*! ./pages/PrivacyPolicy.vue */ "./resources/js/pages/PrivacyPolicy.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('LogisticsManagement', (__webpack_require__(/*! ./pages/LogisticsManagement.vue */ "./resources/js/pages/LogisticsManagement.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('PriceRange', (__webpack_require__(/*! ./components/Product/PriceRange.vue */ "./resources/js/components/Product/PriceRange.vue")["default"])); // Chat components
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('chatbox', (__webpack_require__(/*! ./components/chat/Chatbox.vue */ "./resources/js/components/chat/Chatbox.vue")["default"]));
@@ -6449,6 +7244,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.faq-wrapper[data-v-c602b80a] {\r\n  max-width: 100px !important;\n}\n.before-enter[data-v-c602b80a] {\r\n  opacity: 0;\r\n  -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-c602b80a],\r\n.zoomIn[data-v-c602b80a] {\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn;\r\n  animation-name: zoomIn;\n}\n.accordion__title[data-v-c602b80a] {\r\n  background-color: #f5f7f8 !important;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.pt-pl-list[data-v-1ca25eac] {\r\n    padding: 15px 0px;\n}\n.pt-pl-list h3[data-v-1ca25eac] {\r\n    font-size: 16px;\r\n    font-weight: 600;\n}\n.pt-pl-list ul[data-v-1ca25eac] {\r\n    list-style: none;\r\n    margin: 0;\r\n    padding: 0;\n}\n.pt-pl-list ul>li[data-v-1ca25eac] {\r\n    line-height: 2rem;\n}\n.pt-pl-list a[data-v-1ca25eac] {\r\n    color: #dddddd;\r\n    font-size: 14px;\r\n    transition: all ease 0.3s;\n}\n.pt-pl-list a[data-v-1ca25eac]:hover {\r\n    color: #ffffff;\r\n    transition: all ease 0.3s;\r\n    padding-left: 5px;\r\n    text-decoration: none;\n}\n@media (min-width: 320px) and (max-width: 768px){\n.pt-row .col[data-v-1ca25eac] {\r\n      width: 100%;\r\n      text-align: center;\r\n      flex-basis: unset;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6671,6 +7490,78 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n@media only screen and (min-width: 992px) {\n.login-bottom[data-v-cbdddaa2]{\r\n  margin-bottom: 80px;\n}\n}\n.card[data-v-cbdddaa2]{\r\n  min-height: 0px;\n}\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\r\n  transition-delay: 0.4s;\n}\n.secondary-heading[data-v-cbdddaa2]{\r\n    color: #868585;\r\n    font-weight: 400;\r\n    text-transform: uppercase;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n  color: #ffa500;\n}\r\n/*------------animation-------*/\n@-webkit-keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n@keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n.slider-wrapper[data-v-cbdddaa2], .why-join[data-v-cbdddaa2],.description[data-v-cbdddaa2],\r\n .step-1[data-v-cbdddaa2], .step-2[data-v-cbdddaa2], .step-3[data-v-cbdddaa2], .step-4[data-v-cbdddaa2], .step-5[data-v-cbdddaa2],\r\n .step-6[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2], .list[data-v-cbdddaa2] {\r\n  opacity: 0;\n}\n.slider-wrapper[data-v-cbdddaa2]\r\n{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.why-join[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.4s;\r\n          animation-delay: 0.4s;\n}\n.description[data-v-cbdddaa2], .step-1[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2],.list[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.step-2[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.6s;\r\n          animation-delay: 0.6s;\n}\n.step-3[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.9s;\r\n          animation-delay: 0.9s;\n}\n.step-4[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1s;\r\n          animation-delay: 1s;\n}\n.step-5[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.2s;\r\n          animation-delay: 1.2s;\n}\n.step-6[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.3s;\r\n          animation-delay: 1.3s;\n}\n.before-enter[data-v-cbdddaa2]{\r\n  opacity: 0;\r\n   -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-cbdddaa2],.zoomIn[data-v-cbdddaa2]{\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn-data-v-cbdddaa2;\r\n  animation-name: zoomIn-data-v-cbdddaa2;\n}\r\n\r\n\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.description[data-v-f0f4c9be]{\n   margin-bottom: 30px;\n   padding-left: 32px;\n    padding-right: 16px;\n}\nul li[data-v-f0f4c9be]{\n  list-style: none;\n}\nul li p[data-v-f0f4c9be]{\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\nul li a[data-v-f0f4c9be]{\n  color: #007bff;\n}\n.list2 li[data-v-f0f4c9be]{\n list-style: disc;\n margin-left: 30px;\n margin-bottom: 10px;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.description[data-v-f0f4c9be] {\n    width: 100%;\n    flex-basis: unset;\n}\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-a819c3ce], h4[data-v-a819c3ce], .note[data-v-a819c3ce]{\r\n    font-weight: 600;\r\n    color: #7c7c7d;\n}\n.list[data-v-a819c3ce] {\r\n  list-style: none;\r\n  font-family: var(--font-primary);\n}\n.list h5[data-v-a819c3ce]{\r\n    font-weight: 600;\r\n    color: #495057;\n}\n.list p[data-v-a819c3ce] {\r\n  margin-left: 40px;\n}\n.list ul[data-v-a819c3ce]{\r\n    list-style: disc;\n}\n.list ul[data-v-a819c3ce], ol[data-v-a819c3ce] {\r\n  margin-left: 50px;\r\n  margin-bottom: 10px;\n}\n.list ol[data-v-a819c3ce]{\r\n    list-style-type: upper-roman;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.list h5[data-v-a819c3ce] {\r\n    width: 100%;\r\n    text-align: center;\r\n    flex-basis: unset;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-adf6969c],\r\nh4[data-v-adf6969c],\r\n.note[data-v-adf6969c] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-adf6969c]{\r\n  padding-right: 16px;\r\n   padding-left: 32px;\n}\nol[data-v-adf6969c] {\r\n  list-style: none;\r\n  counter-reset: cupcake;\r\n  list-style-position: outside;\n}\nol li p[data-v-adf6969c]{\r\n  margin-top: 20px;\n}\nol li[data-v-adf6969c] {\r\n  counter-increment: cupcake;\r\n  margin-bottom: 20px;\n}\nol li[data-v-adf6969c]:before {\r\n  content: counters(cupcake, \".\") \". \";\n}\n.list2 ol[data-v-adf6969c]{\r\n    list-style: lower-latin;\r\n    counter-reset: none;\r\n    margin-top: 10px;\n}\n.list2 ol li[data-v-adf6969c]{\r\n    counter-increment: none;\r\n    margin-bottom: 10px;\r\n    margin-left: 50px;\r\n    padding-right: 20px;\n}\n.list2 ol li[data-v-adf6969c]::before{\r\n    content: none;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.description ol li[data-v-adf6969c] {\r\n    width: 100%;\r\n    flex-basis: unset;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54146,6 +55037,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_style_index_0_id_1ca25eac_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_style_index_0_id_1ca25eac_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_style_index_0_id_1ca25eac_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Header.vue?vue&type=style&index=0&id=3dd4c29e&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Header.vue?vue&type=style&index=0&id=3dd4c29e&scoped=true&lang=css& ***!
@@ -54413,6 +55334,96 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_vendorHomepage_vue_vue_type_style_index_0_id_cbdddaa2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_style_index_0_id_f0f4c9be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_style_index_0_id_f0f4c9be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_style_index_0_id_f0f4c9be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_style_index_0_id_a819c3ce_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_style_index_0_id_a819c3ce_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_style_index_0_id_a819c3ce_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_style_index_0_id_adf6969c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_style_index_0_id_adf6969c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_style_index_0_id_adf6969c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -58556,23 +59567,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Footer_vue_vue_type_template_id_1ca25eac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue?vue&type=template&id=1ca25eac& */ "./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&");
+/* harmony import */ var _Footer_vue_vue_type_template_id_1ca25eac_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue?vue&type=template&id=1ca25eac&scoped=true& */ "./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&scoped=true&");
 /* harmony import */ var _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.vue?vue&type=script&lang=js& */ "./resources/js/components/Layouts/Footer.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Footer_vue_vue_type_style_index_0_id_1ca25eac_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css& */ "./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Footer_vue_vue_type_template_id_1ca25eac___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Footer_vue_vue_type_template_id_1ca25eac___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Footer_vue_vue_type_template_id_1ca25eac_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Footer_vue_vue_type_template_id_1ca25eac_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "1ca25eac",
   null
   
 )
@@ -59382,6 +60395,207 @@ component.options.__file = "resources/js/components/vendorLogin/vendorHomepage.v
 
 /***/ }),
 
+/***/ "./resources/js/pages/AboutUs.vue":
+/*!****************************************!*\
+  !*** ./resources/js/pages/AboutUs.vue ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AboutUs_vue_vue_type_template_id_3eec1a12___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AboutUs.vue?vue&type=template&id=3eec1a12& */ "./resources/js/pages/AboutUs.vue?vue&type=template&id=3eec1a12&");
+/* harmony import */ var _AboutUs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AboutUs.vue?vue&type=script&lang=js& */ "./resources/js/pages/AboutUs.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AboutUs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AboutUs_vue_vue_type_template_id_3eec1a12___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AboutUs_vue_vue_type_template_id_3eec1a12___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/AboutUs.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/LogisticsManagement.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/LogisticsManagement.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LogisticsManagement_vue_vue_type_template_id_25dd5c86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LogisticsManagement.vue?vue&type=template&id=25dd5c86& */ "./resources/js/pages/LogisticsManagement.vue?vue&type=template&id=25dd5c86&");
+/* harmony import */ var _LogisticsManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LogisticsManagement.vue?vue&type=script&lang=js& */ "./resources/js/pages/LogisticsManagement.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LogisticsManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LogisticsManagement_vue_vue_type_template_id_25dd5c86___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LogisticsManagement_vue_vue_type_template_id_25dd5c86___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/LogisticsManagement.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivacyPolicy.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/pages/PrivacyPolicy.vue ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PrivacyPolicy_vue_vue_type_template_id_f0f4c9be_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true& */ "./resources/js/pages/PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true&");
+/* harmony import */ var _PrivacyPolicy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrivacyPolicy.vue?vue&type=script&lang=js& */ "./resources/js/pages/PrivacyPolicy.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PrivacyPolicy_vue_vue_type_style_index_0_id_f0f4c9be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css& */ "./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _PrivacyPolicy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PrivacyPolicy_vue_vue_type_template_id_f0f4c9be_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PrivacyPolicy_vue_vue_type_template_id_f0f4c9be_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "f0f4c9be",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/PrivacyPolicy.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsConditations.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/pages/TermsConditations.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TermsConditations_vue_vue_type_template_id_a819c3ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true& */ "./resources/js/pages/TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true&");
+/* harmony import */ var _TermsConditations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TermsConditations.vue?vue&type=script&lang=js& */ "./resources/js/pages/TermsConditations.vue?vue&type=script&lang=js&");
+/* harmony import */ var _TermsConditations_vue_vue_type_style_index_0_id_a819c3ce_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css& */ "./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TermsConditations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TermsConditations_vue_vue_type_template_id_a819c3ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TermsConditations_vue_vue_type_template_id_a819c3ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "a819c3ce",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/TermsConditations.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsOfUse.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/pages/TermsOfUse.vue ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TermsOfUse_vue_vue_type_template_id_adf6969c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true& */ "./resources/js/pages/TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true&");
+/* harmony import */ var _TermsOfUse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TermsOfUse.vue?vue&type=script&lang=js& */ "./resources/js/pages/TermsOfUse.vue?vue&type=script&lang=js&");
+/* harmony import */ var _TermsOfUse_vue_vue_type_style_index_0_id_adf6969c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css& */ "./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TermsOfUse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TermsOfUse_vue_vue_type_template_id_adf6969c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TermsOfUse_vue_vue_type_template_id_adf6969c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "adf6969c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/TermsOfUse.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/FAQ.vue?vue&type=script&lang=js&":
 /*!******************************************************************!*\
   !*** ./resources/js/components/FAQ.vue?vue&type=script&lang=js& ***!
@@ -59734,6 +60948,86 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/AboutUs.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./resources/js/pages/AboutUs.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AboutUs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AboutUs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/AboutUs.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AboutUs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/LogisticsManagement.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/pages/LogisticsManagement.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LogisticsManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LogisticsManagement.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/LogisticsManagement.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LogisticsManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivacyPolicy.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/pages/PrivacyPolicy.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PrivacyPolicy.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsConditations.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/pages/TermsConditations.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsConditations.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsOfUse.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/pages/TermsOfUse.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsOfUse.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/FAQ.vue?vue&type=style&index=0&id=c602b80a&scoped=true&lang=css&":
 /*!**************************************************************************************************!*\
   !*** ./resources/js/components/FAQ.vue?vue&type=style&index=0&id=c602b80a&scoped=true&lang=css& ***!
@@ -59743,6 +61037,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FAQ_vue_vue_type_style_index_0_id_c602b80a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FAQ.vue?vue&type=style&index=0&id=c602b80a&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FAQ.vue?vue&type=style&index=0&id=c602b80a&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css& ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_style_index_0_id_1ca25eac_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=style&index=0&id=1ca25eac&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -59864,6 +61171,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css& ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_style_index_0_id_f0f4c9be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=style&index=0&id=f0f4c9be&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css& ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_style_index_0_id_a819c3ce_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=style&index=0&id=a819c3ce&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_style_index_0_id_adf6969c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=style&index=0&id=adf6969c&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/FAQ.vue?vue&type=template&id=c602b80a&scoped=true&":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/FAQ.vue?vue&type=template&id=c602b80a&scoped=true& ***!
@@ -59881,19 +61227,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&scoped=true&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&scoped=true& ***!
+  \***********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_1ca25eac___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_1ca25eac___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_1ca25eac_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_1ca25eac_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_1ca25eac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Footer.vue?vue&type=template&id=1ca25eac& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_1ca25eac_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Footer.vue?vue&type=template&id=1ca25eac&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&scoped=true&");
 
 
 /***/ }),
@@ -60238,6 +61584,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/AboutUs.vue?vue&type=template&id=3eec1a12&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/pages/AboutUs.vue?vue&type=template&id=3eec1a12& ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AboutUs_vue_vue_type_template_id_3eec1a12___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AboutUs_vue_vue_type_template_id_3eec1a12___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AboutUs_vue_vue_type_template_id_3eec1a12___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AboutUs.vue?vue&type=template&id=3eec1a12& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/AboutUs.vue?vue&type=template&id=3eec1a12&");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/LogisticsManagement.vue?vue&type=template&id=25dd5c86&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/pages/LogisticsManagement.vue?vue&type=template&id=25dd5c86& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LogisticsManagement_vue_vue_type_template_id_25dd5c86___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LogisticsManagement_vue_vue_type_template_id_25dd5c86___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LogisticsManagement_vue_vue_type_template_id_25dd5c86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LogisticsManagement.vue?vue&type=template&id=25dd5c86& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/LogisticsManagement.vue?vue&type=template&id=25dd5c86&");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/pages/PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_template_id_f0f4c9be_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_template_id_f0f4c9be_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivacyPolicy_vue_vue_type_template_id_f0f4c9be_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/pages/TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_template_id_a819c3ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_template_id_a819c3ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsConditations_vue_vue_type_template_id_a819c3ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/pages/TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_template_id_adf6969c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_template_id_adf6969c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TermsOfUse_vue_vue_type_template_id_adf6969c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FAQ.vue?vue&type=template&id=c602b80a&scoped=true&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FAQ.vue?vue&type=template&id=c602b80a&scoped=true& ***!
@@ -60285,10 +61716,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Layouts/Footer.vue?vue&type=template&id=1ca25eac&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -60301,107 +61732,159 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("footer", { staticClass: "footer" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row pt-row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c("div", { staticClass: "pt-pl-list" }, [
+              _c("h3", [_vm._v("About Us")]),
+              _vm._v(" "),
+              _c("ul", [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.helpCenter },
+                    },
+                    [_vm._v("Help Center")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm._m(2),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("div", { staticClass: "pt-pl-list" }, [
+              _c("h3", [_vm._v("Sell on Sastowholesale.com")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.becomeSeller },
+                    },
+                    [_vm._v("Become a Seller")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.logisticManagement },
+                    },
+                    [_vm._v("Logistics Management")]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("div", { staticClass: "pt-pl-list" }, [
+              _c("h3", [_vm._v("Legal")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.termsConditations },
+                    },
+                    [_vm._v("Vendor Terms & condition")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.termsUse },
+                    },
+                    [_vm._v("Terms of use")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.privacyPolicy },
+                    },
+                    [_vm._v("Privacy & Policy")]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _c("hr"),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("footer", { staticClass: "footer " }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-12 col-lg-12 col-md-12" }, [
-              _c("div", { staticClass: "pt-we-accept" }, [
-                _c("h3", [_vm._v("We Accept")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "list-unstyled" }, [
-                  _c("li", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://b2bfrontend.webhouse.com.np/assets/image/partner1.png",
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://b2bfrontend.webhouse.com.np/assets/image/partner2.png",
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://b2bfrontend.webhouse.com.np/assets/image/partner3.png",
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://b2bfrontend.webhouse.com.np/assets/image/partner4.png",
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://b2bfrontend.webhouse.com.np/assets/image/partner5.png",
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://b2bfrontend.webhouse.com.np/assets/image/partner1.png",
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: {
-                        src: "https://b2bfrontend.webhouse.com.np/assets/image/partner2.png",
-                      },
-                    }),
-                  ]),
-                ]),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "bottom-footer" }, [
-            _c("p", [
-              _vm._v(
-                "\n          Product Listing Policy -Intellectual Property Protection - Privacy\n          Policy - Terms of Use - User Information Legal Enquiry Guide\n        "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("b", [
-                _vm._v("©2022 Sasto Wholesale Pvt. Ltd. All rights Reserved."),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("p", [_vm._v("Email: info@sastowholesale.com")]),
-            _vm._v(" "),
-            _c("p", [
-              _c("b", [_vm._v("Designed & Developed By: Web House Nepal")]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("hr"),
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)" } }, [
+        _vm._v("About Sastowholesale.com (will provide this content ASAP)"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)" } }, [
+        _vm._v("Our Partners"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:void(0)" } }, [_vm._v("Our Blogs")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bottom-footer" }, [
+      _c("p", [
+        _c("b", [
+          _vm._v("©2022 Sasto Wholesale Pvt. Ltd. All rights Reserved."),
         ]),
       ]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Email: vendor@sastowholesale.com")]),
+      _vm._v(" "),
+      _c("p", [_c("b", [_vm._v("Designed & Developed By: Web House Nepal")])]),
     ])
   },
 ]
@@ -63425,49 +64908,91 @@ var render = function () {
               _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-12 col-sm-12 form-group" }, [
-                _c("div", {}, [
-                  _c("table", { staticClass: "table table-responsive-sm" }, [
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      [
-                        _vm._l(
-                          _vm.$v.invoice_products.$each.$iter,
-                          function (invoice_product, index) {
-                            return _c("tr", { key: index }, [
+                _c("table", { staticClass: "table table-responsive-sm" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    [
+                      _vm._l(
+                        _vm.$v.invoice_products.$each.$iter,
+                        function (invoice_product, index) {
+                          return _c("tr", { key: index }, [
+                            _c("td", { staticClass: "inputProduct" }, [
                               _c(
-                                "td",
-                                {
-                                  staticClass: "inputProduct",
-                                  attrs: { scope: "" },
-                                },
+                                "div",
                                 [
                                   _c(
-                                    "div",
-                                    [
-                                      _c(
-                                        "multiselect",
-                                        {
-                                          class: {
-                                            "is-invalid": _vm.validationStatus(
-                                              invoice_product.product_id
-                                            ),
+                                    "multiselect",
+                                    {
+                                      class: {
+                                        "is-invalid": _vm.validationStatus(
+                                          invoice_product.product_id
+                                        ),
+                                      },
+                                      attrs: {
+                                        options: _vm.products,
+                                        "option-height": 200,
+                                        "option-width": 200,
+                                        "custom-label": _vm.customLabel,
+                                        "show-labels": false,
+                                        "hide-selected": true,
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "singleLabel",
+                                            fn: function (props) {
+                                              return [
+                                                _c("img", {
+                                                  staticClass: "option__image",
+                                                  staticStyle: {
+                                                    widht: "35px",
+                                                    height: "35px",
+                                                  },
+                                                  attrs: {
+                                                    src: props.option.image_url,
+                                                  },
+                                                }),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass: "option__desc",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "option__title",
+                                                        staticStyle: {
+                                                          "margin-left": "10px",
+                                                          "font-size": "13px",
+                                                        },
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            props.option.title
+                                                          )
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            },
                                           },
-                                          attrs: {
-                                            options: _vm.products,
-                                            "option-height": 200,
-                                            "option-width": 200,
-                                            "custom-label": _vm.customLabel,
-                                            "show-labels": false,
-                                            "hide-selected": true,
-                                          },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "singleLabel",
-                                                fn: function (props) {
-                                                  return [
+                                          {
+                                            key: "option",
+                                            fn: function (props) {
+                                              return [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "option__desc",
+                                                  },
+                                                  [
                                                     _c("img", {
                                                       staticClass:
                                                         "option__image",
@@ -63480,440 +65005,375 @@ var render = function () {
                                                           .image_url,
                                                       },
                                                     }),
+                                                    _vm._v(" "),
                                                     _c(
                                                       "span",
                                                       {
                                                         staticClass:
-                                                          "option__desc",
+                                                          "option__title",
+                                                        staticStyle: {
+                                                          "margin-left": "10px",
+                                                          "font-size": "13px",
+                                                        },
                                                       },
                                                       [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "option__title",
-                                                            staticStyle: {
-                                                              "margin-left":
-                                                                "10px",
-                                                              "font-size":
-                                                                "13px",
-                                                            },
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                props.option
-                                                                  .title
-                                                              )
-                                                            ),
-                                                          ]
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            props.option.title
+                                                          )
                                                         ),
                                                       ]
                                                     ),
                                                   ]
-                                                },
-                                              },
-                                              {
-                                                key: "option",
-                                                fn: function (props) {
-                                                  return [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "option__desc",
-                                                      },
-                                                      [
-                                                        _c("img", {
-                                                          staticClass:
-                                                            "option__image",
-                                                          staticStyle: {
-                                                            widht: "35px",
-                                                            height: "35px",
-                                                          },
-                                                          attrs: {
-                                                            src: props.option
-                                                              .image_url,
-                                                          },
-                                                        }),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "option__title",
-                                                            staticStyle: {
-                                                              "margin-left":
-                                                                "10px",
-                                                              "font-size":
-                                                                "13px",
-                                                            },
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                props.option
-                                                                  .title
-                                                              )
-                                                            ),
-                                                          ]
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                },
-                                              },
-                                            ],
-                                            null,
-                                            true
-                                          ),
-                                          model: {
-                                            value:
-                                              invoice_product.product_id.$model,
-                                            callback: function ($$v) {
-                                              _vm.$set(
-                                                invoice_product.product_id,
-                                                "$model",
-                                                $$v
-                                              )
+                                                ),
+                                              ]
                                             },
-                                            expression:
-                                              "invoice_product.product_id.$model",
                                           },
+                                        ],
+                                        null,
+                                        true
+                                      ),
+                                      model: {
+                                        value:
+                                          invoice_product.product_id.$model,
+                                        callback: function ($$v) {
+                                          _vm.$set(
+                                            invoice_product.product_id,
+                                            "$model",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "invoice_product.product_id.$model",
+                                      },
+                                    },
+                                    [
+                                      _vm._v(" "),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          attrs: { slot: "noResult" },
+                                          slot: "noResult",
+                                        },
+                                        [_vm._v("Oops! No data found.")]
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  !invoice_product.product_id.required
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "invalid-feedback text-danger",
                                         },
                                         [
-                                          _vm._v(" "),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              attrs: { slot: "noResult" },
-                                              slot: "noResult",
-                                            },
-                                            [_vm._v("Oops! No data found.")]
-                                          ),
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      !invoice_product.product_id.required
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "invalid-feedback text-danger",
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                        Please Select Product First.\n                      "
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ],
-                                    1
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  staticClass: "inputQuentiry",
-                                  attrs: { scope: "row" },
-                                },
-                                [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value:
-                                          invoice_product.product_qty.$model,
-                                        expression:
-                                          "invoice_product.product_qty.$model",
-                                        modifiers: { number: true },
-                                      },
-                                    ],
-                                    staticClass: "form-control rounded",
-                                    class: {
-                                      "is-invalid": _vm.validationStatus(
-                                        invoice_product.product_qty
-                                      ),
-                                    },
-                                    attrs: {
-                                      type: "number",
-                                      placeholder: "Quantity",
-                                    },
-                                    domProps: {
-                                      value: invoice_product.product_qty.$model,
-                                    },
-                                    on: {
-                                      input: function ($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          invoice_product.product_qty,
-                                          "$model",
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function ($event) {
-                                        return _vm.$forceUpdate()
-                                      },
-                                    },
-                                  }),
-                                  _vm._v(" "),
-                                  !invoice_product.product_qty.required
-                                    ? _c(
-                                        "div",
-                                        { staticClass: "invalid-feedback" },
-                                        [
                                           _vm._v(
-                                            "\n                        Required.\n                      "
+                                            "\n                        Please Select Product First.\n                      "
                                           ),
                                         ]
                                       )
                                     : _vm._e(),
-                                  _vm._v(" "),
-                                  !invoice_product.product_qty.alphaNum
-                                    ? _c(
-                                        "div",
-                                        { staticClass: "invalid-feedback" },
-                                        [
-                                          _vm._v(
-                                            "\n                        Must be positive integer value.\n                      "
-                                          ),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                ]
+                                ],
+                                1
                               ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  staticClass: "inputPrice",
-                                  attrs: { scope: "row" },
-                                },
-                                [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value:
-                                          invoice_product.unit_price.$model,
-                                        expression:
-                                          "invoice_product.unit_price.$model",
-                                        modifiers: { number: true },
-                                      },
-                                    ],
-                                    staticClass: "form-control rounded",
-                                    class: {
-                                      "is-invalid": _vm.validationStatus(
-                                        invoice_product.unit_price
-                                      ),
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Unit Price",
-                                    },
-                                    domProps: {
-                                      value: invoice_product.unit_price.$model,
-                                    },
-                                    on: {
-                                      input: function ($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          invoice_product.unit_price,
-                                          "$model",
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function ($event) {
-                                        return _vm.$forceUpdate()
-                                      },
-                                    },
-                                  }),
-                                  _vm._v(" "),
-                                  !invoice_product.unit_price.required
-                                    ? _c(
-                                        "div",
-                                        { staticClass: "invalid-feedback" },
-                                        [
-                                          _vm._v(
-                                            "\n                        Required.\n                      "
-                                          ),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  !invoice_product.unit_price.mustBePositive
-                                    ? _c(
-                                        "div",
-                                        { staticClass: "invalid-feedback" },
-                                        [
-                                          _vm._v(
-                                            "\n                        Must be positive integer value.\n                      "
-                                          ),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  staticClass: "shippingCharge",
-                                  attrs: { scope: "row" },
-                                },
-                                [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value:
-                                          invoice_product.shipping_charge
-                                            .$model,
-                                        expression:
-                                          "\n                          invoice_product.shipping_charge.$model\n                        ",
-                                        modifiers: { number: true },
-                                      },
-                                    ],
-                                    staticClass: "form-control rounded",
-                                    class: {
-                                      "is-invalid": _vm.validationStatus(
-                                        invoice_product.shipping_charge
-                                      ),
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Shipping charge",
-                                    },
-                                    domProps: {
-                                      value:
-                                        invoice_product.shipping_charge.$model,
-                                    },
-                                    on: {
-                                      input: function ($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          invoice_product.shipping_charge,
-                                          "$model",
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function ($event) {
-                                        return _vm.$forceUpdate()
-                                      },
-                                    },
-                                  }),
-                                  _vm._v(" "),
-                                  !invoice_product.shipping_charge
-                                    .mustBePositive
-                                    ? _c(
-                                        "div",
-                                        { staticClass: "invalid-feedback" },
-                                        [
-                                          _vm._v(
-                                            "\n                        Must be positive integer value.\n                      "
-                                          ),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  staticClass: "totalPrice",
-                                  attrs: { scope: "row" },
-                                },
-                                [
-                                  _c("input", {
-                                    staticClass: "form-control rounded",
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Total price in rupees",
-                                      disabled: "",
-                                    },
-                                    domProps: { value: _vm.subtotalRow[index] },
-                                  }),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  staticClass: "trashIconContainer",
-                                  staticStyle: { color: "red" },
-                                  attrs: { scope: "row" },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.deleteRow(
-                                        index,
-                                        invoice_product.$model
-                                      )
-                                    },
-                                  },
-                                },
-                                [_c("i", { staticClass: "far fa-trash-alt" })]
-                              ),
-                            ])
-                          }
-                        ),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", { attrs: { scope: "row" } }),
-                          _vm._v(" "),
-                          _c("td", { attrs: { scope: "row" } }),
-                          _vm._v(" "),
-                          _c("td", { attrs: { scope: "row" } }),
-                          _vm._v(" "),
-                          _c("td", { attrs: { scope: "row" } }),
-                          _vm._v(" "),
-                          _c("td", { attrs: { scope: "row" } }, [
-                            _c("strong", [_vm._v("Total")]),
-                            _vm._v(
-                              ": Rs " +
-                                _vm._s(_vm.total) +
-                                "\n                    "
-                            ),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(5),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", { attrs: { scope: "row" } }, [
+                            ]),
+                            _vm._v(" "),
                             _c(
-                              "button",
+                              "td",
                               {
-                                staticClass: "btn btn-info addProduct",
-                                attrs: { type: "button", enabled: "" },
-                                on: { click: _vm.addNewRow },
+                                staticClass: "inputQuentiry",
+                                attrs: { scope: "row" },
                               },
                               [
-                                _c("i", { staticClass: "fas fa-plus-circle" }),
-                                _vm._v(
-                                  "\n                        Add\n                      "
-                                ),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.number",
+                                      value: invoice_product.product_qty.$model,
+                                      expression:
+                                        "invoice_product.product_qty.$model",
+                                      modifiers: { number: true },
+                                    },
+                                  ],
+                                  staticClass: "form-control rounded",
+                                  class: {
+                                    "is-invalid": _vm.validationStatus(
+                                      invoice_product.product_qty
+                                    ),
+                                  },
+                                  attrs: {
+                                    type: "number",
+                                    placeholder: "Quantity",
+                                  },
+                                  domProps: {
+                                    value: invoice_product.product_qty.$model,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_product.product_qty,
+                                        "$model",
+                                        _vm._n($event.target.value)
+                                      )
+                                    },
+                                    blur: function ($event) {
+                                      return _vm.$forceUpdate()
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                !invoice_product.product_qty.required
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                        Required.\n                      "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                !invoice_product.product_qty.alphaNum
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                        Must be positive integer value.\n                      "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
-                          ]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "inputPrice",
+                                attrs: { scope: "row" },
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.number",
+                                      value: invoice_product.unit_price.$model,
+                                      expression:
+                                        "invoice_product.unit_price.$model",
+                                      modifiers: { number: true },
+                                    },
+                                  ],
+                                  staticClass: "form-control rounded",
+                                  class: {
+                                    "is-invalid": _vm.validationStatus(
+                                      invoice_product.unit_price
+                                    ),
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Unit Price",
+                                  },
+                                  domProps: {
+                                    value: invoice_product.unit_price.$model,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_product.unit_price,
+                                        "$model",
+                                        _vm._n($event.target.value)
+                                      )
+                                    },
+                                    blur: function ($event) {
+                                      return _vm.$forceUpdate()
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                !invoice_product.unit_price.required
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                        Required.\n                      "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                !invoice_product.unit_price.mustBePositive
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                        Must be positive integer value.\n                      "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "shippingCharge",
+                                attrs: { scope: "row" },
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.number",
+                                      value:
+                                        invoice_product.shipping_charge.$model,
+                                      expression:
+                                        "\n                          invoice_product.shipping_charge.$model\n                        ",
+                                      modifiers: { number: true },
+                                    },
+                                  ],
+                                  staticClass: "form-control rounded",
+                                  class: {
+                                    "is-invalid": _vm.validationStatus(
+                                      invoice_product.shipping_charge
+                                    ),
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Shipping charge",
+                                  },
+                                  domProps: {
+                                    value:
+                                      invoice_product.shipping_charge.$model,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_product.shipping_charge,
+                                        "$model",
+                                        _vm._n($event.target.value)
+                                      )
+                                    },
+                                    blur: function ($event) {
+                                      return _vm.$forceUpdate()
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                !invoice_product.shipping_charge.mustBePositive
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "invalid-feedback" },
+                                      [
+                                        _vm._v(
+                                          "\n                        Must be positive integer value.\n                      "
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "totalPrice",
+                                attrs: { scope: "row" },
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "form-control rounded",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Total price in rupees",
+                                    disabled: "",
+                                  },
+                                  domProps: { value: _vm.subtotalRow[index] },
+                                }),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "trashIconContainer",
+                                staticStyle: { color: "red" },
+                                attrs: { scope: "row" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.deleteRow(
+                                      index,
+                                      invoice_product.$model
+                                    )
+                                  },
+                                },
+                              },
+                              [_c("i", { staticClass: "far fa-trash-alt" })]
+                            ),
+                          ])
+                        }
+                      ),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { attrs: { scope: "row" } }),
+                        _vm._v(" "),
+                        _c("td", { attrs: { scope: "row" } }),
+                        _vm._v(" "),
+                        _c("td", { attrs: { scope: "row" } }),
+                        _vm._v(" "),
+                        _c("td", { attrs: { scope: "row" } }),
+                        _vm._v(" "),
+                        _c("td", { attrs: { scope: "row" } }, [
+                          _c("strong", [_vm._v("Total")]),
+                          _vm._v(
+                            ": Rs " +
+                              _vm._s(_vm.total) +
+                              "\n                    "
+                          ),
                         ]),
-                      ],
-                      2
-                    ),
-                  ]),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { attrs: { scope: "row" } }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info addProduct",
+                              attrs: { type: "button", enabled: "" },
+                              on: { click: _vm.addNewRow },
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus-circle" }),
+                              _vm._v(
+                                "\n                        Add\n                      "
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]),
+                    ],
+                    2
+                  ),
                 ]),
               ]),
             ]),
@@ -64342,8 +65802,8 @@ var render = function () {
               _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-12 col-sm-12 form-group" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c("table", { staticClass: "table" }, [
+                _c("div", {}, [
+                  _c("table", { staticClass: "table table-responsive-sm" }, [
                     _vm._m(4),
                     _vm._v(" "),
                     _c(
@@ -66033,11 +67493,11 @@ var render = function () {
                       "a",
                       {
                         staticClass: "card-link",
-                        attrs: { href: "mailto:vendor@sastowholsale.com" },
+                        attrs: { href: "mailto:vendor@sastowholesale.com" },
                       },
                       [
                         _vm._v(
-                          "\n                 vendor@sastowholsale.com\n               "
+                          "\n                 vendor@sastowholesale.com\n               "
                         ),
                       ]
                     ),
@@ -66462,6 +67922,934 @@ var render = function () {
           ),
         ]
       ),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/AboutUs.vue?vue&type=template&id=3eec1a12&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/AboutUs.vue?vue&type=template&id=3eec1a12& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("frontmaster", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "heading mt-5" }, [
+        _c("h2", [_vm._v("About Sastowholsale.com")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5" }, [
+        _c("div", { staticClass: "description" }, [
+          _c("p", [
+            _vm._v(
+              "\n          Sastowholesale.com is a dynamic marketing/selling online venue for\n          manufacturer, supplier, wholesaler, or any organization; who are\n          seeking their product worldwide. Managed and handled by be the best\n          Pvt. Ltd., B2B, B2C Ecommerce having both product and service which\n          connect Buyers & Suppliers around the world.\n        "
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/LogisticsManagement.vue?vue&type=template&id=25dd5c86&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/LogisticsManagement.vue?vue&type=template&id=25dd5c86& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("frontmaster", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "heading mt-5" }, [
+        _c("h2", [_vm._v("Updating...")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5" }, [
+        _c("div", { staticClass: "description" }, [_c("p")]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/PrivacyPolicy.vue?vue&type=template&id=f0f4c9be&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("frontmaster", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "heading mt-5" }, [
+        _c("h2", [_vm._v("Privacy Policy for Company Name")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5" }, [
+        _c("div", { staticClass: "description" }, [
+          _c("p", [
+            _vm._v(
+              "\n          At Sastowholesale.com, accessible at Sastowholesale.com, one of our\n          main priorities is the privacy of our visitors. This Privacy Policy\n          document contains types of information that is collected and\n          recorded by Website Name and how we use it."
+            ),
+            _c("br"),
+            _c("br"),
+            _vm._v(
+              " If you have additional\n          questions or require more information about our Privacy Policy, do\n          not hesitate to contact us through email at info@sastowholesale.com "
+            ),
+            _c("br"),
+            _c("br"),
+            _vm._v(
+              "\n          This privacy policy applies only to our online activities and is\n          valid for visitors to our website with regards to the information\n          that they shared and/or collect in Website Name. This policy is not\n          applicable to any information collected offline or via channels\n          other than this website.\n        "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("ul", [
+            _c("li", [
+              _c("strong", [_vm._v(" Consent")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              By using our website, you hereby consent to our Privacy Policy\n              and agree to its terms.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Information we collect")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              The personal information that you are asked to provide, and the\n              reasons why you are asked to provide it, will be made clear to\n              you at the point we ask you to provide your personal\n              information. "
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "If you contact us directly, we may receive\n              additional information about you such as your name, email\n              address, phone number, and the contents of the message and/or\n              attachments you may send us, and any other information you may\n              choose to provide. "
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "When you register for an Account, we may ask\n              for your contact information, including items such as name,\n              company name, address, email address, and telephone number.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("How we use your information")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              We use the information we collect in various ways, including to:\n            "
+                ),
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "list2" }, [
+                _c("li", [
+                  _vm._v("Provide, operate, and maintain our website"),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v("Improve, personalize, and expand our website"),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v("Understand and analyze how you use our website"),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Develop new products, services, features, and functionality\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Communicate with you, either directly or through one of our\n                partners, including for customer service, to provide you with\n                updates and other information relating to the website, and for\n                marketing and promotional purposes\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [_vm._v("Send you emails")]),
+                _vm._v(" "),
+                _c("li", [_vm._v("Find and prevent fraud")]),
+              ]),
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Log Files")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Sastowholesale.com follows a standard procedure of using log\n              files. These files log visitors when they visit websites. All\n              hosting companies do this and a part of hosting services'\n              analytics. The information collected by log files include\n              internet protocol (IP) addresses, browser type, Internet Service\n              Provider (ISP), date and time stamp, referring/exit pages, and\n              possibly the number of clicks. These are not linked to any\n              information that is personally identifiable. The purpose of the\n              information is for analyzing trends, administering the site,\n              tracking users' movement on the website, and gathering\n              demographic information.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Cookies and Web Beacons")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Like any other website, Website Name uses ‘cookies'. These\n              cookies are used to store information including visitors'\n              preferences, and the pages on the website that the visitor\n              accessed or visited. The information is used to optimize the\n              users' experience by customizing our web page content based on\n              visitors' browser type and/or other information.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("DoubleClick Dart Cookie")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Google is one of a third-party vendor on our site. It also uses\n              cookies, known as DART cookies, to serve ads to our site\n              visitors based upon their visit to www.sastowholesale.com and\n              other sites on the internet. However, visitors may choose to\n              decline the use of DART cookies by visiting the Google ad and\n              content network Privacy Policy at the following URL –\n             "
+                ),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "https://policies.google.com/technologies/ads",
+                    },
+                  },
+                  [_vm._v("https://policies.google.com/technologies/ads.")]
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " Some of\n              advertisers on our site may use cookies and web beacons. Our\n              advertising partners are listed below. Each of our advertising\n              partners has their own Privacy Policy for their policies on user\n              data. For easier access, we hyperlinked to their Privacy\n              Policies below. "
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v("Google\n              "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "https://policies.google.com/technologies/ads",
+                    },
+                  },
+                  [_vm._v(" https://policies.google.com/technologies/ads")]
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Advertising Partners Privacy Policies")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              You may consult this list to find the Privacy Policy for each of\n              the advertising partners of Sastowholesale.com."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " Third-party ad\n              servers or ad networks uses technologies like cookies,\n              JavaScript, or Web Beacons that are used in their respective\n              advertisements and links that appear on Website Name, which are\n              sent directly to users' browser. They automatically receive your\n              IP address when this occurs. These technologies are used to\n              measure the effectiveness of their advertising campaigns and/or\n              to personalize the advertising content that you see on websites\n              that you visit."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " Note that Sastowholesale.com has no access to or\n              control over these cookies that are used by third-party\n              advertisers.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Third-Party Privacy Policies")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Sastowholesale.com's Privacy Policy does not apply to other\n              advertisers or websites. Thus, we are advising you to consult\n              the respective Privacy Policies of these third-party ad servers\n              for more detailed information. It may include their practices\n              and instructions about how to opt-out of certain options. You\n              may find a complete list of these Privacy Policies and their\n              links here: Privacy Policy Links."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " You can choose to disable\n              cookies through your individual browser options. To know more\n              detailed information about cookie management with specific web\n              browsers, it can be found at the browsers' respective websites.\n              What Are Cookies?\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [
+                _vm._v(
+                  "CCPA Privacy Policy (Do Not Sell My Personal\n              Information)"
+                ),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Under the CCPA, among other rights, California consumers have the right to:"
+                ),
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "list2" }, [
+                _c("li", [
+                  _vm._v(
+                    "Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers."
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "Request that a business delete any personal data about the consumer that a business has collected."
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "Request that a business that sells a consumer's personal data, not sell the consumer's personal data."
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us."
+                  ),
+                ]),
+              ]),
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [
+                _vm._v("GDPR Privacy Policy (Data Protection Rights)"),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              We would like to make sure you are fully aware of all of your\n              data protection rights. Every user is entitled to the following:"
+                ),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "The right to access – You have the right to request copies of\n              your personal data. We may charge you a small fee for this\n              service."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  "The right to rectification – You have the right to\n              request that we correct any information you believe is\n              inaccurate. You also have the right to request that we complete\n              the information you believe is incomplete."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " The right to erasure\n              – You have the right to request that we erase your personal\n              data, under certain conditions."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " The right to restrict processing\n              – You have the right to request that we restrict the processing\n              of your personal data, under certain conditions."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " The right to\n              object to processing – You have the right to object to our\n              processing of your personal data, under certain conditions."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " The\n              right to data portability – You have the right to request that\n              we transfer the data that we have collected to another\n              organization, or directly to you, under certain conditions. If\n              you make a request, we have one month to respond to you. If you\n              would like to exercise any of these rights, please contact us.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Children's Information")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Another part of our priority is adding protection for children\n              while using the internet. We encourage parents and guardians to\n              observe, participate in, and/or monitor and guide their online\n              activity."
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(
+                  " Sastowholesale.com does not knowingly collect any\n              Personal Identifiable Information from children under the age of\n              16. If you think that your child provided this kind of\n              information on our website, we strongly encourage you to contact\n              us immediately and we will do our best efforts to promptly\n              remove such information from our records.\n            "
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsConditations.vue?vue&type=template&id=a819c3ce&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("frontmaster", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "heading mt-5" }, [
+        _c("h3", [_vm._v("SASTOWHOLESALE.COM MARKETPLACE VENDOR AGREEMENT")]),
+        _vm._v(" "),
+        _c("h4", [
+          _vm._v(
+            "\n        Please read the terms & conditions carefully before registering in\n        sastowholesale.com\n      "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "note" }, [
+          _vm._v(
+            "\n        ( This electronic record is generated by computer system & does not\n        require any physical or digital signatures. )\n      "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5 mb-5" }, [
+        _c("div", { staticClass: "description" }, [
+          _c("ul", { staticClass: "list" }, [
+            _c("li", [
+              _c("h5", [_vm._v("1.Introduction")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Sastowholesale.com is a B2B & B2C ecommerce launched by be the\n              best Pvt. Ltd., where user can connect with the different\n              supplier according to their requirements & have a superior\n              shopping experience.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("2.General Terms")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              This sastowholesale.com marketplace vendor agreement\n              (“AGREEMENT”) is an agreement between vendor and\n              sastowholesale.com (Be the best Pvt. Ltd.,) Governing the use of\n              sastowholesale.com marketplace as a vendor for listing and\n              selling products/service through sastowholesale.com.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("3.Definitions")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                “Content”: means the textual, visual or audio content that is\n                encountered as part of your experience on Our Website. It may\n                include, among other things: text, images, sounds, videos and\n                animations. It includes content such as advertising material,\n                and all other product or service related material Posted by\n                you.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [_vm._v("“Our website”: means sastowholesale.com.")]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                “Product”: means any item offered for sale by you on our\n                website, whether physical goods or digital.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                “You or Your”: means the vendor registering in\n                sastowholesale.com\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("4.Our contract")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                In consideration of a sales fee charged by us, we are\n                providing an ecommerce marketplace as an arm's length\n                contractor.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [_vm._v("We are not partners or joint ventures.")]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "We are supporting each other for our mutual benefits."
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                When you place a Product on Our Website, you will be bound to\n                provide all the information required by the Competition and\n                Consumer Act 2010.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Although we are not a party to your contract with a buyer\n                introduced to you VIA our website, we may remove your products\n                & charge you if a customer or our website visitor has a valid\n                complaint against you.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                We may change this agreement in any way at any time. The\n                version applicable to your contract is the version which was\n                posted on Our Website at the time that the contract was made.\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [
+                _vm._v("5.Listing your product/service in sastowholesale.com"),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Your product will be listed in product page directly but can be\n              deleted if your product found issues, harm our society or not\n              meet our requirement.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("6.Restriction & Responsibilities")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                You agree not to use irrelevant tags, descriptions and\n                screenshots for product submitted by you for listing on\n                sastowholesale.com.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                You agree not to deal or divert sastowholesale.com users\n                outside our website.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                You represent and warrant that all intellectual property\n                rights in and to the products submitted for listing in\n                sastowholesale.com’s marketplace are duly licensed or owned by\n                you.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                You are solely responsible for ensuring that your product does\n                not violate any third-party rights or any laws or regulations.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                You agree to conduct yourself in a professional manner and not\n                to disparage the goodwill of sastowholesale.com or\n                sastowholesale.com’s marketplace.\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("7.Delivery & Return")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                For the customer service, we allow our vendors to send\n                directly to customer location or can use our logistics for\n                delivery.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                If the buyer is requesting to return an item for “change of\n                mind” (or “remorse”) reasons, your return policy will apply\n                including which party is responsible for return postage costs.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                In the event that a Product ordered is not available, you must\n                tell your customer and offer a replacement product or refund\n                any money paid.\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("8.The selling Procedure")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                While setting up the shop, it is important that you setup your\n                own terms & conditions for buyers, such as return & refund\n                policy. You can do this from your seller portal. Please make\n                sure to include the following details in your listing:\n                "
+                  ),
+                  _c("ol", [
+                    _c("li", [_vm._v("Delivery & Return policy")]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v("Taxes & any applicable government imposed fees."),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Terms of the transaction.")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                You will receive a message by email at the time of each sale,\n                providing full information about that sale.\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("9.Goods, Service & Government tax")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              • Buyers & sellers are generally responsible for any sales tax,\n              or other taxes that apply to items on our website.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("10.Our commission & Payment to you")]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                Joining sastowholesale.com marketplace as a seller & posting\n                item is for free. We do retain a proportion of each sale, with\n                our mutual understanding based on your trading role.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                We will pay you within 3 days after your payment request to\n                us.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                A buyer may from time to time use discount vouchers/ codes,\n                this total may be discounted from the total pay-out figure to\n                the seller\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("11.Using our marketplace")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              We have to regulate your use of Our Website to protect our\n              business and our staff, to protect other users of Our Website\n              and to comply with the law. While using our website or platform,\n              you will not:\n            "
+                ),
+              ]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                Offer or reference your contact information or ask a buyer for\n                their contact information in the context of buying or selling\n                outside of sastowholesale.com Marketplace, you may be liable\n                to pay a commission fee applicable to that item.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Be obscene, offensive, threatening, violent or malicious;\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Be unlawful, or tend to incite another person to commit a\n                crime;\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Distribute or post spam, unsolicited or bulk electronic\n                communications, chain letters or pyramid schemes;\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v("12.Security of our website")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              You now agree that you will not, and will not allow any other\n              person to:\n            "
+                ),
+              ]),
+              _vm._v(" "),
+              _c("ul", [
+                _c("li", [
+                  _vm._v(
+                    "\n                Share with a third party any login credentials to our website.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                download any part of Our Website, without our express written\n                consent;\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Link to Our Website in any way that would cause the appearance\n                or presentation of Our Website to be different from what would\n                be seen by a user who accessed Our Website by typing the URL\n                into a standard browser;\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Modify, copy, or cause damage or unintended effect to any\n                portion of Our Website, or any software used within it.\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TermsOfUse.vue?vue&type=template&id=adf6969c&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("frontmaster", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "heading mt-5" }, [
+        _c("h3", [_vm._v("SASTOWHOLESALE.COM MARKETPLACE USER AGREEMENT")]),
+        _vm._v(" "),
+        _c("h4", [
+          _vm._v(
+            "\n        Please read the “Terms of use” carefully before using\n        sastowholesale.com\n      "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "note" }, [
+          _vm._v(
+            "\n        ( This electronic record is generated by computer system & does not\n        require any physical or digital signatures. )\n      "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5 mb-5" }, [
+        _c("div", { staticClass: "description" }, [
+          _c("ol", { staticClass: "list" }, [
+            _c("li", [
+              _c("strong", [_vm._v("Acceptance through use")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              By purchasing or viewing any product, advertisement, or company\n              profile, you agree to be bound by all of the Terms, conditions,\n              and notices contained or referenced in these Terms. If you do\n              not accept all of the Terms, you are not authorized to post or\n              view any content of this website and shall discontinue using\n              this website immediately.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Age Restriction")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Sastowholesale.com is not directed to and is not authorized to\n              post or view products by anyone under the age of Sixteen (16)\n              and if you are using Sastowholesale.com on behalf of a legal\n              entity, you shall be responsible to obtain the necessary\n              authority to post or retrieve any information on the site and\n              you agree to be accountable for that information.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [
+                _vm._v("Understanding the platform of Sastowholesale.com"),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              You agree and understand that Sastowholesale.com is an internet\n              platform that facilitates by providing communication between\n              users (buyers, sellers, viewers etc.) for the purpose of sharing\n              information of products or services. The information related to\n              products, services, and companies are not related to\n              Sastowholesale.com. You agree not to hold responsible for the\n              information posted by these seller/vendor or for their act in\n              any circumstances. Furthermore, you understand that\n              Sastowholesale.com is not involved in any transaction of any\n              products or services listed in this site, outside this platform.\n              You will be given security if you deal within\n              sastowholesale.com.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Limitation of Liability")]),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("ol", [
+                _c("li", [
+                  _vm._v(
+                    '\n                To the maximum extent permitted by law, The services provided\n                by Sastowholesale.com on or through the site are provided "AS\n                IS", "AS AVAILABLE" and “WITH ALL FAULTS”, and\n                Sastowholesale.com hereby expressly disclaims any and all\n                warranties of condition, quality, durability, performance,\n                accuracy, reliability, merchantability or fitness for a\n                particular purpose. All such warranties, representations,\n                conditions, and undertakings are hereby excluded.\n              '
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                To the maximum extent permitted by law, sastowholesale.com\n                makes no representations or warranties about the validity,\n                accuracy, correctness, reliability, quality, stability,\n                completeness or currentness of any information provided on or\n                through the sites; Sastowholesale.com does not represent or\n                warrant that the manufacture, importation, export,\n                distribution, offer, display, purchase, sale and/or use of\n                products or services offered or displayed on the sites does\n                not violate any third party rights; and Sastowholesale.com\n                makes no representations or warranties of any kind concerning\n                any product or service offered or displayed on the sites.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Any material downloaded or otherwise obtained through the\n                Sites or Services is done at each User's sole discretion and\n                risk and each User is solely responsible for any damage to its\n                own or to Sastowholesale.com’s computer system(s) or any loss\n                of data that may result from the download of any such\n                material. No advice or information, whether oral or written,\n                obtained by any user from Sastowholesale.com or through or\n                from the Sites shall create any warranty not expressly stated\n                herein.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                The Sites may make available to User services or products\n                provided by independent third parties. No warranty or\n                representation is made with regard to such services or\n                products. In no event shall Sastowholesale.com or our\n                affiliates be held liable for any such services or products.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Each User hereby agrees to indemnify and hold\n                Sastowholesale.com, our affiliates, directors, officers and\n                employees harmless, from any and all losses, claims,\n                liabilities (including legal costs on a full indemnity basis)\n                which may arise from such User's access to or use of the Sites\n                or Services (including but not limited to the submission,\n                posting or display of such User's information and User Content\n                on the Sites, Sasto-wholesale Channels or Third Party Channels\n                under Promotion Services) or from your breach of any of the\n                representations, warranties hereunder and the terms and\n                conditions of the Terms. Each User hereby further agrees to\n                indemnify and hold Alibaba.com, our affiliates, directors,\n                officers and employees harmless, from any and all losses,\n                damages, claims, liabilities (including legal costs on a full\n                indemnity basis) which may arise from User's breach of any\n                representations and warranties made by User to\n                Sastowholesale.com, including but not limited to those set\n                forth in clause 5 hereunder.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Each User hereby further agrees to indemnify and save\n                Sastowholesale.com, our affiliates, directors, officers and\n                employees harmless, from any and all losses, damages, claims,\n                liabilities (including legal costs on a full indemnity basis)\n                which may arise, directly or indirectly, as a result of any\n                claims asserted by Third Party Rights claimants or other third\n                parties relating to the User Content, information and/or\n                products offered or displayed on the Sites. Each User hereby\n                further agrees that Sastowholesale.com is not responsible and\n                shall have no liability to you, for any material posted by\n                others, including defamatory, offensive or illicit material\n                and that the risk of damages from such material rests entirely\n                with each User. Sastowholesale.com reserves the right, at our\n                own expense, to assume the exclusive defense and control of\n                any matter otherwise subject to indemnification by you, in\n                which event you shall cooperate with Sastowholesale.com in\n                asserting any available defenses.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "list2" }, [
+                  _vm._v(
+                    "\n                Sastowholesale.com shall not be liable for any special,\n                direct, indirect, punitive, incidental or consequential\n                damages or any damages whatsoever (including but not limited\n                to damages for loss of profits or savings, business\n                interruption, loss of information), whether in contract,\n                negligence, tort, equity or otherwise or any other damages\n                resulting from any of the following:\n                "
+                  ),
+                  _c("ol", [
+                    _c("li", [
+                      _vm._v(
+                        "\n                     The use or the inability to use the Sites or Services.\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    Any defect in goods, samples, data, information or\n                    services purchased or obtained from a User or any other\n                    third party through the Sites or Services;\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    Violation of Third Party Rights or claims or demands that\n                    User's manufacture, importation, exportation,\n                    distribution, offer, display, purchase, sale and/or use of\n                    products or services offered or displayed on the Sites or\n                    through the Services may violate or may be asserted to\n                    violate Third Party Rights; or claims by any party that\n                    they are entitled to defense or indemnification in\n                    relation to assertions of rights, demands or claims by\n                    Third Party Rights claimants;\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    Unauthorized access by third parties to data or private\n                    information of any User;\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    Statements or conduct of any User of the Sites or\n                    Services; or;\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                   Any matters relating to the Sites or Services, however\n                    arising, including negligence.\n                  "
+                      ),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                Notwithstanding any of the foregoing provisions, the aggregate\n                liability of Sastowholesale.com, our employees, agents,\n                affiliates, representatives or anyone acting on our behalf\n                with respect to each User for all claims arising from the\n                access to or use of the Sites or Services during any calendar\n                year shall be limited to the greater of (a) the amount of fees\n                the User has paid to Sastowholesale.com in exchange for the\n                access to or use of the Site or Services during the calendar\n                year and (b) the maximum amount permitted under the applicable\n                law. The preceding sentence shall not preclude the requirement\n                by the User to prove actual damages. All claims arising from\n                the use of the Sites or Services must be filed within one (1)\n                year from the date the cause of action arose or such longer\n                period as prescribed under the applicable law governing the\n                terms\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                The limitations and exclusions of liability to you under the\n                Terms shall apply to the maximum extent permitted by law and\n                shall apply whether or not Sastowholesale.com has been advised\n                of or should have been aware of the possibility of any such\n                losses arising.\n              "
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Intellectual Property rights")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Sastowholesale.com is the sole owner or lawful licensee of all\n              the rights & interests in the sites and the sites content. The\n              Sites and Site Content embody trade secrets and other\n              intellectual property rights protected under worldwide copyright\n              and other laws. All title, ownership & intellectual property\n              rights in the Sites & Site Content shall remain with\n              Sastowholesale.com.\n            "
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("strong", [_vm._v("Transaction Between Buyers and Sellers")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n              Through the sites, Sastowholesale.com provides electronic\n              web-based platforms for exchanging information between buyers\n              and sellers of product and services. Sastowholesale.com\n              additionally provides electronic web-based transaction platform\n              for members to place, accept, conclude, manage and fulfill\n              orders for the provision of products and services online within\n              the sites subject to the terms of the transaction services\n              agreement. However, for any services, Sastowholesale.com does\n              not represent either the seller or the buyer in specific\n              transactions. Sastowholesale.com does not control and is not\n              liable or responsible for the quality, safety, lawfulness or\n              availability of the products or services offered for sale on the\n              Sites, the ability of sellers to complete the sale or the\n              ability of buyers to complete a purchase.\n            "
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
     ]),
   ])
 }
