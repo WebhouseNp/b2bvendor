@@ -4,18 +4,15 @@ namespace Modules\User\Http\Controllers;
 
 use App\Mail\AccountActivated;
 use App\Mail\UserCreated;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Auth;
 use App\Models\User;
 use App\Password;
 use App\Rules\Mobile;
-use Modules\User\Entities\Vendor;
 use Modules\Role\Entities\Role_user;
 use Modules\Role\Entities\Role;
 use Validator;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use DB;
 use Str;
 use Mail;

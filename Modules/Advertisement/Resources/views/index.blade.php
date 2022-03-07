@@ -52,15 +52,15 @@ $api_token = $user->api_token;
 
             <td>{{$detail->status=='Publish'? 'Published':'Not published'}}</td>
             <td>
-              <a title="Edit" class="btn btn-primary btn-sm" href="{{route('advertisement.edit',$detail->id)}}">
-                <i class="fa fa-edit"></i>
+              <a title="Edit" class="btn btn-primary border-0" href="{{route('advertisement.edit',$detail->id)}}">
+                <i class="fa fa-edit"></i>Edit
               </a>
-              <button class="btn btn-danger btn-sm delete" onclick="deleteAdvertisement({{ $detail->id }})" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+              <button class="btn btn-danger border-0 delete" onclick="deleteAdvertisement({{ $detail->id }})" style="display:inline"><i class="fa fa-trash"></i>Delete</button>
             </td>
           </tr>
           @empty
           <tr>
-            <td colspan="3">No Records </td>
+            <td colspan="7">No Records </td>
           </tr>
           @endforelse
         </tbody>
@@ -79,7 +79,6 @@ $api_token = $user->api_token;
   $(function() {
     $('#example-table').DataTable({
       pageLength: 15,
-      "scrollX": true
     });
   })
   $("#sortable").sortable({
@@ -115,7 +114,6 @@ $api_token = $user->api_token;
       },
       success: function(response) {
         $('#appendAdvertisement').html(response.html)
-        // $('#example-table').DataTable();
       },
       error: function(error) {
         $('#notification-bar').text('An error occurred');
@@ -123,26 +121,65 @@ $api_token = $user->api_token;
     });
   }
 
-  // advertisements()
+  // delete advertisements()
   function deleteAdvertisement(id) {
     var api_token = '<?php echo $api_token; ?>';
-
-    alert("Are you sure you want to delete??");
-    $.ajax({
-      type: "post",
-      url: "{{route('api.deleteadvertisement')}}",
-      data: {
-        id: id
-      },
-      headers: {
-        Authorization: "Bearer " + api_token
-      },
-      success: function(response) {
-        var validation_errors = JSON.stringify(response.message);
-        $('#validation-errors').html('');
-        $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
-        window.location.href = "/admin/advertisement";
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You Want to delete this Advertisement??`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete it!'
+    }).then((result) => {
+      if (result.value) {
+        $.ajax({
+          type: "post",
+          url: "{{route('api.deleteadvertisement')}}",
+          data: {
+            id: id
+          },
+          headers: {
+            Authorization: "Bearer " + api_token
+          },
+          success: function(response) {
+            var validation_errors = JSON.stringify(response.message);
+            $('#validation-errors').html('');
+            $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
+            window.location.href = "/admin/advertisement";
+          }
+        });
+      } else {
+        $(this).find('button[type="submit"]').prop('disabled', false);
       }
+    })
+  }
+</script>
+<script>
+  function FailedResponseFromDatabase(message) {
+    html_error = "";
+    $.each(message, function(index, message) {
+      html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+    });
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      html: html_error,
+      confirmButtonText: 'Close',
+      timer: 10000
+    });
+  }
+
+  function DataSuccessInDatabase(message) {
+    Swal.fire({
+      position: 'top-end',
+      type: 'success',
+      title: 'Done',
+      html: message,
+      confirmButtonText: 'Close',
+      timer: 10000,
+      toast: true
     });
   }
 </script>

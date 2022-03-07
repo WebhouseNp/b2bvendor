@@ -443,7 +443,13 @@ $user = auth()->user();
                     <li>
                         <a href="{{route('user.index')}}">
                             <span class="fa fa-circle-o"></span>
-                            All User Lists
+                            All Vendors 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('user.getAllCustomers')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All Customers 
                         </a>
                     </li>
                 </ul>

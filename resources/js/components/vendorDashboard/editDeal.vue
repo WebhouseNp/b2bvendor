@@ -104,8 +104,8 @@
               <h5 style="font-weight: 700; margin-bottom: 20px;">Select Product</h5>
             </div>
             <div class="col-lg-12 col-sm-12 form-group">
-              <div class="table-responsive">
-                 <table class="table">
+              <div class="">
+                 <table class="table table-responsive-sm">
                 <thead
                   class="
                     table table-bordered table-striped
