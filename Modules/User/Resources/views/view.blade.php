@@ -154,7 +154,7 @@
                     <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
                     <div class="col-md-4 form-group">
                         <label><strong>Commission Rate(In %)</strong></label>
-                        <input class="form-control" type="number" name="commission_rate" value="{{@$vendor->vendor->commission_rate}}" placeholder="Enter Commisson rate here">
+                        <input class="form-control" type="number" name="commission_rate" min="0" value="{{@$vendor->vendor->commission_rate}}" placeholder="Enter Commisson rate here">
                     </div>
                     <div class="col-md-4 form-group">
                         <label><strong>Vendor status</strong></label>

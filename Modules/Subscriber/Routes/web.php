@@ -16,7 +16,7 @@ use Modules\Subscriber\Http\Controllers\SubscriberController;
 //     Route::get('/', 'SubscriberController@index');
 // });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','Admin']], function () {
+Route::group(['middleware' => ['auth', 'role:super_admin|admin'],'prefix'=>'admin'], function () {
     Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscriber.index');
     Route::get('/delete-subscriber/{id}', [SubscriberController::class, 'delete'])->name('delete-subscriber');
 	Route::get('/edit-subscriber/{id}', [SubscriberController::class, 'edit'])->name('subscriber.edit');
