@@ -144,3 +144,11 @@ if (!function_exists('alt_usr_has_permission')) {
 }
 
 
+if (!function_exists('admin_users')) {
+    function admin_users()
+    {
+        return  \App\Models\User::whereHas('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->get();
+    }
+}
