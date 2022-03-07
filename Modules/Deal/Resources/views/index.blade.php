@@ -17,7 +17,7 @@ $api_token = $user->api_token;
             <div class="ibox-title">All Deals</div>
             @if (auth()->user()->hasRole('vendor'))
             <div>
-                <a href="{{ route('deals.create') }}" class="btn btn-success">Create New</a>
+                <a href="{{ route('deals.create') }}" class="btn btn-primary">Create New</a>
             </div>
             @endif
         </div>
@@ -58,14 +58,14 @@ $api_token = $user->api_token;
                             </button>
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{route('deals.show',$data->id)}}" title="view">
-                                <i class="fa fa-eye"></i>
+                            <a class="btn btn-success btn-sm" href="{{route('deals.show',$data->id)}}" title="view">
+                                <i class="fa fa-eye"></i>View
                             </a>
                             @if (auth()->user()->hasRole('vendor'))
                             <a class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}" title="Edit">
-                                <i class="fa fa-edit"></i>
+                                <i class="fa fa-edit"></i>Edit
                             </a>
-                            <button class="btn btn-danger btn-sm delete" onclick="deleteDeal(this,'{{ $data->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger btn-sm delete" onclick="deleteDeal(this,'{{ $data->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i>Delete</button>
                             @endif
                         </td>
                     </tr>

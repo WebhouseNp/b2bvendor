@@ -33,11 +33,11 @@
                         <td> {{$subscriber_data->email}}</td>
                         <!-- <td>{{ $subscriber_data->status == 'publish' ? 'Active' : 'Inactive' }}</td> -->
                         <td>
-                            <form action="{{ route('delete-subscriber', $subscriber_data->id) }}" method="get">
+                            <form action="{{ route('delete-subscriber', $subscriber_data->id) }}" class="js-delete-subscriber-form form-inline d-inline" method="get">
                                 @csrf()
                                 @method('DELETE')
-                                <button onclick="return confirm('Are you sure you want to delete this Subscriber?')" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
+                                <button class="btn btn-danger border-0">
+                                        <i class="fa fa-trash"></i> Delete
                                 </button>
                             </form>
                         </td>
@@ -61,11 +61,61 @@
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         $('#example-table').DataTable({
             pageLength: 25,
         });
+        $(document).ready(function() {
+            // Confirm before delete
+            $('.js-delete-subscriber-form').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?'
+                    , text: `You Want to delete this Subsciber??`
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, Delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        e.target.submit();
+                    } else {
+                        $(this).find('button[type="submit"]').prop('disabled', false);
+                    }
+                })
+            });
+        });
     })
+</script>
+<script>
+    function FailedResponseFromDatabase(message) {
+        html_error = "";
+        $.each(message, function(index, message) {
+            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+        });
+        Swal.fire({
+            type: 'error'
+            , title: 'Oops...'
+            , html: html_error
+            , confirmButtonText: 'Close'
+            , timer: 10000
+        });
+    }
+
+    function DataSuccessInDatabase(message) {
+        Swal.fire({
+            position: 'top-end'
+            , type: 'success'
+            , title: 'Done'
+            , html: message
+            , confirmButtonText: 'Close'
+            , timer: 10000
+            , toast: true
+        });
+    }
+
 </script>
 @endsection

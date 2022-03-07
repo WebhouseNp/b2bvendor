@@ -23,17 +23,17 @@
                 </thead>
                 <tbody>
 
-                    @foreach($users as $key=>$data)
+                    @foreach($vendors as $key=>$data)
 
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{$data->name}}</td>
-                        <td>{{@$data->vendor->shop_name}}</td>
-                        <td>{{$data->email}}</td>
-                        <td>{{$data->phone_num}}</td>
-                        <td><span class="btn btn-sm {{vendorStatus($data->vendor_type) }} ">{{ ucfirst($data->vendor_type) }}</span></td>
+                        <td>{{$data->user->name}}</td>
+                        <td>{{@$data->shop_name}}</td>
+                        <td>{{$data->user->email}}</td>
+                        <td>{{$data->user->phone_num}}</td>
+                        <td><span class="btn btn-sm {{vendorStatus($data->user->vendor_type) }} ">{{ ucfirst($data->user->vendor_type) }}</span></td>
                         <td>
-                            <a title="View Profile" class="btn btn-info btn-sm" href="{{route('vendor.view',$data->id)}}">
+                            <a title="View Profile" class="btn btn-info btn-sm" href="{{route('vendor.view',$data->user->id)}}"> <i class="fa fa-eye"></i>
                                 View Profile
                             </a>
 
