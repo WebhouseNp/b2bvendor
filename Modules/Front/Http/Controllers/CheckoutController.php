@@ -117,6 +117,8 @@ class CheckoutController extends Controller
 
             // send email to customer and related vendors
             \App\Jobs\SendNewOrderEmail::dispatch($order);
+            $order->vendor->user->notify(new \Modules\Order\Notifications\NewOrderNotification($order));
+            
             DB::commit();
 
             // process payment
