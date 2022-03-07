@@ -4,11 +4,11 @@
     <footer class="footer">
       <div class="container">
         <div class="row pt-row">
-          <div class="col">
+          <div class="col offset-md-1">
             <div class="pt-pl-list">
               <h3>About Us</h3>
               <ul>
-                <li><a href="javascript:void(0)">About Sastowholesale.com (will provide this content ASAP)</a></li>
+                <li><a href="javascript:void(0)">About Sastowholesale.com</a></li>
                 <li><a href="javascript:void(0)">Our Partners</a></li>
                 <li><a href="javascript:void(0)" @click="helpCenter">Help Center</a></li>
                 <li><a href="javascript:void(0)">Our Blogs</a></li>
@@ -53,7 +53,7 @@ export default {
   name:'Footer',
   methods:{
     termsConditations(){
-      window.location.href="/terms-conditations";
+      window.location.href="/terms-conditions";
     },
     termsUse(){
       window.location.href="/terms-of-use";

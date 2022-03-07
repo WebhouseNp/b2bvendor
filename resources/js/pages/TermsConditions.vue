@@ -39,20 +39,20 @@
               <h5>3.Definitions</h5>
               <ul>
                 <li>
-                  “Content”: means the textual, visual or audio content that is
+                 <strong>“Content”:</strong> means the textual, visual or audio content that is
                   encountered as part of your experience on Our Website. It may
                   include, among other things: text, images, sounds, videos and
                   animations. It includes content such as advertising material,
                   and all other product or service related material Posted by
                   you.
                 </li>
-                <li>“Our website”: means sastowholesale.com.</li>
+                <li><strong>“Our website”:</strong> means sastowholesale.com.</li>
                 <li>
-                  “Product”: means any item offered for sale by you on our
+                 <strong>“Product”:</strong> means any item offered for sale by you on our
                   website, whether physical goods or digital.
                 </li>
                 <li>
-                  “You or Your”: means the vendor registering in
+                 <strong>“You or Your”:</strong> means the vendor registering in
                   sastowholesale.com
                 </li>
               </ul>
@@ -204,15 +204,15 @@
                   to pay a commission fee applicable to that item.
                 </li>
                 <li>
-                  Be obscene, offensive, threatening, violent or malicious;
+                  Be obscene, offensive, threatening, violent or malicious.
                 </li>
                 <li>
                   Be unlawful, or tend to incite another person to commit a
-                  crime;
+                  crime.
                 </li>
                 <li>
                   Distribute or post spam, unsolicited or bulk electronic
-                  communications, chain letters or pyramid schemes;
+                  communications, chain letters or pyramid schemes.
                 </li>
               </ul>
             </li>
@@ -228,13 +228,13 @@
                 </li>
                 <li>
                   download any part of Our Website, without our express written
-                  consent;
+                  consent.
                 </li>
                 <li>
                   Link to Our Website in any way that would cause the appearance
                   or presentation of Our Website to be different from what would
                   be seen by a user who accessed Our Website by typing the URL
-                  into a standard browser;
+                  into a standard browser.
                 </li>
                 <li>
                   Modify, copy, or cause damage or unintended effect to any
@@ -261,10 +261,12 @@ export default {};
 .list {
   list-style: none;
   font-family: var(--font-primary);
+  margin-bottom: 20px;
 }
 .list h5{
     font-weight: 600;
     color: #495057;
+    margin-bottom: 20px;
 }
 .list p {
   margin-left: 40px;

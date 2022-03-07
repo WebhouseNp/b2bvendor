@@ -153,7 +153,7 @@
                     <li>
                       Any defect in goods, samples, data, information or
                       services purchased or obtained from a User or any other
-                      third party through the Sites or Services;
+                      third party through the Sites or Services
                     </li>
                     <li>
                       Violation of Third Party Rights or claims or demands that
@@ -161,18 +161,18 @@
                       distribution, offer, display, purchase, sale and/or use of
                       products or services offered or displayed on the Sites or
                       through the Services may violate or may be asserted to
-                      violate Third Party Rights; or claims by any party that
+                      violate Third Party Rights or claims by any party that
                       they are entitled to defense or indemnification in
                       relation to assertions of rights, demands or claims by
-                      Third Party Rights claimants;
+                      Third Party Rights claimants
                     </li>
                     <li>
                       Unauthorized access by third parties to data or private
-                      information of any User;
+                      information of any User
                     </li>
                     <li>
                       Statements or conduct of any User of the Sites or
-                      Services; or;
+                      Services
                     </li>
                     <li>
                      Any matters relating to the Sites or Services, however

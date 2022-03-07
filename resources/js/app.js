@@ -24,10 +24,11 @@ Vue.component('resetpassword', require('./components/vendorLogin/Reset.vue').faq
 Vue.component('createdeal', require('./components/vendorDashboard/createDeal.vue').default);
 Vue.component('editdeal',require('./components/vendorDashboard/editDeal.vue').default);
 Vue.component('AboutUs', require('./pages/AboutUs.vue').default);
-Vue.component('TermsConditaions', require('./pages/TermsConditations.vue').default);
+Vue.component('TermsConditions', require('./pages/TermsConditions.vue').default);
 Vue.component('termsOfUse', require('./pages/TermsOfUse.vue').default);
 Vue.component('PrivacyPolicy', require('./pages/PrivacyPolicy.vue').default);
 Vue.component('LogisticsManagement',require('./pages/LogisticsManagement.vue').default);
+Vue.component('AboutUs', require('./pages/AboutUs').default);
 
 Vue.component('PriceRange',require('./components/Product/PriceRange.vue').default);
 
