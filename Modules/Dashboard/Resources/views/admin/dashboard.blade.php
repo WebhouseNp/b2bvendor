@@ -79,7 +79,7 @@
             <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($payableToVendors) }}</h3>
-                    <p>Payable Amount From Vendors</p>
+                    <p>Payable Amount To Vendors</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-credit-card text-gold"></i>

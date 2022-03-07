@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered table-hover" id="appendRole" cellspacing="0"
+<table class="table table-striped table-responsive-sm table-bordered table-hover" id="appendRole" cellspacing="0"
                 width="100%">
                 <thead>
                     <tr>
