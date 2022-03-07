@@ -16,10 +16,6 @@ class SliderController extends Controller
     public function __construct(Slider $slider){
         $this->slider = $slider;
     }
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
     public function index()
     {
         $sliders = $this->slider->published()->orderBy('id', 'DESC')->get();
@@ -48,31 +44,9 @@ class SliderController extends Controller
         }
         $success= $this->slider->create($value);
         
-        if($success){
-            
-            $request->session()->flash('success', 'Slider added Successfully.');
-        } else {
-            $request->session()->flash('error', 'Error While adding Slider Data.');
-        }
-      
-        return redirect()->route('slider.index');
+        return redirect()->route('slider.index')->with('success', 'Slider added Successfuly.');
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('slider::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function edit($id)
     {
         $slider_info = $this->slider->find($id);
@@ -83,12 +57,6 @@ class SliderController extends Controller
         return view('slider::create', compact( 'slider_info'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
@@ -114,36 +82,17 @@ class SliderController extends Controller
             $value['image'] = $image;
         }
         $success = $slider->update($value);
-        
-        if($success){
-            
-            $request->session()->flash('success', 'Slider udpated Successfully.');
-        } else {
-            $request->session()->flash('error', 'Error While adding Slider Data.');
-        }
-      
-        return redirect()->route('slider.index');
+        return redirect()->route('slider.index')->with('success', 'Slider Updated Successfuly.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
     public function destroy(Request $request,$id)
     {
         $slider = $this->slider->findorFail($id);
             if ($slider->image) {
                 $this->unlinkImage($slider->image);
             }
-           $success = $slider->delete();
-           if($success){
-            $request->session()->flash('success', 'Slider deleted successfully');
-
-        } else {
-            $request->session()->flash('error', 'Sorry! Slider could not be deleted at this moment.');
-        }
-        return redirect()->route('slider.index');
+        $slider->delete();
+           return redirect()->route('slider.index')->with('success', 'Slider Deleted Successfuly.');
     }
 
     public function imageProcessing($type, $image)

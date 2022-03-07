@@ -450,7 +450,7 @@ $user = auth()->user();
             </li>
             @endif
 
-            @if(auth()->user()->hasAnyRole('admin|super_admin'))
+            @if(auth()->user()->hasRole('super_admin'))
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-tasks"></i>
@@ -521,7 +521,7 @@ $user = auth()->user();
                             Sasto Wholesale Mall
                         </a>
                     </li>
-                    @if(auth()->user()->hasAnyRole('super_admin'))
+                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
                     <li>
                         <a href="{{ route('settings.notification.index') }}">
                             <span class="fa fa-circle-o"></span>

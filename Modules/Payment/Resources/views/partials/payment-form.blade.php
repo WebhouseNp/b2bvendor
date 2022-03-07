@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="required">Attachment</label>
-                        <input type="file" name="file" class="form-control">
+                        <input type="file" name="file" class="form-file">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg px-5">Deposit</button>

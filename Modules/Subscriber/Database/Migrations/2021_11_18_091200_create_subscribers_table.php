@@ -16,7 +16,7 @@ class CreateSubscribersTable extends Migration
         Schema::create('subscribers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email');
-            $table->enum('status', ['publish', 'unpublish'])->default('unpublish');
+            $table->boolean('status')->default(true);  
             $table->timestamps();
         });
     }

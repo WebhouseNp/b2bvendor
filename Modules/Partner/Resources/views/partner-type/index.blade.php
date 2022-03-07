@@ -39,12 +39,12 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('partner-type.edit', $data->id) }}" class="btn btn-link py-0 text-success"><i class="fa fa-edit"></i> Edit</a>
-                                <div>|</div>
-                                <form action="{{ route('partner-type.destroy', $data->id) }}" method="post" class="d-inline">
+                                <a href="{{ route('partner-type.edit', $data->id) }}" class="btn btn-primary border-0"><i class="fa fa-edit"></i> Edit</a>
+                                <div class="mx-2"></div>
+                                <form action="{{ route('partner-type.destroy', $data->id) }}" class="js-delete-partner-type-form form-inline d-inline" method="post" class="d-inline">
                                     @csrf()
                                     @method('DELETE')
-                                    <button onclick="return confirm('Are you sure you want to delete this Partner Type?')" class="btn btn-link py-0 text-danger">
+                                    <button class="btn btn-danger border-0">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </form>
@@ -68,12 +68,62 @@
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         $('#partners-table').DataTable({
             pageLength: 25
         });
+        $(document).ready(function() {
+            // Confirm before delete
+            $('.js-delete-partner-type-form').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?'
+                    , text: `You Want to delete this Partner Type??`
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, Delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        e.target.submit();
+                    } else {
+                        $(this).find('button[type="submit"]').prop('disabled', false);
+                    }
+                })
+            });
+        });
     })
+
+</script>
+<script>
+    function FailedResponseFromDatabase(message) {
+        html_error = "";
+        $.each(message, function(index, message) {
+            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+        });
+        Swal.fire({
+            type: 'error'
+            , title: 'Oops...'
+            , html: html_error
+            , confirmButtonText: 'Close'
+            , timer: 10000
+        });
+    }
+
+    function DataSuccessInDatabase(message) {
+        Swal.fire({
+            position: 'top-end'
+            , type: 'success'
+            , title: 'Done'
+            , html: message
+            , confirmButtonText: 'Close'
+            , timer: 10000
+            , toast: true
+        });
+    }
 
 </script>
 @endsection

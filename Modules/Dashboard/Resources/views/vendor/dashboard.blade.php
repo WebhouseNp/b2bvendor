@@ -14,12 +14,6 @@
                     <span class="info-box-number">{{ formatted_price($totalSales) }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Total Sales</p>
-                    <h2>{{ formatted_price($totalSales) }}</h2>
-                </div>
-            </div> -->
         </div>
         <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
@@ -31,12 +25,6 @@
                     <span class="info-box-number">{{ formatted_price($salesFromOnlinePayment) }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Sales from Online Payment</p>
-                    <h2>{{ formatted_price($salesFromOnlinePayment) }}</h2>
-                </div>
-            </div> -->
         </div>
         <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
@@ -48,13 +36,6 @@
                     <span class="info-box-number">{{ formatted_price($salesFromCOD) }}</span>
                 </div>
             </div>
-            
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Sales from COD</p>
-                    <h2>{{ formatted_price($salesFromCOD) }}</h2>
-                </div>
-            </div> -->
         </div>
 
         <div class="col-lg-4 col-md-6 mb-3">
@@ -67,14 +48,7 @@
                     <span class="info-box-number">{{ formatted_price($payableToAdmin) }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Remaining Payable Amount To Admin</p>
-                    <h2>{{ formatted_price($payableToAdmin) }}</h2>
-                </div>
-            </div> -->
         </div>
-
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="info-box">
@@ -83,15 +57,14 @@
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Receivable Amount From Admin</span>
-                    <span class="info-box-number">{{ formatted_price($reveivableFromAdmin) }}</span>
+                    <span class="info-box-number d-md-flex">
+                        <div>{{ formatted_price($reveivableFromAdmin) }}</div>
+                        <div class="ml-auto">
+                            <x-payment-request-button class="btn btn-primary btn-sm border-0"></x-payment-request-button>
+                        </div>
+                    </span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Remaining Receivable Amount From Admin</p>
-                    <h2>{{ formatted_price($reveivableFromAdmin) }}</h2>
-                </div>
-            </div> -->
         </div>
 
         <div class="col-lg-4 col-md-6 mb-4">
@@ -104,15 +77,8 @@
                     <span class="info-box-number">{{ $totalActiveProductsCount }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Total Active Products</p>
-                    <h2>{{ $totalActiveProductsCount }}</h2>
-                </div>
-            </div> -->
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-md-7">
@@ -128,8 +94,4 @@
     <x-dashboard.latest-orders-tile></x-dashboard.latest-orders-tile>
 
 </div>
-@endsection
-
-@section('scripts')
-
 @endsection

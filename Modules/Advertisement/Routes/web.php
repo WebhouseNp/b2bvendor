@@ -1,21 +1,8 @@
 <?php
 use Modules\Advertisement\Http\Controllers\AdvertisementController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::prefix('advertisement')->group(function() {
-    // Route::get('/', 'AdvertisementController@index');
-});
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','Admin']], function () {
+Route::group(['middleware' => ['auth', 'role:super_admin|admin'],'prefix'=>'admin'], function () {
     Route::get('/advertisement', [AdvertisementController::class, 'index'])->name('advertisement.index');
     Route::get('/advertisement/create', [AdvertisementController::class, 'create'])->name('advertisement.create');
     Route::get('/advertisement/edit/{id}', [AdvertisementController::class, 'edit'])->name('advertisement.edit');
