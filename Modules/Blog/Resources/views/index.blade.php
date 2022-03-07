@@ -10,9 +10,6 @@ Blogs
 @endsection
 
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title">Blogs</h1>
-</div>
 <div class="ibox-body" id="validation-errors">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
 </div>
