@@ -80,8 +80,6 @@
         </div>
     </div>
 
-    <button id="js-request-payment-btn" class="btn btn-primary btn-sm border-0">Request Payment</button>
-
     <div class="row">
         <div class="col-md-7">
             <x-charts.sales-chart-tile></x-charts.sales-chart-tile>
