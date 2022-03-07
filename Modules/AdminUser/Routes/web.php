@@ -12,13 +12,7 @@ use Modules\AdminUser\Http\Controllers\AdminUserController;
 |
 */
 
-Route::prefix('adminuser')->group(function() {
-    // Route::get('/', 'AdminUserController@index');
-});
-
 Route::group(['middleware' => ['auth', 'role:super_admin|admin'],'prefix'=>'admin'], function () {
-    Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
-    Route::get('/user/create', [AdminUserController::class, 'create'])->name('user.create');
-    Route::get('/user/edit/{id}', [AdminUserController::class, 'edit'])->name('user.edit');
-    Route::get('/user/view/{id}', [AdminUserController::class, 'view'])->name('user.view');
+    Route::get('/vendors', [AdminUserController::class, 'index'])->name('user.index');
+    Route::get('/customers', [AdminUserController::class, 'getAllCustomers'])->name('user.getAllCustomers');
 });

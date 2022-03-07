@@ -8,9 +8,6 @@
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Users</div>
-            <!-- <div>
-                <a class="btn btn-info btn-md" href="{{route('user.create')}}">New Users</a>
-            </div> -->
         </div>
         <div class="ibox-body" id="validation-errors" >
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>
