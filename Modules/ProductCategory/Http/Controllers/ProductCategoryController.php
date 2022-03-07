@@ -39,6 +39,12 @@ class ProductCategoryController extends Controller
         }
         $productCategory->save();
 
+        if (auth()->user()->hasRole('vendor')) {
+            foreach(admin_users() as $admin) {
+                $admin->notify(new \Modules\ProductCategory\Notifications\ProductCategoryRequestNotification($productCategory));
+            }
+        }
+
 
         return redirect()->route('product-category.index')->with('success', 'Item added successfully.');
     }

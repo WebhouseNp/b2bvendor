@@ -55,6 +55,12 @@ class CategoryController extends Controller
         }
         $data = Category::create($value);
 
+        if (auth()->user()->hasRole('vendor')) {
+            foreach(admin_users() as $admin) {
+                $admin->notify(new \Modules\Category\Notifications\CategoryRequestNotification($data));
+            }
+        }
+
         return response()->json(['status' => 'successful', 'message' => 'Category created successfully.', 'data' => $data]);
     }
 

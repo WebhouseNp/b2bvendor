@@ -521,7 +521,7 @@ $user = auth()->user();
                             Sasto Wholesale Mall
                         </a>
                     </li>
-                    @if(auth()->user()->hasAnyRole('super_admin'))
+                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
                     <li>
                         <a href="{{ route('settings.notification.index') }}">
                             <span class="fa fa-circle-o"></span>

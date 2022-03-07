@@ -16,6 +16,12 @@ class PaymentRequestController extends Controller
 
         Mail::to('finance@sastowholesale.com')->send(new PaymentRequestMail($vendor));
 
+        if (auth()->user()->hasRole('vendor')) {
+            foreach(admin_users() as $admin) {
+                $admin->notify(new \Modules\Payment\Notifications\PaymentRequestNotification($vendor));
+            }
+        }
+
         return response()->json([
             'status' => 'success',
         ], 200);
