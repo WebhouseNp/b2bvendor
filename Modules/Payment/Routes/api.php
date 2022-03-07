@@ -1,18 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
+use Modules\Payment\Http\Controllers\PaymentRequestController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:api')->get('/payment', function (Request $request) {
-    return $request->user();
-});
+Route::post('/request-payment', [PaymentRequestController::class, 'requestPayment'] )->name('request-payment')->middleware('auth:api');
