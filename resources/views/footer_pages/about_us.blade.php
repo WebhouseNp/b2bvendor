@@ -1,5 +1,5 @@
 @extends('vendor_front_layouts.master')
 
 @section('content')
- <login/>
+<about-us/>
 @endsection

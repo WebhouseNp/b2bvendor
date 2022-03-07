@@ -10,6 +10,19 @@ button {
 
 /* Info box */
 
+.notification-link {
+    position: relative;
+}
+
+.navbar-badge {
+    font-size: .8rem;
+    font-weight: 600;
+    padding: 1px 4px;
+    position: absolute;
+    right: 3px;
+    top: 9px;
+}
+
 .info-box {
     border-radius: 0.25rem;
     background: #fff;
@@ -304,14 +317,33 @@ button {
     display: block;
     /* margin-bottom: 20px; */
     position: relative;
+    background-color: #fff;
 }
 
-.bg-aqua {
+
+/* .bg-aqua {
     background-color: #17a2b8!important;
     color: #fff!important;
+} */
+
+.text-aqua {
+    color: #17a2b8;
 }
 
-.bg-green {
+.text-green {
+    color: #28a745;
+}
+
+.text-red {
+    color: #dc3545;
+}
+
+.text-gold {
+    color: #f1c40f;
+}
+
+
+/* .bg-green {
     background-color: #28a745!important;
     color: #fff!important;
 }
@@ -323,7 +355,7 @@ button {
 
 .bg-gold {
     background-color: #f1c40f !important;
-}
+} */
 
 .small-box>.inner {
     padding: 10px;

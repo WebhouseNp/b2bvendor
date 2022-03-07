@@ -60,7 +60,7 @@ $api_token = $user->api_token;
           </tr>
           @empty
           <tr>
-            <td colspan="3">No Records </td>
+            <td colspan="7">No Records </td>
           </tr>
           @endforelse
         </tbody>
