@@ -5,17 +5,7 @@
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
-
-<div class="page-heading">
-    <h1 class="page-title"> All Subscribers list</h1>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="la la-home font-20"></i> Dashboard</a>
-        </li>
-        <li class="breadcrumb-item"> All Subscribers Request list</li>
-    </ol>
-    @include('admin.section.notifications')
-</div>
+@include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -23,13 +13,12 @@
         </div>
 
         <div class="ibox-body">
-            <table class="table table-striped table-responsive-sm table-bordered table-hover" id="example-table" cellspacing="0"
-                width="100%">
+            <table class="table table-striped table-responsive-sm table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>S.N</th>
                         <th>Email</th>
-                        <th>Status</th>
+                        <!-- <th>Status</th> -->
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -42,26 +31,15 @@
                         <td> {{$key +1}}</td>
 
                         <td> {{$subscriber_data->email}}</td>
-                        <td>{{ $subscriber_data->status == 'publish' ? 'Active' : 'Inactive' }}</td>
+                        <!-- <td>{{ $subscriber_data->status == 'publish' ? 'Active' : 'Inactive' }}</td> -->
                         <td>
-                            <ul class="action_list">
-                                <li>
-                                      
-                                    <a title="Edit" class="btn btn-primary btn-sm" href="{{route('subscriber.edit', $subscriber_data->id)}}">
-                                    <i class="fa fa-edit"></i></a>
-                                    <form action="{{ route('delete-subscriber', $subscriber_data->id) }}" method="get">
-                                        @csrf()
-                                        @method('DELETE')
-                                        <button
-                                            onclick="return confirm('Are you sure you want to delete this Subscriber?')"
-                                            class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-
-                                </li>
-
-                            </ul>
+                            <form action="{{ route('delete-subscriber', $subscriber_data->id) }}" method="get">
+                                @csrf()
+                                @method('DELETE')
+                                <button onclick="return confirm('Are you sure you want to delete this Subscriber?')" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -89,6 +67,5 @@
             pageLength: 25,
         });
     })
-
 </script>
 @endsection

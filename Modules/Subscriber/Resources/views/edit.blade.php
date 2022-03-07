@@ -2,15 +2,6 @@
 @section('page_title', 'Edit subscriber')
 @section('content')
 
-<div class="page-heading">
-   <h1 class="page-title"> Subscriber</h1>
-   <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-         <a href="#"><i class="la la-home font-20"></i> Home</a>
-      </li>
-   </ol>
-
-</div>
 @include('admin.section.notifications')
 <div class="page-content fade-in-up">
    <div class="ibox">

@@ -16,7 +16,7 @@ Route::prefix('adminuser')->group(function() {
     // Route::get('/', 'AdminUserController@index');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','Superadmin']], function () {
+Route::group(['middleware' => ['auth', 'role:super_admin|admin'],'prefix'=>'admin'], function () {
     Route::get('/user', [AdminUserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [AdminUserController::class, 'create'])->name('user.create');
     Route::get('/user/edit/{id}', [AdminUserController::class, 'edit'])->name('user.edit');
