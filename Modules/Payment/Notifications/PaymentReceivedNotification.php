@@ -38,7 +38,7 @@ class PaymentReceivedNotification extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            'message' => 'You have received a payment of ' . $this->transaction->amount . ' from Sasto Wholesale.',
+            'message' => 'You have received a payment of ' . price_unit() . $this->transaction->amount . ' from Sasto Wholesale.',
             'url' => '#',
         ];
     }
