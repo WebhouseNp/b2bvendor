@@ -20,9 +20,9 @@
         <div class="ibox-body">
             <div class="mb-4">
                 <div class="d-md-flex">
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-md-center">
                         <span class="flex-shrink-0 align-self-center text-nowrap">Showing &nbsp;</span>
-                        <button class="form-control form-control-sm custom-select dropdown-toggle d-inline" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request('per_page', 15) }}</button>
+                        <button class="form-control form-control-sm custom-select dropdown-toggle d-inline w-auto" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request('per_page', 15) }}</button>
                         <span class="flex-shrink-0 align-self-center text-nowrap"> &nbsp; Records Per Page</span>
                         <div class="dropdown-menu">
                             <a href="{{ request()->fullUrlWithQuery(['per_page' => 20]) }}" class="dropdown-item" value="true">20</a>

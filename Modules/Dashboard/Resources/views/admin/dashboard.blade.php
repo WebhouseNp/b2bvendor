@@ -5,13 +5,13 @@
 
     <div class="row">
         <div class="col-md-4 mb-4">
-            <div class="small-box bg-aqua">
+            <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($totalSales) }}</h3>
                     <p>Total Sales</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-shopping-bag"></i>
+                    <i class="fa fa-shopping-bag text-aqua"></i>
                 </div>
             </div>
             <!-- <div class="card">
@@ -22,13 +22,13 @@
             </div> -->
         </div>
         <div class="col-md-4 mb-4">
-            <div class="small-box bg-green">
+            <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($salesFromOnlinePayment) }}</h3>
                     <p>Sales from Online Payment</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-google-wallet"></i>
+                    <i class="fa fa-google-wallet text-green"></i>
                 </div>
             </div>
             <!-- <div class="card">
@@ -39,13 +39,13 @@
             </div> -->
         </div>
         <div class="col-md-4 mb-4">
-            <div class="small-box bg-gold">
+            <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($salesFromCOD) }}</h3>
                     <p>Sales from COD</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-money"></i>
+                    <i class="fa fa-money text-gold"></i>
                 </div>
             </div>
             <!-- <div class="card">
@@ -57,13 +57,13 @@
         </div>
 
         <div class="col-md-4 mb-4">
-            <div class="small-box bg-red">
+            <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($receivableFromVendors) }}</h3>
                     <p>Receivable Amount From Vendors</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-credit-card"></i>
+                    <i class="fa fa-credit-card text-red"></i>
                 </div>
             </div>
             <!-- <div class="card">
@@ -76,13 +76,13 @@
 
 
         <div class="col-md-4 mb-4">
-            <div class="small-box bg-gold">
+            <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($payableToVendors) }}</h3>
                     <p>Payable Amount From Vendors</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-credit-card"></i>
+                    <i class="fa fa-credit-card text-gold"></i>
                 </div>
             </div>
             <!-- <div class="card">
@@ -94,13 +94,13 @@
         </div>
 
         <div class="col-md-4 mb-4">
-            <div class="small-box bg-aqua">
+            <div class="small-box">
                 <div class="inner">
                     <h3>{{ $totalActiveProductsCount }}</h3>
                     <p>Active Products</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-cubes"></i>
+                    <i class="fa fa-cubes text-aqua"></i>
                 </div>
             </div>
             <!-- <div class="card">
@@ -113,7 +113,7 @@
 
         <div class="col-md-4 mb-4">
             <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-truck"></i></span>
+                <span class="info-box-icon bg-green text-white"><i class="fa fa-truck"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Active Vendors</span>
                     <span class="info-box-number">{{ $totalActiveVendors }}</span>
@@ -130,7 +130,7 @@
 
         <div class="col-md-4 mb-4">
             <div class="info-box">
-                <span class="info-box-icon bg-gold"><i class="fa fa-info-circle"></i></span>
+                <span class="info-box-icon bg-yellow"><i class="fa fa-info-circle"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Vendor Requests</span>
                     <span class="info-box-number">{{ $totalNewVendors }}</span>
@@ -146,7 +146,7 @@
 
         <div class="col-md-4 mb-4">
             <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-red"><i class="fa fa-users text-white"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Customers</span>
                     <span class="info-box-number">{{ $totalCustomers }}</span>
