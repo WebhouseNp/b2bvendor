@@ -31,11 +31,11 @@
             </td>
             <td>
                 <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$product->id)}}">
-                    <i class="fa fa-eye"></i>
+                    <i class="fa fa-eye"></i>View
                 </a>
 
                 <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$product->id)}}">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-edit"></i>Edit
                 </a>
                 <!-- <button class="btn btn-danger btn-sm delete" onclick="deleteProduct(this,'{{ $product->id }}')" style="display:inline"><i class="fa fa-trash"></i></button> -->
             </td>

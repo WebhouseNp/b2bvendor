@@ -24,7 +24,7 @@
         {{-- <div class="ibox-body" id="appendCategory"></div> --}}
         <table class="table table-striped table-responsive-sm table-hover dt-responsive display" id="example-table" cellspacing="0" style="width:100%">
             <thead>
-                <tr class="border-0">
+                <tr>
                     <th>S.N</th>
                     <th>Name</td>
                     <th>Image</td>
@@ -40,7 +40,7 @@
                     @endif
                 </tr>
             </thead>
-            <tbody id="sortable">
+            <tbody>
                 @forelse ($details as $detail)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
@@ -56,8 +56,9 @@
                     <td>{{ $detail->products_count }}</td>
                     <!-- <td>{{ $detail->subcategory_count }}</td> -->
                     @if( auth()->user()->hasRole('vendor'))
-                    <td><div style="display:inline-block; width:100px" class="badge {{ $detail->publish==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
-                        {{ $detail->publish == 1 ? 'Published' : 'Not Published' }}
+                    <td>
+                        <div style="display:inline-block; width:100px" class="badge {{ $detail->publish==1 ? 'bg-primary' : 'badge-danger' }} text-capitalize">
+                            {{ $detail->publish == 1 ? 'Published' : 'Not Published' }}
                         </div>
                     </td>
                     @endif
@@ -69,12 +70,12 @@
                     @if( auth()->user()->hasAnyRole('super_admin|admin'))
                     <td class="text-nowrap">
                         <a title="view" class="btn btn-success btn-sm" href="{{ route('category.view',$detail->id) }}">
-                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-eye"></i>View
                         </a>
                         <a title="Edit" class="btn btn-primary btn-sm" href="{{ route('category.edit',$detail->id) }}">
-                            <i class="fa fa-edit"></i>
+                            <i class="fa fa-edit"></i>Edit
                         </a>
-                        <button class="btn btn-danger btn-sm delete-category" onclick="return confirm('Do You want to delete this category??') && deleteCategory(this,'{{ $detail->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteCategory(this,'{{ $detail->id }}')" style="display:inline"><i class="fa fa-trash"></i>Delete</button>
                     </td>
                     @endif
                 </tr>
@@ -97,7 +98,10 @@
     $(function() {
         $('#example-table').DataTable({
             pageLength: 15,
-            "responsive": true,
+            "aoColumnDefs": [{
+                "bSortable": false,
+                "aTargets": [-1, -2]
+            }]
         });
     })
 </script>
@@ -169,19 +173,46 @@
 
     function deleteCategory(el, id) {
         let url = "/api/deletecategory/" + id;
-        $.ajax({
-            type: "post",
-            url: url,
-            data: {
-                _method: 'delete'
-            },
-            success: function(response) {
-                var validation_errors = JSON.stringify(response.message);
-                $('#validation-errors').html('');
-                $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
-                $(el).closest('tr').remove()
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You Want to delete this Category??`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: {
+                        _method: 'delete'
+                    },
+                    success: function(response) {
+                        var validation_errors = JSON.stringify(response.message);
+                        $('#validation-errors').html('');
+                        $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
+                        $(el).closest('tr').remove()
+                    }
+                });
+            } else {
+                $(this).find('button[type="submit"]').prop('disabled', false);
             }
-        });
+        })
+        // $.ajax({
+        //     type: "post",
+        //     url: url,
+        //     data: {
+        //         _method: 'delete'
+        //     },
+        //     success: function(response) {
+        //         var validation_errors = JSON.stringify(response.message);
+        //         $('#validation-errors').html('');
+        //         $('#validation-errors').append('<div class="alert alert-success">' + validation_errors + '</div');
+        //         $(el).closest('tr').remove()
+        //     }
+        // });
     }
 
     //category publish/unpublish
