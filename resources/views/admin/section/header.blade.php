@@ -181,10 +181,7 @@
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="nav-item">
-                        <a href="/notifications" class="nav-link notification-link">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="badge badge-danger navbar-badge">8</span>
-                        </a>
+                        <x-notification-bell></x-notification-bell>
                     </li>
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
