@@ -1,5 +1,12 @@
 <div class="ibox">
     <div class="ibox-body">
+        @if(auth()->user()->hasRole('vendor'))
+        <div class="mb-3">
+            <p>If your payment need to be settled, click the "Request Payment" button below. If any confusion related to finance kindly mail at <a href="mailto:finance@sastowholesale.com">finance@sastowholesale.com</a>.</p>
+            <x-payment-request-button class="btn btn-primary border-0"></x-payment-request-button>
+        </div>
+        @endif
+
         <table class="custom-table table table-responsive-sm">
             <thead>
                 <tr>
