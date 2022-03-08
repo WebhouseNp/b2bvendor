@@ -52,7 +52,6 @@ Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 Route::get('megamenu', 'CategoryApiController@megamenu');
 Route::get('hot-categories', 'CategoryApiController@hotCategories');
 
-Route::post('quotation', 'QuotationController@store')->name('quotation.store');
 Route::post('product-search', 'SearchController@productSearch')->name('product.search');
 
 //cart part

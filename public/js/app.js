@@ -2201,6 +2201,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     helpCenter: function helpCenter() {
       window.location.href = "/faq";
+    },
+    aboutUs: function aboutUs() {
+      window.location.href = "/about-us";
     }
   }
 });
@@ -2561,7 +2564,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -3261,7 +3263,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-//
 //
 //
 //
@@ -5791,6 +5792,91 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6205,38 +6291,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7221,10 +7275,14 @@ var Validation = /*#__PURE__*/function () {
   _createClass(Validation, [{
     key: "getMessage",
     value: function getMessage(field) {
-      console.log(this.messages);
-
       if (this.messages && this.messages[field]) {
-        return this.messages[field][0];
+        var required = this.messages[field][0].search('required');
+
+        if (required > 0) {
+          return 'This field is required';
+        } else {
+          return this.messages[field][0];
+        }
       }
     }
   }, {
@@ -7629,7 +7687,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-adf6969c],\r\nh4[data-v-adf6969c],\r\n.note[data-v-adf6969c] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-adf6969c]{\r\n  padding-right: 16px;\r\n   padding-left: 32px;\n}\nol[data-v-adf6969c] {\r\n  list-style: none;\r\n  counter-reset: cupcake;\r\n  list-style-position: outside;\n}\nol li p[data-v-adf6969c]{\r\n  margin-top: 20px;\n}\nol li[data-v-adf6969c] {\r\n  counter-increment: cupcake;\r\n  margin-bottom: 20px;\n}\nol li[data-v-adf6969c]:before {\r\n  content: counters(cupcake, \".\") \". \";\n}\n.list2 ol[data-v-adf6969c]{\r\n    list-style: lower-latin;\r\n    counter-reset: none;\r\n    margin-top: 10px;\n}\n.list2 ol li[data-v-adf6969c]{\r\n    counter-increment: none;\r\n    margin-bottom: 10px;\r\n    margin-left: 50px;\r\n    padding-right: 20px;\n}\n.list2 ol li[data-v-adf6969c]::before{\r\n    content: none;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.description ol li[data-v-adf6969c] {\r\n    width: 100%;\r\n    flex-basis: unset;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-adf6969c],\r\nh4[data-v-adf6969c],\r\n.note[data-v-adf6969c] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-adf6969c]{\r\n  padding-right: 16px;\r\n   padding-left: 32px;\n}\nol[data-v-adf6969c] {\r\n  list-style: none;\r\n  counter-reset: cupcake;\r\n  list-style-position: outside;\n}\nol li p[data-v-adf6969c]{\r\n  margin-top: 20px;\n}\nol li[data-v-adf6969c] {\r\n  counter-increment: cupcake;\r\n  margin-bottom: 20px;\n}\nol li[data-v-adf6969c]:before {\r\n  content: counters(cupcake, \".\") \". \";\n}\n.list2 ol[data-v-adf6969c]{\r\n    list-style: lower-latin;\r\n    counter-reset: none;\r\n    margin-top: 10px;\n}\n.list2 ol li[data-v-adf6969c]{\r\n    counter-increment: none;\r\n    margin-bottom: 10px;\r\n    padding-right: 20px;\n}\n.list2 ol li[data-v-adf6969c]::before{\r\n    content: none;\n}\n@media (min-width: 768px) {\n.list2 ol li[data-v-adf6969c]{\r\n    margin-left: 50px;\n}\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.description ol li[data-v-adf6969c] {\r\n    width: 100%;\r\n    flex-basis: unset;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -61854,9 +61912,18 @@ var render = function () {
               _c("h3", [_vm._v("About Us")]),
               _vm._v(" "),
               _c("ul", [
-                _vm._m(0),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.aboutUs },
+                    },
+                    [_vm._v("About Sastowholesale.com")]
+                  ),
+                ]),
                 _vm._v(" "),
-                _vm._m(1),
+                _vm._m(0),
                 _vm._v(" "),
                 _c("li", [
                   _c(
@@ -61869,7 +61936,7 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _vm._m(2),
+                _vm._m(1),
               ]),
             ]),
           ]),
@@ -61938,7 +62005,7 @@ var render = function () {
                       attrs: { href: "javascript:void(0)" },
                       on: { click: _vm.privacyPolicy },
                     },
-                    [_vm._v("Privacy & Policy")]
+                    [_vm._v("Privacy Policy")]
                   ),
                 ]),
               ]),
@@ -61948,7 +62015,7 @@ var render = function () {
         _vm._v(" "),
         _c("hr"),
         _vm._v(" "),
-        _vm._m(3),
+        _vm._m(2),
         _vm._v(" "),
         _c("hr"),
       ]),
@@ -61956,16 +62023,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _vm._v("About Sastowholesale.com"),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -63049,7 +63106,6 @@ var render = function () {
                     ],
                     staticClass: "form-check-input",
                     class: { "is-invalid": _vm.validationStatus(_vm.$v.terms) },
-                    staticStyle: { "margin-left": "0" },
                     attrs: { type: "checkbox" },
                     domProps: {
                       checked: Array.isArray(_vm.$v.terms.$model)
@@ -64357,7 +64413,6 @@ var render = function () {
                           _c(
                             "multiselect",
                             {
-                              staticClass: "form-control",
                               class: {
                                 "is-invalid": _vm.validationStatus(
                                   _vm.$v.value
@@ -67152,283 +67207,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("section", { staticClass: "login-main" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "login-form-card" }, [
-          _c("div", { staticClass: "card login-card border-0" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [
-                  _c(
-                    "form",
-                    {
-                      on: {
-                        submit: function ($event) {
-                          $event.preventDefault()
-                          return _vm.onSubmit()
-                        },
-                      },
-                    },
-                    [
-                      _vm.error
-                        ? _c("error", { attrs: { error: _vm.error } })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("Input", {
-                        attrs: {
-                          label: "Email",
-                          type: "text",
-                          placeholder: "example@gmail.com",
-                        },
-                        model: {
-                          value: _vm.email,
-                          callback: function ($$v) {
-                            _vm.email = $$v
-                          },
-                          expression: "email",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _vm._v(
-                            "\n                      Password\n                      "
-                          ),
-                          _c("span", { staticClass: "pt-fp" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  tabindex: "-1",
-                                },
-                                on: { click: _vm.onClickForgot },
-                              },
-                              [_vm._v("Forgot Password?")]
-                            ),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _vm.showPassword
-                          ? _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.password,
-                                  expression: "password",
-                                },
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Enter Password",
-                              },
-                              domProps: { value: _vm.password },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.password = $event.target.value
-                                },
-                              },
-                            })
-                          : _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.password,
-                                  expression: "password",
-                                },
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "password",
-                                placeholder: "Enter Password",
-                              },
-                              domProps: { value: _vm.password },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.password = $event.target.value
-                                },
-                              },
-                            }),
-                        _vm._v(" "),
-                        _vm.password
-                          ? _c(
-                              "span",
-                              {
-                                staticClass: "field-icon icon-cl",
-                                on: { click: _vm.toggleShow },
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  { staticClass: "icon is-small is-right" },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa",
-                                      class: {
-                                        "fa-eye-slash": _vm.showPassword,
-                                        "fa-eye": !_vm.showPassword,
-                                      },
-                                    }),
-                                  ]
-                                ),
-                              ]
-                            )
-                          : _vm._e(),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-check pl-0" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.remember_me,
-                              expression: "remember_me",
-                            },
-                          ],
-                          staticClass: "form-check-input",
-                          staticStyle: {
-                            "margin-left": "0",
-                            "margin-top": "6px",
-                          },
-                          attrs: { type: "checkbox", id: "rememberMe" },
-                          domProps: {
-                            checked: Array.isArray(_vm.remember_me)
-                              ? _vm._i(_vm.remember_me, null) > -1
-                              : _vm.remember_me,
-                          },
-                          on: {
-                            change: function ($event) {
-                              var $$a = _vm.remember_me,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.remember_me = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (_vm.remember_me = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.remember_me = $$c
-                              }
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-check-label ml-3",
-                            attrs: { for: "rememberMe" },
-                          },
-                          [_vm._v("Remember Me")]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "loading-button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "submit", loading: _vm.loading },
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(_vm.loading ? "Please wait" : "Sign In")
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "signup" }, [
-                        _vm._v(
-                          "\n                    New around here?\n                    "
-                        ),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "javascript:void(0)" },
-                            on: { click: _vm.onClickSingup },
-                          },
-                          [_vm._v("\n                      Sign Up")]
-                        ),
-                      ]),
-                    ],
-                    1
-                  ),
-                ]),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "copyright" }, [
-            _c("p", [
-              _vm._v("\n            Copyright © 2022\n            "),
-              _c(
-                "a",
-                {
-                  attrs: { href: "javascript:void(0)" },
-                  on: { click: _vm.vendorHomepage },
-                },
-                [_vm._v("Sasto Wholesale")]
-              ),
-              _vm._v("\n            All Rights Reserved\n          "),
-            ]),
-          ]),
-        ]),
-      ]),
-    ]),
-  ])
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("a", { staticClass: "router-link-active", attrs: { href: "/" } }, [
-        _c("img", {
-          staticClass: "logo-img",
-          attrs: { src: "/images/logo.png", alt: "logo" },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("h4", { staticClass: "login-title" }, [
-        _vm._v("\n                  Welcome To "),
-        _c("span", [_vm._v("Seller Market")]),
-      ]),
-    ])
-  },
-]
-render._withStripped = true
+var render = function () {}
+var staticRenderFns = []
 
 
 
@@ -68064,108 +67844,12 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row mt-5" }, [
-        _c("div", { staticClass: "description" }, [
-          _c("ol", [
-            _c("li", [
-              _vm._v("About Sastowholesale.com \n          "),
-              _c("ul", [
-                _c("li", [
-                  _vm._v(
-                    "Sastowholesale.com is a dynamic marketing/selling online venue for manufacturer, supplier, wholesaler, or any organization; who are seeking their product worldwide. Managed and handled by be the best Pvt. Ltd., B2B, B2C Ecommerce having both product and service which connect Buyers & Suppliers around the world."
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v("Our Partners\n            "),
-              _c("ul", [
-                _c("li", [
-                  _vm._v(
-                    "Send to our partner page & also add option become a partner option & give form, for which category partner they want to be."
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v("Help Center\n            "),
-              _c("ul", [
-                _c("li", [
-                  _vm._v(
-                    "Currently we can use FAQs, but need to make help center category wise."
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v("Our Blogs\n            "),
-              _c("ul", [_c("li", [_vm._v("Blogs Page")])]),
-            ]),
+        _c("div", { staticClass: "description mb-5" }, [
+          _c("p", [
+            _vm._v(
+              "Sastowholesale.com is a dynamic marketing/selling online venue for manufacturer, supplier, wholesaler, or any organization; who are seeking their product worldwide. Managed and handled by be the best Pvt. Ltd., B2B, B2C Ecommerce having both product and service which connect Buyers & Suppliers around the world."
+            ),
           ]),
-          _vm._v(" "),
-          _c("ol", { staticStyle: { "list-style": "none" } }, [
-            _c("li", [
-              _c("strong", [_vm._v("Sell on Sastowholesale.com")]),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("ol", [
-                _c("li", [
-                  _vm._v("Become a Seller\n              "),
-                  _c("ul", [_c("li", [_vm._v("Seller page ")])]),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [_vm._v("Logistics Management")]),
-          ]),
-          _vm._v(" "),
-          _c("ol", { staticStyle: { "list-style": "none" } }, [
-            _c("li", [
-              _c("strong", [_vm._v("Legal")]),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("ol", [
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.termsConditations },
-                    },
-                    [_vm._v("Vendor terms & Condition")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.termsUse },
-                    },
-                    [_vm._v("Terms of use")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.privacyPolicy },
-                    },
-                    [_vm._v("Privacy Policy")]
-                  ),
-                ]),
-              ]),
-            ]),
-          ]),
-          _c("br"),
-          _c("br"),
         ]),
       ]),
     ]),

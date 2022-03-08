@@ -167,7 +167,6 @@
                       alt="asterik-image"
                     />
                     <multiselect v-model.trim="$v.value.$model" :options="options"
-                    class="form-control" 
                     :class="{ 'is-invalid': validationStatus($v.value) }"
                     :multiple="true" placeholder="Type to search"
                     track-by="name" :hide-selected="true" label="name">

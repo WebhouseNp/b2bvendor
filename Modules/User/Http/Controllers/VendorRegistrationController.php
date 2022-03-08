@@ -35,20 +35,6 @@ class VendorRegistrationController extends Controller
   {
     DB::beginTransaction();
     try {
-      $validator = Validator::make($request->all(), [
-        'email' => 'required|email|unique:users',
-        'name' => 'required',
-        'designation' => 'required',
-        'phone_num' => ['required', new Mobile],
-        'password' => 'required|min:6',
-        'confirm_password' => 'required_with:password|same:password'
-
-      ]);
-
-      if ($validator->fails()) {
-        return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
-        exit;
-      }
       $name = explode(' ', $request->name);
       $username = strtolower($name[0] . rand(10, 1000));
       $data = [

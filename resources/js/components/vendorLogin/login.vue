@@ -3,6 +3,7 @@
     <section class="login-main">
       <div class="container">
         <div class="login-form-card">
+<<<<<<< HEAD
           <div class="card login-card border-0">
             <div class="card-body">
               <div class="text-center">
@@ -36,6 +37,90 @@
                             @click="onClickForgot"
                             >Forgot Password?</a
                           ></span
+=======
+          <div class="row">
+            <div class="col-lg-5 col-md-8 mx-auto col-12">
+              <div class="card login-card border-0">
+                <div class="card-body">
+                  <div class="text-center">
+                    <a href="/" class="router-link-active">
+                      <img src="/images/logo.png" alt="logo" class="logo-img" />
+                    </a>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <h4 class="login-title">
+                        Welcome To <span>Seller Market</span>
+                      </h4>
+                    </div>
+                    <div class="col-12">
+                      <form @submit.prevent="onSubmit()">
+                        <error v-if="error" :error="error" />
+                        <Input
+                          label="Email"
+                          type="text"
+                          placeholder="example@gmail.com"
+                          v-model="email"
+                        />
+                        <div class="form-group">
+                          <label for="">
+                            Password
+                            <span class="pt-fp"
+                              ><a href="javascript:void(0)" class="" tabindex="-1" @click="onClickForgot"
+                                >Forgot Password?</a
+                              ></span
+                            >
+                          </label>
+                          <input
+                            v-if="showPassword"
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter Password"
+                            v-model="password"
+                          />
+                          <input
+                            v-else
+                            type="password"
+                            class="form-control"
+                            placeholder="Enter Password"
+                            v-model="password"
+                          />
+                          <span class="field-icon icon-cl" @click="toggleShow" v-if="password">
+                            <span class="icon is-small is-right">
+                              <i
+                                class="fa"
+                                :class="{
+                                  'fa-eye-slash': showPassword,
+                                  'fa-eye': !showPassword,
+                                }"
+                              ></i>
+                            </span>
+                          </span>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="rememberMe"
+                            v-model="remember_me"
+                          />
+                          <label class="form-check-label" for="rememberMe"
+                            >Remember Me</label
+                          >
+                        </div>
+                        <loading-button
+                          type="submit"
+                          class="btn btn-primary"
+                          :loading="loading"
+                          >{{
+                            loading ? "Please wait" : "Sign In"
+                          }}</loading-button
+                        >
+                        <p class="signup">
+                        New around here?
+                        <a href="javascript:void(0)" @click="onClickSingup">
+                          Sign Up</a
+>>>>>>> cefc7286926a8042dded3112f31daa237f45bf54
                         >
                       </label>
                       <input

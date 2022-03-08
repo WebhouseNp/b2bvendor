@@ -113,14 +113,12 @@ $user = auth()->user();
                 </ul>
             </li>
             @endif
-            @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
-                <a href="{{route('allquotations')}}">
+                <a href="{{ route('quotations.index') }}">
                     <i class="sidebar-item-icon fa fa-quote-left"></i>
-                    <span class="nav-label">All Quotations</span>
+                    <span class="nav-label">Quotations</span>
                 </a>
             </li>
-            @endif
 
             @can('viewSalesReport')
             <li>
