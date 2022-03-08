@@ -12,6 +12,11 @@ Your request to change vendor status for {{ $shop_name }}  has been changed to {
 @break
 @case('suspended')
 Your request to change vendor status for {{ $shop_name }}  has been {{ $status }}. 
+@component('mail::panel')
+Reason:
+<br>
+{{ $note }}
+@endcomponent
 @default
 @endswitch
 

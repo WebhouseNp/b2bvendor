@@ -362,8 +362,8 @@ button {
 }
 
 .small-box h3 {
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 600;
     margin: 0 0 10px;
     padding: 0;
     white-space: nowrap;
@@ -408,6 +408,8 @@ button {
     body:not(.sidebar-mini) .ibox .ibox-head {
         display: block;
         margin-bottom: 10px;
+        height: auto;
+        padding-bottom: 10px;
     }
     .small-box h3 {
         font-size: 1.6rem;
