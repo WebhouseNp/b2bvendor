@@ -150,6 +150,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'category_id' => 'Category',
+        'subcategory_id' => 'Subcategory',
+        'productcategory_id' => 'Product Category',
+    ],
 
 ];
