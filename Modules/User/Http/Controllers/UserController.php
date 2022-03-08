@@ -31,11 +31,9 @@ class UserController extends Controller
       $validator = Validator::make($request->all(), [
         'full_name' => 'required|string',
         'phone_num' => ['required', new Mobile],
-        // 'phone_num' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
         'email' => 'required|email|unique:users',
         'password' => 'required',
         'confirm_password' => 'required|min:6|same:password',
-        //   'terms_condition' => 'required',
       ]);
 
       if ($validator->fails()) {

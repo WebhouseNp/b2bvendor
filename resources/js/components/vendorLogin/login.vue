@@ -68,7 +68,6 @@
                             class="form-check-input"
                             id="rememberMe"
                             v-model="remember_me"
-                            style="margin-left: 0; margin-top: 6px"
                           />
                           <label class="form-check-label" for="rememberMe"
                             >Remember Me</label

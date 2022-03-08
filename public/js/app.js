@@ -2201,6 +2201,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     helpCenter: function helpCenter() {
       window.location.href = "/faq";
+    },
+    aboutUs: function aboutUs() {
+      window.location.href = "/about-us";
     }
   }
 });
@@ -2561,7 +2564,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -3261,7 +3263,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-//
 //
 //
 //
@@ -5785,7 +5786,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -7217,10 +7217,16 @@ var Validation = /*#__PURE__*/function () {
   _createClass(Validation, [{
     key: "getMessage",
     value: function getMessage(field) {
-      console.log(this.messages);
+      console.log('message', this.messages);
 
       if (this.messages && this.messages[field]) {
-        return this.messages[field][0];
+        var required = this.messages[field][0].search('required');
+
+        if (required > 0) {
+          return 'This field is required';
+        } else {
+          return this.messages[field][0];
+        }
       }
     }
   }, {
@@ -7625,7 +7631,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-adf6969c],\r\nh4[data-v-adf6969c],\r\n.note[data-v-adf6969c] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-adf6969c]{\r\n  padding-right: 16px;\r\n   padding-left: 32px;\n}\nol[data-v-adf6969c] {\r\n  list-style: none;\r\n  counter-reset: cupcake;\r\n  list-style-position: outside;\n}\nol li p[data-v-adf6969c]{\r\n  margin-top: 20px;\n}\nol li[data-v-adf6969c] {\r\n  counter-increment: cupcake;\r\n  margin-bottom: 20px;\n}\nol li[data-v-adf6969c]:before {\r\n  content: counters(cupcake, \".\") \". \";\n}\n.list2 ol[data-v-adf6969c]{\r\n    list-style: lower-latin;\r\n    counter-reset: none;\r\n    margin-top: 10px;\n}\n.list2 ol li[data-v-adf6969c]{\r\n    counter-increment: none;\r\n    margin-bottom: 10px;\r\n    margin-left: 50px;\r\n    padding-right: 20px;\n}\n.list2 ol li[data-v-adf6969c]::before{\r\n    content: none;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.description ol li[data-v-adf6969c] {\r\n    width: 100%;\r\n    flex-basis: unset;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-adf6969c],\r\nh4[data-v-adf6969c],\r\n.note[data-v-adf6969c] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-adf6969c]{\r\n  padding-right: 16px;\r\n   padding-left: 32px;\n}\nol[data-v-adf6969c] {\r\n  list-style: none;\r\n  counter-reset: cupcake;\r\n  list-style-position: outside;\n}\nol li p[data-v-adf6969c]{\r\n  margin-top: 20px;\n}\nol li[data-v-adf6969c] {\r\n  counter-increment: cupcake;\r\n  margin-bottom: 20px;\n}\nol li[data-v-adf6969c]:before {\r\n  content: counters(cupcake, \".\") \". \";\n}\n.list2 ol[data-v-adf6969c]{\r\n    list-style: lower-latin;\r\n    counter-reset: none;\r\n    margin-top: 10px;\n}\n.list2 ol li[data-v-adf6969c]{\r\n    counter-increment: none;\r\n    margin-bottom: 10px;\r\n    padding-right: 20px;\n}\n.list2 ol li[data-v-adf6969c]::before{\r\n    content: none;\n}\n@media (min-width: 768px) {\n.list2 ol li[data-v-adf6969c]{\r\n    margin-left: 50px;\n}\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.description ol li[data-v-adf6969c] {\r\n    width: 100%;\r\n    flex-basis: unset;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -61850,9 +61856,18 @@ var render = function () {
               _c("h3", [_vm._v("About Us")]),
               _vm._v(" "),
               _c("ul", [
-                _vm._m(0),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.aboutUs },
+                    },
+                    [_vm._v("About Sastowholesale.com")]
+                  ),
+                ]),
                 _vm._v(" "),
-                _vm._m(1),
+                _vm._m(0),
                 _vm._v(" "),
                 _c("li", [
                   _c(
@@ -61865,7 +61880,7 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _vm._m(2),
+                _vm._m(1),
               ]),
             ]),
           ]),
@@ -61934,7 +61949,7 @@ var render = function () {
                       attrs: { href: "javascript:void(0)" },
                       on: { click: _vm.privacyPolicy },
                     },
-                    [_vm._v("Privacy & Policy")]
+                    [_vm._v("Privacy Policy")]
                   ),
                 ]),
               ]),
@@ -61944,7 +61959,7 @@ var render = function () {
         _vm._v(" "),
         _c("hr"),
         _vm._v(" "),
-        _vm._m(3),
+        _vm._m(2),
         _vm._v(" "),
         _c("hr"),
       ]),
@@ -61952,16 +61967,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _vm._v("About Sastowholesale.com"),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -63045,7 +63050,6 @@ var render = function () {
                     ],
                     staticClass: "form-check-input",
                     class: { "is-invalid": _vm.validationStatus(_vm.$v.terms) },
-                    staticStyle: { "margin-left": "0" },
                     attrs: { type: "checkbox" },
                     domProps: {
                       checked: Array.isArray(_vm.$v.terms.$model)
@@ -64353,7 +64357,6 @@ var render = function () {
                           _c(
                             "multiselect",
                             {
-                              staticClass: "form-control",
                               class: {
                                 "is-invalid": _vm.validationStatus(
                                   _vm.$v.value
@@ -67303,10 +67306,6 @@ var render = function () {
                                 },
                               ],
                               staticClass: "form-check-input",
-                              staticStyle: {
-                                "margin-left": "0",
-                                "margin-top": "6px",
-                              },
                               attrs: { type: "checkbox", id: "rememberMe" },
                               domProps: {
                                 checked: Array.isArray(_vm.remember_me)

@@ -15,7 +15,7 @@
             </li>
             <li>Our Partners
               <ul>
-                <li>Send to our partner page & also add option become a partner option & give form, for which category partner they want to be.</li>
+                <li>Send to our partner page &amp; also add option become a partner option &amp; give form, for which category partner they want to be.</li>
               </ul>
             </li>
             <li>Help Center
@@ -36,7 +36,7 @@
           </ol>
           <ol style="list-style:none;">
             <li><strong>Legal</strong><br><br>
-            <ol><li><a href="javascript:void(0)" @click="termsConditations">Vendor terms & Condition</a> </li>
+            <ol><li><a href="javascript:void(0)" @click="termsConditations">Vendor terms &amp; Condition</a> </li>
             <li><a href="javascript:void(0)" @click="termsUse">Terms of use</a></li>
             <li><a href="javascript:void(0)" @click="privacyPolicy">Privacy Policy</a></li></ol></li>
           </ol><br><br>
