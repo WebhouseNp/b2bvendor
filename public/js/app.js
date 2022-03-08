@@ -2182,30 +2182,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Footer',
-  methods: {
-    termsConditations: function termsConditations() {
-      window.location.href = "/terms-conditions";
-    },
-    termsUse: function termsUse() {
-      window.location.href = "/terms-of-use";
-    },
-    privacyPolicy: function privacyPolicy() {
-      window.location.href = "/privacy-policy";
-    },
-    logisticManagement: function logisticManagement() {
-      window.location.href = "/logistics-management";
-    },
-    becomeSeller: function becomeSeller() {
-      window.location.href = "/vendor-register";
-    },
-    helpCenter: function helpCenter() {
-      window.location.href = "/faq";
-    },
-    aboutUs: function aboutUs() {
-      window.location.href = "/about-us";
-    }
-  }
+  name: 'Footer'
 });
 
 /***/ }),
@@ -2316,21 +2293,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Header",
-  methods: {
-    onClickSingup: function onClickSingup() {
-      window.location.href = "/vendor-register";
-    },
-    onClickLogin: function onClickLogin() {
-      window.location.href = "/vendor-login";
-    },
-    vendorHomepage: function vendorHomepage() {
-      window.location.href = "/vendor-homepage";
-    },
-    onClickFaq: function onClickFaq() {
-      window.location.href = "/faq";
-    }
-  }
+  name: "Header"
 });
 
 /***/ }),
@@ -6180,17 +6143,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "LoginHomePage",
-  methods: {
-    onClickSingup: function onClickSingup() {
-      window.location.href = "/vendor-register";
-    },
-    onClickLogin: function onClickLogin() {
-      window.location.href = "/vendor-login";
-    }
-  }
+  name: "LoginHomePage"
 });
 
 /***/ }),
@@ -7074,6 +7028,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -7099,19 +7054,19 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "somekey",
+  key: "cbe0b7b8904e2ede8292",
   cluster: "ap2",
   // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: "sellercenter.sastowholesale.com",
-  wsPort: "80",
-  wssPort: "443",
+  wsHost: process.env.MIX_PUSHER_WSHOST,
+  wsPort: process.env.MIX_PUSHER_WSPORT,
+  wssPort: process.env.MIX_PUSHER_WSSPORT,
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
+        fetch(process.env.MIX_ECHO_AUTH_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61818,158 +61773,115 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("footer", { staticClass: "footer" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row pt-row" }, [
-          _c("div", { staticClass: "col offset-md-1" }, [
-            _c("div", { staticClass: "pt-pl-list" }, [
-              _c("h3", [_vm._v("About Us")]),
-              _vm._v(" "),
-              _c("ul", [
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.aboutUs },
-                    },
-                    [_vm._v("About Sastowholesale.com")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.helpCenter },
-                    },
-                    [_vm._v("Help Center")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _vm._m(1),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
-            _c("div", { staticClass: "pt-pl-list" }, [
-              _c("h3", [_vm._v("Sell on Sastowholesale.com")]),
-              _vm._v(" "),
-              _c("ul", [
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.becomeSeller },
-                    },
-                    [_vm._v("Become a Seller")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.logisticManagement },
-                    },
-                    [_vm._v("Logistics Management")]
-                  ),
-                ]),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
-            _c("div", { staticClass: "pt-pl-list" }, [
-              _c("h3", [_vm._v("Legal")]),
-              _vm._v(" "),
-              _c("ul", [
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.termsConditations },
-                    },
-                    [_vm._v("Vendor Terms & condition")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.termsUse },
-                    },
-                    [_vm._v("Terms of use")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.privacyPolicy },
-                    },
-                    [_vm._v("Privacy Policy")]
-                  ),
-                ]),
-              ]),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _c("hr"),
-      ]),
-    ]),
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _vm._v("Our Partners"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [_vm._v("Our Blogs")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bottom-footer" }, [
-      _c("p", [
-        _c("b", [
-          _vm._v("©2022 Sasto Wholesale Pvt. Ltd. All rights Reserved."),
+    return _c("div", [
+      _c("footer", { staticClass: "footer" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row pt-row" }, [
+            _c("div", { staticClass: "col offset-md-1" }, [
+              _c("div", { staticClass: "pt-pl-list" }, [
+                _c("h3", [_vm._v("About Us")]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", [
+                    _c("a", { attrs: { href: "/about-us" } }, [
+                      _vm._v("About Sastowholesale.com"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                      _vm._v("Our Partners"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "/faq" } }, [
+                      _vm._v("Help Center"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                      _vm._v("Our Blogs"),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }, [
+              _c("div", { staticClass: "pt-pl-list" }, [
+                _c("h3", [_vm._v("Sell on Sastowholesale.com")]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", [
+                    _c("a", { attrs: { href: "/vendor-register" } }, [
+                      _vm._v("Become a Seller"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "/logistics-management" } }, [
+                      _vm._v("Logistics Management"),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }, [
+              _c("div", { staticClass: "pt-pl-list" }, [
+                _c("h3", [_vm._v("Legal")]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", [
+                    _c("a", { attrs: { href: "/terms-conditions" } }, [
+                      _vm._v("Vendor Terms & condition"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "/terms-of-use" } }, [
+                      _vm._v("Terms of use"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "/privacy-policy" } }, [
+                      _vm._v("Privacy Policy"),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "bottom-footer" }, [
+            _c("p", [
+              _c("b", [
+                _vm._v("©2022 Sasto Wholesale Pvt. Ltd. All rights Reserved."),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Email: vendor@sastowholesale.com")]),
+            _vm._v(" "),
+            _c("p", [
+              _c("b", [_vm._v("Designed & Developed By: Web House Nepal")]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("hr"),
         ]),
       ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Email: vendor@sastowholesale.com")]),
-      _vm._v(" "),
-      _c("p", [_c("b", [_vm._v("Designed & Developed By: Web House Nepal")])]),
     ])
   },
 ]
@@ -62024,234 +61936,219 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "header",
-      {
-        staticClass: "header position-sticky",
-        attrs: { "data-v-cbdddaa2": "" },
-      },
-      [
-        _c(
-          "nav",
-          {
-            staticClass: "navbar navbar-expand-lg navbar-light bg-light",
-            attrs: { "data-v-cbdddaa2": "" },
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "container", attrs: { "data-v-cbdddaa2": "" } },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse navbar-collapse",
-                    attrs: {
-                      "data-v-cbdddaa2": "",
-                      id: "navbarSupportedContent",
-                    },
-                  },
-                  [
-                    _c(
-                      "ul",
-                      {
-                        staticClass: "navbar-nav ml-auto",
-                        attrs: { "data-v-cbdddaa2": "" },
-                      },
-                      [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _vm._m(4),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "nav-item",
-                            attrs: { "data-v-cbdddaa2": "" },
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  "data-v-cbdddaa2": "",
-                                  href: "javascript:void(0)",
-                                },
-                                on: { click: _vm.onClickFaq },
-                              },
-                              [_vm._v("FAQ")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "nav-item",
-                            attrs: { "data-v-cbdddaa2": "" },
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  "data-v-cbdddaa2": "",
-                                  href: "javascript:void(0)",
-                                },
-                                on: { click: _vm.onClickSingup },
-                              },
-                              [_vm._v("Register")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "nav-item",
-                            attrs: { "data-v-cbdddaa2": "" },
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  "data-v-cbdddaa2": "",
-                                  href: "javascript:void(0)",
-                                },
-                                on: { click: _vm.onClickLogin },
-                              },
-                              [_vm._v("Login")]
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ]
-                ),
-              ]
-            ),
-          ]
-        ),
-      ]
-    ),
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "navbar-brand",
-        attrs: { "data-v-cbdddaa2": "", href: "/" },
-      },
-      [
-        _c("img", {
-          staticClass: "img-fluid site-logo",
-          attrs: {
-            "data-v-cbdddaa2": "",
-            src: "/images/logo.png",
-            alt: "site logo",
-          },
-        }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler",
-        attrs: {
-          "data-v-cbdddaa2": "",
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#navbarSupportedContent",
-          "aria-controls": "navbarSupportedContent",
-          "aria-expanded": "false",
-          "aria-label": "Toggle navigation",
-        },
-      },
-      [
-        _c("span", {
-          staticClass: "navbar-toggler-icon",
+    return _c("div", [
+      _c(
+        "header",
+        {
+          staticClass: "header position-sticky",
           attrs: { "data-v-cbdddaa2": "" },
-        }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      { staticClass: "nav-item", attrs: { "data-v-cbdddaa2": "" } },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { "data-v-cbdddaa2": "", href: "/" },
-          },
-          [_vm._v("Home")]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      { staticClass: "nav-item", attrs: { "data-v-cbdddaa2": "" } },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { "data-v-cbdddaa2": "", href: "javascript:void(0)" },
-          },
-          [_vm._v("Partners")]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      { staticClass: "nav-item", attrs: { "data-v-cbdddaa2": "" } },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { "data-v-cbdddaa2": "", href: "#" },
-          },
-          [_vm._v("Blog")]
-        ),
-      ]
-    )
+        },
+        [
+          _c(
+            "nav",
+            {
+              staticClass: "navbar navbar-expand-lg navbar-light bg-light",
+              attrs: { "data-v-cbdddaa2": "" },
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "container", attrs: { "data-v-cbdddaa2": "" } },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "navbar-brand",
+                      attrs: { "data-v-cbdddaa2": "", href: "/" },
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "img-fluid site-logo",
+                        attrs: {
+                          "data-v-cbdddaa2": "",
+                          src: "/images/logo.png",
+                          alt: "site logo",
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "navbar-toggler",
+                      attrs: {
+                        "data-v-cbdddaa2": "",
+                        type: "button",
+                        "data-toggle": "collapse",
+                        "data-target": "#navbarSupportedContent",
+                        "aria-controls": "navbarSupportedContent",
+                        "aria-expanded": "false",
+                        "aria-label": "Toggle navigation",
+                      },
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "navbar-toggler-icon",
+                        attrs: { "data-v-cbdddaa2": "" },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "collapse navbar-collapse",
+                      attrs: {
+                        "data-v-cbdddaa2": "",
+                        id: "navbarSupportedContent",
+                      },
+                    },
+                    [
+                      _c(
+                        "ul",
+                        {
+                          staticClass: "navbar-nav ml-auto",
+                          attrs: { "data-v-cbdddaa2": "" },
+                        },
+                        [
+                          _c(
+                            "li",
+                            {
+                              staticClass: "nav-item",
+                              attrs: { "data-v-cbdddaa2": "" },
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: { "data-v-cbdddaa2": "", href: "/" },
+                                },
+                                [_vm._v("Home")]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass: "nav-item",
+                              attrs: { "data-v-cbdddaa2": "" },
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: {
+                                    "data-v-cbdddaa2": "",
+                                    href: "javascript:void(0)",
+                                  },
+                                },
+                                [_vm._v("Partners")]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass: "nav-item",
+                              attrs: { "data-v-cbdddaa2": "" },
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: { "data-v-cbdddaa2": "", href: "#" },
+                                },
+                                [_vm._v("Blog")]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass: "nav-item",
+                              attrs: { "data-v-cbdddaa2": "" },
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: {
+                                    "data-v-cbdddaa2": "",
+                                    href: "/faq",
+                                  },
+                                },
+                                [_vm._v("FAQ")]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass: "nav-item",
+                              attrs: { "data-v-cbdddaa2": "" },
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: {
+                                    "data-v-cbdddaa2": "",
+                                    href: "/vendor-register",
+                                  },
+                                },
+                                [_vm._v("Register")]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass: "nav-item",
+                              attrs: { "data-v-cbdddaa2": "" },
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: {
+                                    "data-v-cbdddaa2": "",
+                                    href: "/vendor-login",
+                                  },
+                                },
+                                [_vm._v("Login")]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]
+                  ),
+                ]
+              ),
+            ]
+          ),
+        ]
+      ),
+    ])
   },
 ]
 render._withStripped = true
@@ -63057,14 +62954,10 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _c(
-                    "label",
-                    { staticClass: "form-check-label", attrs: { for: "" } },
-                    [_vm._v("I accept all the terms and condition.")]
-                  ),
+                  _vm._m(0),
                 ]),
                 _vm._v(" "),
-                _vm._m(0),
+                _vm._m(1),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -63094,6 +62987,25 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "form-check-label", attrs: { for: "" } },
+      [
+        _c(
+          "a",
+          {
+            staticStyle: { color: "#007bff" },
+            attrs: { href: "/terms-conditions", target: "_blank" },
+          },
+          [_vm._v("I accept all the terms and condition.")]
+        ),
+      ]
+    )
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -67529,8 +67441,7 @@ var render = function () {
             "a",
             {
               staticClass: "btn btn-slider",
-              attrs: { href: "javascript:void(0)" },
-              on: { click: _vm.onClickSingup },
+              attrs: { href: "/vendor-register" },
             },
             [_vm._v("Start Selling")]
           ),
@@ -67543,8 +67454,7 @@ var render = function () {
             "a",
             {
               staticClass: "btn btn-slider login-bottom",
-              attrs: { href: "javascript:void(0)" },
-              on: { click: _vm.onClickLogin },
+              attrs: { href: "/vendor-login" },
             },
             [_vm._v("Login here")]
           ),
@@ -87548,7 +87458,7 @@ exports.withParams = withParams;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\sastowholesale\\\\b2bvendor"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\sastowholesale\\\\b2bvendor","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

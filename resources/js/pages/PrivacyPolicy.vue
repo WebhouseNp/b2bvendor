@@ -219,7 +219,7 @@ ul li p{
   margin-bottom: 20px;
 }
 ul li a{
-  color: #007bff;;
+  color: #007bff;
 }
 .list2 li{
  list-style: disc;
