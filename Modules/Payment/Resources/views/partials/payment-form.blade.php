@@ -7,7 +7,7 @@
                     <div class="form-group">
                         <label for="" class="required">Amount</label>
                         <div class="input-group mb-2">
-                            <div class="input-group-prepend bg-light p-2 border">
+                            <div class="input-group-prepend">
                                 <div class="input-group-text">{{ price_unit() }}</div>
                             </div>
                             <input type="number" name="amount" class="form-control" required autocomplete="off">
@@ -25,11 +25,11 @@
                         <small class="form-text">Type in transaction date, E-sewa or bank transaction number.</small>
                     </div>
                     <div class="form-group">
-                        <label for="" class="required">Attachment</label>
+                        <label for="" class="required d-block">Attachment</label>
                         <input type="file" name="file" class="form-file">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-lg px-5">Deposit</button>
+                        <button type="submit" class="btn btn-success btn-lg px-5 border-0">Deposit</button>
                     </div>
                 </form>
             </div>

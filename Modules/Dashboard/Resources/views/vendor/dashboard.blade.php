@@ -68,7 +68,7 @@
         </div>
 
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="info-box">
+            <div class="info-box" onclick="location.href='/product'" style="cursor: pointer;">
                 <span class="info-box-icon bg-info">
                     <i class="fa fa-cubes text-white"></i>
                 </span>
