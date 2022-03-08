@@ -191,8 +191,10 @@
                                 </form>
                             </div>
                         </div>
-                        <div class=" bg-light text-center">
-                            <p>Note: Please Contact Admin to update uneditable Information!</p>
+                        <div class="text-center">
+                            <span class="bg-light p-2 px-3 rounded">
+                                **Note: Please Contact Sasto Wholesale at <a href="mailto:vendor@sastowholesale.com">vendor@sastowholesale.com</a> to update any uneditable Information!
+                            </span>
                         </div>
                     </div>
                 </div>
