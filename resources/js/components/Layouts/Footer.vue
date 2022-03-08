@@ -8,9 +8,9 @@
             <div class="pt-pl-list">
               <h3>About Us</h3>
               <ul>
-                <li><a href="javascript:void(0)" @click="aboutUs">About Sastowholesale.com</a></li>
+                <li><a href="/about-us">About Sastowholesale.com</a></li>
                 <li><a href="javascript:void(0)">Our Partners</a></li>
-                <li><a href="javascript:void(0)" @click="helpCenter">Help Center</a></li>
+                <li><a href="/faq">Help Center</a></li>
                 <li><a href="javascript:void(0)">Our Blogs</a></li>
               </ul>
             </div>
@@ -19,8 +19,8 @@
             <div class="pt-pl-list">
               <h3>Sell on Sastowholesale.com</h3>
               <ul>
-                <li><a href="javascript:void(0)" @click="becomeSeller">Become a Seller</a></li>
-                <li><a href="javascript:void(0)" @click="logisticManagement">Logistics Management</a></li>
+                <li><a href="/vendor-register">Become a Seller</a></li>
+                <li><a href="/logistics-management">Logistics Management</a></li>
               </ul>
             </div>
           </div>
@@ -28,9 +28,9 @@
             <div class="pt-pl-list">
               <h3>Legal</h3>
               <ul>
-                <li><a href="javascript:void(0)" @click="termsConditations">Vendor Terms &amp; condition</a></li>
-                <li><a href="javascript:void(0)" @click="termsUse">Terms of use</a></li>
-                <li><a href="javascript:void(0)" @click="privacyPolicy">Privacy Policy</a></li>
+                <li><a href="/terms-conditions" >Vendor Terms &amp; condition</a></li>
+                <li><a href="/terms-of-use" >Terms of use</a></li>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
               </ul>
             </div>
           </div>
@@ -51,29 +51,6 @@
 <script>
 export default {
   name:'Footer',
-  methods:{
-    termsConditations(){
-      window.location.href="/terms-conditions";
-    },
-    termsUse(){
-      window.location.href="/terms-of-use";
-    },
-    privacyPolicy(){
-      window.location.href="/privacy-policy";
-    },
-    logisticManagement(){
-      window.location.href="/logistics-management";
-    },
-    becomeSeller(){
-      window.location.href="/vendor-register";
-    },
-    helpCenter(){
-      window.location.href="/faq";
-    },
-    aboutUs(){
-      window.location.href="/about-us";
-    }
-  }
 };
 </script>
 

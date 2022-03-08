@@ -42,13 +42,13 @@
                 <a data-v-cbdddaa2="" href="#" class="nav-link">Blog</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link"  @click="onClickFaq">FAQ</a>
+                <a data-v-cbdddaa2="" href="/faq" class="nav-link">FAQ</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link"  @click="onClickSingup">Register</a>
+                <a data-v-cbdddaa2="" href="/vendor-register" class="nav-link">Register</a>
               </li>
               <li data-v-cbdddaa2="" class="nav-item">
-                <a data-v-cbdddaa2="" href="javascript:void(0)" class="nav-link" @click="onClickLogin">Login</a>
+                <a data-v-cbdddaa2="" href="/vendor-login" class="nav-link">Login</a>
               </li>
             </ul>
           </div>
@@ -62,20 +62,6 @@
 <script>
 export default {
     name:"Header",
-     methods: {
-    onClickSingup() {
-      window.location.href = "/vendor-register";
-    },
-    onClickLogin() {
-      window.location.href = "/vendor-login";
-    },
-    vendorHomepage() {
-      window.location.href = "/vendor-homepage";
-    },
-    onClickFaq(){
-      window.location.href = "/faq";
-    }
-  },
 
 }
 </script>

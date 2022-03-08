@@ -58,19 +58,18 @@
         <h1>Moving Into The Digital Era</h1>
         <p>
           Sastowholesale.com is the dynamic marketplace for Manufacturers,
-          Wholesalers & Traders: who are seeking to engage with more customers
+          Wholesalers &amp; Traders: who are seeking to engage with more customers
           online, Sales lead or Business growth.
         </p>
         <a
-          href="javascript:void(0)"
+          href="/vendor-register"
           class="btn btn-slider"
-          @click="onClickSingup"
           >Start Selling</a
         >
         <div class="alert-login">
           <span>Already a Seller?</span>
         </div>
-        <a href="javascript:void(0)" class="btn btn-slider login-bottom" @click="onClickLogin"
+        <a href="/vendor-login" class="btn btn-slider login-bottom"
             >Login here</a>
       </div>
       <!-- content end -->
@@ -122,7 +121,7 @@
               Ecommerce is the future of Nepal. We believe in promoting B2B
               Ecommerce and making Digital Nepal. By registering in
               Sastowholesale.com you can reach more customers, more engagements
-              & more sales.
+              &amp; more sales.
             </p>
           </div>
         </div>
@@ -143,7 +142,7 @@
               </li>
               <li>
                 <i class="fa fa-check pt-1"></i> Sastowholesale.com helps in
-                providing Local & International logistic Management and custom
+                providing Local &amp; International logistic Management and custom
                 clearance management.
               </li>
               <li>
@@ -199,7 +198,7 @@
                 <div class="process-content-title">
                   <h4>Documents and Details</h4>
                 </div>
-                <p>Provide us the Business related documents & Bank details</p>
+                <p>Provide us the Business related documents &amp; Bank details</p>
               </div>
             </div>
           </div>
@@ -280,14 +279,6 @@
 <script>
 export default {
   name: "LoginHomePage",
-  methods: {
-    onClickSingup() {
-      window.location.href = "/vendor-register";
-    },
-    onClickLogin() {
-      window.location.href = "/vendor-login";
-    },
-  },
 };
 </script>
 
