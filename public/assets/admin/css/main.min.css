@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
-
 .clf:after,
 .clf:before {
     content: '';
@@ -2181,14 +2180,13 @@ body.fullscreen-mode {
     padding: .7rem 1rem
 }
 
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
     .nav-tabs .nav-link {
         padding: .5rem .8rem;
         text-align: center;
         width: 100%;
         white-space: nowrap;
     }
-
     .ibox .plain-nav-tabs {
         overflow-y: scroll;
         flex-wrap: nowrap;
@@ -3376,7 +3374,6 @@ body.fullscreen-mode {
     from {
         width: 60px
     }
-
     to {
         width: 100%
     }
@@ -3388,7 +3385,6 @@ body.fullscreen-mode {
         -webkit-transform: translateY(20px);
         transform: translateY(20px)
     }
-
     100% {
         opacity: 1;
         -webkit-transform: translateY(0);
@@ -3401,22 +3397,18 @@ body.fullscreen-mode {
         -webkit-transform: scale(0);
         opacity: 0
     }
-
     25% {
         -webkit-transform: scale(.1);
         opacity: .1
     }
-
     50% {
         -webkit-transform: scale(.5);
         opacity: .3
     }
-
     75% {
         -webkit-transform: scale(.8);
         opacity: .5
     }
-
     100% {
         -webkit-transform: scale(1);
         opacity: 0
@@ -3436,7 +3428,6 @@ body.fullscreen-mode {
 }
 
 @media screen and (max-width:980px) {
-
     .video embed,
     .video iframe,
     .video object {
@@ -3453,7 +3444,6 @@ body.fullscreen-mode {
 }
 
 @media screen and (max-width:650px) {
-
     .video embed,
     .video iframe,
     .video object {
@@ -4272,11 +4262,13 @@ a.text-danger:hover {
     flex: 1 !important
 }
 
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
 .header {
     display: -webkit-box;
     display: -webkit-flex;
@@ -4477,12 +4469,10 @@ a.text-danger:hover {
 }
 
 @media screen and (max-width:580px) {
-
     .dropdown-user>a>span,
     .header .search-toggler span {
         display: none
     }
-
     .dropdown-user>a>img {
         margin-left: 0 !important
     }
@@ -5217,19 +5207,15 @@ table.dataTable {
     .adminca-banner {
         display: inline-block
     }
-
     .wrap-1 {
         display: block
     }
-
     .wrap-2 {
         margin-bottom: 20px
     }
-
     .dev-img {
         position: static
     }
-
     .wrap-3 {
         -webkit-box-pack: start !important;
         -webkit-justify-content: start !important;
@@ -5237,15 +5223,18 @@ table.dataTable {
         justify-content: start !important
     }
 }
+
 .equal_height {
-   display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
-.height_manage{
+
+.height_manage {
     height: 100% !important;
 }
-.m_b30{
-	margin-bottom: 30px;
+
+.m_b30 {
+    margin-bottom: 30px;
 }
 
 .profile-card-title {
@@ -5275,11 +5264,10 @@ table.dataTable {
     margin-bottom: 20px;
     position: relative;
     border: 0;
-    transition: box-shadow .2s ease,-webkit-transform .3s cubic-bezier(.34,2,.6,1);
-    transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
-    transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease,-webkit-transform .3s cubic-bezier(.34,2,.6,1);
+    transition: box-shadow .2s ease, -webkit-transform .3s cubic-bezier(.34, 2, .6, 1);
+    transition: transform .3s cubic-bezier(.34, 2, .6, 1), box-shadow .2s ease;
+    transition: transform .3s cubic-bezier(.34, 2, .6, 1), box-shadow .2s ease, -webkit-transform .3s cubic-bezier(.34, 2, .6, 1);
 }
-
 
 .icon i {
     font-size: 3.6rem;
@@ -5302,7 +5290,7 @@ table.dataTable {
 }
 
 .card-category a {
-    font-size: 22px;
+    font-size: 16px;
     color: #000;
 }
 

@@ -386,3 +386,24 @@ button {
 .small-box .icon>i {
     top: 20px;
 }
+
+@media screen and (max-width: 576px) {
+    body:not(.sidebar-mini) .small-box h3 {
+        font-size: 1rem;
+    }
+    body:not(.sidebar-mini) .icon i {
+        font-size: 1.6rem;
+    }
+    body:not(.sidebar-mini) .small-box p {
+        font-size: 12px;
+    }
+    body:not(.sidebar-mini) .notification-link {
+        display: none !important;
+    }
+    .small-box h3 {
+        font-size: 1.6rem;
+    }
+    .icon i {
+        font-size: 2.4rem;
+    }
+}
