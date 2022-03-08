@@ -62995,14 +62995,9 @@ var staticRenderFns = [
       "label",
       { staticClass: "form-check-label", attrs: { for: "" } },
       [
-        _c(
-          "a",
-          {
-            staticStyle: { color: "#007bff" },
-            attrs: { href: "/terms-conditions", target: "_blank" },
-          },
-          [_vm._v("I accept all the terms and condition.")]
-        ),
+        _c("a", { attrs: { href: "/terms-conditions", target: "_blank" } }, [
+          _vm._v("I accept all the terms and condition."),
+        ]),
       ]
     )
   },

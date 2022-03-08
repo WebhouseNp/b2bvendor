@@ -140,7 +140,7 @@
                 :class="{ 'is-invalid': validationStatus($v.terms) }"
               />
               <label class="form-check-label" for=""
-                ><a href="/terms-conditions" target="_blank" style="color: #007bff;">I accept all the terms and condition.</a></label
+                ><a href="/terms-conditions" target="_blank">I accept all the terms and condition.</a></label
               >
             </div>
             <div class="form-check mb-3">
