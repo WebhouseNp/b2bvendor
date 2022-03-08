@@ -173,7 +173,7 @@
                     @endif
                     <div class="col-md-8 md-form mb-4 hidden" id="note">
                     <label><strong style="color: red;">Note :</strong> </label>
-                    <textarea name="note" class="md-textarea form-control" placeholder="Enter your reasion here" rows="3"></textarea>
+                    <textarea name="note" class="md-textarea form-control" placeholder="Enter your reason here" rows="8"></textarea>
                     </div><br>
                     <div class="col-md-12 form-group d-flex align-items-end">
                         <button type="submit" class="btn btn-success btn-lg"><span class="fa fa-send mr-1"> Submit</button>
