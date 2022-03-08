@@ -6216,38 +6216,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AboutUS",
   methods: {
@@ -7217,8 +7185,6 @@ var Validation = /*#__PURE__*/function () {
   _createClass(Validation, [{
     key: "getMessage",
     value: function getMessage(field) {
-      console.log('message', this.messages);
-
       if (this.messages && this.messages[field]) {
         var required = this.messages[field][0].search('required');
 
@@ -68063,108 +68029,12 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row mt-5" }, [
-        _c("div", { staticClass: "description" }, [
-          _c("ol", [
-            _c("li", [
-              _vm._v("About Sastowholesale.com \n          "),
-              _c("ul", [
-                _c("li", [
-                  _vm._v(
-                    "Sastowholesale.com is a dynamic marketing/selling online venue for manufacturer, supplier, wholesaler, or any organization; who are seeking their product worldwide. Managed and handled by be the best Pvt. Ltd., B2B, B2C Ecommerce having both product and service which connect Buyers & Suppliers around the world."
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v("Our Partners\n            "),
-              _c("ul", [
-                _c("li", [
-                  _vm._v(
-                    "Send to our partner page & also add option become a partner option & give form, for which category partner they want to be."
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v("Help Center\n            "),
-              _c("ul", [
-                _c("li", [
-                  _vm._v(
-                    "Currently we can use FAQs, but need to make help center category wise."
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v("Our Blogs\n            "),
-              _c("ul", [_c("li", [_vm._v("Blogs Page")])]),
-            ]),
+        _c("div", { staticClass: "description mb-5" }, [
+          _c("p", [
+            _vm._v(
+              "Sastowholesale.com is a dynamic marketing/selling online venue for manufacturer, supplier, wholesaler, or any organization; who are seeking their product worldwide. Managed and handled by be the best Pvt. Ltd., B2B, B2C Ecommerce having both product and service which connect Buyers & Suppliers around the world."
+            ),
           ]),
-          _vm._v(" "),
-          _c("ol", { staticStyle: { "list-style": "none" } }, [
-            _c("li", [
-              _c("strong", [_vm._v("Sell on Sastowholesale.com")]),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("ol", [
-                _c("li", [
-                  _vm._v("Become a Seller\n              "),
-                  _c("ul", [_c("li", [_vm._v("Seller page ")])]),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [_vm._v("Logistics Management")]),
-          ]),
-          _vm._v(" "),
-          _c("ol", { staticStyle: { "list-style": "none" } }, [
-            _c("li", [
-              _c("strong", [_vm._v("Legal")]),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("ol", [
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.termsConditations },
-                    },
-                    [_vm._v("Vendor terms & Condition")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.termsUse },
-                    },
-                    [_vm._v("Terms of use")]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "javascript:void(0)" },
-                      on: { click: _vm.privacyPolicy },
-                    },
-                    [_vm._v("Privacy Policy")]
-                  ),
-                ]),
-              ]),
-            ]),
-          ]),
-          _c("br"),
-          _c("br"),
         ]),
       ]),
     ]),
