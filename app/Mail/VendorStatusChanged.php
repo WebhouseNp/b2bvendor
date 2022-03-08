@@ -34,6 +34,7 @@ class VendorStatusChanged extends Mailable
             'status' => $this->user->vendor_type,
             'name' => $this->user->name,
             'shop_name' => $this->user->vendor->shop_name,
+            'note' => $this->user->vendor->note,
         ]);
     }
 }

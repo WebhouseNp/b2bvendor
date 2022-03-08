@@ -164,7 +164,18 @@
                             <option value="suspended" @if ($vendor->vendor_type=="suspended"){{"selected"}} @endif>Suspended</option>
                         </select>
                     </div>
-                    <div class="col-md-4 form-group d-flex align-items-end">
+                    @if(@$vendor->vendor->note)
+                    <div class="col-md-8 md-form mb-4" id="note">
+                    <label><strong style="color: red;">Note :</strong> </label>
+                    <textarea name="note" class="md-textarea form-control" placeholder="Enter your reasion here" rows="3">{!! @$vendor->vendor->note !!}
+                    </textarea>
+                    </div><br>
+                    @endif
+                    <div class="col-md-8 md-form mb-4 hidden" id="note">
+                    <label><strong style="color: red;">Note :</strong> </label>
+                    <textarea name="note" class="md-textarea form-control" placeholder="Enter your reasion here" rows="3"></textarea>
+                    </div><br>
+                    <div class="col-md-12 form-group d-flex align-items-end">
                         <button type="submit" class="btn btn-success btn-lg"><span class="fa fa-send mr-1"> Submit</button>
                     </div>
                 </div>
@@ -312,6 +323,17 @@
             pageLength: 25,
         });
     })
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#vendor_status").change(function () {
+            if ($(this).val() == "suspended") {
+                $("#note").show();
+            } else {
+                $("#note").hide();
+            }
+        });
+    });
 </script>
 <script>
     function FailedResponseFromDatabase(message) {
