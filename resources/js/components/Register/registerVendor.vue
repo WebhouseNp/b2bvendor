@@ -138,7 +138,6 @@
                 class="form-check-input"
                 v-model.trim="$v.terms.$model"
                 :class="{ 'is-invalid': validationStatus($v.terms) }"
-                style="margin-left: 0"
               />
               <label class="form-check-label" for=""
                 >I accept all the terms and condition.</label

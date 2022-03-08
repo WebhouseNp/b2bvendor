@@ -39,12 +39,13 @@ Route::get('/faq', function(){
 
 Route::view('/about-us', 'footer_pages.about_us');
 
-Route::view('/terms-conditations', 'footer_pages.terms_conditation');
+Route::view('/terms-conditions', 'footer_pages.terms_condition');
 
 Route::view('/terms-of-use', 'footer_pages.terms_of_use');
 
 Route::view('/privacy-policy', 'footer_pages.privacy_policy');
 Route::view('/logistics-management','footer_pages.logistics_management');
+
 // End of Vendor Routes
 
 

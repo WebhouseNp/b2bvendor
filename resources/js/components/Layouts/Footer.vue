@@ -4,11 +4,11 @@
     <footer class="footer">
       <div class="container">
         <div class="row pt-row">
-          <div class="col">
+          <div class="col offset-md-1">
             <div class="pt-pl-list">
               <h3>About Us</h3>
               <ul>
-                <li><a href="javascript:void(0)">About Sastowholesale.com (will provide this content ASAP)</a></li>
+                <li><a href="javascript:void(0)" @click="aboutUs">About Sastowholesale.com</a></li>
                 <li><a href="javascript:void(0)">Our Partners</a></li>
                 <li><a href="javascript:void(0)" @click="helpCenter">Help Center</a></li>
                 <li><a href="javascript:void(0)">Our Blogs</a></li>
@@ -30,7 +30,7 @@
               <ul>
                 <li><a href="javascript:void(0)" @click="termsConditations">Vendor Terms &amp; condition</a></li>
                 <li><a href="javascript:void(0)" @click="termsUse">Terms of use</a></li>
-                <li><a href="javascript:void(0)" @click="privacyPolicy">Privacy &amp; Policy</a></li>
+                <li><a href="javascript:void(0)" @click="privacyPolicy">Privacy Policy</a></li>
               </ul>
             </div>
           </div>
@@ -53,7 +53,7 @@ export default {
   name:'Footer',
   methods:{
     termsConditations(){
-      window.location.href="/terms-conditations";
+      window.location.href="/terms-conditions";
     },
     termsUse(){
       window.location.href="/terms-of-use";
@@ -69,6 +69,9 @@ export default {
     },
     helpCenter(){
       window.location.href="/faq";
+    },
+    aboutUs(){
+      window.location.href="/about-us";
     }
   }
 };
