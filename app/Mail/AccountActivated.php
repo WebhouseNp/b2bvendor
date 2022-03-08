@@ -35,6 +35,7 @@ class AccountActivated extends Mailable implements ShouldQueue
         ->subject('Email Verified')
         ->with([
             'name' => $this->user->name,
+            'isVendor' => $this->user->hasRole('vendor'),
         ]);
     }
 }

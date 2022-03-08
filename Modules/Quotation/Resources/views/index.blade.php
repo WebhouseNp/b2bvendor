@@ -8,6 +8,7 @@
 
 @section('content')
 <div class="page-content fade-in-up">
+    <x-alerts></x-alerts>
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">Quotations</div>
@@ -34,17 +35,19 @@
                             <a title="view" class="btn btn-success border-0" href="{{ route('quotations.show',$quotation->id) }}">
                                 <i class="fa fa-eye"></i> View
                             </a>
+                            @if(auth()->user()->hasAnyRole('super_admin|admin'))
                             <div class="mx-2"></div>
                             <form action="{{ route('quotations.destroy', $quotation->id) }}" method="POST" class="js-delete-prdoduct-category-form form-inline d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger border-0"><i class="fa fa-trash"></i> Delete</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8">
+                        <td colspan="42" class="text-center">
                             You do not have any Quotations yet.
                         </td>
                     </tr>
