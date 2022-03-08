@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="page-content fade-in-up">
-    <div class="page-heading d-flex mb-3">
+    <div class="page-heading mb-3">
     <h2 class="h2-responsive">{{ $updateMode ? 'Edit' : 'Add' }} Product</h2>
     <div class="ml-auto">
         <a class="btn btn-info btn-md" href="{{route('product.index')}}">All Products</a>
