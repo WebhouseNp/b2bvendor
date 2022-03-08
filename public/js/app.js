@@ -5792,91 +5792,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -67207,8 +67122,283 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {}
-var staticRenderFns = []
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "login-main" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "login-form-card" }, [
+          _c("div", { staticClass: "card login-card border-0" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12" }, [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          return _vm.onSubmit()
+                        },
+                      },
+                    },
+                    [
+                      _vm.error
+                        ? _c("error", { attrs: { error: _vm.error } })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("Input", {
+                        attrs: {
+                          label: "Email",
+                          type: "text",
+                          placeholder: "example@gmail.com",
+                        },
+                        model: {
+                          value: _vm.email,
+                          callback: function ($$v) {
+                            _vm.email = $$v
+                          },
+                          expression: "email",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "" } }, [
+                          _vm._v(
+                            "\n                      Password\n                      "
+                          ),
+                          _c("span", { staticClass: "pt-fp" }, [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "javascript:void(0)",
+                                  tabindex: "-1",
+                                },
+                                on: { click: _vm.onClickForgot },
+                              },
+                              [_vm._v("Forgot Password?")]
+                            ),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _vm.showPassword
+                          ? _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.password,
+                                  expression: "password",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                placeholder: "Enter Password",
+                              },
+                              domProps: { value: _vm.password },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.password = $event.target.value
+                                },
+                              },
+                            })
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.password,
+                                  expression: "password",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "password",
+                                placeholder: "Enter Password",
+                              },
+                              domProps: { value: _vm.password },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.password = $event.target.value
+                                },
+                              },
+                            }),
+                        _vm._v(" "),
+                        _vm.password
+                          ? _c(
+                              "span",
+                              {
+                                staticClass: "field-icon icon-cl",
+                                on: { click: _vm.toggleShow },
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticClass: "icon is-small is-right" },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa",
+                                      class: {
+                                        "fa-eye-slash": _vm.showPassword,
+                                        "fa-eye": !_vm.showPassword,
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ]
+                            )
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-check pl-0" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.remember_me,
+                              expression: "remember_me",
+                            },
+                          ],
+                          staticClass: "form-check-input",
+                          staticStyle: {
+                            "margin-left": "0",
+                            "margin-top": "6px",
+                          },
+                          attrs: { type: "checkbox", id: "rememberMe" },
+                          domProps: {
+                            checked: Array.isArray(_vm.remember_me)
+                              ? _vm._i(_vm.remember_me, null) > -1
+                              : _vm.remember_me,
+                          },
+                          on: {
+                            change: function ($event) {
+                              var $$a = _vm.remember_me,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.remember_me = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.remember_me = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.remember_me = $$c
+                              }
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-check-label ml-3",
+                            attrs: { for: "rememberMe" },
+                          },
+                          [_vm._v("Remember Me")]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "loading-button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit", loading: _vm.loading },
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.loading ? "Please wait" : "Sign In")
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "signup" }, [
+                        _vm._v(
+                          "\n                    New around here?\n                    "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:void(0)" },
+                            on: { click: _vm.onClickSingup },
+                          },
+                          [_vm._v("\n                      Sign Up")]
+                        ),
+                      ]),
+                    ],
+                    1
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "copyright" }, [
+            _c("p", [
+              _vm._v("\n            Copyright © 2022\n            "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0)" },
+                  on: { click: _vm.vendorHomepage },
+                },
+                [_vm._v("Sasto Wholesale")]
+              ),
+              _vm._v("\n            All Rights Reserved\n          "),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("a", { staticClass: "router-link-active", attrs: { href: "/" } }, [
+        _c("img", {
+          staticClass: "logo-img",
+          attrs: { src: "/images/logo.png", alt: "logo" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("h4", { staticClass: "login-title" }, [
+        _vm._v("\n                  Welcome To "),
+        _c("span", [_vm._v("Seller Market")]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
 
 
 
