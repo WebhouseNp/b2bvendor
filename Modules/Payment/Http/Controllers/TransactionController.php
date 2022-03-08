@@ -76,7 +76,7 @@ class TransactionController extends Controller
         }
         $transaction->save();
 
-        $vendor->user->notify(new \Modules\Payment\Notifications\PaymentReceivedNotification($transaction));
+        $vendor->user->notify(new \Modules\Payment\Notifications\PaymentReceivedNotification($transaction, $vendor));
 
         return redirect()->route('transactions.index', $vendorUserId)->with('success', 'Payment recorded successfully.');
     }

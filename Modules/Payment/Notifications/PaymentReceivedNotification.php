@@ -7,21 +7,24 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Modules\Payment\Entities\Transaction;
+use Modules\User\Entities\Vendor;
 
 class PaymentReceivedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     Public Transaction $transaction;
+    Public Vendor $vendor;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Transaction $transaction)
+    public function __construct(Transaction $transaction, Vendor $vendor)
     {
         $this->transaction = $transaction;
+        $this->vendor = $vendor;
     }
 
     /**
@@ -39,7 +42,7 @@ class PaymentReceivedNotification extends Notification implements ShouldQueue
     {
         return [
             'message' => 'You have received a payment of ' . price_unit() . $this->transaction->amount . ' from Sasto Wholesale.',
-            'url' => '#',
+            'url' => route('transactions.index', $this->vendor->user->id),
         ];
     }
 }
