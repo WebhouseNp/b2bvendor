@@ -9,10 +9,12 @@ use App\Models\User;
 use App\Rules\Mobile;
 use Modules\Order\Entities\OrderList;
 use Auth;
+use Illuminate\Support\Facades\App;
 use Image, File;
 use Modules\User\Entities\Vendor;
 use Modules\Country\Entities\Country;
 use Modules\Payment\Entities\Transaction;
+use Modules\Payment\Service\TransactionService;
 
 class VendorController extends Controller
 {
@@ -149,7 +151,8 @@ class VendorController extends Controller
    public function view($id)
    {
       $vendor = User::where('id', $id)->with('vendor', 'products', 'vendor_payments')->first();
-      $due = Transaction::where('vendor_id', $vendor->vendor->id)->where('is_cod', '!=', true)->latest()->first()->running_balance ?? 0;
+      $transactionService = App::make(TransactionService::class);
+      $due = $transactionService->getCurrentBalance($vendor->vendor->id);
       return view('user::view', compact('id', 'vendor','due'));
    }
 }
