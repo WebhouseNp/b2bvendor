@@ -4,7 +4,6 @@ export default class Validation {
     }
   
     getMessage(field) {
-      console.log('message', this.messages)
       if (this.messages && this.messages[field]) {
         const required = this.messages[field][0].search('required');
         if(required > 0){
