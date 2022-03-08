@@ -26,5 +26,6 @@
     "Blog": true,
     "Faq": true,
     "AlternativeUser": true,
-    "Notification": true
+    "Notification": true,
+    "Quotation": true
 }
