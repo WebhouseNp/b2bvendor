@@ -400,6 +400,10 @@ button {
     body:not(.sidebar-mini) .notification-link {
         display: none !important;
     }
+    body:not(.sidebar-mini) .ibox .ibox-head {
+        display: block;
+        margin-bottom: 10px;
+    }
     .small-box h3 {
         font-size: 1.6rem;
     }
