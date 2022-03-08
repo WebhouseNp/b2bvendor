@@ -10,6 +10,7 @@ use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Entities\Category;
+use Modules\Quotation\Entities\Quotation;
 
 class Vendor extends Model
 {
@@ -71,5 +72,10 @@ class Vendor extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'vendor_id');
+    }
+
+    public function quotations()
+    {
+        return $this->belongsToMany(Quotation::class);
     }
 }
