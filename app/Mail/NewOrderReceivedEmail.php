@@ -31,6 +31,9 @@ class NewOrderReceivedEmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('email.orders.new-order-received');
+        return $this->markdown('email.orders.new-order-received')
+            ->with([
+                'viewOrderLink' => route('orders.show', $this->order->id),
+            ]);
     }
 }
