@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Modules\Quotation\Entities\Quotation;
 use Modules\User\Entities\Vendor;
 
@@ -111,11 +112,11 @@ class QuotationController extends Controller
      */
     public function show(Quotation $quotation)
     {
-        if(!auth()->user()->hasAnyRole('super_admin|admin')) {
+        if (!auth()->user()->hasAnyRole('super_admin|admin')) {
             $vendorId = auth()->user()->vendor->id;
             abort_unless($quotation->vendors->pluck('id')->contains($vendorId), 403);
         }
-        
+
         $quotation->loadMissing('vendors');
 
         return view('quotation::show', compact('quotation'));
@@ -126,8 +127,24 @@ class QuotationController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Quotation $quotation)
     {
-        //
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
+        
+        if (!$quotation->image1) {
+            Storage::delete($quotation->image1);
+        }
+        if (!$quotation->image2) {
+            Storage::delete($quotation->image2);
+        }
+        if (!$quotation->image3) {
+            Storage::delete($quotation->image3);
+        }
+
+        DB::table('quotation_vendor')->where('quotation_id', $quotation->id)->delete();
+
+        $quotation->delete();
+
+        return redirect()->back()->with('success', 'Quotation deleted successfully.');
     }
 }
