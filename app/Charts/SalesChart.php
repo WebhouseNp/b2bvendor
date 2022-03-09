@@ -27,13 +27,18 @@ class SalesChart extends BaseChart
         $to   = ($to instanceof Carbon) ? $to->endOfDay() : Carbon::parse($to)->endOfDay();
 
         $reportType = $request->report_type ?? 'date';
-
         $totalEarnings = \DB::table('orders')
             ->selectRaw($reportType . '(created_at) as label, sum(total_price)  as total_sales')
             ->whereNotIn('status', ['cancelled', 'refunded'])
             ->whereBetween('created_at', [$from, $to])
+            
             ->when(auth()->check() && auth()->user()->hasRole('vendor'), function ($query) {
                 return $query->where('vendor_id', auth()->user()->vendor->id);
+            })
+            ->when(auth()->check() && auth()->user()->hasAnyRole('admin|super_admin'), function ($query) use ($request) {
+                if($request->vendor_id != null){
+                    return $query->where('vendor_id', $request->vendor_id);
+                }
             })
             ->groupBy('label')
             ->pluck('total_sales', 'label')

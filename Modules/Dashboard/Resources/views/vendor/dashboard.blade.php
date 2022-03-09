@@ -58,7 +58,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Receivable Amount From Admin</span>
                     <span class="info-box-number d-md-flex">
-                        <div>{{ formatted_price($reveivableFromAdmin) }}</div>
+                        <div>{{ formatted_price($receivableFromAdmin) }}</div>
                         <div class="ml-auto">
                             <x-payment-request-button class="btn btn-primary btn-sm border-0"></x-payment-request-button>
                         </div>

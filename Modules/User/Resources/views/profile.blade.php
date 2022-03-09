@@ -6,6 +6,7 @@
 @endsection
 
 @section('content')
+@include('admin.section.notifications')
 @if($errors->any())
 <div class="alert alert-danger">
     <p><strong>Opps Something went wrong</strong></p>
@@ -23,7 +24,6 @@
         </div>
     </div>
     <div class="ibox">
-        @include('admin.section.notifications')
         
         <x-profile></x-profile>
         

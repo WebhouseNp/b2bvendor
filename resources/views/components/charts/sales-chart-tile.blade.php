@@ -12,6 +12,14 @@
                         <option value="month">Monthly</option>
                         <option value="year">Yearly</option>
                     </select>
+                    @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                    <select name="vendor_id" class="form-control form-control-sm mr-1 bg-transparent mb-2">
+                        <option value="">Select Any Vendor</option>
+                        @foreach($vendors as $vendor)
+                        <option value="{{$vendor->id}}">{{$vendor->shop_name}}</option>
+                        @endforeach
+                    </select>
+                    @endif
                     <button type="submit" class="btn btn-outline-primary btn-sm z-depth-0 mb-2">Go</button>
                 </form>
             </div>

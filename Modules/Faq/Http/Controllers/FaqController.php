@@ -25,6 +25,7 @@ class FaqController extends Controller
 
     public function store(FaqRequest $request)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $faq = new Faq();
         $faq->title = $request->title;
         $faq->description = $request->description;
@@ -48,6 +49,7 @@ class FaqController extends Controller
 
     public function update(FaqRequest $request, Faq $faq)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $faq->title = $request->title;
         $faq->description = $request->description;
         $faq->position = $request->position;

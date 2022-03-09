@@ -14,6 +14,7 @@ use  Modules\User\Entities\Vendor;
 use  Modules\User\Entities\Profile;
 use  Modules\User\Entities\VendorPayment;
 use  Modules\Product\Entities\Product;
+use Modules\Quotation\Entities\Quotation;
 use Modules\User\Entities\Address;
 
 class User extends Authenticatable
@@ -186,5 +187,10 @@ class User extends Authenticatable
         }
 
         return asset('images/listing/' . $this->image);
+    }
+
+    public function quotations()
+    {
+        return $this->hasMany(Quotation::class);
     }
 }

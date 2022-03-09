@@ -29,6 +29,7 @@ class PartnerController extends Controller
             'partner_type_id' => 'required|numeric|exists:partner_types,id',
             'publish' => 'nullable'
         ]);
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         Partner::create([
             'name' => $request->name,
             'partner_type_id' => $request->partner_type_id,
@@ -57,7 +58,7 @@ class PartnerController extends Controller
             'image' => 'required',
             'publish' => 'nullable'
         ]);
-
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $partner->fill([
             'name' => $request->name,
             'partner_type_id'       => $request->partner_type_id,

@@ -1,7 +1,7 @@
 <div class="ibox">
     <div class="ibox-body">
         <div class="mb-3">
-            <p>You must do settlement your COD (Cash on delivery) to <a href="//sastowholesale.com">sastowholesale.com</a> within 3 days after we informed you.</p>
+            <p>You must do settlement of your COD (Cash on delivery) to <a href="//sastowholesale.com">sastowholesale.com</a> within 3 days after we informed you.</p>
         </div>
         <table class="custom-table table table-responsive-sm">
             <thead>

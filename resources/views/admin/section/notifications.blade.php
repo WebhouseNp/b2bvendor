@@ -13,5 +13,5 @@
 <script>
     setTimeout(function(){
         $('.alert').slideUp('slow');
-    }, 7000);
+    }, 150000);
 </script>

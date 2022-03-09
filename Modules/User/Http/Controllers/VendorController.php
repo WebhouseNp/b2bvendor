@@ -18,15 +18,6 @@ use Modules\Payment\Service\TransactionService;
 
 class VendorController extends Controller
 {
-   public function getVendorPaymentReport()
-   {
-      $id = Auth::user()->id;
-      $user = auth()->user();
-      $vendor = $user->load('vendor','products');
-      // $vendor = User::where('id', Auth::user()->id)->with('vendor', 'products', 'vendor_payments')->first();
-      $paid = $vendor->vendor_payments;
-      return view('user::payment', compact('paid'));
-   }
    public function profile()
    {
       $id = auth()->user()->id;

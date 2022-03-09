@@ -77,29 +77,6 @@ class ApiUserController extends Controller
     return response()->json(['status' => true, 'message' => "Vendor status retrieved Successfully.", 'data' => $user]);
   }
 
-  public function updateVendor(Request $request, $id)
-  {
-    if (Vendor::where('id', $id)->exists()) {
-      $vendor = Vendor::find($id);
-
-      $formData = $request->all();
-      $success = $vendor->update($formData);
-      if ($success) {
-        return response()->json([
-          "message" => "vendors updated successfully"
-        ], 200);
-      } else {
-        return response()->json([
-          "message" => "Sorry Could not update vendor!!"
-        ], 500);
-      }
-    } else {
-      return response()->json([
-        "message" => "Vendor not found"
-      ], 400);
-    }
-  }
-
   public function VerifyNewAccount($link, Request $request)
   {
     try {
