@@ -54,3 +54,6 @@ Route::prefix('vendor')->name('api.')->group(function(){
 
         Route::post('changeVendorStatus', 'ApiUserController@changeVendorStatus')->name('api.changeVendorStatus');
         Route::post('getVendorStatus', 'ApiUserController@getVendorStatus')->name('api.getVendorStatus');
+
+Route::put('vendors/{vendor}/feature', 'VendorFeatureController@store')->name('api.vendor.feature');
+Route::delete('vendors/{vendor}/notfeature', 'VendorFeatureController@destroy')->name('api.vendor.notfeature');

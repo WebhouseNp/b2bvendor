@@ -101,4 +101,32 @@
     })
 
 </script>
+<script>
+    function FailedResponseFromDatabase(message) {
+        html_error = "";
+        $.each(message, function(index, message) {
+            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+        });
+        Swal.fire({
+            type: 'error'
+            , title: 'Oops...'
+            , html: html_error
+            , confirmButtonText: 'Close'
+            , timer: 10000
+        });
+    }
+
+    function DataSuccessInDatabase(message) {
+        Swal.fire({
+            position: 'top-end'
+            , type: 'success'
+            , title: 'Done'
+            , html: message
+            , confirmButtonText: 'Close'
+            , timer: 10000
+            , toast: true
+        });
+    }
+
+</script>
 @endpush

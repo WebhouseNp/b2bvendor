@@ -1,6 +1,8 @@
 @extends('layouts.admin')
+@section('page_title') All Vendors @endsection
 @section('styles')
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endsection
 @section('content')
 <div class="page-content fade-in-up">
@@ -17,6 +19,7 @@
                         <th>Vendor Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
+                        <th>Is Featured</th>
                         <th>Vendor Status</th>
                         <th>Profile</th>
                     </tr>
@@ -31,6 +34,9 @@
                         <td>{{@$data->shop_name}}</td>
                         <td>{{$data->user->email}}</td>
                         <td>{{$data->user->phone_num}}</td>
+                        <td>
+                            <input type="checkbox" id="toggle-event" data-toggle="toggle" class="js-vendor-featured btn btn-success btn-sm" rel="{{$data->id}}" data-on="Featured" data-off="Not Featured" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($data->is_featured == 1) checked @endif>
+                        </td>
                         <td><span class="btn btn-sm {{vendorStatus($data->user->vendor_type) }} ">{{ ucfirst($data->user->vendor_type) }}</span></td>
                         <td>
                             <a title="View Profile" class="btn btn-info btn-sm" href="{{route('vendor.view',$data->user->id)}}"> <i class="fa fa-eye"></i>
@@ -49,27 +55,10 @@
     </div>
 
 </div>
-<!-- Modal -->
-@include('dashboard::admin.modals.vendorstatusmodal')
-<div class="modal" id="popupModal">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="popup-modal-title" class="modal-title">
-                    </h5>
-            </div>
-            <div class="modal-body">
-                <div style="text-align: center;" id="popup-modal-body"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
@@ -105,55 +94,43 @@
     }
 </script>
 <script>
-    $(document).ready(function() {
-        $('body').on('click', '.changeStatus', function(e) {
-            var vendor_id = $(this).data('vendor_id');
-            $.ajax({
-                url: '/api/getVendorStatus',
-                method: "POST",
-                data: {
-                    vendor_id: vendor_id,
-                    _token: "{{csrf_token()}}"
-                },
-                success: function(response) {
-                    if (response.status == false) {
-                        FailedResponseFromDatabase(response.message);
-                    }
-                    if (response.status == true) {
-                        var html_options = "<option value=''>select any one</option>";
-                        $('#vendorstatusModal').modal('show');
-                        document.getElementById('vendor_status').value = response.data.vendor_type;
-                    }
-                }
-            })
-            $('#submitVendorStatus').on('click', function() {
-                var status = $('#vendor_status').val();
+    $(function() {
+        $('.js-vendor-featured').change(function() {
+            var product_id = $(this).attr('rel');
+            if ($(this).prop("checked") == true) {
                 $.ajax({
-                    url: '/api/changeVendorStatus',
                     method: "POST",
+                    url: '/api/vendors/' + product_id + '/feature',
                     data: {
-                        vendor_id: vendor_id,
-                        vendor_type: status,
-                        _token: "{{csrf_token()}}"
+                        _method: "put"
                     },
                     success: function(response) {
-                        if (response.status == false) {
+                        if (response.status == 'false') {
                             FailedResponseFromDatabase(response.message);
                         }
-                        if (response.status == true) {
-                            $('#appendOrder').empty();
-                            $('#appendOrder').html(response.html);
-
+                        if (response.status == 'true') {
                             DataSuccessInDatabase(response.message);
-                            location.reload();
                         }
                     }
-                })
-
-            })
-            return;
+                });
+            } else {
+                $.ajax({
+                    method: "POST",
+                    url: '/api/vendors/' + product_id + '/notfeature',
+                    data: {
+                        _method: "delete"
+                    },
+                    success: function(response) {
+                        if (response.status == 'false') {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
+                    }
+                });
+            }
         })
-    });
+    })
 </script>
-
 @endsection
