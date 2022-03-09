@@ -55,7 +55,7 @@
                             @if( auth()->user()->hasAnyRole('super_admin|admin'))
                             <th>Vendor</th>
                             @endif
-                            <!-- <th>Status</th> -->
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -74,17 +74,17 @@
                             @if( auth()->user()->hasAnyRole('super_admin|admin'))
                             <td>{{ @$product->user->vendor->shop_name }}</td>
                             @endif
-                            <!-- <td>
+                            <td>
                                 <input type="checkbox" id="toggle-event" data-toggle="toggle" class="ProductStatus btn btn-success btn-sm" rel="{{$product->id}}" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($product->status == 1) checked @endif>
-                            </td> -->
+                            </td>
                             <td>
                                 <a title="view" class="btn btn-success btn-sm" href="{{route('product.view',$product->id)}}">
-                                    <i class="fa fa-eye"></i>
+                                    <i class="fa fa-eye"></i>view
                                 </a>
 
-                                <!-- <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$product->id)}}">
-                                    <i class="fa fa-edit"></i>
-                                </a> -->
+                                <a title="Edit" class="btn btn-primary btn-sm" href="{{route('product.edit',$product->id)}}">
+                                    <i class="fa fa-edit"></i>Edit
+                                </a>
                                 <!-- <button class="btn btn-danger btn-sm delete" onclick="deleteProduct(this,'{{ $product->id }}')" style="display:inline"><i class="fa fa-trash"></i></button> -->
                             </td>
                         </tr>
@@ -113,5 +113,71 @@
 <script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('/assets/admin/js/jquery-ui.js')}}"></script>
+<script>
+    function FailedResponseFromDatabase(message) {
+        html_error = "";
+        $.each(message, function(index, message) {
+            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+        });
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            html: html_error,
+            confirmButtonText: 'Close',
+            timer: 10000
+        });
+    }
+
+    function DataSuccessInDatabase(message) {
+        Swal.fire({
+            // position: 'top-end',
+            type: 'success',
+            title: 'Done',
+            html: message,
+            confirmButtonText: 'Close',
+            timer: 10000
+        });
+    }
+</script>
+<script>
+    $(function() {
+        $('.ProductStatus').change(function() {
+            var product_id = $(this).attr('rel');
+            if ($(this).prop("checked") == true) {
+                $.ajax({
+                    method: "POST",
+                    url: '/api/products/' + product_id + '/publish',
+                    data: {
+                        _method: "put"
+                    },
+                    success: function(response) {
+                        if (response.status == 'false') {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
+                    }
+                });
+            } else {
+                $.ajax({
+                    method: "POST",
+                    url: '/api/products/' + product_id + '/unpublish',
+                    data: {
+                        _method: "delete"
+                    },
+                    success: function(response) {
+                        if (response.status == 'false') {
+                            FailedResponseFromDatabase(response.message);
+                        }
+                        if (response.status == 'true') {
+                            DataSuccessInDatabase(response.message);
+                        }
+                    }
+                });
+            }
+        })
+    })
+</script>
 
 @endsection
