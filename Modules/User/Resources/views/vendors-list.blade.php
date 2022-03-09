@@ -34,9 +34,13 @@
                         <td>{{@$data->shop_name}}</td>
                         <td>{{$data->user->email}}</td>
                         <td>{{$data->user->phone_num}}</td>
+                        @if($data->user->vendor_type == 'approved')
                         <td>
                             <input type="checkbox" id="toggle-event" data-toggle="toggle" class="js-vendor-featured btn btn-success btn-sm" rel="{{$data->id}}" data-on="Featured" data-off="Not Featured" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($data->is_featured == 1) checked @endif>
-                        </td>
+                        </td> 
+                        @elseif($data->user->vendor_type == 'new' || $data->user->vendor_type == 'suspended')
+                        <td>{{$data->is_approved=='1' ?'Yes':'No' }}</td>
+                        @endif
                         <td><span class="btn btn-sm {{vendorStatus($data->user->vendor_type) }} ">{{ ucfirst($data->user->vendor_type) }}</span></td>
                         <td>
                             <a title="View Profile" class="btn btn-info btn-sm" href="{{route('vendor.view',$data->user->id)}}"> <i class="fa fa-eye"></i>

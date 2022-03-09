@@ -94,7 +94,7 @@ class VendorManagementController extends Controller
       $request->validate([
          'shop_name' => 'required',
          'company_email' => 'required',
-         'phone_number' => 'required',
+         'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
          'product_category' => 'nullable',
          'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
       ]);
@@ -153,6 +153,7 @@ class VendorManagementController extends Controller
    {
       $request->validate([
          'name' => 'required',
+         'email' => 'required',
          'phone_num' => ['required', new Mobile],
          //  'phone_num' => 'required',
          'designation' => 'required',
