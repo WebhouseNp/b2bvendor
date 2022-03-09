@@ -10,6 +10,8 @@
                 <h4 class="page-title"> Orders</h4>
             </div>
 
+            <x-alerts></x-alerts>
+
             <div class="mb-4">
                 <form action="" class="form-inline">
                     <div class="form-row align-items-center">

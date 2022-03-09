@@ -17,7 +17,8 @@
     </div>
 
     <div class="mt-2">
-        @include('admin.section.notifications')
+        {{-- @include('admin.section.notifications') --}}
+        <x-alerts></x-alerts>
     </div>
 
     <div class="mt-3">
@@ -145,6 +146,14 @@
                     <h5 class="text-center">Order <span class="text-capitalize">{{ $order->status }}</span></h5>
                     <p class="text-center">
                         This order has been {{ $order->status }}.
+                    </p>
+                </div>
+                @endif
+                @if($order->status == 'completed')
+                <div class="bg-success text-white p-4 rounded mb-4">
+                    <h5 class="text-center">Order <span class="text-capitalize">{{ $order->status }}</span></h5>
+                    <p class="text-center">
+                        This order has been Completed.
                     </p>
                 </div>
                 @endif

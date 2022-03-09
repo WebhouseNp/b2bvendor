@@ -10,8 +10,8 @@
 <div class="alert alert-danger">{{session('error')}}</div>
 @endif
 
-<script>
+{{-- <script>
     setTimeout(function(){
         $('.alert').slideUp('slow');
     }, 7000);
-</script>
+</script> --}}
