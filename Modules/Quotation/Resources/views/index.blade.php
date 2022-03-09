@@ -21,6 +21,7 @@
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Query By</th>
+                        <th>Posted On</th>
                         <th>Replies</th>
                         <th>Action</th>
                     </tr>
@@ -31,7 +32,8 @@
                         <td> {{ $loop->iteration }}</td>
                         <td> {{$quotation->purchase}}</td>
                         <td> {{$quotation->quantity}} {{ $quotation->unit }}</td>
-                        <td> {{$quotation->name }}</td>
+                        <td> {{$quotation->user->name ?? null }}</td>
+                        <td> {{$quotation->created_at->diffForHumans() }}</td>
                         <td> {{$quotation->replies_count }} suppliers</td>
                         <td class="text-no-wrap d-flex">
                             <a title="view" class="btn btn-success border-0" href="{{ route('quotations.show',$quotation->id) }}">

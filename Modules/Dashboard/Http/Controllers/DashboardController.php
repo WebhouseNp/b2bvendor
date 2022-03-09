@@ -75,8 +75,7 @@ class DashboardController extends Controller
         $salesFromCOD = $this->dashboardService->getSalesFromCOD();
 
         $payableToAdmin = Transaction::where('vendor_id', $vendor->id)->where('is_cod', true)->whereNull('settled_at')->sum('commission');
-        $lastTransaction = Transaction::where('vendor_id', $vendor->id)->latest('id')->first();
-        $reveivableFromAdmin =  $lastTransaction ? $lastTransaction->running_balance : 0;
+        $receivableFromAdmin =  $this->dashboardService->getReceivableFromAdmin($vendor->id);
 
         $totalActiveProductsCount = Product::where('vendor_id', $vendor->id)->active()->count();
 
@@ -86,7 +85,7 @@ class DashboardController extends Controller
             'salesFromOnlinePayment' => $salesFromOnlinePayment,
             'salesFromCOD' => $salesFromCOD,
             'payableToAdmin' => $payableToAdmin,
-            'reveivableFromAdmin' => $reveivableFromAdmin,
+            'receivableFromAdmin' => $receivableFromAdmin,
             'totalActiveProductsCount' => $totalActiveProductsCount,
         ]);
     }

@@ -4,9 +4,17 @@ namespace Modules\Dashboard\Service;
 
 use Modules\Order\Entities\Order;
 use Modules\Payment\Entities\Transaction;
+use Modules\Payment\Service\TransactionService;
 
 class DashboardService
 {
+    protected $transactionService;
+
+    public function __construct(TransactionService $transactionService)
+    {
+        $this->transactionService = $transactionService;
+    }
+
     public function getTotalSales()
     {
         // return Transaction::where('type', 1)->sum('amount');
@@ -33,5 +41,10 @@ class DashboardService
             // })
             ->sum('total_price');
         return $salesFromCOD;
+    }
+
+    public function getReceivableFromAdmin($vendorId)
+    {
+        return $this->transactionService->getCurrentBalance($vendorId);
     }
 }
