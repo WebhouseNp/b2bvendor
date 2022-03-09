@@ -14,7 +14,7 @@ class ProductPublicationController extends Controller
     
     public function store(Request $request,  Product $product)
     {
-        $this->authorize('manageProducts');
+        // $this->authorize('manageProducts');
 
         $product->update(['status' => 1]);
         return response()->json([
