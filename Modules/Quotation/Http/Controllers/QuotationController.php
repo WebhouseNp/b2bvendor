@@ -19,6 +19,7 @@ class QuotationController extends Controller
     public function index()
     {
         $quotations = Quotation::withCount('replies')
+            ->with('user:id,name')
             ->when(auth()->user()->hasRole('vendor'), function ($query) {
                 $query->whereHas('vendors', function ($query) {
                     $query->where('vendor_id', auth()->user()->vendor->id);

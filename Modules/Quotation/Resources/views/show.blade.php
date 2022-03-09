@@ -35,6 +35,7 @@
         <div class="ibox">
             <div class="ibox-head">
                 <div class="ibox-title">Quotation Details</div>
+                <em>Posted On: {{ $quotation->created_at->diffForHumans() }}</em>
             </div>
             <div class="ibox-body">
                 <table id="quotation-detail-table" class="table table-borderless table-hover table-responsive-sm">
@@ -56,7 +57,7 @@
                             @if($quotation->user)
                             <div>{{ $quotation->user->name }}</div>
                             <div>{{ $quotation->user->email }}</div>
-                            <div>{{ $quotation->user->mobile_num }}</div>
+                            <div>{{ $quotation->user->phone_num }}</div>
                             @else
                                 <div>N/A</div>
                             @endif
@@ -128,9 +129,20 @@
         <div class="ibox border shadow-none rounded">
             <div class="ibox-head">
                 <div class="ibox-title">Your Offer</div>
+                @if($myReply)
+                <em>Replied On: {{ $myReply->created_at->toDateString() }}</em>
+                @endif
             </div>
             <div class="ibox-body">
-                <form action="{{ route('quotations-reply.store', $quotation) }}" method="POST">
+                @if($myReply)
+                <div id="my-reply">
+                    <p>
+                        {{ $myReply->message }}
+                    </p>
+                    <button type="button" onclick="showReplyForm()" class="btn btn-primary btn-rounded border-0 px-3"><i class="fa fa-edit mr-1"></i>Change Reply</button>
+                </div>
+                @endif
+                <form id="reply-form" action="{{ route('quotations-reply.store', $quotation) }}" method="POST"  @if($myReply) style="display: none;" @endif>
                     @csrf
                     <div class="form-group">
                         <textarea name="message" id="message" cols="30" rows="10" class="form-control">{{ old('message', $myReply->message ?? null ) }}</textarea>
@@ -148,4 +160,10 @@
 @endsection
 
 @push('push_scripts')
+<script>
+    function showReplyForm() {
+        document.getElementById('reply-form').style.display = 'block';
+        document.getElementById('my-reply').style.display = 'none';
+    }
+</script>
 @endpush
