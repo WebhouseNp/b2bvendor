@@ -44,7 +44,7 @@ class TransactionService
     {
         return Transaction::where('vendor_id', $vendorId)
             ->onlyOnlinePayments()
-            ->latest()->first()->running_balance ?? 0;
+            ->latest('id')->first()->running_balance ?? 0;
     }
 
     public function calculateCommission($amount, $commissionPercentage)
