@@ -18,11 +18,12 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $quotations = Quotation::when(auth()->user()->hasRole('vendor'), function ($query) {
-            $query->whereHas('vendors', function ($query) {
-                $query->where('vendor_id', auth()->user()->vendor->id);
-            });
-        })->latest()->get();
+        $quotations = Quotation::withCount('replies')
+            ->when(auth()->user()->hasRole('vendor'), function ($query) {
+                $query->whereHas('vendors', function ($query) {
+                    $query->where('vendor_id', auth()->user()->vendor->id);
+                });
+            })->latest()->get();
 
         return view('quotation::index', compact('quotations'));
     }
@@ -43,9 +44,9 @@ class QuotationController extends Controller
             'image1' =>  'nullable|mimes:jpg,jpeg,png|max:2000',
             'image2' =>  'nullable|mimes:jpg,jpeg,png|max:2000',
             'image3' =>  'nullable|mimes:jpg,jpeg,png|max:2000',
-            'name'    => 'required|string',
-            'email'         => 'required|email',
-            'mobile_num'    => 'required',
+            // 'name'    => 'required|string',
+            // 'email'         => 'required|email',
+            // 'mobile_num'    => 'required',
             'ship_to'       => 'required',
             'expected_price'  => 'nullable',
             'expected_del_time' => 'nullable',
@@ -56,6 +57,7 @@ class QuotationController extends Controller
         try {
             DB::beginTransaction();
             $quotation = new Quotation([
+                'user_id' => auth()->id(),
                 'purchase' => $request->purchase,
                 'quantity' => $request->quantity,
                 'unit' => $request->unit,
@@ -63,9 +65,9 @@ class QuotationController extends Controller
                 'image1' => $request->hasFile('image1') ? $request->file('image1')->store('uploads/quotations') : null,
                 'image2' => $request->hasFile('image2') ? $request->file('image2')->store('uploads/quotations') : null,
                 'image3' => $request->hasFile('image3') ? $request->file('image3')->store('uploads/quotations') : null,
-                'name' => $request->name,
-                'email' => $request->email,
-                'mobile_num'    => $request->mobile_num,
+                // 'name' => $request->name,
+                // 'email' => $request->email,
+                // 'mobile_num'    => $request->mobile_num,
                 'ship_to'       => $request->ship_to,
                 'expected_price'  => $request->expected_price,
                 'expected_del_time' => $request->expected_del_time,
@@ -87,12 +89,6 @@ class QuotationController extends Controller
 
                 $vendor->user->notify(new \Modules\Quotation\Notifications\NewQuotationNotification($quotation));
             }
-
-            // Mail::send('email.quotation', $quotation,  function ($message) use ($request) {
-            //     $message->to('info@sastowholesale.com', 'Admin')
-            //         ->subject('Quotation Received');
-            //     $message->from($request->email, $request->first_name);
-            // });
 
             DB::commit();
 
@@ -117,9 +113,18 @@ class QuotationController extends Controller
             abort_unless($quotation->vendors->pluck('id')->contains($vendorId), 403);
         }
 
-        $quotation->loadMissing('vendors');
+        $quotation->loadMissing(['vendors', 'user']);
 
-        return view('quotation::show', compact('quotation'));
+        // $quotation->load(['replies' => function ($query) use($vendorId) {
+        //     $query->where('vendor_id', $vendorId);
+        // }]);
+
+        $myReply = null;
+        if (auth()->user()->hasRole('vendor')) {
+            $myReply = $quotation->replies->where('vendor_id', $vendorId)->first();
+        }
+
+        return view('quotation::show', compact(['quotation', 'myReply']));
     }
 
     /**
@@ -130,7 +135,7 @@ class QuotationController extends Controller
     public function destroy(Quotation $quotation)
     {
         abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
-        
+
         if (!$quotation->image1) {
             Storage::delete($quotation->image1);
         }
@@ -144,6 +149,16 @@ class QuotationController extends Controller
         DB::table('quotation_vendor')->where('quotation_id', $quotation->id)->delete();
 
         $quotation->delete();
+
+        return redirect()->back()->with('success', 'Quotation deleted successfully.');
+    }
+
+    public function destroyForVendor(Quotation $quotation)
+    {
+        DB::table('quotation_vendor')->where([
+            'quotation_id' => $quotation->id,
+            'vendor_id' => auth()->user()->vendor->id
+        ])->delete();
 
         return redirect()->back()->with('success', 'Quotation deleted successfully.');
     }

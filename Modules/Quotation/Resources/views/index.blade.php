@@ -21,6 +21,7 @@
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Query By</th>
+                        <th>Replies</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -31,13 +32,21 @@
                         <td> {{$quotation->purchase}}</td>
                         <td> {{$quotation->quantity}} {{ $quotation->unit }}</td>
                         <td> {{$quotation->name }}</td>
+                        <td> {{$quotation->replies_count }} suppliers</td>
                         <td class="text-no-wrap d-flex">
                             <a title="view" class="btn btn-success border-0" href="{{ route('quotations.show',$quotation->id) }}">
                                 <i class="fa fa-eye"></i> View
                             </a>
-                            @if(auth()->user()->hasAnyRole('super_admin|admin'))
                             <div class="mx-2"></div>
-                            <form action="{{ route('quotations.destroy', $quotation->id) }}" method="POST" class="js-delete-quotation-form form-inline d-inline">
+                            @if(auth()->user()->hasAnyRole('super_admin|admin'))
+                            <form action="{{ route('quotations.destroy', $quotation->id) }}" method="POST" class="js-confirm-delete form-inline d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger border-0"><i class="fa fa-trash"></i> Delete</button>
+                            </form>
+                            @endif
+                            @if(auth()->user()->hasRole('vendor'))
+                            <form action="{{ route('quotations.destroy-for-vendor', $quotation->id) }}" method="POST" class="js-confirm-delete form-inline d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger border-0"><i class="fa fa-trash"></i> Delete</button>
@@ -60,8 +69,8 @@
 @endsection
 
 @push('push_scripts')
-<script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin/vendors/DataTables/datatables.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin/js/sweetalert.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         $('#quotation-table').DataTable({
@@ -69,18 +78,16 @@
             , "bSortable": false
             , "aTargets": [-1, -2]
         });
-        $(document).ready(function() {
-            // Confirm before delete
-            $('.js-delete-quotation-form').on('submit', function(e) {
+
+        $('.js-confirm-delete').on('submit', function(e) {
                 e.preventDefault();
                 Swal.fire({
                     title: 'Are you sure?'
-                    , text: `You Want to delete this Quotation??`
-                    , icon: 'warning'
+                    , text: `This action is irreversible. Are you sure to delete?`
+                    , type: 'question'
                     , showCancelButton: true
-                    , confirmButtonColor: '#3085d6'
-                    , cancelButtonColor: '#d33'
-                    , confirmButtonText: 'Yes, Delete it!'
+                    , confirmButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.value) {
                         e.target.submit();
@@ -89,7 +96,6 @@
                     }
                 })
             });
-        });
     })
 
 </script>
