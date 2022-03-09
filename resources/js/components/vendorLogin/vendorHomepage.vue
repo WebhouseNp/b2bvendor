@@ -347,13 +347,9 @@ export default {
 .step-4{
   animation-delay: 1s;
 }
-.step-5{
+.step-5, .step-6{
   animation-delay: 1.2s;
 }
-.step-6{
-  animation-delay: 1.3s;
-}
-
 
 .before-enter{
   opacity: 0;
