@@ -144,7 +144,7 @@
 
         <header class="header">
             <div class="page-brand">
-                <a class="link" href="#">
+                <!-- <a class="link" href="#"> -->
                     <span class="brand">
                         @if(auth()->user()->hasAnyRole('admin|super_admin'))
                         {{ auth()->user()->name }}
@@ -159,7 +159,7 @@
                         {{ auth()->user()->vendor->shop_name }}
                         @endif
                     </span>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="flexbox flex-1">
                 <!-- START TOP-LEFT TOOLBAR-->

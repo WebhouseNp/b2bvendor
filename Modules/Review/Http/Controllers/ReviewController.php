@@ -49,6 +49,14 @@ class ReviewController extends Controller
 
             if (!Review::canReview($request->product_id, $request->customer_id)) {
                 return response()->json(['status' => 'unsuccessful', 'data' => 'Sorry you cannot review this product.']);
+            } else {
+                Review::create([
+                    'name' => $request->name,
+                    'reviews' => $request->reviews,
+                    'customer_id' => $request->customer_id,
+                    'product_id' => $request->product_id,
+                    'rate' => $request->rate,
+                ]);
             }
 
         } catch (\Exception $ex) {

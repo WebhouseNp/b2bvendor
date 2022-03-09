@@ -37,7 +37,7 @@
                             </a>
                             @if(auth()->user()->hasAnyRole('super_admin|admin'))
                             <div class="mx-2"></div>
-                            <form action="{{ route('quotations.destroy', $quotation->id) }}" method="POST" class="js-delete-prdoduct-category-form form-inline d-inline">
+                            <form action="{{ route('quotations.destroy', $quotation->id) }}" method="POST" class="js-delete-quotation-form form-inline d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger border-0"><i class="fa fa-trash"></i> Delete</button>
@@ -61,6 +61,7 @@
 
 @push('push_scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         $('#quotation-table').DataTable({
@@ -68,7 +69,56 @@
             , "bSortable": false
             , "aTargets": [-1, -2]
         });
+        $(document).ready(function() {
+            // Confirm before delete
+            $('.js-delete-quotation-form').on('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?'
+                    , text: `You Want to delete this Quotation??`
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, Delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        e.target.submit();
+                    } else {
+                        $(this).find('button[type="submit"]').prop('disabled', false);
+                    }
+                })
+            });
+        });
     })
+
+</script>
+<script>
+    function FailedResponseFromDatabase(message) {
+        html_error = "";
+        $.each(message, function(index, message) {
+            html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
+        });
+        Swal.fire({
+            type: 'error'
+            , title: 'Oops...'
+            , html: html_error
+            , confirmButtonText: 'Close'
+            , timer: 10000
+        });
+    }
+
+    function DataSuccessInDatabase(message) {
+        Swal.fire({
+            position: 'top-end'
+            , type: 'success'
+            , title: 'Done'
+            , html: message
+            , confirmButtonText: 'Close'
+            , timer: 10000
+            , toast: true
+        });
+    }
 
 </script>
 @endpush

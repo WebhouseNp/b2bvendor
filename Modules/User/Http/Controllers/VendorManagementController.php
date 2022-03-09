@@ -13,7 +13,6 @@ use Modules\Country\Entities\Country;
 use File, Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
 use Modules\Product\Entities\Product;
-
 class VendorManagementController extends Controller
 {
    public function getApprovedVendors()
@@ -95,7 +94,7 @@ class VendorManagementController extends Controller
       $request->validate([
          'shop_name' => 'required',
          'company_email' => 'required',
-         'phone_number' => ['required', new Mobile],
+         'phone_number' => 'required',
          'product_category' => 'nullable',
          'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
       ]);
