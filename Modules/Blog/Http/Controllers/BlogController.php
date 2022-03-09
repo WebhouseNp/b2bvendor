@@ -24,6 +24,7 @@ class BlogController extends Controller
 
     public function store(BlogRequest $request)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $blog = new Blog();
         $blog->title = $request->title;
         $blog->description = $request->description;
@@ -53,6 +54,7 @@ class BlogController extends Controller
 
     public function update(BlogRequest $request, Blog $blog)
     {
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $blog->title = $request->title;
         $blog->author = $request->author;
         $blog->description = $request->description;

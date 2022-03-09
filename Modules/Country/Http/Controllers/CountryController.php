@@ -27,7 +27,7 @@ class CountryController extends Controller
             'flag' => 'required',
             'publish' => 'nullable'
         ]);
-
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         Country::create([
             'name' => $request->name,
             'publish' => $request->has('publish') ? 1 : 0,
@@ -54,7 +54,7 @@ class CountryController extends Controller
             'flag' => 'nullable',
             'publish' => 'nullable'
         ]);
-
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $country->fill([
             'name' => $request->name,
             'publish' => $request->has('publish') ? 1 : 0

@@ -27,7 +27,7 @@ class PartnerTypeController extends Controller
             'position' => 'required|integer',
             'publish' => 'nullable'
         ]);
-
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         PartnerType::create([
             'name' => $request->name,
             'position' => $request->position,
@@ -54,7 +54,7 @@ class PartnerTypeController extends Controller
             'position' => 'nullable',
             'publish' => 'nullable'
         ]);
-
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $partnerType->fill([
             'name' => $request->name,
             'position' => $request->position,
