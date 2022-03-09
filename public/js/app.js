@@ -6705,6 +6705,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -7461,7 +7468,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n@media only screen and (min-width: 992px) {\n.login-bottom[data-v-cbdddaa2]{\r\n  margin-bottom: 80px;\n}\n}\n.card[data-v-cbdddaa2]{\r\n  min-height: 0px;\n}\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\r\n  transition-delay: 0.4s;\n}\n.secondary-heading[data-v-cbdddaa2]{\r\n    color: #868585;\r\n    font-weight: 400;\r\n    text-transform: uppercase;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n  color: #ffa500;\n}\r\n/*------------animation-------*/\n@-webkit-keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n@keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n.slider-wrapper[data-v-cbdddaa2], .why-join[data-v-cbdddaa2],.description[data-v-cbdddaa2],\r\n .step-1[data-v-cbdddaa2], .step-2[data-v-cbdddaa2], .step-3[data-v-cbdddaa2], .step-4[data-v-cbdddaa2], .step-5[data-v-cbdddaa2],\r\n .step-6[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2], .list[data-v-cbdddaa2] {\r\n  opacity: 0;\n}\n.slider-wrapper[data-v-cbdddaa2]\r\n{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.why-join[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.4s;\r\n          animation-delay: 0.4s;\n}\n.description[data-v-cbdddaa2], .step-1[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2],.list[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.step-2[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.6s;\r\n          animation-delay: 0.6s;\n}\n.step-3[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.9s;\r\n          animation-delay: 0.9s;\n}\n.step-4[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1s;\r\n          animation-delay: 1s;\n}\n.step-5[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.2s;\r\n          animation-delay: 1.2s;\n}\n.step-6[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.3s;\r\n          animation-delay: 1.3s;\n}\n.before-enter[data-v-cbdddaa2]{\r\n  opacity: 0;\r\n   -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-cbdddaa2],.zoomIn[data-v-cbdddaa2]{\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn-data-v-cbdddaa2;\r\n  animation-name: zoomIn-data-v-cbdddaa2;\n}\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media only screen and (min-width: 992px) {\n.login-bottom[data-v-cbdddaa2]{\r\n  margin-bottom: 80px;\n}\n}\n.card[data-v-cbdddaa2]{\r\n  min-height: 0px;\n}\n.description p[data-v-cbdddaa2],\r\n.list[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\r\n  transition-delay: 0.4s;\n}\n.secondary-heading[data-v-cbdddaa2]{\r\n    color: #868585;\r\n    font-weight: 400;\r\n    text-transform: uppercase;\n}\n.list ul li[data-v-cbdddaa2] {\r\n  list-style: none;\n}\n.list i[data-v-cbdddaa2] {\r\n  color: #ffa500;\n}\r\n/*------------animation-------*/\n@-webkit-keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n@keyframes zoomIn-data-v-cbdddaa2 {\nfrom {\r\n    opacity: 0;\r\n    transform: scale3d(.3, .3, .3);\n}\n50% {\r\n    opacity: 1;\n}\n}\n.slider-wrapper[data-v-cbdddaa2], .why-join[data-v-cbdddaa2],.description[data-v-cbdddaa2],\r\n .step-1[data-v-cbdddaa2], .step-2[data-v-cbdddaa2], .step-3[data-v-cbdddaa2], .step-4[data-v-cbdddaa2], .step-5[data-v-cbdddaa2],\r\n .step-6[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2], .list[data-v-cbdddaa2] {\r\n  opacity: 0;\n}\n.slider-wrapper[data-v-cbdddaa2]\r\n{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.why-join[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.4s;\r\n          animation-delay: 0.4s;\n}\n.description[data-v-cbdddaa2], .step-1[data-v-cbdddaa2], .secondary-heading[data-v-cbdddaa2],.list[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.3s;\r\n          animation-delay: 0.3s;\n}\n.step-2[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.6s;\r\n          animation-delay: 0.6s;\n}\n.step-3[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 0.9s;\r\n          animation-delay: 0.9s;\n}\n.step-4[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1s;\r\n          animation-delay: 1s;\n}\n.step-5[data-v-cbdddaa2], .step-6[data-v-cbdddaa2]{\r\n  -webkit-animation-delay: 1.2s;\r\n          animation-delay: 1.2s;\n}\n.before-enter[data-v-cbdddaa2]{\r\n  opacity: 0;\r\n   -webkit-animation-duration: 2s;\r\n  animation-duration: 2s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n.enter[data-v-cbdddaa2],.zoomIn[data-v-cbdddaa2]{\r\n  opacity: 1;\r\n  -webkit-animation-name: zoomIn-data-v-cbdddaa2;\r\n  animation-name: zoomIn-data-v-cbdddaa2;\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7533,7 +7540,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-728131a6], h4[data-v-728131a6], .note[data-v-728131a6]{\r\n    font-weight: 600;\r\n    color: #7c7c7d;\n}\n.list[data-v-728131a6] {\r\n  list-style: none;\r\n  font-family: var(--font-primary);\r\n  margin-bottom: 20px;\n}\n.list h5[data-v-728131a6]{\r\n    font-weight: 600;\r\n    color: #495057;\r\n    margin-bottom: 20px;\n}\n.list p[data-v-728131a6] {\r\n  margin-left: 40px;\n}\n.list ul[data-v-728131a6]{\r\n    list-style: disc;\n}\n.list ul[data-v-728131a6], ol[data-v-728131a6] {\r\n  margin-left: 50px;\r\n  margin-bottom: 10px;\n}\n.list ol[data-v-728131a6]{\r\n    list-style-type: upper-roman;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.list h5[data-v-728131a6] {\r\n    width: 100%;\r\n    text-align: center;\r\n    flex-basis: unset;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-728131a6],\r\nh4[data-v-728131a6],\r\n.note[data-v-728131a6] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-728131a6] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\n}\n.list[data-v-728131a6] {\r\n  list-style: none;\r\n  font-family: var(--font-primary);\r\n  margin-bottom: 20px;\n}\n.list h5[data-v-728131a6] {\r\n  font-weight: 600;\r\n  color: #495057;\r\n  margin-bottom: 20px;\n}\n.list p[data-v-728131a6] {\r\n  margin-left: 40px;\n}\n.list ul[data-v-728131a6] {\r\n  list-style: disc;\n}\n.list ul[data-v-728131a6],\r\nol[data-v-728131a6] {\r\n  margin-left: 50px;\r\n  margin-bottom: 20px;\n}\n.list ol[data-v-728131a6] {\r\n  list-style-type: upper-roman;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.list h5[data-v-728131a6] {\r\n    width: 100%;\r\n    text-align: center;\r\n    flex-basis: unset;\n}\n.description[data-v-728131a6]{\r\n    margin-left: 0;\r\n    margin-right: 26px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -62995,8 +63002,11 @@ var staticRenderFns = [
       "label",
       { staticClass: "form-check-label", attrs: { for: "" } },
       [
+        _vm._v("I accept all the terms and condition."),
         _c("a", { attrs: { href: "/terms-conditions", target: "_blank" } }, [
-          _vm._v("I accept all the terms and condition."),
+          _c("span", { staticStyle: { color: "#007bff" } }, [
+            _vm._v("Read here."),
+          ]),
         ]),
       ]
     )
@@ -68335,7 +68345,7 @@ var render = function () {
         _vm._v(" "),
         _c("p", { staticClass: "note" }, [
           _vm._v(
-            "\n        ( This electronic record is generated by computer system & does not\n        require any physical or digital signatures. )\n      "
+            "\n        ( This electronic record is generated by computer system & does\n        not require any physical or digital signatures. )\n      "
           ),
         ]),
       ]),
@@ -68348,7 +68358,7 @@ var render = function () {
               _vm._v(" "),
               _c("p", [
                 _vm._v(
-                  "\n              Sastowholesale.com is a B2B & B2C ecommerce launched by be the\n              best Pvt. Ltd., where user can connect with the different\n              supplier according to their requirements & have a superior\n              shopping experience.\n            "
+                  "\n              Sastowholesale.com is a B2B & B2C ecommerce launched by be\n              the best Pvt. Ltd., where user can connect with the different\n              supplier according to their requirements & have a superior\n              shopping experience.\n            "
                 ),
               ]),
             ]),
@@ -68370,26 +68380,26 @@ var render = function () {
                 _c("li", [
                   _c("strong", [_vm._v("“Content”:")]),
                   _vm._v(
-                    " means the textual, visual or audio content that is\n                encountered as part of your experience on Our Website. It may\n                include, among other things: text, images, sounds, videos and\n                animations. It includes content such as advertising material,\n                and all other product or service related material Posted by\n                you.\n              "
+                    " means the textual, visual or audio\n                content that is encountered as part of your experience on Our\n                Website. It may include, among other things: text, images,\n                sounds, videos and animations. It includes content such as\n                advertising material, and all other product or service related\n                material Posted by you.\n              "
                   ),
                 ]),
                 _vm._v(" "),
                 _c("li", [
                   _c("strong", [_vm._v("“Our website”:")]),
-                  _vm._v(" means sastowholesale.com."),
+                  _vm._v(" means sastowholesale.com.\n              "),
                 ]),
                 _vm._v(" "),
                 _c("li", [
                   _c("strong", [_vm._v("“Product”:")]),
                   _vm._v(
-                    " means any item offered for sale by you on our\n                website, whether physical goods or digital.\n              "
+                    " means any item offered for sale by\n                you on our website, whether physical goods or digital.\n              "
                   ),
                 ]),
                 _vm._v(" "),
                 _c("li", [
                   _c("strong", [_vm._v("“You or Your”:")]),
                   _vm._v(
-                    " means the vendor registering in\n                sastowholesale.com\n              "
+                    " means the vendor registering\n                in sastowholesale.com\n              "
                   ),
                 ]),
               ]),
@@ -68421,7 +68431,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("li", [
                   _vm._v(
-                    "\n                Although we are not a party to your contract with a buyer\n                introduced to you VIA our website, we may remove your products\n                & charge you if a customer or our website visitor has a valid\n                complaint against you.\n              "
+                    "\n                Although we are not a party to your contract with a buyer\n                introduced to you VIA our website, we may remove your products\n                & charge you if a customer or our website visitor has a\n                valid complaint against you.\n              "
                   ),
                 ]),
                 _vm._v(" "),
@@ -68511,7 +68521,7 @@ var render = function () {
               _c("ul", [
                 _c("li", [
                   _vm._v(
-                    "\n                While setting up the shop, it is important that you setup your\n                own terms & conditions for buyers, such as return & refund\n                policy. You can do this from your seller portal. Please make\n                sure to include the following details in your listing:\n                "
+                    "\n                While setting up the shop, it is important that you setup your\n                own terms & conditions for buyers, such as return &\n                refund policy. You can do this from your seller portal. Please\n                make sure to include the following details in your listing:\n                "
                   ),
                   _c("ol", [
                     _c("li", [_vm._v("Delivery & Return policy")]),
@@ -68537,7 +68547,7 @@ var render = function () {
               _vm._v(" "),
               _c("p", [
                 _vm._v(
-                  "\n              • Buyers & sellers are generally responsible for any sales tax,\n              or other taxes that apply to items on our website.\n            "
+                  "\n              • Buyers & sellers are generally responsible for any sales\n              tax, or other taxes that apply to items on our website.\n            "
                 ),
               ]),
             ]),
@@ -68548,19 +68558,25 @@ var render = function () {
               _c("ul", [
                 _c("li", [
                   _vm._v(
-                    "\n                Joining sastowholesale.com marketplace as a seller & posting\n                item is for free. We do retain a proportion of each sale, with\n                our mutual understanding based on your trading role.\n              "
+                    "\n                Joining sastowholesale.com marketplace as a seller &\n                posting item is for free. We do retain a proportion of each\n                sale, with our mutual understanding based on your trading\n                role.\n              "
                   ),
                 ]),
                 _vm._v(" "),
                 _c("li", [
                   _vm._v(
-                    "\n                We will pay you within 3 days after your payment request to\n                us.\n              "
+                    "\n                We will pay you within 24-48 hours after your payment request\n                to us.\n              "
                   ),
                 ]),
                 _vm._v(" "),
                 _c("li", [
                   _vm._v(
-                    "\n                A buyer may from time to time use discount vouchers/ codes,\n                this total may be discounted from the total pay-out figure to\n                the seller\n              "
+                    "\n                You must do settlement your COD (Cash on delivery) to\n                Sastowholesale.com within 3 days after we informed you.\n              "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._v(
+                    "\n                A buyer may from time to time use discount vouchers/ codes,\n                this total may be discounted from the total pay-out figure to\n                the seller.\n              "
                   ),
                 ]),
               ]),

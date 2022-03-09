@@ -4,6 +4,7 @@ namespace Modules\AdminUser\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use App\Models\User;
+
 class AdminUserController extends Controller
 {
 
@@ -35,5 +36,4 @@ class AdminUserController extends Controller
             ->withQueryString();
         return view('adminuser::index', compact('details'));
     }
-
 }
