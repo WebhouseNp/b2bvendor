@@ -113,12 +113,14 @@ $user = auth()->user();
                 </ul>
             </li>
             @endif
+            @if(auth()->user()->hasAnyRole(['vendor']) && !is_alternative_login())
             <li>
                 <a href="{{ route('quotations.index') }}">
                     <i class="sidebar-item-icon fa fa-quote-left"></i>
                     <span class="nav-label">Quotations</span>
                 </a>
             </li>
+            @endif
 
             @can('viewSalesReport')
             <li>
@@ -261,7 +263,7 @@ $user = auth()->user();
 
             <li class="heading">CMS</li>
 
-            @if(auth()->user()->hasAnyRole(['vendor']))
+            @if(auth()->user()->hasAnyRole(['vendor']) && !is_alternative_login())
             <li>
                 <a href="{{ route('getShippingInfo') }}">
                     <i class="sidebar-item-icon fa fa-thumbs-up"></i>

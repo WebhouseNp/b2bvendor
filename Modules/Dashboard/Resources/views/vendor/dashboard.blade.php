@@ -59,9 +59,11 @@
                     <span class="info-box-text">Receivable Amount From Admin</span>
                     <span class="info-box-number d-md-flex">
                         <div>{{ formatted_price($receivableFromAdmin) }}</div>
+                        @if(auth()->user()->hasAnyRole(['vendor']) && alt_usr_has_permission('transactions'))
                         <div class="ml-auto">
                             <x-payment-request-button class="btn btn-primary btn-sm border-0"></x-payment-request-button>
                         </div>
+                        @endif
                     </span>
                 </div>
             </div>

@@ -28,6 +28,7 @@ class VendorController extends Controller
 
    public function editVendorProfile(Request $request, $id)
    {
+      abort_if(is_alternative_login(), 403);
       $user = auth()->user();
       $user->load('vendor');
       $countries = Country::where('publish', 1)->get();
