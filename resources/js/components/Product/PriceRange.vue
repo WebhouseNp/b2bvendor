@@ -12,9 +12,7 @@
           <table class="table table-borderless">
             <tr>
               <td colspan="42">
-                <div>
-                  You can also add price ranges to your products by clicking "Add Price Range" button.
-                </div>
+                <div>You can also add price ranges to your products by clicking "Add Price Range" button.</div>
               </td>
             </tr>
             <tr v-for="(range, index) in form.ranges" class="table" :key="index">
@@ -114,16 +112,21 @@ export default {
         }
       });
 
-      this.form.above_range_price = this.product.above_range_price;
+      this.form.above_range_price = this.product.above_range_price || null;
     }
   },
 
   data() {
     return {
-      form: new Form({
-        ranges: [],
-        above_range_price: "",
-      }),
+      form: new Form(
+        {
+          ranges: [],
+          above_range_price: "",
+        },
+        {
+          resetOnSuccess: false,
+        }
+      ),
     };
   },
 

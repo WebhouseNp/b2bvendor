@@ -157,6 +157,10 @@ return [
         'image1' => 'image',
         'image2' => 'image',
         'image3' => 'image',
+
+        'ranges.*.from' => 'Range From',
+        'ranges.*.to' => 'Range To',
+        'ranges.*.price' => 'Price',
     ],
 
 ];

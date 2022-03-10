@@ -133,6 +133,18 @@ class ProductStorageController extends Controller
 
     public function savePricing(ProductPricingRequest $request, Product $product)
     {
+        $prevTo = null;
+        foreach ($request->ranges as $key => $range) {
+            if ($prevTo) {
+                if ($range['from'] != $prevTo + 1) {
+                    throw \Illuminate\Validation\ValidationException::withMessages([
+                        'ranges.' . $key .'.from' => 'This value must be ' . ($prevTo + 1)
+                    ]);
+                }
+            }
+            $prevTo = $range['to'];
+        }
+
         $product->ranges()->delete();
 
         $maxTo = 1;
@@ -145,7 +157,7 @@ class ProductStorageController extends Controller
             $productRange->price = $range['price'];
             $productRange->save();
 
-            if($range['to'] > $maxTo) {
+            if ($range['to'] > $maxTo) {
                 $maxTo = $range['to'];
             }
         }
