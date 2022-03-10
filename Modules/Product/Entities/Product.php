@@ -126,6 +126,13 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeProductsFromApprovedVendors($query)
+    {
+        return $query->whereHas('user', function ($q) {
+                $q->where('vendor_type',  'approved');
+            });
+    }
+
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');

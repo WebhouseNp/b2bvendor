@@ -21,7 +21,8 @@ class ProductApiController extends Controller
     public function index()
     {
         // TODO::Append query string
-        $products = Product::with(['productCategory', 'ranges'])
+        $products = Product::with(['productCategory', 'ranges','user'])
+            ->productsfromapprovedvendors()
             ->when(request()->filled('q'), function ($query) {
                 return $query->where('title', 'like', '%' . request()->q . '%');
             })
@@ -92,7 +93,8 @@ class ProductApiController extends Controller
 
     public function youMayLike()
     {
-        $products = Product::with('ranges')
+        $products = Product::with(['ranges','user'])
+            ->productsfromapprovedvendors()
             ->active()
             ->orderBy('created_at', 'DESC')
             ->take(18)->get();

@@ -14,7 +14,8 @@ class NewArrivalsProductApiController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['productCategory', 'ranges'])
+        $products = Product::with(['productCategory', 'ranges', 'user'])
+            ->productsfromapprovedvendors()
             ->where('is_new_arrival', true)
             ->active()
             ->orderBy('id', 'DESC')->cursorPaginate(request('per_page') ?? 18)->withQueryString();
@@ -32,7 +33,8 @@ class NewArrivalsProductApiController extends Controller
     // New Arrivals
     public function getNewArrivals()
     {
-        $products = Product::with('ranges')
+        $products = Product::with(['ranges','user'])
+            ->productsfromapprovedvendors()
             ->where('is_new_arrival', true)
             ->active()
             ->orderBy('created_at', 'DESC')
