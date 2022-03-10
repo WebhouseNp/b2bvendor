@@ -33,5 +33,8 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\SalesChart::class,
             \App\Charts\PaymentTypePieChart::class,
         ]);
+
+        // Disable the auto refresh of laravel-debugbar
+        // \Debugbar::getJavascriptRenderer()->setAjaxHandlerAutoShow(false);
     }
 }
