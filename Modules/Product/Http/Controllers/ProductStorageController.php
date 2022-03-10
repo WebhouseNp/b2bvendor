@@ -188,7 +188,7 @@ class ProductStorageController extends Controller
             $product->video_link = $request->video_link;
             $product->is_top = $request->has('is_top') ? true : false;
             $product->is_new_arrival = $request->has('is_new_arrival') ? true : false;
-            $product->status = $request->status == 'active' ? true : false;
+            // $product->status = $request->status == 'active' ? true : false;
 
             $product->meta_title = $request->meta_title;
             $product->meta_description = $request->meta_description;
