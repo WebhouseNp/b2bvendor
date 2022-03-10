@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
             'video_link'        => 'nullable|url',
             'is_top'            => 'nullable|boolean',
             'is_new_arrival'    => 'nullable|boolean',
-            'status'            => 'nullable|in:active,inactive',
+            // 'status'            => 'nullable|in:active,inactive',
 
             'payment_mode'  => 'nullable|string',
             'country_of_origin'  => 'nullable|string',
