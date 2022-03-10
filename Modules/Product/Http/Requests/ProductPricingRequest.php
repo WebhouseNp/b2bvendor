@@ -14,8 +14,8 @@ class ProductPricingRequest extends FormRequest
     public function rules()
     {
         return [
-            'ranges.*.from' => ['required', 'distinct'],
-            'ranges.*.to' => ['required', 'distinct'],
+            'ranges.*.from' => ['required', 'distinct','in_array:ranges.*.from'],
+            'ranges.*.to' => ['required', 'distinct','in_array:ranges.*.to'],
             'ranges.*.price' => ['required', 'distinct'],
             'above_range_price' => ['required', 'distinct'],
         ];

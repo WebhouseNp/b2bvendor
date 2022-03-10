@@ -21,7 +21,7 @@
                 </td>
                 <td>
                 <a title="view" class="btn btn-success btn-sm" href="{{route('role.view',$detail->id)}}">
-                    <i class="fa fa-eye"></i>
+                    <i class="fa fa-eye"></i>View
                 </a> 
                 <!-- <a title="Edit" class="btn btn-primary btn-sm" href="{{route('role.edit',$detail->id)}}">
                     <i class="fa fa-edit"></i>

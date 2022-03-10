@@ -121,6 +121,7 @@ class SalesReportController extends Controller
 
     public function getOrderInfo()
     {
+        abort_if(is_alternative_login(), 403);
         $vendor = auth()->user()->hasRole('vendor') ? auth()->user()->vendor : 0;
 
         $orders = Order::with(['vendor'])
