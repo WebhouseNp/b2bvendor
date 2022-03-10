@@ -17,9 +17,9 @@ $api_token = $user->api_token;
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">All Roles</div>
-            <div>
+            <!-- <div>
                 <a class="btn btn-info btn-md" href="{{route('role.create')}}">New Roles</a>
-            </div>
+            </div> -->
         </div>
 
         <div class="ibox-body" id="validation-errors">

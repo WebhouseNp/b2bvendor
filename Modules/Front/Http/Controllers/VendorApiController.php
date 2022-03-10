@@ -46,7 +46,7 @@ class VendorApiController extends Controller
 
     public function getLatestVendors()
     {
-        $vendors = Vendor::whereHas('user', function ($query) {
+        $vendors = Vendor::where('is_featured',true)->whereHas('user', function ($query) {
             $query->published()->approved()->verified();
         })
             ->latest()
