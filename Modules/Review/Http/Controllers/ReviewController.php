@@ -42,7 +42,7 @@ class ReviewController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string',
                 'rate'             => 'required|numeric',
-                'reviews'          => 'required',
+                'reviews'          => 'nullable',
                 'customer_id'       => 'required|numeric|exists:users,id',
                 'product_id'       => 'required|numeric|exists:products,id',
             ]);
