@@ -58,7 +58,9 @@ class ProductResource extends JsonResource
             // 'category' => new CategoryResource($this->whenLoaded($this->category))
             'product_category' => $this->whenLoaded('productCategory'),
             // 'ranges' => new RangeCollection($this->whenLoaded($this->ranges))
-            'ranges' => $this->whenLoaded('ranges'),
+            'ranges' => $this->whenLoaded('ranges', function() {
+                return $this->ranges->sortBy('from');
+            }),
             'price_range' => $this->priceRange(),
             'min_order' => $this->ranges->min('from') . $this->unit . ' (Min. Order)',
             // 'vendor' => $this->when($this->relationLoaded('user'), new VendorResource($this->user->vendor))
