@@ -10,6 +10,7 @@
                 <div class="form-group">
                     <label>Sasto Wholesale Shop Name</label>
                     <select class="js-example-basic-single form-control @error('sasto_wholesale_mall_vendor_id') is-invalid @enderror" name="sasto_wholesale_mall_vendor_id">
+                        <option value="">Select Vendor...</option>
                         @foreach ($vendors as $vendor)
                         <option value="{{ $vendor->id }}" {{ old('sasto_wholesale_mall_vendor_id', settings('sasto_wholesale_mall_vendor_id')) == $vendor->id ? 'selected' : '' }}>{{ $vendor->shop_name }}</option>
                         @endforeach
