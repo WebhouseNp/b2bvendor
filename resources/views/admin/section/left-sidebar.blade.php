@@ -113,7 +113,7 @@ $user = auth()->user();
                 </ul>
             </li>
             @endif
-            @if(auth()->user()->hasAnyRole(['admin|super_admin|vendor']) && !is_alternative_login())
+            @if(auth()->user()->hasAnyRole(['admin|super_admin|vendor']) || !is_alternative_login())
             <li>
                 <a href="{{ route('quotations.index') }}">
                     <i class="sidebar-item-icon fa fa-quote-left"></i>
