@@ -14,10 +14,11 @@ class ProductPricingRequest extends FormRequest
     public function rules()
     {
         return [
-            'ranges.*.from' => ['required', 'distinct'],
-            'ranges.*.to' => ['required', 'distinct'],
-            'ranges.*.price' => ['required', 'distinct'],
-            'above_range_price' => ['required', 'distinct'],
+            'ranges.*.from' => ['required', 'distinct', 'numeric', 'gt:0',],
+            'ranges.*.to' => ['required', 'distinct', 'gt:ranges.*.from', 'numeric', 'gt:0',],
+            'ranges.*.price' => ['required', 'distinct', 'numeric', 'gt:0',],
+
+            'above_range_price' => ['nullable', 'required_without:ranges', 'numeric', 'gt:0', 'distinct'],
         ];
     }
 
@@ -42,6 +43,7 @@ class ProductPricingRequest extends FormRequest
             'ranges.*.to.distinct' => 'To field has a duplicate value.',
             'ranges.*.price.distinct' => 'Price field has a duplicate value.',
 
+            'ranges.*.to.gt' => 'This value must be greater than :value.',
         ];
     }
 }

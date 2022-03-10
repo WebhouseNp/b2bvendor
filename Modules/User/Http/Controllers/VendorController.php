@@ -28,6 +28,7 @@ class VendorController extends Controller
 
    public function editVendorProfile(Request $request, $id)
    {
+      abort_if(is_alternative_login(), 403);
       $user = auth()->user();
       $user->load('vendor');
       $countries = Country::where('publish', 1)->get();
@@ -36,6 +37,7 @@ class VendorController extends Controller
 
    public function updateVendorProfile(Request $request, $id)
    {
+      abort_if(is_alternative_login(), 403);
       $request->validate([
          'image' => 'mimes:jpg,png,jpeg,gif|max:3048',
       ]);
@@ -57,6 +59,7 @@ class VendorController extends Controller
 
    public function updateVendorDesc(Request $request, Vendor $vendor)
    {
+      abort_if(is_alternative_login(), 403);
       $request->validate([
          'description' => 'required',
       ]);
@@ -68,6 +71,7 @@ class VendorController extends Controller
 
    public function updateVendorBankDetails(Request $request, Vendor $vendor)
    {
+      abort_if(is_alternative_login(), 403);
       $request->validate([
          'bank_name' => 'nullable',
          'branch_name' => 'nullable',
@@ -96,6 +100,7 @@ class VendorController extends Controller
 
    public function updateUserDetails(Request $request, Vendor $vendor)
    {
+      abort_if(is_alternative_login(), 403);
       $request->validate([
          'name' => 'required',
          'phone_num' => ['required', new Mobile],

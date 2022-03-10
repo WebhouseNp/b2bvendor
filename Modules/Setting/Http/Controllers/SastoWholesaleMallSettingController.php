@@ -12,7 +12,11 @@ class SastoWholesaleMallSettingController extends Controller
     public function index()
     {
         $title = 'SastoWholesale Mall Setting';
-        $vendors = Vendor::select('id', 'shop_name')->get();
+        $vendors = Vendor::with('user')
+           ->whereHas('user', function ($q) {
+                $q->where('vendor_type',  'approved');
+            })
+        ->select('id', 'shop_name')->get();
 
         return view('setting::sasto-wholesale-mall-setting',[
             'title' => $title,
@@ -25,7 +29,7 @@ class SastoWholesaleMallSettingController extends Controller
         abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         
         $request->validate([
-            'sasto_wholesale_mall_vendor_id' => 'required',
+            'sasto_wholesale_mall_vendor_id' => 'nullable',
             'sasto_wholesale_mall_home_products_count' => 'nullable'
         ]);
 

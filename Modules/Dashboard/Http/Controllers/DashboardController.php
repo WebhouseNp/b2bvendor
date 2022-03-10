@@ -46,7 +46,8 @@ class DashboardController extends Controller
         $receivableFromVendors = Transaction::where('is_cod', true)->whereNull('settled_at')->sum('commission');
         $payableToVendors = Transaction::onlyOnlinePayments()
         ->whereIn('id', function($query) {
-            $query->select(\DB::raw('MAX(id) FROM transactions GROUP BY vendor_id'));
+            $query->select(\DB::raw('MAX(id) FROM transactions where (is_cod = 0 OR is_cod is null) GROUP BY vendor_id'));
+            // $query->select(\DB::raw('MAX(id) FROM transactions GROUP BY vendor_id'));
         })
         ->sum('running_balance');
 

@@ -2,10 +2,9 @@
 
 namespace Modules\Order\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Jobs\ReleasePaymentJob;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
@@ -13,7 +12,6 @@ use Modules\Order\Entities\Order;
 
 class OrderController extends Controller
 {
-    use AuthorizesRequests;
 
     public function index()
     {
@@ -83,17 +81,17 @@ class OrderController extends Controller
             'status' => ['required', Rule::in($orderStatuses), Rule::notIn([$order->status])],
             'update_silently' => 'nullable'
         ]);
-
+        
         try {
             DB::beginTransaction();
-
+            
             $order->update(['status' => $request->status]);
-
+            
             // Mark COD order as paid after order is completed
             if (($order->status == "completed") && ($order->payment_type == "cod")) {
                 $order->update(['payment_status' => "paid"]);
             }
-
+            
             if (!$request->filled('update_silently')) {
                 if ($order->status == 'refunded') {
                     // send email to customer
@@ -101,13 +99,13 @@ class OrderController extends Controller
                 } else {
                     Mail::to($order->customer->email)->send(new \App\Mail\OrderStatusChanged($order));
                 }
-
+                
                 // send email to vendor in case of cancellation
                 if ($order->status == 'cancelled') {
                     Mail::to($order->vendor->user->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
                 }
             }
-
+            
             if ($order->status == 'completed') {
                 ReleasePaymentJob::dispatch($order);
             }
@@ -119,6 +117,6 @@ class OrderController extends Controller
             return redirect()->back()->with('error', 'Something went wrong while processing your request.');
         }
 
-        return redirect()->back()->with('success', 'Order status changed successfully. New status is ' . $order->status);
+        return redirect()->back()->with('success', 'Order status changed successfully.');
     }
 }
