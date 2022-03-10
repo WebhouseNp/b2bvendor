@@ -10,10 +10,12 @@ class TopProductApiController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['productCategory', 'ranges'])
+        $products = Product::with(['productCategory', 'ranges', 'user'])
+            ->productsfromapprovedvendors()
             ->where('is_top', true)
             ->active()
             ->orderBy('id', 'DESC')->cursorPaginate(request('per_page') ?? 18)->withQueryString();
+            dd($products);
 
         return ProductResource::collection($products)->hide([
             'highlight',
@@ -28,7 +30,8 @@ class TopProductApiController extends Controller
     // Top Products for homepage
     public function getTopProducts()
     {
-        $products = Product::with('ranges')
+        $products = Product::with(['ranges','user'])
+            ->productsfromapprovedvendors()
             ->where('is_top', true)
             ->active()
             ->orderBy('created_at', 'DESC')
