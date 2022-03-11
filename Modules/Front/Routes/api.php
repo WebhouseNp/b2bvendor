@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/front', function (Request $request) {
 // Products
 Route::get('/products', 'ProductApiController@index');
 Route::get('/products/{slug}', 'ProductApiController@show');
+Route::get('/product-by-id/{product}', 'ProductApiController@showById');
 Route::get('/p/new-arrivals-products', [NewArrivalsProductApiController::class, 'index']);
 Route::get('/p/new-arrivals-filtered', [NewArrivalsProductApiController::class, 'getNewArrivals']);
 Route::get('/p/top-products', [TopProductApiController::class, 'index']);
@@ -80,5 +81,8 @@ Route::get('single-blog/{blog:slug}', [BlogApiController::class, 'show'])->name(
 
 //Faqs
 Route::get('all-faqs', [FaqApiController::class, 'index']);
+
+// Breadcrumbs
+Route::get('category-breadcrumbs', 'BreadcrumbApiController@category');
 
 

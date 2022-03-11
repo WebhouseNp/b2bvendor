@@ -62,6 +62,19 @@ class ProductApiController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)
+            ->productsfromapprovedvendors()
+            ->active()
+            ->firstOrFail();
+
+        $product->load(['productCategory', 'ranges', 'images', 'user.vendor']);
+
+        return ProductResource::make($product);
+    }
+
+    public function showById($id)
+    {
+        $product = Product::where('id', $id)
+            ->productsfromapprovedvendors()
             ->active()
             ->firstOrFail();
 
