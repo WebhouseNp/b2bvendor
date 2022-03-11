@@ -12,6 +12,7 @@ use Modules\Category\Entities\Category;
 use Modules\Country\Entities\Country;
 use File, Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
+use Modules\Front\Notifications\VendorStatusChangeMessageNotification;
 use Modules\Product\Entities\Product;
 class VendorManagementController extends Controller
 {
@@ -76,16 +77,8 @@ class VendorManagementController extends Controller
       $user->vendor->update([
          'commission_rate' => $request->commission_rate
       ]);
-      if($request->vendor_type === "suspended"){
-         $user->vendor->update([
-            'note' => $request->note
-         ]);
-      }else{
-         $user->vendor->update([
-            'note' => ''
-         ]);
-      }
       Mail::to($user->email)->send(new VendorStatusChanged($user));
+      $user->notify(new VendorStatusChangeMessageNotification($user));
       return redirect()->back()->with('success', 'Vendor Updated Successfuly.');
    }
 
