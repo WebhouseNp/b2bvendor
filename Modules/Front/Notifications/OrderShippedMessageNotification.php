@@ -19,7 +19,7 @@ class OrderShippedMessageNotification extends Notification
      */
     public function __construct(Order $order)
     {
-        $this->order = $order
+        $this->order = $order;
     }
 
     /**

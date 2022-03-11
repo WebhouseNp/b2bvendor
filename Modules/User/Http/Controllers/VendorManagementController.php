@@ -77,8 +77,17 @@ class VendorManagementController extends Controller
       $user->vendor->update([
          'commission_rate' => $request->commission_rate
       ]);
-      Mail::to($user->email)->send(new VendorStatusChanged($user));
+      if($request->vendor_type === "suspended"){
+         $user->vendor->update([
+            'note' => $request->note
+         ]);
+      }else{
+         $user->vendor->update([
+            'note' => ''
+         ]);
+      }
       $user->notify(new VendorStatusChangeMessageNotification($user));
+      Mail::to($user->email)->send(new VendorStatusChanged($user));
       return redirect()->back()->with('success', 'Vendor Updated Successfuly.');
    }
 

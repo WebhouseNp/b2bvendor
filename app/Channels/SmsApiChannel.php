@@ -41,7 +41,8 @@ class SmsApiChannel
                 'senderid' => appSettings('sms_api_sender_id'),
                 'routeid' => appSettings('sms_api_route_id'),
                 'contacts' => $to,
-                'msg' => $data['message'],
+                'msg' => $data['
+                '],
             ]);
 
             // if ($response->code !== 200) {
