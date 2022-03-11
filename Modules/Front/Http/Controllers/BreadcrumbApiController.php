@@ -4,6 +4,7 @@ namespace Modules\Front\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\Category\Entities\Category;
+use Modules\Product\Entities\Product;
 use Modules\ProductCategory\Entities\ProductCategory;
 use Modules\Subcategory\Entities\Subcategory;
 
@@ -35,6 +36,16 @@ class BreadcrumbApiController extends Controller
             $this->addItem($productCategory->subcategory, 'subcat');
             $this->addItem($productCategory, 'prod_cat');
         }
+
+        return response()->json($this->breadcrumbs, 200);
+    }
+
+    public function productBreadcrumbs($id)
+    {
+        $product = Product::with('productCategory.subcategory.category')->findOrFail($id);
+        $this->addItem($product->productCategory->subcategory->category, 'cat');
+        $this->addItem($product->productCategory->subcategory, 'subcat');
+        $this->addItem($product->productCategory, 'prod_cat');
 
         return response()->json($this->breadcrumbs, 200);
     }
