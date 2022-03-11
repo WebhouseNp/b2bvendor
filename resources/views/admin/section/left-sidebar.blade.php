@@ -260,8 +260,9 @@ $user = auth()->user();
                 </ul>
             </li>
             @endcan
-
+            @if(!is_alternative_login())
             <li class="heading">CMS</li>
+            @endif
 
             @if(auth()->user()->hasAnyRole(['vendor']) && !is_alternative_login())
             <li>

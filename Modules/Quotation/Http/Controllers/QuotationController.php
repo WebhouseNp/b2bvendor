@@ -109,6 +109,7 @@ class QuotationController extends Controller
      */
     public function show(Quotation $quotation)
     {
+        abort_if(is_alternative_login() , 403);
         if (!auth()->user()->hasAnyRole('super_admin|admin')) {
             $vendorId = auth()->user()->vendor->id;
             abort_unless($quotation->vendors->pluck('id')->contains($vendorId), 403);

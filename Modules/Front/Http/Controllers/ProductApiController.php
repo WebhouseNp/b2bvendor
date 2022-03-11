@@ -88,7 +88,8 @@ class ProductApiController extends Controller
     {
         $sastoWholesaleStore = Vendor::where('id', sasto_wholesale_store_id())->firstOrFail();
 
-        $products = Product::with('ranges')
+        $products = Product::with(['ranges','user'])
+            ->productsfromapprovedvendors()
             ->where('user_id', $sastoWholesaleStore->user_id)
             ->active()
             ->orderBy('created_at', 'DESC')

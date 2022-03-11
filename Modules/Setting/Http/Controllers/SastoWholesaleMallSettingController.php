@@ -12,7 +12,11 @@ class SastoWholesaleMallSettingController extends Controller
     public function index()
     {
         $title = 'SastoWholesale Mall Setting';
-        $vendors = Vendor::select('id', 'shop_name')->get();
+        $vendors = Vendor::with('user')
+           ->whereHas('user', function ($q) {
+                $q->where('vendor_type',  'approved');
+            })
+        ->select('id', 'shop_name')->get();
 
         return view('setting::sasto-wholesale-mall-setting',[
             'title' => $title,
