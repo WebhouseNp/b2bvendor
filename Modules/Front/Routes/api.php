@@ -84,5 +84,6 @@ Route::get('all-faqs', [FaqApiController::class, 'index']);
 
 // Breadcrumbs
 Route::get('category-breadcrumbs', 'BreadcrumbApiController@category');
+Route::get('single-product-breadcrumbs/{id}', 'BreadcrumbApiController@productBreadcrumbs');
 
 
