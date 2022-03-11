@@ -82,4 +82,7 @@ Route::get('single-blog/{blog:slug}', [BlogApiController::class, 'show'])->name(
 //Faqs
 Route::get('all-faqs', [FaqApiController::class, 'index']);
 
+// Breadcrumbs
+Route::get('category-breadcrumbs', 'BreadcrumbApiController@category');
+
 
