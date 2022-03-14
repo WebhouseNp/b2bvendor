@@ -528,6 +528,12 @@ $user = auth()->user();
                             Sasto Wholesale Mall
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('settings.sms.index') }}">
+                            <span class="fa fa-circle-o"></span>
+                            <span>SMS Settings</span>
+                        </a>
+                    </li>
                     @if(auth()->user()->hasAnyRole('super_admin|admin'))
                     <li>
                         <a href="{{ route('settings.notification.index') }}">
