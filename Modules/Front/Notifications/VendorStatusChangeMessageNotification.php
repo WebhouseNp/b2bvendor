@@ -41,8 +41,19 @@ class VendorStatusChangeMessageNotification extends Notification
      */
     public function toSmsApi($notifiable)
     {
+         switch ($this->user->vendor_type) {
+            case "approved":
+                $this->user->vendor_type = 'approved';
+                break;
+            case "suspended":
+                $this->user->vendor_type = 'suspended. Please check your email for further details.';
+                break;
+                default:
+                $this->user->vendor_type = 'new';
+            break;
+        }
         return [
-            'message' => 'Your vendor has been (#' . $this->user->vendor_type . ').',
+            'message' => 'Your vendor has been (#' . $this->user->vendor_type . '). ',
         ];
         
     }

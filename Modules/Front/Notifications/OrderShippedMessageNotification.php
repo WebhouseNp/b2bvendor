@@ -42,7 +42,7 @@ class OrderShippedMessageNotification extends Notification
     public function toSmsApi($notifiable)
     {
         return [
-            'message' => 'Your order is (#' . $this->order->status . ').',
+            'message' => 'Your order has been (#' . $this->order->status . ').',
         ];
         
     }
