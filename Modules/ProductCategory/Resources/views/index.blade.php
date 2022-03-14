@@ -31,6 +31,7 @@ Product Categories
                     <tr>
                         <th>S.N</th>
                         <th>Name</th>
+                        <th>Slug</th>
                         <th>Image</th>
                         <th>Falls Under</th>
                         <th>Products</th>
@@ -50,6 +51,7 @@ Product Categories
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $productCategory->name }}</td>
+                        <td>{{ $productCategory->slug }}</td>
                         <td>
                             @if($productCategory->image)
                             <img class="img-fluid rounded" src="{{ $productCategory->imageUrl() }}" style="width: 3rem;">
