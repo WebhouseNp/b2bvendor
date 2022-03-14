@@ -86,5 +86,5 @@ Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle']
 Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack']);
 
 //login with Facebook
-Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
-Route::get('login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
+Route::get('login/{provider}', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/{provider}/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
