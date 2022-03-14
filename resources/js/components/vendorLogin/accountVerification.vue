@@ -145,7 +145,7 @@ export default {
     outline: none;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 992px){
     .input{
         width: 34px;
     }

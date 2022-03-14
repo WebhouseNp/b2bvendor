@@ -81,8 +81,13 @@ class SocialiteLoginController extends Controller
             if($userExisted){
 
                 Auth::login($userExisted);
-
-                return redirect()->back();
+                $token = auth()->user()->createToken('authToken')->accessToken;
+                return response()->json([
+                    "status" => "true",
+                    "message" => "success",
+                    'token' => $token,
+                    'user' => auth()->user()
+                  ], 200);
 
             }else{
 
@@ -109,8 +114,13 @@ class SocialiteLoginController extends Controller
                 Role_user::create($role_data);
 
                 Auth::login($newUser);
-
-                return redirect('http://localhost:8080');
+                $token = auth()->user()->createToken('authToken')->accessToken;
+                return response()->json([
+                    "status" => "true",
+                    "message" => "success",
+                    'token' => $token,
+                    'user' => auth()->user()
+                  ], 200);
             }
         }catch(Exception $e){
             dd($e);
