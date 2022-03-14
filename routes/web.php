@@ -52,7 +52,7 @@ Route::view('/logistics-management','footer_pages.logistics_management');
 Route::group([], function () {
     // Route::get('admin/login', [LoginController::class, 'login'])->name('admin.login');
     // Route::post('postLogin', [LoginController::class, 'postLogin'])->name('admin.postLogin');
-    // Route::get('password-reset', [PasswordResetController::class, 'resetForm'])->name('password-reset');
+    Route::get('password-reset', [PasswordResetController::class, 'resetForm'])->name('password-reset');
     Route::post('send-email-link', [PasswordResetController::class, 'sendEmailLink'])->name('sendEmailLink');
     // Route::get('reset-password/{token}', [PasswordResetController::class, 'passwordResetForm'])->name('passwordResetForm');
     Route::post('update-password', [PasswordResetController::class, 'updatePassword'])->name('updatePassword');
