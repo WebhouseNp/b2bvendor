@@ -15,7 +15,7 @@ class ProductCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],// 'unique:product_categories,name,' . $this->id],
-            'slug' => 'nullable|max:255',
+            'slug' => 'nullable|max:255|unique:product_categories,slug,' . $this->id,
             'subcategory_id' => ['required', 'exists:subcategories,id'],
             'is_featured' => 'nullable|boolean',
             'publish' => 'nullable|boolean',
