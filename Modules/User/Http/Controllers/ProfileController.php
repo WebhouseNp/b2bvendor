@@ -90,9 +90,7 @@ class ProfileController extends Controller
         'email' => 'nullable',
         'birthday' => 'nullable|',
         'gender' => 'sometimes',
-        'phone' => ['required', new Mobile],
-        // 'phone_num' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
-
+        'phone_num' => ['required', new Mobile],
       ]);
 
       if ($validator->fails()) {
@@ -126,7 +124,7 @@ class ProfileController extends Controller
   public function updateImage(Request $request, User $user){
     try {
       $validator = Validator::make($request->all(), [
-        'image' => '',
+        'image' => 'required',
       ]);
 
       if ($validator->fails()) {

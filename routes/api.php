@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SocialiteLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,16 @@ Route::post('/fire', function (Request $request) {
 
 Route::get('/message', [App\Http\Controllers\MessageController::class, 'message']);
 // Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::group(['middleware' => ['web']], function () {
+    // your routes here
+    Route::prefix('user')->name('api.')->group(function(){
+        //login with Google
+        Route::get('/login/google', [SocialiteLoginController::class, 'redirectToGoogle'])->name('login.google');
+        Route::get('/login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack']);
+        
+        //login with Facebook
+        Route::get('/login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
+        Route::get('/login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
+        
+        });
+});
