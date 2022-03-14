@@ -71,20 +71,16 @@ class VendorManagementController extends Controller
       ]);
       $user = User::where('id', $request->vendor_id)->first();
       if($request->vendor_type != $user->vendor_type){
-
          $user->update([
             'vendor_type' => $request->vendor_type
          ]);
-         
-         if($request->vendor_type === "suspended"){
-            $user->vendor->update([
-               'note' => $request->note
-            ]);
-         }else{
-            $user->vendor->update([
-               'note' => ''
-            ]);
-         }
+         ($request->vendor_type === "suspended") ? 
+         $user->vendor->update([
+            'note' => $request->note
+         ]) 
+         : $user->vendor->update([
+            'note' => ''
+         ]);
          Mail::to($user->email)->send(new VendorStatusChanged($user));
          $user->notify(new VendorStatusChangeMessageNotification($user));
       }
