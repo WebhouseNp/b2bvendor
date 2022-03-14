@@ -56,13 +56,13 @@
                                                 <div id="wrapper" class="py-2">
                                                     <div id="image-holder">
                                                         @if($user->vendor->image)
-                                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded" style="max-height: 250px;">
+                                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" id="js-vendor-image" class="rounded" style="max-height: 250px;">
                                                         @else
                                                         <img src="https://dummyimage.com/800x800/e8e8e8/0011ff" name="pic" id="picture" style="max-height: 250px;">
                                                         @endif
                                                     </div>
                                                 </div>
-                                                <input id="vendor-profile-image" class="form-control-file" value="" name="image" type="file">
+                                                <input id="vendor-profile-image" onchange="handleUploadPreview()" data-preview-el-id="js-vendor-image" class="form-control-file" value="" name="image" type="file">
                                             </div>
 
                                             <div class="col-md-7" >
