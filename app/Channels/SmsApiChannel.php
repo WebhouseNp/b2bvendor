@@ -36,19 +36,17 @@ class SmsApiChannel
         }
 
         if (config('services.sms_api.driver') == 'api') {
-            $response = Http::get(appSettings('sms_api_endpoint'), [
-                'key' => appSettings('sms_api_key'),
-                'senderid' => appSettings('sms_api_sender_id'),
-                'routeid' => appSettings('sms_api_route_id'),
-                'contacts' => $to,
-                'msg' => $data['
-                '],
+            $response = Http::get('http://api.sparrowsms.com/v2/sms/', [
+                'token' => settings('sms_api_token'),
+                'from' => settings('sms_identity'),
+                'to' => $to,
+                'text' => $data['message'],
             ]);
 
-            // if ($response->code !== 200) {
-            // throw new \Exception('SMS API error: ' . $response->body());
-            // }
-            logger('SMS response: ' . $response->body());
+            if (!$response->successful()) {
+                throw new \Exception('SMS API error: ' . $response->body());
+            }
+
         }
 
         return true;
