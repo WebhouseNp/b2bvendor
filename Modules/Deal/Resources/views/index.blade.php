@@ -52,6 +52,8 @@ $api_token = $user->api_token;
                             @endif
                         </td>
                         <td>
+                            <a href="{{ route('send-deal', $data) }}" class="btn btn-link">Send</a>
+                            <span class="mx-2">|</span>
                             <button type="button" class="btn btn-link ml-0 pl-0" onclick="copyLink(this)" data-link="{{ config('constants.customer_app_url') . '/deals/' . $data->id }}" title="Click to copy">
                                 <i class="fa fa-clone"></i>
                                 <span>Click to copy</span>
