@@ -42,7 +42,7 @@ class VendorStatusChangeMessageNotification extends Notification
     public function toSmsApi($notifiable)
     {
         return [
-            'message' => 'Your venfor has been (#' . $this->user->vendor_status . ').',
+            'message' => 'Your vendor has been (#' . $this->user->vendor_type . ').',
         ];
         
     }

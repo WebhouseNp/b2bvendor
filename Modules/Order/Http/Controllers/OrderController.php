@@ -108,7 +108,7 @@ class OrderController extends Controller
             }
 
             if ($order->status == 'shipped') {
-                $order->notify(new OrderShippedMessageNotification($order));
+                $order->customer->notify(new OrderShippedMessageNotification($order));
             }
             
             if ($order->status == 'completed') {
