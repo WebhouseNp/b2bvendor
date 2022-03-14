@@ -63,7 +63,6 @@ class VendorManagementController extends Controller
 
    public function updateCommisson(Request $request)
    {
-      // dd($request->all());
       $request->validate([
          'vendor_id'      => 'required|numeric|exists:users,id',
          'vendor_type'          => 'nullable',
@@ -71,23 +70,28 @@ class VendorManagementController extends Controller
          'note'                     => 'nullable',
       ]);
       $user = User::where('id', $request->vendor_id)->first();
-      $user->update([
-         'vendor_type' => $request->vendor_type
-      ]);
+      if($request->vendor_type != $user->vendor_type){
+
+         $user->update([
+            'vendor_type' => $request->vendor_type
+         ]);
+         
+         if($request->vendor_type === "suspended"){
+            $user->vendor->update([
+               'note' => $request->note
+            ]);
+         }else{
+            $user->vendor->update([
+               'note' => ''
+            ]);
+         }
+         Mail::to($user->email)->send(new VendorStatusChanged($user));
+         $user->notify(new VendorStatusChangeMessageNotification($user));
+      }
       $user->vendor->update([
          'commission_rate' => $request->commission_rate
       ]);
-      if($request->vendor_type === "suspended"){
-         $user->vendor->update([
-            'note' => $request->note
-         ]);
-      }else{
-         $user->vendor->update([
-            'note' => ''
-         ]);
-      }
-      $user->notify(new VendorStatusChangeMessageNotification($user));
-      Mail::to($user->email)->send(new VendorStatusChanged($user));
+      
       return redirect()->back()->with('success', 'Vendor Updated Successfuly.');
    }
 

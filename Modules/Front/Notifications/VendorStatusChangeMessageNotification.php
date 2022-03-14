@@ -53,7 +53,7 @@ class VendorStatusChangeMessageNotification extends Notification
             break;
         }
         return [
-            'message' => 'Your vendor has been (#' . $this->user->vendor_type . '). ',
+            'message' => 'Your vendor has been #' . $this->user->vendor_type . '. ',
         ];
         
     }
