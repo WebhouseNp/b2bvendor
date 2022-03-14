@@ -2,6 +2,8 @@
 
 namespace Modules\User\Http\Controllers;
 
+use App\Channels\SmsApiChannel;
+use Aankhijhyaal\LaraSparrow\SmsMessage;
 use App\Mail\AccountActivated;
 use App\Mail\UserCreated;
 use Illuminate\Http\Request;
@@ -19,7 +21,10 @@ use Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail as FacadesMail;
+use Illuminate\Support\Facades\Notification;
 use Laravel\Socialite\Facades\Socialite;
+use Modules\Front\Notifications\SmsMessageNotification;
+use Modules\Front\Notifications\UserRegisterNotification;
 
 class UserController extends Controller
 {
@@ -64,6 +69,8 @@ class UserController extends Controller
       ];
       $role_user = Role_user::create($role_data);
       Mail::to($request->email)->send(new UserCreated($user));
+      $user->notify(new UserRegisterNotification($user));
+      // Notification::send($user, new SmsApiChannel());
       DB::commit();
       return response()->json([
         "message" => "success",

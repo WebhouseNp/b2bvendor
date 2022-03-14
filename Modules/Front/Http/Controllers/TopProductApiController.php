@@ -15,7 +15,6 @@ class TopProductApiController extends Controller
             ->where('is_top', true)
             ->active()
             ->orderBy('id', 'DESC')->cursorPaginate(request('per_page') ?? 18)->withQueryString();
-            dd($products);
 
         return ProductResource::collection($products)->hide([
             'highlight',

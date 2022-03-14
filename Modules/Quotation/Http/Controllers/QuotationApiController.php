@@ -21,7 +21,7 @@ class QuotationApiController extends Controller
         $quotation->loadCount('replies');
         $quotation->load([
             'replies',
-            'replies.vendor:id,shop_name'
+            'replies.vendor:id,shop_name,user_id'
         ]);
 
         return new QuotationResource($quotation);

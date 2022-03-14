@@ -3,6 +3,7 @@
 namespace Modules\Message\Entities;
 
 use App\Models\User;
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\User\Entities\Vendor;
@@ -10,8 +11,10 @@ use DB;
 
 class Message extends Model
 {
-    use HasFactory;
+    use Uuid, HasFactory;
 
+    public $incrementing = false;
+    protected $keyType = 'uuid';
     protected $guarded = ['id'];
 
     // protected $appends = ['opponent'];

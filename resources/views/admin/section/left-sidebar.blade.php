@@ -260,8 +260,9 @@ $user = auth()->user();
                 </ul>
             </li>
             @endcan
-
+            @if(!is_alternative_login())
             <li class="heading">CMS</li>
+            @endif
 
             @if(auth()->user()->hasAnyRole(['vendor']) && !is_alternative_login())
             <li>
@@ -525,6 +526,12 @@ $user = auth()->user();
                         <a href="{{ route('settings.sastowholesale-mall.index') }}">
                             <span class="fa fa-circle-o"></span>
                             Sasto Wholesale Mall
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('settings.sms.index') }}">
+                            <span class="fa fa-circle-o"></span>
+                            <span>SMS Settings</span>
                         </a>
                     </li>
                     @if(auth()->user()->hasAnyRole('super_admin|admin'))

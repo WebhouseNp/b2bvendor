@@ -35,7 +35,7 @@
             <div class="col-md-12">
                 <div class="ibox">
                     {{-- <div class="card-header p-2"> --}}
-                        <x-profile></x-profile>
+                    <x-profile></x-profile>
                     {{-- </div> --}}
                     <div class="ibox-body">
                         <div class="tab-content" id="component-1-content">
@@ -56,23 +56,27 @@
                                                 <div id="wrapper" class="py-2">
                                                     <div id="image-holder">
                                                         @if($user->vendor->image)
-                                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" class="rounded" style="max-height: 250px;">
+                                                        <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" id="js-vendor-image" class="rounded" style="max-height: 250px;">
                                                         @else
                                                         <img src="https://dummyimage.com/800x800/e8e8e8/0011ff" name="pic" id="picture" style="max-height: 250px;">
                                                         @endif
                                                     </div>
                                                 </div>
-                                                <input id="vendor-profile-image" class="form-control-file" value="" name="image" type="file">
+                                                <input id="vendor-profile-image" onchange="handleUploadPreview()" data-preview-el-id="js-vendor-image" class="form-control-file" value="" name="image" type="file">
                                             </div>
 
-                                            <div class="col-md-7" >
+                                            <div class="col-md-7">
 
                                                 <h3 class="profile-card-title">{{ucfirst($user->vendor->shop_name)}}</h3>
+                                                <div class="form-group">
+                                                    <div class="input-group mb-6">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text"><strong>Email:</strong></div>
+                                                        </div>
+                                                        <input type="text" name="email" class="form-control"  value="{{$user->vendor->company_email}}">
+                                                    </div>
+                                                </div>
                                                 <h4 class="profile-card-subtitle"><strong>Category:</strong> {{ $user->vendor->category=="local_seller" ? 'Local Seller' : 'International Seller' }}</h4>
-                                                <h4 class="profile-card-subtitle" ><strong>
-                                                    Email:<input class="form-control" style="display: inline-block;" type="text" value="{{$user->vendor->company_email}}" name="company_email" placeholder="Company Email Here ">
-                                                </strong>
-                                                </h4>
                                                 <h4 class="profile-card-subtitle"><strong>Address:</strong> {{$user->vendor->company_address}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Country:</strong> {{$user->vendor->country->name}}</h4>
                                                 <h4 class="profile-card-subtitle"><strong>Plan:</strong> {{ $user->vendor->plan=="basic_plan" ? 'Basic Plan' :$user->vendor->plan=="premium_plan" ? 'Premium Plan': 'Standard Plan' }}</h4>

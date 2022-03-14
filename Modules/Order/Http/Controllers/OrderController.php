@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
+use Modules\Front\Notifications\OrderShippedMessageNotification;
 use Modules\Order\Entities\Order;
 
 class OrderController extends Controller
@@ -104,6 +105,10 @@ class OrderController extends Controller
                 if ($order->status == 'cancelled') {
                     Mail::to($order->vendor->user->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
                 }
+            }
+
+            if ($order->status == 'shipped') {
+                $order->customer->notify(new OrderShippedMessageNotification($order));
             }
             
             if ($order->status == 'completed') {

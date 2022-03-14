@@ -9110,7 +9110,7 @@
         },
         {
             "name": "yubarajshrestha/nchl",
-            "version": "dev-master",
+            "version": "dev-feature/admin",
             "dist": {
                 "type": "path",
                 "url": "./packages/yubarajshrestha/nchl",

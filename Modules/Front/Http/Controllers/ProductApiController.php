@@ -62,6 +62,19 @@ class ProductApiController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)
+            ->productsfromapprovedvendors()
+            ->active()
+            ->firstOrFail();
+
+        $product->load(['productCategory', 'ranges', 'images', 'user.vendor']);
+
+        return ProductResource::make($product);
+    }
+
+    public function showById($id)
+    {
+        $product = Product::where('id', $id)
+            ->productsfromapprovedvendors()
             ->active()
             ->firstOrFail();
 
@@ -75,7 +88,8 @@ class ProductApiController extends Controller
     {
         $sastoWholesaleStore = Vendor::where('id', sasto_wholesale_store_id())->firstOrFail();
 
-        $products = Product::with('ranges')
+        $products = Product::with(['ranges','user'])
+            ->productsfromapprovedvendors()
             ->where('user_id', $sastoWholesaleStore->user_id)
             ->active()
             ->orderBy('created_at', 'DESC')
