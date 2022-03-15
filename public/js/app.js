@@ -7072,7 +7072,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("http://localhost:8000/broadcasting/auth", {
+        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
