@@ -31,7 +31,7 @@
                 :class="{ 'is-invalid': validationStatus($v.password) }"
                 placeholder="Enter new password"
               />
-              <span class="field-icon" @click="toggleShow">
+              <span  class="field-icon icon-cl" @click="toggleShow" v-if="password">
                 <span class="icon is-small is-right">
                   <i
                     class="fa"
@@ -66,7 +66,7 @@
               :class="{ 'is-invalid': validationStatus($v.confirm_password) }"
                 placeholder="Enter confirm password"
               />
-              <span class="field-icon" @click="toggleShow">
+              <span class="field-icon icon-cl" @click="toggleShow" v-if="confirm_password">
                 <span class="icon is-small is-right">
                   <i
                     class="fa"
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div class="text-center">
-             <loading-button type="submit" class="btn btn-primary btn-signup" 
+             <loading-button type="submit" class="btn btn-primary" 
              :loading="loading">{{ loading ? 'Please wait' : 'Save Changes' }}</loading-button>
           </div>
         </form>
@@ -153,5 +153,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.form-control.is-invalid{
+  background-image: none;
+}
 </style>

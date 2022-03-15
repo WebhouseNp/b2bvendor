@@ -23,7 +23,7 @@ Route::get('/vendor-register', function () {
 
 Route::view('/forgot-password', 'forgotpassword');
 
-Route::get('/passwod-resetform/{token}', function ($token) {
+Route::get('/password-resetform/{token}', function ($token) {
     $token = $token;
     return view('reset_password')->with(compact('token'));
 });
