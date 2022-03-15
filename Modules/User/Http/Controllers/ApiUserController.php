@@ -6,6 +6,7 @@ use App\Mail\AccountActivated;
 use App\Mail\PasswordReset;
 use App\Mail\VendorAccountActivated;
 use App\Mail\VendorCreated;
+use App\Mail\VendorResetPassword;
 use App\Mail\VendorStatusChanged;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -155,10 +156,11 @@ class ApiUserController extends Controller
         // saving token and user name
         $savedata = ['email' => $request->email, 'token' => $token, 'created_at' => \Carbon\Carbon::now()->toDateTimeString()];
         Password::insert($savedata);
-        $password = Password::where('email', $request->email)->where('token', $token)->first();
+        $password = Password::where('email', $request->email)->where('token', $token)->latest();
         //sending email link
         $data = ['email' => $request->email, 'token' => $token];
-        Mail::to($data['email'])->send(new PasswordReset($password));
+        Mail::to($data['email'])->send(new PasswordReset($password,$details));
+        // Mail::to($data['email'])->send(new VendorResetPassword($password));
         return response()->json([
           "message" => "Email has been sent to your email",
         ], 200);

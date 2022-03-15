@@ -5,6 +5,7 @@ namespace Modules\User\Http\Controllers;
 use App\Channels\SmsApiChannel;
 use Aankhijhyaal\LaraSparrow\SmsMessage;
 use App\Mail\AccountActivated;
+use App\Mail\CustomerResetPassword;
 use App\Mail\UserCreated;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -251,12 +252,14 @@ class UserController extends Controller
         // saving token and user name
         $savedata = ['email' => $request->email, 'token' => $token, 'created_at' => \Carbon\Carbon::now()->toDateTimeString()];
         Password::insert($savedata);
+        $password = Password::where('email', $request->email)->where('token', $token)->latest();
         //sending email link
         $data = ['email' => $request->email, 'token' => $token];
-        Mail::send('email.user-password-reset', $data, function ($message) use ($data) {
-          $message->to($data['email'])->from(env('MAIL_FROM_ADDRESS'));
-          $message->subject('password reset link');
-        });
+        // Mail::send('email.user-password-reset', $data, function ($message) use ($data) {
+        //   $message->to($data['email'])->from(env('MAIL_FROM_ADDRESS'));
+        //   $message->subject('password reset link');
+        // });
+        Mail::to($data['email'])->send(new CustomerResetPassword($password,$details));
         return response()->json([
           "message" => "Email has been sent to your email",
         ], 200);

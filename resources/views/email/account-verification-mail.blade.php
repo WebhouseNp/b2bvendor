@@ -16,5 +16,7 @@ You can also activate your account via this code: {{ $otp }}
 @endcomponent
 
 Thanks,<br>
-{{ config('app.name') }}
+Support Team<br>
+{{ config('app.name') }}<br>
+vendor@sastowholesale.com
 @endcomponent

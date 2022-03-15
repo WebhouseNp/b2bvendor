@@ -6,5 +6,7 @@ Your payment for the order #{{ $order->id }} has been refunded.
 Keep shopping from Sasto Wholesale.
 
 Thanks,<br>
-{{ config('app.name') }}
+Support Team<br>
+{{ config('app.name') }}<br>
+support@sastowholesale.com
 @endcomponent

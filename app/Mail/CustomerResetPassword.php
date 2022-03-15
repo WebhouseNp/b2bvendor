@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PasswordReset extends Mailable
+class CustomerResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +19,6 @@ class PasswordReset extends Mailable
      */
     public $password;
     public $details;
-    
     public function __construct(Password $password, $details)
     {
         $this->password = $password;
@@ -33,10 +32,10 @@ class PasswordReset extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.password-reset')
+        return $this->markdown('email.users-password-reset')
         ->with([
             'name' => $this->details->name,
-            'token' => url('password-resetform/' . $this->password->token)
+            'token' => 'https://staging.sastowholesale.com/reset-password/' . $this->password->token 
         ]);
     }
 }

@@ -24,5 +24,7 @@ Order Status
 @endcomponent
 
 Thanks,<br>
-{{ config('app.name') }}
+Support Team<br>
+{{ config('app.name') }}<br>
+support@sastowholesale.com
 @endcomponent

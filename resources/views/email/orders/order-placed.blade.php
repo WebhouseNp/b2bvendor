@@ -12,5 +12,7 @@ Order Status
 We are unable to change your delivery address once the order is placed. Kindly cancel and reorder using correct shipping address.
 
 Thanks,<br>
-{{ config('app.name') }}
+Support Team<br>
+{{ config('app.name') }}<br>
+support@sastowholesale.com
 @endcomponent

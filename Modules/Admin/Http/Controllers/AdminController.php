@@ -16,12 +16,9 @@ class AdminController extends Controller
 {
     public function login()
     {
-       if(auth()->check()){
-        return back();
-       } else {
-           return view('admin::login');
-       }
-
+        if(!auth()->check()) {
+            return view('admin::login');
+        }
     }
 
     public function postLogin(Request $request)
@@ -60,8 +57,8 @@ class AdminController extends Controller
             $profile = Auth::user();
             $profile->api_token = $token;
             $profile->save();
-
-            return redirect('/dashboard');
+            return redirect()->intended('dashboard');
+            // return redirect('/dashboard');
         } else {
             return back()->withErrors(['login' => 'Something went wrong while logging you in.']);
         }
