@@ -3,7 +3,7 @@
     <div class="container">
       <!-- section heading start -->
       <div class="heading mt-5">
-        <h2>Privacy Policy for Company Name</h2>
+        <h2>Privacy Policy</h2>
       </div>
       <div class="row mt-5">
         <div class="description">
