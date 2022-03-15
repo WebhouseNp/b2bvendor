@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\PasswordResetController;
 use Modules\User\Http\Controllers\ApiUserController;
 use Modules\User\Http\Controllers\UserController;
 use Modules\User\Http\Controllers\VendorLoginController;
@@ -8,7 +7,7 @@ use Modules\User\Http\Controllers\VendorLoginController;
 Route::post('/vendor/update-password', 'ApiUserController@updatePassword')->name('updatePassword');
 Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
 Route::get('account-activate/{link}', [ApiUserController::class, 'verifyNewAccount'])->name('verifyNewAccount');
-// Route::get('reset-password/{token}', [PasswordResetController::class, 'passwordResetForm'])->name('passwordResetForm');
+Route::get('reset-password/{token}', 'PasswordResetController@passwordResetForm')->name('passwordResetForm');
 Route::group(['middleware' => ['auth', 'role:super_admin|admin'],'prefix'=>'admin','as'=>'vendor.'], function () {
     Route::get('approved-vendors', 'VendorManagementController@getApprovedVendors')->name('getApprovedVendors');
     Route::get('suspended-vendors', 'VendorManagementController@getSuspendedVendors')->name('getSuspendedVendors');

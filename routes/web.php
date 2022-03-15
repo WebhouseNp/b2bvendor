@@ -23,7 +23,7 @@ Route::get('/vendor-register', function () {
 
 Route::view('/forgot-password', 'forgotpassword');
 
-Route::get('/passwod-resetform/{token}', function ($token) {
+Route::get('/password-resetform/{token}', function ($token) {
     $token = $token;
     return view('reset_password')->with(compact('token'));
 });
@@ -52,7 +52,7 @@ Route::view('/logistics-management','footer_pages.logistics_management');
 Route::group([], function () {
     // Route::get('admin/login', [LoginController::class, 'login'])->name('admin.login');
     // Route::post('postLogin', [LoginController::class, 'postLogin'])->name('admin.postLogin');
-    // Route::get('password-reset', [PasswordResetController::class, 'resetForm'])->name('password-reset');
+    Route::get('password-reset', [PasswordResetController::class, 'resetForm'])->name('password-reset');
     Route::post('send-email-link', [PasswordResetController::class, 'sendEmailLink'])->name('sendEmailLink');
     // Route::get('reset-password/{token}', [PasswordResetController::class, 'passwordResetForm'])->name('passwordResetForm');
     Route::post('update-password', [PasswordResetController::class, 'updatePassword'])->name('updatePassword');
@@ -86,5 +86,5 @@ Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle']
 Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack']);
 
 //login with Facebook
-Route::get('login/{provider}', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
-Route::get('login/{provider}/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
+Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
