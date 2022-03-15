@@ -13,7 +13,11 @@ class CategoryApiController extends Controller
     {
         $categories = Category::with(['subcategory' => function ($query) {
             $query->select(['id', 'name', 'slug', 'category_id', 'image'])->published();
-        }])
+        },
+        'subcategory.productCategory' =>function($query) {
+            $query->select(['id', 'name', 'slug', 'subcategory_id', 'image']); //->published();
+        } 
+        ])
             ->published()
             ->get()->map(function ($category) {
                 return [
@@ -28,8 +32,16 @@ class CategoryApiController extends Controller
                             'name' => $category->name,
                             'slug' => $category->slug,
                             'image_url' => $category->imageUrl(),
+                            'product_categories' => $category->productCategory->map(function ($prodCat) {
+                                return [
+                                    'id' => $prodCat->id,
+                                    'name' => $prodCat->name,
+                                    'slug' => $prodCat->slug,
+                                    'image_url' => $prodCat->imageUrl(),
+                                ];
+                            })
                         ];
-                    })
+                    }),
                 ];
             });
 
