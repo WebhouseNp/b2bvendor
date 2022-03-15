@@ -12,7 +12,7 @@
                     <td class="text-right">Sale Amount</td>
                     <td class="text-right">{{ auth()->user()->hasRole('super_admin', 'admin') ? 'To Receive' : 'Payable to Admin' }}</td>
                     <td class="text-right">Status</td>
-                    @if(auth()->user()->hasAnyRole('super_admin', 'admin'))
+                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
                     <td class="text-right">Action</td>
                     @endif
                 </tr>
@@ -31,7 +31,7 @@
                             <span>{{ $transaction->settled_at ? 'Settled' : 'Not Settled' }}</span>
                         </div>
                     </td>
-                    @if(auth()->user()->hasAnyRole('super_admin', 'admin'))
+                    @if(auth()->user()->hasAnyRole('super_admin|admin'))
                     <td class="align-middle text-right">
                         <button class="btn {{ $transaction->settled_at ? 'btn-danger' : 'btn-success' }} js-change-cod-transaction-status" data-transaction-id="{{ $transaction->id }}" data-new-status="{{ $transaction->settled_at ? 'unsettled' : 'settled' }}">
                             <i class="fa fa-check mr-1"></i>

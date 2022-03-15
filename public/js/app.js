@@ -7072,7 +7072,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
+        fetch("http://localhost:8000/broadcasting/auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -7419,7 +7419,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.captcha{\n    display: flex;\n    justify-content: center;\n    margin-top: 40px;\n    margin-left: 20px;\n}\n.input{\n    margin-right: 20px;\n    width: 45px;\n    text-align: center;\n    border: none;\n    border-bottom: 1px solid #eee;\n    font-size: 24px;\n    outline: none;\n}\n@media screen and (max-width: 768px){\n.input{\n        width: 34px;\n}\n}\n.input :last-of-type{\n    margin-right: 0;\n}\n.input:disabled{\n    color: #000;\n    background-color: #fff;\n}\n.msg{\n    text-align: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.captcha{\n    display: flex;\n    justify-content: center;\n    margin-top: 40px;\n    margin-left: 20px;\n}\n.input{\n    margin-right: 20px;\n    width: 45px;\n    text-align: center;\n    border: none;\n    border-bottom: 1px solid #eee;\n    font-size: 24px;\n    outline: none;\n}\n@media screen and (max-width: 992px){\n.input{\n        width: 34px;\n}\n}\n.input :last-of-type{\n    margin-right: 0;\n}\n.input:disabled{\n    color: #000;\n    background-color: #fff;\n}\n.msg{\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
