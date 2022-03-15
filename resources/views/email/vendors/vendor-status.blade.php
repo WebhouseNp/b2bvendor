@@ -1,5 +1,5 @@
 @component('mail::message')
-## Hi {{ $name }}
+## Hi {{ $name }},
 
 @switch($status)
 @case('approved')

@@ -1,5 +1,5 @@
 @component('mail::message')
-## Hi {{ $customerName }}
+## Hi {{ $customerName }},
 
 @switch($order->status)
 @case('processing')

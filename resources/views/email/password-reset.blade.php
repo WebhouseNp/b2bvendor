@@ -4,7 +4,7 @@
 Please Click on the button to Reset Password.
 
 @component('mail::button', ['url' =>$token])
-Button Text
+Reset Password
 @endcomponent
 
 Thanks,<br>

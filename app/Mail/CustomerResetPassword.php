@@ -35,7 +35,7 @@ class CustomerResetPassword extends Mailable
         return $this->markdown('email.users-password-reset')
         ->with([
             'name' => $this->details->name,
-            'token' => 'https://staging.sastowholesale.com/reset-password/' . $this->password->token 
+            'token' => config('constants.customer_app_url') . '/reset-password/' . $this->password->token 
         ]);
     }
 }

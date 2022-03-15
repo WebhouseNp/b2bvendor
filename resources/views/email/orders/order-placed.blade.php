@@ -1,5 +1,5 @@
 @component('mail::message')
-## Hi {{ $customerName }}
+## Hi {{ $customerName }},
 
 Thank you for ordering from Sasto Wholesale!
 

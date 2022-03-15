@@ -1,5 +1,5 @@
 @component('mail::message')
-## Hi {{ $customerName }}
+## Hi {{ $customerName }},
 
 Your payment for the order #{{ $order->id }} has been refunded.
 
