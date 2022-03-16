@@ -125,7 +125,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update Profile</button>
+                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update Profile</button>
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                             </div>
 
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update</button>
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                                 <input class="form-control" type="text" value="{{$user->phone_num}}" name="phone_num" placeholder="Enter your Phone Number">
                             </div>
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update</button>
                             </div>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <button type="submit" class="btn btn-success px-4 border-0 "><span class="fa fa-send mr-2"></span> Update</button>
+                                <button type="submit" class="btn btn-success px-4 border-0 "><i class="fa-solid fa-paper-plane"></i> Update</button>
                             </div>
                         </div>
                     </div>

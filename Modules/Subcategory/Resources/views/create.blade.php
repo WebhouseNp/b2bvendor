@@ -74,7 +74,7 @@
                         @endif
 
                         <div class="form-group">
-                            <input onclick="submitSubCategoryNow();" type="button" name="save" value="Save" id="blog_submit" class="btn btn-success btn-lg px-4 border-0">
+                            <input onclick="submitSubCategoryNow();" type="button" name="save" value="Save" id="blog_submit" class="btn btn-success px-4 border-0">
                             <!-- <button type="submit" class="btn btn-success">Submit</button> -->
                         </div>
 

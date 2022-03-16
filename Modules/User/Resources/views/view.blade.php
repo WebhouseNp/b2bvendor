@@ -176,7 +176,7 @@
                     <textarea name="note" class="md-textarea form-control" placeholder="Enter your reason here" rows="8"></textarea>
                     </div><br>
                     <div class="col-md-12 form-group d-flex align-items-end">
-                        <button type="submit" class="btn btn-success btn-lg"><span class="fa fa-send mr-1"> Submit</button>
+                        <button type="submit" class="btn btn-success btn-lg"><i class="fa-solid fa-paper-plane"></i> Submit</button>
                     </div>
                 </div>
             </form>
@@ -221,7 +221,7 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-product-hunt icon-danger"></i>
+                        <i class="fa-brands fa-product-hunt"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -283,7 +283,7 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-money icon-info"></i>
+                        <i class="fa-solid fa-money-bill"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">

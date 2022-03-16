@@ -28,7 +28,7 @@
                     <p>Sales from Online Payment</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-google-wallet text-green"></i>
+                <i class="fa-brands fa-google-wallet text-green"></i>
                 </div>
             </div>
             <!-- <div class="card">
@@ -45,7 +45,7 @@
                     <p>Sales from COD</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-money text-gold"></i>
+                <i class="fa-solid fa-money-bill text-gold"></i>
                 </div>
             </div>
             <!-- <div class="card">
