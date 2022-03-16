@@ -18,6 +18,6 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('chats/{chatRoom}', [ChatRoomApiController::class, 'destroy']);
 
     Route::get('chats/{chatRoom}/messages', [MessageController::class, 'index']);
-    Route::post('messages', [MessageController::class, 'store']);
+    Route::post('messages/{chatRoom}', [MessageController::class, 'store']);
     Route::delete('messages', [MessageController::class, 'destroy']);
 });

@@ -26,7 +26,6 @@ class NewMessageEvent implements ShouldBroadcast
     {
         $this->chatRoom = $chatRoom;
         $this->message = $message;
-        logger('event-called');
     }
 
     /**

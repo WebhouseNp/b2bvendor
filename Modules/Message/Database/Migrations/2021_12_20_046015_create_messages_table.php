@@ -18,9 +18,11 @@ class CreateMessagesTable extends Migration
             $table->uuid('chat_room_id');
             $table->unsignedBigInteger('sender_id');
             // $table->unsignedBigInteger('receiver_id');
-            $table->string('message');
+            $table->text('message')->nullable();
+            $table->text('file')->nullable();
             $table->dateTime('read_at')->nullable();
             $table->string('type')->nullable();
+            $table->string('key')->nullable();
             $table->timestamps();
         });
     }
