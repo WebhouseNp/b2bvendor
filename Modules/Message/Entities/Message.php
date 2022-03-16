@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\User\Entities\Vendor;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class Message extends Model
 {
@@ -17,7 +18,10 @@ class Message extends Model
     protected $keyType = 'uuid';
     protected $guarded = ['id'];
 
-    // protected $appends = ['opponent'];
+    public function fileUrl()
+    {
+        return Storage::url($this->file);
+    }
 
     public function senderUser()
     {
