@@ -5319,6 +5319,10 @@ table.dataTable {
     padding-bottom: 0;
 }
 
+.stats-card .card-body .row{
+    min-height: 63px;
+}
+
 .stats-card .card-footer {
     border-radius: 12px;
 }

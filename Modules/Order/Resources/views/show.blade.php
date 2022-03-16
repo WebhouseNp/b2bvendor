@@ -47,7 +47,7 @@
 
                     <div>
                         <div class="info-box">
-                            <span class="info-box-icon bg-success text-white"><i class="fa fa-money"></i></span>
+                            <span class="info-box-icon bg-success text-white"><i class="fa-solid fa-money-bill"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text text-sm">Payment Status</span>
                                 <span class="info-box-number mdb-color-text font-medium">{{ strtoupper($order->payment_status) }}</span>

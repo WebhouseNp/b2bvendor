@@ -3,6 +3,9 @@
 <div class="page-content fade-in-up">
     <div class="row">
         <div class="col-md-12">
+            <div class="mb-3">
+                <a href="{{ route('category.index') }}" class="btn btn-primary ml-md-0 ml-3">Back to listing</a>
+            </div>
             <div class="ibox">
                 <div class="ibox-head">
                     <div class="ibox-title">Create Category</div>
@@ -80,26 +83,25 @@
             html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
         });
         Swal.fire({
-            type: 'error'
-            , title: 'Oops...'
-            , html: html_error
-            , confirmButtonText: 'Close'
-            , timer: 10000
+            type: 'error',
+            title: 'Oops...',
+            html: html_error,
+            confirmButtonText: 'Close',
+            timer: 10000
         });
     }
 
     function DataSuccessInDatabase(message) {
         Swal.fire({
-            position: 'top-end'
-            , type: 'success'
-            , title: 'Done'
-            , html: message
-            , confirmButtonText: 'Close'
-            , timer: 10000
-            , toast: true
+            position: 'top-end',
+            type: 'success',
+            title: 'Done',
+            html: message,
+            confirmButtonText: 'Close',
+            timer: 10000,
+            toast: true
         });
     }
-
 </script>
 <script>
     function submitCategoryNow() {

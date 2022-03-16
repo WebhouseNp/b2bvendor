@@ -4,7 +4,11 @@
 <div class="page-content fade-in-up">
     <div class="row">
         <div class="col-md-12">
+            <div class="mb-3">
+                <a href="{{ route('category.index') }}" class="btn btn-primary ml-md-0 ml-3">Back to listing</a>
+            </div>
             <div class="ibox">
+
                 <div class="ibox-head">
                     <div class="ibox-title">Edit Category</div>
 

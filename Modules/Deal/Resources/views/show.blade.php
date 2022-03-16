@@ -5,7 +5,7 @@
 </div>
 <div class="page-content fade-in-up">
     <div class="mb-2">
-        <a href="{{ route('deals.index') }}" class="btn btn-success">Back to listing</a>
+        <a href="{{ route('deals.index') }}" class="btn btn-primary">Back to listing</a>
     </div>
 
     <div class="ibox">

@@ -15,7 +15,7 @@ $api_token = $user->api_token;
                 <div class="ibox-head">
                     <div class="ibox-title">Create Deal</div>
                     <div>
-                        <a href="{{ route('deals.index') }}" class="btn btn-success">Back to listing</a>
+                        <a href="{{ route('deals.index') }}" class="btn btn-primary">Back to listing</a>
                     </div>
                 </div>
  

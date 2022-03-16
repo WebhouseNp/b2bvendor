@@ -18,7 +18,7 @@
                     <textarea name="shipping_info" id="shipping_info" rows="5" placeholder="Shipping Info Here" class="form-control" style="resize: none;">{{ auth()->user()->vendor->shipping_info }}</textarea>
                 </div>
                 <div class="col-lg-12 col-sm-12 form-group">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-paper-plane"></i> Submit</button>
                 </div>
             </form>
         </div>

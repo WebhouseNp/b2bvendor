@@ -5,7 +5,7 @@ return  [
 
     'order_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'],
     'package_statuses' => ['pending', 'processing', 'shipped', 'completed', 'cancelled', 'refunded'], // Not in use
-    'business_type' => ['manufacturers','wholesellers','distributors','traders','retailer'],
+    'business_type' => ['Manufacturer','Wholeseller','Distributor','Trading Company','Retailer'],
 
     'alternative_user_permissions' => [
         'categories' => 'Manage Categories',

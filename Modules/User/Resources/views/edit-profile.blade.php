@@ -97,7 +97,7 @@
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-lg-12 col-sm-12 form-group">
-                                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update Profile</button>
+                                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update Profile</button>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                             </div>
 
                                             <div class="col-lg-12 col-sm-12 form-group">
-                                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update</button>
                                             </div>
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@
 
 
                                             <div class="col-lg-12 col-sm-12 form-group">
-                                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update</button>
                                             </div>
                                         </div>
                                     </div>
@@ -189,7 +189,7 @@
                                             </div>
 
                                             <div class="col-lg-12 col-sm-12 form-group mt-3">
-                                                <button type="submit" class="btn btn-success "><span class="fa fa-send"> Update</button>
+                                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update</button>
                                             </div>
                                         </div>
                                     </div>

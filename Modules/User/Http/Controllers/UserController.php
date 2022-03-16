@@ -252,7 +252,7 @@ class UserController extends Controller
         // saving token and user name
         $savedata = ['email' => $request->email, 'token' => $token, 'created_at' => \Carbon\Carbon::now()->toDateTimeString()];
         Password::insert($savedata);
-        $password = Password::where('email', $request->email)->where('token', $token)->latest();
+        $password = Password::where('email', $request->email)->where('token', $token)->latest()->first();
         //sending email link
         $data = ['email' => $request->email, 'token' => $token];
         // Mail::send('email.user-password-reset', $data, function ($message) use ($data) {

@@ -13,7 +13,8 @@ $user = auth()->user();
         </div>
         <ul class="side-menu metismenu">
             <li>
-                <a class="active" href="{{route('dashboard')}}"><i class="sidebar-item-icon fa fa-tachometer"></i>
+                <a class="active" href="{{route('dashboard')}}">
+                    <i class="sidebar-item-icon fa-solid fa-gauge"></i>
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
@@ -56,7 +57,7 @@ $user = auth()->user();
             @can('manageDeals')
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-handshake-o"></i>
+                    <i class="sidebar-item-icon fa-solid fa-handshake"></i>
                     <span class="nav-label">Deals</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -134,7 +135,7 @@ $user = auth()->user();
             @can('manageOrders')
             <li>
                 <a href="{{ route('orders.index') }}">
-                    <i class="sidebar-item-icon fa fa-first-order"></i>
+                    <i class="sidebar-item-icon fa-brands fa-first-order"></i>
                     <span class="nav-label">Orders</span>
                 </a>
             </li>
@@ -155,7 +156,7 @@ $user = auth()->user();
             <li>
                 @if( auth()->user()->hasRole('vendor'))
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-product-hunt"></i>
+                    <i class="sidebar-item-icon fa-brands fa-product-hunt"></i>
                     <span class="nav-label">Product</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -163,7 +164,7 @@ $user = auth()->user();
                 @if( auth()->user()->hasAnyRole('super_admin|admin'))
             <li>
                 <a href="{{route('product.index')}}">
-                    <i class="sidebar-item-icon fa fa-product-hunt "></i>
+                    <i class="sidebar-item-icon fa-brands fa-product-hunt "></i>
                     <span class="nav-label">Products</span>
                 </a>
             </li>
@@ -493,7 +494,7 @@ $user = auth()->user();
             @if(auth()->user()->hasAnyRole('admin|super_admin'))
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-adn"></i>
+                    <i class="sidebar-item-icon fa-brands fa-adn"></i>
                     <span class="nav-label">Advertise</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
