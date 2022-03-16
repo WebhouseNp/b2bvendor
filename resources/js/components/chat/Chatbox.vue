@@ -12,7 +12,7 @@
       <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
         <div class="loader"></div>
       </div>
-      <div v-for="(message, index) in messages" :key="index">
+      <div v-for="(message, index) in messages" :key="index" class="d-flex">
         <message-block :message="message" :user="user"></message-block>
       </div>
       <div v-for="message in queueMessages" :key="message.ts" class="d-flex my-1">

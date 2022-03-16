@@ -64726,7 +64726,7 @@ var render = function () {
         _vm._l(_vm.messages, function (message, index) {
           return _c(
             "div",
-            { key: index },
+            { key: index, staticClass: "d-flex" },
             [
               _c("message-block", {
                 attrs: { message: message, user: _vm.user },
