@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Modules\Front\Notifications\OrderShippedMessageNotification;
 use Modules\Order\Entities\Order;
+use Modules\User\Entities\Vendor;
 
 class OrderController extends Controller
 {
@@ -17,7 +18,9 @@ class OrderController extends Controller
     public function index()
     {
         $this->authorize('manageOrders');
-
+        $vendors = Vendor::whereHas('user', function($q){
+            $q->where('vendor_type', 'approved');
+        })->get();
         $orders = Order::with(['orderLists', 'customer', 'vendor:id,shop_name'])
             ->when(request()->filled('order_id'), function ($query) {
                 return $query->where('id', request('order_id'));
@@ -25,10 +28,13 @@ class OrderController extends Controller
             ->when(request()->filled('status'), function ($query) {
                 return $query->where('status', request('status'));
             })
+            ->when(request()->filled('vendor_id'), function ($query) {
+                return $query->where('vendor_id', request('vendor_id'));
+            })
             ->latest()
             ->paginate();
 
-        return view('order::index', compact('orders'));
+        return view('order::index', compact('orders','vendors'));
     }
 
     public function show(Order $order)
