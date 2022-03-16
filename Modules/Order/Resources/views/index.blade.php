@@ -26,6 +26,16 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                        <div class="col-auto form-group ">
+                            <select name="vendor_id" id="" class="custom-select">
+                                <option value="">All</option>
+                                @foreach ($vendors as $vendor)
+                                <option value="{{ @$vendor->id }}" @if(@request()->vendor->id == @$vendor->id) selected @endif>{{ ucfirst($vendor->shop_name) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endif
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary">Filter</button>
                         </div>

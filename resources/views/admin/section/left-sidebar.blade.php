@@ -179,7 +179,7 @@ $user = auth()->user();
                 </li>
                 <li>
                     <a href="{{route('product.index')}}">
-                        <span class="fa fa-circle-o"></span>
+                        <i class="fa-brands fa-osi"></i>
                         All Products
                     </a>
                 </li>
@@ -208,7 +208,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('category.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Category
                         </a>
                     </li>
@@ -231,7 +231,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('subcategory.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All SubCategories
                         </a>
                     </li>
@@ -254,7 +254,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('product-category.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             List All
                         </a>
                     </li>
@@ -301,7 +301,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('country.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Countries Lists
                         </a>
                     </li>
@@ -327,7 +327,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('blog.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Blogs
                         </a>
                     </li>
@@ -353,7 +353,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('faq.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All FAQS
                         </a>
                     </li>
@@ -378,7 +378,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('partner-type.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Partner Types Lists
                         </a>
                     </li>
@@ -391,7 +391,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('partner.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Partners Lists
                         </a>
                     </li>
@@ -426,7 +426,7 @@ $user = auth()->user();
 
                     <li>
                         <a href="{{route('slider.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Slider
                         </a>
                     </li>
@@ -444,13 +444,13 @@ $user = auth()->user();
                 <ul class="nav-2-level collapse">
                     <li>
                         <a href="{{route('user.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Vendors 
                         </a>
                     </li>
                     <li>
                         <a href="{{route('user.getAllCustomers')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Customers 
                         </a>
                     </li>
@@ -474,7 +474,7 @@ $user = auth()->user();
                     </li> -->
                     <li>
                         <a href="{{route('role.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                        <i class="fa-brands fa-osi"></i>
                             All Roles
                         </a>
                     </li>
@@ -507,7 +507,8 @@ $user = auth()->user();
                     </li>
                     <li>
                         <a href="{{route('advertisement.index')}}">
-                            <span class="fa fa-circle-o"></span>
+                            <span class="fas fa-circle-o"></span>
+                            <i class="fa-brands fa-osi"></i>
                             All Lists
                         </a>
                     </li>
@@ -525,20 +526,20 @@ $user = auth()->user();
                 <ul class="nav-2-level collapse">
                     <li>
                         <a href="{{ route('settings.sastowholesale-mall.index') }}">
-                            <span class="fa fa-circle-o"></span>
+                        <i class="fa-brands fa-gg-circle"></i>
                             Sasto Wholesale Mall
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('settings.sms.index') }}">
-                            <span class="fa fa-circle-o"></span>
+                        <i class="fa-brands fa-gg-circle"></i>
                             <span>SMS Settings</span>
                         </a>
                     </li>
                     @if(auth()->user()->hasAnyRole('super_admin|admin'))
                     <li>
                         <a href="{{ route('settings.notification.index') }}">
-                            <span class="fa fa-circle-o"></span>
+                        <i class="fa-brands fa-gg-circle"></i>
                             <span>Test Notifications</span>
                         </a>
                     </li>
