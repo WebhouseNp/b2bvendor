@@ -3589,6 +3589,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -64737,7 +64739,10 @@ var render = function () {
         _vm._l(_vm.queueMessages, function (message) {
           return _c("div", { key: message.ts, staticClass: "d-flex my-1" }, [
             _c("div", { staticClass: "message outgoing" }, [
-              _vm._v(_vm._s(message.message)),
+              _vm._v("x\n        "),
+              _c("div", { staticClass: "bloc text-block" }, [
+                _vm._v(_vm._s(message.message)),
+              ]),
             ]),
           ])
         }),

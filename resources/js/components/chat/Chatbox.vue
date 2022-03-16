@@ -16,7 +16,9 @@
         <message-block :message="message" :user="user"></message-block>
       </div>
       <div v-for="message in queueMessages" :key="message.ts" class="d-flex my-1">
-        <div class="message outgoing">{{ message.message }}</div>
+        <div class="message outgoing">x
+          <div class="bloc text-block">{{ message.message }}</div>
+        </div>
       </div>
       <div class="my-2">
         <div v-show="typing" class="chat-bubble">

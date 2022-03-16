@@ -44,6 +44,11 @@
     max-width: 250px;
     overflow-wrap: break-word;
 }
+@media screen AND (min-width: 600px) {
+    .conversation .message {
+        max-width: 500px;
+    }
+}
 .message.incomming {
     margin-right: auto;
 }
