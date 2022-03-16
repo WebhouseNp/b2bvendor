@@ -1,5 +1,5 @@
 <a id="notification-bell" href="/notifications" class="nav-link notification-link">
-    <i class="fa fa-bell-o"></i>
+<i class="fa-solid fa-bell"></i>
     <span class="badge badge-danger navbar-badge">0</span>
 </a>
 
