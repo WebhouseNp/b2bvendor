@@ -12,6 +12,9 @@ $api_token = $user->api_token;
 <div class="page-content fade-in-up">
     <div class="row">
         <div class="col-md-12">
+            <div class="mb-2">
+                <a href="{{ route('deals.index') }}" class="btn btn-primary">Back to listing</a>
+            </div>
             <div class="ibox">
                 <div class="ibox-head">
                     <div class="ibox-title">Update Deal</div>
