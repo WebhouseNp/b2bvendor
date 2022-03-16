@@ -5290,7 +5290,8 @@ table.dataTable {
 }
 
 .card-category a {
-    font-size: 16px;
+    font-size: 15px;
+    white-space: nowrap;
     color: #000;
 }
 
@@ -5320,6 +5321,7 @@ table.dataTable {
 }
 
 .stats-card .card-footer {
+    height: 100px;
     border-radius: 12px;
 }
 

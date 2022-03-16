@@ -4,6 +4,9 @@
 <div class="page-content fade-in-up">
     <div class="row">
         <div class="col-md-12">
+            <div class="mb-3">
+                <a href="{{ route('subcategory.index') }}" class="btn btn-primary ml-md-0 ml-3">Back to listing</a>
+            </div>
             <div class="ibox">
                 <div class="ibox-head">
                     <div class="ibox-title">Create Sub Category</div>
@@ -31,10 +34,10 @@
 
                         @if(auth()->user()->hasAnyRole(['super_admin', 'admin']))
                         <div class="form-group">
-                          <label class="ui-checkbox ui-checkbox-warning">
-                            <input type="checkbox" name="is_featured" id="is_featured">
-                            <span class="input-span"></span>Shown in Hot Category section of homepage.
-                          </label>
+                            <label class="ui-checkbox ui-checkbox-warning">
+                                <input type="checkbox" name="is_featured" id="is_featured">
+                                <span class="input-span"></span>Shown in Hot Category section of homepage.
+                            </label>
                         </div>
                         @endif
 
@@ -62,12 +65,12 @@
 
                         @if( auth()->user()->hasAnyRole('super_admin|admin'))
                         <div class="form-group">
-                          <div class="check-list">
-                            <label class="ui-checkbox ui-checkbox-primary">
-                              <input name="publish" id="publish" type="checkbox">
-                              <span class="input-span"></span>Publish</label>
+                            <div class="check-list">
+                                <label class="ui-checkbox ui-checkbox-primary">
+                                    <input name="publish" id="publish" type="checkbox">
+                                    <span class="input-span"></span>Publish</label>
                             </div>
-                          </div>
+                        </div>
                         @endif
 
                         <div class="form-group">
@@ -91,14 +94,14 @@
         var SubcategoryCreateForm = document.getElementById("subcategory-create-form");
         var formData = new FormData(SubcategoryCreateForm);
         $.ajax({
-            type: 'POST'
-            , url: "/api/createsubcategory"
-            , data: formData
-            , enctype: 'multipart/form-data'
-            , cache: false
-            , contentType: false
-            , processData: false
-            , success: function(response) {
+            type: 'POST',
+            url: "/api/createsubcategory",
+            data: formData,
+            enctype: 'multipart/form-data',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response) {
                 if (response.status == 'successful') {
                     window.location.href = "/admin/subcategory";
                     var validation_errors = JSON.stringify(response.message);
@@ -116,7 +119,6 @@
 
         });
     }
-
 </script>
 
 <script>
@@ -124,9 +126,9 @@
         function categories() {
 
             $.ajax({
-                type: 'GET'
-                , url: '/api/getcategory'
-                , success: function(response) {
+                type: 'GET',
+                url: '/api/getcategory',
+                success: function(response) {
                     console.log(response.data)
                     if (response.data) {
                         var html_options = "<option value=''>select any one</option>";
@@ -135,8 +137,8 @@
                         });
                         $('#category_id').html(html_options);
                     }
-                }
-                , error: function(error) {
+                },
+                error: function(error) {
                     $('#notification-bar').text('An error occurred');
                 }
             });
@@ -144,7 +146,6 @@
 
         categories()
     });
-
 </script>
 
 @endpush

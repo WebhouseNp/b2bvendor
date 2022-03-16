@@ -289,7 +289,7 @@
                     <div class="col-7 col-md-8">
                         <p class="card-category">
                             <a target="_blank">
-                                Due Amount: {{ formatted_price($due) }}
+                                Due Amount: {{ formatted_price(200000) }}
                             </a>
                         </p>
                         <!-- <div class="card-category-count">
