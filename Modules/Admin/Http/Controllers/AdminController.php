@@ -76,10 +76,12 @@ class AdminController extends Controller
     public function admin__logout()
     {
         if(auth()->user()->hasAnyRole('super_admin|admin') ){
+            auth()->user()->tokens()->delete();
             Auth::logout();
             Session::flush();
             return redirect()->route('login');
         } else {
+            auth()->user()->tokens()->delete();
             Auth::logout();
             Session::flush();
             return redirect()->to('/vendor-login');
