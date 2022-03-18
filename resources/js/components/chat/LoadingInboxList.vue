@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div v-for="n in parseInt(5) " class="loading-inbox-item mb-2" v-bind:key="n">
+    <div v-for="n in parseInt(5) " class="loading-inbox-item mb-2 py-2" v-bind:key="n">
         <div>
             <div class="icon"></div>
         </div>

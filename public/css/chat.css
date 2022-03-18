@@ -99,28 +99,15 @@
 }
 .message-compose-form {
     display: flex;
-    gap: 1rem;
-    align-items: flex-end;
+    align-items: stretch;
 }
 .message-compose-form > input {
     border: 0;
-    background-color: #eff5fb;
     flex-grow: 1;
-    border-radius: 2.5rem;
-    box-shadow: 0 0 1px rgba(163, 164, 167, 0.2);
+    background-color: #fff;
 }
 .message-compose-form > input:focus {
     outline: none;
-}
-
-.message-compose-form > button[type="submit"] {
-    background-color: #2196f3;
-    border: 0;
-    outline: none;
-    color: #fff;
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
 }
 
 /* Chat Typing Bubblle */

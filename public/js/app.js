@@ -3532,6 +3532,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _MessageBlock_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MessageBlock.vue */ "./resources/js/components/chat/MessageBlock.vue");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3591,6 +3593,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3705,22 +3713,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(error);
       });
     },
+    sendFile: function sendFile(e) {
+      var _this4 = this;
+
+      var file = e.target.files[0];
+      var formData = new FormData();
+      formData.append("file", file);
+      formData.append("type", "file");
+      axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: "POST",
+        url: "/api/messages/".concat(this.chatRoom.id),
+        data: formData,
+        headers: {
+          "X-Socket-Id": window.Echo.socketId(),
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (response) {
+        _this4.messages.push(response.data.data);
+      })["catch"](function (error) {
+        console.log(error);
+
+        if (error.response.status == 422) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
+            title: "OOPS",
+            text: "This file type is not allowed.",
+            icon: "error"
+          });
+        }
+      });
+    },
     // load the last messages during initialization
     loadLastMessages: function loadLastMessages() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this4.loadingMessages = true;
+                _this5.loadingMessages = true;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/chats/" + _this4.chatRoom.id + "/messages").then(function (response) {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/chats/" + _this5.chatRoom.id + "/messages").then(function (response) {
                   Object.values(response.data.data).forEach(function (message) {
-                    _this4.messages.push(message);
+                    _this5.messages.push(message);
                   });
-                  _this4.loadingMessages = false;
+                  _this5.loadingMessages = false;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -64739,7 +64776,7 @@ var render = function () {
         _vm._l(_vm.queueMessages, function (message) {
           return _c("div", { key: message.ts, staticClass: "d-flex my-1" }, [
             _c("div", { staticClass: "message outgoing" }, [
-              _vm._v("x\n        "),
+              _vm._v("\n        x\n        "),
               _c("div", { staticClass: "bloc text-block" }, [
                 _vm._v(_vm._s(message.message)),
               ]),
@@ -64772,7 +64809,7 @@ var render = function () {
       _c(
         "form",
         {
-          staticClass: "message-compose-form mb-0",
+          staticClass: "message-compose-form border mb-0",
           on: {
             submit: function ($event) {
               $event.preventDefault()
@@ -64781,6 +64818,23 @@ var render = function () {
           },
         },
         [
+          _c(
+            "label",
+            {
+              staticClass:
+                "bg-light text-primary border-right px-3 d-inline-flex align-items-center m-0",
+            },
+            [
+              _c("input", {
+                staticStyle: { display: "none" },
+                attrs: { type: "file" },
+                on: { change: _vm.sendFile },
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fa fa-plus-circle" }),
+            ]
+          ),
+          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -64791,7 +64845,7 @@ var render = function () {
               },
             ],
             staticClass: "py-3 px-4",
-            attrs: { type: "text", placeholder: "Type a message..." },
+            attrs: { type: "text", placeholder: "Enter text here..." },
             domProps: { value: _vm.newMessage },
             on: {
               keyup: _vm.sendTypingEvent,
@@ -64827,9 +64881,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "border", attrs: { type: "submit" } }, [
-      _c("i", { staticClass: "fa fa-paper-plane" }),
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn bg-light text-primary border-left px-3 rounded-0",
+        attrs: { type: "submit" },
+      },
+      [_c("i", { staticClass: "fa fa-paper-plane" })]
+    )
   },
 ]
 render._withStripped = true
@@ -64865,7 +64924,7 @@ var render = function () {
               "a",
               {
                 key: chatRoom.index,
-                staticClass: "inbox-item d-flex",
+                staticClass: "inbox-item d-flex py-2",
                 staticStyle: { gap: "1.2rem" },
                 attrs: { href: "/chat/" + chatRoom.id },
               },
@@ -64882,10 +64941,6 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", [
                   _c("div", [_vm._v(_vm._s(chatRoom.opponent.name))]),
-                  _vm._v(" "),
-                  _c("div", { staticStyle: { "font-size": ".8rem" } }, [
-                    _vm._v("Dec 25"),
-                  ]),
                 ]),
               ]
             )
@@ -64921,11 +64976,11 @@ var render = function () {
   return _c(
     "div",
     _vm._l(parseInt(5), function (n) {
-      return _c("div", { key: n, staticClass: "loading-inbox-item mb-2" }, [
-        _vm._m(0, true),
-        _vm._v(" "),
-        _c("div", { staticClass: "detail" }),
-      ])
+      return _c(
+        "div",
+        { key: n, staticClass: "loading-inbox-item mb-2 py-2" },
+        [_vm._m(0, true), _vm._v(" "), _c("div", { staticClass: "detail" })]
+      )
     }),
     0
   )

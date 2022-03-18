@@ -16,7 +16,8 @@
         <message-block :message="message" :user="user"></message-block>
       </div>
       <div v-for="message in queueMessages" :key="message.ts" class="d-flex my-1">
-        <div class="message outgoing">x
+        <div class="message outgoing">
+          x
           <div class="bloc text-block">{{ message.message }}</div>
         </div>
       </div>
@@ -31,9 +32,13 @@
       </div>
     </div>
     <div class="conversation-creator px-4 py-3">
-      <form @submit.prevent="sendMessage" class="message-compose-form mb-0">
-        <input type="text" v-model="newMessage" class="py-3 px-4" @keyup="sendTypingEvent" placeholder="Type a message..." />
-        <button type="submit" class="border"><i class="fa fa-paper-plane"></i></button>
+      <form @submit.prevent="sendMessage" class="message-compose-form border mb-0">
+        <label class="bg-light text-primary border-right px-3 d-inline-flex align-items-center m-0">
+          <input type="file" @change="sendFile" style="display: none" />
+          <i class="fa fa-plus-circle"></i>
+        </label>
+        <input v-model="newMessage" type="text" class="py-3 px-4" @keyup="sendTypingEvent" placeholder="Enter text here..." />
+        <button type="submit" class="btn bg-light text-primary border-left px-3 rounded-0"><i class="fa fa-paper-plane"></i></button>
       </form>
     </div>
   </div>
@@ -42,6 +47,7 @@
 <script>
 import axios from "axios";
 import MessageBlock from "./MessageBlock.vue";
+import Swal from "sweetalert2";
 
 export default {
   components: { MessageBlock },
@@ -137,6 +143,35 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+        });
+    },
+
+    sendFile(e) {
+      let file = e.target.files[0];
+      let formData = new FormData();
+      formData.append("file", file);
+      formData.append("type", "file");
+      axios({
+        method: "POST",
+        url: `/api/messages/${this.chatRoom.id}`,
+        data: formData,
+        headers: {
+          "X-Socket-Id": window.Echo.socketId(),
+          "Content-Type": "multipart/form-data",
+        },
+      })
+        .then((response) => {
+          this.messages.push(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          if (error.response.status == 422) {
+            Swal.fire({
+              title: "OOPS",
+              text: "This file type is not allowed.",
+              icon: "error",
+            });
+          }
         });
     },
 
