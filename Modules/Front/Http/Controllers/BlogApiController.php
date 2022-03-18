@@ -16,7 +16,7 @@ class BlogApiController extends Controller
         $blogs = Blog::published()->get();
         return BlogResource::collection($blogs)->hide([
             'description',
-            'short_description'
+            'id'
         ]);
         // return new BlogCollection($blogs);
     }
