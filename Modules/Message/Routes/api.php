@@ -4,13 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Modules\Message\Http\Controllers\ChatRoomApiController;
 use Modules\Message\Http\Controllers\MessageController;
 
-// Route::middleware('auth:api')->get('/message', 'MessageController@conversionApi');
-
-// Route::middleware('auth:api')->get('/message', function (Request $request) {
-//     return $request->user();
-// });
-// Route::post('/sendfile', "MessageController@sendFileMessage");
-
 Route::middleware('auth:api')->group(function () {
     Route::get('chatrooms', [ChatRoomApiController::class, 'index']);
     Route::get('chats/start', [ChatRoomApiController::class, 'start']);

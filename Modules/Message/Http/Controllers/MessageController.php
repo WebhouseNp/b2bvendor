@@ -39,7 +39,7 @@ class MessageController extends Controller
 
         $this->validate($request, [
             'type' => 'nullable',
-            'file' => 'nullable|file|max:2048',
+            'file' => 'nullable|max:2048|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx,xls,xlsx,ppt,pptx',
             'message' => ['sometimes', 'required_without:file'],
         ]);
 

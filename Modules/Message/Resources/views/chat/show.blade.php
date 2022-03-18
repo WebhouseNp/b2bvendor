@@ -4,7 +4,9 @@
 <div class="messaging-page">
     <div class="inbox-wrapper py-2 px-4">
         <div class="p-2">
-            <h4>Recent</h4>
+            <a href="/dashboard">
+                <img src="/images/logo.png" alt="Sasto Wholesale" style="max-height: 3rem;">
+            </a>
         </div>
         <div class="inbox-list">
             {{-- active_chat --}}
