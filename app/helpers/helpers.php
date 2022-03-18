@@ -146,7 +146,7 @@ if (!function_exists('alt_usr_has_permission')) {
 if (!function_exists('can_cancel_order')) {
     function can_cancel_order($status)
     {
-        return in_array($status, ['pending', 'processing']);
+        return in_array($status, ['pending']);
     }
 }
 
