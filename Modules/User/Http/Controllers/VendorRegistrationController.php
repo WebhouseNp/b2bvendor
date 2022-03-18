@@ -27,6 +27,7 @@ use DB;
 use Str;
 use Mail;
 use Illuminate\Support\Facades\Hash;
+use Modules\User\Notifications\NewVendorRegistration;
 
 class VendorRegistrationController extends Controller
 {
@@ -69,6 +70,7 @@ class VendorRegistrationController extends Controller
       $vendor = Vendor::create($formData);
       $vendor->categories()->sync($request->category_id);
       DB::commit();
+      $vendor->user->notify(new NewVendorRegistration($vendor));
       Mail::to($request->email)->send(new VendorCreated($vendor));
       return response()->json([
         "status_code" => 200,

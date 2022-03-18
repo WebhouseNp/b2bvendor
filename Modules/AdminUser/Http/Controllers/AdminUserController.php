@@ -17,7 +17,7 @@ class AdminUserController extends Controller
                 return $query->where('name', 'like', '%' . request('search') . "%")
                     ->orWhere('email', 'like', '%' . request('search'));
             })->latest()
-            ->paginate(5)
+            ->paginate(15)
             ->withQueryString();
         $role = 'vendor';
         return view('adminuser::index', compact('details','role'));
@@ -32,7 +32,7 @@ class AdminUserController extends Controller
                 return $query->where('name', 'like', '%' . request('search') . "%")
                     ->orWhere('email', 'like', '%' . request('search'));
             })->latest()
-            ->paginate(5)
+            ->paginate(15)
             ->withQueryString();
             $role = 'customer';
         return view('adminuser::index', compact('details','role'));

@@ -18,7 +18,9 @@
             <td>{{$detail->email}}</td>
             @if($role=='vendor')
             <td>
-            <span class="btn btn-sm {{vendorStatus($detail->vendor_type) }} ">{{ ucfirst($detail->vendor_type) }}</span>
+                <div style="display:inline-block; width:100px" class="badge {{ ($detail->vendor_type == 'new') ? 'bg-primary' : (($detail->vendor_type == 'approved')  ? 'bg-success' : 'badge-danger') }} text-capitalize">
+                    {{ ucfirst($detail->vendor_type) }}
+                </div>
             </td>
             @endif
             <td>{{$detail->phone_num}}</td>
