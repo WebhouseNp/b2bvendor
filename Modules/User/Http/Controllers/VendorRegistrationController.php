@@ -13,10 +13,11 @@ use DB;
 use Str;
 use Mail;
 use Modules\User\Notifications\NewVendorRegistration;
+
 class VendorRegistrationController extends Controller
 {
 
-    public function register(VendorRequest $request)
+  public function register(VendorRequest $request)
   {
     DB::beginTransaction();
     try {
@@ -33,7 +34,7 @@ class VendorRegistrationController extends Controller
         'gender' => $request->gender,
         'phone_num' => $request->phone_num,
         'password' => bcrypt($request->password)
-         ];
+      ];
       $userExist = User::create($data);
 
       if ($userExist) {
@@ -54,7 +55,9 @@ class VendorRegistrationController extends Controller
       $vendor = Vendor::create($formData);
       $vendor->categories()->sync($request->category_id);
       DB::commit();
-      $vendor->user->notify(new NewVendorRegistration($vendor));
+      foreach (admin_users() as $admin) {
+        $admin->notify(new NewVendorRegistration($vendor));
+      }
       Mail::to($request->email)->send(new VendorCreated($vendor));
       return response()->json([
         "status_code" => 200,

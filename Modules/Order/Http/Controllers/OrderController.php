@@ -110,7 +110,10 @@ class OrderController extends Controller
                 
                 // send email to vendor in case of cancellation
                 if ($order->status == 'cancelled') {
-                    $order->vendor->user->notify(new OrderCancelledNotification($order));
+                    foreach(admin_users() as $admin) {
+                        $admin->notify(new OrderCancelledNotification($order));
+                    }
+                    
                     Mail::to($order->vendor->user->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
                 }
             }
