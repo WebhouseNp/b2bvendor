@@ -74,6 +74,9 @@ class OrderApiController extends Controller
         can_cancel_order($order->status);
 
         $order->update(['status' => 'cancelled']);
+        foreach (admin_users() as $admin) {
+            $admin->notify(new \Modules\Order\Notifications\OrderCancelledNotification($order));
+          }
         $order->vendor->user->notify(new \Modules\Order\Notifications\OrderCancelledNotification($order));
 
         return response()->json(['message' => 'Your order has been cancelled successfully.'], 200);

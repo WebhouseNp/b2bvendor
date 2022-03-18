@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Modules\Front\Notifications\OrderShippedMessageNotification;
 use Modules\Order\Entities\Order;
-use Modules\Order\Notifications\OrderCancelledNotification;
 use Modules\User\Entities\Vendor;
 
 class OrderController extends Controller
@@ -110,7 +109,6 @@ class OrderController extends Controller
                 
                 // send email to vendor in case of cancellation
                 if ($order->status == 'cancelled') {
-                    $order->vendor->user->notify(new OrderCancelledNotification($order));
                     Mail::to($order->vendor->user->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
                 }
             }

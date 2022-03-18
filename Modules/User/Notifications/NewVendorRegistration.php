@@ -37,7 +37,7 @@ class NewVendorRegistration extends Notification
     {
         return [
             'message' => 'New Vendor (#' . $this->vendor->shop_name . ') has been Registered .',
-            'url' => route('vendor.getVendorProfile', $this->vendor->user->username),
+            'url' => route('vendor.view', $this->vendor->user->id),
         ];
     }
 }
