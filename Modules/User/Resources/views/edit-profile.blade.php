@@ -58,7 +58,7 @@
                                                         @if($user->vendor->image)
                                                         <img src="{{asset('images/listing/'.$user->vendor->image)}}" alt="No Image" id="js-vendor-image" class="rounded" style="max-height: 250px;">
                                                         @else
-                                                        <img src="https://dummyimage.com/800x800/e8e8e8/0011ff" name="pic" id="picture" style="max-height: 250px;">
+                                                        <img src="https://dummyimage.com/800x800/e8e8e8/0011ff" name="pic" id="js-vendor-image" style="max-height: 250px;">
                                                         @endif
                                                     </div>
                                                 </div>

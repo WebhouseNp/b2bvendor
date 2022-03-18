@@ -7,7 +7,7 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">All Users</div>
+            <div class="ibox-title">All {{ucfirst($role)}}s</div>
         </div>
         <div class="ibox-body" id="validation-errors" >
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </div>

@@ -17,10 +17,10 @@ class AdminUserController extends Controller
                 return $query->where('name', 'like', '%' . request('search') . "%")
                     ->orWhere('email', 'like', '%' . request('search'));
             })->latest()
-            ->paginate(15)
+            ->paginate(5)
             ->withQueryString();
-
-        return view('adminuser::index', compact('details'));
+        $role = 'vendor';
+        return view('adminuser::index', compact('details','role'));
     }
 
     public function getAllCustomers()
@@ -32,8 +32,9 @@ class AdminUserController extends Controller
                 return $query->where('name', 'like', '%' . request('search') . "%")
                     ->orWhere('email', 'like', '%' . request('search'));
             })->latest()
-            ->paginate(15)
+            ->paginate(5)
             ->withQueryString();
-        return view('adminuser::index', compact('details'));
+            $role = 'customer';
+        return view('adminuser::index', compact('details','role'));
     }
 }

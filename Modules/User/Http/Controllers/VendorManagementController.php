@@ -20,7 +20,7 @@ class VendorManagementController extends Controller
    {
       $vendors = Vendor::with('user')->whereHas('user', function ($q) {
          $q->where('vendor_type',  'approved');
-      })->get();
+      })->latest()->get();
       return view('user::vendors-list', compact('vendors'));
    }
 
@@ -28,7 +28,7 @@ class VendorManagementController extends Controller
    {
       $vendors = Vendor::with('user')->whereHas('user', function ($q) {
          $q->where('vendor_type',  'suspended');
-      })->get();
+      })->latest()->get();
       return view('user::vendors-list', compact('vendors'));
    }
 
@@ -36,7 +36,7 @@ class VendorManagementController extends Controller
    {
       $vendors = Vendor::with('user')->whereHas('user', function ($q) {
          $q->where('vendor_type',  'new');
-      })->get();
+      })->latest()->get();
       return view('user::vendors-list', compact('vendors'));
    }
 
