@@ -134,7 +134,7 @@ if (!function_exists('alt_usr_has_permission')) {
         if (!is_alternative_login()) {
             return false;
         }
-        // Some users do not have any permissios 
+        // Some users do not have any permissions
         // In such case the permission will be null and in_array will throw error
         if (!alt_usr()->permissions) {
             return false;
@@ -143,6 +143,12 @@ if (!function_exists('alt_usr_has_permission')) {
     }
 }
 
+if (!function_exists('can_cancel_order')) {
+    function can_cancel_order($status)
+    {
+        return in_array($status, ['pending', 'processing']);
+    }
+}
 
 if (!function_exists('admin_users')) {
     function admin_users()
@@ -152,3 +158,4 @@ if (!function_exists('admin_users')) {
         })->get();
     }
 }
+

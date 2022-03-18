@@ -68,6 +68,7 @@ Route::get('my-address', [ProfileController::class, 'getAddress'])->middleware('
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
 Route::get('customer/orders', [OrderApiController::class, 'index'])->middleware('auth:api');
 Route::get('customer/orders/{order}', [OrderApiController::class, 'show'])->middleware('auth:api');
+Route::post('cancel-order/{order}', [OrderApiController::class, 'cancelOrder'])->middleware('auth:api');
 
 //category for vendor
 Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
