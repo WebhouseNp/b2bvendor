@@ -1,19 +1,17 @@
 <template>
   <div class="message" v-bind:class="{ outgoing: isOutgoing(message), incomming: !isOutgoing(message) }">
-    <div v-if="message.type == 'file'" class="block file-block border p-2">
-      <img :src="message.file_url" class="img-fluid bg-white" />
-    </div>
-    <div v-else-if="message.type == 'product'">
-      <product-block :product="message.product"></product-block>
-    </div>
-    <div v-else v-html="message.message" class="block text-block"></div>
+    <file-block v-if="message.type == 'file'" :message="message"></file-block>
+    <product-block v-else-if="message.type == 'product'" :message="message"></product-block>
+    <text-block v-else :message="message"></text-block>
   </div>
 </template>
 
 <script>
 import ProductBlock from './blocks/ProductBlock.vue';
+import FileBlock from "./blocks/FileBlock.vue";
+import TextBlock from "./blocks/TextBlock.vue";
 export default {
-  components: { ProductBlock },
+  components: { ProductBlock, FileBlock, TextBlock },
   props: ["message", "user"],
 
   methods: {
