@@ -3,31 +3,16 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Http\Requests\VendorRequest;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Mail\AccountActivated;
-use App\Mail\PasswordReset;
 use App\Mail\VendorCreated;
-use App\Mail\VendorStatusChanged;
-use Auth;
 use App\Models\User;
-use App\Password;
-use App\Rules\Mobile;
 use Modules\User\Entities\Vendor;
 use Modules\Role\Entities\Role_user;
 use Modules\Role\Entities\Role;
-use Modules\Product\Entities\Product;
-use Modules\Order\Entities\OrderList;
-use Modules\User\Entities\VendorPayment;
-use Image;
-use Validator;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use DB;
 use Str;
 use Mail;
-use Illuminate\Support\Facades\Hash;
-
+use Modules\User\Notifications\NewVendorRegistration;
 class VendorRegistrationController extends Controller
 {
 
@@ -69,6 +54,7 @@ class VendorRegistrationController extends Controller
       $vendor = Vendor::create($formData);
       $vendor->categories()->sync($request->category_id);
       DB::commit();
+      $vendor->user->notify(new NewVendorRegistration($vendor));
       Mail::to($request->email)->send(new VendorCreated($vendor));
       return response()->json([
         "status_code" => 200,

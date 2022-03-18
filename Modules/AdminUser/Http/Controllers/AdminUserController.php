@@ -19,8 +19,8 @@ class AdminUserController extends Controller
             })->latest()
             ->paginate(15)
             ->withQueryString();
-
-        return view('adminuser::index', compact('details'));
+        $role = 'vendor';
+        return view('adminuser::index', compact('details','role'));
     }
 
     public function getAllCustomers()
@@ -34,6 +34,7 @@ class AdminUserController extends Controller
             })->latest()
             ->paginate(15)
             ->withQueryString();
-        return view('adminuser::index', compact('details'));
+            $role = 'customer';
+        return view('adminuser::index', compact('details','role'));
     }
 }
