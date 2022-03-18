@@ -4,7 +4,7 @@
             <loading-inbox-list></loading-inbox-list>
         </div>
         <div v-if="chatRooms.data">
-            <div v-for="chatRoom in chatRooms.data" class="inbox-item d-flex" style="gap: 1.2rem;" v-bind:key="chatRoom.index">
+            <a v-for="chatRoom in chatRooms.data" class="inbox-item d-flex" style="gap: 1.2rem;" v-bind:key="chatRoom.index" :href="`/chat/${chatRoom.id}`">
                 <div>
                     <img class="chat-user-img" :src="chatRoom.opponent.avatar_url" :alt="chatRoom.customer_name">
                 </div>
@@ -12,7 +12,7 @@
                     <div>{{ chatRoom.opponent.name }}</div>
                     <div style="font-size: .8rem;">Dec 25</div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </template>

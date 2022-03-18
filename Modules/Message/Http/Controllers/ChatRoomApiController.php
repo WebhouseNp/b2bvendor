@@ -55,7 +55,6 @@ class ChatRoomApiController extends Controller
     public function show(ChatRoom $chatRoom)
     {
         return new ChatRoomResource($chatRoom);
-        // return response()->json(['status' => 'success', 'data' => $chatRoom], 200);
     }
 
     public function destroy(ChatRoom $chatRoom)

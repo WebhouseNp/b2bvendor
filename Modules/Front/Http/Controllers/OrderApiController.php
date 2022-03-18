@@ -61,9 +61,21 @@ class OrderApiController extends Controller
         });
 
         $order->status_number = get_order_status_number($order->status);
+        $order->can_cancel_order = can_cancel_order($order->status);
         // $order['shipping_address'] = new AddressResource($order->shippingAddress);
         // $order->billing_address = AddressResource::make($order->shippingAddress);
 
-        return $order;
+        return response()->json($order, 200);
+    }
+    
+    public function cancelOrder(Order $order)
+    {
+        abort_unless(auth()->check() && $order->user_id == auth()->user()->id, 403);
+        can_cancel_order($order->status);
+
+        $order->update(['status' => 'cancelled']);
+        $order->vendor->user->notify(new \Modules\Order\Notifications\OrderCancelledNotification($order));
+
+        return response()->json(['message' => 'Your order has been cancelled successfully.'], 200);
     }
 }
