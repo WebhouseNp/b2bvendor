@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function index()
     {
         $this->authorize('manageOrders');
-        $vendors = Vendor::whereHas('user', function($q){
+        $vendors = Vendor::whereHas('user', function ($q) {
             $q->where('vendor_type', 'approved');
         })->get();
         $orders = Order::with(['orderLists', 'customer', 'vendor:id,shop_name'])
@@ -34,7 +34,7 @@ class OrderController extends Controller
             ->latest()
             ->paginate();
 
-        return view('order::index', compact('orders','vendors'));
+        return view('order::index', compact('orders', 'vendors'));
     }
 
     public function show(Order $order)
@@ -88,17 +88,17 @@ class OrderController extends Controller
             'status' => ['required', Rule::in($orderStatuses), Rule::notIn([$order->status])],
             'update_silently' => 'nullable'
         ]);
-        
+
         try {
             DB::beginTransaction();
-            
+
             $order->update(['status' => $request->status]);
-            
+
             // Mark COD order as paid after order is completed
             if (($order->status == "completed") && ($order->payment_type == "cod")) {
                 $order->update(['payment_status' => "paid"]);
             }
-            
+
             if (!$request->filled('update_silently')) {
                 if ($order->status == 'refunded') {
                     // send email to customer
@@ -106,9 +106,10 @@ class OrderController extends Controller
                 } else {
                     Mail::to($order->customer->email)->send(new \App\Mail\OrderStatusChanged($order));
                 }
-                
+
                 // send email to vendor in case of cancellation
                 if ($order->status == 'cancelled') {
+                    $order->vendor->user->notify(new \Modules\Order\Notifications\OrderCancelledNotification($order));
                     Mail::to($order->vendor->user->email)->send(new \App\Mail\OrderCancelledEmailToVedor($order));
                 }
             }
@@ -116,7 +117,7 @@ class OrderController extends Controller
             if ($order->status == 'shipped') {
                 $order->customer->notify(new OrderShippedMessageNotification($order));
             }
-            
+
             if ($order->status == 'completed') {
                 ReleasePaymentJob::dispatch($order);
             }
