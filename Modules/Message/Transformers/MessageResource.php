@@ -3,6 +3,7 @@
 namespace Modules\Message\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
 
@@ -27,6 +28,7 @@ class MessageResource extends JsonResource
             'message' => $this->wrapURLs($this->message),
             'file_url' => $this->when($this->file, $this->fileUrl()),
             'product' => $this->when($this->type === 'product' && $this->key, $this->getProduct($this->key)),
+            'is_image' => $this->when($this->type === 'file', $this->isImage($this->file)),
         ];
     }
 
@@ -62,5 +64,14 @@ class MessageResource extends JsonResource
             $href = preg_match($protocol_pattern, $url) ? $url : 'http://' . $url;
             return '<a href="' . $href . '" target="' . $target . '">' . $url . '</a>';
         }, $text);
+    }
+
+    private function isImage()
+    {
+        $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
+        $contentType = mime_content_type(Storage::path($this->file));
+        return in_array($contentType, $allowedMimeTypes);
+        // $ext = strtolower(pathinfo($this->file, PATHINFO_EXTENSION));
+        // return in_array($ext, ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg', 'svgz', 'cgm', 'djv', 'djvu', 'ico', 'ief', 'jpe', 'pbm', 'pgm', 'pnm', 'ppm', 'ras', 'rgb', 'tif', 'tiff', 'wbmp', 'xbm', 'xpm', 'xwd']);
     }
 }
