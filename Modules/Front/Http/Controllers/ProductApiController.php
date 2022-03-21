@@ -29,7 +29,7 @@ class ProductApiController extends Controller
             ->when(request()->filled('cat'), function ($query) {
                 $category = Category::where('slug', request()->cat)->first();
                 $productCategoryIds = $category->productCategory()->pluck('product_categories.id')->toArray();
-                return $query->where('product_category_id', $productCategoryIds);
+                return $query->whereIn('product_category_id', $productCategoryIds);
             })
             ->when(request()->filled('subcat'), function ($query) {
                 $subCategory = Subcategory::where('slug', request()->subcat)->first();
