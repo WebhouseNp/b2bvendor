@@ -31,6 +31,7 @@ Route::get('/vendors', 'VendorApiController@index');
 Route::get('/vendors/{vendor}', 'VendorApiController@show');
 Route::get('/vendors/find-by-user-id/{userId}', 'VendorApiController@showByUserId');
 Route::get('/v/latest-suppliers', 'VendorApiController@getLatestVendors');
+Route::get('/categories-sold-by-vendor/{vendorId}', 'VendorApiController@getCategoriesOfProductSold');
 
 //customer
 // Route::get('/profile/{profile}', 'CustomerApiController@show');
