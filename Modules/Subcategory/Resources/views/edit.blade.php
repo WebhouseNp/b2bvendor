@@ -119,11 +119,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        var id = {
-            {
-                $id
-            }
-        };
+        var id = '{{ $id }}';
 
         function editsubcategory(id) {
             $.ajax({
