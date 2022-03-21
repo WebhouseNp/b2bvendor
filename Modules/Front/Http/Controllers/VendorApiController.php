@@ -84,6 +84,13 @@ class VendorApiController extends Controller
 
         $categories = collect($categories)->unique('id');
 
-        return $categories;
+        return $categories->map(function ($category) {
+            return [
+                'id' => $category->id,
+                'name' => $category->name,
+                'slug' => $category->slug,
+                'image_url' => $category->imageUrl(),
+            ];
+        });;
     }
 }
