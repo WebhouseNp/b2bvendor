@@ -164,7 +164,7 @@ class ProductStorageController extends Controller
 
         Range::create([
             'product_id' => $product->id,
-            'from' => $maxTo + 1,
+            'from' => count($request->ranges) ? ($maxTo + 1) : 1,
             'to' => null,
             'price' => $request->above_range_price,
         ]);
