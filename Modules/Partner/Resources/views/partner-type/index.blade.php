@@ -72,7 +72,11 @@
 <script type="text/javascript">
     $(function() {
         $('#partners-table').DataTable({
-            pageLength: 25
+            pageLength: 25,
+            "aoColumnDefs": [{
+                "bSortable": false
+                , "aTargets": [-1, -2]
+            }]
         });
         $(document).ready(function() {
             // Confirm before delete

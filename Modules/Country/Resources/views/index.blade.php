@@ -74,7 +74,11 @@
 <script type="text/javascript">
     $(function() {
         $('#countries-table').DataTable({
-            pageLength: 25
+            pageLength: 25,
+            "aoColumnDefs": [{
+                "bSortable": false
+                , "aTargets": [-1, -2, -3]
+            }]
         });
         $(document).ready(function() {
             // Confirm before delete

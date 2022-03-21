@@ -79,6 +79,10 @@ $api_token = $user->api_token;
   $(function() {
     $('#example-table').DataTable({
       pageLength: 15,
+      "aoColumnDefs": [{
+        "bSortable": false,
+        "aTargets": [-1, -2, -4]
+      }]
     });
   })
   $("#sortable").sortable({

@@ -82,7 +82,7 @@ class VendorManagementController extends Controller
             'note' => ''
          ]);
          Mail::to($user->email)->send(new VendorStatusChanged($user));
-         $user->notify(new VendorStatusChangeMessageNotification($user));
+         // $user->notify(new VendorStatusChangeMessageNotification($user));
       }
       $user->vendor->update([
          'commission_rate' => $request->commission_rate
