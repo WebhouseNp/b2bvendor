@@ -31,6 +31,7 @@ Route::get('/vendors', 'VendorApiController@index');
 Route::get('/vendors/{vendor}', 'VendorApiController@show');
 Route::get('/vendors/find-by-user-id/{userId}', 'VendorApiController@showByUserId');
 Route::get('/v/latest-suppliers', 'VendorApiController@getLatestVendors');
+Route::get('/categories-sold-by-vendor/{vendorId}', 'VendorApiController@getCategoriesOfProductSold');
 
 //customer
 // Route::get('/profile/{profile}', 'CustomerApiController@show');
@@ -74,7 +75,8 @@ Route::post('cancel-order/{order}', [OrderApiController::class, 'cancelOrder'])-
 Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 
 // Partners
-Route::get('our-partners', 'PartnerApiController');
+Route::get('our-partners', 'PartnerApiController@allPartners');
+Route::get('partners-carousel', 'PartnerApiController@carousel');
 
 //Blogs
 Route::get('all-blogs', [BlogApiController::class, 'index'])->name('api.blogs.index');
