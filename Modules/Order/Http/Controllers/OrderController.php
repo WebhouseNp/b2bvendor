@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Modules\Front\Notifications\OrderShippedMessageNotification;
 use Modules\Order\Entities\Order;
+use Modules\Order\Jobs\CancelUnpaidOrders;
 use Modules\User\Entities\Vendor;
 
 class OrderController extends Controller
@@ -18,6 +19,9 @@ class OrderController extends Controller
     public function index()
     {
         $this->authorize('manageOrders');
+       
+        CancelUnpaidOrders::dispatch();
+
         $vendors = Vendor::whereHas('user', function ($q) {
             $q->where('vendor_type', 'approved');
         })->get();
