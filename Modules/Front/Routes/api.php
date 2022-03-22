@@ -75,7 +75,8 @@ Route::post('cancel-order/{order}', [OrderApiController::class, 'cancelOrder'])-
 Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 
 // Partners
-Route::get('our-partners', 'PartnerApiController');
+Route::get('our-partners', 'PartnerApiController@allPartners');
+Route::get('partners-carousel', 'PartnerApiController@carousel');
 
 //Blogs
 Route::get('all-blogs', [BlogApiController::class, 'index'])->name('api.blogs.index');
