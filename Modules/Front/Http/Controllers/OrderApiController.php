@@ -52,7 +52,7 @@ class OrderApiController extends Controller
     {
         abort_unless(auth()->check() && $order->user_id == auth()->user()->id, 403);
 
-        $order->loadMissing(['orderLists.product:id,title,image', 'vendor:id,user_id,shop_name', 'shippingAddress', 'billingAddress']);
+        $order->loadMissing(['orderLists.product:id,title,image,image_thumbnail', 'vendor:id,user_id,shop_name', 'shippingAddress', 'billingAddress']);
         $order->sold_by = $order->vendor->shop_name;
         $order->orderLists->map(function ($orderList) {
             $orderList['product_image_url'] = $orderList->product ? $orderList->product->imageUrl('thumbnail') : 'no_image';
