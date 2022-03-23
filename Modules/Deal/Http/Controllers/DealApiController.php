@@ -61,7 +61,7 @@ class DealApiController extends Controller
             })
             ->latest()
             ->paginate();
-
+            
         return new DealCollection($deals);
     }
 
@@ -73,7 +73,7 @@ class DealApiController extends Controller
             return response()->json(['message' => 'Deal is not available'], 404);
         }
 
-        $deal->load('dealProducts.product:id,title,image');
+        $deal->load(['dealProducts.product:id,title,image', 'vendorShop']);
 
         return new DealResource($deal);
     }
