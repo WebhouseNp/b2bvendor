@@ -21,6 +21,18 @@ class ProductApiController extends Controller
     public function index()
     {
         // TODO::Append query string
+        // return request();
+
+        $withInVendorIds = [];
+        if (request()->filled('seller_type')) {
+            $vendors = Vendor::whereIn('category', request()->get('seller_type'))->get();
+            foreach ($vendors as $vendor) {
+                $withInVendorIds[] = $vendor->id;
+            }
+        }
+
+        // return $withInVendorIds;
+
         $products = Product::with(['productCategory', 'ranges','user'])
             ->productsfromapprovedvendors()
             ->when(request()->filled('q'), function ($query) {
@@ -42,6 +54,9 @@ class ProductApiController extends Controller
             })
             ->when(request()->filled('from_vendor'), function ($query) {
                 return $query->where('user_id', request()->from_vendor);
+            })
+            ->when($withInVendorIds, function($query) use ($withInVendorIds) {
+                return $query->whereIn('vendor_id', $withInVendorIds);
             })
             ->active()
             ->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 18);
