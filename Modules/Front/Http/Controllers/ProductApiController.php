@@ -22,17 +22,9 @@ class ProductApiController extends Controller
     public function index()
     {
         // TODO::Append query string
-        // return request();
 
         $hasFilters = false;
         $withInVendorIds = [];
-        if (request()->filled('seller_type')) {
-            $hasFilters = true;
-            $vendors = Vendor::whereIn('category', request()->get('seller_type'))->pluck('id');
-            foreach ($vendors as $vendor) {
-                $withInVendorIds[] = $vendor;
-            }
-        }
 
         if (request()->filled('country')) {
             $hasFilters = true;
@@ -42,16 +34,38 @@ class ProductApiController extends Controller
             }
         }
 
-        if (request()->filled('business_type')) {
+        if (request()->filled('seller_type')) {
             $hasFilters = true;
-            $vendors = Vendor::whereIn('business_type', request()->get('business_type'))->pluck('id');
+            if (request()->filled('country') || request()->filled('seller_type')) {
+                $withInVendorIds = [];
+            }
+            $vendors = Vendor::whereIn('category', request()->get('seller_type'))
+                ->when(request()->filled('country'), function ($query) {
+                    return $query->whereIn('country_id', request()->get('country'));
+                })
+                ->pluck('id');
             foreach ($vendors as $vendor) {
                 $withInVendorIds[] = $vendor;
             }
         }
-        logger($withInVendorIds);
 
-        // return $withInVendorIds;
+        if (request()->filled('business_type')) {
+            $hasFilters = true;
+            if (request()->filled('country') || request()->filled('seller_type')) {
+                $withInVendorIds = [];
+            }
+            $vendors = Vendor::whereIn('business_type', request()->get('business_type'))
+                ->when(request()->filled('country'), function ($query) {
+                    return $query->whereIn('country_id', request()->get('country'));
+                })
+                ->when(request()->filled('seller_type'), function ($query) {
+                    return $query->whereIn('category', request()->get('seller_type'));
+                })
+                ->pluck('id');
+            foreach ($vendors as $vendor) {
+                $withInVendorIds[] = $vendor;
+            }
+        }
 
         $products = Product::with(['productCategory', 'ranges', 'user'])
             ->productsfromapprovedvendors()
@@ -77,6 +91,16 @@ class ProductApiController extends Controller
             })
             ->when($hasFilters, function ($query) use ($withInVendorIds) {
                 return $query->whereIn('vendor_id', $withInVendorIds);
+            })
+            ->when(request()->has('price_gt'), function($query) {
+                return $query->whereHas('ranges', function($query) {
+                    return $query->where('price', '>=', request()->price_gt);
+                });
+            })
+            ->when(request()->has('price_lt'), function($query) {
+                return $query->whereHas('ranges', function($query) {
+                    return $query->where('price', '<=', request()->price_lt);
+                });
             })
             ->active()
             ->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 18);
