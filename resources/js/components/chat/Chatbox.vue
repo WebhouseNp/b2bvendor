@@ -6,10 +6,6 @@
         <h6 class="text-capitalize" v-if="opponentUser">
           {{ opponentUser.name }}
         </h6>
-        <div class="ml-auto">
-            <router-link :to="{ name:'messages', params: {chatRoomId: this.chatRoom.id } }" class="btn btn-link text-white p-0 mr-2"><i class="fa fa-expand"></i></router-link>
-            <button type="button" @click="closeChatPopup()" class="btn btn-link text-white p-0"><i class="fa fa-times"></i></button>
-          </div>
       </div>
     </div>
     <div class="conversation py-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }" @v-chat-scroll-top-reached="loadOlderMessages">
@@ -21,7 +17,6 @@
       </div>
       <div v-for="message in queueMessages" :key="message.ts" class="d-flex my-1">
         <div class="message outgoing">
-          x
           <div class="bloc text-block">{{ message.message }}</div>
         </div>
       </div>
