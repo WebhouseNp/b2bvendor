@@ -170,7 +170,7 @@ class ProductApiController extends Controller
             ->productsfromapprovedvendors()
             ->active()
             ->orderBy('created_at', 'DESC')
-            ->take(18)->get();
+            ->take(12)->get();
 
         return ProductResource::collection($products->shuffle()->all())->hide([
             'highlight',
