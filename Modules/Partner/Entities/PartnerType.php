@@ -3,6 +3,7 @@
 namespace Modules\Partner\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Partner\Entities\BecomePartner;
 
 class PartnerType extends Model
 {
@@ -11,6 +12,11 @@ class PartnerType extends Model
     public function partners()
     {
         return $this->hasMany(Partner::class);
+    }
+
+    public function partnerRequests()
+    {
+        return $this->hasMany(BecomePartner::class);
     }
 
     public function scopePublish($query)

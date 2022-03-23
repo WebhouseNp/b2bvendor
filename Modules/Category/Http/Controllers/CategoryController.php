@@ -61,7 +61,7 @@ class CategoryController extends Controller
             }
         }
 
-        return response()->json(['status' => 'successful', 'message' => 'Category created successfully.', 'data' => $data]);
+        
     }
 
     public function allCategories()
