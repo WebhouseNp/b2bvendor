@@ -21,7 +21,9 @@ class CreateBecomePartnersTable extends Migration
             $table->string('company_phone')->nullable();
             $table->string('eastablished_year')->nullable();
             $table->string('company_web')->nullable();
-            $table->string('partner_type')->nullable();
+            // $table->string('partner_type')->nullable();
+            $table->unsignedBigInteger('partner_type_id')->nullable();
+            $table->foreign('partner_type_id')->references('id')->on('partner_types')->onDelete('CASCADE');
             $table->string('full_name')->nullable();
             $table->string('email')->nullable();
             $table->string('designation')->nullable();

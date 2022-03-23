@@ -370,6 +370,12 @@ $user = auth()->user();
                 </a>
                 <ul class="nav-2-level collapse">
                     <li>
+                        <a href="{{route('partner-request.index')}}">
+                        <i class="fa-brands fa-osi"></i>
+                            All Partner Requests
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route('partner-type.create')}}">
                             <span class="fa fa-plus"></span>
                             Add New Partner Type
