@@ -38,7 +38,7 @@
                 <a class="nav-link active" id="online-payments-tab" data-toggle="tab" href="#onlinePaymentsTab" role="tab" aria-controls="onlinePaymentsTab" aria-selected="true"><strong>Online Transactions</strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="cod-payments-tab" data-toggle="tab" href="#codPaymentsTab" role="tab" aria-controls="codPaymentsTab" aria-selected="false"><strong>COD Transactions</strong></a>
+                <a class="nav-link" id="cod-payments-tab" data-toggle="tab" href="#codPaymentsTab" role="tab" aria-controls="codPaymentsTab" aria-selected="false"><strong>COD / TT Transactions</strong></a>
             </li>
             @if(auth()->user()->hasAnyRole('super_admin|admin'))
             <li class="nav-item">
