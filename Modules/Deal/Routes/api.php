@@ -15,7 +15,7 @@ Route::delete('/deals/{deal}', [DealController::class, 'destroy'])->name('api.de
 Route::put('/deals/{id}', [DealController::class, 'update'])->name('api.updatedeal');
 Route::post('/deals', [DealController::class, 'store'])->name('api.storedeal');
 
-Route::get('deals/customer-search', [DealApiController::class, 'customerSearch'])->name('api.productsearch');
+Route::get('deals/customer-search', [DealApiController::class, 'customerSearch']);
 Route::get('deals/product-search', [DealApiController::class, 'productSearch'])->name('api.productsearch');
 
 Route::get('deals/', [DealApiController::class, 'index'])->middleware('auth:api');

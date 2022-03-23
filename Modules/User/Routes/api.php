@@ -37,14 +37,14 @@ Route::prefix('vendor')->name('api.')->group(function(){
     });
 
     Route::prefix('user')->name('api.')->group(function(){
-        Route::post('/login','UserController@login')->name('login');
-        Route::post('/register', 'UserController@register')->name('register');
+        Route::post('/login','UserController@login'); // DUPLICATE ->name('login');
+        Route::post('/register', 'UserController@register'); // DUPLICATE ->name('register');
     
-        Route::post('verification-code/{code}','UserController@verifificationCode')->name('verifificationCode');
-        Route::post('send-email-link', 'UserController@sendEmailLink')->name('sendEmailLink');
-        Route::post('reset-password', 'ApiUserController@resetPassword')->name('passwordResetForm');
-        Route::post('update-password', 'UserController@updatePassword')->name('updatePassword');
-        Route::post('change-password', 'UserController@changePassword')->middleware('auth:api')->name('changePassword');
+        Route::post('verification-code/{code}','UserController@verifificationCode'); // Duplicate ->name('verifificationCode');
+        Route::post('send-email-link', 'UserController@sendEmailLink'); // Duplicate ->name('sendEmailLink');
+        Route::post('reset-password', 'ApiUserController@resetPassword'); // DUPLICATE ->name('passwordResetForm');
+        Route::post('update-password', 'UserController@updatePassword'); // DuPLICATE->name('updatePassword');
+        Route::post('change-password', 'UserController@changePassword')->middleware('auth:api'); // DuPLICATE ->name('changePassword');
         Route::get('fetch-user-profile/{user}', 'ProfileController@edit')->middleware('auth:api')->name('editUserProfile');
         Route::put('edit-user-profile/{user}', 'ProfileController@update')->middleware('auth:api')->name('updateUserProfile');
         Route::put('update-user-image/{user}', 'ProfileController@imageUpload')->middleware('auth:api')->name('updateUserImage');

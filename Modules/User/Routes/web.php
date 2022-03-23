@@ -4,7 +4,7 @@ use Modules\User\Http\Controllers\ApiUserController;
 use Modules\User\Http\Controllers\UserController;
 use Modules\User\Http\Controllers\VendorLoginController;
 
-Route::post('/vendor/update-password', 'ApiUserController@updatePassword')->name('updatePassword');
+Route::post('/vendor/update-password', 'ApiUserController@updatePassword'); // DUPLICATE ->name('updatePassword');
 Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
 Route::get('account-activate/{link}', [ApiUserController::class, 'verifyNewAccount'])->name('verifyNewAccount');
 Route::get('reset-password/{token}', 'PasswordResetController@passwordResetForm')->name('passwordResetForm');
