@@ -21,6 +21,7 @@
         "laravel/ui": "^3.3",
         "laravelcollective/html": "^6.2",
         "nwidart/laravel-modules": "^8.2",
+        "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^5.0",
         "qcod/laravel-settings": "^1.1",
         "sentry/sentry-laravel": "^2.11",
