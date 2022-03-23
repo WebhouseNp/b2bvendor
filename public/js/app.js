@@ -3598,6 +3598,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -65042,7 +65046,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "conversation-wrapper" }, [
-    _c("div", { staticClass: "conversation-header px-4 py-3 bg-light" }, [
+    _c("div", { staticClass: "conversation-header px-4 py-3 border-bottom" }, [
       _c(
         "div",
         {
@@ -65067,12 +65071,47 @@ var render = function () {
           ),
           _vm._v(" "),
           _vm.opponentUser
-            ? _c("h5", { staticClass: "h5-responsive text-capitalize" }, [
+            ? _c("h6", { staticClass: "text-capitalize" }, [
                 _vm._v(
                   "\n        " + _vm._s(_vm.opponentUser.name) + "\n      "
                 ),
               ])
             : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "ml-auto" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-link text-white p-0 mr-2",
+                  attrs: {
+                    to: {
+                      name: "messages",
+                      params: { chatRoomId: this.chatRoom.id },
+                    },
+                  },
+                },
+                [_c("i", { staticClass: "fa fa-expand" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-link text-white p-0",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.closeChatPopup()
+                    },
+                  },
+                },
+                [_c("i", { staticClass: "fa fa-times" })]
+              ),
+            ],
+            1
+          ),
         ]
       ),
     ]),
@@ -65154,7 +65193,7 @@ var render = function () {
       2
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "conversation-creator px-4 py-3" }, [
+    _c("div", { staticClass: "conversation-creator px-md-2 py-2" }, [
       _c(
         "form",
         {
@@ -65169,10 +65208,7 @@ var render = function () {
         [
           _c(
             "label",
-            {
-              staticClass:
-                "bg-light text-primary border-right px-3 d-inline-flex align-items-center m-0",
-            },
+            { staticClass: "bg-file px-md-2 d-inline-flex align-items-center" },
             [
               _c("input", {
                 staticStyle: { display: "none" },
@@ -65193,7 +65229,7 @@ var render = function () {
                 expression: "newMessage",
               },
             ],
-            staticClass: "py-3 px-4",
+            staticClass: "py-md-2 px-md-2",
             attrs: { type: "text", placeholder: "Enter text here..." },
             domProps: { value: _vm.newMessage },
             on: {
@@ -65232,10 +65268,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "button",
-      {
-        staticClass: "btn bg-light text-primary border-left px-3 rounded-0",
-        attrs: { type: "submit" },
-      },
+      { staticClass: "btn btn-send px-md-2", attrs: { type: "submit" } },
       [_c("i", { staticClass: "fa fa-paper-plane" })]
     )
   },
@@ -65262,23 +65295,23 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.loading ? _c("div", [_c("loading-inbox-list")], 1) : _vm._e(),
-    _vm._v(" "),
-    _vm.chatRooms.data
-      ? _c(
-          "div",
-          _vm._l(_vm.chatRooms.data, function (chatRoom) {
+  return _c(
+    "div",
+    [
+      _vm.loading ? _c("div", [_c("loading-inbox-list")], 1) : _vm._e(),
+      _vm._v(" "),
+      _vm.chatRooms.data
+        ? _vm._l(_vm.chatRooms.data, function (chatRoom) {
             return _c(
               "a",
               {
                 key: chatRoom.index,
-                staticClass: "inbox-item d-flex py-2",
-                staticStyle: { gap: "1.2rem" },
+                staticClass: "inbox-item d-md-flex py-3 px-md-4 px-2",
+                staticStyle: { gap: "1.2rem", cursor: "pointer" },
                 attrs: { href: "/chat/" + chatRoom.id },
               },
               [
-                _c("div", [
+                _c("div", { staticClass: "chat-img-wrapper" }, [
                   _c("img", {
                     staticClass: "chat-user-img",
                     attrs: {
@@ -65288,16 +65321,27 @@ var render = function () {
                   }),
                 ]),
                 _vm._v(" "),
-                _c("div", [
-                  _c("div", [_vm._v(_vm._s(chatRoom.opponent.name))]),
+                _c("div", { staticClass: "chat-info-wrapper" }, [
+                  _c("div", { staticClass: "chat-name" }, [
+                    _vm._v(_vm._s(chatRoom.opponent.name)),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "d-md-block d-none",
+                      staticStyle: { "font-size": "0.8rem" },
+                    },
+                    [_vm._v(_vm._s(chatRoom.last_message_at))]
+                  ),
                 ]),
               ]
             )
-          }),
-          0
-        )
-      : _vm._e(),
-  ])
+          })
+        : _vm._e(),
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

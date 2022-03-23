@@ -34,6 +34,15 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\PaymentTypePieChart::class,
         ]);
 
+
+        \DB::listen(function($query) {
+            \Log::info(
+                $query->sql,
+                $query->bindings,
+                $query->time
+            );
+        });
+
         // Disable the auto refresh of laravel-debugbar
         // \Debugbar::getJavascriptRenderer()->setAjaxHandlerAutoShow(false);
     }

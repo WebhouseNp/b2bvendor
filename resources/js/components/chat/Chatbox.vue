@@ -1,11 +1,15 @@
 <template>
   <div class="conversation-wrapper">
-    <div class="conversation-header px-4 py-3 bg-light">
+    <div class="conversation-header px-4 py-3 border-bottom">
       <div class="d-flex align-items-center" style="gap: 1rem">
         <div :class="{ 'text-success': isOpponentActive, 'text-danger': !isOpponentActive }"><i class="fa fa-circle" aria-hidden="true"></i></div>
-        <h5 class="h5-responsive text-capitalize" v-if="opponentUser">
+        <h6 class="text-capitalize" v-if="opponentUser">
           {{ opponentUser.name }}
-        </h5>
+        </h6>
+        <div class="ml-auto">
+            <router-link :to="{ name:'messages', params: {chatRoomId: this.chatRoom.id } }" class="btn btn-link text-white p-0 mr-2"><i class="fa fa-expand"></i></router-link>
+            <button type="button" @click="closeChatPopup()" class="btn btn-link text-white p-0"><i class="fa fa-times"></i></button>
+          </div>
       </div>
     </div>
     <div class="conversation py-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }" @v-chat-scroll-top-reached="loadOlderMessages">
@@ -31,14 +35,14 @@
         </div>
       </div>
     </div>
-    <div class="conversation-creator px-4 py-3">
+    <div class="conversation-creator px-md-2 py-2">
       <form @submit.prevent="sendMessage" class="message-compose-form border mb-0">
-        <label class="bg-light text-primary border-right px-3 d-inline-flex align-items-center m-0">
+        <label class="bg-file px-md-2 d-inline-flex align-items-center">
           <input type="file" @change="sendFile" style="display: none" />
           <i class="fa fa-plus-circle"></i>
         </label>
-        <input v-model="newMessage" type="text" class="py-3 px-4" @keyup="sendTypingEvent" placeholder="Enter text here..." />
-        <button type="submit" class="btn bg-light text-primary border-left px-3 rounded-0"><i class="fa fa-paper-plane"></i></button>
+        <input v-model="newMessage" type="text" class="py-md-2 px-md-2" @keyup="sendTypingEvent" placeholder="Enter text here..." />
+        <button type="submit" class="btn btn-send px-md-2"><i class="fa fa-paper-plane"></i></button>
       </form>
     </div>
   </div>

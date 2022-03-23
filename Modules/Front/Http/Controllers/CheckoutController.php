@@ -169,6 +169,15 @@ class CheckoutController extends Controller
                 return $range->price;
             }
         }
+
+        // at this point the range should not exist or is not applicable
+        $rangeWithoutTo = $product->ranges->whereNull('to');
+
+        if(!$rangeWithoutTo) {
+            throw new \Exception('No range found for product: ' . $product->title);
+        }
+
+        return $product->ranges->where('from', '<=', $quantity)->first()->price;
     }
 
     private function processConnectipsPayment($order)

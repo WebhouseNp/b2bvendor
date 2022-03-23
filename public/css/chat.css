@@ -5,14 +5,15 @@
 .inbox-wrapper {
     width: 250px;
     height: 100%;
-    background-color: #284155;
-    color: #fff;
+    background-color: #f7f7f7;
+    color: #333;
     display: flex;
     flex-direction: column;
 }
 .inbox-wrapper .inbox-list {
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 .inbox-list .inbox-item {
     display: block;
@@ -27,10 +28,11 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
 }
 
 .conversation-header {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
 }
 
 .conversation {
@@ -154,4 +156,108 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.chat-title {
+    padding: 15px;
+    font-weight: 700;
+}
+
+.chat-title a {
+    color: #212529 !important;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.chat-name {
+    font-weight: 600;
+}
+
+.messaging-right {
+    flex-grow: 1;
+}
+
+.message-compose-form {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.message-compose-form .bg-file {
+    background-color: #e6e6e6;
+    border-radius: 10px;
+}
+
+.message-compose-form .bg-file i {
+    color: #3c3e3f;
+}
+
+.message-compose-form > input {
+    border: 0;
+    flex-grow: 1;
+    background-color: #fff;
+}
+
+.btn-send {
+    background-color: #1e76bd;
+    color: #fff;
+    border-radius: 10px !important;
+}
+
+.message-compose-form i.fa-plus-circle {
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+@media screen and (max-width: 576px) {
+
+    .messaging-page .inbox-wrapper {
+        width: 100%;
+    }
+
+    .chat-title {
+        font-size: 15px;
+        padding: 5px !important;
+    }
+
+    .inbox-item {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chat-img-wrapper {
+        text-align: center;
+    }
+
+    .chat-name {
+        white-space: break-spaces;
+        font-size: 11px;
+        font-weight: 500 !important;
+        margin-top: 5px;
+    }
+
+    .message-compose-form {
+        /* display: block; */
+        padding: 0;
+    }
+
+    .message-compose-form .bg-file {
+        background-color: transparent;
+        border-radius: 0;
+        margin-right: 5px;
+    }
+
+    .message-compose-form i.fa-plus-circle {
+        font-size: 1.3rem;
+    }
+
+    .btn-send {
+        background: transparent !important;
+        color: #1d75bd;
+    }
+
+    .btn-send i {
+        font-size: 0.9rem;
+    }
+
 }

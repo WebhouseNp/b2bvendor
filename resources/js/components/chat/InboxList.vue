@@ -3,17 +3,17 @@
         <div v-if="loading">
             <loading-inbox-list></loading-inbox-list>
         </div>
-        <div v-if="chatRooms.data">
-            <a v-for="chatRoom in chatRooms.data" class="inbox-item d-flex py-2" style="gap: 1.2rem;" v-bind:key="chatRoom.index" :href="`/chat/${chatRoom.id}`">
-                <div>
+        <template v-if="chatRooms.data">
+            <a v-for="chatRoom in chatRooms.data" class="inbox-item d-md-flex py-3 px-md-4 px-2" style="gap: 1.2rem; cursor: pointer;" v-bind:key="chatRoom.index" :href="`/chat/${chatRoom.id}`">
+                <div class="chat-img-wrapper">
                     <img class="chat-user-img" :src="chatRoom.opponent.avatar_url" :alt="chatRoom.customer_name">
                 </div>
-                <div>
-                    <div>{{ chatRoom.opponent.name }}</div>
-                    <!-- <div style="font-size: .8rem;">Dec 25</div> -->
+                <div class="chat-info-wrapper">
+                    <div class="chat-name">{{ chatRoom.opponent.name }}</div>
+                    <div style="font-size: 0.8rem" class="d-md-block d-none">{{ chatRoom.last_message_at }}</div>
                 </div>
             </a>
-        </div>
+        </template>
     </div>
 </template>
 

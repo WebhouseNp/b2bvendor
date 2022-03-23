@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Front\Transformers\AddressResource;
 use Modules\Order\Entities\Order;
+use Modules\Order\Jobs\CancelUnpaidOrders;
 
 class OrderApiController extends Controller
 {
     public function index()
     {
+        // cancel out the unpaid orders
+       CancelUnpaidOrders::dispatch();
+
         $orders = Order::with('orderLists')
             ->when(request()->filled('status'), function ($query) {
                 switch (request('status')) {
@@ -52,7 +56,7 @@ class OrderApiController extends Controller
     {
         abort_unless(auth()->check() && $order->user_id == auth()->user()->id, 403);
 
-        $order->loadMissing(['orderLists.product:id,title,image', 'vendor:id,user_id,shop_name', 'shippingAddress', 'billingAddress']);
+        $order->loadMissing(['orderLists.product:id,title,image,image_thumbnail', 'vendor:id,user_id,shop_name', 'shippingAddress', 'billingAddress']);
         $order->sold_by = $order->vendor->shop_name;
         $order->orderLists->map(function ($orderList) {
             $orderList['product_image_url'] = $orderList->product ? $orderList->product->imageUrl('thumbnail') : 'no_image';
@@ -67,7 +71,7 @@ class OrderApiController extends Controller
 
         return response()->json($order, 200);
     }
-    
+
     public function cancelOrder(Order $order)
     {
         abort_unless(auth()->check() && $order->user_id == auth()->user()->id, 403);
@@ -76,7 +80,7 @@ class OrderApiController extends Controller
         $order->update(['status' => 'cancelled']);
         foreach (admin_users() as $admin) {
             $admin->notify(new \Modules\Order\Notifications\OrderCancelledNotification($order));
-          }
+        }
         $order->vendor->user->notify(new \Modules\Order\Notifications\OrderCancelledNotification($order));
 
         return response()->json(['message' => 'Your order has been cancelled successfully.'], 200);
