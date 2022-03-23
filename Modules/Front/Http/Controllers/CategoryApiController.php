@@ -26,7 +26,8 @@ class CategoryApiController extends Controller
                     'id' => $category->id,
                     'name' => $category->name,
                     'slug' => $category->slug,
-                    'image_url' => $category->imageUrl(),
+                    // 'image_url' => $category->imageUrl(),
+                    'image_url' => $category->imageUrl('thumbnail'),
                     'is_featured' => $category->is_featured,
                     'subcategory' => $category->subcategory->map(function ($category) {
                         return [
@@ -76,7 +77,7 @@ class CategoryApiController extends Controller
                         'id' => $category->id,
                         'name' => $category->name,
                         'slug' => $category->slug,
-                        'image_url' => $category->imageUrl(),
+                        'image_url' => $category->imageUrl('thumbnail'),
                         'is_featured' => $category->is_featured,
                         'subcategory' => $category->subcategory
                     ];
