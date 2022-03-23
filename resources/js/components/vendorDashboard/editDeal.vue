@@ -58,7 +58,7 @@
                         {{ errors }}
                       </p>
                       <div v-for="user in customersList" v-bind:key="user.id">
-                        <div type="button" v-on:click="selectCustomer(user)">
+                        <div type="button" v-on:click="selectCustomer(user)" style="cursor:pointer">
                           <div>{{ user.name }}</div>
                           <p>{{ user.email }}</p>
                         </div>
@@ -76,19 +76,12 @@
                 class="form-control"
                 :class="{ 'is-invalid': validationStatus($v.expire_at) }"
                 lang="en"
-                type="datetime"
+                type="date"
                 valueType="format"
                 style="width:100%; border:none; margin-top: -7px;"
                 :disabled-date="disableDate"
-                placeholder="select date time"
-                :show-time-panel="showTimePanel"
-                @close="handleOpenChange"
+                placeholder="select date "
               >
-              <template v-slot:footer>
-                 <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
-                  {{ showTimePanel ? 'select date' : 'select time' }}
-                </button>
-              </template>
              </date-picker>
               <div
                 v-if="!$v.expire_at.required"
@@ -97,6 +90,14 @@
               >
                 Required.
               </div>
+            </div>
+             <div class="col-lg-6 col-sm-12 form-group">
+              <label><strong>Note</strong></label>
+              <input type="text"
+               class="form-control rounded"
+               v-model="note"
+               placeholder="Add your note here"
+               >
             </div>
           </div>
           <div class="row">
@@ -325,7 +326,7 @@ export default {
   },
   filters: {
     moment(date) {
-      return moment(date).format("YYYY-MM-DD hh:mm:ss");
+      return moment(date).format("YYYY-MM-DD");
     },
   },
   data() {
@@ -343,6 +344,7 @@ export default {
       ],
 
       expire_at: "",
+      note:"",
       customer: {
         id: "",
         name: "",
@@ -363,6 +365,7 @@ export default {
       email: customer.email 
     }
     this.expire_at = this.$options.filters.moment(this.deal.expire_at);
+    this.note = this.deal.note;
     this.invoice_products = this.deal.deal_products.map(element => {
       let product = this.products.find((product) => product.id == element.product_id);
       return {
@@ -504,6 +507,7 @@ export default {
             vendor_id: this.auth,
             customer_id: this.customer.id,
             expire_at: this.expire_at,
+            note: this.note,
             invoice_products: this.invoice_products,
           }
         );
@@ -540,6 +544,7 @@ select {
   border: none;
   margin-left: -10px;
   max-width: 340px;
+  height: auto;
 }
 
 .inputProduct select {
@@ -587,5 +592,9 @@ select {
 /*----spiner color ----*/
 .crateDealLoader {
   padding: 10px;
+}
+
+.form-control.is-invalid{
+  border-color: #cccccc !important;
 }
 </style>
