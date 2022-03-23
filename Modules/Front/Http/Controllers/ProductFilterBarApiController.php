@@ -3,6 +3,7 @@
 namespace Modules\Front\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
 use Modules\Country\Entities\Country;
 
 class ProductFilterBarApiController extends Controller
@@ -44,7 +45,9 @@ class ProductFilterBarApiController extends Controller
 
     private function getCountries()
     {
-        $countries = Country::orderBy('name')->get();
+        $countries = Cache::remember('product-filter-countries', now()->addMinutes(10), function () {
+           return Country::orderBy('name')->get();
+        });
 
         foreach ($countries as $country) {
             $countryList[] = [
