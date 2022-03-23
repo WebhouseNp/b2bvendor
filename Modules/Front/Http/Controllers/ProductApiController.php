@@ -92,6 +92,16 @@ class ProductApiController extends Controller
             ->when($hasFilters, function ($query) use ($withInVendorIds) {
                 return $query->whereIn('vendor_id', $withInVendorIds);
             })
+            ->when(request()->has('price_gt'), function($query) {
+                return $query->whereHas('ranges', function($query) {
+                    return $query->where('price', '>=', request()->price_gt);
+                });
+            })
+            ->when(request()->has('price_lt'), function($query) {
+                return $query->whereHas('ranges', function($query) {
+                    return $query->where('price', '<=', request()->price_lt);
+                });
+            })
             ->active()
             ->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 18);
 
