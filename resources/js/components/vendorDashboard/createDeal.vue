@@ -58,7 +58,7 @@
                         {{ errors }}
                       </p>
                       <div v-for="user in customersList" v-bind:key="user.id">
-                        <div type="button" v-on:click="selectCustomer(user)">
+                        <div type="button" v-on:click="selectCustomer(user)" style="cursor:pointer">
                           <div>{{ user.name }}</div>
                           <p>{{ user.email }}</p>
                         </div>
@@ -75,18 +75,11 @@
                 class="form-control"
                 :class="{ 'is-invalid': validationStatus($v.expire_at) }"
                 lang="en"
-                type="datetime"
+                type="date"
                 :disabled-date="disableDate"
                 style="width: 100%; border:none; margin-top: -7px;"
-                placeholder="select date time"
-                :show-time-panel="showTimePanel"
-                @close="handleOpenChange"
+                placeholder="select date"
               >
-                <template v-slot:footer>
-                  <button class="mx-btn mx-btn-text" @click="toggleTimePanel">
-                    {{ showTimePanel ? "select date" : "select time" }}
-                  </button>
-                </template>
               </date-picker>
               <div
                 v-if="!$v.expire_at.required"
@@ -95,6 +88,14 @@
               >
                 Required.
               </div>
+            </div>
+             <div class="col-lg-6 col-sm-12 form-group">
+              <label><strong>Note</strong></label>
+              <input type="text"
+               class="form-control rounded"
+               v-model="note"
+               placeholder="Add your note here"
+               >
             </div>
           </div>
           <div class="row">
@@ -136,7 +137,7 @@
                       <td class="inputProduct">
                         <div>
                         <multiselect
-                        
+                          class="form-control form"
                           v-model="invoice_product.product_id.$model"
                           :class="{
                             'is-invalid': validationStatus(
@@ -354,6 +355,7 @@ export default {
       ],
 
       expire_at: " ",
+      note:'',
       customer: {
         id: "",
         name: "",
@@ -483,6 +485,7 @@ export default {
           vendor_id: this.auth,
           customer_id: this.customer.id,
           expire_at: this.expire_at,
+          note: this.note,
           invoice_products: this.invoice_products,
         });
         this.loading = false;
@@ -520,6 +523,7 @@ select {
   border: none;
   margin-left: -10px;
   max-width: 340px;
+  height: auto;
 }
 
 .inputProduct select {
@@ -567,5 +571,9 @@ select {
 /*----spiner color ----*/
 .crateDealLoader {
   padding: 10px;
+}
+
+.form-control.is-invalid{
+  border-color: #cccccc !important;
 }
 </style>
