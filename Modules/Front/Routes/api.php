@@ -33,6 +33,9 @@ Route::get('/vendors/find-by-user-id/{userId}', 'VendorApiController@showByUserI
 Route::get('/v/latest-suppliers', 'VendorApiController@getLatestVendors');
 Route::get('/categories-sold-by-vendor/{vendorId}', 'VendorApiController@getCategoriesOfProductSold');
 
+// Items for product filter bar
+Route::get('/product-filter-items', 'ProductFilterBarApiController');
+
 //customer
 // Route::get('/profile/{profile}', 'CustomerApiController@show');
 
@@ -54,7 +57,7 @@ Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 Route::get('megamenu', 'CategoryApiController@megamenu');
 Route::get('hot-categories', 'CategoryApiController@hotCategories');
 
-Route::post('product-search', 'SearchController@productSearch')->name('product.search');
+Route::post('product-search', 'SearchController@productSearch')->name('product.search'); // Doubt on required
 
 //cart part
 Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
+use Modules\Country\Entities\Country;
 use Modules\Front\Transformers\ProductCollection;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
@@ -23,17 +24,36 @@ class ProductApiController extends Controller
         // TODO::Append query string
         // return request();
 
+        $hasFilters = false;
         $withInVendorIds = [];
         if (request()->filled('seller_type')) {
-            $vendors = Vendor::whereIn('category', request()->get('seller_type'))->get();
+            $hasFilters = true;
+            $vendors = Vendor::whereIn('category', request()->get('seller_type'))->pluck('id');
             foreach ($vendors as $vendor) {
-                $withInVendorIds[] = $vendor->id;
+                $withInVendorIds[] = $vendor;
             }
         }
 
+        if (request()->filled('country')) {
+            $hasFilters = true;
+            $vendors = Vendor::whereIn('country_id', request()->get('country'))->pluck('id');
+            foreach ($vendors as $vendor) {
+                $withInVendorIds[] = $vendor;
+            }
+        }
+
+        if (request()->filled('business_type')) {
+            $hasFilters = true;
+            $vendors = Vendor::whereIn('business_type', request()->get('business_type'))->pluck('id');
+            foreach ($vendors as $vendor) {
+                $withInVendorIds[] = $vendor;
+            }
+        }
+        logger($withInVendorIds);
+
         // return $withInVendorIds;
 
-        $products = Product::with(['productCategory', 'ranges','user'])
+        $products = Product::with(['productCategory', 'ranges', 'user'])
             ->productsfromapprovedvendors()
             ->when(request()->filled('q'), function ($query) {
                 return $query->where('title', 'like', '%' . request()->q . '%');
@@ -55,7 +75,7 @@ class ProductApiController extends Controller
             ->when(request()->filled('from_vendor'), function ($query) {
                 return $query->where('user_id', request()->from_vendor);
             })
-            ->when($withInVendorIds, function($query) use ($withInVendorIds) {
+            ->when($hasFilters, function ($query) use ($withInVendorIds) {
                 return $query->whereIn('vendor_id', $withInVendorIds);
             })
             ->active()
@@ -103,7 +123,7 @@ class ProductApiController extends Controller
     {
         $sastoWholesaleStore = Vendor::where('id', sasto_wholesale_store_id())->firstOrFail();
 
-        $products = Product::with(['ranges','user'])
+        $products = Product::with(['ranges', 'user'])
             ->productsfromapprovedvendors()
             ->where('user_id', $sastoWholesaleStore->user_id)
             ->active()
@@ -122,7 +142,7 @@ class ProductApiController extends Controller
 
     public function youMayLike()
     {
-        $products = Product::with(['ranges','user'])
+        $products = Product::with(['ranges', 'user'])
             ->productsfromapprovedvendors()
             ->active()
             ->orderBy('created_at', 'DESC')
