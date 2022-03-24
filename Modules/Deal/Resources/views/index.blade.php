@@ -43,8 +43,8 @@ $api_token = $user->api_token;
                         <td>{{@$data->user->name}}</td>
                         <td>{{@$data->vendorShop->shop_name}}</td>
                         <td>{{ $data->completed_at ? 'Yes' : 'No' }}</td>
-                        <td>{{ $data->expire_at->toDateTimeString() }}
-                            <span>
+                        <td>{{ $data->expire_at->toDateString() }}
+                            <span class="ml-2">
                                 @if ($data->isAvailable())
                                 <i class="fa fa-check text-success"></i>
                                 @else
