@@ -27,11 +27,11 @@ class ChatRoomResource extends JsonResource
     protected function opponentUser()
     {
         if (auth()->id() == $this->customer_user_id) {
-            $vendor = $this->vendorUser;
+            $vendor = $this->vendorUser->vendor;
             return [
                 'id' => $vendor->id ?? null,
-                'name' => $vendor->name ?? null,
-                'avatar_url' => $this->generateAvatarUrl($vendor->name)
+                'name' => $vendor->shop_name ?? null,
+                'avatar_url' => $this->generateAvatarUrl($vendor->shop_name)
             ];
         }
 
