@@ -35,13 +35,13 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
 
-        \DB::listen(function($query) {
-            \Log::info(
-                $query->sql,
-                $query->bindings,
-                $query->time
-            );
-        });
+        // \DB::listen(function($query) {
+        //     \Log::info(
+        //         $query->sql,
+        //         $query->bindings,
+        //         $query->time
+        //     );
+        // });
 
         // Disable the auto refresh of laravel-debugbar
         // \Debugbar::getJavascriptRenderer()->setAjaxHandlerAutoShow(false);
