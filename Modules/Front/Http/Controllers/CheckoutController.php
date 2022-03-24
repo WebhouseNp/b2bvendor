@@ -115,7 +115,6 @@ class CheckoutController extends Controller
                 'order_id' => $order->id,
                 'payment_type' => $order->payment_type,
             ], 200);
-
         } catch (\Throwable $e) {
             DB::rollBack();
             logger("An error occured while checkout.");
@@ -140,12 +139,12 @@ class CheckoutController extends Controller
         }
 
         // at this point the range should not exist or is not applicable
-        $rangeWithoutTo = $product->ranges->whereNull('to');
+        $rangeWithoutTo = $product->ranges->whereNull('to')->first();
 
         if (!$rangeWithoutTo) {
             throw new \Exception('No range found for product: ' . $product->title);
         }
 
-        return $product->ranges->where('from', '<=', $quantity)->first()->price;
+        return $product->ranges->whereNull('to')->where('from', '<=', $quantity)->first()->price;
     }
 }
