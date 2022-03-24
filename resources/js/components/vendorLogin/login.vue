@@ -71,10 +71,9 @@
                     <div class="form-check pl-0">
                       <input
                         type="checkbox"
-                        class="form-check-input"
+                        style="position: absolute; margin-top: 0.3rem;"
                         id="rememberMe"
                         v-model="remember_me"
-                        style="margin-left: 0; margin-top: 6px"
                       />
                       <label class="form-check-label ml-3" for="rememberMe"
                         >Remember Me</label
@@ -385,6 +384,10 @@ export default {
 .signup {
   font-size: 14px;
   text-align: center;
+}
+
+.signup a{
+  color: #1e76bd;
 }
 
 .pt-login-nav {

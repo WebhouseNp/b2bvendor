@@ -17,17 +17,6 @@
 <script>
 export default {
   name:"AboutUS",
-   methods:{
-    termsConditations(){
-      window.location.href="/terms-conditations";
-    },
-    termsUse(){
-      window.location.href="/terms-of-use";
-    },
-    privacyPolicy(){
-      window.location.href="/privacy-policy";
-    },
-  }
 };
 </script>
 
