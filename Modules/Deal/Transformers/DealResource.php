@@ -31,6 +31,7 @@ class DealResource extends JsonResource
             'deal_products' => $this->formattedDealProducts(),
             'vendor' => CustomerResource::make($this->whenLoaded('vendor')), // the vendor user
             'vendor_shop' => VendorResource::make($this->whenLoaded('vendorShop')),
+            'note' => $this->note
         ];
     }
 
