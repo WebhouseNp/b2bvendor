@@ -84,6 +84,7 @@ Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 // Partners
 Route::get('our-partners', 'PartnerApiController@allPartners');
 Route::get('partners-carousel', 'PartnerApiController@carousel');
+Route::post('become-partner','BecomePartnerController@store');
 
 //Blogs
 Route::get('all-blogs', [BlogApiController::class, 'index'])->name('api.blogs.index');

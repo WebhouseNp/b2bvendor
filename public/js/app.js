@@ -3597,11 +3597,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -5941,7 +5936,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -6364,18 +6358,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AboutUS",
-  methods: {
-    termsConditations: function termsConditations() {
-      window.location.href = "/terms-conditations";
-    },
-    termsUse: function termsUse() {
-      window.location.href = "/terms-of-use";
-    },
-    privacyPolicy: function privacyPolicy() {
-      window.location.href = "/privacy-policy";
-    }
-  }
+  name: "AboutUS"
 });
 
 /***/ }),
@@ -7703,7 +7686,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.login-main {\r\n  position: relative;\n}\n.login-form-card {\r\n  position: absolute;\r\n  top: 50%;\r\n  left: 50%;\r\n  transform: translate(-50%, -50%);\r\n  width: 450px;\n}\n.logo {\r\n  height: 80px;\n}\n.vendor-bg {\r\n  background: url(\"/images/pexels-photo-5668841.jpeg\") no-repeat;\r\n  background-size: cover;\r\n  background-position: center center;\n}\n.vendor-overlay {\r\n  padding: 104px 0;\r\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vendor-title {\r\n  color: #ffffff;\r\n  font-size: 2.8rem;\r\n  font-weight: 500;\r\n  line-height: 1.5;\n}\n.vendor-sign-in-form,\r\n.vendor-section {\r\n  background: #f2f3f7;\n}\n.vendor-btn {\r\n  margin-bottom: 2rem;\n}\n.vendor-form {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.vendor-form-bt {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.form-check {\r\n  margin-bottom: 1rem;\n}\r\n\r\n/*************** Steps ****************/\n.step-div {\r\n  display: inline-block;\r\n  width: 200px;\r\n  padding: 12px;\r\n  background: #ffffff;\r\n  box-shadow: 1px 1px 6px 0px lightblue;\n}\n.step-group {\r\n  display: flex;\r\n  justify-content: space-around;\n}\n.step-subtitle {\r\n  color: #ffa500;\r\n  font-size: 1.2rem;\r\n  font-weight: 500;\n}\n.step-div-h1 {\r\n  color: #1e76bd;\n}\n.step-div-p {\r\n  font-weight: 500;\n}\n.vendor-img-wrap {\r\n  margin: 1.4rem 0;\n}\n@media screen and (max-width: 600px) {\n.step-group {\r\n    flex-direction: column;\r\n    align-items: center;\r\n    text-align: center;\n}\n.step-div:not(:last-child) {\r\n    margin-bottom: 1.8rem;\n}\n.login-form-card {\r\n    width: 90%;\n}\n}\n.field-icon {\r\n  float: right;\r\n  margin-right: 10px;\r\n  margin-top: -30px;\r\n  position: relative;\r\n  z-index: 2;\r\n  cursor: pointer;\n}\r\n\r\n/* new */\n.login-main {\r\n  background-image: linear-gradient(\r\n      to bottom,\r\n      rgba(0, 0, 0, 0.3),\r\n      rgba(0, 183, 255, 0.3)\r\n    ),\r\n    url(\"/images/pexels-photo-5668841.jpeg\");\r\n  background-size: cover;\r\n  background-position: center center;\r\n  background-repeat: no-repeat;\r\n  position: relative;\r\n  background-position: center;\r\n  min-height: 100vh;\r\n  padding: 50px 0px;\n}\n.login-title {\r\n  text-align: center;\r\n  font-size: 24px;\r\n  color: #252829;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  margin: 10px 0 20px 0;\n}\n.login-title span {\r\n  color: #fc0001;\n}\n.login-card {\r\n  border-radius: 5px !important;\n}\n.login-card label {\r\n  font-size: 14px;\n}\n.login-card .btn {\r\n  cursor: pointer;\r\n  display: block;\r\n  width: 100%;\r\n  margin-bottom: 15px;\r\n\r\n  padding: 10px 0;\r\n  font-size: 16px;\r\n  border-radius: 35px;\r\n  -webkit-border-radius: 35px;\r\n  -moz-border-radius: 35px;\r\n  -ms-border-radius: 35px;\r\n  -o-border-radius: 35px;\n}\n.login-card .btn-primary {\r\n  background-color: #1d75bd;\n}\n.login-span {\r\n  color: #757575;\r\n  font-size: 13px;\n}\n.third-party-login {\r\n  margin-top: 10px;\n}\n.login-card .btn-facebook {\r\n  color: #fff;\r\n  background-color: #3b5998;\n}\n.login-card:hover {\r\n  box-shadow: 0 0 0 0 #fff !important;\n}\n.btn-google {\r\n  color: #fff;\r\n  background-color: #d34836;\n}\n.link-forget {\r\n  margin: 15px 0;\r\n  text-align: center;\n}\n.link-forget a {\r\n  font-size: 14px;\r\n  color: #1e76bd;\n}\n.signup {\r\n  font-size: 14px;\r\n  text-align: center;\n}\n.pt-login-nav {\r\n  padding: 15px 0px;\r\n  background-color: #fff;\n}\n.logo-img {\r\n  height: 55px;\r\n  margin-bottom: 20px;\n}\n.copyright {\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  color: #fff;\n}\n.copyright p a {\r\n  color: #fff;\r\n  text-decoration: underline;\n}\r\n\r\n/* .copyright p a:hover {\r\n  color: #1e76bd;\r\n} */\n.pt-fp {\r\n  position: absolute;\r\n  right: 30px;\r\n  font-size: 14px;\r\n  color: #1e76bd;\n}\n.icon-cl i {\r\n  color: #535758;\r\n  font-size: 14px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.login-main {\r\n  position: relative;\n}\n.login-form-card {\r\n  position: absolute;\r\n  top: 50%;\r\n  left: 50%;\r\n  transform: translate(-50%, -50%);\r\n  width: 450px;\n}\n.logo {\r\n  height: 80px;\n}\n.vendor-bg {\r\n  background: url(\"/images/pexels-photo-5668841.jpeg\") no-repeat;\r\n  background-size: cover;\r\n  background-position: center center;\n}\n.vendor-overlay {\r\n  padding: 104px 0;\r\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vendor-title {\r\n  color: #ffffff;\r\n  font-size: 2.8rem;\r\n  font-weight: 500;\r\n  line-height: 1.5;\n}\n.vendor-sign-in-form,\r\n.vendor-section {\r\n  background: #f2f3f7;\n}\n.vendor-btn {\r\n  margin-bottom: 2rem;\n}\n.vendor-form {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.vendor-form-bt {\r\n  padding: 18px 20px;\r\n  border: 1px solid lightgray;\n}\n.form-check {\r\n  margin-bottom: 1rem;\n}\r\n\r\n/*************** Steps ****************/\n.step-div {\r\n  display: inline-block;\r\n  width: 200px;\r\n  padding: 12px;\r\n  background: #ffffff;\r\n  box-shadow: 1px 1px 6px 0px lightblue;\n}\n.step-group {\r\n  display: flex;\r\n  justify-content: space-around;\n}\n.step-subtitle {\r\n  color: #ffa500;\r\n  font-size: 1.2rem;\r\n  font-weight: 500;\n}\n.step-div-h1 {\r\n  color: #1e76bd;\n}\n.step-div-p {\r\n  font-weight: 500;\n}\n.vendor-img-wrap {\r\n  margin: 1.4rem 0;\n}\n@media screen and (max-width: 600px) {\n.step-group {\r\n    flex-direction: column;\r\n    align-items: center;\r\n    text-align: center;\n}\n.step-div:not(:last-child) {\r\n    margin-bottom: 1.8rem;\n}\n.login-form-card {\r\n    width: 90%;\n}\n}\n.field-icon {\r\n  float: right;\r\n  margin-right: 10px;\r\n  margin-top: -30px;\r\n  position: relative;\r\n  z-index: 2;\r\n  cursor: pointer;\n}\r\n\r\n/* new */\n.login-main {\r\n  background-image: linear-gradient(\r\n      to bottom,\r\n      rgba(0, 0, 0, 0.3),\r\n      rgba(0, 183, 255, 0.3)\r\n    ),\r\n    url(\"/images/pexels-photo-5668841.jpeg\");\r\n  background-size: cover;\r\n  background-position: center center;\r\n  background-repeat: no-repeat;\r\n  position: relative;\r\n  background-position: center;\r\n  min-height: 100vh;\r\n  padding: 50px 0px;\n}\n.login-title {\r\n  text-align: center;\r\n  font-size: 24px;\r\n  color: #252829;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  margin: 10px 0 20px 0;\n}\n.login-title span {\r\n  color: #fc0001;\n}\n.login-card {\r\n  border-radius: 5px !important;\n}\n.login-card label {\r\n  font-size: 14px;\n}\n.login-card .btn {\r\n  cursor: pointer;\r\n  display: block;\r\n  width: 100%;\r\n  margin-bottom: 15px;\r\n\r\n  padding: 10px 0;\r\n  font-size: 16px;\r\n  border-radius: 35px;\r\n  -webkit-border-radius: 35px;\r\n  -moz-border-radius: 35px;\r\n  -ms-border-radius: 35px;\r\n  -o-border-radius: 35px;\n}\n.login-card .btn-primary {\r\n  background-color: #1d75bd;\n}\n.login-span {\r\n  color: #757575;\r\n  font-size: 13px;\n}\n.third-party-login {\r\n  margin-top: 10px;\n}\n.login-card .btn-facebook {\r\n  color: #fff;\r\n  background-color: #3b5998;\n}\n.login-card:hover {\r\n  box-shadow: 0 0 0 0 #fff !important;\n}\n.btn-google {\r\n  color: #fff;\r\n  background-color: #d34836;\n}\n.link-forget {\r\n  margin: 15px 0;\r\n  text-align: center;\n}\n.link-forget a {\r\n  font-size: 14px;\r\n  color: #1e76bd;\n}\n.signup {\r\n  font-size: 14px;\r\n  text-align: center;\n}\n.signup a{\r\n  color: #1e76bd;\n}\n.pt-login-nav {\r\n  padding: 15px 0px;\r\n  background-color: #fff;\n}\n.logo-img {\r\n  height: 55px;\r\n  margin-bottom: 20px;\n}\n.copyright {\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  color: #fff;\n}\n.copyright p a {\r\n  color: #fff;\r\n  text-decoration: underline;\n}\r\n\r\n/* .copyright p a:hover {\r\n  color: #1e76bd;\r\n} */\n.pt-fp {\r\n  position: absolute;\r\n  right: 30px;\r\n  font-size: 14px;\r\n  color: #1e76bd;\n}\n.icon-cl i {\r\n  color: #535758;\r\n  font-size: 14px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -65077,41 +65060,6 @@ var render = function () {
                 ),
               ])
             : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ml-auto" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-link text-white p-0 mr-2",
-                  attrs: {
-                    to: {
-                      name: "messages",
-                      params: { chatRoomId: this.chatRoom.id },
-                    },
-                  },
-                },
-                [_c("i", { staticClass: "fa fa-expand" })]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-link text-white p-0",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.closeChatPopup()
-                    },
-                  },
-                },
-                [_c("i", { staticClass: "fa fa-times" })]
-              ),
-            ],
-            1
-          ),
         ]
       ),
     ]),
@@ -65164,7 +65112,6 @@ var render = function () {
         _vm._l(_vm.queueMessages, function (message) {
           return _c("div", { key: message.ts, staticClass: "d-flex my-1" }, [
             _c("div", { staticClass: "message outgoing" }, [
-              _vm._v("\n        x\n        "),
               _c("div", { staticClass: "bloc text-block" }, [
                 _vm._v(_vm._s(message.message)),
               ]),
@@ -68167,10 +68114,9 @@ var render = function () {
                               expression: "remember_me",
                             },
                           ],
-                          staticClass: "form-check-input",
                           staticStyle: {
-                            "margin-left": "0",
-                            "margin-top": "6px",
+                            position: "absolute",
+                            "margin-top": "0.3rem",
                           },
                           attrs: { type: "checkbox", id: "rememberMe" },
                           domProps: {
