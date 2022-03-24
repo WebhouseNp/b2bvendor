@@ -71,7 +71,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Partner Request Details</h4>
+          <h4 class="modal-title">Job Details</h4>
         </div>
         <div class="modal-body">
           
@@ -127,9 +127,10 @@ $(document).ready(function(){
         id=$(this).data('id');
         $.ajax({
             method:"post",
-            url:"view-partner-request/",
+            url:"{{route('viewPartnerRequest')}}",
             data:{id:id},
             success:function(data){
+                console.log(data);
                 $('#myModal .modal-body').html(data);
                 $('#myModal').modal('show');
             }
