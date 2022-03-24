@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Modules\Front\Http\Controllers\BlogApiController;
 use Modules\Front\Http\Controllers\CheckoutController;
+use Modules\Front\Http\Controllers\ConnectipsPaymentController;
 use Modules\Front\Http\Controllers\CustomerApiController;
+use Modules\Front\Http\Controllers\EsewaPaymentController;
 use Modules\Front\Http\Controllers\FaqApiController;
 use Modules\Front\Http\Controllers\NewArrivalsProductApiController;
 use Modules\Front\Http\Controllers\OrderApiController;
@@ -70,6 +72,8 @@ Route::get('my-address', [ProfileController::class, 'getAddress'])->middleware('
 
 // Checkout
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
+Route::get('setup-esewa-payment/{order}', [EsewaPaymentController::class, 'setupPayment']);
+Route::get('setup-connectips-payment/{order}', [ConnectipsPaymentController::class, 'setupPayment']);
 Route::get('customer/orders', [OrderApiController::class, 'index'])->middleware('auth:api');
 Route::get('customer/orders/{order}', [OrderApiController::class, 'show'])->middleware('auth:api');
 Route::post('cancel-order/{order}', [OrderApiController::class, 'cancelOrder'])->middleware('auth:api');

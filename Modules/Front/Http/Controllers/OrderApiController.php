@@ -14,7 +14,7 @@ class OrderApiController extends Controller
     public function index()
     {
         // cancel out the unpaid orders
-       CancelUnpaidOrders::dispatch();
+    //    CancelUnpaidOrders::dispatch();
 
         $orders = Order::with('orderLists')
             ->when(request()->filled('status'), function ($query) {

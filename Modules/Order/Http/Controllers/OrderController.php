@@ -20,7 +20,7 @@ class OrderController extends Controller
     {
         $this->authorize('manageOrders');
        
-        CancelUnpaidOrders::dispatch();
+        // CancelUnpaidOrders::dispatch();
 
         $vendors = Vendor::whereHas('user', function ($q) {
             $q->where('vendor_type', 'approved');

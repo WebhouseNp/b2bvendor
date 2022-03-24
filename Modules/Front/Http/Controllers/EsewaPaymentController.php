@@ -3,14 +3,25 @@
 namespace Modules\Front\Http\Controllers;
 
 use App\Service\EsewaService;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Order\Entities\Order;
 
-class PaymentController extends Controller
+class EsewaPaymentController extends Controller
 {
-    public function esewaSuccess(Request $request, EsewaService $esewaService)
+    protected $esewaService;
+
+    public function __construct(EsewaService $esewaService)
+    {
+        $this->esewaService = $esewaService;
+    }
+
+    public function setupPayment(Order $order)
+    {
+        return response()->json($this->esewaService->generatePaymentDetails($order), 200);
+    }
+
+    public function success(Request $request)
     {
         $order = Order::findOrFail($request->oid);
 
@@ -20,7 +31,7 @@ class PaymentController extends Controller
             'pid' => $order->id,
         ];
 
-        if ($esewaService->verifyPayment($data)) {
+        if ($this->esewaService->verifyPayment($data)) {
             $order->update([
                 'payment_status' => 'paid',
                 'payment_type' => 'esewa',
@@ -32,7 +43,7 @@ class PaymentController extends Controller
         return 'payment failed';
     }
 
-    public function esewaFailed(Request $request)
+    public function failed(Request $request)
     {
         return ' Esewa failed';
     }
