@@ -46,4 +46,10 @@ class BecomePartnerController extends Controller
 
         return response()->json(['status' => 'successful', 'message' => 'Form Submitted Successfully.'],201);
     }
+
+    public function viewPartnerRequest(Request $request){
+        $detail = BecomePartner::findOrFail($request->id);
+        return view('partner::partner-request-view', compact('detail'));
+        // return view('partner::partner-request-view', compact('partner'));
+    }
 }

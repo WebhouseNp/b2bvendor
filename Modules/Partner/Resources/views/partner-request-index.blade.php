@@ -38,7 +38,8 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('partner.edit', $data->id) }}" class="btn btn-primary border-0"><i class="fa fa-eye"></i> View</a>
+                            <a href=""  class="btn btn-success btn-sm view" data-id="{{$data->id}}"><i
+                                    class="fa fa-eye"></i></a>
                                 <!-- <div class="mx-2"></div>
                                 <form action="{{ route('partner.destroy', $data->id) }}" class="js-delete-partner-form form-inline d-inline" method="post" class="d-inline">
                                     @csrf()
@@ -63,7 +64,25 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Partner Request Details</h4>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
 
+    </div>
+  </div>
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
@@ -100,6 +119,23 @@
         });
     })
 
+</script>
+<script>
+$(document).ready(function(){
+    $(".view").click(function(e) {
+        e.preventDefault();
+        id=$(this).data('id');
+        $.ajax({
+            method:"post",
+            url:"view-partner-request/",
+            data:{id:id},
+            success:function(data){
+                $('#myModal .modal-body').html(data);
+                $('#myModal').modal('show');
+            }
+        });
+    });
+});
 </script>
 <script>
     function FailedResponseFromDatabase(message) {
