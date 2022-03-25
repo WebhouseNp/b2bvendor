@@ -10,6 +10,7 @@ use Modules\Front\Http\Controllers\FaqApiController;
 use Modules\Front\Http\Controllers\NewArrivalsProductApiController;
 use Modules\Front\Http\Controllers\OrderApiController;
 use Modules\Front\Http\Controllers\TopProductApiController;
+use Modules\Partner\Http\Controllers\BecomePartnerController;
 use Modules\User\Http\Controllers\ProfileController;
 
 Route::middleware('auth:api')->get('/front', function (Request $request) {
@@ -84,7 +85,7 @@ Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 // Partners
 Route::get('our-partners', 'PartnerApiController@allPartners');
 Route::get('partners-carousel', 'PartnerApiController@carousel');
-Route::post('become-partner','BecomePartnerController@store');
+Route::post('partner-request',[BecomePartnerController::class, 'store']);
 
 //Blogs
 Route::get('all-blogs', [BlogApiController::class, 'index'])->name('api.blogs.index');
