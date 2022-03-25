@@ -28,7 +28,8 @@ class BecomePartnerController extends Controller
             'full_name' => 'required',
             'email' => 'required',
             'designation' => 'required',
-            'phone' => 'required'
+            'phone' => 'required',
+            'address' => 'required'
         ]);
         
         BecomePartner::create([
@@ -50,6 +51,5 @@ class BecomePartnerController extends Controller
     public function viewPartnerRequest(Request $request){
         $detail = BecomePartner::findOrFail($request->id);
         return view('partner::partner-request-view', compact('detail'));
-        // return view('partner::partner-request-view', compact('partner'));
     }
 }

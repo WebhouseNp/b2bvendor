@@ -64,7 +64,7 @@
         #productImages .img-wrap img {
             overflow: hidden;
             width: 100%;
-                aspect-ratio: 900 / 900;
+            aspect-ratio: 900 / 900;
         }
 
         #productImages .img-wrap .del-image-btn {
@@ -99,43 +99,42 @@
         /* Left sidebar */
         /* Scrollable content in sidebar only in large screens */
         @media screen AND (min-width: 600px) {
-        .page-sidebar {
-            position: fixed;
-            height: calc(100vh - 56px);
-            min-height: calc(100vh - 56px);
-        }
+            .page-sidebar {
+                position: fixed;
+                height: calc(100vh - 56px);
+                min-height: calc(100vh - 56px);
+            }
 
-        #sidebar-collapse {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+            #sidebar-collapse {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
 
-        #sidebar-collapse .side-menu {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-bottom: 100px;
-            scrollbar
-        }
+            #sidebar-collapse .side-menu {
+                flex-grow: 1;
+                overflow-y: auto;
+                padding-bottom: 100px;
+                scrollbar
+            }
 
-        .side-menu::-webkit-scrollbar {
-            width: 10px;
-        }
+            .side-menu::-webkit-scrollbar {
+                width: 10px;
+            }
 
-        .side-menu::-webkit-scrollbar-thumb {
-            background-color: transparent;
-            border-radius: 4px;
-        }
+            .side-menu::-webkit-scrollbar-thumb {
+                background-color: transparent;
+                border-radius: 4px;
+            }
 
-        .side-menu:hover::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.4);
-        }
+            .side-menu:hover::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.4);
+            }
 
-        .side-menu::-webkit-scrollbar-thumb:hover {
-            background: #778af1;
+            .side-menu::-webkit-scrollbar-thumb:hover {
+                background: #778af1;
+            }
         }
-    }
-
     </style>
 
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
@@ -147,20 +146,20 @@
         <header class="header">
             <div class="page-brand">
                 <!-- <a class="link" href="#"> -->
-                    <span class="brand">
-                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
-                        {{ auth()->user()->name }}
-                        @else
-                        {{ auth()->user()->vendor->shop_name }}
-                        @endif
-                    </span>
-                    <span class="brand-mini text-nowrap">
-                        @if(auth()->user()->hasAnyRole('admin|super_admin'))
-                        {{ auth()->user()->name }}
-                        @else
-                        {{ auth()->user()->vendor->shop_name }}
-                        @endif
-                    </span>
+                <span class="brand">
+                    @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                    {{ auth()->user()->name }}
+                    @else
+                    {{ auth()->user()->vendor->shop_name }}
+                    @endif
+                </span>
+                <span class="brand-mini text-nowrap">
+                    @if(auth()->user()->hasAnyRole('admin|super_admin'))
+                    {{ auth()->user()->name }}
+                    @else
+                    {{ auth()->user()->vendor->shop_name }}
+                    @endif
+                </span>
                 <!-- </a> -->
             </div>
             <div class="flexbox flex-1">
@@ -182,6 +181,11 @@
                 </h4>
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
+                    @if(auth()->user()->hasRole('vendor'))
+                    <li class="nav-item">
+                        <x-vendor-support class="btn btn-secondary btn-sm border-0"></x-vendor-support>
+                    </li>
+                    @endif
                     <li class="nav-item">
                         <x-notification-bell></x-notification-bell>
                     </li>

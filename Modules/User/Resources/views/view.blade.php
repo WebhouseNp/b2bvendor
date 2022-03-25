@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="ibox">
-    <x-profile></x-profile>
+        <x-profile></x-profile>
         <!-- <div class="ibox-head">
             <ul class="plain-nav-tabs nav nav-tabs lavalamp" id="component-1" role="tablist">
                 <li class="nav-item">
@@ -47,36 +47,36 @@
                                         <div class="col-md-4 mb-4">
                                             <label class="title-label">Category</label>
                                             <div class="text-capitalize">{{ Str::replace('_', ' ', $vendor->vendor->category) }}</div>
-                                          </div>
-                                          <div class="col-md-4 mb-4">
+                                        </div>
+                                        <div class="col-md-4 mb-4">
                                             <label class="title-label">Email</label>
                                             <div>{{ $vendor->vendor->company_email }}</div>
-                                          </div>
-                                          <div class="col-md-4 mb-4">
+                                        </div>
+                                        <div class="col-md-4 mb-4">
                                             <label class="title-label">Address</label>
                                             <div>{{ $vendor->vendor->company_address }}</div>
-                                          </div>
-                                          <div class="col-md-4 mb-4">
+                                        </div>
+                                        <div class="col-md-4 mb-4">
                                             <label class="title-label">Country</label>
                                             <div>{{ $vendor->vendor->country->name }}</div>
-                                          </div>
-                                          <div class="col-md-4 mb-4">
+                                        </div>
+                                        <div class="col-md-4 mb-4">
                                             <label class="title-label">Plan</label>
                                             <div class="text-capitalize">{{ Str::replace('_', ' ', $vendor->vendor->plan) }}</div>
-                                          </div>
-                                          <div class="col-md-4 mb-4">
+                                        </div>
+                                        <div class="col-md-4 mb-4">
                                             <label class="title-label">Phone</label>
                                             <div>{{ $vendor->vendor->phone_number }}</div>
-                                          </div>
-                                          <div class="col-md-4 mb-4">
+                                        </div>
+                                        <div class="col-md-4 mb-4">
                                             <label class="title-label">Status</label>
                                             <div>{{ ucfirst($vendor->vendor_type) }}</div>
-                                          </div>
-                                          <div class="col-md-4 mb-4">
+                                        </div>
+                                        <div class="col-md-4 mb-4">
                                             <label class="title-label">Business Type</label>
                                             <div>{{ ucfirst($vendor->vendor->business_type) }}</div>
-                                          </div>
-                                          <div class="col-md-12 mb-4">
+                                        </div>
+                                        <div class="col-md-12 mb-4">
                                             <label class="title-label">Type of Product</label>
                                             <div>
                                                 @foreach($vendor->vendor->categories as $cat)
@@ -86,7 +86,7 @@
                                                 @endif
                                                 @endforeach
                                             </div>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,6 +146,16 @@
             </div>
         </div>
     </div>
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <p><strong>Opps Something went wrong</strong></p>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="ibox">
         <div class="ibox-body">
             <form action="{{ route('vendor.updateCommisson') }}" method="POST">
@@ -154,7 +164,7 @@
                     <input type="hidden" name="vendor_id" value="{{ $vendor->id }}">
                     <div class="col-md-4 form-group">
                         <label><strong>Commission Rate(In %)</strong></label>
-                        <input class="form-control" type="number" name="commission_rate" value="{{@$vendor->vendor->commission_rate}}" placeholder="Enter Commisson rate here">
+                        <input class="form-control" type="text" name="commission_rate" value="{{@$vendor->vendor->commission_rate}}" placeholder="Enter Commisson rate here">
                     </div>
                     <div class="col-md-4 form-group">
                         <label><strong>Vendor status</strong></label>
@@ -166,14 +176,14 @@
                     </div>
                     @if(@$vendor->vendor->note)
                     <div class="col-md-8 md-form mb-4" id="note">
-                    <label><strong style="color: red;">Note :</strong> </label>
-                    <textarea name="note" class="md-textarea form-control" placeholder="Enter your reasion here" rows="3">{!! @$vendor->vendor->note !!}
+                        <label><strong style="color: red;">Note :</strong> </label>
+                        <textarea name="note" class="md-textarea form-control" placeholder="Enter your reasion here" rows="3">{!! @$vendor->vendor->note !!}
                     </textarea>
                     </div><br>
                     @endif
                     <div class="col-md-8 md-form mb-4 hidden" id="note">
-                    <label><strong style="color: red;">Note :</strong> </label>
-                    <textarea name="note" class="md-textarea form-control" placeholder="Enter your reason here" rows="8"></textarea>
+                        <label><strong style="color: red;">Note :</strong> </label>
+                        <textarea name="note" class="md-textarea form-control" placeholder="Enter your reason here" rows="8"></textarea>
                     </div><br>
                     <div class="col-md-12 form-group d-flex align-items-end">
                         <button type="submit" class="btn btn-success btn-lg"><i class="fa-solid fa-paper-plane"></i> Submit</button>
@@ -214,14 +224,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-3">
         <div class="card stats-card fade-in-up">
             <div class="card-body">
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                        <i class="fa-brands fa-product-hunt"></i>
+                            <i class="fa-brands fa-product-hunt"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -283,7 +293,7 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                        <i class="fa-solid fa-money-bill"></i>
+                            <i class="fa-solid fa-money-bill"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -325,8 +335,8 @@
     })
 </script>
 <script type="text/javascript">
-    $(function () {
-        $("#vendor_status").change(function () {
+    $(function() {
+        $("#vendor_status").change(function() {
             if ($(this).val() == "suspended") {
                 $("#note").show();
             } else {
