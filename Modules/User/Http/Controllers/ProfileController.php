@@ -155,21 +155,7 @@ class ProfileController extends Controller
 
   public function imageUpload(Request $request, User $user){
 
-    if($request->hasFile('image')){
-      $file = $request-file('image');
-      $image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $file));
-      $tmpFilePath=sys_get_temp_dir().'/'.uniqid(); 
-      file_put_contents($tmpFilePath, $image_data); 
-      $imageName = time().'.'.str_replace("image/","",$mime_type);
-      $mime_type = finfo_buffer($f, $image_data, FILEINFO_MIME_TYPE);
-      $imageName = time().'.'.$mime_type;
-      $tmpFile=new File($tmpFilePath);
-      $tmpFile->move(public_path('slider_uploads'), $imageName);
-      File::move($tmpFilePath, public_path("slider_uploads/$imageName")); 
-      $slider->img_url = $imageName;
-      $slider->save();
-      return response()->json(['success'=>$imageName]);
-        }
+    
 
   }
   
