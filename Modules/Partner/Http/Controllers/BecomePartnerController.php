@@ -38,7 +38,7 @@ class BecomePartnerController extends Controller
             'address' => $request->address,
             'company_phone' => $request->company_phone,
             'eastablished_year' => $request->eastablished_year,
-            'partner_type' => $request->partner_type_id,
+            'partner_type_id' => $request->partner_type_id,
             'company_web' => $request->company_web,
             'full_name' => $request->full_name,
             'email' => $request->email,
@@ -50,6 +50,7 @@ class BecomePartnerController extends Controller
     }
 
     public function viewPartnerRequest(Request $request){
+        abort_unless(auth()->user()->hasAnyRole('super_admin|admin'), 403);
         $detail = BecomePartner::findOrFail($request->id);
         return view('partner::partner-request-view', compact('detail'));
     }
