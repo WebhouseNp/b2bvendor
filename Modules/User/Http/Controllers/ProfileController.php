@@ -2,6 +2,7 @@
 
 namespace Modules\User\Http\Controllers;
 
+use App\Service\ImageService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -17,8 +18,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
+
+
 class ProfileController extends Controller
 {
+
+  protected $imageService;
+
+  public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
   public function index()
   {
     return view('user::index');
@@ -97,7 +108,7 @@ class ProfileController extends Controller
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
-      $formInput = $request->except('publish', 'image');
+      $formInput = $request->except('publish');
       $formInput['publish'] = 1;
       // if ($request->hasFile('image')) {
       //   if ($user->image) {
@@ -124,24 +135,20 @@ class ProfileController extends Controller
   public function updateImage(Request $request, User $user){
     try {
       $validator = Validator::make($request->all(), [
-        'image' => 'required',
+        'avatar' => 'required',
       ]);
 
       if ($validator->fails()) {
         return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
         exit;
       }
-      $formInput = $request->except('image');
-      if ($request->hasFile('image')) {
-        if ($user->image) {
-          $this->unlinkImage($user->image);
-        }
-        if ($request->image) {
-          $image = $this->imageProcessing('img-', base64_decode($request->file('image')));
-          $user['image'] = 'jhvhjvjvv';
-        }
-      }
-      $user->update($formInput);
+      //upload image
+      if ($request->hasFile('avatar')) {
+        $this->deleteMainUserImage($user);
+        $user->image = $this->imageService->storeImage($request->file('avatar'));
+    }
+       $user->update();
+      
       return response()->json([
         "message" => "User Profile updated Successfully!!",
         "data" => $user
@@ -152,47 +159,17 @@ class ProfileController extends Controller
       ], 400);
     }
   }
-
-  public function imageUpload(Request $request, User $user){
-
-    
-
-  }
   
   public function profileImage(User $user)
   {
     return CustomerResource::make($user);
   }
 
-  public function imageProcessing($type, $image)
+
+  protected function deleteMainUserImage(User $user)
   {
-    $input['imagename'] = $type . time() . '.' . $image->getClientOriginalExtension();
-    $thumbPath = public_path() . "/images/thumbnail";
-    if (!File::exists($thumbPath)) {
-      File::makeDirectory($thumbPath, 0777, true, true);
-    }
-    $listingPath = public_path() . "/images/listing";
-    if (!File::exists($listingPath)) {
-      File::makeDirectory($listingPath, 0777, true, true);
-    }
-    $img1 = Image::make($image->getRealPath());
-    $img1->fit(99, 88)->save($thumbPath . '/' . $input['imagename']);
-
-
-    $img2 = Image::make($image->getRealPath());
-    $img2->save($listingPath . '/' . $input['imagename']);
-
-    return $input['imagename'];
-  }
-
-  public function unlinkImage($imagename)
-  {
-    $thumbPath = public_path('images/thumbnail/') . $imagename;
-    $listingPath = public_path('images/listing/') . $imagename;
-    if (file_exists($thumbPath))
-      unlink($thumbPath);
-    if (file_exists($listingPath))
-      unlink($listingPath);
-    return;
+      if ($user->image) {
+          $this->imageService->unlinkImage($user->image);
+      }
   }
 }
