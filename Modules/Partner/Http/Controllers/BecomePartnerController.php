@@ -2,6 +2,7 @@
 
 namespace Modules\Partner\Http\Controllers;
 
+use App\Rules\Mobile;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -24,11 +25,11 @@ class BecomePartnerController extends Controller
             'partner_type_id' => 'required|numeric|exists:partner_types,id',
             'company_phone' => 'required',
             'eastablished_year' => 'required',
-            'company_web' => 'nullable',
+            'company_web' => 'nullable|url',
             'full_name' => 'required',
             'email' => 'required',
             'designation' => 'required',
-            'phone' => 'required',
+            'phone' => ['required', new Mobile],
         ]);
         
         BecomePartner::create([
