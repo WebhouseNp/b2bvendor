@@ -208,17 +208,6 @@
                   </ol>
                 </li>
                 <li>
-                  While setting up the shop, it is important that you setup your
-                  own terms &amp; conditions for buyers, such as return &amp;
-                  refund policy. You can do this from your seller portal. Please
-                  make sure to include the following details in your listing:
-                  <ol>
-                    <li>Delivery &amp; Return policy</li>
-                    <li>Taxes &amp; any applicable government imposed fees.</li>
-                    <li>Terms of the transaction.</li>
-                  </ol>
-                </li>
-                <li>
                   You will receive a message by email at the time of each sale,
                   providing full information about that sale.
                 </li>
