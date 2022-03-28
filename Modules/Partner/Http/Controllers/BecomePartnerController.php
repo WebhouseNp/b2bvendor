@@ -24,12 +24,11 @@ class BecomePartnerController extends Controller
             'partner_type_id' => 'required|numeric|exists:partner_types,id',
             'company_phone' => 'required',
             'eastablished_year' => 'required',
-            'company_web' => 'required',
+            'company_web' => 'nullable',
             'full_name' => 'required',
             'email' => 'required',
             'designation' => 'required',
             'phone' => 'required',
-            'address' => 'required'
         ]);
         
         BecomePartner::create([

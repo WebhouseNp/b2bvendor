@@ -6882,6 +6882,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -7782,7 +7842,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-728131a6],\r\nh4[data-v-728131a6],\r\n.note[data-v-728131a6] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-728131a6] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\n}\n.list[data-v-728131a6] {\r\n  list-style: none;\r\n  font-family: var(--font-primary);\r\n  margin-bottom: 20px;\n}\n.list h5[data-v-728131a6] {\r\n  font-weight: 600;\r\n  color: #495057;\r\n  margin-bottom: 20px;\n}\n.list p[data-v-728131a6] {\r\n  margin-left: 40px;\n}\n.list ul[data-v-728131a6] {\r\n  list-style: disc;\n}\n.list ul[data-v-728131a6],\r\nol[data-v-728131a6] {\r\n  margin-left: 50px;\r\n  margin-bottom: 20px;\n}\n.list ol[data-v-728131a6] {\r\n  list-style-type: upper-roman;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.list h5[data-v-728131a6] {\r\n    width: 100%;\r\n    text-align: center;\r\n    flex-basis: unset;\n}\n.description[data-v-728131a6]{\r\n    margin-left: 0;\r\n    margin-right: 26px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-728131a6],\r\nh4[data-v-728131a6],\r\n.note[data-v-728131a6] {\r\n  font-weight: 600;\r\n  color: #7c7c7d;\n}\n.description[data-v-728131a6] {\r\n  margin-left: 50px;\r\n  margin-right: 50px;\n}\n.list[data-v-728131a6] {\r\n  list-style: none;\r\n  font-family: var(--font-primary);\r\n  margin-bottom: 20px;\n}\n.list h5[data-v-728131a6] {\r\n  font-weight: 600;\r\n  color: #495057;\r\n  margin-bottom: 20px;\n}\n.list p[data-v-728131a6] {\r\n  margin-left: 40px;\n}\n.list ul[data-v-728131a6] {\r\n  list-style: disc;\n}\n.list ul[data-v-728131a6],\r\nol[data-v-728131a6] {\r\n  margin-left: 50px;\r\n  margin-bottom: 20px;\n}\n.list ol[data-v-728131a6] {\r\n  list-style-type: upper-roman;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.list h5[data-v-728131a6] {\r\n    width: 100%;\r\n    text-align: center;\r\n    flex-basis: unset;\n}\n.description[data-v-728131a6] {\r\n    margin-left: 0;\r\n    margin-right: 26px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -69441,6 +69501,84 @@ var render = function () {
               _c("h5", [_vm._v("8.The selling Procedure")]),
               _vm._v(" "),
               _c("ul", [
+                _c("li", [
+                  _c("h5", [_vm._v("The Selling Procedure of Local Seller")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "\n                  While setting up the shop, it is important that you setup\n                  your own terms & conditions for buyers, such as return\n                  & refund policy. You can do this from your seller\n                  portal. Please make sure to include or confirm the following\n                  details in your listing or to your customer.\n                "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("ol", [
+                    _c("li", [
+                      _vm._v(
+                        "\n                    Although, you will be allowed to do transaction outside\n                    our website for Bank deposit, you need to create deals to\n                    maintain website policy & our commission.\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        '\n                    Inform to check "My deals" to your customer in each new\n                    deal.\n                  '
+                      ),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("h5", [
+                    _vm._v(
+                      "\n                  The Selling Procedure of International seller to\n                  International Buyer\n                "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "\n                  While setting up the shop, it is important that you setup\n                  your own terms & conditions for buyers, such as return\n                  & refund policy. You can do this from your seller\n                  portal. Please make sure to include or confirm the following\n                  details in your listing or to your customer.\n                "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("ol", [
+                    _c("li", [_vm._v("Delivery & Return policy")]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v("Taxes & any applicable government imposed fees."),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Terms of the transaction")]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    The buyer must have import license/Exim code for import.\n                    So, Confirm if buyer have import license first.\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    Confirm if they have Purchase, Payment & Transport\n                    agent in your country.\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    Although, you will be allowed to do transaction outside\n                    our website for TT/LC, you need to create deals to\n                    maintain website policy & our commission.\n                  "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        '\n                    Inform to check "My deals" to your customer in each new\n                    deal.\n                  '
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._v(
+                        "\n                    You must use Sastowholesale.com logistics only for\n                    shipping to international buyers.\n                  "
+                      ),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
                 _c("li", [
                   _vm._v(
                     "\n                While setting up the shop, it is important that you setup your\n                own terms & conditions for buyers, such as return &\n                refund policy. You can do this from your seller portal. Please\n                make sure to include the following details in your listing:\n                "
