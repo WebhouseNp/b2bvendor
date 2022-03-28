@@ -20,15 +20,16 @@ class BecomePartnerController extends Controller
         $request->validate([
             'company_name' => 'required|max:255',
             'company_email' => 'required',
+            'address' => 'required',
             'partner_type_id' => 'required|numeric|exists:partner_types,id',
             'company_phone' => 'required',
             'eastablished_year' => 'required',
             'company_web' => 'required',
-            'partner_type' => 'required',
             'full_name' => 'required',
             'email' => 'required',
             'designation' => 'required',
-            'phone' => 'required'
+            'phone' => 'required',
+            'address' => 'required'
         ]);
         
         BecomePartner::create([
@@ -44,12 +45,11 @@ class BecomePartnerController extends Controller
             'phone' => $request->phone
         ]);
 
-        return response()->json(['status' => 'successful', 'message' => 'Form Submitted Successfully.'],201);
+        return response()->json(['status' => 'successful', 'message' => 'Form Submitted Successfully.'],200);
     }
 
     public function viewPartnerRequest(Request $request){
         $detail = BecomePartner::findOrFail($request->id);
         return view('partner::partner-request-view', compact('detail'));
-        // return view('partner::partner-request-view', compact('partner'));
     }
 }

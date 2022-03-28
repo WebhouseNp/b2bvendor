@@ -66,7 +66,7 @@ class VendorManagementController extends Controller
       $request->validate([
          'vendor_id'      => 'required|numeric|exists:users,id',
          'vendor_type'          => 'nullable',
-         'commission_rate'          => 'nullable',
+         'commission_rate'          => 'numeric',
          'note'                     => 'nullable',
       ]);
       $user = User::where('id', $request->vendor_id)->first();

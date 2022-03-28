@@ -18,7 +18,7 @@
         <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
                 <span class="info-box-icon bg-success">
-                <i class="fa-brands fa-google-wallet text-white"></i>
+                    <i class="fa-brands fa-google-wallet text-white"></i>
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Sales from Online Payment</span>
@@ -41,7 +41,7 @@
         <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
                 <span class="info-box-icon bg-red text-white">
-                <i class="fa-solid fa-money-bill"></i>
+                    <i class="fa-solid fa-money-bill"></i>
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Payable Amount To Admin</span>
@@ -53,7 +53,7 @@
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="info-box">
                 <span class="info-box-icon bg-success text-white">
-                <i class="fa-solid fa-money-bill"></i>
+                    <i class="fa-solid fa-money-bill"></i>
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Receivable Amount From Admin</span>
@@ -92,7 +92,7 @@
     </div>
 
     <div class="my-4"></div>
-    
+
     <x-dashboard.latest-orders-tile></x-dashboard.latest-orders-tile>
 
 </div>
