@@ -30,15 +30,15 @@ class BecomePartnerController extends Controller
             'email' => 'required',
             'designation' => 'required',
             'phone' => ['required', new Mobile],
-            'address' => 'required'
         ]);
         
         BecomePartner::create([
             'company_name' => $request->company_name,
             'company_email' => $request->company_email,
             'address' => $request->address,
+            'company_phone' => $request->company_phone,
             'eastablished_year' => $request->eastablished_year,
-            'partner_type_id' => $request->partner_type_id,
+            'partner_type' => $request->partner_type_id,
             'company_web' => $request->company_web,
             'full_name' => $request->full_name,
             'email' => $request->email,

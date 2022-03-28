@@ -16,6 +16,7 @@ use  Modules\User\Entities\VendorPayment;
 use  Modules\Product\Entities\Product;
 use Modules\Quotation\Entities\Quotation;
 use Modules\User\Entities\Address;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -45,7 +46,7 @@ class User extends Authenticatable
         'designation',
         'oauth_id',
         'oauth_type',
-        'avatar'
+        'image_thumbnail'
     ];
 
     /**
@@ -183,10 +184,10 @@ class User extends Authenticatable
         }
 
         if ($size == 'thumbnail') {
-            return asset('images/thumbnail/' . $this->image);
+            return Storage::url($this->image_thumbnail);
         }
 
-        return asset('images/listing/' . $this->image);
+        return Storage::url($this->image);
     }
 
     public function quotations()

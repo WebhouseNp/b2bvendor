@@ -218,20 +218,6 @@ class ProductStorageController extends Controller
 
             $product->update();
 
-            // if (count($product->ranges)) {
-            //     $product->ranges()->delete();
-            // }
-            // foreach ($request->from as $key => $val) {
-            //     if (!empty($val)) {
-            //         $range = new Range();
-            //         $range->product_id = $product->id;
-            //         $range->from = $val;
-            //         $range->to = $request->to[$key] ?? null;
-            //         $range->price = $request->prices[$key];
-            //         $range->save();
-            //     }
-            // }
-
             DB::commit();
 
             return response()->json([
