@@ -6931,17 +6931,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -69576,21 +69565,6 @@ var render = function () {
                         "\n                    You must use Sastowholesale.com logistics only for\n                    shipping to international buyers.\n                  "
                       ),
                     ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _vm._v(
-                    "\n                While setting up the shop, it is important that you setup your\n                own terms & conditions for buyers, such as return &\n                refund policy. You can do this from your seller portal. Please\n                make sure to include the following details in your listing:\n                "
-                  ),
-                  _c("ol", [
-                    _c("li", [_vm._v("Delivery & Return policy")]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v("Taxes & any applicable government imposed fees."),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [_vm._v("Terms of the transaction.")]),
                   ]),
                 ]),
                 _vm._v(" "),
