@@ -3527,6 +3527,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3544,11 +3546,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["chatRoom"],
   data: function data() {
     return {
-      show: true
+      show: false,
+      user: null
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    window.addEventListener("show-chat-info", function (e) {
+      _this.show = true;
+    });
+  },
+  methods: {
+    loadUser: function loadUser() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chat-customer-info/".concat(this.chatRoom.customer_user_id)).then(function (response) {
+        _this2.user = response.data;
+      });
+    },
+    hideChatInfo: function hideChatInfo() {
+      this.show = false;
+    }
+  },
+  watch: {
+    show: function show() {
+      if (!this.user) {
+        this.loadUser();
+      }
+    }
   }
 });
 
@@ -3702,7 +3738,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     fetchOpponentUser: function fetchOpponentUser() {
       this.opponentUser = this.chatRoom.customer_user;
-      showInformation;
     },
     joinChatRoom: function joinChatRoom() {
       var _this2 = this;
@@ -3821,7 +3856,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log("loading older messages");
     },
     showInformation: function showInformation() {
-      alert("Show Information");
+      window.dispatchEvent(new Event("show-chat-info"));
     }
   },
   computed: {
@@ -7904,7 +7939,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-728131a6],\nh4[data-v-728131a6],\n.note[data-v-728131a6] {\n  font-weight: 600;\n  color: #7c7c7d;\n}\n.description[data-v-728131a6] {\n  margin-left: 50px;\n  margin-right: 50px;\n}\n.list[data-v-728131a6] {\n  list-style: none;\n  font-family: var(--font-primary);\n  margin-bottom: 20px;\n}\n.list h5[data-v-728131a6] {\n  font-weight: 600;\n  color: #495057;\n  margin-bottom: 20px;\n}\n.list p[data-v-728131a6] {\n  margin-left: 40px;\n}\n.list ul[data-v-728131a6] {\n  list-style: disc;\n}\n.list ul[data-v-728131a6],\nol[data-v-728131a6] {\n  margin-left: 50px;\n  margin-bottom: 20px;\n}\n.list ol[data-v-728131a6] {\n  list-style-type: upper-roman;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.list h5[data-v-728131a6] {\n    width: 100%;\n    text-align: center;\n    flex-basis: unset;\n}\n.description[data-v-728131a6]{\n    margin-left: 0;\n    margin-right: 26px;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading h3[data-v-728131a6],\nh4[data-v-728131a6],\n.note[data-v-728131a6] {\n  font-weight: 600;\n  color: #7c7c7d;\n}\n.description[data-v-728131a6] {\n  margin-left: 50px;\n  margin-right: 50px;\n}\n.list[data-v-728131a6] {\n  list-style: none;\n  font-family: var(--font-primary);\n  margin-bottom: 20px;\n}\n.list h5[data-v-728131a6] {\n  font-weight: 600;\n  color: #495057;\n  margin-bottom: 20px;\n}\n.list p[data-v-728131a6] {\n  margin-left: 40px;\n}\n.list ul[data-v-728131a6] {\n  list-style: disc;\n}\n.list ul[data-v-728131a6],\nol[data-v-728131a6] {\n  margin-left: 50px;\n  margin-bottom: 20px;\n}\n.list ol[data-v-728131a6] {\n  list-style-type: upper-roman;\n}\n@media (min-width: 320px) and (max-width: 768px) {\n.list h5[data-v-728131a6] {\n    width: 100%;\n    text-align: center;\n    flex-basis: unset;\n}\n.description[data-v-728131a6] {\n    margin-left: 0;\n    margin-right: 26px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -65269,41 +65304,52 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _vm.show
     ? _c("div", { staticClass: "information-modal border-left shadow" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "content py-4 px-5" }, [
+          _vm.user
+            ? _c("div", [
+                _c("div", { staticClass: "text-center mb-4" }, [
+                  _c("img", {
+                    staticStyle: {
+                      height: "200px",
+                      width: "200px",
+                      "background-position": "cover",
+                    },
+                    attrs: { src: _vm.user.avatar_url },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-center" }, [
+                  _c("h4", { staticClass: "h4-responsive" }, [
+                    _vm._v(_vm._s(_vm.user.name)),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("Phone: " + _vm._s(_vm.user.phone))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("Email: " + _vm._s(_vm.user.email))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("Address: " + _vm._s(_vm.user.address))]),
+                ]),
+              ])
+            : _c("div", { staticClass: "py-5" }, [
+                _vm._v("\n      Please wait...\n    "),
+              ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text- p-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-block",
+                attrs: { type: "button" },
+                on: { click: _vm.hideChatInfo },
+              },
+              [_vm._v("Close")]
+            ),
+          ]),
+        ]),
       ])
     : _vm._e()
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content py-4 px-5" }, [
-      _c("div", { staticClass: "text-center mb-4" }, [
-        _c("img", {
-          staticStyle: {
-            height: "200px",
-            width: "200px",
-            "background-position": "cover",
-          },
-          attrs: {
-            src: "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center" }, [
-        _c("h4", { staticClass: "h4-responsive" }, [_vm._v("James Bhatta")]),
-        _vm._v(" "),
-        _c("div", [_vm._v("Phone: 986570910")]),
-        _vm._v(" "),
-        _c("div", [_vm._v("Email: jmsbhatta@gmail.com")]),
-        _vm._v(" "),
-        _c("div", [_vm._v("Address: Chatakput-4, Kailai, Nepal")]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -65515,7 +65561,7 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("chat-info"),
+      _c("chat-info", { attrs: { "chat-room": _vm.chatRoom } }),
     ],
     1
   )

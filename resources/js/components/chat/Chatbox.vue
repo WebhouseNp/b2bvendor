@@ -44,7 +44,7 @@
       </form>
     </div>
 
-    <chat-info></chat-info>
+    <chat-info :chat-room="chatRoom"></chat-info>
   </div>
 </template>
 
@@ -52,7 +52,7 @@
 import axios from "axios";
 import MessageBlock from "./MessageBlock.vue";
 import Swal from "sweetalert2";
-import ChatInfo from './ChatInfo.vue';
+import ChatInfo from "./ChatInfo.vue";
 
 export default {
   components: { MessageBlock, ChatInfo },
@@ -89,7 +89,6 @@ export default {
   methods: {
     fetchOpponentUser() {
       this.opponentUser = this.chatRoom.customer_user;
-      showInformation;
     },
 
     joinChatRoom() {
@@ -203,7 +202,7 @@ export default {
     },
 
     showInformation() {
-      alert("Show Information");
+      window.dispatchEvent(new Event("show-chat-info"));
     },
   },
 

@@ -1,28 +1,62 @@
 <template>
-    <div v-if="show" class="information-modal border-left shadow">
-      <div class="content py-4 px-5">
+  <div v-if="show" class="information-modal border-left shadow">
+    <div class="content py-4 px-5">
+      <div v-if="user">
         <div class="text-center mb-4">
-          <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" style="height: 200px; width: 200px; background-position: cover" />
+          <img :src="user.avatar_url" style="height: 200px; width: 200px; background-position: cover" />
         </div>
         <div class="text-center">
-          <h4 class="h4-responsive">James Bhatta</h4>
-          <div>Phone: 986570910</div>
-          <div>Email: jmsbhatta@gmail.com</div>
-          <div>Address: Chatakput-4, Kailai, Nepal</div>
+          <h4 class="h4-responsive">{{ user.name }}</h4>
+          <div>Phone: {{ user.phone }}</div>
+          <div>Email: {{ user.email }}</div>
+          <div>Address: {{ user.address }}</div>
         </div>
       </div>
-      <!-- <div class="text- p-2"><button class="btn btn-primary btn-block">Close</button></div> -->
+      <div v-else class="py-5">
+        Please wait...
+      </div>
+      <div class="text- p-2"><button type="button" class="btn btn-primary btn-block" @click="hideChatInfo">Close</button></div>
     </div>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-    data() {
-        return {
-            show: true,
-        }
-    }
-}
+  props: ["chatRoom"],
+  data() {
+    return {
+      show: false,
+      user: null,
+    };
+  },
+
+  mounted() {
+    window.addEventListener("show-chat-info", (e) => {
+      this.show = true;
+    });
+  },
+
+  methods: {
+    loadUser() {
+      axios.get(`/api/chat-customer-info/${this.chatRoom.customer_user_id}`).then((response) => {
+        this.user = response.data;
+      });
+    },
+
+    hideChatInfo() {
+      this.show = false;
+    },
+  },
+
+  watch: {
+    show() {
+      if (!this.user) {
+        this.loadUser();
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -13,4 +13,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('chats/{chatRoom}/messages', [MessageController::class, 'index']);
     Route::post('messages/{chatRoom}', [MessageController::class, 'store']);
     Route::delete('messages', [MessageController::class, 'destroy']);
+
+    Route::get('chat-customer-info/{user}', [ChatRoomApiController::class, 'customerInfo']);
 });
