@@ -66,4 +66,16 @@ class ChatRoomApiController extends Controller
             'message' => 'Conversation has been deleted.'
         ], 204);
     }
+
+    public function customerInfo(\App\Models\User $user)
+    {
+        $address = $user->address;
+        return response()->json([
+            'name' => $user->name,
+            'avatar_url' => $user->imageUrl(),
+            'phone' => $user->phone_num,
+            'email' => $user->email,
+            'address' => $address->city . ',' . $address->country,
+        ]);
+    }
 }

@@ -39,7 +39,7 @@
                         <td>
                             <div class="d-flex align-items-center">
                             <a href=""  class="btn btn-success btn-sm view" data-id="{{$data->id}}"><i
-                                    class="fa fa-eye"></i></a>
+                                    class="fa fa-eye"> </i> View </a>
                                 <!-- <div class="mx-2"></div>
                                 <form action="{{ route('partner.destroy', $data->id) }}" class="js-delete-partner-form form-inline d-inline" method="post" class="d-inline">
                                     @csrf()

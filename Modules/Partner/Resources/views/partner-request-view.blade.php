@@ -14,7 +14,14 @@
         <td>Company Email</td>
         <td>{{$detail->company_email}}</td>
       </tr>
-      
+      <tr class="danger">
+        <td>Company Phone</td>
+        <td>{{$detail->company_phone}}</td>
+      </tr>
+      <tr class="danger">
+        <td>Partner Type</td>
+        <td>{{$detail->PartnerType->name}}</td>
+      </tr>
       <tr class="danger">
         <td>Established Year</td>
         <td>{{$detail->eastablished_year}}</td>

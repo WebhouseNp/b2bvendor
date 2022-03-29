@@ -4,26 +4,6 @@
 <div class="container-fluid py-4">
 
     <div class="row">
-        <div class="col-lg-6 col-md-6 mb-3">
-            <div class="info-box">
-                <span class="info-box-icon bg-info">
-                <i class="fa-solid fa-envelope-open-text"></i>
-                </span>
-                <div class="info-box-content">
-                    <span class="info-box-number">Email: Vendor@sastowholesale.com</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 mb-3">
-            <div class="info-box">
-                <span class="info-box-icon bg-info">
-                    <i class="fa-brands fa-whatsapp text-white"></i>
-                </span>
-                <div class="info-box-content">
-                    <span class="info-box-number">Phone:  +9779801030410</span>
-                </div>
-            </div>
-        </div>
         <div class="col-lg-4 col-md-6 mb-3">
             <div class="info-box">
                 <span class="info-box-icon bg-info">

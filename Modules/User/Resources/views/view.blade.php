@@ -201,7 +201,7 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-user icon-warning"></i>
+                            <i class="fa fa-user fa-4x icon-warning"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -231,7 +231,7 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa-brands fa-product-hunt"></i>
+                            <i class="fa-brands fa-product-hunt fa-4x"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -265,7 +265,7 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa fa-bar-chart icon-success"></i>
+                            <i class="fa fa-bar-chart fa-4x icon-success"></i>
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -293,7 +293,8 @@
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon">
-                            <i class="fa-solid fa-money-bill"></i>
+                            <i class="fa-solid fa-money-bill fa-4x"></i>
+                            <!-- <i class="fa fa-camera-retro fa-5x"></i> -->
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
@@ -302,18 +303,13 @@
                                 Due Amount: {{ formatted_price($due) }}
                             </a>
                         </p>
-                        <!-- <div class="card-category-count">
-                            {{ formatted_price($due) }}
-                        </div> -->
-                        <!-- <span class="card-category-count"></span> -->
-
                     </div>
                 </div>
             </div>
             <div class="card-footer border-0">
                 <hr>
                 <div class="stats">
-                    <a>
+                    <a style="color: grey;">
                         <i class="fa fa-refresh"></i>
                         Updated
                     </a>
