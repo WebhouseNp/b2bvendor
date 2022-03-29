@@ -183,9 +183,9 @@ class User extends Authenticatable
             return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
         }
 
-        if ($size == 'thumbnail') {
-            return Storage::url($this->image_thumbnail);
-        }
+        // if ($size == 'thumbnail') {
+        //     return Storage::url($this->image_thumbnail);
+        // }
 
         return Storage::url($this->image);
     }
