@@ -1,11 +1,14 @@
 <template>
   <div class="conversation-wrapper">
-    <div class="conversation-header px-4 py-3 border-bottom">
+    <div class="conversation-header d-flex px-4 py-3 border-bottom">
       <div class="d-flex align-items-center" style="gap: 1rem">
         <div :class="{ 'text-success': isOpponentActive, 'text-danger': !isOpponentActive }"><i class="fa fa-circle" aria-hidden="true"></i></div>
-        <h6 class="text-capitalize" v-if="opponentUser">
+        <h6 class="text-capitalize mb-0" v-if="opponentUser">
           {{ opponentUser.name }}
         </h6>
+      </div>
+      <div class="ml-auto">
+        <button class="btn btn-primary" style="border-radius: 50%" type="button" @click="showInformation"><i class="fa fa-info"></i></button>
       </div>
     </div>
     <div class="conversation py-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }" @v-chat-scroll-top-reached="loadOlderMessages">
@@ -40,6 +43,8 @@
         <button type="submit" class="btn btn-send px-md-2"><i class="fa fa-paper-plane"></i></button>
       </form>
     </div>
+
+    <chat-info></chat-info>
   </div>
 </template>
 
@@ -47,9 +52,10 @@
 import axios from "axios";
 import MessageBlock from "./MessageBlock.vue";
 import Swal from "sweetalert2";
+import ChatInfo from './ChatInfo.vue';
 
 export default {
-  components: { MessageBlock },
+  components: { MessageBlock, ChatInfo },
   name: "ChatBox",
   props: ["user", "vendorUserId", "chatRoom"],
   data() {
@@ -83,6 +89,7 @@ export default {
   methods: {
     fetchOpponentUser() {
       this.opponentUser = this.chatRoom.customer_user;
+      showInformation;
     },
 
     joinChatRoom() {
@@ -193,6 +200,10 @@ export default {
     loadOlderMessages() {
       this.loadingMessages = true;
       console.log("loading older messages");
+    },
+
+    showInformation() {
+      alert("Show Information");
     },
   },
 
