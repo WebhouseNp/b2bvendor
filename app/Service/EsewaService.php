@@ -31,7 +31,7 @@ class EsewaService
                 'pid' => $order->id,
                 'scd' => $this->merchantId,
                 'su' => route('payment.esewa_success'),
-                'fu' => route('payment.esewa_failed')
+                'fu' => config('constants.customer_app_url') . '/my-orders/' . $order->id . '?payment_failed=true'
             ]
         ];
     }
