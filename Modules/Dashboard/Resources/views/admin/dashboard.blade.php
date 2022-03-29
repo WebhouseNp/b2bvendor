@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-md-4 mb-4">
-            <div class="small-box">
+            <!-- <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($totalSales) }}</h3>
                     <p>Total Sales</p>
@@ -13,16 +13,17 @@
                 <div class="icon">
                     <i class="fa fa-shopping-bag text-aqua"></i>
                 </div>
-            </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Total Sales</p>
-                    <h2>{{ formatted_price($totalSales) }}</h2>
-                </div>
             </div> -->
+            <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="fa fa-bar-chart text-white"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Sales</span>
+                    <span class="info-box-number">{{ formatted_price($totalSales) }}</span>
+                </div>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
-            <div class="small-box">
+            <!-- <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($salesFromOnlinePayment) }}</h3>
                     <p>Sales from Online Payment</p>
@@ -30,16 +31,17 @@
                 <div class="icon">
                 <i class="fa-brands fa-google-wallet text-green"></i>
                 </div>
-            </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Sales from Online Payment</p>
-                    <h2>{{ formatted_price($salesFromOnlinePayment) }}</h2>
-                </div>
             </div> -->
+            <div class="info-box">
+                <span class="info-box-icon bg-green text-white"><i class="fa-brands fa-google-wallet"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Sales from Online Payment</span>
+                    <span class="info-box-number">{{ formatted_price($salesFromOnlinePayment) }}</span>
+                </div>
+            </div>
         </div>
         <div class="col-md-4 mb-4">
-            <div class="small-box">
+            <!-- <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($salesFromCOD) }}</h3>
                     <p>Sales from COD</p>
@@ -47,17 +49,18 @@
                 <div class="icon">
                 <i class="fa-solid fa-money-bill text-gold"></i>
                 </div>
-            </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Sales from COD</p>
-                    <h2>{{ formatted_price($salesFromCOD) }}</h2>
-                </div>
             </div> -->
+            <div class="info-box">
+                <span class="info-box-icon bg-warning text-white"><i class="fa-solid fa-money-bill"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Sales from COD</span>
+                    <span class="info-box-number">{{ formatted_price($salesFromCOD) }}</span>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4 mb-4">
-            <div class="small-box">
+            <!-- <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($receivableFromVendors) }}</h3>
                     <p>Receivable Amount From Vendors</p>
@@ -65,18 +68,19 @@
                 <div class="icon">
                     <i class="fa fa-credit-card text-red"></i>
                 </div>
-            </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Receivable Amount From Vendors</p>
-                    <h2>{{ formatted_price($receivableFromVendors) }}</h2>
-                </div>
             </div> -->
+            <div class="info-box">
+                <span class="info-box-icon bg-green text-white"><i class="fa fa-credit-card"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Receivable Amount From Vendors</span>
+                    <span class="info-box-number">{{ formatted_price($receivableFromVendors) }}</span>
+                </div>
+            </div>
         </div>
 
 
         <div class="col-md-4 mb-4">
-            <div class="small-box">
+            <!-- <div class="small-box">
                 <div class="inner">
                     <h3>{{ formatted_price($payableToVendors) }}</h3>
                     <p>Payable Amount To Vendors</p>
@@ -84,31 +88,34 @@
                 <div class="icon">
                     <i class="fa fa-credit-card text-gold"></i>
                 </div>
-            </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Payable Amount To Vendors</p>
-                    <h2>{{ formatted_price($payableToVendors) }}</h2>
-                </div>
             </div> -->
+            <div class="info-box">
+                <span class="info-box-icon bg-green text-white"><i class="fa fa-credit-card"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Payable Amount To Vendors</span>
+                    <span class="info-box-number">{{ formatted_price($payableToVendors) }}</span>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4 mb-4">
-            <div class="small-box">
+            <!-- <div class="small-box">
                 <div class="inner">
                     <h3>{{ $totalActiveProductsCount }}</h3>
                     <p><a href="{{route('product.index')}}" class="text-dark">Active Products</a></p>
                 </div>
+                <span class="info-box-icon bg-green text-white"><i class="fa fa-truck"></i></span>
                 <div class="icon">
                     <i class="fa fa-cubes text-aqua"></i>
                 </div>
-            </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Active Products</p>
-                    <h2>{{ $totalActiveProductsCount }}</h2>
-                </div>
             </div> -->
+            <div class="info-box">
+                <span class="info-box-icon bg-green text-white"><i class="fa fa-cubes text-white"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text"><a href="{{route('product.index')}}" class="text-dark">Active Products</a></span>
+                    <span class="info-box-number">{{ $totalActiveProductsCount }}</span>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4 mb-4">
@@ -119,13 +126,6 @@
                     <span class="info-box-number">{{ $totalActiveVendors }}</span>
                 </div>
             </div>
-
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p> Active Vendors</p>
-                    <h2>{{ $totalActiveVendors }}</h2>
-                </div>
-            </div> -->
         </div>
 
         <div class="col-md-4 mb-4">
@@ -136,12 +136,6 @@
                     <span class="info-box-number">{{ $totalNewVendors }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p> Vendor Requests</p>
-                    <h2>{{ $totalNewVendors }}</h2>
-                </div>
-            </div> -->
         </div>
         
         <div class="col-md-4 mb-4">
@@ -152,12 +146,6 @@
                     <span class="info-box-number">{{ $totalCustomers }}</span>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-body">
-                    <p>Customers</p>
-                    <h2>{{ $totalCustomers }}</h2>
-                </div>
-            </div> -->
         </div>
     </div>
 

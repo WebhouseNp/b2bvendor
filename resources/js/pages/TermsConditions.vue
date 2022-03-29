@@ -148,14 +148,63 @@
               <h5>8.The selling Procedure</h5>
               <ul>
                 <li>
-                  While setting up the shop, it is important that you setup your
-                  own terms &amp; conditions for buyers, such as return &amp;
-                  refund policy. You can do this from your seller portal. Please
-                  make sure to include the following details in your listing:
+                  <h5>The Selling Procedure of Local Seller</h5>
+                  <p>
+                    While setting up the shop, it is important that you setup
+                    your own terms &amp; conditions for buyers, such as return
+                    &amp; refund policy. You can do this from your seller
+                    portal. Please make sure to include or confirm the following
+                    details in your listing or to your customer.
+                  </p>
+                  <ol>
+                    <li>
+                      Although, you will be allowed to do transaction outside
+                      our website for Bank deposit, you need to create deals to
+                      maintain website policy &amp; our commission.
+                    </li>
+                    <li>
+                      Inform to check "My deals" to your customer in each new
+                      deal.
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <h5>
+                    The Selling Procedure of International seller to
+                    International Buyer
+                  </h5>
+                  <p>
+                    While setting up the shop, it is important that you setup
+                    your own terms &amp; conditions for buyers, such as return
+                    &amp; refund policy. You can do this from your seller
+                    portal. Please make sure to include or confirm the following
+                    details in your listing or to your customer.
+                  </p>
                   <ol>
                     <li>Delivery &amp; Return policy</li>
                     <li>Taxes &amp; any applicable government imposed fees.</li>
-                    <li>Terms of the transaction.</li>
+                    <li>Terms of the transaction</li>
+                    <li>
+                      The buyer must have import license/Exim code for import.
+                      So, Confirm if buyer have import license first.
+                    </li>
+                    <li>
+                      Confirm if they have Purchase, Payment &amp; Transport
+                      agent in your country.
+                    </li>
+                    <li>
+                      Although, you will be allowed to do transaction outside
+                      our website for TT/LC, you need to create deals to
+                      maintain website policy &amp; our commission.
+                    </li>
+                    <li>
+                      Inform to check "My deals" to your customer in each new
+                      deal.
+                    </li>
+                    <li>
+                      You must use Sastowholesale.com logistics only for
+                      shipping to international buyers.
+                    </li>
                   </ol>
                 </li>
                 <li>
@@ -302,7 +351,7 @@ ol {
     text-align: center;
     flex-basis: unset;
   }
-  .description{
+  .description {
     margin-left: 0;
     margin-right: 26px;
   }

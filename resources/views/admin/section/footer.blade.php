@@ -14,7 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- PAGE LEVEL PLUGINS-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- CORE SCRIPTS-->
 <script src="{{asset('/assets/admin/js/app.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/js/BsMultiSelect.bs4.min.js') }}" type="text/javascript"></script>
