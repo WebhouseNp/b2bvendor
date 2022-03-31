@@ -2,7 +2,8 @@
 @include('admin.section.header')
 <!-- END HEADER-->
 <!-- START SIDEBAR-->
-@include('admin.section.left-sidebar')
+{{-- @include('admin.section.left-sidebar') --}}
+<x-admin-sidebar></x-admin-sidebar>
 <!-- END SIDEBAR-->
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->

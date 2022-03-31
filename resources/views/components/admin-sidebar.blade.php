@@ -1,6 +1,3 @@
-@php
-$user = auth()->user();
-@endphp
 <nav class="page-sidebar" id="sidebar">
     <div id="sidebar-collapse">
         <div class="admin-block d-flex">
@@ -31,7 +28,7 @@ $user = auth()->user();
                 <ul class="nav-2-level collapse">
                     @if(!is_alternative_login())
                     <li>
-                        <a href="{{route('editVendorProfile',$user->id)}}">
+                        <a href="{{route('editVendorProfile',auth()->id())}}">
                             <span class="fa fa-edit"></span>
                             Edit Profile
                         </a>
@@ -46,13 +43,16 @@ $user = auth()->user();
                 </ul>
             </li>
 
-            {{-- @can('accessChat')
+            @can('accessChat')
             <li>
                 <a href="/chat" target="_blank"><i class="sidebar-item-icon fa fa-comments"></i>
                     <span class="nav-label">Chat</span>
+                    @if($hasUnseenMessages)
+                    <i class="fa fa-circle text-success arrow"></i>
+                    @endif
                 </a>
             </li>
-            @endcan --}}
+            @endcan
             @endif
             @can('manageDeals')
             <li>
@@ -371,7 +371,7 @@ $user = auth()->user();
                 <ul class="nav-2-level collapse">
                     <li>
                         <a href="{{route('partner-request.index')}}">
-                        <i class="fa-brands fa-osi"></i>
+                            <i class="fa-brands fa-osi"></i>
                             All Partner Requests
                         </a>
                     </li>
@@ -451,13 +451,13 @@ $user = auth()->user();
                     <li>
                         <a href="{{route('user.index')}}">
                             <i class="fa-brands fa-osi"></i>
-                            All Vendors 
+                            All Vendors
                         </a>
                     </li>
                     <li>
                         <a href="{{route('user.getAllCustomers')}}">
                             <i class="fa-brands fa-osi"></i>
-                            All Customers 
+                            All Customers
                         </a>
                     </li>
                 </ul>
@@ -480,7 +480,7 @@ $user = auth()->user();
                     </li> -->
                     <li>
                         <a href="{{route('role.index')}}">
-                        <i class="fa-brands fa-osi"></i>
+                            <i class="fa-brands fa-osi"></i>
                             All Roles
                         </a>
                     </li>
@@ -532,20 +532,20 @@ $user = auth()->user();
                 <ul class="nav-2-level collapse">
                     <li>
                         <a href="{{ route('settings.sastowholesale-mall.index') }}">
-                        <i class="fa-brands fa-gg-circle"></i>
+                            <i class="fa-brands fa-gg-circle"></i>
                             Sasto Wholesale Mall
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('settings.sms.index') }}">
-                        <i class="fa-brands fa-gg-circle"></i>
+                            <i class="fa-brands fa-gg-circle"></i>
                             <span>SMS Settings</span>
                         </a>
                     </li>
                     @if(auth()->user()->hasAnyRole('super_admin|admin'))
                     <li>
                         <a href="{{ route('settings.notification.index') }}">
-                        <i class="fa-brands fa-gg-circle"></i>
+                            <i class="fa-brands fa-gg-circle"></i>
                             <span>Test Notifications</span>
                         </a>
                     </li>

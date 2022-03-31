@@ -3,7 +3,6 @@
 namespace Modules\Message\Entities;
 
 use App\Models\User;
-use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\User\Entities\Vendor;
@@ -12,10 +11,10 @@ use Illuminate\Support\Facades\Storage;
 
 class Message extends Model
 {
-    use Uuid, HasFactory;
+    use HasFactory;
 
-    public $incrementing = false;
-    protected $keyType = 'uuid';
+    // public $incrementing = false;
+    // protected $keyType = 'uuid';
     protected $guarded = ['id'];
 
     public function fileUrl()

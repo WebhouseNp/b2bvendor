@@ -3677,6 +3677,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3696,7 +3699,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       activeUsers: [],
       opponentUser: null,
       typing: false,
-      loadingMessages: false
+      loadingMessages: false,
+      hasOlderMessages: false
     };
   },
   created: function created() {
@@ -3835,10 +3839,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this5.loadingMessages = true;
                 _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/chats/" + _this5.chatRoom.id + "/messages").then(function (response) {
+                  _this5.hasOlderMessages = true;
+
+                  if (response.data.data.length == 0) {
+                    _this5.hasOlderMessages = false;
+                  }
+
                   Object.values(response.data.data).forEach(function (message) {
                     _this5.messages.push(message);
                   });
                   _this5.loadingMessages = false;
+
+                  _this5.markSeen();
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -3852,8 +3864,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     loadOlderMessages: function loadOlderMessages() {
+      var _this6 = this;
+
       this.loadingMessages = true;
-      console.log("loading older messages");
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/chats/" + this.chatRoom.id + "/messages", {
+        params: {
+          before: this.messages[0].id
+        }
+      }).then(function (response) {
+        if (response.data.data.length == 0) {
+          _this6.hasOlderMessages = false;
+        }
+
+        Object.values(response.data.data).forEach(function (message) {
+          _this6.messages.unshift(message);
+        });
+        _this6.loadingMessages = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    markSeen: function markSeen() {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/mark-seen-messages/", {
+        chat_room_id: this.chatRoom.id,
+        last_message_id: this.messages[this.messages.length - 1].id
+      });
     },
     showInformation: function showInformation() {
       window.dispatchEvent(new Event("show-chat-info"));
@@ -7364,19 +7399,19 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: "pusher",
-  key: "somekey",
+  key: "def24be273f469943a0f",
   cluster: "ap2",
-  // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT,
-  wsHost: "sellercenter.sastowholesale.com",
+  // authEndpoint: process.env.MIX_ECHO_AUTH_ENDPOINT, // we are using custom method to authenticate user
+  // wsHost: process.env.MIX_PUSHER_WSHOST,
   wsPort: "80",
-  wssPort: "80",
+  wssPort: "443",
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("https://sellercenter.sastowholesale.com/broadcasting/auth", {
+        fetch("http://sellercenter.sasltowholesale.com/broadcasting/auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -7693,7 +7728,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message .image-block[data-v-3c1d1024] {\n  max-width: 300px;\n  border-radius: 0.25rem;\n}\n.message .image-block img[data-v-3c1d1024] {\n  border-radius: 0.25rem;\n}\n.message .file-block[data-v-3c1d1024] {\n  border: 1px solid #efefef;\n  padding: 10px 15px;\n  border-radius: 0.5rem;\n  background-color: #f8f9fa;\n  color: #333;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message .image-block[data-v-3c1d1024] {\n  /* max-width: 300px; */\n  border-radius: 0.25rem;\n}\n.message .image-block img[data-v-3c1d1024] {\n  height: 200px;\n  width: auto;\n  border-radius: 0.25rem;\n}\n.message .file-block[data-v-3c1d1024] {\n  border: 1px solid #efefef;\n  padding: 10px 15px;\n  border-radius: 0.5rem;\n  background-color: #f8f9fa;\n  color: #333;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -65445,10 +65480,23 @@ var render = function () {
                 "{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }",
             },
           ],
-          staticClass: "conversation py-5 px-4",
-          on: { "v-chat-scroll-top-reached": _vm.loadOlderMessages },
+          staticClass: "conversation pt-2 pb-5 px-4",
         },
         [
+          _vm.hasOlderMessages && !_vm.loadingMessages
+            ? _c("div", { staticClass: "text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-link",
+                    attrs: { type: "button" },
+                    on: { click: _vm.loadOlderMessages },
+                  },
+                  [_vm._v("Load Older Messages")]
+                ),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _vm.loadingMessages
             ? _c(
                 "div",
@@ -65770,10 +65818,7 @@ var render = function () {
   return _c("div", [
     _vm.message.is_image
       ? _c("div", { staticClass: "image-block" }, [
-          _c("img", {
-            staticClass: "img-fluid",
-            attrs: { src: _vm.message.file_url },
-          }),
+          _c("img", { attrs: { src: _vm.message.file_url } }),
         ])
       : _c("div", { staticClass: "file-block text-dark d-flex" }, [
           _c("div", [

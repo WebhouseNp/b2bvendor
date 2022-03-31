@@ -14,13 +14,14 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            // $table->uuid('id')->primary();
+            $table->id();
             $table->uuid('chat_room_id');
             $table->unsignedBigInteger('sender_id');
             // $table->unsignedBigInteger('receiver_id');
             $table->text('message')->nullable();
             $table->text('file')->nullable();
-            $table->dateTime('read_at')->nullable();
+            $table->boolean('seen')->nullable()->default(false);
             $table->string('type')->nullable();
             $table->string('key')->nullable();
             $table->timestamps();

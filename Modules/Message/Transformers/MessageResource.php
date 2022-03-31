@@ -34,6 +34,9 @@ class MessageResource extends JsonResource
 
     private function getProduct($id)
     {
+        if (!$id) {
+            return null;
+        }
         return ProductResource::make(Product::find($id))->hide([
             'highlight',
             'description',
@@ -68,10 +71,8 @@ class MessageResource extends JsonResource
 
     private function isImage()
     {
-        $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
+        $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/svg+xml'];
         $contentType = mime_content_type(Storage::path($this->file));
         return in_array($contentType, $allowedMimeTypes);
-        // $ext = strtolower(pathinfo($this->file, PATHINFO_EXTENSION));
-        // return in_array($ext, ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg', 'svgz', 'cgm', 'djv', 'djvu', 'ico', 'ief', 'jpe', 'pbm', 'pgm', 'pnm', 'ppm', 'ras', 'rgb', 'tif', 'tiff', 'wbmp', 'xbm', 'xpm', 'xwd']);
     }
 }
