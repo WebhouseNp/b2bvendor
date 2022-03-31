@@ -177,7 +177,7 @@
                     @if(@$vendor->vendor->note)
                     <div class="col-md-8 md-form mb-4" id="note">
                         <label><strong style="color: red;">Note :</strong> </label>
-                        <textarea name="note" class="md-textarea form-control" placeholder="Enter your reasion here" rows="3">{!! @$vendor->vendor->note !!}
+                        <textarea name="note" class="md-textarea form-control" placeholder="Enter your reason here" rows="3">{!! @$vendor->vendor->note !!}
                     </textarea>
                     </div><br>
                     @endif
