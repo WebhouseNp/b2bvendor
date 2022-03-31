@@ -36,7 +36,7 @@ window.Echo = new Echo({
     // wsHost: process.env.MIX_PUSHER_WSHOST,
     wsPort: process.env.MIX_PUSHER_WSPORT,
     wssPort: process.env.MIX_PUSHER_WSSPORT,
-    forceTLS: false,
+    // forceTLS: false,
     enabledTransports: ['ws', 'wss'],
     disableStats: true,
     authorizer: (channel) => {

@@ -7405,13 +7405,13 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   // wsHost: process.env.MIX_PUSHER_WSHOST,
   wsPort: "80",
   wssPort: "443",
-  forceTLS: false,
+  // forceTLS: false,
   enabledTransports: ['ws', 'wss'],
   disableStats: true,
   authorizer: function authorizer(channel) {
     return {
       authorize: function authorize(socketId, callback) {
-        fetch("http://sellercenter.sasltowholesale.com/broadcasting/auth", {
+        fetch("https://sellercenter.sastowholesale/broadcasting/auth", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
