@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-<div class="page-heading">
-    @include('admin.section.notifications')
-</div>
+@include('admin.section.notifications')
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -38,16 +36,15 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                            <a href=""  class="btn btn-success btn-sm view" data-id="{{$data->id}}"><i
-                                    class="fa fa-eye"> </i> View </a>
-                                <!-- <div class="mx-2"></div>
-                                <form action="{{ route('partner.destroy', $data->id) }}" class="js-delete-partner-form form-inline d-inline" method="post" class="d-inline">
+                                <a href="" class="btn btn-success btn-sm view" data-id="{{$data->id}}"><i class="fa fa-eye"> </i> View </a>
+                                <div class="mx-2"></div>
+                                <form action="{{ route('partner-request.destroy', $data->id) }}" class="js-delete-partner-form form-inline d-inline" method="post" class="d-inline">
                                     @csrf()
                                     @method('DELETE')
-                                    <button class="btn btn-danger border-0">
+                                    <button class="btn btn-danger btn-sm border-0">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
-                                </form> -->
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -67,22 +64,22 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Partner Request Details</h4>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Partner Request Details</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="modal-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
 
     </div>
-  </div>
+</div>
 @endsection
 @section('scripts')
 <script src="{{asset('/assets/admin/vendors/DataTables/datatables.min.js')}}" type="text/javascript"></script>
@@ -92,8 +89,8 @@
         $('#partners-table').DataTable({
             pageLength: 25,
             "aoColumnDefs": [{
-                "bSortable": false
-                , "aTargets": [-1, -2, -3]
+                "bSortable": false,
+                "aTargets": [-1, -2, -3]
             }]
         });
         $(document).ready(function() {
@@ -101,13 +98,13 @@
             $('.js-delete-partner-form').on('submit', function(e) {
                 e.preventDefault();
                 Swal.fire({
-                    title: 'Are you sure?'
-                    , text: `You Want to delete this Partner??`
-                    , icon: 'warning'
-                    , showCancelButton: true
-                    , confirmButtonColor: '#3085d6'
-                    , cancelButtonColor: '#d33'
-                    , confirmButtonText: 'Yes, Delete it!'
+                    title: 'Are you sure?',
+                    text: `You Want to delete this Partner Request??`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Delete it!'
                 }).then((result) => {
                     if (result.value) {
                         e.target.submit();
@@ -118,25 +115,26 @@
             });
         });
     })
-
 </script>
 <script>
-$(document).ready(function(){
-    $(".view").click(function(e) {
-        e.preventDefault();
-        id=$(this).data('id');
-        $.ajax({
-            method:"post",
-            url:"{{route('viewPartnerRequest')}}",
-            data:{id:id},
-            success:function(data){
-                console.log(data);
-                $('#myModal .modal-body').html(data);
-                $('#myModal').modal('show');
-            }
+    $(document).ready(function() {
+        $(".view").click(function(e) {
+            e.preventDefault();
+            id = $(this).data('id');
+            $.ajax({
+                method: "post",
+                url: "{{route('viewPartnerRequest')}}",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#myModal .modal-body').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
         });
     });
-});
 </script>
 <script>
     function FailedResponseFromDatabase(message) {
@@ -145,25 +143,24 @@ $(document).ready(function(){
             html_error += '<p class ="error_message text-left"> <span class="fa fa-times"></span> ' + message + '</p>';
         });
         Swal.fire({
-            type: 'error'
-            , title: 'Oops...'
-            , html: html_error
-            , confirmButtonText: 'Close'
-            , timer: 10000
+            type: 'error',
+            title: 'Oops...',
+            html: html_error,
+            confirmButtonText: 'Close',
+            timer: 10000
         });
     }
 
     function DataSuccessInDatabase(message) {
         Swal.fire({
-            position: 'top-end'
-            , type: 'success'
-            , title: 'Done'
-            , html: message
-            , confirmButtonText: 'Close'
-            , timer: 10000
-            , toast: true
+            position: 'top-end',
+            type: 'success',
+            title: 'Done',
+            html: message,
+            confirmButtonText: 'Close',
+            timer: 10000,
+            toast: true
         });
     }
-
 </script>
 @endsection

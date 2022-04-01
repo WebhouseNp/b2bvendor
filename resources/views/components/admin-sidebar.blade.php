@@ -513,7 +513,6 @@
                     </li>
                     <li>
                         <a href="{{route('advertisement.index')}}">
-                            <span class="fas fa-circle-o"></span>
                             <i class="fa-brands fa-osi"></i>
                             All Lists
                         </a>

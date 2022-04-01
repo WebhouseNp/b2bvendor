@@ -66,7 +66,7 @@ class VendorManagementController extends Controller
       $request->validate([
          'vendor_id'      => 'required|numeric|exists:users,id',
          'vendor_type'          => 'nullable',
-         'commission_rate'          => 'numeric',
+         'commission_rate'          => 'nullable|numeric',
          'note'                     => 'nullable',
       ]);
       $user = User::where('id', $request->vendor_id)->first();
@@ -148,6 +148,15 @@ class VendorManagementController extends Controller
       }
 
       $vendor->update($value);
+      return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
+   }
+
+   public function updateShippingInfo(Request $request, Vendor $vendor){
+      $request->validate([
+         'shipping_info' => 'required',
+      ]);
+      $formInput = $request->except(['_token']);
+      $vendor->update($formInput);
       return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
