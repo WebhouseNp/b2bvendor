@@ -88,3 +88,5 @@ Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoo
 //login with Facebook
 Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
 Route::get('login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
+
+Route::get('system-logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
