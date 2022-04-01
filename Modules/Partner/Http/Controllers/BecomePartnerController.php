@@ -54,4 +54,11 @@ class BecomePartnerController extends Controller
         $detail = BecomePartner::findOrFail($request->id);
         return view('partner::partner-request-view', compact('detail'));
     }
+
+    public function delete(BecomePartner $partner){
+        // dd('hi');
+        $partner->delete();
+        return redirect()->back()->with('success','Partner Request Deleted Successfully!!');
+
+    }
 }
