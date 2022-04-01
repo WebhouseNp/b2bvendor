@@ -227,7 +227,7 @@
                     <div class="ibox-body">
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <label><strong>Shipping And Return Policy</strong></label>
+                                <!-- <label><strong>Shipping And Return Policy</strong></label> -->
                                 <textarea name="shipping_info" id="shipping_info" rows="5" placeholder="shipping_info Here" class="form-control" style="resize: none;">{{@$user->vendor->shipping_info}} </textarea>
                             </div>
 
