@@ -75,6 +75,8 @@ Route::get('my-address', [ProfileController::class, 'getAddress'])->middleware('
 Route::post('checkout', [CheckoutController::class, 'store'])->middleware('auth:api');
 Route::get('setup-esewa-payment/{order}', [EsewaPaymentController::class, 'setupPayment']);
 Route::get('setup-connectips-payment/{order}', [ConnectipsPaymentController::class, 'setupPayment']);
+Route::post('payment/connectips_success', [ConnectipsPaymentController::class, 'success']);
+
 Route::get('customer/orders', [OrderApiController::class, 'index'])->middleware('auth:api');
 Route::get('customer/orders/{order}', [OrderApiController::class, 'show'])->middleware('auth:api');
 Route::post('cancel-order/{order}', [OrderApiController::class, 'cancelOrder'])->middleware('auth:api');
