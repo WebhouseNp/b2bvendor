@@ -151,6 +151,15 @@ class VendorManagementController extends Controller
       return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
    }
 
+   public function updateShippingInfo(Request $request, Vendor $vendor){
+      $request->validate([
+         'shipping_info' => 'required',
+      ]);
+      $formInput = $request->except(['_token']);
+      $vendor->update($formInput);
+      return redirect()->back()->with('success', 'Vendor Profile Updated Successfuly.');
+   }
+
    public function updateUserDetails(Request $request, Vendor $vendor)
    {
       $request->validate([

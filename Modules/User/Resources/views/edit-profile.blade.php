@@ -195,6 +195,24 @@
                                     </div>
                                 </form>
                             </div>
+                            <div class="tab-pane fade" id="component-1-5" role="tabpanel" aria-labelledby="component-1-5">
+                                <form method="post" action="{{ route('updateShippingInfo') }}">
+                                    @csrf
+                                    @method('post')
+                                    <div class="ibox-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12 form-group">
+                                                <label><strong>Shipping And Return Policy</strong></label>
+                                                <textarea name="shipping_info" id="shipping_info" rows="5" placeholder="shipping info Here" class="form-control" style="resize: none;">{{@$user->vendor->shipping_info}} </textarea>
+                                            </div>
+
+                                            <div class="col-lg-12 col-sm-12 form-group">
+                                                <button type="submit" class="btn btn-success "><i class="fa-solid fa-paper-plane"></i> Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="text-center">
                             <span class="bg-light p-2 px-3 rounded">
@@ -375,11 +393,16 @@
 </div> -->
 
 @endsection
-
+<?php
+$name = ['description','shipping_info'];
+?>
 @push('push_scripts')
 @include('dashboard::admin.layouts._partials.imagepreview')
 <script src="https://cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
-@include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description'])
+@foreach ($name as $data)
+@include('dashboard::admin.layouts._partials.ckdynamic', ['name' => $data])
+@endforeach
+<!-- @include('dashboard::admin.layouts._partials.ckdynamic', ['name' => 'description']) -->
 <script>
     $(document).ready(function() {
 
