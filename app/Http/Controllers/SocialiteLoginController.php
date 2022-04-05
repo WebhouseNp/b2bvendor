@@ -16,20 +16,28 @@ class SocialiteLoginController extends Controller
     CONST GOOGLE_TYPE = 'google';
 
     public function redirectToGoogle(){
-        return Socialite::driver(static::GOOGLE_TYPE)->redirect();
+        $url = Socialite::with(static::GOOGLE_TYPE)->redirect()->getTargetUrl();
+        return response()->json([
+            "url"=>$url
+        ]);
     }
 
     public function handleGoogleCallBack(){
         try{
-            $user = Socialite::driver(static::GOOGLE_TYPE)->user();
+            $user = Socialite::driver(static::GOOGLE_TYPE)->stateless()->user();
 
             $userExisted = User::where('oauth_id',$user->id)->where('oauth_type',static::GOOGLE_TYPE)->first();
 
             if($userExisted){
 
                 Auth::login($userExisted);
-
-                return redirect()->back();
+                $token = auth()->user()->createToken('authToken')->accessToken;
+                return response()->json([
+                    "status" => "true",
+                    "message" => "success",
+                    'token' => $token,
+                    'user' => auth()->user()
+                  ], 200);
 
             }else{
 
@@ -56,8 +64,13 @@ class SocialiteLoginController extends Controller
                 Role_user::create($role_data);
 
                 Auth::login($newUser);
-
-                return redirect()->back();
+                $token = auth()->user()->createToken('authToken')->accessToken;
+                return response()->json([
+                    "status" => "true",
+                    "message" => "success",
+                    'token' => $token,
+                    'user' => auth()->user()
+                  ], 200);
             }
         }catch(Exception $e){
             dd($e);
@@ -69,12 +82,15 @@ class SocialiteLoginController extends Controller
     CONST FACEBOOK_TYPE = 'facebook';
 
     public function redirectToFacebook(){
-       return Socialite::driver('facebook')->redirect();
+        $url = Socialite::with(static::FACEBOOK_TYPE)->redirect()->getTargetUrl();
+       return response()->json([
+        "url"=>$url
+    ]);
     }
 
     public function handleFacebookCallBack(){
         try{
-            $user = Socialite::driver(static::FACEBOOK_TYPE)->user();
+            $user = Socialite::driver(static::FACEBOOK_TYPE)->stateless()->user();
 
             $userExisted = User::where('oauth_id',$user->id)->where('oauth_type',static::FACEBOOK_TYPE)->first();
 

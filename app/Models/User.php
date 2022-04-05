@@ -171,7 +171,7 @@ class User extends Authenticatable
         return $this->morphOne(Address::class, 'addressable');
     }
 
-    public function imageUrl($size = null)
+    public function imageUrl()
     {
         if (!$this->image) {
             $queryString = [
@@ -182,11 +182,6 @@ class User extends Authenticatable
 
             return 'https://ui-avatars.com/api/?' . http_build_query($queryString);
         }
-
-        // if ($size == 'thumbnail') {
-        //     return Storage::url($this->image_thumbnail);
-        // }
-
         return Storage::url($this->image);
     }
 

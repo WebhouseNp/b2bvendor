@@ -32,7 +32,7 @@ Route::view('/account-verification', 'account_verification');
 
 Route::view('/vendor-homepage', 'vendor_homepage');
 
-Route::get('/faq', function(){
+Route::get('/faq', function () {
     $faqs = Faq::published()->get();
     return view('faq')->with(compact('faqs'));
 });
@@ -44,7 +44,7 @@ Route::view('/terms-conditions', 'footer_pages.terms_condition');
 Route::view('/terms-of-use', 'footer_pages.terms_of_use');
 
 Route::view('/privacy-policy', 'footer_pages.privacy_policy');
-Route::view('/logistics-management','footer_pages.logistics_management');
+Route::view('/logistics-management', 'footer_pages.logistics_management');
 
 // End of Vendor Routes
 
@@ -81,10 +81,13 @@ Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
 
-//login with Google
-Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle'])->name('login.google');
-Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack']);
+// Route::prefix('user')->name('api.')->group(function () {
+    //login with Google
+    Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack'])->name('social.callback');
 
-//login with Facebook
-Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
-Route::get('login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
+    //login with Facebook
+    Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
+    Route::get('login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
+
+
