@@ -81,7 +81,6 @@ Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
 
-// Route::prefix('user')->name('api.')->group(function () {
     //login with Google
     Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle'])->name('login.google');
     Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack'])->name('social.callback');

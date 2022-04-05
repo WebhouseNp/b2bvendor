@@ -68,7 +68,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success" type="submit"><span class="fa fa-send mr-2"></span>Save</button>
+                                    <button class="btn btn-success" type="submit"><i class="fa-solid fa-paper-plane mr-2"></i>Save</button>
                                 </div>
                             </div>
                         </div>

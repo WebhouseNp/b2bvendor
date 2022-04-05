@@ -10,9 +10,11 @@ Route::middleware('auth:api')->group(function () {
     Route::get('chats/{chatRoom}', [ChatRoomApiController::class, 'show']);
     Route::delete('chats/{chatRoom}', [ChatRoomApiController::class, 'destroy']);
 
-    Route::get('chats/{chatRoom}/messages', [MessageController::class, 'index']);
+    Route::get('chats/{chatRoomId}/messages', [MessageController::class, 'index']);
     Route::post('messages/{chatRoom}', [MessageController::class, 'store']);
     Route::delete('messages', [MessageController::class, 'destroy']);
+
+    Route::post('mark-seen-messages', [MessageController::class, 'markSeen']);
 
     Route::get('chat-customer-info/{user}', [ChatRoomApiController::class, 'customerInfo']);
 });

@@ -19,11 +19,19 @@ class MessageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, ChatRoom $chatRoom)
+    public function index($chatRoomId)
     {
-        $messages = Message::where('chat_room_id', $chatRoom->id)->latest()->limit(50)->get();
+        $messages = Message::where('chat_room_id', $chatRoomId)
+            ->when(request()->filled('before'), function ($query) {
+                return $query->where('id', '<', request('before'));
+            })
+            ->latest('id')
+            // ->limit(5)
+            ->simplePaginate(1);
 
-        $messages = $messages->reverse()->values();
+        // if (!request()->filled('before')) {
+        //     $messages = $messages->reverse()->values();
+        // }
 
         return new MessageCollection($messages);
     }
@@ -68,17 +76,19 @@ class MessageController extends Controller
 
         $message->save();
 
+        // Update the chatroom
+        $chatRoom->update([
+            'last_message_id' => $message->id,
+            'has_unseen_messages' => true,
+            'updated_at' => now()
+        ]);
+
         broadcast(new NewMessageEvent($chatRoom, $message))->toOthers();
 
         return response()->json([
             'ts' => $request->ts ?? null,
             'data' => new MessageResource($message)
         ], 200);
-    }
-
-
-    public function sendFileMessage(Request $request)
-    {
     }
 
     /**
@@ -90,5 +100,23 @@ class MessageController extends Controller
     {
         $message->delete();
         return response()->json(['status' => 'success'], 204);
+    }
+
+    public function markSeen(Request $request)
+    {
+        $request->validate([
+            'chat_room_id' => 'required',
+            'last_message_id' => 'required',
+        ]);
+
+        Message::where('chat_room_id', $request->chat_room_id)
+            ->where('sender_id', '!=', auth()->id())
+            ->where('id', '<=', $request->last_message_id)
+            ->update(['seen' => true]);
+
+        ChatRoom::where('id', $request->chat_room_id)
+            ->update([
+                'has_unseen_messages' => false,
+            ]);
     }
 }

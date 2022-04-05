@@ -15,6 +15,7 @@ Route::group(['middleware' => ['auth', 'role:super_admin|admin'],'prefix'=>'admi
     Route::get('vendorprofile/{username}', 'VendorManagementController@getVendorProfile')->name('getVendorProfile');
     Route::post('update-vendor-details/{vendor}', 'VendorManagementController@updateVendorDetails')->name('updateVendorDetails');
     Route::post('update-vendor-desc/{vendor}', 'VendorManagementController@updateVendorDescription')->name('updateVendorDescription');
+    Route::post('update-shipping-info/{vendor}', 'VendorManagementController@updateShippingInfo')->name('updateShippingInfo');
     Route::post('update-user-details/{vendor}', 'VendorManagementController@updateUserDetails')->name('updateUserDesc');
     Route::post('update-vendor-bank-details/{vendor}', 'VendorManagementController@updateVendorBankDetails')->name('updateVendorBankDetails');
     Route::get('products/{username}', 'VendorManagementController@getVendorProducts')->name('getVendorProducts');

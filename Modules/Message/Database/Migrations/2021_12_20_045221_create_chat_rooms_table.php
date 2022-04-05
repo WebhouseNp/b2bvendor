@@ -17,7 +17,8 @@ class CreateChatRoomsTable extends Migration
             $table->uuid('id')->primary();
             $table->unsignedBigInteger('customer_user_id');
             $table->unsignedBigInteger('vendor_user_id');
-            $table->dateTime('last_message_at')->nullable();
+            $table->boolean('has_unseen_messages')->nullable();
+            $table->unsignedBigInteger('last_message_id')->nullable();
             $table->timestamps();
         });
     }

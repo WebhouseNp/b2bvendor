@@ -11,7 +11,10 @@
         <button class="btn btn-primary" style="border-radius: 50%" type="button" @click="showInformation"><i class="fa fa-info"></i></button>
       </div>
     </div>
-    <div class="conversation py-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }" @v-chat-scroll-top-reached="loadOlderMessages">
+    <div class="conversation pt-2 pb-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }">
+      <div v-if="hasOlderMessages && !loadingMessages" class="text-center">
+        <button type="button" @click="loadOlderMessages" class="btn btn-link">Load Older Messages</button>
+      </div>
       <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
         <div class="loader"></div>
       </div>
@@ -67,6 +70,7 @@ export default {
       opponentUser: null,
       typing: false,
       loadingMessages: false,
+      hasOlderMessages: false,
     };
   },
   async created() {
@@ -186,10 +190,15 @@ export default {
       await axios
         .get("/api/chats/" + this.chatRoom.id + "/messages")
         .then((response) => {
+          this.hasOlderMessages = true;
+          if (response.data.data.length == 0) {
+            this.hasOlderMessages = false;
+          }
           Object.values(response.data.data).forEach((message) => {
             this.messages.push(message);
           });
           this.loadingMessages = false;
+          this.markSeen();
         })
         .catch((error) => {
           console.log(error);
@@ -198,7 +207,31 @@ export default {
 
     loadOlderMessages() {
       this.loadingMessages = true;
-      console.log("loading older messages");
+      axios
+        .get("/api/chats/" + this.chatRoom.id + "/messages", {
+          params: {
+            before: this.messages[0].id,
+          },
+        })
+        .then((response) => {
+          if (response.data.data.length == 0) {
+            this.hasOlderMessages = false;
+          }
+          Object.values(response.data.data).forEach((message) => {
+            this.messages.unshift(message);
+          });
+          this.loadingMessages = false;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    markSeen() {
+      axios.post("/api/mark-seen-messages/", {
+        chat_room_id: this.chatRoom.id,
+        last_message_id: this.messages[this.messages.length - 1].id,
+      });
     },
 
     showInformation() {

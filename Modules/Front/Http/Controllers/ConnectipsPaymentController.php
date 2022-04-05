@@ -36,13 +36,46 @@ class ConnectipsPaymentController extends Controller
         ], 200);
     }
 
+
     public function success(Request $request)
     {
-        return 'Payment Successfully';
+        $request->validate([
+            'txn_id' => 'required',
+        ]);
+
+        try {
+            $order = Order::findOrFail($request->txn_id);
+
+            $nchl = Nchl::__init([
+                "txn_id" => $order->id,
+                "txn_date" => date('d-m-Y'),
+                "txn_amount" => $order->total_price * 100,
+                "reference_id" => 'ORD-' . $order->id,
+                "remarks" => 'Order #' . $order->id,
+                "particulars" => 'Order #' . $order->id,
+            ]);
+
+            $response = $nchl->paymentValidate();
+
+            if($response->status) {
+                $order->update([
+                    'payment_status' => 'paid',
+                    'connectips_txn_id' => $request->txn_id
+                ]);
+            }
+
+            return response()->json($response, 200);
+        } catch (\Throwable $th) {
+            report($th);
+            return response()->json([
+                'message' => 'Payment validation failed.',
+                'status' => false
+            ], 500);
+        }
     }
 
-    public function failed(Request $request)
-    {
-        return 'Payment Failed';
-    }
+    // public function failed(Request $request)
+    // {
+    //     return 'Payment Failed';
+    // }
 }

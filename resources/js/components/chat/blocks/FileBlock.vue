@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="message.is_image" class="image-block">
-      <img :src="message.file_url" class="img-fluid" />
+      <img :src="message.file_url" />
     </div>
     <div v-else class="file-block text-dark d-flex">
       <div>
@@ -25,10 +25,12 @@ export default {
 
 <style scoped>
 .message .image-block {
-  max-width: 300px;
+  /* max-width: 300px; */
   border-radius: 0.25rem;
 }
 .message .image-block img {
+  height: 200px;
+  width: auto;
   border-radius: 0.25rem;
 }
 .message .file-block {

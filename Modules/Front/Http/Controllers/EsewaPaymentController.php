@@ -43,8 +43,9 @@ class EsewaPaymentController extends Controller
         return 'payment failed';
     }
 
-    public function failed(Request $request)
-    {
-        return ' Esewa failed';
-    }
+    // Not used currently
+    // public function failed(Request $request)
+    // {
+    //     return ' Esewa failed';
+    // }
 }
