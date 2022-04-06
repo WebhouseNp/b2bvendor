@@ -16,7 +16,7 @@ class SocialiteLoginController extends Controller
     CONST GOOGLE_TYPE = 'google';
 
     public function redirectToGoogle(){
-        $url = Socialite::with(static::GOOGLE_TYPE)->redirect()->getTargetUrl();
+        $url = Socialite::with(static::GOOGLE_TYPE)->with(["prompt" => "select_account"])->redirect()->getTargetUrl();
         return response()->json([
             "url"=>$url
         ]);
@@ -82,7 +82,7 @@ class SocialiteLoginController extends Controller
     CONST FACEBOOK_TYPE = 'facebook';
 
     public function redirectToFacebook(){
-        $url = Socialite::with(static::FACEBOOK_TYPE)->redirect()->getTargetUrl();
+        $url = Socialite::driver(static::FACEBOOK_TYPE)->redirect()->getTargetUrl();
        return response()->json([
         "url"=>$url
     ]);
