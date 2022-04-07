@@ -95,7 +95,7 @@ class SocialiteLoginController extends Controller
 
     public function handleFacebookCallBack(){
         try{
-            $user = Socialite::driver(static::FACEBOOK_TYPE)->stateless()->user();
+            $user = Socialite::driver(static::FACEBOOK_TYPE)->user();
             if($user->email === null){
                 return response()->json([
                     "status" => "false",
