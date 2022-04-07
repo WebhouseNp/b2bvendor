@@ -118,7 +118,7 @@
             <li>
                 <a href="{{ route('quotations.index') }}">
                     <i class="sidebar-item-icon fa fa-quote-left"></i>
-                    <span class="nav-label">Quotations</span>
+                    <span class="nav-label">RFQ</span>
                 </a>
             </li>
             @endif

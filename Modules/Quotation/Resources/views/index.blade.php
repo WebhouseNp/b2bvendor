@@ -11,7 +11,7 @@
     <x-alerts></x-alerts>
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">Quotations</div>
+            <div class="ibox-title">RFQ</div>
         </div>
         <div class="ibox-body">
             <table class="table table-striped table-responsive-sm table-bordered table-hover" id="quotation-table" cellspacing="0" width="100%">
