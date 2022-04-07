@@ -87,7 +87,7 @@ class SocialiteLoginController extends Controller
     CONST FACEBOOK_TYPE = 'facebook';
 
     public function redirectToFacebook(){
-        $url = Socialite::driver(static::FACEBOOK_TYPE)->redirect()->getTargetUrl();
+        $url = Socialite::driver(static::FACEBOOK_TYPE)->with(["prompt" => "select_account"])->redirect()->getTargetUrl();
        return response()->json([
         "url"=>$url
     ]);
@@ -95,12 +95,12 @@ class SocialiteLoginController extends Controller
 
     public function handleFacebookCallBack(){
         try{
-            $user = Socialite::driver(static::FACEBOOK_TYPE)->user();
+            $user = Socialite::driver(static::FACEBOOK_TYPE)->stateless()->user();
             if($user->email === null){
                 return response()->json([
                     "status" => "false",
                     "message" => "unsuccess",
-                  ], 400);
+                  ], 401);
             }else{
                 $userExisted = User::where('oauth_id',$user->id)->where('oauth_type',static::FACEBOOK_TYPE)->first();
 
