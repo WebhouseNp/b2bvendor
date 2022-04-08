@@ -14,6 +14,7 @@ class ChatRoom extends Model
     public $incrementing = false;
     protected $keyType = 'uuid';
     protected $guarded = [];
+    protected $casts = ['has_unseen_messages' => 'boolean'];
 
     public function ping()
     {

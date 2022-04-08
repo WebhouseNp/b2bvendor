@@ -171,6 +171,9 @@
 
 .chat-name {
     font-weight: 600;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.025rem;
 }
 
 .messaging-right {

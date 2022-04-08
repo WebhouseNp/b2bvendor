@@ -209,9 +209,9 @@ export default {
         .then((response) => {
           this.messages.unshift(...response.data.data.reverse());
           this.loadingMessages = false;
+          this.markSeen();
           if (response.data.links.next) {
             this.moreMessagesUrl = response.data.links.next;
-            this.markSeen();
           } else {
             this.hasMoreMessages = false;
           }
@@ -245,3 +245,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.chat-start-message {
+  font-size: 0.8rem;
+  background-color: #f5f5f5;
+  color: #1a1b22;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px 10px;
+  line-height: 1;
+  border-radius: 2.5rem;
+}
+</style>
