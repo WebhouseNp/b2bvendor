@@ -1,6 +1,6 @@
 <template>
   <div class="conversation-wrapper">
-    <div class="conversation-header d-flex px-4 py-3 border-bottom">
+    <div class="conversation-header d-flex px-2 py-2 px-sm-4 py-sm-3 border-bottom">
       <div class="d-flex align-items-center" style="gap: 1rem">
         <div :class="{ 'text-success': isOpponentActive, 'text-danger': !isOpponentActive }"><i class="fa fa-circle" aria-hidden="true"></i></div>
         <h6 class="text-capitalize mb-0" v-if="opponentUser">
@@ -8,12 +8,13 @@
         </h6>
       </div>
       <div class="ml-auto">
-        <button class="btn btn-primary" style="border-radius: 50%" type="button" @click="showInformation"><i class="fa fa-info"></i></button>
+        <a :href="`/user/deals/create?customer=${chatRoom.customer_user_id}`" target="_blank" class="btn btn-primary btn-sm mr-2"><strong>Create Deal</strong></a>
+        <button class="btn btn-primary btn-sm" style="border-radius: 50%" type="button" @click="showInformation"><i class="fa fa-info"></i></button>
       </div>
     </div>
     <div class="conversation pt-2 pb-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }">
       <div v-if="hasOlderMessages && !loadingMessages" class="text-center">
-        <button type="button" @click="loadOlderMessages" class="btn btn-link">Load Older Messages</button>
+        <button type="button" @click="loadOlderMessages" class="btn btn-link btn-sm font-weight-bolder">Load More...</button>
       </div>
       <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
         <div class="loader"></div>

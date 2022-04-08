@@ -83,7 +83,11 @@ class MessageController extends Controller
             'updated_at' => now()
         ]);
 
-        broadcast(new NewMessageEvent($chatRoom, $message))->toOthers();
+        try {
+            broadcast(new NewMessageEvent($chatRoom, $message))->toOthers();
+        } catch (\Throwable $th) {
+            report($th);
+        }
 
         return response()->json([
             'ts' => $request->ts ?? null,

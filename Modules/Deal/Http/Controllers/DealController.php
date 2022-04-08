@@ -31,7 +31,21 @@ class DealController extends Controller
             $product['image_url'] = $product->imageUrl();
             return $product;
         });
-        return view('deal::create')->with(compact('products'));
+
+        $customer = null;
+        if(request()->filled('customer')) {
+            $customer = User::Where('id', request('customer'))
+            ->select('id', 'name', 'email')
+            ->whereHas(
+                'roles',
+                function ($q) {
+                    $q->where('slug', 'customer');
+                }
+            )
+            ->first();
+        }
+
+        return view('deal::create')->with(compact('products', 'customer'));
     }
 
     public function store(Request $request)

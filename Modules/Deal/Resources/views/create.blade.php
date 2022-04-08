@@ -23,7 +23,8 @@ $api_token = $user->api_token;
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 </div>
                 <div id="app">
-                    <createdeal auth={{Auth::id()}} :products="{{ json_encode($products) }}"/>
+                    {{-- @dd($customer) --}}
+                    <createdeal auth={{Auth::id()}} :products="{{ json_encode($products) }}" :prop-customer="{{ $customer }}"/>
                 </div>
             </div>
         </div>

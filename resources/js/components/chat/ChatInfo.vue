@@ -7,7 +7,7 @@
         </div>
         <div class="text-center">
           <h4 class="h4-responsive">{{ user.name }}</h4>
-          <div>Phone: {{ user.phone }}</div>
+          <!-- <div>Phone: {{ user.phone }}</div> -->
           <div>Email: {{ user.email }}</div>
           <div>Address: {{ user.address }}</div>
         </div>
