@@ -26,7 +26,7 @@ class MessageController extends Controller
                 return $query->where('id', '<', request('before'));
             })
             ->latest('id')
-            ->cursorPaginate(request('per_page') ?? 15)->withQueryString();
+            ->cursorPaginate(request('per_page') ?? 30)->withQueryString();
 
         return new MessageCollection($messages);
     }
