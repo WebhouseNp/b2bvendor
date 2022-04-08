@@ -29,7 +29,7 @@ class ChatRoomResource extends JsonResource
         if (auth()->id() == $this->customer_user_id) {
             $vendor = $this->vendorUser->vendor;
             return [
-                'id' => $vendor->id ?? null,
+                'id' => $this->vendorUser->id ?? null,
                 'name' => $vendor->shop_name ?? null,
                 'avatar_url' => $this->generateAvatarUrl($vendor->shop_name)
             ];
