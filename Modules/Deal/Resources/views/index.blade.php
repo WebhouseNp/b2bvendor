@@ -29,9 +29,9 @@ $api_token = $user->api_token;
                         <th>SN</th>
                         <th>Customer</th>
                         <th>Vendor</th>
-                        <th>Completed</th>
-                        <th>Deal Expire At</th>
-                        <th>Link</th>
+                        <th>Done</th>
+                        <th>Expires At</th>
+                        <th>Sharing</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -52,22 +52,24 @@ $api_token = $user->api_token;
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('send-deal', $data) }}" class="btn btn-link ml-0 pl-0 " target="_blank"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</a>
+                            @if(auth()->user()->hasRole('vendor'))
+                            <a href="{{ route('send-deal', $data) }}" class="btn btn-link ml-0 px-0 " target="_blank"><i class="far fa-paper-plane mr-1" aria-hidden="true"></i> Send via chat</a>
                             <span class="mx-2">|</span>
+                            @endif
                             <button type="button" class="btn btn-link ml-0 pl-0" onclick="copyLink(this)" data-link="{{ config('constants.customer_app_url') . '/deals/' . $data->id }}" title="Click to copy">
-                                <i class="fa fa-clone"></i>
+                                <i class="far fa-clone mr-1"></i>
                                 <span>Copy</span>
                             </button>
                         </td>
                         <td>
-                            <a class="btn btn-success btn-sm" href="{{route('deals.show',$data->id)}}" title="view">
-                                <i class="fa fa-eye"></i>View
+                            <a class="btn btn-success btn-sm border-0" href="{{route('deals.show',$data->id)}}" title="view">
+                                <i class="fa fa-eye mr-1"></i>View
                             </a>
                             @if (auth()->user()->hasRole('vendor'))
-                            <a class="btn btn-primary btn-sm" href="{{route('deals.edit',$data->id)}}" title="Edit">
-                                <i class="fa fa-edit"></i>Edit
+                            <a class="btn btn-primary btn-sm border-0" href="{{route('deals.edit',$data->id)}}" title="Edit">
+                                <i class="fa fa-edit mr-1"></i>Edit
                             </a>
-                            <button class="btn btn-danger btn-sm delete" onclick="deleteDeal(this,'{{ $data->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash"></i>Delete</button>
+                            <button class="btn btn-danger btn-sm border-0 delete" onclick="deleteDeal(this,'{{ $data->id }}')" class="btn btn-danger" style="display:inline"><i class="fa fa-trash-alt mr-1"></i>Delete</button>
                             @endif
                         </td>
                     </tr>
