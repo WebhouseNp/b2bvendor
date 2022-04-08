@@ -30,21 +30,32 @@ return [
 
     'connections' => [
 
+        // 'pusher' => [
+        //     'driver' => 'pusher',
+        //     'key' => env('PUSHER_APP_KEY', 'cbe0b7b8904e2ede8292'),
+        //     'secret' => env('PUSHER_APP_SECRET', 'e934d010ddd74158d0ba'),
+        //     'app_id' => env('PUSHER_APP_ID', '1283512'),
+        //     'options' => [
+        //         'cluster' => env('PUSHER_APP_CLUSTER', 'ap2'),
+        //         'useTLS' => true,
+        //         'host' => env('LARAVEL_WEBSOCKETS_HOST', '127.0.0.1'),
+        //         'port' => env('LARAVEL_WEBSOCKETS_PORT', 6001),
+        //         'scheme' => env('PUSHER_APP_SCHEME', 'http'),
+        //         'curl_options' => [
+        //             CURLOPT_SSL_VERIFYHOST => 0,
+        //             CURLOPT_SSL_VERIFYPEER => 0,
+        //         ],
+        //     ],
+        // ],
+
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY', 'cbe0b7b8904e2ede8292'),
-            'secret' => env('PUSHER_APP_SECRET', 'e934d010ddd74158d0ba'),
-            'app_id' => env('PUSHER_APP_ID', '1283512'),
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER', 'ap2'),
+                'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
-                'host' => env('LARAVEL_WEBSOCKETS_HOST', '127.0.0.1'),
-                'port' => env('LARAVEL_WEBSOCKETS_PORT', 6001),
-                'scheme' => env('PUSHER_APP_SCHEME', 'http'),
-                'curl_options' => [
-                    CURLOPT_SSL_VERIFYHOST => 0,
-                    CURLOPT_SSL_VERIFYPEER => 0,
-                ],
             ],
         ],
 
