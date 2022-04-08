@@ -12,13 +12,23 @@
         <button class="btn btn-primary btn-sm" style="border-radius: 50%" type="button" @click="showInformation"><i class="fa fa-info"></i></button>
       </div>
     </div>
-    <div class="conversation pt-2 pb-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }">
-      <div v-if="hasOlderMessages && !loadingMessages" class="text-center">
+    <div class="conversation pt-2 pb-5 px-4" v-chat-scroll="{ always: false, smooth: true, scrollonremoved: true, smoothonremoved: false }" @v-chat-scroll-top-reached="loadLastMessages">
+      <!-- <div v-if="hasOlderMessages && !loadingMessages" class="text-center">
         <button type="button" @click="loadOlderMessages" class="btn btn-link btn-sm font-weight-bolder">Load More...</button>
-      </div>
-      <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
+      </div> -->
+      <!-- <infinite-loading direction="top" @infinite="infiniteHandler"></infinite-loading> -->
+      <!-- <div v-if="loadingMessages" class="mb-2 d-flex justify-content-center" role="status">
         <div class="loader"></div>
+      </div> -->
+      <div v-if="loadingMessages" class="text-center">
+        <div class="loader d-inline-block"></div>
       </div>
+
+      <div v-if="!hasMoreMessages" class="d-flex justify-content-center">
+        <div v-if="messages.length" class="chat-start-message">Conversation started at {{ new Date(messages[0].created_at).toDateString() }}.</div>
+        <div v-else class="chat-start-message">This is the begenning of your conversation.</div>
+      </div>
+
       <div v-for="(message, index) in messages" :key="index" class="d-flex">
         <message-block :message="message" :user="user"></message-block>
       </div>
@@ -71,7 +81,8 @@ export default {
       opponentUser: null,
       typing: false,
       loadingMessages: false,
-      hasOlderMessages: false,
+      hasMoreMessages: true,
+      moreMessagesUrl: null,
     };
   },
   async created() {
@@ -110,6 +121,7 @@ export default {
         })
         .listen(".new-message", (event) => {
           this.messages.push(event.message);
+          this.markSeen();
         })
         .listenForWhisper("typing", (e) => {
           this.typing = true;
@@ -185,46 +197,27 @@ export default {
         });
     },
 
-    // load the last messages during initialization
-    async loadLastMessages() {
+    loadLastMessages() {
+      console.log("Loading older messages");
+      if (!this.hasMoreMessages) {
+        return;
+      }
       this.loadingMessages = true;
-      await axios
-        .get("/api/chats/" + this.chatRoom.id + "/messages")
-        .then((response) => {
-          this.hasOlderMessages = true;
-          if (response.data.data.length == 0) {
-            this.hasOlderMessages = false;
-          }
-          Object.values(response.data.data).forEach((message) => {
-            this.messages.push(message);
-          });
-          this.loadingMessages = false;
-          this.markSeen();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-
-    loadOlderMessages() {
-      this.loadingMessages = true;
+      let url = this.moreMessagesUrl || `/api/chats/${this.chatRoom.id}/messages`;
       axios
-        .get("/api/chats/" + this.chatRoom.id + "/messages", {
-          params: {
-            before: this.messages[0].id,
-          },
-        })
+        .get(url)
         .then((response) => {
-          if (response.data.data.length == 0) {
-            this.hasOlderMessages = false;
-          }
-          Object.values(response.data.data).forEach((message) => {
-            this.messages.unshift(message);
-          });
+          this.messages.unshift(...response.data.data.reverse());
           this.loadingMessages = false;
+          if (response.data.links.next) {
+            this.moreMessagesUrl = response.data.links.next;
+            this.markSeen();
+          } else {
+            this.hasMoreMessages = false;
+          }
         })
         .catch((error) => {
-          console.log(error);
+          console.log("Error while loading messages", error);
         });
     },
 

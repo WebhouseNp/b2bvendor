@@ -25,14 +25,8 @@ class MessageController extends Controller
             ->when(request()->filled('before'), function ($query) {
                 return $query->where('id', '<', request('before'));
             })
-            // ->latest('id', request()->filled('before') ? 'asc' : 'desc')
             ->latest('id')
-            // ->limit(5)
-            ->simplePaginate(10);
-
-        if (!request()->filled('before')) {
-            $messages = $messages->reverse()->values();
-        }
+            ->cursorPaginate(request('per_page') ?? 15)->withQueryString();
 
         return new MessageCollection($messages);
     }

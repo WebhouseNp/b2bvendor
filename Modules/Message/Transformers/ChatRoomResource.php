@@ -18,7 +18,7 @@ class ChatRoomResource extends JsonResource
             'id' => $this->id,
             'customer_user_id' => $this->customer_user_id,
             'vendor_user_id' => $this->vendor_user_id,
-            'last_message_at' => $this->updated_at->diffForHumans(),
+            'last_message_at' => str_replace(['hours', 'minutes'], ['hrs', 'mins'], $this->updated_at->diffForHumans()),
             'updated_at' => $this->updated_at,
             'opponent' => $this->opponentUser()
         ];
