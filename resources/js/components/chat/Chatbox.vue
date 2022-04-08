@@ -229,7 +229,7 @@ export default {
     },
 
     markSeen() {
-      axios.post("/api/mark-seen-messages/", {
+      axios.post("/api/mark-seen-messages", {
         chat_room_id: this.chatRoom.id,
         last_message_id: this.messages[this.messages.length - 1].id,
       });
