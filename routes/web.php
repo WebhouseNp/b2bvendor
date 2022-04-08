@@ -32,6 +32,8 @@ Route::view('/account-verification', 'account_verification');
 
 Route::view('/vendor-homepage', 'vendor_homepage');
 
+Route::get('system-logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
 Route::get('/faq', function () {
     $faqs = Faq::published()->get();
     return view('faq')->with(compact('faqs'));
