@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cache;
 use Modules\Category\Entities\Category;
+use Modules\ProductCategory\Entities\ProductCategory;
 use Modules\Subcategory\Entities\Subcategory;
 
 class CategoryApiController extends Controller
@@ -110,5 +111,43 @@ class CategoryApiController extends Controller
         $categories = Category::published()->select('id', 'name')
             ->get();
         return response()->json($categories, 200);
+    }
+
+    public function subcategories()
+    {
+        return Subcategory::select(['id', 'name', 'slug', 'category_id', 'image', 'is_featured'])
+            ->when(request()->filled('category_id'), function ($query) {
+                $query->where('category_id', request('category_id'));
+            })
+            ->published()
+            ->get()->map(function ($category) {
+                return [
+                    'id' => $category->id,
+                    'category_id' => $category->category_id,
+                    'name' => $category->name,
+                    'slug' => $category->slug,
+                    'image_url' => $category->imageUrl(),
+                    'is_featured' => $category->is_featured,
+                ];
+            });
+    }
+
+    public function productCategories()
+    {
+        return ProductCategory::select(['id', 'name', 'slug', 'subcategory_id', 'image', 'is_featured'])
+            ->when(request()->filled('subcategory_id'), function ($query) {
+                $query->where('subcategory_id', request('subcategory_id'));
+            })
+            ->published()
+            ->get()->map(function ($category) {
+                return [
+                    'id' => $category->id,
+                    'subcategory_id' => $category->subcategory_id,
+                    'name' => $category->name,
+                    'slug' => $category->slug,
+                    'image_url' => $category->imageUrl(),
+                    'is_featured' => $category->is_featured,
+                ];
+            });
     }
 }

@@ -59,6 +59,8 @@ Route::get('categories', 'CategoryApiController@index');
 Route::get('vendor-category', 'CategoryApiController@vendorCatgeory');
 Route::get('megamenu', 'CategoryApiController@megamenu');
 Route::get('hot-categories', 'CategoryApiController@hotCategories');
+Route::get('subcategories', 'CategoryApiController@subcategories');
+Route::get('product-categories', 'CategoryApiController@productCategories');
 
 Route::post('product-search', 'SearchController@productSearch')->name('product.search'); // Doubt on required
 
