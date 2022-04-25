@@ -97,7 +97,7 @@ class SocialiteLoginController extends Controller
     public function handleFacebookCallBack(){
         try{
             $user = Socialite::driver(static::FACEBOOK_TYPE)->stateless()->user();
-            $validator = Validator::make($user->email, [
+            $validator = Validator::make($user->all(), [
                 'email' => 'required|email',
               ]);
         
