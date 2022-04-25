@@ -97,13 +97,7 @@ class SocialiteLoginController extends Controller
     public function handleFacebookCallBack(){
         try{
             $user = Socialite::driver(static::FACEBOOK_TYPE)->stateless()->user();
-            $validator = Validator::make($user->all(), [
-                'email' => 'required|email',
-              ]);
-        
-              if ($validator->fails()) {
-                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
-              }
+           if(!empty($user->email)){
                 $userExisted = User::where('email',$user->email)->first();
 
                 if($userExisted){
@@ -149,8 +143,13 @@ class SocialiteLoginController extends Controller
                         'token' => $token,
                         'user' => auth()->user()
                       ], 200);
+                }else{
+                    return response()->json([
+                        "status" => "false",
+                        "message" => "unsuccess",
+                      ], 404);
                 }
-                
+            }
         }catch(Exception $e){
             dd($e);
         }
