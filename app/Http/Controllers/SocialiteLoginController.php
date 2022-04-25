@@ -28,7 +28,7 @@ class SocialiteLoginController extends Controller
         try{
             $user = Socialite::driver(static::GOOGLE_TYPE)->stateless()->user();
 
-            $userExisted = User::where('oauth_id',$user->id)->where('oauth_type',static::GOOGLE_TYPE)->first();
+            $userExisted = User::where('email',$user->email)->first();
 
             if($userExisted){
 
@@ -102,7 +102,7 @@ class SocialiteLoginController extends Controller
                     "message" => "unsuccess",
                   ], 401);
             }else{
-                $userExisted = User::where('oauth_id',$user->id)->where('oauth_type',static::FACEBOOK_TYPE)->first();
+                $userExisted = User::where('email',$user->email)->first();
 
                 if($userExisted){
     
