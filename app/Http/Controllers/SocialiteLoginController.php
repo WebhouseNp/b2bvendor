@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Modules\Role\Entities\Role_user;
 use Mail;
 use App\Mail\UserRegisteredFromSocial;
+use Validator;
 
 class SocialiteLoginController extends Controller
 {
@@ -96,7 +97,13 @@ class SocialiteLoginController extends Controller
     public function handleFacebookCallBack(){
         try{
             $user = Socialite::driver(static::FACEBOOK_TYPE)->stateless()->user();
-            if($user->email != ""){
+            $validator = Validator::make($user->email, [
+                'email' => 'required|email',
+              ]);
+        
+              if ($validator->fails()) {
+                return response()->json(['status' => 'unsuccessful', 'data' => $validator->messages()], 422);
+              }
                 $userExisted = User::where('email',$user->email)->first();
 
                 if($userExisted){
@@ -144,12 +151,6 @@ class SocialiteLoginController extends Controller
                       ], 200);
                 }
                 
-            }else{
-                return response()->json([
-                    "status" => "false",
-                    "message" => "unsuccess",
-                  ], 401);
-            }
         }catch(Exception $e){
             dd($e);
         }
