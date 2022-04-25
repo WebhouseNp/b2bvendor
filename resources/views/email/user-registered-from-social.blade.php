@@ -8,5 +8,5 @@ You have successfully registered in Sasto Wholesale.
 Thanks,<br>
 Support Team<br>
 {{ config('app.name') }}<br>
-vendor@sastowholesale.com
+info@sastowholesale.com
 @endcomponent
