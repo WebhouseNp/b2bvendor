@@ -33,13 +33,13 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('CUSTOMER_APP_URL', 'https://sastowholesale.com').'/login/google/callback',
+        'redirect' => env('FRONT_APP').'/login/google/callback',
     ],
 
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('CUSTOMER_APP_URL', 'https://sastowholesale.com').'/login/facebook/callback',
+        'redirect' => env('FRONT_APP').'/login/facebook/callback',
     ],
 
     'sms_api' => [

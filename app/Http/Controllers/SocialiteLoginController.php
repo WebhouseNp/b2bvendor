@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Modules\Role\Entities\Role_user;
 use Mail;
 use App\Mail\UserRegisteredFromSocial;
-use Validator;
+use DB;
 
 class SocialiteLoginController extends Controller
 {
@@ -97,62 +97,60 @@ class SocialiteLoginController extends Controller
     public function handleFacebookCallBack(){
         try{
             $user = Socialite::driver(static::FACEBOOK_TYPE)->stateless()->user();
-            $email = $user->getEmail();
-           if($email != ""){
-                $userExisted = User::where('email',$user->email)->first();
+            $userExisted = User::where('email',$user->email)->first();
 
-                if($userExisted){
-    
-                    Auth::login($userExisted);
-                    $token = auth()->user()->createToken('authToken')->accessToken;
-                    return response()->json([
-                        "status" => "true",
-                        "message" => "success",
-                        'token' => $token,
-                        'user' => auth()->user()
-                      ], 200);
-    
-                }else{
-    
-                    $newUser = User::updateOrCreate([
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'oauth_id' => $user->id,
-                        'oauth_type' => static::FACEBOOK_TYPE,
-                        'password' => Hash::make($user->id),
-                        'avatar' => $user->avatar,
-                        'publish' => 1,
-                        'verified' => 1,
-                        'vendor_type' => 'approved'
-                    ]);
-    
-                    if($newUser){
-                        $customer = User::where('email', $user->email)->first();
-                    }
-    
-                    $role_data = [
-                        'role_id' => 4,
-                        'user_id' => $customer->id
-                    ];
-                    Role_user::create($role_data);
-                    Mail::to($customer->email)->send(new UserRegisteredFromSocial($customer));
-                    Auth::login($newUser);
-                    $token = auth()->user()->createToken('authToken')->accessToken;
-                    return response()->json([
-                        "status" => "true",
-                        "message" => "success",
-                        'token' => $token,
-                        'user' => auth()->user()
-                      ], 200);
-                }
-            }else{
+            if($userExisted){
+
+                Auth::login($userExisted);
+                $token = auth()->user()->createToken('authToken')->accessToken;
                 return response()->json([
-                    "status" => "false",
-                    "message" => "unsuccess",
-                  ], 404);
+                    "status" => "true",
+                    "message" => "success",
+                    'token' => $token,
+                    'user' => auth()->user()
+                  ], 200);
+
+            }else{
+
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'oauth_id' => $user->id,
+                    'oauth_type' => 'facebook',
+                    'password' => Hash::make($user->id),
+                    'avatar' => $user->avatar,
+                    'publish' => 1,
+                    'verified' => 1,
+                    'vendor_type' => 'approved'
+                ]);
+
+                if($newUser){
+                    $customer = User::where('email', $user->email)->first();
+                }
+
+                $role_data = [
+                    'role_id' => 4,
+                    'user_id' => $customer->id
+                ];
+                Role_user::create($role_data);
+
+                Mail::to($customer->email)->send(new UserRegisteredFromSocial($customer));
+
+                Auth::login($newUser);
+                
+                $token = auth()->user()->createToken('authToken')->accessToken;
+                return response()->json([
+                    "status" => "true",
+                    "message" => "success",
+                    'token' => $token,
+                    'user' => auth()->user()
+                  ], 200);
             }
         }catch(Exception $e){
-            dd($e);
+            DB::rollback();
+            return response([
+                'message' => $e->getMessage()
+            ],400);
         }
     }
 }
