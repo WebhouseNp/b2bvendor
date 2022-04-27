@@ -46,7 +46,7 @@ class User extends Authenticatable
         'designation',
         'oauth_id',
         'oauth_type',
-        'image_thumbnail'
+        'avatar'
     ];
 
     /**
