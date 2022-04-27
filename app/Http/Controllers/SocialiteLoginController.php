@@ -13,8 +13,10 @@ use Mail;
 use App\Mail\UserRegisteredFromSocial;
 use DB;
 
+
 class SocialiteLoginController extends Controller
 {
+
     //Google Login
     CONST GOOGLE_TYPE = 'google';
 
@@ -43,14 +45,13 @@ class SocialiteLoginController extends Controller
                   ], 200);
 
             }else{
-
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'oauth_id' => $user->id,
                     'oauth_type' => static::GOOGLE_TYPE,
                     'password' => Hash::make($user->id),
-                    'avatar' => $user->avatar,
+                    'avatar' => $user->getAvatar(),
                     'publish' => 1,
                     'verified' => 1,
                     'vendor_type' => 'approved'
@@ -110,14 +111,13 @@ class SocialiteLoginController extends Controller
                       ], 200);
     
                 }else{
-    
                     $newUser = User::create([
                         'name' => $user->name,
                         'email' => $user->email,
                         'oauth_id' => $user->id,
                         'oauth_type' => static::FACEBOOK_TYPE,
                         'password' => Hash::make($user->id),
-                        'avatar' => $user->avatar,
+                        'avatar' => $user->getAvatar(),
                         'publish' => 1,
                         'verified' => 1,
                         'vendor_type' => 'approved'
@@ -157,6 +157,13 @@ class SocialiteLoginController extends Controller
             return response([
                 'message' => $e->getMessage()
             ],400);
+        }
+    }
+
+    protected function deleteMainUserImage(User $user)
+    {
+        if ($user->image) {
+            $this->imageService->unlinkImage($user->image);
         }
     }
 }
