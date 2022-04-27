@@ -173,6 +173,10 @@ class User extends Authenticatable
 
     public function imageUrl()
     {
+        if ($this->avatar && !$this->image) {
+            return $this->avatar;
+        }
+
         if (!$this->image) {
             $queryString = [
                 'name' => $this->name,
