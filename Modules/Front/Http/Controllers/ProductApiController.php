@@ -103,7 +103,7 @@ class ProductApiController extends Controller
                 });
             })
             ->active()
-            ->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 18);
+            ->orderBy('created_at', 'DESC')->paginate(request('per_page') ?? 20);
 
         return ProductResource::collection($products)->hide([
             'highlight',
