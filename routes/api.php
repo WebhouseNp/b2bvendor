@@ -29,9 +29,9 @@ Route::get('/message', [App\Http\Controllers\MessageController::class, 'message'
 // Route::get('/categories', 'CategoryController@index')->name('categories');
 
  //login with Google
- Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle'])->name('login.google');
- Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack'])->name('social.callback');
+ Route::get('login/google', [SocialiteLoginController::class, 'redirectToGoogle']); //->name('login.google');
+ Route::get('login/google/callback', [SocialiteLoginController::class, 'handleGoogleCallBack']); //->name('social.callback');
 
  //login with Facebook
- Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook'])->name('login.facebook');
+ Route::get('login/facebook', [SocialiteLoginController::class, 'redirectToFacebook']); //->name('login.facebook');
  Route::get('login/facebook/callback', [SocialiteLoginController::class, 'handleFacebookCallBack']);
