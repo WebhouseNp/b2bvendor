@@ -235,9 +235,9 @@ class Nchl
 
         $private_key = null;
 
-        if (openssl_pkcs12_read($this->certificate, $cert_info, '123')) {
+        if (openssl_pkcs12_read($this->certificate, $cert_info, 'S@st0WhoL3S@l3')) {
             $private_key = openssl_pkey_get_private($cert_info['pkey']);
-        // $array = openssl_pkey_get_details($private_key);
+            // $array = openssl_pkey_get_details($private_key);
             // print_r($array);
         } else {
             throw NchlException::certificateError($this, 'Unable to read certificate.');
