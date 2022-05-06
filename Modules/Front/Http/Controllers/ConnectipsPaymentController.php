@@ -63,6 +63,7 @@ class ConnectipsPaymentController extends Controller
                     'connectips_txn_id' => $request->txn_id
                 ]);
             }
+            logger('Payment received via connectips for order #' .$order->id );
 
             return response()->json($response, 200);
         } catch (\Throwable $th) {
