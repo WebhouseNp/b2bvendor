@@ -140,14 +140,19 @@
         </div>
 
         @forelse($notifications as $notification)
-        <a class="notification-wrapper mb-2" href="{{ route('notifications.show', $notification->id) }}">
+        <a class="notification-wrapper mb-2" href="#{{ route('notifications.show', $notification->id) }}">
             <div class="notification shadowsm border {{ $notification->read_at ? : 'unread' }}">
                 <div class="icon"><i class="fa fa-bell"></i></div>
                 <div class="body">
                     <div class="title">{{ $notification->data['message'] ?? null }}</div>
                     <div class="time">{{ $notification->created_at->diffForHumans() }}</div>
                 </div>
-                <div class="delete pl-2">
+                @if(!$notification->read_at)
+                <div class="align-self-center">
+                    <button class="mark-notification-as-read-btn btn btn-sm btn-primary border-0 ml-2" type="button" data-id="{{ $notification->id }}">Mark as read</button>
+                </div>
+                @endif
+                <div class="delete pl-2 d-flex">
                     <form action="{{ route('notifications.destroy', $notification->id) }}" method="POST">
                         @csrf
                         @method('delete')
@@ -174,3 +179,33 @@
     </div>
 </div>
 @endsection
+
+@push('push_scripts')
+<script src="{{asset('/assets/admin/js/sweetalert.js')}}" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.mark-notification-as-read-btn').click(function() {
+            let eventBtn = $(this);
+            var id = $(this).data('id');
+            $.ajax({
+                type: "POST"
+                , url: `/api/notifications/${id}/mark-as-read`
+                , success: function(response) {
+                    Swal.fire({
+                        position: 'top-end'
+                        , type: 'success'
+                        , title: 'Done'
+                        , html: 'Notification marked as read'
+                        , showConfirmButton: false
+                        , timer: 3000
+                        , toast: true
+                    });
+                    eventBtn.hide();
+                }
+            });
+        });
+    });
+
+</script>
+@endpush

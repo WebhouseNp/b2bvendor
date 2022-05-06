@@ -13,7 +13,6 @@ class NotificationController extends Controller
     {
         $filter = $request->query('filter', 'all');
         $notifications = Auth::user();
-        // dd($filter);
 
         if ($filter == 'unread') {
             $notifications = $notifications->unreadNotifications();
@@ -53,6 +52,18 @@ class NotificationController extends Controller
     {
         return response()->json([
             'count' => auth()->user()->unreadNotifications()->count()
+        ], 200);
+    }
+
+    public function markAsRead($id)
+    {
+        auth()->user()
+            ->notifications()
+            ->where('id', $id)
+            ->update(['read_at' => now()]);
+
+        return response()->json([
+            'message' => 'Notification marked as read'
         ], 200);
     }
 }
