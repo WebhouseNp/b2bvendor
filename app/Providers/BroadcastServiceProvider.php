@@ -14,8 +14,8 @@ class BroadcastServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (request()->hasHeader('authorization')) {
-            // logger('Using auth:api middleware for channel authorization');
+        if (request()->hasHeader('authorization') || request()->hasHeader('Authorization')) {
+            logger('Using auth:api middleware for channel authorization');
             Broadcast::routes(['middleware' => ['auth:api']]);
         } else {
             // logger('Using web middleware for channel authorization');
