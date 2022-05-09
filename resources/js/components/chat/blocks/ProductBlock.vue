@@ -17,6 +17,28 @@
 
 <script>
 export default {
-  props: ["product"],
+  props: ["message"],
+
+  computed: {
+    product()
+    {
+      return this.message.product;
+    }
+  }
 };
 </script>
+
+<style scoped>
+.message .product-block {
+  padding: 15px;
+  border-radius: 1rem;
+}
+.message.outgoing .product-block {
+  background-color: #f5f5f5;
+  color: #333;
+}
+.message.incomming .product-block {
+  background-color: #2196f3;
+  color: #fefefe;
+}
+</style>
