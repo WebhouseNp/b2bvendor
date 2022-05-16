@@ -5,10 +5,25 @@
       <div class="heading mt-5">
         <h2>About Us</h2>
       </div>
-      <div class="row mt-5">
-        <div class="description mb-5">
-          <p>Sastowholesale.com is a dynamic marketing/selling online venue for manufacturer, supplier, wholesaler, or any organization; who are seeking their product worldwide. Managed and handled by be the best Pvt. Ltd., B2B, B2C Ecommerce having both product and service which connect Buyers &amp; Suppliers around the world.</p>
-        </div>
+         <div class="px-md-5 my-4">
+        <p>Sasto Wholesale, an integral part of <strong>The Best Nepal</strong>, is one of the best B2B e- commerce platforms available in Nepal that also offers solutions for B2C activities.</p>
+
+        <p>
+          We, the team of Sasto Wholesale, understand the importance of setting up an online infrastructure for the promotion of every type of business at the current time. That's why we provide all
+          types of manufacturers, wholesalers, and retailers with the best online solutions to grow business by uplifting the sales rate.
+        </p>
+
+        <p>
+          This platform helps to find the ideal suppliers and products from Nepal, India, and China within minutes. Further, users can also get connected to the international vendors with the help of
+          Sasto Wholesale logistics.
+        </p>
+
+        <p>
+          Here, the buyer and seller, both are eligible to have two-way communication with each other through our chat system and can import or export goods according to the requirements. There will
+          be no barrier to the quantity.
+        </p>
+
+        <p>Within a short period of time, our company has been able to provide a virtual platform for its users to enlist a wide range of products for online sales.</p>
       </div>
     </div>
   </frontmaster>
@@ -21,10 +36,6 @@ export default {
 </script>
 
 <style scoped>
-.description{
-  padding-right: 16px;
-   padding-left: 32px;
-}
 ol{
   padding-left: 20px;
   padding-right: 20px;
