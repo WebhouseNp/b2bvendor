@@ -30,7 +30,7 @@ class TopProductApiController extends Controller
     public function getTopProducts()
     {
         $products = Cache::remember('top-products', now()->addMinutes(5), function () {
-            Product::with(['ranges', 'user'])
+            return Product::with(['ranges', 'user'])
                 ->productsfromapprovedvendors()
                 ->where('is_top', true)
                 ->active()

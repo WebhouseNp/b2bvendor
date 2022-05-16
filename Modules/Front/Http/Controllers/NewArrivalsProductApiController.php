@@ -35,7 +35,7 @@ class NewArrivalsProductApiController extends Controller
     public function getNewArrivals()
     {
         $products = Cache::remember('new-arrivals', now()->addMinutes(5), function () {
-            Product::with(['ranges', 'user'])
+            return Product::with(['ranges', 'user'])
                 ->productsfromapprovedvendors()
                 ->where('is_new_arrival', true)
                 ->active()

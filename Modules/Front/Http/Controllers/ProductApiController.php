@@ -167,7 +167,7 @@ class ProductApiController extends Controller
     public function youMayLike()
     {
         $products = Cache::remember('you-may-like-products', now()->addMinutes(5), function () {
-            Product::with(['ranges', 'user'])
+            return Product::with(['ranges', 'user'])
                 ->productsfromapprovedvendors()
                 ->active()
                 ->orderBy('created_at', 'DESC')
