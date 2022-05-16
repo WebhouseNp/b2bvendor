@@ -29,12 +29,14 @@ class TopProductApiController extends Controller
     // Top Products for homepage
     public function getTopProducts()
     {
-        $products = Product::with(['ranges','user'])
-            ->productsfromapprovedvendors()
-            ->where('is_top', true)
-            ->active()
-            ->orderBy('created_at', 'DESC')
-            ->take(4)->get();
+        $products = Cache::remember('top-products', now()->addMinutes(5), function () {
+            Product::with(['ranges', 'user'])
+                ->productsfromapprovedvendors()
+                ->where('is_top', true)
+                ->active()
+                ->orderBy('created_at', 'DESC')
+                ->take(4)->get();
+        });
 
         return ProductResource::collection($products->shuffle()->all())->hide([
             'highlight',

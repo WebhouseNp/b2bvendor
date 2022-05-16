@@ -3,6 +3,7 @@
 namespace Modules\Front\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
 use Modules\Subcategory\Entities\Subcategory;
@@ -33,13 +34,15 @@ class NewArrivalsProductApiController extends Controller
     // New Arrivals
     public function getNewArrivals()
     {
-        $products = Product::with(['ranges','user'])
-            ->productsfromapprovedvendors()
-            ->where('is_new_arrival', true)
-            ->active()
-            ->orderBy('created_at', 'DESC')
-            ->take(4)
-            ->get();
+        $products = Cache::remember('new-arrivals', now()->addMinutes(5), function () {
+            Product::with(['ranges', 'user'])
+                ->productsfromapprovedvendors()
+                ->where('is_new_arrival', true)
+                ->active()
+                ->orderBy('created_at', 'DESC')
+                ->take(4)
+                ->get();
+        });
 
         return ProductResource::collection($products)->hide([
             'highlight',

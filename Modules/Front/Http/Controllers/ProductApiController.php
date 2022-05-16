@@ -92,13 +92,13 @@ class ProductApiController extends Controller
             ->when($hasFilters, function ($query) use ($withInVendorIds) {
                 return $query->whereIn('vendor_id', $withInVendorIds);
             })
-            ->when(request()->has('price_gt'), function($query) {
-                return $query->whereHas('ranges', function($query) {
+            ->when(request()->has('price_gt'), function ($query) {
+                return $query->whereHas('ranges', function ($query) {
                     return $query->where('price', '>=', request()->price_gt);
                 });
             })
-            ->when(request()->has('price_lt'), function($query) {
-                return $query->whereHas('ranges', function($query) {
+            ->when(request()->has('price_lt'), function ($query) {
+                return $query->whereHas('ranges', function ($query) {
                     return $query->where('price', '<=', request()->price_lt);
                 });
             })
@@ -166,11 +166,13 @@ class ProductApiController extends Controller
 
     public function youMayLike()
     {
-        $products = Product::with(['ranges', 'user'])
-            ->productsfromapprovedvendors()
-            ->active()
-            ->orderBy('created_at', 'DESC')
-            ->take(12)->get();
+        $products = Cache::remember('you-may-like-products', now()->addMinutes(5), function () {
+            Product::with(['ranges', 'user'])
+                ->productsfromapprovedvendors()
+                ->active()
+                ->orderBy('created_at', 'DESC')
+                ->take(12)->get();
+        });
 
         return ProductResource::collection($products->shuffle()->all())->hide([
             'highlight',
