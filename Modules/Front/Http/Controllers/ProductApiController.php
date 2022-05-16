@@ -2,12 +2,9 @@
 
 namespace Modules\Front\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
 use Modules\Category\Entities\Category;
-use Modules\Country\Entities\Country;
-use Modules\Front\Transformers\ProductCollection;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
 use Modules\ProductCategory\Entities\ProductCategory;

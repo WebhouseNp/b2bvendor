@@ -3,6 +3,7 @@
 namespace Modules\Front\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
 use Modules\Front\Transformers\ProductResource;
 use Modules\Product\Entities\Product;
 
