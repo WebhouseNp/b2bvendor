@@ -36,7 +36,7 @@
                         <td>{{$data->user->phone_num}}</td>
                         @if($data->user->vendor_type == 'approved')
                         <td>
-                            <input type="checkbox" id="toggle-event" data-toggle="toggle" class="js-vendor-featured btn btn-success btn-sm" rel="{{$data->id}}" data-on="Featured" data-off="Not Featured" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($data->is_featured == 1) checked @endif>
+                            <input type="checkbox" id="toggle-event" data-toggle="toggle" class="js-vendor-featured btn btn-success btn-sm" rel="{{$data->id}}" onclick="alert" data-on="Featured" data-off="Not Featured" data-onstyle="success" data-offstyle="danger" data-size="mini" @if($data->is_featured == 1) checked @endif>
                         </td>
                         @elseif($data->user->vendor_type == 'new' || $data->user->vendor_type == 'suspended')
                         <td>{{$data->is_approved=='1' ?'Yes':'No' }}</td>
@@ -68,6 +68,10 @@
     $(function() {
         $('#example-table').DataTable({
             pageLength: 15,
+            lengthMenu: [
+                [10, 15, 25, 50, -1],
+                [10, 15, 25, 50, 'All'],
+            ],
             "aoColumnDefs": [{
                 "bSortable": false
                 , "aTargets": [-1, -2,-3]
@@ -103,7 +107,8 @@
 </script>
 <script>
     $(function() {
-        $('.js-vendor-featured').change(function() {
+        // $('#example-table .js-vendor-featured').change(function() {
+        $('#example-table').on('change', '.js-vendor-featured', function() {
             var product_id = $(this).attr('rel');
             if ($(this).prop("checked") == true) {
                 $.ajax({
