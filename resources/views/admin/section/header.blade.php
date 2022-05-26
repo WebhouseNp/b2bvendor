@@ -30,116 +30,6 @@
     <!-- PAGE LEVEL STYLES-->
     @yield('styles')
     @stack('styles')
-    <style>
-        .title-label {
-            font-size: 0.9rem;
-            color: gray;
-            margin-bottom: 0;
-        }
-
-        /*==========
-            * Dropzone
-            ===========*/
-
-        .dropzone {
-            border: 2px dashed #5370e9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-weight: 600;
-        }
-
-        @media screen AND (min-width: 600px) {
-            .dropzone {
-                min-height: 300px;
-            }
-        }
-
-        #productImages .img-wrap {
-            display: block;
-            background-color: #fff;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        #productImages .img-wrap img {
-            overflow: hidden;
-            width: 100%;
-            aspect-ratio: 900 / 900;
-        }
-
-        #productImages .img-wrap .del-image-btn {
-            background-color: transparent;
-            border: 0px;
-            outline: none;
-            border-radius: 50%;
-            line-height: 1;
-            color: #f55252;
-            transition: background-color 150ms ease-in;
-        }
-
-        #productImages .img-wrap .del-image-btn:hover {
-            background-color: whitesmoke;
-        }
-
-        #no-image {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-        }
-
-        #no-image .image-icon {
-            font-size: 72px;
-            color: #a5a5a5;
-        }
-
-        #no-image .text {
-            font-style: italic;
-        }
-
-        /* Left sidebar */
-        /* Scrollable content in sidebar only in large screens */
-        @media screen AND (min-width: 600px) {
-            .page-sidebar {
-                position: fixed;
-                height: calc(100vh - 56px);
-                min-height: calc(100vh - 56px);
-            }
-
-            #sidebar-collapse {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-            }
-
-            #sidebar-collapse .side-menu {
-                flex-grow: 1;
-                overflow-y: auto;
-                padding-bottom: 100px;
-                scrollbar
-            }
-
-            .side-menu::-webkit-scrollbar {
-                width: 10px;
-            }
-
-            .side-menu::-webkit-scrollbar-thumb {
-                background-color: transparent;
-                border-radius: 4px;
-            }
-
-            .side-menu:hover::-webkit-scrollbar-thumb {
-                background: rgba(255, 255, 255, 0.4);
-            }
-
-            .side-menu::-webkit-scrollbar-thumb:hover {
-                background: #778af1;
-            }
-        }
-    </style>
-
     <script src="{{asset('/assets/admin/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 </head>
 
@@ -151,9 +41,10 @@
                 <!-- <a class="link" href="#"> -->
                 <span class="brand">
                     @if(auth()->user()->hasAnyRole('admin|super_admin'))
-                    {{ auth()->user()->name }}
+                    {{ auth()->user()->name }} 
                     @else
-                    {{ auth()->user()->vendor->shop_name }}
+                    {{-- {{ auth()->user()->vendor->shop_name }} --}}
+                    Sastowholesale
                     @endif
                 </span>
                 <span class="brand-mini text-nowrap">
