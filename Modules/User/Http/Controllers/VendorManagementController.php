@@ -165,7 +165,7 @@ class VendorManagementController extends Controller
       $request->validate([
          'name' => 'required',
          'email' => 'required',
-         'phone_num' => ['required', new Mobile],
+         'phone_num' => ['required'], // new Mobile],
          //  'phone_num' => 'required',
          'designation' => 'required',
       ]);

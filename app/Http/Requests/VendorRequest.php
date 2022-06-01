@@ -28,7 +28,7 @@ class VendorRequest extends FormRequest
         'email' => 'required|email|unique:users',
         'name' => 'required',
         'designation' => 'required',
-        'phone_num' => ['required', new Mobile],
+        'phone_num' => ['required'], // new Mobile],
         'password' => 'required|min:6',
         'confirm_password' => 'required_with:password|same:password'
         ];
