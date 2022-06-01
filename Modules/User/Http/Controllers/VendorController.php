@@ -103,7 +103,7 @@ class VendorController extends Controller
       abort_if(is_alternative_login(), 403);
       $request->validate([
          'name' => 'required',
-         'phone_num' => ['required', new Mobile],
+         'phone_num' => ['required'], //, new Mobile],
          'designation' => 'required',
       ]);
       $formInput = $request->except(['_token','email']);
