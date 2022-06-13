@@ -26,7 +26,7 @@ class VendorApiController extends Controller
             ->when(request()->filled('q'), function ($query) {
                 return $query->where('shop_name', 'like', '%' . request()->q . '%');
             })
-            ->paginate(20);
+            ->paginate(request('per_page', 24));
 
         return VendorResource::collection($vendors)->hide([
             'description',
