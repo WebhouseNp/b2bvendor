@@ -18,7 +18,7 @@ class BroadcastServiceProvider extends ServiceProvider
             logger('Using auth:api middleware for channel authorization');
             Broadcast::routes(['middleware' => ['auth:api']]);
         } else {
-            // logger('Using web middleware for channel authorization');
+            logger('Using web middleware for channel authorization');
             // Broadcast::routes(['middleware' => ['web', 'auth']]);
             Broadcast::routes();
         }

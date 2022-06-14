@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('chat-channel-{id}', function ($user, $id) {
+    logger('chat-channel-{id}' . $user->id);
     return [
         'id' => $user->id,
         'name' => $user->name,
