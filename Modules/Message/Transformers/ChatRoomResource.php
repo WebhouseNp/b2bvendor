@@ -29,6 +29,14 @@ class ChatRoomResource extends JsonResource
     protected function opponentUser()
     {
         if (auth()->id() == $this->customer_user_id) {
+            // In case the vendorUser is not available
+            if(!$this->vendorUser) {
+                return [
+                    'id' => null,
+                    'name' => 'N/A',
+                    'avatar-url' => null
+                ];
+            }
             $vendor = $this->vendorUser->vendor;
             return [
                 'id' => $this->vendorUser->id ?? null,
