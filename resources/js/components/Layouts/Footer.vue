@@ -39,7 +39,7 @@
         <div class="bottom-footer">
           <p><b>©2022 Sasto Wholesale Pvt. Ltd. All rights Reserved.</b></p>
           <p>Email: vendor@sastowholesale.com</p>
-          <p><b>Designed &amp; Developed By: Web House Nepal</b></p>
+          <p><b>Designed &amp; Developed By: <a href="https://webhousenepal.com/" class="webhouse-link">Web House Nepal</a></b></p>
         </div>
         <hr />
       </div>
