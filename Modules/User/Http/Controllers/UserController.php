@@ -69,7 +69,11 @@ class UserController extends Controller
         'user_id' => $user->id
       ];
       $role_user = Role_user::create($role_data);
-      Mail::to($request->email)->send(new UserCreated($user));
+      try {
+        Mail::to($request->email)->send(new UserCreated($user));
+      } catch (\Throwable $th) {
+        logger('Unable to send email during user registration');
+      }
       $user->notify(new UserRegisterNotification($user));
       // Notification::send($user, new SmsApiChannel());
       DB::commit();
