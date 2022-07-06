@@ -190,12 +190,12 @@ class UserController extends Controller
       }
 
       // Reject if not verified
-      if (in_array('customer', $roles) && $user->verified == '0') {
-        return response()->json([
-          "status" => "false",
-          "message" => "You account has not been verified yet. Please contact admin!!"
-        ], 401);
-      }
+      // if (in_array('customer', $roles) && $user->verified == '0') {
+      //   return response()->json([
+      //     "status" => "false",
+      //     "message" => "You account has not been verified yet. Please contact admin!!"
+      //   ], 401);
+      // }
 
       if(is_numeric($request->email)){
         if (Auth::attempt([
